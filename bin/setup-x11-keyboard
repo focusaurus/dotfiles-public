@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+# 2018-04-09 plyons https://superuser.com/questions/410657/enabling-sticky-keys-under-xorg-awesome-desktop-manager#414535
+# Turn on stickykeys. don't let two keys pressed at the same time disable it.
+# don't turn on "latch lock", ie pressing a modifier key twice "locks" it on.
+# xkbset accessx sticky -twokey -latchlock feedback -stickybeep
+
+# don't expire these settings. (run xkbset q exp for details.)
+# xkbset exp 1 -accessx -sticky -twokey -latchlock
+
+# 2018-04-10 plyons set fast keyboard repeat
+# syntax is delay (ms) then repeat rate (cps I think)
+delay=225
+rate=70
+xset r rate "${delay}" "${rate}"
+
+# 2018-04-17 plyons natural scrolling everywhere in X11
+#synclient VertScrollDelta=-119
+#synclient HorizScrollDelta=-119
+
+# 2018-04-17 plyons caps lock key is control key
+setxkbmap -option "ctrl:nocaps"
+setxkbmap -option "altwin:swap_alt_win"
+
+# 2018-05-09 plyons left alt key is super, super is alt
+# xmodmap ~/.Xmodmap
+
+# 2019-09-26 plyons press and release a modifier sends key combos
+# left shift press & release is the same as control+comma
+# left control press & release is the same as control+space
+killall xcape
+xcape -e "Control_L=Control_L|space;Shift_L=Control_L|comma"
+
+#xfconf-query --channel keyboards --property '/Default/KeyRepeat/Delay' --set 225
+#xfconf-query --channel keyboards --property '/Default/KeyRepeat/Rate' --set 70
+#xfconf-query --channel accessibility --property '/StickyKeys' --set true
+#xfconf-query --channel xfce4-keyboard-shortcuts --property '/xfwm4/custom/<Control>m' --set maximize_window_key --create --type string
+
+# start xbindkeys daemon which remaps extra mouse buttons
+xbindkeys
