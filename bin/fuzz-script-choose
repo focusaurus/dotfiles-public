@@ -15,7 +15,8 @@ IFS="$(printf "\n\t")"
 
 task_dir="${1:-${HOME}/projects/dotfiles/fuzzball}"
 
-if [[ -t 1 ]]; then
+#if [[ -t 1 ]]; then
+if false; then
   task=$(ls "${task_dir}" | fzf --color=bw --layout=reverse)
 else
   task=$(
