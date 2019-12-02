@@ -209,6 +209,7 @@ bindkey "^[f" "fuzz-file-into-line"
 
 #This is evil. Doesn't fall back to files
 #zstyle ':completion:*' menu select
+zstyle ':completion:*' completer _complete _ignored _files
 fpath=(${DOTFILES}/shell/zsh-completions/src $fpath)
 fpath=(${DOTFILES}/shell/zsh-completions-custom $fpath)
 autoload -U compinit && compinit

@@ -1,0 +1,3 @@
+rofi.font: Inconsolata 16
+rofi.sort: true
+rofi.matching: fuzzy

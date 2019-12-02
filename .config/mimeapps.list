@@ -1,0 +1,33 @@
+[Added Associations]
+image/jpeg=xviewer.desktop;
+application/pdf=xreader.desktop;
+image/png=xviewer.desktop;
+x-scheme-handler/http=firefox.desktop;google-chrome.desktop;
+x-scheme-handler/mailto=firefox.desktop;
+application/msword=libreoffice-writer.desktop;
+application/rtf=libreoffice-writer.desktop;
+application/vnd.ms-works=libreoffice-writer.desktop;
+application/vnd.oasis.opendocument.text=libreoffice-writer.desktop;
+application/vnd.oasis.opendocument.text-template=libreoffice-writer.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop;
+application/vnd.stardivision.writer=libreoffice-writer.desktop;
+application/vnd.wordperfect=libreoffice-writer.desktop;
+application/x-abiword=libreoffice-writer.desktop;
+
+[Default Applications]
+text/html=firefox.desktop
+x-scheme-handler/http=firefox.desktop
+x-scheme-handler/https=firefox.desktop
+x-scheme-handler/about=firefox.desktop;google-chrome.desktop
+x-scheme-handler/unknown=firefox.desktop;google-chrome.desktop
+x-scheme-handler/webcal=firefox.desktop;google-chrome.desktop
+x-scheme-handler/mailto=firefox.desktop;google-chrome.desktop
+application/msword=libreoffice-writer.desktop
+application/rtf=libreoffice-writer.desktop
+application/vnd.ms-works=libreoffice-writer.desktop
+application/vnd.oasis.opendocument.text=libreoffice-writer.desktop
+application/vnd.oasis.opendocument.text-template=libreoffice-writer.desktop
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop
+application/vnd.stardivision.writer=libreoffice-writer.desktop
+application/vnd.wordperfect=libreoffice-writer.desktop
+application/x-abiword=libreoffice-writer.desktop

@@ -7,6 +7,7 @@
 # don't expire these settings. (run xkbset q exp for details.)
 # xkbset exp 1 -accessx -sticky -twokey -latchlock
 
+setxkbmap dvorak
 # 2018-04-10 plyons set fast keyboard repeat
 # syntax is delay (ms) then repeat rate (cps I think)
 delay=225
