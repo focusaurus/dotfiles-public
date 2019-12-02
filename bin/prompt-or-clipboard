@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+set -o errexit  # always exit on error
+set -o pipefail # don't ignore exit codes when piping output
+# set -x          # enable debugging
+
+IFS='$\n\t'
+query=
+label="${1:-query}"
+clipboard_preview=$(xclip -clipboard -o | head -c 12 | tr '\n' ' ')
+clipboard_hint="ENTER for 📋 (${clipboard_preview}…)"
+if [[ -t 1 ]]; then
+  echo "${clipboard_hint}" >/dev/tty
+  vared -p "${label}: " query
+else
+  query=$(zenity --entry --title="${label}" --text="${clipboard_hint}\n\n${label}" --width=500)
+fi
+if [[ -z "${query}" ]]; then
+  query=$(xclip -clipboard -o)
+fi
+echo "${query}"
