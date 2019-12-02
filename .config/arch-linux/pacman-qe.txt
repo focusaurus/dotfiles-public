@@ -1,27 +1,39 @@
-base
-dhclient
-dosfstools
-efibootmgr
-git
-grub
-i3-wm
-intel-ucode
-iw
-iwd
-lightdm-gtk-greeter
-linux
-linux-firmware
-lsof
-man-db
-neovim
-openssh
-rsync
-sudo
-termite
-vim
-which
-xbindkeys
-xcape
-xorg-server
-xorg-xset
-zsh
+base 2-1
+bat 0.12.1-1
+dhclient 4.4.1-4
+dosfstools 4.1-2
+efibootmgr 16-1
+exa 0.9.0-1
+fd 7.4.0-1
+fzf 0.19.0-1
+git 2.24.0-1
+grub 2:2.04-3
+i3-wm 4.17.1-1
+intel-ucode 20190918-1
+iw 5.3-2
+iwd 1.1-2
+lightdm-gtk-greeter 1:2.0.6-1
+linux 5.3.8.1-1
+linux-firmware 20191022.2b016af-1
+lsof 4.93.2-1
+man-db 2.9.0-1
+neovim 0.4.3-1
+openssh 8.1p1-2
+ranger 1.9.2-2
+ripgrep 11.0.2-1
+rofi 1.5.4-1
+rsync 3.1.3-1
+shfmt 2.6.4-2
+sudo 1.8.29-1
+sxhkd 0.6.1-1
+termite 15-1
+tig 2.5.0-1
+vim 8.1.2268-1
+which 2.21-5
+xbindkeys 1.8.6-3
+xcape 1.2-3
+xclip 0.13-2
+xdotool 3.20160805.1-2
+xorg-server 1.20.6-1
+xorg-xset 1.2.4-1
+zsh 5.7.1-1

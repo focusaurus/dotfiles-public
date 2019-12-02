@@ -6,6 +6,7 @@ source-if-exists() {
 	  fi
   done
 }
+source-if-exists ~/.config/zshell/zshell.sh
 source-if-exists ~/.config/zshell/[0-9]*.sh
 
 # OS-specific stuff

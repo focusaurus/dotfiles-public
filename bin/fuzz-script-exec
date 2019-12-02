@@ -1,0 +1,78 @@
+#!/usr/bin/env bash
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
+
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -o errexit  # always exit on error
+set -o errtrace # trap errors in functions as well
+set -o pipefail # don't ignore exit codes when piping output
+set -o posix    # more strict failures in subshells
+# set -x          # enable debugging
+
+IFS="$(printf "\n\t")"
+# ---- End unofficial bash strict mode boilerplate
+
+# https://stackoverflow.com/a/10660730/266795
+rawurlencode() {
+  local string="${1}"
+  local strlen=${#string}
+  local encoded=""
+  local pos c o
+
+  for ((pos = 0; pos < strlen; pos++)); do
+    c=${string:$pos:1}
+    case "$c" in
+      [-_.~a-zA-Z0-9]) o="${c}" ;;
+      *) printf -v o '%%%02x' "'$c" ;;
+    esac
+    encoded+="${o}"
+  done
+  echo "${encoded}"  # You can either set a return variable (FASTER)
+  REPLY="${encoded}" #+or echo the result (EASIER)... or both... :p
+}
+
+main() {
+  task_dir="$1"
+  cd "${task_dir}"
+  task="$2"
+
+  if [[ "${task}" == "quit" ]]; then
+    return
+  fi
+  if [[ -z "${task}" ]]; then
+    return
+  fi
+  if [[ -x "${task}" ]]; then
+    "./${task}"
+    return
+  fi
+  if grep '%s' "${task}" >/dev/null; then
+    # Task has placeholders we'll replace with a prompt
+    query=$(~/bin/prompt-or-clipboard)
+    query=$(rawurlencode "${query}")
+    args=$(cat "${task}" | sed "s/%s/${query}/g")
+  else
+    args=$(cat "${task}")
+  fi
+  if [[ "${args}" =~ ^#! ]]; then
+    echo "ERROR: ${task} looks like a script but is not executable" 1>&2
+    read -r -n 1 -p "Fix it? " fix_it
+    if [[ "${fix_it}" == "y" ]]; then
+      chmod 755 "${task}"
+      echo "Fixed. Running it now."
+      "./${task}"
+      return
+    fi
+  fi
+  case $(uname) in
+    Linux)
+      echo "${args}" | xargs -n 1 xdg-open
+      ;;
+    Darwin)
+      echo "${args}" | xargs open
+      ;;
+  esac
+}
+
+main "$@"

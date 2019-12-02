@@ -43,7 +43,7 @@ alias undo-git-rm='git checkout HEAD'
 alias gbmd="git branch --merged develop"
 alias amend="git commit --amend"
 alias git-not-pushed="git log --branches --not --remotes"
-alias git-dotfiles='git --git-dir="${HOME}/projects/dotfiles-public.git" --work-tree="${HOME}"'
+alias gdf='git --git-dir="${HOME}/projects/dotfiles-public.git" --work-tree="${HOME}"'
 
 _base-url() {
   git remote -v |

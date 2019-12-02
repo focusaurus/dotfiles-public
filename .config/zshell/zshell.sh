@@ -209,6 +209,8 @@ bindkey "^[f" "fuzz-file-into-line"
 
 #This is evil. Doesn't fall back to files
 #zstyle ':completion:*' menu select
+zle -C complete-file complete-word _generic
+bindkey '^t' complete-file
 zstyle ':completion:*' completer _complete _ignored _files
 fpath=(${DOTFILES}/shell/zsh-completions/src $fpath)
 fpath=(${DOTFILES}/shell/zsh-completions-custom $fpath)
