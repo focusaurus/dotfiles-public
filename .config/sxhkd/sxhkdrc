@@ -3,3 +3,28 @@ ctrl + space
 
 ctrl + comma
   ~/bin/fuzz-snippet
+
+F1
+  ~/bin/fkeys f1
+F2
+  ~/bin/fkeys f2
+F3
+  ~/bin/fkeys f3
+F4
+  ~/bin/fkeys f4
+F5
+  ~/bin/fkeys f5
+F6
+  ~/bin/fkeys f6
+F7
+  ~/bin/fkeys f7
+F8
+  ~/bin/fkeys f8
+F9
+  ~/bin/fkeys f9
+F10
+  ~/bin/fkeys f10
+F11
+  ~/bin/fkeys f11
+F12
+  ~/bin/fkeys f12

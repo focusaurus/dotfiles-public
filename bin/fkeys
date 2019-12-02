@@ -1,0 +1,128 @@
+#!/usr/bin/env bash
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
+
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -o errexit  # always exit on error
+set -o errtrace # trap errors in functions as well
+set -o pipefail # do nott ignore exit codes when piping output
+set -o posix    # more strict failures in subshells
+set -x          # enable debugging
+
+IFS="$(printf "\n\t")"
+# ---- End unofficial bash strict mode boilerplate
+
+# activate_app() {
+#   class="$1"
+#   id=$(wmctrl -lx |
+#     grep -i " $class " |
+#     head -1 |
+#     cut -d " " -f 1 || true)
+#   if [[ -n "${id}" ]]; then
+#     wmctrl -i -a "${id}"
+#     exit
+#   fi
+#   exec "${command}"
+# }
+
+current_workspace=$(xdotool get_desktop)
+activate_window() {
+  class="$1"
+  shift
+  command=$*
+  matches=$(wmctrl -lx | grep -i "${class}" | tac | awk '{print $2 "," $3 "," $1 "," $4}' || true)
+  echo matches "${matches}"
+  if [[ -z "${matches}" ]]; then
+    # No matching windows, launch the app
+    # shellcheck disable=SC2093
+    exec ${command}
+    return
+  fi
+  same_desktop=$(echo "${matches}" | grep -E "^${current_workspace}," || true)
+  # Find first matching window, but prefer window on current desktop
+
+  id=$(echo "${same_desktop}${matches}" | head -1 | cut -d , -f 3)
+  if [[ -n "${id}" ]]; then
+    wmctrl -i -a "${id}"
+  else
+    eval ${command}
+  fi
+}
+
+activate_firefox_main_window() {
+  # This is not super robust. It assumes the main firefox general purpose
+  # window is the first one launched
+  id=$(wmctrl -lx | grep -i "Navigator.firefox" | head -1 | awk '{print $1}' || true)
+  if [[ -n "${id}" ]]; then
+    wmctrl -i -a "${id}"
+  else
+    exec firefox
+  fi
+}
+
+main() {
+  case $1 in
+    f1)
+      activate_firefox_main_window
+      ;;
+    ctrl+f1)
+      # activate_window 'pete@' "${HOME}/bin/launch-chrome-app.sh" gmail
+      # activate_window 'pete@' firefox --new-window "https://mail.google.com/mail/u/0/#search/is%3Astarred+OR+is%3Aunread"
+      activate_firefox_main_window
+      sleep 0.4
+      xdotool key alt+1
+      ;;
+    f2)
+      # switch to workspace 2 (text editor)
+      wmctrl -s 1
+      # activate_window 'atom.atom' 'atom'
+      # activate_window 'code.Code' 'code'
+      ;;
+    f3)
+      activate_window 'termite' 'termite'
+      ;;
+    f4)
+      activate_window 'workflowy' "${HOME}/app-images/"WorkFlowy-x86_64.AppImage
+      ;;
+    f6)
+      activate_window 'slack' 'slack'
+      ;;
+    shift+f6)
+      activate_window 'Zoom' true
+      ;;
+    ctrl+f6)
+      activate_window 'zulip' /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=zulip --file-forwarding org.zulip.Zulip
+      ;;
+    f7)
+      # activate_window ' - Calendar' "${HOME}/bin/launch-chrome-app.sh" google-calendar
+      # activate_window ' - Calendar' firefox --new-window "https://calendar.google.com/calendar/r"
+      activate_firefox_main_window
+      sleep 0.2
+      xdotool key alt+2
+      ;;
+    f8)
+      # activate_window 'Google Play Music' "${HOME}/bin/launch-chrome-app.sh" google-play
+      activate_window 'Google Play Music' firefox --new-window "https://play.google.com/music/listen?u=1#/home"
+      # activate_firefox_main_window
+      # sleep 0.2
+      # xdotool key alt+3
+      ;;
+    f11)
+      new_workspace=$((${current_workspace} - 1))
+      if [[ ${new_workspace} -lt 0 ]]; then
+        new_workspace=3
+      fi
+      xdotool set_desktop "${new_workspace}"
+      ;;
+    f12)
+      new_workspace=$((${current_workspace} + 1))
+      if [[ ${new_workspace} -gt 3 ]]; then
+        new_workspace=0
+      fi
+      xdotool set_desktop "${new_workspace}"
+      ;;
+  esac
+}
+
+main "$@"
