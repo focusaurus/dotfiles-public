@@ -1,5 +1,5 @@
 super+space
-  fuzz-script-choose-menu
+  ~/bin/fuzz-script-choose-menu
 
-ctrl+,
-  fuzz-snippet-choose-menu
+ctrl+comma
+  ~/bin/fuzz-snippet
