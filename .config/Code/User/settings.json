@@ -1,0 +1,64 @@
+{
+  "telemetry.enableCrashReporter": false,
+  "telemetry.enableTelemetry": false,
+  "editor.tabSize": 2,
+  "editor.minimap.enabled": false,
+  "workbench.startupEditor": "newUntitledFile",
+  "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?",
+  "hadolint.hadolintPath": "/usr/local/bin/hadolint",
+  "macros.list": {
+    "sort-to-top": [
+      "bookmarks.toggle",
+      {
+        "command": "workbench.action.gotoLine",
+        "args": {
+          "line": "1"
+        }
+      },
+      "bookmarks.expand-selection-to-next"
+    ]
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "files.autoSave": "onFocusChange",
+  "window.zoomLevel": 0,
+  "breadcrumbs.enabled": true,
+  "editor.copyWithSyntaxHighlighting": false,
+  "editor.occurrencesHighlight": false,
+  "git.confirmSync": false,
+  "editor.tabCompletion": "on",
+  "editor.autoClosingBrackets": "never",
+  "editor.autoClosingQuotes": "never",
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  "workbench.colorTheme": "Quiet Light",
+  "window.newWindowDimensions": "maximized",
+  "window.openFilesInNewWindow": "on",
+  "window.openFoldersInNewWindow": "on",
+  "window.restoreWindows": "all",
+  "window.title": "${folderName}${separator}${activeEditorShort}${separator}${appName}",
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[rs]": {
+    "editor.tabSize": 4
+  },
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "[clojure]": {
+    "editor.defaultFormatter": "pedrorgirardi.vscode-cljfmt"
+  },
+  "calva.paredit.defaultKeyMap": "none",
+  "explorer.confirmDelete": false,
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "editor.renderWhitespace": "boundary",
+  "editor.acceptSuggestionOnEnter": "off",
+  "shellcheck.disableVersionCheck": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "editor.fontFamily": "'Inconsolata', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+  "editor.wordWrap": "wordWrapColumn"
+}
