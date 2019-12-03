@@ -1,0 +1,2 @@
+PATH=$(zsh -c 'echo $PATH')
+export PATH

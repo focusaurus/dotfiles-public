@@ -1,0 +1,8 @@
+bind status <C-f> >git push --force
+bind status <C-p> !git push --set-upstream "%(remote)" "%(repo:head)"
+bind status <C-a> >git commit --amend
+bind generic c >git commit
+#bind status <esc>hey !sh -c 'echo hey;echo $(ls)'
+# for debugging
+bind generic 1 !echo '%(remote)'
+bind generic <C-r> @zsh -i -c github-repo
