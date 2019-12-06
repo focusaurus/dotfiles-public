@@ -44,7 +44,7 @@ alias gbmd="git branch --merged develop"
 alias amend="git commit --amend"
 alias git-not-pushed="git log --branches --not --remotes"
 alias gdf='git --git-dir="${HOME}/projects/dotfiles-public.git" --work-tree="${HOME}"'
-alias gdfs="gdf status -u | grep -E -i -v '(projects|cache|\.mozilla)'"
+alias gdfs="gdf status -u | grep -E -i -v '(projects|cache|\.mozilla|\.stack)'"
 
 _base-url() {
   git remote -v |
