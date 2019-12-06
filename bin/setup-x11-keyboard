@@ -29,7 +29,7 @@ setxkbmap -option "altwin:swap_alt_win"
 # left shift press & release is the same as control+comma
 # left control press & release is the same as control+space
 killall xcape
-xcape -e "Control_L=Control_L|space;Shift_L=Control_L|comma"
+xcape -e "Control_L=Control_L|1;Shift_L=Control_L|2"
 
 #xfconf-query --channel keyboards --property '/Default/KeyRepeat/Delay' --set 225
 #xfconf-query --channel keyboards --property '/Default/KeyRepeat/Rate' --set 70

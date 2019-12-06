@@ -77,13 +77,15 @@ main() {
       # switch to workspace 2 (text editor)
       wmctrl -s 1
       # activate_window 'atom.atom' 'atom'
-      # activate_window 'code.Code' 'code'
+      activate_window 'Visual Studio Code' 'code'
       ;;
     f3)
       activate_window 'termite' 'termite'
       ;;
     f4)
-      activate_window 'workflowy' "${HOME}/app-images/"WorkFlowy-x86_64.AppImage
+      local app_image
+      app_image="$(find "${HOME}/aur/workflowy" -type f -name 'WorkFlowy-*.AppImage' | sort -n | head -1)"
+      activate_window 'workflowy' "${app_image}"
       ;;
     f6)
       activate_window 'slack' 'slack'
