@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
+
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -o errexit  # always exit on error
+set -o errtrace # trap errors in functions as well
+set -o pipefail # don't ignore exit codes when piping output
+set -o posix    # more strict failures in subshells
+# set -x          # enable debugging
+
+IFS="$(printf "\n\t")"
+# ---- End unofficial bash strict mode boilerplate
+
+decode() {
+  local piece
+  piece="${1}"
+  local length
+  length=$(echo -n "${piece}" | wc -c)
+  local mod
+  mod=$(echo "${length} % 4" | bc)
+  # Add padding (0-2 = chars) as necessary to base64url
+  case ${mod} in
+    2)
+      piece="${piece}=="
+      ;;
+    3)
+      piece="${piece}="
+      ;;
+  esac
+  echo "${piece}" | sed -e 's/-/+/g' -e 's/_/\//g' | openssl base64 -d -A
+}
+
+main() {
+  IFS= read -r jwt || true
+  jwt=$(echo -n "${jwt}" | tr -d '\n')
+  for field in 1 2; do
+    decode "$(echo -n "${jwt}" | cut -d . -f "${field}")" | jq .
+  done
+}
+
+main
+
+#eyJhbGciOiJSUzI1NiIsImtpZCI6IlZMRHBmbVptNm0tZjM2V3NqQXlTeGxCZW9icVFsQUxJbEJGTDF4cE1vWk0ifQ.eyJzdWIiOiIwMHU5cTBwMXhjR3Z3WHZyVzBoNyIsIm5hbWUiOiJNaWtlIEdhbnR6IiwibG9jYWxlIjoiZW4tVVMiLCJ2ZXIiOjEsImlzcyI6Imh0dHBzOi8vZGV2LTY1OTY5Ni5va3RhcHJldmlldy5jb20iLCJhdWQiOiJSUlRIR0NvczVDR3l6enExekFlTyIsImlhdCI6MTQ5MDE5MDMwMywiZXhwIjoxNDkwMTkzOTAzLCJqdGkiOiJJRC5nOHZaUWs3Wjg5Z01HUTRyVDBVbzVfTHJ4SVZiUmtaTmdOZHhlbFhEc2VVIiwiYW1yIjpbInB3ZCJdLCJpZHAiOiIwMG85ZXI3aWg2SnJ1SnVrbDBoNyIsIm5vbmNlIjoiMDNlMzYzNGMtZTg0OC00ZDI0LWExMmEtNGEwYjY2NzZkMjk4IiwicHJlZmVycmVkX3VzZXJuYW1lIjoibWljaGFlbGdhbnR6QGdtYWlsLmNvbSIsImdpdmVuX25hbWUiOiJNaWtlIiwiZmFtaWx5X25hbWUiOiJHYW50eiIsInpvbmVpbmZvIjoiQW1lcmljYS9Mb3NfQW5nZWxlcyIsInVwZGF0ZWRfYXQiOjE0ODk2ODg4OTksImF1dGhfdGltZSI6MTQ5MDE5MDMwMn0.KmpqiZer6RNja5LAP5gXmidFjY5GY5SFu0iRvNrO1u93tavMa8JfBWwSTPU7J9eh0O5LJLacp1YNi7R0L89YSnnkQhj_0ZvJnAXhyuVvfy4tSrTA91gkzZYHlVXghah2umt0UxcZ1GetM-_VP8cv-SCw38cXEMvKiepA_r2At6rnebJVjB84yRX65mFrWVqbk9gGyYQo1c8_DfGD-IU7QuZj9aqiJwpzlak_9IUk933uL_Iay4K47hjVbaME2oAaOLwc-C3sDi_AU0B1vsM_LjuRQoDY-C6TIq0ReiAPNqzVJpKHmXVpIssHeHcF8nKo9HmLx79rNbBNTe9N1xxq3g

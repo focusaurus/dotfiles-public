@@ -53,28 +53,6 @@ ns() {
   esac
 }
 
-copy() {
-  case $(uname) in
-    Linux)
-      xclip -selection clipboard
-      ;;
-    Darwin)
-      pbcopy
-      ;;
-  esac
-}
-
-paste() {
-  case $(uname) in
-    Linux)
-      xclip -selection clipboard -o
-      ;;
-    Darwin)
-      pbpaste
-      ;;
-  esac
-}
-
 paste-fuzz() {
   choice=$(gpaste-client history | grep -E '^[0-9]+:' | fuzzy-filter "$@")
   [[ -z "${choice}" ]] && return

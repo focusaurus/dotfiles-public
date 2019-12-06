@@ -1,0 +1,64 @@
+#!/usr/bin/env python
+import os
+import re
+import sys
+
+NAME_TO_LINE = {
+    "join": "const join = require('path').join;",
+    "bole": "const log = require('bole')(__filename)",
+    "log": "const log = require('./log')(__filename)",
+    "dot2val": 'const set = require("dot2val").set;'
+}
+NAME_TO_VARIABLE = {
+    "aws-sdk": "aws",
+    "bluebird": "Bluebird",
+    "boom": "Boom",
+    "config3": "config",
+    "chaimel": "expect",
+    "httperrors": "errors",
+    "joi-summarize": "summarize",
+    "jsonwebtoken": "jwt",
+    "lodash": "_",
+    "react-dom": "ReactDOM",
+    "react": "React",
+    "snakecase-keys": "snake",
+    "superagent": "request",
+    "supertest": "request",
+    "tape-catch": "test",
+    "tape": "test"
+}
+NAME_TO_MODULE = {
+    "_": "lodash",
+    "deep": "lodash-deep"
+}
+VARIABLE_TO_VARIABLE = {
+    "middleware": "mw"
+}
+DASH_RE = re.compile("[-_][a-z]")
+name = sys.argv[1]
+
+if name in NAME_TO_LINE:
+    print(NAME_TO_LINE[name])
+    sys.exit()
+
+
+def up(dash):
+    return dash.group().upper()[1:]
+
+module = name
+variable = DASH_RE.sub(up, name)
+variable = os.path.basename(variable)
+variable = NAME_TO_VARIABLE.get(name, variable)
+variable = VARIABLE_TO_VARIABLE.get(variable, variable)
+module = NAME_TO_MODULE.get(name, module)
+
+if name.startswith("express-"):
+    variable = variable.replace("express", "")
+
+if name.startswith("lodash."):
+    variable = variable.replace("lodash.", "")
+
+# if variable.endswith("Model"):
+#     variable = variable.replace("Model", "").capitalize()
+
+print('const {variable} = require("{module}");'.format(**globals()))

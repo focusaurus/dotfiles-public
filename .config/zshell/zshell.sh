@@ -33,7 +33,6 @@ setup-path-zsh() {
   # Lowercase `path` array is tied to `PATH` string.  Quoting the path array
   # elements seems to make it compute the array faster somehow.
   path=(
-    # Homebrew, goes first for python virtualenvs
     "/usr/local/bin"
     # Normal system stuff comes early for security
     # So npm packages can't override basic commands like ls
@@ -42,16 +41,11 @@ setup-path-zsh() {
     "/sbin"
     "/usr/sbin"
     "/usr/X11/bin"
-    "${HOME}/projects/dotfiles/bin"
     "${HOME}/bin"
-    "/Applications/Google Chrome Canary.app/Contents/MacOS"
-    # "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-    "${HOME}/projects/go/bin"
-    "${HOME}/.cargo/bin"
-    "/usr/local/m-cli"
-    "${PWD}/node_modules/.bin"
+    "${HOME}/projects/dotfiles/bin"
     "${PWD}/script"
     "${PWD}/bin"
+    "${PWD}/node_modules/.bin"
     "${PWD}/python/bin"
     "${PWD}/env/bin"
   )

@@ -1,4 +1,4 @@
-# shell (zsh or bash) setup
+# zshell setup
 source-if-exists() {
   for file in "$@"; do
 	  if [[ -e "${file}" ]]; then
