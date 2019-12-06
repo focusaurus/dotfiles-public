@@ -24,4 +24,6 @@ else
       rofi -dmenu -p task -theme /usr/share/rofi/themes/Monokai.rasi
   )
 fi
-exec ~/bin/fuzz-script-exec "${task_dir}" "${task}"
+date >> /tmp/fuzz.log
+echo "${task_dir}" "${task}" >> /tmp/fuzz.log
+fuzz-script-exec "${task_dir}" "${task}" 2>&1 >> /tmp/fuzz.log

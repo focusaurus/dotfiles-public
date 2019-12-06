@@ -6,7 +6,7 @@ set -o pipefail # don't ignore exit codes when piping output
 IFS='$\n\t'
 query=
 label="${1:-query}"
-clipboard_preview=$(xclip -clipboard -o | head -c 12 | tr '\n' ' ')
+clipboard_preview=$(paste | head -c 12 | tr '\n' ' ')
 clipboard_hint="ENTER for 📋 (${clipboard_preview}…)"
 if [[ -t 1 ]]; then
   echo "${clipboard_hint}" >/dev/tty

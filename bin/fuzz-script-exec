@@ -49,7 +49,7 @@ main() {
   fi
   if grep '%s' "${task}" >/dev/null; then
     # Task has placeholders we'll replace with a prompt
-    query=$(~/bin/prompt-or-clipboard)
+    query=$(prompt-or-clipboard)
     query=$(rawurlencode "${query}")
     args=$(cat "${task}" | sed "s/%s/${query}/g")
   else
