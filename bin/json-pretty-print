@@ -13,6 +13,6 @@ set -o posix    # more strict failures in subshells
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
-paste | json-pretty-print.py | copy
-paste | head -c 100
+~/bin/paste | json-pretty-print.py | ~/bin/copy
+~/bin/paste | head -c 100
 echo "Pretty JSON has been copied to the clipboard"

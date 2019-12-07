@@ -6,7 +6,7 @@ set -o pipefail # don't ignore exit codes when piping output
 IFS='$\n\t'
 query=
 label="${1:-query}"
-clipboard_preview=$(paste | head -c 12 | tr '\n' ' ')
+clipboard_preview=$(~/bin/paste | head -c 12 | tr '\n' ' ')
 clipboard_hint="ENTER for 📋 (${clipboard_preview}…)"
 if [[ -t 1 ]]; then
   echo "${clipboard_hint}" >/dev/tty
@@ -15,6 +15,7 @@ else
   query=$(zenity --entry --title="${label}" --text="${clipboard_hint}\n\n${label}" --width=500)
 fi
 if [[ -z "${query}" ]]; then
-  query=$(xclip -clipboard -o)
+  ~/bin/paste
+else
+  echo "${query}"
 fi
-echo "${query}"

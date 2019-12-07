@@ -1,33 +1,37 @@
 ctrl + 1
-  fuzz-script-choose
+  ~/bin/fuzz-script-choose
 
 ctrl + 2
-  fuzz-snippet
+  ~/bin/fuzz-snippet
 
 super + v
  rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 
 F1
-  fkeys f1
+  ~/bin/fkeys f1
+ctrl + F1
+  ~/bin/fkeys ctrl+f1
 F2
-  fkeys f2
+  ~/bin/fkeys f2
 F3
-  fkeys f3
+  ~/bin/fkeys f3
 F4
-  fkeys f4
+  ~/bin/fkeys f4
 F5
-  fkeys f5
+  ~/bin/fkeys f5
 F6
-  fkeys f6
+  ~/bin/fkeys f6
+ctrl + F6
+  ~/bin/fkeys ctrl+f6
 F7
-  fkeys f7
+  ~/bin/fkeys f7
 F8
-  fkeys f8
+  ~/bin/fkeys f8
 F9
-  fkeys f9
+  ~/bin/fkeys f9
 F10
-  fkeys f10
+  ~/bin/fkeys f10
 F11
-  fkeys f11
+  ~/bin/fkeys f11
 F12
-  fkeys f12
+  ~/bin/fkeys f12

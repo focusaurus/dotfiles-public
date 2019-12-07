@@ -24,7 +24,6 @@ setup-path() {
   add-path "${HOME}/.local/bin"
   add-path "${HOME}/projects/daily-todos/bin"
   add-path "${HOME}/projects/md-to-pdf/bin"
-  # rust
   add-path "${HOME}/.cargo/bin"
   add-path "${NVM_BIN}"
   if [[ -e ~/.nvm/alias/default ]]; then

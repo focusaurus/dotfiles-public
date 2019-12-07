@@ -1,7 +1,6 @@
 PATH=$(zsh -c 'echo $PATH')
 export PATH
-setup-x11-keyboard
+~/bin/setup-x11-keyboard
 eval $(ssh-agent -s)
 sxhkd &
 greenclip daemon &
-

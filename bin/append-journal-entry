@@ -13,15 +13,13 @@ set -o posix    # more strict failures in subshells
 IFS="$(printf "\n\t")"
 # ---- End unofficial bash strict mode boilerplate
 
-cd "$(dirname "${BASH_SOURCE[0]}")/.."
-
 main() {
   local journal_dir=$1
   shift
   local entry
   entry="$*"
   if [[ -z "${entry}" ]]; then
-    entry=$(prompt-or-clipboard "Entry")
+    entry=$(~/bin/prompt-or-clipboard "Entry")
   fi
   local year
   year=$(date +%Y)

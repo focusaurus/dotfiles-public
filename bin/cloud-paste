@@ -13,4 +13,4 @@ set -o posix    # more strict failures in subshells
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
-paste | ssh git.peterlyons.com tee /tmp/clipboard.txt
+~/bin/paste | ssh git.peterlyons.com tee /tmp/clipboard.txt

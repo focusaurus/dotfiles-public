@@ -14,4 +14,4 @@ IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
 ssh git.peterlyons.com cat /tmp/clipboard.txt | copy
-echo "copied $(paste | head -c 12)…"
+echo "copied $(~/bin/paste | head -c 12)…"

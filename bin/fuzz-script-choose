@@ -13,17 +13,23 @@ set -o posix    # more strict failures in subshells
 IFS="$(printf "\n\t")"
 # ---- End unofficial bash strict mode boilerplate
 
+log() {
+  echo "$@" >> /tmp/fuzz.log
+}
+#log $(date)
+cd "$(dirname "${BASH_SOURCE[0]}")"
 task_dir="${1:-${HOME}/projects/dotfiles/fuzzball}"
 
-#if [[ -t 1 ]]; then
-if false; then
+if [[ -t 1 ]]; then
+#if false; then
   task=$(ls "${task_dir}" | fzf --color=bw --layout=reverse)
+#  log "selected ${task} from fzf"
 else
   task=$(
     ls "${task_dir}" |
       rofi -dmenu -p task -theme /usr/share/rofi/themes/Monokai.rasi
   )
+#  log "selected ${task} from rofi"
 fi
-date >> /tmp/fuzz.log
-echo "${task_dir}" "${task}" >> /tmp/fuzz.log
-fuzz-script-exec "${task_dir}" "${task}" 2>&1 >> /tmp/fuzz.log
+#log "running ${task_dir}" "${task}"
+exec ./fuzz-script-exec "${task_dir}" "${task}"
