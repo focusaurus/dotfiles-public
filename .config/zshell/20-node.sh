@@ -91,14 +91,13 @@ npm-updates() {
 # On first use, it will set nvm up properly which will replace the `nvm`
 # shell function with the real one
 nvm() {
-  for nvmsh in "${HOME}/.nvm/nvm.sh" "/usr/local/opt/nvm/nvm.sh"; do
+  export NVM_DIR="${HOME}/.nvm"
+  for nvmsh in "/usr/share/nvm/nvm.sh" "/usr/local/opt/nvm/nvm.sh"; do
     if [[ -f "${nvmsh}" ]]; then
-      NVM_DIR="$(dirname "${nvmsh}")"
-      export NVM_DIR
       # shellcheck disable=SC1090
       source "${nvmsh}"
       if [[ -e "${HOME}/.nvm/alias/default" ]]; then
-        PATH="${PATH}:${HOME}.nvm/versions/node/$(cat ~/.nvm/alias/default)/bin"
+        PATH="${PATH}:${HOME}/.nvm/versions/node/$(cat ~/.nvm/alias/default)/bin"
       fi
       # source "${NVM_DIR}/$(basename "${SHELL}")_completion"
       # invoke the real nvm function now
