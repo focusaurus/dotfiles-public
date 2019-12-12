@@ -23,7 +23,7 @@ setxkbmap -option "ctrl:nocaps"
 setxkbmap -option "altwin:swap_alt_win"
 
 # 2018-05-09 plyons left alt key is super, super is alt
-# xmodmap ~/.Xmodmap
+xmodmap ~/.Xmodmap
 
 # 2019-09-26 plyons press and release a modifier sends key combos
 # left shift press & release is the same as control+comma
