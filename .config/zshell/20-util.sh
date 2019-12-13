@@ -15,6 +15,10 @@ ap4() {
   awk '{print $4}'
 }
 
+sigusr1() {
+  killall --user $(id -u -n) --signal USR1 "$@"
+}
+
 copy-dir-name() {
   dir=$(basename "${PWD}")
   echo -n "${dir}" | copy
@@ -44,12 +48,12 @@ alias show-dns-servers="nmcli dev show |grep DNS"
 alias noprompt="PS1=;RPROMPT="
 ns() {
   case $(uname) in
-    Linux)
-      sudo ss -ntlHp | awk '{print $4, $6}' | sort
-      ;;
-    Darwin)
-      netstat -an -f inet -p tcp | grep LISTEN | awk '{print $4}' | sort
-      ;;
+  Linux)
+    sudo ss -ntlHp | awk '{print $4, $6}' | sort
+    ;;
+  Darwin)
+    netstat -an -f inet -p tcp | grep LISTEN | awk '{print $4}' | sort
+    ;;
   esac
 }
 
@@ -85,16 +89,16 @@ export BROWSER=/usr/bin/firefox
 extract() {
   if [[ -s $1 ]]; then
     case $1 in
-      *.tar.*) tar xf $1 ;;
-      *.bz2) bunzip2 $1 ;;
-      *.rar) unrar x $1 ;;
-      *.gz) gunzip $1 ;;
-      *.tar) tar xf $1 ;;
-      *.tbz2) tar xjf $1 ;;
-      *.tgz) tar xzf $1 ;;
-      *.zip) unzip $1 ;;
-      *.Z) uncompress $1 ;;
-      *) echo "${1} cannot be extracted via extract" ;;
+    *.tar.*) tar xf $1 ;;
+    *.bz2) bunzip2 $1 ;;
+    *.rar) unrar x $1 ;;
+    *.gz) gunzip $1 ;;
+    *.tar) tar xf $1 ;;
+    *.tbz2) tar xjf $1 ;;
+    *.tgz) tar xzf $1 ;;
+    *.zip) unzip $1 ;;
+    *.Z) uncompress $1 ;;
+    *) echo "${1} cannot be extracted via extract" ;;
     esac
   else
     echo "${1} is not a valid file"

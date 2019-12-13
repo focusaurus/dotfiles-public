@@ -4,6 +4,8 @@ ctrl + 1
 ctrl + 2
   ~/bin/fuzz-snippet
 
+ctrl + 3
+  rofi -show window
 super + v
  rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 

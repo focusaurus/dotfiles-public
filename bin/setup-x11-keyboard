@@ -15,8 +15,8 @@ rate=70
 xset r rate "${delay}" "${rate}"
 
 # 2018-04-17 plyons natural scrolling everywhere in X11
-#synclient VertScrollDelta=-119
-#synclient HorizScrollDelta=-119
+synclient VertScrollDelta=-119
+synclient HorizScrollDelta=-119
 
 # 2018-04-17 plyons caps lock key is control key
 setxkbmap -option "ctrl:nocaps"

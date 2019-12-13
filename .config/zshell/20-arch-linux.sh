@@ -1,6 +1,16 @@
-install-aur() {
-  cd ~/aur
-  git clone "https://aur.archlinux.org/$1.git"
-  cd "$1"
-  makepkg -si
+install-via-yay() {
+  yay -S "$@"
+  hash -r
+}
+
+install-via-pacman() {
+  sudo pacman -S "$@"
+  hash -r
+}
+
+search-pacman-yay() {
+  echo '##### pacman #####'
+  pacman -Ss "$@"
+  echo '##### yay #####'
+  yay -Ss "$@"
 }
