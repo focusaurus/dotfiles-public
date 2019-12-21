@@ -43,6 +43,7 @@ activate_window() {
   # Find first matching window, but prefer window on current desktop
 
   id=$(echo "${same_desktop}${matches}" | head -1 | cut -d , -f 3)
+  echo "HEY MATCHED ${id}"
   if [[ -n "${id}" ]]; then
     wmctrl -i -a "${id}"
   else
@@ -84,8 +85,8 @@ main() {
     ;;
   f4)
     local app_image
-    app_image="$(find "${HOME}/aur/workflowy" -type f -name 'WorkFlowy-*.AppImage' | sort -n | head -1)"
-    activate_window 'workflowy' "${app_image}"
+    #app_image="$(find "${HOME}/aur/workflowy" -type f -name 'WorkFlowy-*.AppImage' | sort -n | head -1)"
+    activate_window 'workflowy' "/opt/WorkFlowy-x86_64.AppImage"
     ;;
   f6)
     activate_window 'slack' 'slack'

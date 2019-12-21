@@ -9,8 +9,10 @@ install-via-pacman() {
 }
 
 search-pacman-yay() {
-  echo '##### pacman #####'
-  pacman -Ss "$@"
-  echo '##### yay #####'
-  yay -Ss "$@"
+  (
+    echo '##### pacman #####'
+    pacman -Ss "$@"
+    echo '##### yay #####'
+    yay -Ss "$@"
+  ) | less
 }

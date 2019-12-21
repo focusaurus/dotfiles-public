@@ -1,6 +1,9 @@
 PATH=$(zsh -c 'echo $PATH')
 export PATH
 ~/bin/setup-x11-keyboard
+# screen lock after 60 minutes
+xset s 6000
 eval $(ssh-agent -s)
 sxhkd &
 greenclip daemon &
+light-locker &
