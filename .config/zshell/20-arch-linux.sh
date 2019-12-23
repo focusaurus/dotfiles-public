@@ -16,3 +16,15 @@ search-pacman-yay() {
     yay -Ss "$@"
   ) | less
 }
+
+save-installed-packages() {
+  (pacman -Qet | awk '{print $1}' | {
+    while IFS= read -r name; do
+      if pacman -Ss "${name}" >/dev/null; then
+        echo "pacman:${name}"
+      else
+        echo "yay:${name}"
+      fi
+    done
+  }) | sort | tee >~/.config/arch-linux/pacman-qet.txt
+}
