@@ -27,6 +27,7 @@ export HIST_REDUCE_BLANKS
 export HIST_IGNORE_SPACE
 
 alias -g /l='| less'
+alias -g //l='2>&1 | less'
 alias -g /p='$(paste)'
 
 setup-path-zsh() {
