@@ -16,3 +16,4 @@ search-pacman-yay() {
     yay -Ss "$@"
   ) | less
 }
+# curl -s "https://get.sdkman.io" | bash

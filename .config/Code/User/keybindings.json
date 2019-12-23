@@ -186,6 +186,6 @@
   },
   {
     "key": "meta+l",
-    "command": "flutter-code-select.select-include"
+    "command": "-flutter-code-select.select-include"
   }
 ]

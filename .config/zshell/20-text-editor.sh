@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-alias te="${HOME}/bin/text-editor.sh"
+alias te="text-editor"
 
 rgte() {
   rg --ignore-case --files-with-matches watch "${@}" | xargs atom

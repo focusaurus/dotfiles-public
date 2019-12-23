@@ -1,0 +1,8 @@
+borkdude.clj-kondo
+eamodio.gitlens
+esbenp.prettier-vscode
+exiasr.hadolint
+foxundermoon.shell-format
+pedrorgirardi.vscode-cljfmt
+shaunlebron.vscode-parinfer
+wangxinhai-ref-chunsen.flutter-code-select

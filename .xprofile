@@ -1,4 +1,4 @@
-PATH=$(zsh -c 'echo $PATH')
+PATH=$(zsh -ci 'echo $PATH')
 export PATH
 ~/bin/setup-x11-keyboard
 # screen lock after 60 minutes
@@ -7,3 +7,6 @@ eval $(ssh-agent -s)
 sxhkd &
 greenclip daemon &
 light-locker &
+# Maybe I need this? 
+# Sometimes code and rofi won't start from a terminal without it.
+# export DISPLAY=:0.0
