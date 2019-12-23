@@ -76,3 +76,4 @@ npm-debug.log
 /.config/gedit
 /.config/enchant
 /.Conduktor
+/.tmux/plugins
