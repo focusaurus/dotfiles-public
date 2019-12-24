@@ -43,10 +43,9 @@ alias undo-git-rm='git checkout HEAD'
 alias gbmd="git branch --merged develop"
 alias amend="git commit --amend"
 alias git-not-pushed="git log --branches --not --remotes"
-alias gdf='git --git-dir="${HOME}/projects/dotfiles-public.git" --work-tree="${HOME}"'
-alias gdfs="gdf status -u | grep -E -i -v '(projects|cache|\.mozilla|\.stack)'|less"
 
 _base-url() {
+  # shellcheck disable=SC2016
   git remote -v |
     awk '{print $2}' |
     sort |
@@ -56,32 +55,35 @@ _base-url() {
     sed -e 's_:_/_' -e 's_^\s*git@_https://_' -e 's_\.git$__'
 }
 
-gh() {
-  case "$1" in
-  repo)
-    xdg-open "$(_base-url)"
-    ;;
-  issues | pulls | commits)
-    xdg-open "$(_base-url)/$1"
-    ;;
-  clone)
-    local url
-    local org
-    local repo
-    url="${2:-$(paste.sh)}"
-    org="$(echo "${url}" | cut -d / -f 4)"
-    repo="$(echo "${url}" | cut -d / -f 5)"
-    echo "${org}"
-    echo "${repo}"
-    mkdir -p "${HOME}/github/${org}"
-    cd "${HOME}/github/${org}" || return 1
-    git clone "${url}"
-    cd $(basename "${repo}" .git) || return 1
-    ;;
-  *)
-    xdg-open "$(_base-url)"
-    ;;
-  esac
+gh-repo() {
+  xdg-open "$(_base-url)"
+}
+
+gh-issues() {
+  xdg-open "$(_base-url)/issues"
+}
+
+gh-pulls() {
+  xdg-open "$(_base-url)/pulls"
+}
+
+gh-commits() {
+  xdg-open "$(_base-url)/commits"
+}
+
+gh-clone() {
+  local url
+  local org
+  local repo
+  url="${1:-$(paste.sh)}"
+  org="$(echo "${url}" | cut -d / -f 4)"
+  repo="$(echo "${url}" | cut -d / -f 5)"
+  echo "${org}"
+  echo "${repo}"
+  mkdir -p "${HOME}/github/${org}"
+  cd "${HOME}/github/${org}" || return 1
+  git clone "${url}"
+  cd "$(basename "${repo}" .git)" || return 1
 }
 
 #git tag version
@@ -97,11 +99,11 @@ gtv() {
 # they allow adding/removing/re-ordering and adjusting the filenames
 gmup() {
   local number
-  number=$(echo "$1" | egrep -o "^\d+")
+  number=$(echo "$1" | grep -Eo "^\d+")
   local suffix
-  suffix=$(echo "$1" | egrep -o "\-.*")
+  suffix=$(echo "$1" | grep -Eo "\-.*")
   local next
-  next=$((${number} + 1))
+  next=$((number + 1))
   local target
   target=$(printf "%02d${suffix}" "${next}")
   if [[ -e "${target}" ]]; then
@@ -113,11 +115,11 @@ gmup() {
 
 gmdown() {
   local number
-  number=$(echo "$1" | egrep -o "^\d+")
+  number=$(echo "$1" | grep -Eo "^\d+")
   local suffix
-  suffix=$(echo "$1" | egrep -o "\-.*")
+  suffix=$(echo "$1" | grep -Eo "\-.*")
   local next
-  next=$((${number} - 1))
+  next=$((number - 1))
   local target
   target=$(printf "%02d${suffix}" "${next}")
   if [[ -e "${target}" ]]; then
@@ -128,6 +130,7 @@ gmdown() {
 }
 
 github-repo() {
+  # shellcheck disable=SC2016
   xdg-open "$(git remote -v |
     awk '{print $2}' |
     sort |
@@ -142,9 +145,9 @@ gdrb() {
   local branch=$1
   local remote
   remote=$(git remote -v | grep push | awk '{print $1}' | fuzzy-filter "$2")
-  printf "Deleting ${branch} from ${remote}. ENTER to do it. CTRL-c to abort."
+  echo -n "Deleting ${branch} from ${remote}. ENTER to do it. CTRL-c to abort."
   # shellcheck disable=SC2034
-  read confirm
+  read -r confirm
   git push "${remote}" --delete --no-verify "${branch}"
 }
 
@@ -219,6 +222,7 @@ cdr() {
 new-git-project() {
   local REPO="${1}"
   local GIT=git.peterlyons.com
+  # shellcheck disable=SC2029
   ssh "${GIT}" git init --bare "projects/${REPO}.git"
   cd ~/projects || return 1
   git clone "ssh://${GIT}/home/plyons/projects/${REPO}.git" "${REPO}"
@@ -239,7 +243,7 @@ commits-by-year() {
   end_year=$(git log -n 1 --format=%ai | cut -d - -f 1)
   for year in $(seq "${start_year}" "${end_year}"); do
     echo -en "${year}:\t"
-    git log --since="${year}-01-01" --until="$((${year} + 1))-01-01" --no-merges --pretty=oneline | wc -l
+    git log --since="${year}-01-01" --until="$((year + 1))-01-01" --no-merges --pretty=oneline | wc -l
   done
 }
 
@@ -308,5 +312,6 @@ git-checkout() {
   [[ -z "${name}" ]] && return
   local first_origin
   first_origin=$(git remote | head -1)
-  git checkout "${name}" 2>/dev/null || git checkout -b "${name}" "${first_origin}/${name}"
+  default_branch=$(git-get-default-branch)
+  git checkout "${name}" 2>/dev/null || git checkout -b "${name}" "${first_origin}/${default_branch}"
 }
