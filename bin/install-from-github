@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
+
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -o errexit  # always exit on error
+set -o errtrace # trap errors in functions as well
+set -o pipefail # don't ignore exit codes when piping output
+set -o posix    # more strict failures in subshells
+# set -x          # enable debugging
+
+IFS=$'\n\t'
+# ---- End unofficial bash strict mode boilerplate
+
+main() {
+  repo_any_url="$1"
+  if [[ -z "${repo_any_url}" ]]; then
+    repo_any_url=$(prompt-or-clipboard.sh "Github Repo URL")
+  fi
+  local repo_base_url
+  repo_base_url=$(echo "${repo_any_url}" | cut -d / -f 1-5)
+  local base_url
+  base_url=$(echo "${repo_any_url}" | cut -d / -f 1-3)
+  local latest_url="${repo_base_url}/releases/latest"
+  local artifact_path
+  artifact_path=$(curl --silent --location --fail --show-error "${latest_url}" |
+    pup 'a attr{href}' |
+    grep -Ei 'linux|deb|tar|gz|bz2' |
+    fuzzy-filter.sh)
+  if [[ -z "${artifact_path}" ]]; then
+    exit
+  fi
+  local artifact_name
+  artifact_name=$(basename "${artifact_path}")
+  local project
+  project=$(echo "${latest_url}" | cut -d / -f 5)
+  local temp
+  temp=$(mktemp -d "/tmp/install-${project}-XXX")
+  cd "${temp}"
+  local artifact_url="${base_url}${artifact_path}"
+  echo "Downloading ${artifact_url} to ${PWD}"
+  wget --quiet "${artifact_url}"
+  case "${artifact_name}" in
+  *.deb)
+    sudo dpkg -i "${artifact_name}"
+    ;;
+  *.gz | *.zip)
+    extract.sh "${artifact_name}"
+    find . -type f -executable -print0 |
+      xargs -0 sudo install --mode=755 --target-directory /usr/local/bin
+    ;;
+  *)
+    echo Unsupported artifact type "${artifact_name}"
+    exit 10
+    ;;
+  esac
+
+}
+
+main "$@"

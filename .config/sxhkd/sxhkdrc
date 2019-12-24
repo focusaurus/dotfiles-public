@@ -1,14 +1,13 @@
 ctrl + 1
   ~/bin/fuzz-script-choose
-
 ctrl + 2
   ~/bin/fuzz-snippet
-
 ctrl + 3
   rofi -show window
+ctrl + 4
+  rofi -show run
 super + v
  rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
-
 F1
   ~/bin/fkeys f1
 ctrl + F1
