@@ -1,0 +1,7 @@
+﻿[qt] # Qt interface
+qt-recentplay=0
+qt-privacy-ask=0
+[core] # core program
+loop=1
+global-key-quit=q
+key-quit=q
