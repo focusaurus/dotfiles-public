@@ -210,3 +210,7 @@ zstyle ':completion:*' completer _complete _ignored _files
 fpath=(${DOTFILES}/shell/zsh-completions/src $fpath)
 fpath=(${DOTFILES}/shell/zsh-completions-custom $fpath)
 autoload -U compinit && compinit
+
+function zsh-watch() {
+  WATCH_COMMAND='zsh -ci' /usr/local/bin/watch "$@"
+}
