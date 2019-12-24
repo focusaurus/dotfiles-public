@@ -1,54 +1,52 @@
 [user]
-	name = Peter Lyons
-	email = pete@peterlyons.com
+  name = Peter Lyons
+  email = pete@peterlyons.com
 [core]
-	  ignorecase = false
-	  autocrlf = input
-	  precomposeunicode = true
-	  excludesfile = ~/.gitignore
-	pager = delta --dark
+  ignorecase = false
+  autocrlf = input
+  precomposeunicode = true
+  excludesfile = ~/.gitignore
+#  pager = delta --dark
 [color]
-	  ui = true
-[color]
-	  branch = auto
-	  diff = auto
-	  status = auto
-	  ui = true
+  branch = auto
+  diff = auto
+  status = auto
+  ui = true
 [push]
-	  default = simple
-	followTags = true
+  default = simple
+  followTags = true
 [pull]
-	  default = simple
+  default = simple
 [diff]
-	algorithm = histogram
-	submodule = log
-	noprefix = true
+  algorithm = histogram
+  submodule = log
+  noprefix = true
 [filter "media"]
-	required = true
-	clean = git media clean %f
-	smudge = git media smudge %f
+  required = true
+  clean = git media clean %f
+  smudge = git media smudge %f
 [alias]
-	up = "!git remote update -p; git merge --ff-only @{u}"
+  up = "!git remote update -p; git merge --ff-only @{u}"
 [filter "hawser"]
-	clean = git hawser clean %f
-	smudge = git hawser smudge %f
-	required = true
+  clean = git hawser clean %f
+  smudge = git hawser smudge %f
+  required = true
 [status]
-	submoduleSummary = true
+  submoduleSummary = true
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
 [transfer]
-	  fsckobjects = true
+  fsckobjects = true
 [fetch]
-	  fsckobjects = true
+  fsckobjects = true
 [receive]
-	  fsckobjects = true
+  fsckobjects = true
 [rerere]
-	enabled = true
+  enabled = true
 #[init]
 #	templatedir = /home/plyons/work-reaction/common/git-template
 [diff "sopsdiffer"]
-	textconv = sops -d
+  textconv = sops -d
