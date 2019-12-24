@@ -76,3 +76,6 @@ npm-debug.log
 /.config/gedit
 /.config/enchant
 /.Conduktor
+/.tmux/plugins
+/.fxlauncher.Launcher
+/.wget-hsts

@@ -48,3 +48,10 @@ fuzz-directory-command-line() {
 kill-fzf() {
   pkill --full 'fzf.*select-1.*query'
 }
+
+sigusr1-fuzzy() {
+  pid=$(ps -ef | fuzzy-filter "$@" | awk '{print $2}')
+  shift
+  [[ -z "${pid}" ]] && return 1
+  /bin/kill --signal USR1 "${pid}"
+}
