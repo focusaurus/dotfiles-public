@@ -13,10 +13,10 @@ set -o posix    # more strict failures in subshells
 IFS="$(printf "\n\t")"
 # ---- End unofficial bash strict mode boilerplate
 suffix=$(zenity --entry --text suffix)
-dest="${HOME}/Pictures"
+dest="${HOME}/screens"
 mkdir -p "${dest}"
 # Select an area
-declare -a args=(--file="${dest}/screenshot-$(date +%Y-%m-%d-%H:%M:%S)-${suffix}.png")
+declare -a args=(--file="${dest}/screen-$(date +%Y-%m-%d-%H:%M:%S)-${suffix}.png")
 
 
 if [[ "$1" == "delay" ]]; then
