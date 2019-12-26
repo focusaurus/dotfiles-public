@@ -60,8 +60,9 @@
     "editor.defaultFormatter": "vscode.html-language-features"
   },
   "editor.fontFamily": "'Inconsolata', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
-  "editor.wordWrap": "wordWrapColumn",
   "markdown.preview.markEditorSelection": false,
   "markdown.preview.scrollEditorWithPreview": false,
-  "keyboard.dispatch": "keyCode"
+  "keyboard.dispatch": "keyCode",
+  "gitlens.advanced.telemetry.enabled": false,
+  "workbench.activityBar.visible": false
 }

@@ -79,3 +79,4 @@ npm-debug.log
 /.tmux/plugins
 /.fxlauncher.Launcher
 /.wget-hsts
+/.tmux

@@ -141,7 +141,7 @@
     "when": "acceptSuggestionOnEnter && suggestWidgetVisible && suggestionMakesTextEdit && textInputFocus"
   },
   {
-    "key": "meta+n",
+    "key": "meta+c",
     "command": "editor.action.addSelectionToNextFindMatch",
     "when": "editorFocus"
   },
@@ -187,5 +187,9 @@
   {
     "key": "meta+l",
     "command": "-flutter-code-select.select-include"
+  },
+  {
+    "key": "meta+e",
+    "command": "editor.action.smartSelect.expand"
   }
 ]
