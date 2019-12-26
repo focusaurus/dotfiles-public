@@ -189,30 +189,31 @@ function fuzz-all-into-line() {
   # Redraw the prompt since fzf has drawn several new lines of text.
   zle reset-prompt
 }
-zle -N fuzz-all-into-line # Create the zle widget
-bindkey "^[A" "fuzz-all-into-line"
+#zle -N fuzz-all-into-line # Create the zle widget
+#bindkey "^[A" "fuzz-all-into-line"
 
 function fuzz-directory-into-line() {
   fuzz-all-into-line --type directory
 }
-zle -N fuzz-directory-into-line # Create the zle widget
-bindkey "^[D" "fuzz-directory-into-line"
+#zle -N fuzz-directory-into-line # Create the zle widget
+#bindkey "^[D" "fuzz-directory-into-line"
 
 function fuzz-file-into-line() {
   fuzz-all-into-line --type file
 }
-zle -N fuzz-file-into-line # Create the zle widget
-bindkey "^[F" "fuzz-file-into-line"
+#zle -N fuzz-file-into-line # Create the zle widget
+#bindkey "^[F" "fuzz-file-into-line"
 
 #This is evil. Doesn't fall back to files
 #zstyle ':completion:*' menu select
-zle -C complete-file complete-word _generic
-bindkey '^T' complete-file
-zstyle ':completion:*' completer _complete _ignored _files
-fpath=(${DOTFILES}/shell/zsh-completions/src $fpath)
-fpath=(${DOTFILES}/shell/zsh-completions-custom $fpath)
+#zle -C complete-file complete-word _generic
+#bindkey '^T' complete-file
+#zstyle ':completion:*' completer _complete _ignored _files
+#fpath=(${DOTFILES}/shell/zsh-completions/src $fpath)
+#fpath=(${DOTFILES}/shell/zsh-completions-custom $fpath)
 autoload -U compinit && compinit
 
-function zsh-watch() {
+
+function watch-zsh() {
   WATCH_COMMAND='zsh -ci' /usr/local/bin/watch "$@"
 }

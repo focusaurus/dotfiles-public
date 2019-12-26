@@ -43,8 +43,9 @@ activate_window() {
   # Find first matching window, but prefer window on current desktop
 
   id=$(echo "${same_desktop}${matches}" | head -1 | cut -d , -f 3)
-  echo "HEY MATCHED ${id}"
+  #echo "HEY MATCHED ${id}"
   if [[ -n "${id}" ]]; then
+    i3-msg mark LAST
     wmctrl -i -a "${id}"
   else
     eval ${command}
@@ -56,6 +57,7 @@ activate_firefox_main_window() {
   # window is the first one launched
   id=$(wmctrl -lx | grep -i "Navigator.firefox" | head -1 | awk '{print $1}' || true)
   if [[ -n "${id}" ]]; then
+    i3-msg mark LAST
     wmctrl -i -a "${id}"
   else
     exec firefox

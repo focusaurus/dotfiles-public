@@ -16,7 +16,9 @@ IFS="$(printf "\n\t")"
 log() {
   echo "$@" >> /tmp/fuzz.log
 }
+
 #log $(date)
+
 cd "$(dirname "${BASH_SOURCE[0]}")"
 task_dir="${1:-${HOME}/projects/dotfiles/fuzzball}"
 

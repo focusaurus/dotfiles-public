@@ -78,5 +78,6 @@ npm-debug.log
 /.tmux/plugins
 /.fxlauncher.Launcher
 /.wget-hsts
+/.tmux
 /.config/vlc/vlc-qt-interface.conf
 /nohup.out
