@@ -17,6 +17,10 @@ kill_ok() {
   killall --exact "$1" 2>/dev/null || true
 }
 
+have_exe() {
+  command -v "$1" >/dev/null
+}
+
 main() {
   PATH=$(zsh -ci 'echo $PATH')
   export PATH
@@ -39,30 +43,43 @@ main() {
   eval $(ssh-agent -s)
 
   # 2018-04-17 plyons natural scrolling everywhere in X11
-  synclient VertScrollDelta=-119
-  synclient HorizScrollDelta=-119
+  if have_exe synclient; then
+    synclient VertScrollDelta=-119
+    synclient HorizScrollDelta=-119
+  fi
 
-  xmodmap ~/.Xmodmap
+  if have_exe xmodmap; then
+    xmodmap ~/.Xmodmap
+  fi
 
   # 2019-09-26 plyons press and release a modifier sends key combos
   # left shift press & release is the same as control+comma
   # left control press & release is the same as control+space
-  kill_ok xcape
-  xcape -e "Control_L=Control_L|1;Alt_L=Control_L|2"
+  if have_exe xcape; then
+    kill_ok xcape
+    xcape -e "Control_L=Control_L|1;Alt_L=Control_L|2"
+  fi
 
   # start xbindkeys daemon which remaps extra mouse buttons
-  kill_ok xbindkeys
-  xbindkeys
+  if have_exe xbindkeys; then
+    kill_ok xbindkeys
+    xbindkeys
+  fi
 
-  kill_ok sxhkd
-  sxhkd &
+  if have_exe sxhkd; then
+    kill_ok sxhkd
+    sxhkd &
+  fi
 
-  kill_ok greenclip
-  greenclip daemon &
+  if have_exe greenclip; then
+    kill_ok greenclip
+    greenclip daemon &
+  fi
 
-  kill_ok light-locker
-  light-locker &
-
+  if have_exe light-locker; then
+    kill_ok light-locker
+    light-locker &
+  fi
   i3-msg reload >/dev/null
   # Maybe I need this?
   # Sometimes code and rofi won't start from a terminal without it.
