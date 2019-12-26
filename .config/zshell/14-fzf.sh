@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
-dir="$(dirname "${BASH_SOURCE[0]}")"
 export FZF_DEFAULT_COMMAND='rg -g ""'
 export FZF_COMPLETION_TRIGGER="''"
 export FZF_DEFAULT_OPTS='--bind=alt-enter:print-query'
 if [[ -n "${ZSH_VERSION}" ]]; then
-  [[ -f "${dir}/fzf/competion.zsh" ]] && source "${dir}/fzf/competion.zsh"
-  [[ -f "${dir}/fzf/key-bindings.zsh" ]] && source "${dir}/fzf/key-bindings.zsh"
+  [[ -f "/usr/share/fzf/competion.zsh" ]] && source "/usr/share/fzf/competion.zsh"
+  [[ -f "/usr/share/fzf/key-bindings.zsh" ]] && source "/usr/share/fzf/key-bindings.zsh"
 
   # fzf-cd-all-widget() {
   #   setopt localoptions pipefail 2>/dev/null

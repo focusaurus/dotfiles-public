@@ -13,6 +13,11 @@ set -o posix    # more strict failures in subshells
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
+install_exe() {
+  find . -type f -executable -print0 |
+    xargs -0 sudo install --mode=755 --target-directory /usr/local/bin
+}
+
 main() {
   repo_any_url="$1"
   if [[ -z "${repo_any_url}" ]]; then
@@ -47,10 +52,15 @@ main() {
     ;;
   *.gz | *.zip)
     extract.sh "${artifact_name}"
+    install_exe
     find . -type f -executable -print0 |
       xargs -0 sudo install --mode=755 --target-directory /usr/local/bin
     ;;
   *)
+    if find . -type f -executable -print0 >/dev/null; then
+      install_exe
+    fi
+
     echo Unsupported artifact type "${artifact_name}"
     exit 10
     ;;

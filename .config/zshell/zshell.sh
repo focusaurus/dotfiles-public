@@ -74,6 +74,7 @@ prompt-branch() {
     printf "%s " "${branch}"
   fi
 }
+
 prompt-kube-context() {
   local context
   context="$(kubectl config current-context 2>/dev/null | cut -d . -f 1)"
@@ -123,13 +124,14 @@ rss() {
 histsearch() {
   grep -R "$1" ~/.history | cut -d : -f 2-
 }
+
 # control-left-arrow goes back a word, right goes forward
 bindkey ";5C" forward-word
 bindkey ";5D" backward-word
-bindkey "^s" kill-word
+bindkey "^S" kill-word
 alias -g /g='| grep'
 
-##### heatseeker zsh integration #####
+##### fzf zsh integration #####
 # https://github.com/garybernhardt/selecta/blob/master/EXAMPLES.md
 # Adapted this for heatseeker-v1
 # By default, ^S freezes terminal output and ^Q resumes it. Disable that so
@@ -146,7 +148,7 @@ function debug-widget() {
   fi
 }
 zle -N debug-widget
-bindkey "^[z" "debug-widget"
+bindkey "^[Z" "debug-widget"
 
 # Run fd/fzf in the current working directory, appending the chosen path, if
 # any, to the current command, followed by a space.
@@ -188,24 +190,24 @@ function fuzz-all-into-line() {
   zle reset-prompt
 }
 zle -N fuzz-all-into-line # Create the zle widget
-bindkey "^[a" "fuzz-all-into-line"
+bindkey "^[A" "fuzz-all-into-line"
 
 function fuzz-directory-into-line() {
   fuzz-all-into-line --type directory
 }
 zle -N fuzz-directory-into-line # Create the zle widget
-bindkey "^[d" "fuzz-directory-into-line"
+bindkey "^[D" "fuzz-directory-into-line"
 
 function fuzz-file-into-line() {
   fuzz-all-into-line --type file
 }
 zle -N fuzz-file-into-line # Create the zle widget
-bindkey "^[f" "fuzz-file-into-line"
+bindkey "^[F" "fuzz-file-into-line"
 
 #This is evil. Doesn't fall back to files
 #zstyle ':completion:*' menu select
 zle -C complete-file complete-word _generic
-bindkey '^t' complete-file
+bindkey '^T' complete-file
 zstyle ':completion:*' completer _complete _ignored _files
 fpath=(${DOTFILES}/shell/zsh-completions/src $fpath)
 fpath=(${DOTFILES}/shell/zsh-completions-custom $fpath)

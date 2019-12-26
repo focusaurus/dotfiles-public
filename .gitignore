@@ -53,7 +53,7 @@
 /.xsession-errors*
 /.zcompdump
 /Downloads
-/Pictures
+/screens
 /local
 /projects
 /target
@@ -66,7 +66,6 @@ npm-debug.log
 /books
 /clients
 /clients_old
-/cmtest2*
 /music
 /backups
 /github
@@ -80,3 +79,5 @@ npm-debug.log
 /.fxlauncher.Launcher
 /.wget-hsts
 /.tmux
+/.config/vlc/vlc-qt-interface.conf
+/nohup.out
