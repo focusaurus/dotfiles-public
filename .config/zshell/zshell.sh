@@ -214,6 +214,6 @@ function fuzz-file-into-line() {
 autoload -U compinit && compinit
 
 
-function zsh-watch() {
+function watch-zsh() {
   WATCH_COMMAND='zsh -ci' /usr/local/bin/watch "$@"
 }

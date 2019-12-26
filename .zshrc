@@ -8,7 +8,7 @@ source-if-exists() {
 }
 source-if-exists ~/.config/zshell/zshell.sh
 source-if-exists ~/.config/zshell/[0-9]*.sh
-source-if-exists ~/github/Aloxaf/fzf-tab/fzf-tab.zsh
+#source-if-exists ~/github/Aloxaf/fzf-tab/fzf-tab.zsh
 
 # OS-specific stuff
 source-if-exists "${HOME}/.config/zshell/$(uname).sh" "${HOME}/.nvm/nvm.sh"
