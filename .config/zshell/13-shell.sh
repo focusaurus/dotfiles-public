@@ -14,5 +14,3 @@ set -o emacs
 tt() {
   export TERMINAL_TITLE="$*"
 }
-
-alias format-shell-script="shfmt -i 2 -w"

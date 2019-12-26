@@ -1,0 +1,79 @@
+#!/usr/bin/env bash
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
+
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -o errexit  # always exit on error
+set -o errtrace # trap errors in functions as well
+set -o pipefail # don't ignore exit codes when piping output
+set -o posix    # more strict failures in subshells
+# set -x          # enable debugging
+
+IFS=$'\n\t'
+# ---- End unofficial bash strict mode boilerplate
+
+kill_ok() {
+  killall --exact "$1" 2>/dev/null || true
+}
+
+main() {
+  PATH=$(zsh -ci 'echo $PATH')
+  export PATH
+
+  setxkbmap dvorak
+  # 2018-04-17 plyons caps lock key is control key
+  setxkbmap -option "ctrl:nocaps"
+  # 2018-05-09 plyons left alt key is super, super is alt
+  setxkbmap -option "altwin:swap_alt_win"
+
+  # 2018-04-10 plyons set fast keyboard repeat
+  # syntax is delay (ms) then repeat rate (cps I think)
+  delay=225
+  rate=70
+  xset r rate "${delay}" "${rate}"
+
+  # screen lock after 60 minutes
+  xset s 6000
+
+  eval $(ssh-agent -s)
+
+  # 2018-04-17 plyons natural scrolling everywhere in X11
+  synclient VertScrollDelta=-119
+  synclient HorizScrollDelta=-119
+
+  xmodmap ~/.Xmodmap
+
+  # 2019-09-26 plyons press and release a modifier sends key combos
+  # left shift press & release is the same as control+comma
+  # left control press & release is the same as control+space
+  kill_ok xcape
+  xcape -e "Control_L=Control_L|1;Alt_L=Control_L|2"
+
+  # start xbindkeys daemon which remaps extra mouse buttons
+  kill_ok xbindkeys
+  xbindkeys
+
+  kill_ok sxhkd
+  sxhkd &
+
+  kill_ok greenclip
+  greenclip daemon &
+
+  kill_ok light-locker
+  light-locker &
+
+  i3-msg reload >/dev/null
+  # Maybe I need this?
+  # Sometimes code and rofi won't start from a terminal without it.
+  # export DISPLAY=:0.0
+
+  # 2018-04-09 plyons https://superuser.com/questions/410657/enabling-sticky-keys-under-xorg-awesome-desktop-manager#414535
+  # Turn on stickykeys. don't let two keys pressed at the same time disable it.
+  # don't turn on "latch lock", ie pressing a modifier key twice "locks" it on.
+  # xkbset accessx sticky -twokey -latchlock feedback -stickybeep
+  # don't expire these settings. (run xkbset q exp for details.)
+  # xkbset exp 1 -accessx -sticky -twokey -latchlock
+}
+
+main "$@"
