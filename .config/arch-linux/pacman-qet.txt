@@ -45,10 +45,12 @@ pacman:shfmt
 pacman:sxhkd
 pacman:system-config-printer
 pacman:termite
+pacman:testdisk
 pacman:tig
+pacman:tilda
 pacman:ttf-inconsolata
-pacman:unzip
 pacman:vlc
+pacman:wget
 pacman:wireless_tools
 pacman:wmctrl
 pacman:xautomation
@@ -64,6 +66,7 @@ pacman:yay
 pacman:zenity
 pacman:zip
 yay:brother-hl2280dw
+yay:circleci-cli-bin
 yay:espanso-bin
 yay:git-delta
 yay:google-chrome
