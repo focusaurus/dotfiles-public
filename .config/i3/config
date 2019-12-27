@@ -189,3 +189,4 @@ bar {
 }
 
 for_window [class="fxlauncher"] floating disable
+for_window [class="Yad"] floating enable

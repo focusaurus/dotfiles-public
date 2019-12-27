@@ -16,21 +16,13 @@ IFS=$'\n\t'
 query=
 label="${1:-query}"
 clipboard_preview=$(~/bin/paste | head -c 12 | tr '\n' ' ')
-text=$(cat <<EOF
-<span font="Noto 18">ENTER for 📋 
-${clipboard_preview}
-</span>
-
-${label}
-EOF
-)
-
+clipboard_hint="ENTER for 📋 (${clipboard_preview}…)"
 #if false; then
 if [[ -t 1 ]]; then
   echo "${clipboard_hint}" >/dev/tty
   query=$(zsh -c "query=; vared -p \"${label}: \" query; echo \"\${query}\"")
 else
-  query=$(yad --entry --title "${label}" --text "${text}" --width 500)
+  query=$(zenity --entry --title="${label}" --text="${clipboard_hint}\n\n${label}" --width=500)
 fi
 if [[ -z "${query}" ]]; then
   ~/bin/paste

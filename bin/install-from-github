@@ -13,15 +13,22 @@ set -o posix    # more strict failures in subshells
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
-install_exe() {
-  find . -type f -executable -print0 |
-    xargs -0 sudo install --mode=755 --target-directory /usr/local/bin
-}
-
 log_repo() {
   log_dir=~/.config/install-from-github
   mkdir -p "${log_dir}"
-  echo "$1" >> "${log_dir}/repos.log"
+  echo "$1" >>"${log_dir}/repos.log"
+}
+
+install_exe() {
+  #from_path="$(find . -type f -executable -print0)"
+  from_path="$(file * | grep 'LSB executable' | cut -d : -f 1)"
+  if [[ -z "${from_path}" ]]; then
+    echo "No exe found!"
+    return 1
+  fi
+  read -r -e -p "exe name: " to_name
+  mv "${from_path}" "${to_name}"
+  sudo install --mode=755 --target-directory /usr/local/bin "${to_name}"
 }
 
 main() {
@@ -60,12 +67,14 @@ main() {
   *.gz | *.zip)
     ~/bin/extract "${artifact_name}"
     install_exe
-    find . -type f -executable -print0 |
-      xargs -0 sudo install --mode=755 --target-directory /usr/local/bin
     ;;
   *)
-    if find . -type f -executable -print0 >/dev/null; then
-      install_exe
+    from_name="$(find . -type f -executable -print)"
+
+    if [[ -n "${from_name}" ]]; then
+      read -r -e -p "exe name: " to_name
+      install_exe "${from_name}" "${to_name}"
+      sudo install --mode=755 --target-directory /usr/local/bin "${from_name}" "${to_name}"
     fi
 
     echo Unsupported artifact type "${artifact_name}"
