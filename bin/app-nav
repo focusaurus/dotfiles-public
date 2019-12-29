@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
+
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -o errexit  # always exit on error
+set -o errtrace # trap errors in functions as well
+set -o pipefail # do nott ignore exit codes when piping output
+set -o posix    # more strict failures in subshells
+# set -x          # enable debugging
+
+IFS="$(printf "\n\t")"
+# ---- End unofficial bash strict mode boilerplate
+log_path=/tmp/app-nav.log
+log() {
+  echo -e "$@" >>"${log_path}"
+}
+
+nav_firefox() {
+  log nav_firefox
+  case "$1" in
+  right)
+    log nav_firefox right
+    xdotool key ctrl+Tab
+    ;;
+  left)
+    log nav_firefox left
+    xdotool key ctrl+shift+Tab
+    ;;
+  esac
+}
+
+nav_tmux() {
+  log nav_tmux
+  case "$1" in
+  right)
+    log nav_tmux right
+    xdotool key ctrl+b n
+    ;;
+  left)
+    log nav_tmux left
+    xdotool key ctrl+b p
+    ;;
+  esac
+}
+
+main() {
+  cmdline=$(cat /proc/$(xdotool getactivewindow getwindowpid)/cmdline)
+  log "----\n$(date)\n${cmdline} $@"
+  case "${cmdline}" in
+  *firefox*)
+    nav_firefox "$@"
+    ;;
+  *termite*)
+    nav_tmux "$@"
+    ;;
+  *code*)
+    nav_vs_code "$@"
+    ;;
+  esac
+}
+
+main "$@"

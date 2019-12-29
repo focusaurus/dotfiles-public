@@ -6,6 +6,14 @@ ctrl + 3
   rofi -show run
 ctrl + 4
   rofi -show window
+
+# Placeholders for app-nav with home row here
+#ctrl + 7
+#  ~/bin/app-nav left
+#ctrl + 8
+#  ~/bin/app-nav previous
+#ctrl + 9
+#  ~/bin/app-nav right
 super + v
  rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 F1
