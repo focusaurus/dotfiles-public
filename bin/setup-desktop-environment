@@ -57,7 +57,7 @@ main() {
   # left control press & release is the same as control+space
   if have_exe xcape; then
     kill_ok xcape
-    xcape -e "Control_L=Control_L|1;Alt_L=Control_L|2"
+    xcape -e "Control_L=Control_L|1;Alt_L=Control_L|2;Alt_R=Control_L|2"
   fi
 
   # start xbindkeys daemon which remaps extra mouse buttons
@@ -73,13 +73,17 @@ main() {
 
   if have_exe copyq; then
     kill_ok copyq
-    copyq & >/dev/null
+    copyq &
+    >/dev/null
   fi
 
   if have_exe light-locker; then
     kill_ok light-locker
     light-locker &
   fi
+
+  ~/bin/touchscreen disable
+
   # 2018-04-09 plyons https://superuser.com/questions/410657/enabling-sticky-keys-under-xorg-awesome-desktop-manager#414535
   # Turn on stickykeys. don't let two keys pressed at the same time disable it.
   # don't turn on "latch lock", ie pressing a modifier key twice "locks" it on.
