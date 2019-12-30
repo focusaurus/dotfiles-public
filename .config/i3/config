@@ -74,24 +74,26 @@ bindsym $mod+Shift+l move up
 #bindsym $mod+Shift+semicolon move right
 
 # alternatively, you can use the cursor keys:
-#bindsym $mod+Shift+Left move left
-#bindsym $mod+Shift+Down move down
-#bindsym $mod+Shift+Up move up
-#bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
 
 bindsym Ctrl+1 exec ~/bin/fuzz-script-choose
 bindsym Ctrl+2 exec ~/bin/fuzz-snippet
 bindsym Ctrl+3 exec rofi -show run
 bindsym Ctrl+4 exec rofi -show window
-bindsym Ctrl+7 exec ~/bin/app-nav left
-bindsym Ctrl+8 exec ~/bin/app-nav previous
-bindsym Ctrl+9 exec ~/bin/app-nav right
+
 bindsym Mod4+h exec ~/bin/app-nav left
-bindsym Mod4+t exec ~/bin/app-nav previous
+bindsym Mod4+t exec ~/bin/app-nav up
 bindsym Mod4+n exec ~/bin/app-nav right
+bindsym Mod4+w exec ~/bin/app-nav down
+
 bindsym Mod4+Left exec ~/bin/app-nav left
-bindsym Mod4+Up exec ~/bin/app-nav previous
+bindsym Mod4+Up exec ~/bin/app-nav up
 bindsym Mod4+Right exec ~/bin/app-nav right
+bindsym Mod4+Down exec ~/bin/app-nav down
+
 bindsym Mod4+v exec "rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'"
 
 
@@ -121,7 +123,7 @@ bindsym $mod+minus split v
 
 # change container layout (stacked, tabbed, toggle split)
 #bindsym $mod+s layout stacking
-bindsym $mod+shift/t layout tabbed
+bindsym $mod+shift+t layout tabbed
 #bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -150,16 +152,16 @@ set $ws9 "9"
 set $ws10 "10"
 
 # switch to workspace
-bindsym $mod+1 workspace number $ws1
-bindsym $mod+2 workspace number $ws2
-bindsym $mod+3 workspace number $ws3
-bindsym $mod+4 workspace number $ws4
-bindsym $mod+5 workspace number $ws5
-bindsym $mod+6 workspace number $ws6
-bindsym $mod+7 workspace number $ws7
-bindsym $mod+8 workspace number $ws8
-bindsym $mod+9 workspace number $ws9
-bindsym $mod+0 workspace number $ws10
+#bindsym $mod+1 workspace number $ws1
+#bindsym $mod+2 workspace number $ws2
+#bindsym $mod+3 workspace number $ws3
+#bindsym $mod+4 workspace number $ws4
+#bindsym $mod+5 workspace number $ws5
+#bindsym $mod+6 workspace number $ws6
+#bindsym $mod+7 workspace number $ws7
+#bindsym $mod+8 workspace number $ws8
+#bindsym $mod+9 workspace number $ws9
+#bindsym $mod+0 workspace number $ws10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1

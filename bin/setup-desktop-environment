@@ -30,11 +30,10 @@ main() {
 
   # Use software dvorak. Caps lock key is ctrl, swap left windows and alt
   setxkbmap dvorak -option "ctrl:nocaps" -option "lwin_switch"
-  #setxkbmap -option "altwin:swap_alt_win"
 
   # 2018-04-10 plyons set fast keyboard repeat
   # syntax is delay (ms) then repeat rate (cps I think)
-  delay=225
+  delay=300
   rate=70
   xset r rate "${delay}" "${rate}"
 

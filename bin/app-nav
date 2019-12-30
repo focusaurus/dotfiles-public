@@ -18,15 +18,20 @@ log() {
 }
 
 nav_firefox() {
-  log nav_firefox
+  log nav_firefox "$@"
   case "$1" in
-  right)
-    log nav_firefox right
-    xdotool key ctrl+Tab
-    ;;
   left)
-    log nav_firefox left
-    xdotool key ctrl+shift+Tab
+    xdotool key --clearmodifiers ctrl+shift+Tab
+    ;;
+  up)
+    xdotool key --clearmodifiers Home
+    ;;
+  right)
+    xdotool key --clearmodifiers ctrl+Tab
+    ;;
+  down)
+    # "Next" maps to Page Down
+    xdotool key --clearmodifiers Next
     ;;
   esac
 }
@@ -36,11 +41,11 @@ nav_tmux() {
   case "$1" in
   right)
     log nav_tmux right
-    xdotool key ctrl+b n
+    xdotool key --clearmodifiers ctrl+b n
     ;;
   left)
     log nav_tmux left
-    xdotool key ctrl+b p
+    xdotool key --clearmodifiers ctrl+b p
     ;;
   esac
 }
@@ -48,6 +53,11 @@ nav_tmux() {
 main() {
   cmdline=$(cat /proc/$(xdotool getactivewindow getwindowpid)/cmdline)
   log "----\n$(date)\n${cmdline} $@"
+  # It seems if we issue the synthetic keystrokes before the physical keys are lifted,
+  # presumably especially the modifier key(s),
+  # the app doesn't get the right keystrokes,
+  # so we wait for the keys to be released
+  sleep 0.1
   case "${cmdline}" in
   *firefox*)
     nav_firefox "$@"
