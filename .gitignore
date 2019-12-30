@@ -82,3 +82,7 @@ npm-debug.log
 /.config/vlc/vlc-qt-interface.conf
 /nohup.out
 /.circleci
+/.config/copyq/*bak*
+/.config/copyq/*.dat
+/.config/copyq/copyq.pub
+/.config/copyq/copyq_geometry.ini
