@@ -199,5 +199,21 @@
   {
     "key": "meta+e",
     "command": "editor.action.smartSelect.expand"
+  },
+  {
+    "key": "ctrl+shift+pagedown",
+    "command": "workbench.action.focusRightGroup"
+  },
+  {
+    "key": "ctrl+k ctrl+right",
+    "command": "-workbench.action.focusRightGroup"
+  },
+  {
+    "key": "ctrl+shift+pageup",
+    "command": "workbench.action.focusLeftGroup"
+  },
+  {
+    "key": "ctrl+k ctrl+left",
+    "command": "-workbench.action.focusLeftGroup"
   }
 ]

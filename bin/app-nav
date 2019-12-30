@@ -55,16 +55,16 @@ nav_tmux() {
 nav_vs_code() {
   case "$1" in
   left)
-    xdotool key --clearmodifiers super+Prior
+    xdotool key --clearmodifiers ctrl+Prior
     ;;
   up)
-    # xdotool key --clearmodifiers supert+Right
+    xdotool key --clearmodifiers ctrl+shift+Prior
     ;;
   right)
-    xdotool key --clearmodifiers super+Next
+    xdotool key --clearmodifiers ctrl+Next
     ;;
   down)
-    # xdotool key --clearmodifiers ctrl+b parenright
+    # xdotool key --clearmodifiers ctrl+shift+Next
     ;;
   esac
 }
