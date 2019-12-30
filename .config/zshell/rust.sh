@@ -23,11 +23,3 @@ exercism-done() {
   dos2unix src/*.rs
   atom .
 }
-
-md-to-pdf() {
-  local outdir="${1-/tmp/$(timestamp)}"
-  mkdir -p "${outdir}"
-  paste | ~/projects/md-to-pdf/bin/md-to-pdf.js >"${outdir}/doc.pdf"
-  echo "!$"
-  open "!$"
-}
