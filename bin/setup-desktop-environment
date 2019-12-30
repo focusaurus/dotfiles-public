@@ -71,9 +71,9 @@ main() {
     #    sxhkd &
   fi
 
-  if have_exe greenclip; then
-    kill_ok greenclip
-  #greenclip daemon &
+  if have_exe copyq; then
+    kill_ok copyq
+    copyq & >/dev/null
   fi
 
   if have_exe light-locker; then

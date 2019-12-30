@@ -40,7 +40,7 @@
     "command": "-workbench.action.quickOpen"
   },
   {
-    "key": "meta+right",
+    "key": "ctrl+9",
     "command": "workbench.action.nextEditorInGroup"
   },
   {

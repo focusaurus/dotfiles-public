@@ -18,7 +18,6 @@ log() {
 }
 
 nav_firefox() {
-  log nav_firefox "$@"
   case "$1" in
   left)
     xdotool key --clearmodifiers ctrl+shift+Tab
@@ -37,7 +36,6 @@ nav_firefox() {
 }
 
 nav_tmux() {
-  log nav_tmux
   case "$1" in
   left)
     xdotool key --clearmodifiers ctrl+b p
@@ -50,6 +48,23 @@ nav_tmux() {
     ;;
   down)
     xdotool key --clearmodifiers ctrl+b parenright
+    ;;
+  esac
+}
+
+nav_vs_code() {
+  case "$1" in
+  left)
+    xdotool key --clearmodifiers super+Prior
+    ;;
+  up)
+    # xdotool key --clearmodifiers supert+Right
+    ;;
+  right)
+    xdotool key --clearmodifiers super+Next
+    ;;
+  down)
+    # xdotool key --clearmodifiers ctrl+b parenright
     ;;
   esac
 }

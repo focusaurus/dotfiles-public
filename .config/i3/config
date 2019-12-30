@@ -94,7 +94,8 @@ bindsym Mod4+Up exec ~/bin/app-nav up
 bindsym Mod4+Right exec ~/bin/app-nav right
 bindsym Mod4+Down exec ~/bin/app-nav down
 
-bindsym Mod4+v exec "rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'"
+bindsym Mod4+v exec copyq show
+#bindsym Mod4+v exec "rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'"
 
 
 bindsym F1 exec ~/bin/fkeys f1
@@ -225,3 +226,4 @@ bar {
 for_window [class="fxlauncher"] floating disable
 for_window [class="Yad"] floating enable
 for_window [title="Event Tester"] floating enable
+for_window [class="CopyQ"] floating enable

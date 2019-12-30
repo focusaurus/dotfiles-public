@@ -16,21 +16,19 @@ IFS=$'\n\t'
 query=
 label="${1:-query}"
 clipboard_preview=$(~/bin/paste | head -c 12 | tr '\n' ' ')
-text=$(cat <<EOF
-<span font="Noto 18">ENTER for 📋 
-${clipboard_preview}
-</span>
-
-${label}
+text=$(
+  cat <<EOF
+<span font="Helvetica Bold 24">${label}</span>
+<span font="Inconsolata 12">ENTER for</span><span font="Noto Emoji 12">📋</span><span font="Inconsolata 12">${clipboard_preview}</span>
 EOF
 )
 
 #if false; then
-if [[ -t 1 ]]; then
-  echo "${clipboard_hint}" >/dev/tty
-  query=$(zsh -c "query=; vared -p \"${label}: \" query; echo \"\${query}\"")
-else
+if [[ "${X}" == "1" || -t 1 ]]; then
+  # echo "${clipboard_preview}" >/dev/tty
   query=$(yad --entry --title "${label}" --text "${text}" --width 500)
+else
+  query=$(zsh -c "query=; vared -p \"${label}: \" query; echo \"\${query}\"")
 fi
 if [[ -z "${query}" ]]; then
   ~/bin/paste
