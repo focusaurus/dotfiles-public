@@ -39,13 +39,17 @@ nav_firefox() {
 nav_tmux() {
   log nav_tmux
   case "$1" in
+  left)
+    xdotool key --clearmodifiers ctrl+b p
+    ;;
+  up)
+    xdotool key --clearmodifiers ctrl+b semicolon
+    ;;
   right)
-    log nav_tmux right
     xdotool key --clearmodifiers ctrl+b n
     ;;
-  left)
-    log nav_tmux left
-    xdotool key --clearmodifiers ctrl+b p
+  down)
+    xdotool key --clearmodifiers ctrl+b parenright
     ;;
   esac
 }

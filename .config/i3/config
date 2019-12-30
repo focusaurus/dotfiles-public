@@ -4,10 +4,10 @@
 
 # Main i3 modifier key is alt
 # See readme.md in dotfiles-public for reasoning
-
 set $mod Mod1
-workspace_layout tabbed
 
+workspace_layout tabbed
+focus_follows_mouse no
 
 ##### font #####
 # Font for window titles. Will also be used by the bar unless a different font
@@ -224,3 +224,4 @@ bar {
 
 for_window [class="fxlauncher"] floating disable
 for_window [class="Yad"] floating enable
+for_window [title="Event Tester"] floating enable
