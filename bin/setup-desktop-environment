@@ -82,7 +82,7 @@ main() {
     light-locker &
   fi
 
-  ~/bin/touchscreen disable
+  ~/bin/touchscreen disable || true
 
   # 2018-04-09 plyons https://superuser.com/questions/410657/enabling-sticky-keys-under-xorg-awesome-desktop-manager#414535
   # Turn on stickykeys. don't let two keys pressed at the same time disable it.
