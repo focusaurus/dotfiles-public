@@ -24,7 +24,7 @@ EOF
 )
 
 #if false; then
-if [[ "${X}" == "1" || -t 1 ]]; then
+if [[ "${X}" == "1" || ! -t 1 ]]; then
   # echo "${clipboard_preview}" >/dev/tty
   query=$(yad --entry --title "${label}" --text "${text}" --width 500)
 else
