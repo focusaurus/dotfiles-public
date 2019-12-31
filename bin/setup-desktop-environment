@@ -40,8 +40,9 @@ main() {
   # screen lock after 60 minutes
   xset s 6000
 
-  eval $(ssh-agent -s)
-
+  if have_exe ssh-agent; then
+    eval $(ssh-agent -s)
+  fi
   # 2018-04-17 plyons natural scrolling everywhere in X11
   if have_exe synclient; then
     synclient VertScrollDelta=-119
@@ -68,7 +69,7 @@ main() {
 
   if have_exe sxhkd; then
     kill_ok sxhkd
-    #    sxhkd &
+    sxhkd &
   fi
 
   if have_exe copyq; then
