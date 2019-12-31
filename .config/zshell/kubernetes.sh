@@ -10,7 +10,7 @@ k-set-namespace() {
 
 k-use-config() {
   local config="$1"
-  config=$(find ~/.kube -maxdepth 1 -type f -name '*.yaml' | fuzzy-filter "${config}")
+  config=$(find ~/.kube -maxdepth 1 -type f -name '*.yaml' | ~/bin/fuzzy-filter "${config}")
   export KUBECONFIG="${config}"
   echo "✓ ${config}"
 }
@@ -20,7 +20,7 @@ k-use-context() {
   context=$(yaml-to-json "${KUBECONFIG:-${HOME}/.kube/config}" |
     jq -r '.contexts[].name' |
     grep -v kafka |
-    fuzzy-filter "${context}")
+    ~/bin/fuzzy-filter "${context}")
   [[ -z "${context}" ]] && return
   # n is a global variable, heads up
   case "${context}" in
@@ -104,7 +104,7 @@ k-get-pod() {
   k-get-pods
   local filter
   filter="$1"
-  echo "${pods}" | fuzzy-filter "${filter}"
+  echo "${pods}" | ~/bin/fuzzy-filter "${filter}"
 }
 
 k-describe() {
@@ -129,7 +129,7 @@ k-get-configmap() {
   local filter
   filter="$1"
   local map
-  map=$(echo "${maps}" | fuzzy-filter "${filter}")
+  map=$(echo "${maps}" | ~/bin/fuzzy-filter "${filter}")
   [[ -z "${map}" ]] && return
   kubectl -n "${n}" describe configmap "${map}"
 }

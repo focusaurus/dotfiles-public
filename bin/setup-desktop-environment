@@ -24,16 +24,16 @@ have_exe() {
 main() {
   PATH=$(zsh -ci 'echo $PATH')
   export PATH
+  # Maybe I need this?
+  # Sometimes code and rofi won't start from a terminal without it.
+  export DISPLAY=:0.0
 
-  setxkbmap dvorak
-  # 2018-04-17 plyons caps lock key is control key
-  setxkbmap -option "ctrl:nocaps"
-  # 2018-05-09 plyons left alt key is super, super is alt
-  setxkbmap -option "altwin:swap_alt_win"
+  # Use software dvorak. Caps lock key is ctrl, swap left windows and alt
+  setxkbmap dvorak -option "ctrl:nocaps" -option "lwin_switch"
 
   # 2018-04-10 plyons set fast keyboard repeat
   # syntax is delay (ms) then repeat rate (cps I think)
-  delay=225
+  delay=300
   rate=70
   xset r rate "${delay}" "${rate}"
 
@@ -57,7 +57,7 @@ main() {
   # left control press & release is the same as control+space
   if have_exe xcape; then
     kill_ok xcape
-    xcape -e "Control_L=Control_L|1;Alt_L=Control_L|2"
+    xcape -e "Control_L=Control_L|1;Alt_L=Control_L|2;Alt_R=Control_L|2"
   fi
 
   # start xbindkeys daemon which remaps extra mouse buttons
@@ -68,22 +68,21 @@ main() {
 
   if have_exe sxhkd; then
     kill_ok sxhkd
-    sxhkd &
+    #    sxhkd &
   fi
 
-  if have_exe greenclip; then
-    kill_ok greenclip
-    greenclip daemon &
+  if have_exe copyq; then
+    kill_ok copyq
+    copyq &
+    >/dev/null
   fi
 
   if have_exe light-locker; then
     kill_ok light-locker
     light-locker &
   fi
-  i3-msg reload >/dev/null
-  # Maybe I need this?
-  # Sometimes code and rofi won't start from a terminal without it.
-  # export DISPLAY=:0.0
+
+  ~/bin/touchscreen disable
 
   # 2018-04-09 plyons https://superuser.com/questions/410657/enabling-sticky-keys-under-xorg-awesome-desktop-manager#414535
   # Turn on stickykeys. don't let two keys pressed at the same time disable it.

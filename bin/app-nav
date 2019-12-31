@@ -1,0 +1,93 @@
+#!/usr/bin/env bash
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
+
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -o errexit  # always exit on error
+set -o errtrace # trap errors in functions as well
+set -o pipefail # do nott ignore exit codes when piping output
+set -o posix    # more strict failures in subshells
+# set -x          # enable debugging
+
+IFS="$(printf "\n\t")"
+# ---- End unofficial bash strict mode boilerplate
+log_path=/tmp/app-nav.log
+log() {
+  echo -e "$@" >>"${log_path}"
+}
+
+nav_firefox() {
+  case "$1" in
+  left)
+    xdotool key --clearmodifiers ctrl+shift+Tab
+    ;;
+  up)
+    xdotool key --clearmodifiers Home
+    ;;
+  right)
+    xdotool key --clearmodifiers ctrl+Tab
+    ;;
+  down)
+    # "Next" maps to Page Down
+    xdotool key --clearmodifiers Next
+    ;;
+  esac
+}
+
+nav_tmux() {
+  case "$1" in
+  left)
+    xdotool key --clearmodifiers ctrl+b p
+    ;;
+  up)
+    xdotool key --clearmodifiers ctrl+b semicolon
+    ;;
+  right)
+    xdotool key --clearmodifiers ctrl+b n
+    ;;
+  down)
+    xdotool key --clearmodifiers ctrl+b parenright
+    ;;
+  esac
+}
+
+nav_vs_code() {
+  case "$1" in
+  left)
+    xdotool key --clearmodifiers ctrl+Prior
+    ;;
+  up)
+    xdotool key --clearmodifiers ctrl+shift+Prior
+    ;;
+  right)
+    xdotool key --clearmodifiers ctrl+Next
+    ;;
+  down)
+    # xdotool key --clearmodifiers ctrl+shift+Next
+    ;;
+  esac
+}
+
+main() {
+  cmdline=$(cat /proc/$(xdotool getactivewindow getwindowpid)/cmdline)
+  log "----\n$(date)\n${cmdline} $@"
+  # It seems if we issue the synthetic keystrokes before the physical keys are lifted,
+  # presumably especially the modifier key(s),
+  # the app doesn't get the right keystrokes,
+  # so we wait for the keys to be released
+  sleep 0.1
+  case "${cmdline}" in
+  *firefox*)
+    nav_firefox "$@"
+    ;;
+  *termite*)
+    nav_tmux "$@"
+    ;;
+  *code*)
+    nav_vs_code "$@"
+    ;;
+  esac
+}
+
+main "$@"

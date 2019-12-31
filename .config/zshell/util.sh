@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 ########## General utility stuff ##########
-alias @bug="ag -i @bug"
+alias @bug="rg @bug"
 alias cx="chmod +x"
 ap1() {
   awk '{print $1}'
@@ -40,8 +40,6 @@ alias ll="ls -l"
 alias lla="ls -al"
 alias lsl="ls|less"
 alias md="mkdir -p"
-alias cm="cryptmount"
-alias start-mullvad-vpn="sudo /opt/Mullvad\ VPN/resources/mullvad-daemon -v"
 alias show-dns-servers="nmcli dev show |grep DNS"
 # Useful when you know you are going to copy/paste
 # some stuff to a journal or blog
@@ -84,26 +82,7 @@ else
   TAILER="tail -f"
 fi
 
-export BROWSER=/usr/bin/firefox
-
-extract() {
-  if [[ -s $1 ]]; then
-    case $1 in
-    *.tar.*) tar xf $1 ;;
-    *.bz2) bunzip2 $1 ;;
-    *.rar) unrar x $1 ;;
-    *.gz) gunzip $1 ;;
-    *.tar) tar xf $1 ;;
-    *.tbz2) tar xjf $1 ;;
-    *.tgz) tar xzf $1 ;;
-    *.zip) unzip $1 ;;
-    *.Z) uncompress $1 ;;
-    *) echo "${1} cannot be extracted via extract" ;;
-    esac
-  else
-    echo "${1} is not a valid file"
-  fi
-}
+export BROWSER=firefox
 
 char-count() {
   echo -n "$@" | wc -c
@@ -226,14 +205,14 @@ comcast_file="/tmp/comcast-is-up.txt"
 # Run this from a system at home
 comcast-is-down() {
   while true; do
-    ssh -o ConnectTimeout=5 fela.peterlyons.com bash -c "date > ${comcast_file}"
+    ssh -o ConnectTimeout=5 zooz.peterlyons.com bash -c "date > ${comcast_file}"
     sleep 30
   done
 }
 
 # Run this from your alternative location that has working Internet
 is-comcast-still-down() {
-  watch --interval 30 ssh fela.peterlyons.com tail -1 "${comcast_file}"
+  watch --interval 30 ssh zooz.peterlyons.com tail -1 "${comcast_file}"
 }
 alias paste-stupid-unix=/usr/bin/paste
 sort-file() {
@@ -262,3 +241,11 @@ br_source="${HOME}/.config/broot/launcher/bash/br"
 if [[ -f "${br_source}" ]]; then
   source "${br_source}"
 fi
+
+md-clipboard-to-pdf() {
+  local outdir="${1-/tmp/$(timestamp)}"
+  mkdir -p "${outdir}"
+  ~/bin/paste | ~/projects/md-to-pdf/bin/md-to-pdf.js >"${outdir}/doc.pdf"
+  echo "!$"
+  open "!$"
+}

@@ -136,8 +136,6 @@ alias -g /g='| grep'
 #zle -C complete-file complete-word _generic
 #bindkey '^T' complete-file
 #zstyle ':completion:*' completer _complete _ignored _files
-#fpath=(${DOTFILES}/shell/zsh-completions/src $fpath)
-#fpath=(${DOTFILES}/shell/zsh-completions-custom $fpath)
 autoload -U compinit && compinit
 
 

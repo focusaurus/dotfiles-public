@@ -62,7 +62,10 @@
   "editor.fontFamily": "'Inconsolata', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
   "markdown.preview.markEditorSelection": false,
   "markdown.preview.scrollEditorWithPreview": false,
-  "keyboard.dispatch": "keyCode",
   "gitlens.advanced.telemetry.enabled": false,
-  "workbench.activityBar.visible": false
+  "workbench.activityBar.visible": false,
+  "terminal.integrated.allowChords": false,
+  "window.customMenuBarAltFocus": false,
+  "window.enableMenuBarMnemonics": false,
+  "keyboard.dispatch": "keyCode"
 }

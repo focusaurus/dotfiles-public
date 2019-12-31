@@ -13,4 +13,9 @@ set -o posix    # more strict failures in subshells
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
-sudo protonvpn disconnect
+tsid=$(xinput | grep Multi-Touch | grep -Eo '\bid=[0-9]+\b' | cut -d = -f2)
+if [[ -z "${tsid}" ]]; then
+  echo "Could not find touchscreen's xinput id" 1>&2
+  exit 10
+fi
+xinput "$1" "${tsid}"
