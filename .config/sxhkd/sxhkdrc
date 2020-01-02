@@ -51,3 +51,10 @@ F11
   ~/bin/fkeys f11
 F12
   ~/bin/fkeys f12
+
+##### screen brightness #####
+XF86MonBrightnessDown
+  sudo brightnessctl set 20%-
+
+XF86MonBrightnessUp
+  sudo brightnessctl set 20%+
