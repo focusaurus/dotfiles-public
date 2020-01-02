@@ -56,10 +56,17 @@ bindsym $mod+k kill
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
+# right hand home row
 bindsym $mod+h mark LAST;focus left
-bindsym $mod+w focus down
 bindsym $mod+t mark TEMP; [con_mark="LAST"] focus; [con_mark="TEMP"] mark LAST
 bindsym $mod+n mark LAST;focus right
+bindsym $mod+w focus down
+
+# left hand home row
+bindsym $mod+o mark LAST;focus left
+bindsym $mod+e mark TEMP; [con_mark="LAST"] focus; [con_mark="TEMP"] mark LAST
+bindsym $mod+u mark LAST;focus right
+bindsym $mod+j focus down
 
 # alternatively, you can use the arrow keys:
 bindsym $mod+Left mark LAST;focus left

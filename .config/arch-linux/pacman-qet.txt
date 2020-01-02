@@ -1,5 +1,3 @@
-pacman:arm-none-eabi-binutils
-pacman:arm-none-eabi-newlib
 pacman:at
 pacman:base
 pacman:bat
@@ -9,6 +7,7 @@ pacman:blueman
 pacman:bluez-utils
 pacman:copyq
 pacman:cups-pdf
+pacman:dfu-util
 pacman:dhclient
 pacman:docker-compose
 pacman:dunst
