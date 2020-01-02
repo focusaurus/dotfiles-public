@@ -1,3 +1,4 @@
+##### rofi windows #####
 ctrl + 1
   ~/bin/fuzz-script-choose
 ctrl + 2
@@ -7,15 +8,16 @@ ctrl + 3
 ctrl + 4
   rofi -show window
 
-# Placeholders for app-nav with home row here
-#ctrl + 7
-#  ~/bin/app-nav left
-#ctrl + 8
-#  ~/bin/app-nav previous
-#ctrl + 9
-#  ~/bin/app-nav right
+##### app-nav #####
+super + {h,t,n,w}
+  ~/bin/app-nav {left,up,right,down}
+super + {Left,Up,Right,Down}
+  ~/bin/app-nav {left,up,right,down}
+
 super + v
- rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+  copyq show
+
+##### function keys #####
 F1
   ~/bin/fkeys f1
 ctrl + F1

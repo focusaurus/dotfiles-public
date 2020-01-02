@@ -8,7 +8,7 @@
 #disable = ["system", "emacs"]
 
 # Run specific steps - same options as the command line flag
-only = ["system", "tmux"]
+only = ["system", "gitrepos"]
 
 # Do not ask to retry failed steps (default: false)
 #no_retry = true

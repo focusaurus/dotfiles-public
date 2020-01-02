@@ -79,40 +79,6 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-bindsym Ctrl+1 exec ~/bin/fuzz-script-choose
-bindsym Ctrl+2 exec ~/bin/fuzz-snippet
-bindsym Ctrl+3 exec rofi -show run
-bindsym Ctrl+4 exec rofi -show window
-
-bindsym Mod4+h exec ~/bin/app-nav left
-bindsym Mod4+t exec ~/bin/app-nav up
-bindsym Mod4+n exec ~/bin/app-nav right
-bindsym Mod4+w exec ~/bin/app-nav down
-
-bindsym Mod4+Left exec ~/bin/app-nav left
-bindsym Mod4+Up exec ~/bin/app-nav up
-bindsym Mod4+Right exec ~/bin/app-nav right
-bindsym Mod4+Down exec ~/bin/app-nav down
-
-bindsym Mod4+v exec copyq show
-#bindsym Mod4+v exec "rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'"
-
-
-bindsym F1 exec ~/bin/fkeys f1
-bindsym Ctrl+F1 exec ~/bin/fkeys ctrl+f1
-bindsym F2 exec ~/bin/fkeys f2
-bindsym F3 exec ~/bin/fkeys f3
-bindsym F4 exec ~/bin/fkeys f4
-bindsym F5 exec ~/bin/fkeys f5
-bindsym F6 exec ~/bin/fkeys f6
-bindsym Ctrl+F6 exec ~/bin/fkeys ctrl+f6
-bindsym F7 exec ~/bin/fkeys f7
-bindsym F8 exec ~/bin/fkeys f8
-bindsym F9 exec ~/bin/fkeys f9
-bindsym F10 exec ~/bin/fkeys f10
-bindsym F11 exec ~/bin/fkeys f11
-bindsym F12 exec ~/bin/fkeys f12
-
 # split in horizontal orientation
 bindsym $mod+bar split h
 
