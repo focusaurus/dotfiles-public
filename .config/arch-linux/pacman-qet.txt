@@ -1,3 +1,5 @@
+pacman:arm-none-eabi-binutils
+pacman:arm-none-eabi-newlib
 pacman:at
 pacman:base
 pacman:bat
@@ -52,6 +54,7 @@ pacman:sxhkd
 pacman:system-config-printer
 pacman:termite
 pacman:tig
+pacman:tilda
 pacman:tlp
 pacman:ttf-inconsolata
 pacman:unzip
@@ -67,6 +70,7 @@ pacman:xf86-input-synaptics
 pacman:xorg-server
 pacman:xorg-xev
 pacman:xorg-xfontsel
+pacman:xorg-xinput
 pacman:xorg-xmodmap
 pacman:xss-lock
 pacman:yad
@@ -75,6 +79,7 @@ pacman:youtube-dl
 pacman:zenity
 yay:brother-hl2280dw
 yay:cryptmount
+yay:gcalcli
 yay:git-delta
 yay:google-chrome
 yay:hadolint-bin
