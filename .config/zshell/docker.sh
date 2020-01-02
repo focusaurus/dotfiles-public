@@ -105,7 +105,7 @@ dex() {
   query="$1"
   shift
   local container
-  container=$(docker ps --format "{{.Names}}" | fuzzy-filter "${query}")
+  container=$(docker ps --format "{{.Names}}" | ~/bin/fuzzy-filter "${query}")
   [[ -z "${container}" ]] && return
   declare -a command=("$@")
   if [[ $# -eq 0 ]]; then
@@ -116,7 +116,7 @@ dex() {
 
 dcl() {
   format="table {{.Label \"com.docker.compose.project\"}}\t{{.Label \"com.docker.compose.service\"}}\t{{.Names}}"
-  line=$(docker ps -a --format "${format}" | fuzzy-filter "$@")
+  line=$(docker ps -a --format "${format}" | ~/bin/fuzzy-filter "$@")
   name=$(echo "${line}" | awk '{print $3}')
   [[ -z "${name}" ]] && return
   docker logs --tail=500 -f "${name}"
@@ -124,21 +124,21 @@ dcl() {
 
 dl() {
   local container
-  container=$(docker ps --format "{{.Names}}" | fuzzy-filter "$@")
+  container=$(docker ps --format "{{.Names}}" | ~/bin/fuzzy-filter "$@")
   [[ -z "${container}" ]] && return
   docker logs -f "${container}"
 }
 
 dstop() {
   local container
-  container=$(docker ps --format "{{.Names}}" | fuzzy-filter "$@")
+  container=$(docker ps --format "{{.Names}}" | ~/bin/fuzzy-filter "$@")
   [[ -z "${container}" ]] && return
   docker stop "${container}"
 }
 
 dcstop() {
   local container
-  container=$(dcservices | fuzzy-filter "$@")
+  container=$(dcservices | ~/bin/fuzzy-filter "$@")
   [[ -z "${container}" ]] && return
   docker-compose stop "${container}"
 }
@@ -153,7 +153,7 @@ drun() {
 
 dcrun() {
   local container
-  container=$(dcservices | fuzzy-filter "$1")
+  container=$(dcservices | ~/bin/fuzzy-filter "$1")
   shift
   declare -a command=("$@")
   if [[ $# -eq 0 ]]; then
@@ -164,7 +164,7 @@ dcrun() {
 
 dcrunsp() {
   local container
-  container=$(dcservices | fuzzy-filter "$1")
+  container=$(dcservices | ~/bin/fuzzy-filter "$1")
   shift
   declare -a command=("$@")
   if [[ $# -eq 0 ]]; then
@@ -176,9 +176,9 @@ dcrunsp() {
 dcservices() {
   local filter='.services | keys | .[]'
   (
-    ~/bin/yaml-to-json docker-compose.yml | jq -r "${filter}"
+    ~/bin/yaml-to-json <docker-compose.yml | jq -r "${filter}"
     if [[ -e docker-compose.override.yml ]]; then
-      ~/bin/yaml-to-json docker-compose.override.yml | jq -r "${filter}"
+      ~/bin/yaml-to-json <docker-compose.override.yml | jq -r "${filter}"
     fi
   ) | sort | uniq
 }
