@@ -53,10 +53,6 @@ main() {
     synclient HorizScrollDelta=-119
   fi
 
- # if have_exe xmodmap; then
-#    xmodmap ~/.Xmodmap
- # fi
-
   # 2019-09-26 plyons press and release a modifier sends key combos
   # left shift press & release is the same as control+comma
   # left control press & release is the same as control+space
