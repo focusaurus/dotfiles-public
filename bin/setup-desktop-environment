@@ -73,7 +73,8 @@ main() {
 
   if have_exe copyq; then
     kill_ok copyq
-    copyq & >/dev/null
+    copyq &
+    >/dev/null
   fi
 
   if have_exe light-locker; then
@@ -81,6 +82,10 @@ main() {
     light-locker &
   fi
 
+  if have_exe tilda; then
+    kill_ok tilda
+    tilda &
+  fi
   ~/bin/touchscreen disable || true
 
   # 2018-04-09 plyons https://superuser.com/questions/410657/enabling-sticky-keys-under-xorg-awesome-desktop-manager#414535

@@ -31,6 +31,7 @@ pacman:light-locker
 pacman:make
 pacman:man-db
 pacman:mate-calc
+pacman:mpv
 pacman:neovim
 pacman:network-manager-applet
 pacman:noto-fonts-emoji
@@ -43,6 +44,7 @@ pacman:pkgconf
 pacman:pulseaudio-equalizer
 pacman:pulseaudio-jack
 pacman:ranger
+pacman:rclone
 pacman:ripgrep
 pacman:rofi
 pacman:rsync
@@ -58,7 +60,6 @@ pacman:tlp
 pacman:ttf-inconsolata
 pacman:unzip
 pacman:upower
-pacman:vlc
 pacman:wireless_tools
 pacman:wmctrl
 pacman:xautomation
@@ -74,7 +75,6 @@ pacman:xorg-xmodmap
 pacman:xss-lock
 pacman:yad
 pacman:yay
-pacman:youtube-dl
 pacman:zenity
 yay:brother-hl2280dw
 yay:cryptmount
