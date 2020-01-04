@@ -21,9 +21,13 @@ sigusr1() {
 
 copy-dir-name() {
   dir=$(basename "${PWD}")
-  echo -n "${dir}" | copy
+  echo -n "${dir}" | ~/bin/copy
   echo "✓ ${dir}"
 }
+
+# The unix utility /bin/paste gets in my namespace. Get out!
+alias copy=~/bin/copy
+alias paste=~/bin/paste
 
 alias cal="cal -3m"
 alias cdrom="mount /dev/cdrom"
@@ -70,7 +74,7 @@ alias veh="sudo vim /etc/hosts"
 whatismyipaddress() {
   local ip
   ip=$(curl --silent --fail https://myip.dnsomatic.com/)
-  echo -n "${ip}" | copy
+  echo -n "${ip}" | ~/bin/copy
   echo "${ip} (copied to clipboard)"
   ip -o -4 -br address | grep -v '^br-'
 }

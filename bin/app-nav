@@ -41,7 +41,7 @@ nav_tmux() {
     xdotool key --clearmodifiers ctrl+b p
     ;;
   up)
-    xdotool key --clearmodifiers ctrl+b semicolon
+    xdotool key --clearmodifiers ctrl+b o
     ;;
   right)
     xdotool key --clearmodifiers ctrl+b n

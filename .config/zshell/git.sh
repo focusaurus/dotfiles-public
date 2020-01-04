@@ -86,6 +86,10 @@ gh-clone() {
   cd "$(basename "${repo}" .git)" || return 1
 }
 
+gh-pr-description() {
+  git log '--pretty=format:%s%n%b' "$(git-get-default-branch)..HEAD" | grep -Ev Signed-off-by
+}
+
 #git tag version
 gtv() {
   git tag "v$(node --print --eval 'require("./package.json").version')"
