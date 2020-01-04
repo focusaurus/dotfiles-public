@@ -29,3 +29,7 @@ save-installed-packages() {
     done
   }) | sort | tee >~/.config/arch-linux/pacman-qet.txt
 }
+
+uninstall-via-pacman() {
+  sudo pacman -R "$@"
+}

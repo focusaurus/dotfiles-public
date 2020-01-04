@@ -29,7 +29,7 @@ if [[ -t 1 ]]; then
 else
   task=$(
     ls "${task_dir}" |
-      rofi -dmenu -p task -theme /usr/share/rofi/themes/Monokai.rasi
+      rofi -dmenu -p task -theme /usr/share/rofi/themes/fancy.rasi
   )
 #  log "selected ${task} from rofi"
 fi

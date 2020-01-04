@@ -17,6 +17,10 @@ kill_ok() {
   killall --exact "$1" 2>/dev/null || true
 }
 
+send_sigusr1() {
+  killall --exact --signal SIGUSR1 2>/dev/null
+}
+
 have_exe() {
   command -v "$1" >/dev/null
 }
@@ -29,7 +33,7 @@ main() {
   export DISPLAY=:0.0
 
   # Use software dvorak. Caps lock key is ctrl, swap left windows and alt
-  setxkbmap dvorak -option "ctrl:nocaps" -option "lwin_switch"
+  setxkbmap dvorak -option "ctrl:nocaps,altwin:swap_lalt_lwin"
 
   # 2018-04-10 plyons set fast keyboard repeat
   # syntax is delay (ms) then repeat rate (cps I think)
@@ -49,9 +53,9 @@ main() {
     synclient HorizScrollDelta=-119
   fi
 
-  if have_exe xmodmap; then
-    xmodmap ~/.Xmodmap
-  fi
+ # if have_exe xmodmap; then
+#    xmodmap ~/.Xmodmap
+ # fi
 
   # 2019-09-26 plyons press and release a modifier sends key combos
   # left shift press & release is the same as control+comma
@@ -62,8 +66,7 @@ main() {
   fi
 
   # start xbindkeys daemon which remaps extra mouse buttons
-  if have_exe xbindkeys; then
-    kill_ok xbindkeys
+  if ! send_sigusr1 xbindkeys; then
     xbindkeys
   fi
 
@@ -74,8 +77,7 @@ main() {
 
   if have_exe copyq; then
     kill_ok copyq
-    copyq &
-    >/dev/null
+    copyq & >/dev/null
   fi
 
   if have_exe light-locker; then
