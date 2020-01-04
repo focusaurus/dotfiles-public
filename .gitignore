@@ -93,3 +93,4 @@ npm-debug.log
 /.zoom
 /.config/zoomus.conf
 /.config/Unknown Organization
+/.config/rclone
