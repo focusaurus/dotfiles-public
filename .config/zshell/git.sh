@@ -55,6 +55,32 @@ _base-url() {
     sed -e 's_:_/_' -e 's_^\s*git@_https://_' -e 's_\.git$__'
 }
 
+gh() {
+  echo thanks for running gh $@
+  case "$1" in
+  commits)
+    xdg-open "$(_base-url)/commits"
+    ;;
+  issues)
+    xdg-open "$(_base-url)/issues"
+    ;;
+  pr-description)
+    git log '--pretty=format:%s%n%b' "$(git-get-default-branch)..HEAD" | grep -Ev Signed-off-by
+    ;;
+  pull-requests)
+    xdg-open "$(_base-url)/pulls"
+    ;;
+  repo)
+    xdg-open "$(_base-url)"
+    ;;
+  *)
+    echo "Unknown subcommand"
+    return 1
+    ;;
+
+  esac
+}
+
 gh-repo() {
   xdg-open "$(_base-url)"
 }
@@ -75,7 +101,7 @@ gh-clone() {
   local url
   local org
   local repo
-  url="${1:-$(paste.sh)}"
+  url="${1:-$(~/bin/paste)}"
   org="$(echo "${url}" | cut -d / -f 4)"
   repo="$(echo "${url}" | cut -d / -f 5)"
   echo "${org}"

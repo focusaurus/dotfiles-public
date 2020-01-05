@@ -197,7 +197,7 @@
     "command": "-flutter-code-select.select-include"
   },
   {
-    "key": "meta+e",
+    "key": "ctrl+.",
     "command": "editor.action.smartSelect.expand"
   },
   {

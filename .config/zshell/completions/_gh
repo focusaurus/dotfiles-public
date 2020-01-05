@@ -1,0 +1,9 @@
+#compdef gh
+gh_completions=(
+  'commits:open commits page'
+  'issues:open issues page'
+  'pr-description:use commit messages for PR description'
+  'pull-requests:open pull requests'
+  'repo:open repository base url'
+)
+_describe 'gh' gh_completions

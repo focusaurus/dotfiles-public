@@ -32,6 +32,9 @@ main() {
   # Sometimes code and rofi won't start from a terminal without it.
   export DISPLAY=:0.0
 
+	# https://wiki.archlinux.org/index.php/Firefox/Tweaks#Pixel-perfect_trackpad_scrolling
+  MOZ_USE_XINPUT2=1
+
   # Use software dvorak. Caps lock key is ctrl, swap left windows and alt
   setxkbmap dvorak -option "ctrl:nocaps,altwin:swap_lalt_lwin"
 

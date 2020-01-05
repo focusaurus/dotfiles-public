@@ -89,8 +89,6 @@ prefs() {
   esac
 }
 
-fpath=(~/projects/dotfiles/shell/zsh-completions/src $fpath)
-
 brewify() {
   cat "${DOTFILES}/brew_leaves.txt" | xargs brew install
 }

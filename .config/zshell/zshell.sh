@@ -131,14 +131,20 @@ bindkey ";5D" backward-word
 bindkey "^S" kill-word
 alias -g /g='| grep'
 
+
+##### completion #####
+fpath=(~/.config/zshell/completions $fpath)
+
 #This is evil. Doesn't fall back to files
 #zstyle ':completion:*' menu select
 #zle -C complete-file complete-word _generic
-#bindkey '^T' complete-file
+bindkey '^T' complete-file
 #zstyle ':completion:*' completer _complete _ignored _files
-autoload -U compinit && compinit
+autoload -U compinit
+compinit
 
 
 function watch-zsh() {
   WATCH_COMMAND='zsh -ci' /usr/local/bin/watch "$@"
 }
+
