@@ -135,11 +135,14 @@ alias -g /g='| grep'
 ##### completion #####
 fpath=(~/.config/zshell/completions $fpath)
 
-#This is evil. Doesn't fall back to files
-#zstyle ':completion:*' menu select
-#zle -C complete-file complete-word _generic
-bindkey '^T' complete-file
-#zstyle ':completion:*' completer _complete _ignored _files
+
+# Trigger basic filesystem completion anywhere in
+# any command with ctrl+t
+# https://stackoverflow.com/a/49968871/266795
+zle -C complete-file complete-word _generic
+zstyle ':completion:complete-file::::' completer _files
+bindkey '^t' complete-file
+
 autoload -U compinit
 compinit
 

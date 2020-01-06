@@ -32,7 +32,7 @@ main() {
   # Sometimes code and rofi won't start from a terminal without it.
   export DISPLAY=:0.0
 
-	# https://wiki.archlinux.org/index.php/Firefox/Tweaks#Pixel-perfect_trackpad_scrolling
+  # https://wiki.archlinux.org/index.php/Firefox/Tweaks#Pixel-perfect_trackpad_scrolling
   MOZ_USE_XINPUT2=1
 
   # Use software dvorak. Caps lock key is ctrl, swap left windows and alt
@@ -71,7 +71,9 @@ main() {
 
   if have_exe sxhkd; then
     kill_ok sxhkd
-    sxhkd &
+    uid=$(id -u)
+    export I3SOCK=$(ls -tr "/run/user/${uid}/i3/ipc-socket."* | tail -1)
+    sxhkd -r "/run/user/${uid}/sxhkd.log" &
   fi
 
   if have_exe copyq; then

@@ -200,3 +200,4 @@ for_window [class="fxlauncher"] floating disable
 for_window [class="Yad"] floating enable
 for_window [title="Event Tester"] floating enable
 for_window [class="CopyQ"] floating enable
+for_window [class="tilda.Tilda"] floating enable
