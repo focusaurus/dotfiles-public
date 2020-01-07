@@ -57,7 +57,23 @@ _base-url() {
 
 gh() {
   echo thanks for running gh $@
-  case "$1" in
+  subcommand="$1"
+  shift
+  case "${subcommand}" in
+  clone)
+    local url
+    local org
+    local repo
+    url="${1:-$(~/bin/paste)}"
+    org="$(echo "${url}" | cut -d / -f 4)"
+    repo="$(echo "${url}" | cut -d / -f 5)"
+    echo "${org}"
+    echo "${repo}"
+    mkdir -p "${HOME}/github/${org}"
+    cd "${HOME}/github/${org}" || return 1
+    git clone "${url}"
+    cd "$(basename "${repo}" .git)" || return 1
+    ;;
   commits)
     xdg-open "$(_base-url)/commits"
     ;;

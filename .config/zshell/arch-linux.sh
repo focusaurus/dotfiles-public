@@ -27,7 +27,7 @@ save-installed-packages() {
         echo "yay:${name}"
       fi
     done
-  }) | sort | tee >~/.config/arch-linux/pacman-qet.txt
+  }) | sort | tee >"${HOME}/.config/arch-linux/pacman-qet-$(uname -n).txt"
 }
 
 uninstall-via-pacman() {

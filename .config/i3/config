@@ -196,8 +196,9 @@ bar {
         status_command i3status
 }
 
-for_window [class="fxlauncher"] floating disable
-for_window [class="Yad"] floating enable
-for_window [title="Event Tester"] floating enable
-for_window [class="CopyQ"] floating enable
-for_window [class="tilda.Tilda"] floating enable
+for_window [class="(?i)fxlauncher"] floating disable
+for_window [class="(?i)yad"] floating enable
+for_window [title="(?i)event tester"] floating enable
+for_window [class="(?i)copyq"] floating enable
+for_window [class="(?i)tilda.Tilda"] floating enable
+for_window [class="(?i)zoom"] floating enable

@@ -1,5 +1,6 @@
 #compdef gh
 gh_completions=(
+  'clone:clone a repo by url into ~/github'
   'commits:open commits page'
   'issues:open issues page'
   'pr-description:use commit messages for PR description'

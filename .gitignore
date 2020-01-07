@@ -94,3 +94,7 @@ npm-debug.log
 /.config/zoomus.conf
 /.config/Unknown Organization
 /.config/rclone
+/.aws
+/.kube
+/.config/keybase
+/.config/Keybase

@@ -84,6 +84,7 @@ pacman:yay
 pacman:zenity
 pacman:zip
 pacman:zoom
+pacman:zsh-completions
 yay:brother-hl2280dw
 yay:circleci-cli-bin
 yay:git-delta
