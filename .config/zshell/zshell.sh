@@ -131,22 +131,6 @@ bindkey ";5D" backward-word
 bindkey "^S" kill-word
 alias -g /g='| grep'
 
-
-##### completion #####
-fpath=(~/.config/zshell/completions $fpath)
-
-
-# Trigger basic filesystem completion anywhere in
-# any command with ctrl+t
-# https://stackoverflow.com/a/49968871/266795
-zle -C complete-file complete-word _generic
-zstyle ':completion:complete-file::::' completer _files
-bindkey '^t' complete-file
-
-autoload -U compinit
-compinit
-
-
 function watch-zsh() {
   WATCH_COMMAND='zsh -ci' /usr/local/bin/watch "$@"
 }

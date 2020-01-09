@@ -37,6 +37,8 @@ F5
   ~/bin/fkeys f5
 F6
   ~/bin/fkeys f6
+shift + F6
+  ~/bin/fkeys shift+f6
 ctrl + F6
   ~/bin/fkeys ctrl+f6
 F7

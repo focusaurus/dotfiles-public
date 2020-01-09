@@ -1,20 +1,10 @@
-install-via-yay() {
+install-arch-package() {
   yay -S "$@"
   hash -r
 }
 
-install-via-pacman() {
-  sudo pacman -S "$@"
-  hash -r
-}
-
-search-pacman-yay() {
-  (
-    echo '##### pacman #####'
-    pacman -Ss "$@"
-    echo '##### yay #####'
-    yay -Ss "$@"
-  ) | less
+search-arch-packages() {
+  yay -Ss "$@" | less
 }
 # TODO curl -s "https://get.sdkman.io" | bash
 
