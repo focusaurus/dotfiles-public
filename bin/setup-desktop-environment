@@ -89,7 +89,7 @@ main() {
 
   if have_exe tilda; then
     kill_ok tilda
-    tilda &
+    tilda --hidden &
   fi
   ~/bin/touchscreen disable || true
 
