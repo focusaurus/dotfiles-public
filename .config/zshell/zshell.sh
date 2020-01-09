@@ -1,65 +1,18 @@
 #!/usr/bin/env zsh
-# big history
-export HISTSIZE="10000"
-export SAVEHIST="10000"
-# Allow multiple terminal sessions to all append to one zsh command history
-setopt APPEND_HISTORY
-# Add commands to history as they are typed, don't wait until shell exit
-setopt INC_APPEND_HISTORY
-# Shares history across multiple zsh sessions, in real time
-# PL 2018-02-15 I don't like this one
-# setopt SHARE_HISTORY
-# makes history substitution commands a bit nicer. I don't fully understand
-setopt HIST_VERIFY
+export HISTFILE=/dev/null
+export TERM="xterm-color"
+export EDITOR="neovim"
+export TZ="America/Denver"
+set -o emacs
 
-# When duplicates are entered, get rid of the duplicates first when we hit $HISTSIZE
-setopt HIST_EXPIRE_DUPS_FIRST
-# Do not write events to history that are duplicates of the immediately previous event
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_IGNORE_DUPS
-setopt HIST_SAVE_NO_DUPS
-# When searching history don't display results already cycled through twice
-setopt HIST_FIND_NO_DUPS
-setopt HIST_SAVE_NO_DUPS
-# Remove extra blanks from each command line being added to history
-export HIST_REDUCE_BLANKS
-# Don't enter commands into history if they start with a space
-export HIST_IGNORE_SPACE
+tt() {
+  export TERMINAL_TITLE="$*"
+}
 
 alias -g /l='| less'
 alias -g //l='2>&1 | less'
 alias -g /p='$(paste)'
 
-setup-path-zsh() {
-  # Lowercase `path` array is tied to `PATH` string.  Quoting the path array
-  # elements seems to make it compute the array faster somehow.
-  path=(
-    "/usr/local/bin"
-    # Normal system stuff comes early for security
-    # So npm packages can't override basic commands like ls
-    "/bin"
-    "/usr/bin"
-    "/sbin"
-    "/usr/sbin"
-    "/usr/X11/bin"
-    "${HOME}/bin"
-    "${HOME}/projects/dotfiles/bin"
-    "${PWD}/script"
-    "${PWD}/bin"
-    "${PWD}/node_modules/.bin"
-    "${PWD}/python/bin"
-    "${PWD}/env/bin"
-  )
-
-  # Normalize `path` and rm dups and nonexistent dirs.
-  # path=( ${(u)^path:A}(N-/) ) # FIXME
-  export PATH
-}
-
-setup-path-zsh
-
-setopt histignorealldups
-setopt interactivecomments
 
 # alias -g devlog='json -g -a -0 -e "delete this.v; delete this.hostname;delete this.level; delete this.pid; delete this.name"'
 ##### shell prompt setup #####
@@ -150,4 +103,3 @@ compinit
 function watch-zsh() {
   WATCH_COMMAND='zsh -ci' /usr/local/bin/watch "$@"
 }
-
