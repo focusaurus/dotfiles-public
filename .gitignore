@@ -103,3 +103,4 @@ npm-debug.log
 /.config/nordvpn
 /.config/3T
 /.config/conduktor/v1/app.properties
+/.mpd
