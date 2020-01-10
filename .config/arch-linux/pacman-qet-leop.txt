@@ -9,7 +9,6 @@ pacman:brightnessctl
 pacman:copyq
 pacman:cups-pdf
 pacman:dfu-util
-pacman:dhclient
 pacman:docker-compose
 pacman:dunst
 pacman:espeak
@@ -32,6 +31,7 @@ pacman:jq
 pacman:keybase-gui
 pacman:kubectl
 pacman:light-locker
+pacman:macchanger
 pacman:make
 pacman:man-db
 pacman:mate-calc
@@ -85,11 +85,14 @@ pacman:zenity
 pacman:zip
 pacman:zoom
 pacman:zsh-completions
+yay:aws-iam-authenticator-bin
 yay:brother-hl2280dw
 yay:circleci-cli-bin
 yay:git-delta
 yay:google-chrome
 yay:hadolint-bin
+yay:insomnia
+yay:nordvpn-bin
 yay:pulldown-cmark
 yay:pup-bin
 yay:robo3t-bin
