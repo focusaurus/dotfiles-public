@@ -104,3 +104,5 @@ npm-debug.log
 /.config/3T
 /.config/conduktor/v1/app.properties
 /.mpd
+/.config/Insomnia
+/.config/conduktor
