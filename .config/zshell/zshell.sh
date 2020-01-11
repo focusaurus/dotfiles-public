@@ -1,7 +1,6 @@
 #!/usr/bin/env zsh
 export HISTFILE=/dev/null
 export TERM="xterm-color"
-export EDITOR="neovim"
 export TZ="America/Denver"
 set -o emacs
 

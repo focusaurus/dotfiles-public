@@ -13,10 +13,19 @@ set -o posix    # more strict failures in subshells
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
-curl -s "https://get.sdkman.io" | bash
-source "${HOME}/.sdkman/bin/sdkman-init.sh"
-version="8.0.232-amzn"
-sdk install java "${version}"
-sudo pacman -S java8-openjfx
-find /usr/lib/jvm -type f -name libjfxwebkit.so |
-  xargs -I % cp % "${HOME}/.sdkman/candidates/java/${version}/jre/lib/amd64"
+for dir in "$@"; do
+  (
+    cd "${dir}"
+    if ! ~/bin/git-is-work-tree-clean; then
+      echo "Not syncing: not clean: ${PWD}"
+      exit 1
+    fi
+    if ! ~/bin/git-is-default-branch; then
+      echo "Not syncing: not default branch: ${PWD}"
+      exit 1
+    fi
+    echo "syncing: ${PWD}"
+    git pull
+    git push
+  )
+done

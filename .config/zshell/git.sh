@@ -56,7 +56,6 @@ _base-url() {
 }
 
 gh() {
-  echo thanks for running gh $@
   subcommand="$1"
   shift
   case "${subcommand}" in
@@ -65,8 +64,9 @@ gh() {
     local org
     local repo
     url="${1:-$(~/bin/paste)}"
-    org="$(echo "${url}" | cut -d / -f 4)"
-    repo="$(echo "${url}" | cut -d / -f 5)"
+    org_repo=$(echo "${url}" | sed 's/.*github\.com.//')
+    org="$(echo "${org_repo}" | cut -d / -f 1)"
+    repo="$(echo "${org_repo}" | cut -d / -f 2)"
     echo "${org}"
     echo "${repo}"
     mkdir -p "${HOME}/github/${org}"
@@ -95,37 +95,6 @@ gh() {
     ;;
 
   esac
-}
-
-gh-repo() {
-  xdg-open "$(_base-url)"
-}
-
-gh-issues() {
-  xdg-open "$(_base-url)/issues"
-}
-
-gh-pulls() {
-  xdg-open "$(_base-url)/pulls"
-}
-
-gh-commits() {
-  xdg-open "$(_base-url)/commits"
-}
-
-gh-clone() {
-  local url
-  local org
-  local repo
-  url="${1:-$(~/bin/paste)}"
-  org="$(echo "${url}" | cut -d / -f 4)"
-  repo="$(echo "${url}" | cut -d / -f 5)"
-  echo "${org}"
-  echo "${repo}"
-  mkdir -p "${HOME}/github/${org}"
-  cd "${HOME}/github/${org}" || return 1
-  git clone "${url}"
-  cd "$(basename "${repo}" .git)" || return 1
 }
 
 gh-pr-description() {
@@ -323,17 +292,6 @@ git-diff-side-by-side() {
   file=$(git ls-files -m | fuzzy-filter "$@")
   [[ -z "${file}" ]] && return
   git show "HEAD:${file}" | icdiff /dev/stdin "${file}" | less -R
-}
-
-git-get-default-branch() {
-  # Used to filter to specific well-known names.
-  # grep -E '^(origin|upstream|github)\b' |
-  # But I think just "the first origin" is a good heuristic
-  remote=$(git remote -v | awk '{print $2}' | head -1)
-  git ls-remote --symref "${remote}" HEAD |
-    grep -E '^ref: ' |
-    awk '{print $2}' |
-    cut -d / -f 3
 }
 
 git-get-repos() {

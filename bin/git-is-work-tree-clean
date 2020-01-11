@@ -12,11 +12,6 @@ set -o posix    # more strict failures in subshells
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-
-curl -s "https://get.sdkman.io" | bash
-source "${HOME}/.sdkman/bin/sdkman-init.sh"
-version="8.0.232-amzn"
-sdk install java "${version}"
-sudo pacman -S java8-openjfx
-find /usr/lib/jvm -type f -name libjfxwebkit.so |
-  xargs -I % cp % "${HOME}/.sdkman/candidates/java/${version}/jre/lib/amd64"
+if [[ -n "$(git status --porcelain)" ]]; then
+  exit 1
+fi

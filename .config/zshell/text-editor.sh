@@ -12,4 +12,10 @@ paste-to-vim() {
 if command -v nvim >/dev/null; then
   alias v="nvim"
   export EDITOR="nvim"
+elif command -v vim >/dev/null; then
+  alias v="vim"
+  export EDITOR="vim"
+else
+  alias v="vi"
+  export EDITOR="vi"
 fi
