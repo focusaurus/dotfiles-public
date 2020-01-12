@@ -319,3 +319,11 @@ git-checkout() {
   default_branch=$(git-get-default-branch)
   git checkout "${name}" 2>/dev/null || git checkout -b "${name}" "${first_origin}/${default_branch}"
 }
+
+dotfiles-start() {
+  export GIT_DIR="${HOME}/.home.git" GIT_WORK_TREE="${HOME}"
+}
+
+dotfiles-stop() {
+  unset GIT_DIR GIT_WORK_TREE
+}
