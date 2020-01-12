@@ -1,0 +1,9 @@
+[Unit]
+Description=Learn how systemd user timers work
+
+[Timer]
+OnBootSec=15m
+OnUnitActiveSec=1m
+
+[Install]
+WantedBy=timers.target

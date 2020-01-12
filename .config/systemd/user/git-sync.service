@@ -1,0 +1,6 @@
+[Unit]
+Description=Syncronize git repositories
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c '~/bin/git-sync ~/projects/journals ~/projects/dotfiles ~'

@@ -1,0 +1,6 @@
+[Unit]
+Description=Learn how systemd user timers work
+
+[Service]
+Type=oneshot
+ExecStart=/bin/notify-send --expire-time=2000 hi

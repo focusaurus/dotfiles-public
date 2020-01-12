@@ -14,18 +14,20 @@ IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
 for dir in "$@"; do
-  (
-    cd "${dir}"
-    if ! ~/bin/git-is-work-tree-clean; then
-      echo "Not syncing: not clean: ${PWD}"
-      exit 1
-    fi
-    if ! ~/bin/git-is-default-branch; then
-      echo "Not syncing: not default branch: ${PWD}"
-      exit 1
-    fi
-    echo "syncing: ${PWD}"
-    git pull
-    git push
-  )
+  if [[ ! -d "${dir}" ]]; then
+    echo "Skip: no directory: ${dir}"
+    continue
+  fi
+  cd "${dir}"
+  if ! ~/bin/git-is-work-tree-clean; then
+    echo "Not syncing: not clean: ${PWD}"
+    exit 1
+  fi
+  if ! ~/bin/git-is-default-branch; then
+    echo "Not syncing: not default branch: ${PWD}"
+    exit 1
+  fi
+  echo "syncing: ${PWD}"
+  git pull --quiet
+  git push --quiet
 done
