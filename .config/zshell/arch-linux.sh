@@ -23,3 +23,18 @@ save-installed-packages() {
 uninstall-via-pacman() {
   sudo pacman -R "$@"
 }
+
+sample-rofi-themes() {
+  find /usr/share/rofi/themes -type f -name '*.rasi' | {
+    while IFS= read -r file_path; do
+      cat <<EOF | rofi -dmenu -theme "${file_path}"
+${file_path}
+apple
+banana
+cucumber
+dirty rice
+${file_path}
+EOF
+    done
+  }
+}

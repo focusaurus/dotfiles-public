@@ -12,7 +12,6 @@ alias -g /l='| less'
 alias -g //l='2>&1 | less'
 alias -g /p='$(paste)'
 
-
 # alias -g devlog='json -g -a -0 -e "delete this.v; delete this.hostname;delete this.level; delete this.pid; delete this.name"'
 ##### shell prompt setup #####
 setopt prompt_subst
@@ -41,8 +40,14 @@ prompt-aws-profile() {
   fi
 }
 
+prompt-dotfiles() {
+  if [[ -n "${GIT_DIR}" ]]; then
+    printf "DOTFILES "
+  fi
+}
+
 setup-prompt() {
-  export PROMPT='╭%~ $(prompt-branch)$(prompt-aws-profile)$(prompt-kube-context)%n@%m
+  export PROMPT='╭%~ $(prompt-branch)$(prompt-dotfiles)$(prompt-aws-profile)$(prompt-kube-context)%n@%m
 ╰○ '
   # https://unicode-search.net/unicode-namesearch.pl?term=down&.submit=Search
   # 𝄱
