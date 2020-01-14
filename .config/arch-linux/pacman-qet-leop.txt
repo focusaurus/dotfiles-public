@@ -25,6 +25,7 @@ firefox
 foomatic-db-nonfree-ppds
 foomatic-db-ppds
 fzf
+gcalcli
 gcc
 gedit
 git-delta
