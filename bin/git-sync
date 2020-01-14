@@ -21,9 +21,10 @@ sync_dir() {
     echo "Not syncing: not default branch: ${PWD}"
     return
   fi
-  echo "syncing: ${PWD}"
+  echo -n "syncing: ${PWD} "
   git pull --quiet
   git push --quiet
+  echo ✓
 }
 
 main() {
