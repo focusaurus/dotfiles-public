@@ -26,14 +26,6 @@ have_exe() {
 }
 
 main() {
-  PATH=$(zsh -ci 'echo $PATH')
-  export PATH
-  # Maybe I need this?
-  # Sometimes code and rofi won't start from a terminal without it.
-  export DISPLAY=:0.0
-
-  # https://wiki.archlinux.org/index.php/Firefox/Tweaks#Pixel-perfect_trackpad_scrolling
-  MOZ_USE_XINPUT2=1
 
   # Use software dvorak. Caps lock key is ctrl, swap left windows and alt
   # See  /usr/share/X11/xkb/rules/base for more available options
@@ -51,7 +43,8 @@ main() {
   if have_exe ssh-agent; then
     eval $(ssh-agent -s)
   fi
-  # 2018-04-17 plyons natural scrolling everywhere in X11
+
+# 2018-04-17 plyons natural scrolling everywhere in X11
   if have_exe synclient; then
     synclient VertScrollDelta=-119
     synclient HorizScrollDelta=-119
@@ -70,11 +63,24 @@ main() {
     xbindkeys
   fi
 
+  i3dir="/run/user/${UID}/i3"
+  if [[ -d "${i3dir}" ]]; then
+    export I3SOCK=$(ls -tr "${i3dir}/ipc-socket."* | tail -1)
+  fi
+
   if have_exe sxhkd; then
     kill_ok sxhkd
-    uid=$(id -u)
-    export I3SOCK=$(ls -tr "/run/user/${uid}/i3/ipc-socket."* | tail -1)
-    sxhkd -r "/run/user/${uid}/sxhkd.log" &
+    sxhkd -r "/run/user/${UID}/sxhkd.log" &
+  fi
+
+  if have_exe polybar; then
+    # Terminate already running bar instances
+    killall -q polybar
+
+    # Wait until the processes have been shut down
+    while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+    # Launch Polybar, using default config location ~/.config/polybar/config
+  #polybar main &
   fi
 
   if have_exe copyq; then

@@ -4,7 +4,7 @@
 
 # Main i3 modifier key is alt
 # See readme.md in dotfiles-public for reasoning
-set $mod Mod3
+set $mod Mod1
 
 workspace_layout tabbed
 focus_follows_mouse no
@@ -203,3 +203,5 @@ for_window [class="(?i)copyq"] floating enable
 for_window [class="(?i)tilda.Tilda"] floating enable
 for_window [class="(?i)zoom"] floating enable
 for_window [title="Zoom Meeting"] floating disable
+
+exec --no-startup-id ~/bin/setup-desktop-environment
