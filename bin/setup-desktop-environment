@@ -36,7 +36,8 @@ main() {
   MOZ_USE_XINPUT2=1
 
   # Use software dvorak. Caps lock key is ctrl, swap left windows and alt
-  setxkbmap dvorak -option "ctrl:nocaps,altwin:swap_lalt_lwin"
+  # See  /usr/share/X11/xkb/rules/base for more available options
+  setxkbmap dvorak -option -option "ctrl:nocaps,altwin:swap_lalt_lwin"
 
   # 2018-04-10 plyons set fast keyboard repeat
   # syntax is delay (ms) then repeat rate (cps I think)
@@ -61,7 +62,7 @@ main() {
   # left control press & release is the same as control+space
   if have_exe xcape; then
     kill_ok xcape
-    xcape -e "Control_L=Control_L|1;Alt_L=Control_L|2;Alt_R=Control_L|2"
+    xcape -e "Super_L=Control_L|1;Control_L=Control_L|2;"
   fi
 
   # start xbindkeys daemon which remaps extra mouse buttons

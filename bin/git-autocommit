@@ -12,18 +12,14 @@ set -o posix    # more strict failures in subshells
 
 IFS="$(printf "\n\t")"
 # ---- End unofficial bash strict mode boilerplate
-sync_dir() {
-  if ! ~/bin/git-is-work-tree-clean; then
-    echo "Not syncing: not clean: ${PWD}"
-    return
-  fi
+autocommit() {
   if ! ~/bin/git-is-default-branch; then
-    echo "Not syncing: not default branch: ${PWD}"
+    echo "Not committing: not default branch: ${PWD}"
     return
   fi
-  echo "syncing: ${PWD}"
-  git pull --quiet
-  git push --quiet
+  echo "autocommitting: ${PWD}"
+  git add .
+  git commit -m "Autocommit on timer"
 }
 
 main() {
@@ -33,14 +29,8 @@ main() {
       continue
     fi
     cd "${dir}"
-    # Special handling for home directory dotfiles
-    if [[ "${PWD}" == "${HOME}" ]]; then
-      export GIT_DIR="${HOME}/.home.git" GIT_WORK_TREE="${HOME}"
-    else
-      unset GIT_DIR GIT_WORK_TREE
-    fi
-    sync_dir
-    cd - >/dev/null
+    autocommit
+    cd -
   done
 }
 

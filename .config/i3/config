@@ -4,7 +4,7 @@
 
 # Main i3 modifier key is alt
 # See readme.md in dotfiles-public for reasoning
-set $mod Mod1
+set $mod Mod3
 
 workspace_layout tabbed
 focus_follows_mouse no
