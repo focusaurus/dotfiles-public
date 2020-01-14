@@ -12,6 +12,6 @@ set -o posix    # more strict failures in subshells
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-if [[ -n "$(git status --porcelain)" ]]; then
+if [[ -n "$(git status --porcelain | grep -Ev '^\?\? ')" ]]; then
   exit 1
 fi
