@@ -320,10 +320,10 @@ git-checkout() {
   git checkout "${name}" 2>/dev/null || git checkout -b "${name}" "${first_origin}/${default_branch}"
 }
 
-dotfiles-start() {
+dotfiles-begin() {
   export GIT_DIR="${HOME}/.home.git" GIT_WORK_TREE="${HOME}"
 }
 
-dotfiles-stop() {
+dotfiles-end() {
   unset GIT_DIR GIT_WORK_TREE
 }

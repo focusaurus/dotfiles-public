@@ -55,7 +55,7 @@ main() {
   # left control press & release is the same as control+space
   if have_exe xcape; then
     kill_ok xcape
-    xcape -e "Super_L=Control_L|1;Control_L=Control_L|2;"
+    xcape -t 200 -e "Super_L=Control_L|1;Control_L=Control_L|2;"
   fi
 
   # start xbindkeys daemon which remaps extra mouse buttons

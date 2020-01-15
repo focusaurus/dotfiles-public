@@ -13,7 +13,9 @@ set -o posix    # more strict failures in subshells
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
-if [[ -n "$(command -v light-locker-command)" ]]; then
+if [[ -n "$(command -v dm-tool)" ]]; then
+  dm-tool lock
+elif [[ -n "$(command -v light-locker-command)" ]]; then
   light-locker-command -l
 elif [[ -n "$(command -v i3lock)" ]]; then
   i3lock --image="${HOME}/2019/wallpaper-earth.png"
