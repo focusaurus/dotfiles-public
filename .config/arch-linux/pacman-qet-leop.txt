@@ -54,6 +54,7 @@ patch
 pavucontrol
 pinta
 pkgconf
+polybar
 pulldown-cmark
 pulseaudio-equalizer
 pulseaudio-jack

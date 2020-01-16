@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-
 # Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
-
+exit
 # ---- Start unofficial bash strict mode boilerplate
 # http://redsymbol.net/articles/unofficial-bash-strict-mode/
 set -o errexit  # always exit on error
@@ -13,6 +12,8 @@ set -o posix    # more strict failures in subshells
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
+# if [[ -n "$(command -v loginctl)" ]]; then
+#   loginctl lock-session
 if [[ -n "$(command -v dm-tool)" ]]; then
   dm-tool lock
 elif [[ -n "$(command -v light-locker-command)" ]]; then

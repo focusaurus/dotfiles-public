@@ -31,3 +31,5 @@ EOF
     done
   }
 }
+
+alias i3config="~/bin/text-editor ~/.config/i3/config"
