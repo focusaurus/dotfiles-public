@@ -26,6 +26,10 @@ IFS="$(printf "\n\t")"
 #   exec "${command}"
 # }
 
+i3_mark_last() {
+  #i3-msg mark LAST
+	echo >/dev/null
+}
 current_workspace=$(xdotool get_desktop)
 activate_window() {
   class="$1"
@@ -45,7 +49,7 @@ activate_window() {
   id=$(echo "${same_desktop}${matches}" | head -1 | cut -d , -f 3)
   #echo "HEY MATCHED ${id}"
   if [[ -n "${id}" ]]; then
-    i3-msg mark LAST
+    i3_mark_last
     wmctrl -i -a "${id}"
   else
     eval ${command}
@@ -57,7 +61,7 @@ activate_firefox_main_window() {
   # window is the first one launched
   id=$(wmctrl -lx | grep -i "Navigator.firefox" | head -1 | awk '{print $1}' || true)
   if [[ -n "${id}" ]]; then
-    i3-msg mark LAST
+    i3_mark_last
     wmctrl -i -a "${id}"
   else
     exec firefox
