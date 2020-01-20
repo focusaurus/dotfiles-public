@@ -17,9 +17,9 @@ Briefly, it goes like this:
 
 ```sh
 
-dotfiles-start() { export GIT_DIR="${HOME}/.home.git" GIT_WORK_TREE="${HOME}" }
+dotfiles-begin() { export GIT_DIR="${HOME}/.home.git" GIT_WORK_TREE="${HOME}" }
 
-dotfiles-stop() { unset GIT_DIR GIT_WORK_TREE }
+dotfiles-end() { unset GIT_DIR GIT_WORK_TREE }
 ```
 
 - I do it this way so my dozens of git alias and shell functions just work. Other tutorials have techniques like dedicated aliases or functions that cause everything else git related to be broken, so this is better.
@@ -33,6 +33,7 @@ dotfiles-stop() { unset GIT_DIR GIT_WORK_TREE }
 - i3wm
   - Suggestion from Ross. I think the keybinding modes has a lot of potential, but otherwise I don't like it and I will be shopping for a less-radical window manager
   - I don't think I get much benefit from tiling as 95% of the time I use maximized windows and 5% of the time I want side-by-side view and i3 wants me to prepare for side-by-side before launching a window vs easily switching after I have both windows launched
+  - I did a bit of shopping around for other window managers and the landscape seems really bleak, so for the moment I'm going to stick with i3wm. I'm getting better at its way of working and understanding how to get 2 existing windows side-by-side and then back to maximized
 - simple X hotkey daemon (sxhkd) for hotkey bindings
   - So far so good. Very nice. Very clean design.
 - zsh

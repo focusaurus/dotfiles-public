@@ -7,8 +7,8 @@
 # If the above line is not correctly displayed, fix your editor first!
 
 general {
-        colors = true
-        interval = 5
+  colors = true
+  interval = 5
 }
 
 #order += "ipv6"
@@ -22,42 +22,42 @@ order += "volume master"
 order += "tztime local"
 
 wireless _first_ {
-        format_up = "Wifi: %essid %ip (%quality)"
-        format_down = "Wifi: down"
+  format_up = "Wifi: %essid %ip (%quality)"
+  format_down = "Wifi: down"
 }
 
 ethernet _first_ {
-        format_up = "E: %ip (%speed)"
-        format_down = "E: down"
+  format_up = "E: %ip (%speed)"
+  format_down = "E: down"
 }
 
 battery all {
-        #format = "Batt: %status %percentage %remaining"
-        format = "%status %percentage"
+  #format = "Batt: %status %percentage %remaining"
+  format = "%status %percentage"
 }
 
 disk "/" {
-        format = "%avail"
+  format = "%avail"
 }
 
 load {
-        format = "%1min"
+  format = "%1min"
 }
 
 memory {
-        format = "%used | %available"
-        threshold_degraded = "1G"
-        format_degraded = "MEMORY < %available"
+  format = "%used | %available"
+  threshold_degraded = "1G"
+  format_degraded = "MEMORY < %available"
 }
 
 tztime local {
-        format = "%A %Y-%m-%d %H:%M"
+  format = "%A %Y-%m-%d %H:%M"
 }
 
 volume master {
-        format = "♪: %volume"
-        format_muted = "♪: muted (%volume)"
-        device = "default"
-        mixer = "Master"
-        mixer_idx = 0
+  format = "♪: %volume"
+  format_muted = "♪: muted (%volume)"
+  device = "default"
+  mixer = "Master"
+  mixer_idx = 0
 }
