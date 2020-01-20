@@ -14,7 +14,7 @@ save-arch-packages() {
 }
 
 uninstall-arch-package() {
-  sudo yay -R "$@"
+  yay -Rs "$@"
 }
 
 sample-rofi-themes() {
@@ -33,3 +33,6 @@ EOF
 }
 
 alias i3config="~/bin/text-editor ~/.config/i3/config"
+reset-i3sock() {
+  export I3SOCK="/run/user/${UID}/i3/ipc-socket.$(pidof i3)"
+}

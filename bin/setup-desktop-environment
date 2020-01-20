@@ -65,7 +65,7 @@ main() {
 
   i3dir="/run/user/${UID}/i3"
   if [[ -d "${i3dir}" ]]; then
-    export I3SOCK=$(ls -tr "${i3dir}/ipc-socket."* | tail -1)
+		export I3SOCK="${i3dir}/ipc-socket.$(pidof i3)"
   fi
 
   if have_exe sxhkd; then

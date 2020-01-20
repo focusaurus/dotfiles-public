@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
-exit
+
 # ---- Start unofficial bash strict mode boilerplate
 # http://redsymbol.net/articles/unofficial-bash-strict-mode/
 set -o errexit  # always exit on error
@@ -14,12 +14,13 @@ IFS=$'\n\t'
 
 # if [[ -n "$(command -v loginctl)" ]]; then
 #   loginctl lock-session
-if [[ -n "$(command -v dm-tool)" ]]; then
+if [[ -n "$(command -v i3lock)" ]]; then
+  i3lock
+	#--image="${HOME}/2019/wallpaper-earth.png"
+elif [[ -n "$(command -v dm-tool)" ]]; then
   dm-tool lock
 elif [[ -n "$(command -v light-locker-command)" ]]; then
   light-locker-command -l
-elif [[ -n "$(command -v i3lock)" ]]; then
-  i3lock --image="${HOME}/2019/wallpaper-earth.png"
 else
   xdg-screensaver lock
 fi
