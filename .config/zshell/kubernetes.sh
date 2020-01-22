@@ -17,8 +17,7 @@ k-use-config() {
 
 k-use-context() {
   local context="$1"
-  context=$(~/bin/yaml-to-json <"${KUBECONFIG:-${HOME}/.kube/config}" |
-    jq -r '.contexts[].name' |
+  context=$(yq -r '.contexts[].name' "${KUBECONFIG:-${HOME}/.kube/config}" |
     grep -v kafka |
     ~/bin/fuzzy-filter "${context}")
   [[ -z "${context}" ]] && return

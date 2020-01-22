@@ -18,12 +18,31 @@ setopt prompt_subst
 
 #For reference and other fanciness:
 #http://stackoverflow.com/q/1128496/266795
-prompt-branch() {
+prompt-git-branch() {
   local branch
   branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
   if [[ -n "${branch}" ]]; then
-    printf "%s " "${branch}"
+    printf "branch: %s " "${branch}"
   fi
+}
+
+prompt-git-status() {
+  if ! git status --porcelain &>/dev/null; then
+    return
+  fi
+  local git_status
+  git_status=$(git status --porcelain 2>/dev/null |
+    awk '{print $1}' |
+    sort |
+    uniq -c |
+    xargs)
+  echo -n "status: "
+  if [[ -z "${git_status}" ]]; then
+    echo -n "clean"
+  else
+    echo -n "${git_status}"
+  fi
+  echo -n " "
 }
 
 prompt-kube-context() {
@@ -47,7 +66,7 @@ prompt-dotfiles() {
 }
 
 setup-prompt() {
-  export PROMPT='╭%~ $(prompt-branch)$(prompt-dotfiles)$(prompt-aws-profile)$(prompt-kube-context)%n@%m
+  export PROMPT='╭%~ $(prompt-git-branch)$(prompt-git-status)$(prompt-dotfiles)$(prompt-aws-profile)$(prompt-kube-context)%n@%m
 ╰○ '
   # https://unicode-search.net/unicode-namesearch.pl?term=down&.submit=Search
   # 𝄱

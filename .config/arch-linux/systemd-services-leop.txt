@@ -1,3 +1,4 @@
+acpid.service
 atd.service
 docker.service
 NetworkManager.service

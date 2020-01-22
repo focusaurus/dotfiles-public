@@ -176,9 +176,9 @@ dcrunsp() {
 dcservices() {
   local filter='.services | keys | .[]'
   (
-    ~/bin/yaml-to-json <docker-compose.yml | jq -r "${filter}"
+    yq -r "${filter}" <docker-compose.yml
     if [[ -e docker-compose.override.yml ]]; then
-      ~/bin/yaml-to-json <docker-compose.override.yml | jq -r "${filter}"
+      yq -r "${filter}" <docker-compose.override.yml
     fi
   ) | sort | uniq
 }

@@ -27,9 +27,11 @@ IFS="$(printf "\n\t")"
 # }
 
 i3_mark_last() {
-  #i3-msg mark LAST
-	echo >/dev/null
+  if [[ -n "${I3SOCK}" ]]; then
+    i3-msg mark LAST
+  fi
 }
+
 current_workspace=$(xdotool get_desktop)
 activate_window() {
   class="$1"

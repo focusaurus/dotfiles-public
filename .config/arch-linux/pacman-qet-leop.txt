@@ -1,3 +1,5 @@
+acpi
+acpid
 at
 autoconf
 automake
@@ -48,7 +50,6 @@ neovim
 network-manager-applet
 nordvpn-bin
 nvm
-openssh
 openvpn
 patch
 pavucontrol
@@ -96,6 +97,7 @@ xorg-xinput
 xorg-xmodmap
 xorg-xwininfo
 xss-lock
+xterm
 yad
 yay
 yq
