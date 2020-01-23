@@ -36,6 +36,7 @@ google-chrome
 grub
 hadolint-bin
 i3tree-git
+icdiff
 insomnia
 intel-ucode
 keybase-gui
@@ -73,6 +74,7 @@ sxhkd
 system-config-printer
 termite
 testdisk
+throttled
 tig
 tilda
 tlp
@@ -97,7 +99,6 @@ xorg-xinput
 xorg-xmodmap
 xorg-xwininfo
 xss-lock
-xterm
 yad
 yay
 yq

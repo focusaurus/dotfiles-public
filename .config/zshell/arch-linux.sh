@@ -10,7 +10,7 @@ search-arch-packages() {
 
 save-arch-packages() {
   pacman -Qet | awk '{print $1}' | sort >"${HOME}/.config/arch-linux/pacman-qet-$(uname -n).txt"
-  ls /etc/systemd/system/multi-user.target.wants | sort >"${HOME}/.config/arch-linux/systemd-services-$(uname -n).txt"
+  systemctl list-unit-files | grep enabled | awk '{print $1}' | sort >"${HOME}/.config/arch-linux/systemd-services-$(uname -n).txt"
 }
 
 uninstall-arch-package() {
