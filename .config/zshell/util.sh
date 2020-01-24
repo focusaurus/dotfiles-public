@@ -29,6 +29,14 @@ copy-dir-name() {
 alias copy=~/bin/copy
 alias paste=~/bin/paste
 
+copy-recent-command() {
+  command=$(fc -l -10 -1 | awk '{$1=""; print $0}' | fuzzy-filter "$@")
+  if [[ -n "${command}" ]]; then
+    echo "${command}" | copy
+    echo "copied!"
+  fi
+}
+
 alias cal="cal -3m"
 alias cdrom="mount /dev/cdrom"
 alias cls="clear;ls"
