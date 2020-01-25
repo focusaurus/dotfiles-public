@@ -13,13 +13,13 @@ set -o posix    # more strict failures in subshells
 IFS="$(printf "\n\t")"
 # ---- End unofficial bash strict mode boilerplate
 autocommit() {
-  if ! ~/bin/git-is-default-branch; then
-    echo "Not committing: not default branch: ${PWD}"
-    return
+  if ~/bin/git-is-default-branch; then
+    echo "autocommitting: ${PWD}"
+    git add .
+    git commit -m "Autocommit on timer"
+		return
   fi
-  echo "autocommitting: ${PWD}"
-  git add .
-  git commit -m "Autocommit on timer"
+  echo "Not committing: not default branch: ${PWD}"
 }
 
 main() {
@@ -28,9 +28,9 @@ main() {
       echo "Skip: no directory: ${dir}"
       continue
     fi
-    cd "${dir}"
+    cd "${dir}" >/dev/null
     autocommit
-    cd -
+    cd - >/dev/null
   done
 }
 

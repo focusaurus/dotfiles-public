@@ -197,11 +197,12 @@ alias dc="docker-compose"
 alias dcb="docker-compose build"
 
 dps() {
+  # {{.Ports}}|
+  # {{.Label "com.docker.compose.project"}}|
+  # {{.Label "com.docker.compose.service"}}|
+
   format='table
-{{.Label "com.docker.compose.project"}}|
-{{.Label "com.docker.compose.service"}}|
 {{.Names}}|
-{{.Ports}}|
 {{.Status}}'
   format=$(echo "${format}" | tr -d '\n')
   docker ps --format "${format}" | column -t -s '|'

@@ -36,3 +36,8 @@ alias i3config="~/bin/text-editor ~/.config/i3/config"
 reset-i3sock() {
   export I3SOCK="/run/user/${UID}/i3/ipc-socket.$(pidof i3)"
 }
+
+view-systemd-service-logs() {
+  service=$(ls ~/.config/systemd/user/*.service | xargs -n 1 basename | ~/bin/fuzzy-filter "$@")
+  journalctl --user --unit "${service}"
+}

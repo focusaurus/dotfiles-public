@@ -97,10 +97,19 @@ main() {
     activate_window 'workflowy' "/opt/WorkFlowy-x86_64.AppImage"
     ;;
   f6)
-    activate_window 'slack' 'slack'
+    if wmctrl -l | grep -q "Zoom Meeting ID:"; then
+      activate_window 'Zoom Meeting ID:' true
+    else
+      activate_window 'slack' 'slack'
+    fi
     ;;
   shift+f6)
     activate_window 'Zoom' true
+    if wmctrl -l | grep -q "Zoom Meeting ID:"; then
+      activate_window 'slack' 'slack'
+    else
+      activate_window 'Zoom Meeting ID:' 'zoom'
+    fi
     ;;
   ctrl+f6)
     activate_window 'zulip' /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=zulip --file-forwarding org.zulip.Zulip
