@@ -67,5 +67,6 @@
   "terminal.integrated.allowChords": false,
   "window.customMenuBarAltFocus": false,
   "window.enableMenuBarMnemonics": false,
-  "keyboard.dispatch": "keyCode"
+  "keyboard.dispatch": "keyCode",
+  "editor.wordWrapColumn": 80
 }

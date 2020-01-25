@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
+
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -o errexit  # always exit on error
+set -o errtrace # trap errors in functions as well
+set -o pipefail # do nott ignore exit codes when piping output
+set -o posix    # more strict failures in subshells
+# set -x          # enable debugging
+
+IFS="$(printf "\n\t")"
+# ---- End unofficial bash strict mode boilerplate
+sync_dir() {
+  if ! ~/bin/git-is-work-tree-clean; then
+    echo "Not syncing: not clean: ${PWD}"
+    return
+  fi
+  if ! ~/bin/git-is-default-branch; then
+    echo "Not syncing: not default branch: ${PWD}"
+    return
+  fi
+  echo -n "syncing: ${PWD} "
+  git pull --quiet
+  git push --quiet
+  echo ✓
+}
+
+main() {
+  for dir in "$@"; do
+    if [[ ! -d "${dir}" ]]; then
+      echo "Skip: no directory: ${dir}"
+      continue
+    fi
+    cd "${dir}"
+    # Special handling for home directory dotfiles
+    if [[ "${PWD}" == "${HOME}" ]]; then
+      export GIT_DIR="${HOME}/.home.git" GIT_WORK_TREE="${HOME}"
+    else
+      unset GIT_DIR GIT_WORK_TREE
+    fi
+    sync_dir
+    cd - >/dev/null
+  done
+}
+
+main "$@"

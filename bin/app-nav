@@ -14,7 +14,9 @@ IFS="$(printf "\n\t")"
 # ---- End unofficial bash strict mode boilerplate
 log_path=/tmp/app-nav.log
 log() {
-  echo -e "$@" >>"${log_path}"
+  if [[ "${ENABLE_APP_NAV_LOG}" == "1" ]]; then
+    echo -e "$@" >>"${log_path}"
+  fi
 }
 
 nav_firefox() {

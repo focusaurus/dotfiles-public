@@ -1,0 +1,16 @@
+# Static information about the filesystems.
+# See fstab(5) for details.
+
+# <file system> <dir> <type> <options> <dump> <pass>
+# /dev/nvme0n1p2
+UUID=d78f2cb3-9c2b-41de-a168-be4b8c8962f3	/         	ext4      	rw,relatime	0 1
+
+# /dev/nvme0n1p4
+UUID=5e517ae0-b34d-4192-a106-22bd4024b088	/home     	ext4      	rw,relatime	0 2
+
+# /dev/nvme0n1p3
+UUID=b87f2097-d65f-45a7-87dd-2dd5c0bc9931	none      	swap      	defaults  	0 0
+
+# plyons 2020-01-21 
+# Need more space for docker so bind mount it from the big partition
+/home/var/lib/docker /var/lib/docker none bind 0 0

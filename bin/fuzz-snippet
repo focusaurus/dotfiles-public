@@ -19,7 +19,7 @@ abbreviation="${snippet_dir}/"$(
   find "${snippet_dir}" -type f -not -name '*-post.sh' -print0 |
     xargs -0 -n 1 basename |
     sort |
-    rofi -dmenu -p snippet -theme /usr/share/rofi/themes/sidebar.rasi
+    rofi -dmenu -p snippet -theme /usr/share/rofi/themes/solarized_alternate.rasi
 )
 
 if [[ -x "${abbreviation}" ]]; then

@@ -8,18 +8,36 @@ search-arch-packages() {
 }
 # TODO curl -s "https://get.sdkman.io" | bash
 
-save-installed-packages() {
-  (pacman -Qet | awk '{print $1}' | {
-    while IFS= read -r name; do
-      if pacman -Ss "${name}" >/dev/null; then
-        echo "pacman:${name}"
-      else
-        echo "yay:${name}"
-      fi
-    done
-  }) | sort | tee >"${HOME}/.config/arch-linux/pacman-qet-$(uname -n).txt"
+save-arch-packages() {
+  pacman -Qet | awk '{print $1}' | sort >"${HOME}/.config/arch-linux/pacman-qet-$(uname -n).txt"
+  systemctl list-unit-files | grep enabled | awk '{print $1}' | sort >"${HOME}/.config/arch-linux/systemd-services-$(uname -n).txt"
 }
 
-uninstall-via-pacman() {
-  sudo pacman -R "$@"
+uninstall-arch-package() {
+  yay -Rs "$@"
+}
+
+sample-rofi-themes() {
+  find /usr/share/rofi/themes -type f -name '*.rasi' | {
+    while IFS= read -r file_path; do
+      cat <<EOF | rofi -dmenu -theme "${file_path}"
+${file_path}
+apple
+banana
+cucumber
+dirty rice
+${file_path}
+EOF
+    done
+  }
+}
+
+alias i3config="~/bin/text-editor ~/.config/i3/config"
+reset-i3sock() {
+  export I3SOCK="/run/user/${UID}/i3/ipc-socket.$(pidof i3)"
+}
+
+view-systemd-service-logs() {
+  service=$(ls ~/.config/systemd/user/*.service | xargs -n 1 basename | ~/bin/fuzzy-filter "$@")
+  journalctl --user --unit "${service}"
 }

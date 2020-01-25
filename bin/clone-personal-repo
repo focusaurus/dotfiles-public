@@ -14,7 +14,7 @@ IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 repo=$(ssh git.peterlyons.com ls -d "projects/*.git" |
   xargs -n 1 basename |
-  ~/bin/fuzzy-filter)
+  ~/bin/fuzzy-filter "$@")
 if [[ -z "${repo}" ]]; then
   exit
 fi

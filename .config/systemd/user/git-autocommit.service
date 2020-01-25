@@ -1,0 +1,6 @@
+[Unit]
+Description=Automatically commit a git work tree
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c '~/bin/git-autocommit ~/projects/journals'

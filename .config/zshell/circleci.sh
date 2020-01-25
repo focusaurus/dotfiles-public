@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 circleci-get-job() {
-  ~/bin/yaml-to-json <.circleci/config.yml |
-    jq -r '.jobs | keys[]' |
+  yq -r '.jobs | keys[]' .circleci/config.yml |
     ~/bin/fuzzy-filter "$@"
 }
 

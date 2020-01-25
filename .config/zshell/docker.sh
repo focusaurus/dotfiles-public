@@ -176,9 +176,9 @@ dcrunsp() {
 dcservices() {
   local filter='.services | keys | .[]'
   (
-    ~/bin/yaml-to-json <docker-compose.yml | jq -r "${filter}"
+    yq -r "${filter}" <docker-compose.yml
     if [[ -e docker-compose.override.yml ]]; then
-      ~/bin/yaml-to-json <docker-compose.override.yml | jq -r "${filter}"
+      yq -r "${filter}" <docker-compose.override.yml
     fi
   ) | sort | uniq
 }
@@ -197,11 +197,12 @@ alias dc="docker-compose"
 alias dcb="docker-compose build"
 
 dps() {
+  # {{.Ports}}|
+  # {{.Label "com.docker.compose.project"}}|
+  # {{.Label "com.docker.compose.service"}}|
+
   format='table
-{{.Label "com.docker.compose.project"}}|
-{{.Label "com.docker.compose.service"}}|
 {{.Names}}|
-{{.Ports}}|
 {{.Status}}'
   format=$(echo "${format}" | tr -d '\n')
   docker ps --format "${format}" | column -t -s '|'

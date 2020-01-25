@@ -26,6 +26,12 @@ IFS="$(printf "\n\t")"
 #   exec "${command}"
 # }
 
+i3_mark_last() {
+  if [[ -n "${I3SOCK}" ]]; then
+    i3-msg mark LAST
+  fi
+}
+
 current_workspace=$(xdotool get_desktop)
 activate_window() {
   class="$1"
@@ -45,7 +51,7 @@ activate_window() {
   id=$(echo "${same_desktop}${matches}" | head -1 | cut -d , -f 3)
   #echo "HEY MATCHED ${id}"
   if [[ -n "${id}" ]]; then
-    i3-msg mark LAST
+    i3_mark_last
     wmctrl -i -a "${id}"
   else
     eval ${command}
@@ -57,7 +63,7 @@ activate_firefox_main_window() {
   # window is the first one launched
   id=$(wmctrl -lx | grep -i "Navigator.firefox" | head -1 | awk '{print $1}' || true)
   if [[ -n "${id}" ]]; then
-    i3-msg mark LAST
+    i3_mark_last
     wmctrl -i -a "${id}"
   else
     exec firefox
@@ -91,10 +97,19 @@ main() {
     activate_window 'workflowy' "/opt/WorkFlowy-x86_64.AppImage"
     ;;
   f6)
-    activate_window 'slack' 'slack'
+    if wmctrl -l | grep -q "Zoom Meeting ID:"; then
+      activate_window 'Zoom Meeting ID:' true
+    else
+      activate_window 'slack' 'slack'
+    fi
     ;;
   shift+f6)
     activate_window 'Zoom' true
+    if wmctrl -l | grep -q "Zoom Meeting ID:"; then
+      activate_window 'slack' 'slack'
+    else
+      activate_window 'Zoom Meeting ID:' 'zoom'
+    fi
     ;;
   ctrl+f6)
     activate_window 'zulip' /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=zulip --file-forwarding org.zulip.Zulip

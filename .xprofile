@@ -1,0 +1,7 @@
+export PATH=$(zsh -ci 'echo ${PATH}')
+# Maybe I need this?
+# Sometimes code and rofi won't start from a terminal without it.
+export DISPLAY=:0.0
+
+# https://wiki.archlinux.org/index.php/Firefox/Tweaks#Pixel-perfect_trackpad_scrolling
+export MOZ_USE_XINPUT2=1

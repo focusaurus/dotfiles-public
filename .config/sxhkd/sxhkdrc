@@ -60,3 +60,13 @@ XF86MonBrightnessDown
 
 XF86MonBrightnessUp
   sudo brightnessctl set 20%+
+
+##### Volume #####
+XF86AudioRaiseVolume
+  pactl set-sink-volume @DEFAULT_SINK@ +10% && killall -SIGUSR1 i3status
+XF86AudioLowerVolume
+  pactl set-sink-volume @DEFAULT_SINK@ -10% && killall -SIGUSR1 i3status
+XF86AudioMute
+  pactl set-sink-mute @DEFAULT_SINK@ toggle && killall -SIGUSR1 i3status
+XF86AudioMicMute
+  pactl set-source-mute @DEFAULT_SOURCE@ toggle && killall -SIGUSR1 i3status
