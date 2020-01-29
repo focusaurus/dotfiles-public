@@ -22,11 +22,8 @@ install_marp() {
 
 main() {
   base="${PWD}"
-  cd /tmp
-  install_marp
-  for md in "${@}"; do
-    ./node_modules/.bin/marp "${base}/${md}"
-  done
+	(cd /tmp && install_marp)
+  /tmp/node_modules/.bin/marp "${@}"
 }
 
 main "$@"

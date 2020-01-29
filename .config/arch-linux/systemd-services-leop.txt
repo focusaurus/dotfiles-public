@@ -1,7 +1,10 @@
 acpid.service
 atd.service
 autovt@.service
+bluetooth.service
+dbus-org.bluez.service
 dbus-org.freedesktop.nm-dispatcher.service
+dbus-org.freedesktop.timesync1.service
 display-manager.service
 docker.service
 getty@.service
@@ -17,5 +20,6 @@ org.cups.cupsd.socket
 remote-fs.target
 systemd-fsck-root.service
 systemd-remount-fs.service
+systemd-timesyncd.service
 tlp.service
 tlp-sleep.service

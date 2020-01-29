@@ -261,3 +261,9 @@ md-clipboard-to-pdf() {
   echo "!$"
   open "!$"
 }
+
+change-time-zone() {
+  zone=$(find /usr/share/zoneinfo-posix/ | cut -d / -f 6- | ~/bin/fuzzy-filter "$@")
+  [[ -z "${zone}" ]] && return
+  echo sudo timedatectl set-timezone "${zone}"
+}
