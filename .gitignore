@@ -109,3 +109,5 @@ npm-debug.log
 /.config/google-chrome
 /.home.git
 /.config/pavucontrol.ini
+/.gitlibs
+/keybase

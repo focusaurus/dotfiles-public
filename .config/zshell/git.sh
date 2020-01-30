@@ -81,7 +81,7 @@ gh() {
     xdg-open "$(_base-url)/issues"
     ;;
   pr-description)
-    git log '--pretty=format:%s%n%b' "$(git-get-default-branch)..HEAD" | grep -Ev Signed-off-by
+    git log --reverse '--pretty=format:%s%n%b' "$(git-get-default-branch)..HEAD" | grep -Ev Signed-off-by
     ;;
   pull-requests)
     xdg-open "$(_base-url)/pulls"
