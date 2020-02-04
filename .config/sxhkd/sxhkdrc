@@ -1,4 +1,6 @@
 ##### rofi windows #####
+super + space
+  ~/bin/fuzz-script-choose
 ctrl + 1
   ~/bin/fuzz-script-choose
 ctrl + 2
