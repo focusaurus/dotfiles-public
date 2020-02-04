@@ -142,6 +142,9 @@ main() {
     fi
     xdotool set_desktop "${new_workspace}"
     ;;
+  ctrl+f12)
+    ~/projects/dotfiles/fuzzball/workflowy-done
+    ;;
   esac
 }
 

@@ -53,6 +53,8 @@ F11
   ~/bin/fkeys f11
 F12
   ~/bin/fkeys f12
+ctrl + F12
+  ~/bin/fkeys ctrl+f12
 
 ##### screen brightness #####
 XF86MonBrightnessDown

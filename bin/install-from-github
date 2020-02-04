@@ -75,6 +75,10 @@ main() {
       read -r -e -p "exe name: " to_name
       install_exe "${from_name}" "${to_name}"
       sudo install --mode=755 --target-directory /usr/local/bin "${from_name}" "${to_name}"
+    else
+      install_exe
+      echo "✓ installed"
+      return
     fi
 
     echo Unsupported artifact type "${artifact_name}"
