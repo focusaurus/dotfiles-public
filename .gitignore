@@ -110,3 +110,5 @@ npm-debug.log
 /.home.git
 /.config/pavucontrol.ini
 /.visidata/cache
+/.gitlibs
+/keybase

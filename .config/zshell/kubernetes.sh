@@ -15,41 +15,6 @@ k-use-config() {
   echo "✓ ${config}"
 }
 
-k-use-context() {
-  local context="$1"
-  context=$(yq -r '.contexts[].name' "${KUBECONFIG:-${HOME}/.kube/config}" |
-    grep -v kafka |
-    ~/bin/fuzzy-filter "${context}")
-  [[ -z "${context}" ]] && return
-  # n is a global variable, heads up
-  case "${context}" in
-  *staging.k8s.bobs*)
-    set-aws-profile sdi-management
-    n=staging
-    ;;
-  *production.k8s.bobs*)
-    set-aws-profile sdi-management
-    n=production
-    ;;
-  *devEKSCluster*)
-    set-aws-profile rc-dev
-    n=dev
-    ;;
-  *stagingEKSCluster*)
-    set-aws-profile rc-dev
-    n=staging
-    ;;
-  *) ;;
-  esac
-
-  kubectl config use-context "${context}" -n "${n}"
-  echo "✓ ${context}"
-  echo "reloading pod list…"
-  sleep 1 # seems to break sometimes if too fast?
-  k-refresh-pods
-  echo "${pods}"
-}
-
 k-logs() {
   k-get-pods >/dev/null
   local pod

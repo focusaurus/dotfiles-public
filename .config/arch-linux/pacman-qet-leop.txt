@@ -8,9 +8,13 @@ aws-iam-authenticator-bin
 base
 bat
 bind-tools
+blueman
+bluez-utils
 brightnessctl
+broot
 brother-hl2280dw
 circleci-cli-bin
+clojure
 copyq
 cups-pdf
 dfu-util
@@ -80,6 +84,7 @@ tilda
 tldr
 tlp
 topgrade
+tree
 ttf-fira-code
 ttf-inconsolata
 upower

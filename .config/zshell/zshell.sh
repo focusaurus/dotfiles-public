@@ -53,6 +53,12 @@ prompt-kube-context() {
   fi
 }
 
+prompt-kube-namespace() {
+  if [[ -n "${n}" ]]; then
+    printf "🇳'  %s " "${n}"
+  fi
+}
+
 prompt-aws-profile() {
   if [[ -n "${AWS_PROFILE}" ]]; then
     printf "🅰️  %s " "${AWS_PROFILE}"
@@ -66,7 +72,7 @@ prompt-dotfiles() {
 }
 
 setup-prompt() {
-  export PROMPT='╭%~ $(prompt-git-branch)$(prompt-git-status)$(prompt-dotfiles)$(prompt-aws-profile)$(prompt-kube-context)%n@%m
+  export PROMPT='╭%~ $(prompt-git-branch)$(prompt-git-status)$(prompt-dotfiles)$(prompt-aws-profile)$(prompt-kube-context)$(prompt-kube-namespace)%n@%m
 ╰○ '
   # https://unicode-search.net/unicode-namesearch.pl?term=down&.submit=Search
   # 𝄱
