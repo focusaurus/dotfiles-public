@@ -112,3 +112,4 @@ npm-debug.log
 /.visidata/cache
 /.gitlibs
 /keybase
+/.config/gh

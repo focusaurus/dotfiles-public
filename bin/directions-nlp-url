@@ -1,0 +1,18 @@
+#!/usr/bin/env python3
+import sys
+import subprocess
+import urllib.parse
+
+natural = " ".join(sys.argv[1:])
+if natural.find("to ") >= 0:
+    start, dest = natural.lower().split("to ", 1)
+else:
+    # Split it in half
+    words = natural.split()
+    half = round(len(words) / 2)
+    start = " ".join(words[:half])
+    dest = " ".join(words[half:])
+    if not start.strip():
+        start = "1064 Adams Ave Louisville, CO 80027-1604"
+query = {"f": "d", "source": "s_d", "saddr": start.strip(), "daddr": dest.strip()}
+print("http://maps.google.com/maps?" + urllib.parse.urlencode(query))

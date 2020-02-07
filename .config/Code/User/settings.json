@@ -68,5 +68,6 @@
   "window.customMenuBarAltFocus": false,
   "window.enableMenuBarMnemonics": false,
   "keyboard.dispatch": "keyCode",
-  "editor.wordWrapColumn": 80
+  "editor.wordWrapColumn": 80,
+  "search.enableSearchEditorPreview": true
 }
