@@ -55,7 +55,7 @@ _base-url() {
     sed -e 's_:_/_' -e 's_^\s*git@_https://_' -e 's_\.git$__'
 }
 
-gh() {
+github() {
   subcommand="$1"
   shift
   case "${subcommand}" in
@@ -95,10 +95,6 @@ gh() {
     ;;
 
   esac
-}
-
-gh-pr-description() {
-  git log '--pretty=format:%s%n%b' "$(git-get-default-branch)..HEAD" | grep -Ev Signed-off-by
 }
 
 #git tag version

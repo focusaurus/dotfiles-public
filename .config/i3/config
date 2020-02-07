@@ -1,10 +1,10 @@
-# i3 config file (v4)
-#
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 # Main i3 modifier key is alt
 # See readme.md in dotfiles-public for reasoning
 set $mod Mod1
+set $super Mod4
+set $alt Mod1
 
 workspace_layout tabbed
 focus_follows_mouse no
@@ -42,13 +42,6 @@ bindsym $mod+shift+Return exec i3-sensible-terminal
 bindsym $mod+k kill
 bindsym $mod+Delete kill
 bindsym Ctrl+Shift+w kill
-
-# start dmenu (a program launcher)
-#bindsym $mod+d exec dmenu_run
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 # right hand home row
@@ -106,6 +99,58 @@ bindsym $mod+space focus mode_toggle
 
 # focus the child container
 #bindsym $mod+d focus child
+
+##### app nav #####
+# right hand home row
+#bindsym $super+h exec ~/bin/app-nav left
+#bindsym $super+t exec ~/bin/app-nav up
+#bindsym $super+n exec ~/bin/app-nav right
+#bindsym $super+w exec ~/bin/app-nav down
+#
+## left hand home row
+#bindsym $super+o exec ~/bin/app-nav left
+#bindsym $super+e exec ~/bin/app-nav up
+#bindsym $super+u exec ~/bin/app-nav right
+#bindsym $super+j exec ~/bin/app-nav down
+#
+#
+## alternatively, you can use the arrow keys:
+#bindsym $super+Left exec ~/bin/app-nav left
+#bindsym $super+Up exec ~/bin/app-nav up
+#bindsym $super+Right exec ~/bin/app-nav right
+#bindsym $super+Down exec ~/bin/app-nav down
+#
+#bindsym $super+space exec ~/bin/fuzz-script-choose
+#bindsym Ctrl+1 exec ~/bin/fuzz-script-choose
+#bindsym Ctrl+2 exec ~/bin/fuzz-snippet
+#bindsym Ctrl+3 exec rofi -show run
+#bindsym Ctrl+4 exec rofi -show window
+#
+#bindsym $super+v exec copyq show
+#bindsym F1 exec ~/bin/fkeys f1
+#bindsym Ctrl+F1 exec ~/bin/fkeys ctrl+f1
+#bindsym F2 exec ~/bin/fkeys f2
+#bindsym F3 exec ~/bin/fkeys f3
+#bindsym F4 exec ~/bin/fkeys f4
+#bindsym F5 exec ~/bin/fkeys f5
+#bindsym F6 exec ~/bin/fkeys f6
+#bindsym Shift+F6 exec ~/bin/fkeys shift+f6
+#bindsym Ctrl+F6 exec ~/bin/fkeys ctrl+f6
+#bindsym F7 exec ~/bin/fkeys f7
+#bindsym F8 exec ~/bin/fkeys f8
+#bindsym F9 exec ~/bin/fkeys f9
+#bindsym F10 exec ~/bin/fkeys f10
+#bindsym F11 exec ~/bin/fkeys f11
+#bindsym F12 exec ~/bin/fkeys f12
+#bindsym Ctrl+F12 exec ~/bin/fkeys ctrl+f12
+#
+#bindsym XF86MonBrightnessDown exec sudo brightnessctl set 20%-
+#bindsym XF86MonBrightnessUp exec sudo brightnessctl set 20%+
+#bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +10% && killall -SIGUSR1 i3status
+#bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -10% && killall -SIGUSR1 i3status
+#bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && killall -SIGUSR1 i3status
+#bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle && killall -SIGUSR1 i3status
+
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.

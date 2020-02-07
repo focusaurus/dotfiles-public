@@ -22,4 +22,3 @@ systemd-fsck-root.service
 systemd-remount-fs.service
 systemd-timesyncd.service
 tlp.service
-tlp-sleep.service

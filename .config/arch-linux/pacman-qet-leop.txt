@@ -60,7 +60,9 @@ patch
 pavucontrol
 pinta
 pkgconf
+pod2man
 polybar
+prettier
 pulldown-cmark
 pulseaudio-equalizer
 pulseaudio-jack

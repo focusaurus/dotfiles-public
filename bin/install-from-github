@@ -20,9 +20,11 @@ log_repo() {
 }
 
 install_exe() {
-  #from_path="$(find . -type f -executable -print0)"
-  from_path="$(file * | grep 'LSB executable' | cut -d : -f 1)"
-  if [[ -z "${from_path}" ]]; then
+  from_path="$(find . -type f -executable -print0)"
+  if [[ -v "${from_path}" ]]; then
+    from_path="$(find . -type f -print0 | xargs -0 file | grep 'LSB executable' | cut -d : -f 1)"
+	fi
+	if [[ -z "${from_path}" ]]; then
     echo "No exe found!"
     return 1
   fi
