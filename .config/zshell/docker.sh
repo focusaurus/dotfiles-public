@@ -203,7 +203,8 @@ dps() {
 
   format='table
 {{.Names}}|
-{{.Status}}'
+{{.Status}}|
+{{.Ports}}'
   format=$(echo "${format}" | tr -d '\n')
   docker ps --format "${format}" | column -t -s '|'
 }

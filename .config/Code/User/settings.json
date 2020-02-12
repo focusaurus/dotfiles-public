@@ -69,5 +69,10 @@
   "window.enableMenuBarMnemonics": false,
   "keyboard.dispatch": "keyCode",
   "editor.wordWrapColumn": 80,
-  "search.enableSearchEditorPreview": true
+  "search.enableSearchEditorPreview": true,
+  "calva.fmt.formatAsYouType": false,
+  "calva.fmt.insertMissingWhitespace": false,
+  "calva.fmt.indentation": false,
+  "calva.fmt.removeSurroundingWhitespace": false,
+  "calva.fmt.removeTrailingWhitespace": false
 }
