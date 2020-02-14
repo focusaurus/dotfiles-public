@@ -97,3 +97,11 @@ k-get-configmap() {
   [[ -z "${map}" ]] && return
   kubectl -n "${n}" describe configmap "${map}"
 }
+
+k-port-forward() {
+  filter="$1"
+  port="$2"
+  service=$(kubectl -n "${n}" get services -o name | fuzzy-filter "${filter}")
+  [[ -z "${service}" ]] && return
+  kubectl -n "${n}" port-forward "${service}" "${port}"
+}

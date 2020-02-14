@@ -323,3 +323,11 @@ dotfiles-begin() {
 dotfiles-end() {
   unset GIT_DIR GIT_WORK_TREE
 }
+
+git-sync-full() {
+  ~/bin/git-autocommit ~/projects/journals
+  ~/bin/git-sync ~/projects/journals ~/projects/dotfiles
+  dotfiles-begin
+  ~/bin/git-sync ~
+  dotfiles-end
+}
