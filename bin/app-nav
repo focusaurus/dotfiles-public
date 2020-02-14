@@ -40,16 +40,20 @@ nav_firefox() {
 nav_tmux() {
   case "$1" in
   left)
-    xdotool key --clearmodifiers ctrl+b p
-    ;;
+    tmux previous-window
+		# xdotool key --clearmodifiers ctrl+b p
+		;;
   up)
-    xdotool key --clearmodifiers ctrl+b o
+    tmux select-pane -l
+		# xdotool key --clearmodifiers ctrl+b o
     ;;
   right)
-    xdotool key --clearmodifiers ctrl+b n
+    tmux next-window
+		# xdotool key --clearmodifiers ctrl+b n
     ;;
   down)
-    xdotool key --clearmodifiers ctrl+b parenright
+		tmux switch-client -n
+		# xdotool key --clearmodifiers ctrl+b parenright
     ;;
   esac
 }
