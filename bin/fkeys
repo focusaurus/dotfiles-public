@@ -96,6 +96,9 @@ main() {
     #app_image="$(find "${HOME}/aur/workflowy" -type f -name 'WorkFlowy-*.AppImage' | sort -n | head -1)"
     activate_window 'workflowy' "/opt/WorkFlowy-x86_64.AppImage"
     ;;
+  ctrl+f4)
+    ~/projects/dotfiles/fuzzball/workflowy-done
+    ;;
   f6)
     if wmctrl -l | grep -q "Zoom Meeting ID:"; then
       activate_window 'Zoom Meeting ID:' true
@@ -131,9 +134,16 @@ main() {
   f11)
     new_workspace=$((${current_workspace} - 1))
     if [[ ${new_workspace} -lt 0 ]]; then
-      new_workspace=3
+      new_workspace=1
     fi
     xdotool set_desktop "${new_workspace}"
+    ;;
+  shift+f11)
+    new_workspace=$((${current_workspace} - 1))
+    if [[ ${new_workspace} -lt 0 ]]; then
+      new_workspace=1
+    fi
+    xdotool getactivewindow set_desktop_for_window "${new_workspace}"
     ;;
   f12)
     new_workspace=$((${current_workspace} + 1))
@@ -142,8 +152,12 @@ main() {
     fi
     xdotool set_desktop "${new_workspace}"
     ;;
-  ctrl+f12)
-    ~/projects/dotfiles/fuzzball/workflowy-done
+  shift+f12)
+    new_workspace=$((${current_workspace} + 1))
+    if [[ ${new_workspace} -gt 3 ]]; then
+      new_workspace=0
+    fi
+    xdotool getactivewindow set_desktop_for_window "${new_workspace}"
     ;;
   esac
 }

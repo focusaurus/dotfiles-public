@@ -53,8 +53,12 @@ F10
   ~/bin/fkeys f10
 F11
   ~/bin/fkeys f11
+shift + F11
+  ~/bin/fkeys shift+f11
 F12
   ~/bin/fkeys f12
+shift + F12
+  ~/bin/fkeys shift+f12
 ctrl + F12
   ~/bin/fkeys ctrl+f12
 
