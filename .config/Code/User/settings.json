@@ -75,4 +75,14 @@
   "calva.fmt.indentation": false,
   "calva.fmt.removeSurroundingWhitespace": false,
   "calva.fmt.removeTrailingWhitespace": false
+  "autofold.types": [
+    {
+      "ext": ".js",
+      "level": 1
+    },
+    {
+      "ext": ".clj",
+      "level": 1
+    }
+  ]
 }
