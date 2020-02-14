@@ -113,3 +113,6 @@ npm-debug.log
 /.gitlibs
 /keybase
 /.config/gh
+/.xournal
+/.xournalpp
+/.config/gtk-2.0/gtkfilechooser.ini
