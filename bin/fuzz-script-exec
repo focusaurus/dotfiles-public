@@ -45,11 +45,11 @@ main() {
   fi
   if [[ -x "./${task}" ]]; then
     # clean up old symlinks to previous task
-    find -L . -name '00-*' -delete
+    find . -name '00-*' -delete
     # symlink the most recently executed task with 00 prefix
     # so it's easy to run something several times in a row.
     # Strip 00- in the task name to avoid 00-00-00-task-name recursion
-    ln -nsf "./${task}" "00-${task/00-/}"
+    ln -nsf "${task/00-/}" "./00-${task/00-/}"
     "./${task}"
     return
   fi
