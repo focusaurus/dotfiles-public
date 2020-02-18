@@ -23,8 +23,8 @@ rawurlencode() {
   for ((pos = 0; pos < strlen; pos++)); do
     c=${string:$pos:1}
     case "$c" in
-      [-_.~a-zA-Z0-9]) o="${c}" ;;
-      *) printf -v o '%%%02x' "'$c" ;;
+    [-_.~a-zA-Z0-9]) o="${c}" ;;
+    *) printf -v o '%%%02x' "'$c" ;;
     esac
     encoded+="${o}"
   done
@@ -43,7 +43,13 @@ main() {
   if [[ -z "${task}" ]]; then
     return
   fi
-  if [[ -x "${task}" ]]; then
+  if [[ -x "./${task}" ]]; then
+    # clean up old symlinks to previous task
+    find -L . -name '00-*' -delete
+    # symlink the most recently executed task with 00 prefix
+    # so it's easy to run something several times in a row.
+    # Strip 00- in the task name to avoid 00-00-00-task-name recursion
+    ln -nsf "./${task}" "00-${task/00-/}"
     "./${task}"
     return
   fi
@@ -51,7 +57,7 @@ main() {
     # Task has placeholders we'll replace with a prompt
     query=$(~/bin/prompt-or-clipboard)
     query=$(rawurlencode "${query}")
-    args=$(cat "${task}" | sed "s/%s/${query}/g")
+    args=$(sed "s/%s/${query}/g" <"${task}")
   else
     args=$(cat "${task}")
   fi
@@ -66,12 +72,12 @@ main() {
     fi
   fi
   case $(uname) in
-    Linux)
-      echo "${args}" | xargs -n 1 xdg-open
-      ;;
-    Darwin)
-      echo "${args}" | xargs open
-      ;;
+  Linux)
+    echo "${args}" | xargs -n 1 xdg-open
+    ;;
+  Darwin)
+    echo "${args}" | xargs open
+    ;;
   esac
 }
 
