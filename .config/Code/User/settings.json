@@ -74,7 +74,7 @@
   "calva.fmt.insertMissingWhitespace": false,
   "calva.fmt.indentation": false,
   "calva.fmt.removeSurroundingWhitespace": false,
-  "calva.fmt.removeTrailingWhitespace": false
+  "calva.fmt.removeTrailingWhitespace": false,
   "autofold.types": [
     {
       "ext": ".js",
@@ -82,7 +82,7 @@
     },
     {
       "ext": ".clj",
-      "level": 1
+      "level": 1,
     }
   ]
 }
