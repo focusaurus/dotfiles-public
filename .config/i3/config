@@ -132,7 +132,7 @@ bindsym $mod+minus split v
 
 # change container layout (stacked, tabbed, toggle split)
 #bindsym $mod+s layout stacking
-bindsym $mod+shift+t layout tabbed
+bindsym $mod+shift+a layout tabbed
 #bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
