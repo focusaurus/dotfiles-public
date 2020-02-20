@@ -39,8 +39,8 @@ floating_modifier $mod
 bindsym $mod+shift+Return exec i3-sensible-terminal
 
 # kill focused window
-bindsym $mod+k kill
-bindsym $mod+Delete kill
+#bindsym $mod+k kill
+#bindsym $mod+Delete kill
 bindsym Ctrl+Shift+w kill
 
 ##### focus a window #####
@@ -60,22 +60,7 @@ bindsym $mod+e mark TEMP; [con_mark="LAST"] focus; [con_mark="TEMP"] mark LAST
 bindsym $mod+u mark LAST;focus right
 bindsym $mod+j focus down
 
-##### move a window #####
-# arrow keys
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
-bindsym $mod+Shift+Down move down
-# left hand home row
-bindsym $mod+Shift+o move left
-bindsym $mod+Shift+e move up
-bindsym $mod+Shift+u move right
-bindsym $mod+Shift+j move down
-# right hand home row
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+t move up
-bindsym $mod+Shift+n move right
-bindsym $mod+Shift+w move down
+
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -89,37 +74,6 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
-
-#bindsym $mod+s scratchpad show
-#bindsym $mod+Shift+s mark LAST; move scratchpad
-bindsym $mod+Control+o, workspace prev
-bindsym $mod+Control+e, move to workspace next
-bindsym $mod+Control+u, workspace next
-bindsym $mod+Control+j, move to workspace prev
-# switch to workspace
-#bindsym $mod+1 workspace number $ws1
-#bindsym $mod+2 workspace number $ws2
-#bindsym $mod+3 workspace number $ws3
-#bindsym $mod+4 workspace number $ws4
-#bindsym $mod+5 workspace number $ws5
-#bindsym $mod+6 workspace number $ws6
-#bindsym $mod+7 workspace number $ws7
-#bindsym $mod+8 workspace number $ws8
-#bindsym $mod+9 workspace number $ws9
-#bindsym $mod+0 workspace number $ws10
-
-# move focused container to workspace
-# bindsym $mod+Shift+1 move container to workspace number $ws1
-# bindsym $mod+Shift+2 move container to workspace number $ws2
-# bindsym $mod+Shift+3 move container to workspace number $ws3
-# bindsym $mod+Shift+4 move container to workspace number $ws4
-# bindsym $mod+Shift+5 move container to workspace number $ws5
-# bindsym $mod+Shift+6 move container to workspace number $ws6
-# bindsym $mod+Shift+7 move container to workspace number $ws7
-# bindsym $mod+Shift+8 move container to workspace number $ws8
-# bindsym $mod+Shift+9 move container to workspace number $ws9
-# bindsym $mod+Shift+0 move container to workspace number $ws10
-
 
 # split in horizontal orientation
 bindsym $mod+bar split h
@@ -243,6 +197,7 @@ bindsym $mod+shift+z mode "resize"
 #bindsym $mod+f mode "focus"
 
 mode "i3-2nd-tier" {
+        ##### focus a window #####
         # arrow keys
         bindsym Left mark LAST; focus left
         bindsym Up mark TEMP; [con_mark="LAST"] focus; [con_mark="TEMP"] mark LAST
@@ -259,9 +214,71 @@ mode "i3-2nd-tier" {
         bindsym u mark LAST; focus right
         bindsym j mark LAST; focus down
 
+        ##### move a window #####
+        # arrow keys
+        bindsym Shift+Left move left
+        bindsym Shift+Up move up
+        bindsym Shift+Right move right
+        bindsym Shift+Down move down
+        # left hand home row
+        bindsym Shift+o move left
+        bindsym Shift+e move up
+        bindsym Shift+u move right
+        bindsym Shift+j move down
+        # right hand home row
+        bindsym Shift+h move left
+        bindsym Shift+t move up
+        bindsym Shift+n move right
+        bindsym Shift+w move down
+
+
+        #bindsym $mod+s scratchpad show
+        #bindsym $mod+Shift+s mark LAST; move scratchpad
+        # arrow keys
+        bindsym Control+Left workspace prev
+        bindsym Control+Up move to workspace next
+        bindsym Control+Right workspace next
+        bindsym Control+Down move to workspace prev
+        # left hand home row
+        bindsym Control+o, workspace prev
+        bindsym Control+e, move to workspace next
+        bindsym Control+u, workspace next
+        bindsym Control+j, move to workspace prev
+        # right hand home row
+        bindsym Control+h, workspace prev
+        bindsym Control+t, move to workspace next
+        bindsym Control+n, workspace next
+        bindsym Control+w, move to workspace prev
+
+        # switch to workspace
+        bindsym 1 workspace number $ws1
+        bindsym 2 workspace number $ws2
+        bindsym 3 workspace number $ws3
+        bindsym 4 workspace number $ws4
+        bindsym 5 workspace number $ws5
+        bindsym 6 workspace number $ws6
+        bindsym 7 workspace number $ws7
+        bindsym 8 workspace number $ws8
+        bindsym 9 workspace number $ws9
+        bindsym 0 workspace number $ws10
+
+        ##### move focused container to workspace #####
+        bindsym Shift+1 move container to workspace number $ws1
+        bindsym Shift+2 move container to workspace number $ws2
+        bindsym Shift+3 move container to workspace number $ws3
+        bindsym Shift+4 move container to workspace number $ws4
+        bindsym Shift+5 move container to workspace number $ws5
+        bindsym Shift+6 move container to workspace number $ws6
+        bindsym Shift+7 move container to workspace number $ws7
+        bindsym Shift+8 move container to workspace number $ws8
+        bindsym Shift+9 move container to workspace number $ws9
+        bindsym Shift+0 move container to workspace number $ws10
+
+        ##### switch back to default mode #####
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym Space mode "default"
+
 }
 bindsym $mod+i mode "i3-2nd-tier"
 
