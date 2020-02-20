@@ -77,12 +77,13 @@
   "calva.fmt.removeTrailingWhitespace": false,
   "autofold.types": [
     {
-      "ext": ".js",
+      "ext": ".jsOFF",
       "level": 1
     },
     {
-      "ext": ".clj",
+      "ext": ".cljOFF",
       "level": 1,
     }
-  ]
+  ],
+  "editor.wordWrap": "wordWrapColumn"
 }
