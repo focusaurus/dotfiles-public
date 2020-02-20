@@ -277,7 +277,7 @@ mode "i3-2nd-tier" {
         ##### switch back to default mode #####
         bindsym Return mode "default"
         bindsym Escape mode "default"
-        bindsym Space mode "default"
+        bindsym space mode "default"
 
 }
 bindsym $mod+i mode "i3-2nd-tier"
