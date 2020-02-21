@@ -231,6 +231,10 @@ mode "i3-2nd-tier" {
         bindsym Shift+n move right
         bindsym Shift+w move down
 
+        ##### container layout #####
+        bindsym a layout tabbed
+        bindsym s split h
+        bindsym - split v
 
         #bindsym $mod+s scratchpad show
         #bindsym $mod+Shift+s mark LAST; move scratchpad

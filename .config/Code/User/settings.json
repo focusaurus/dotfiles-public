@@ -84,6 +84,5 @@
       "ext": ".cljOFF",
       "level": 1,
     }
-  ],
-  "editor.wordWrap": "wordWrapColumn"
+  ]
 }
