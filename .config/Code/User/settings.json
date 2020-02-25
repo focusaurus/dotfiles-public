@@ -84,5 +84,8 @@
       "ext": ".cljOFF",
       "level": 1,
     }
-  ]
+  ],
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+  }
 }
