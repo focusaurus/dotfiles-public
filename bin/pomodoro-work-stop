@@ -12,5 +12,6 @@ set -o posix    # more strict failures in subshells
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-~/bin/say "$(basename "$0")
-notify-send "$(basename "$0")
+script_name="$(basename "$0")"
+~/bin/say "${script_name}"
+notify-send "${script_name}"

@@ -12,5 +12,5 @@ set -o posix    # more strict failures in subshells
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-~/bin/say "pomodoro break start"
+~/bin/say "$(basename "$0")"
 echo ~/bin/pomodoro-break-stop| at now + 5 minutes

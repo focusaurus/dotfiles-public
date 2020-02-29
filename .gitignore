@@ -117,3 +117,5 @@ npm-debug.log
 /.xournalpp
 /.config/gtk-2.0/gtkfilechooser.ini
 /.config/obs-studio
+/.docker
+/.config/cura
