@@ -81,6 +81,23 @@ bindsym $mod+e mark TEMP; [con_mark="LAST"] focus; [con_mark="TEMP"] mark LAST
 bindsym $mod+u mark LAST;focus right
 bindsym $mod+j focus down
 
+##### move a window #####
+# arrow keys
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+Down move down
+# left hand home row
+bindsym $mod+Shift+o move left
+bindsym $mod+Shift+e move up
+bindsym $mod+Shift+u move right
+bindsym $mod+Shift+j move down
+# right hand home row
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+t move up
+bindsym $mod+Shift+n move right
+bindsym $mod+Shift+w move down
+
 ##### workspace modeless modifiers #####
 #bindsym $mod+apostrophe mark LAST; move to workspace previous
 #bindsym $mod+comma mark LAST; move to workspace next
@@ -235,6 +252,7 @@ bar {
         status_command i3status
 }
 
+for_window [window_role="pop-up"] floating enable, move absolute center
 for_window [class="(?i)fxlauncher"] floating disable
 for_window [class="(?i)yad"] floating enable
 for_window [title="(?i)event tester"] floating enable

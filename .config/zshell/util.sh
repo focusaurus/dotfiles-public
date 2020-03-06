@@ -30,7 +30,11 @@ alias copy=~/bin/copy
 alias paste=~/bin/paste
 
 copy-recent-command() {
-  command=$(fc -l -10 -1 | awk '{$1=""; print $0}' | fuzzy-filter "$@")
+  fzf_args=(--no-sort --tac)
+  if [[ -n "$@" ]]; then
+    fzf_args+=(--query "$@")
+  fi
+  command=$(fc -l -10 -1 | awk '{$1=""; print $0}' | fzf "${fzf_args[@]}")
   if [[ -n "${command}" ]]; then
     echo "${command}" | copy
     echo "copied!"
