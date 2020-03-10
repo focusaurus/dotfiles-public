@@ -196,6 +196,7 @@ mode "i3-2nd-tier" {
         bindsym s split h
         bindsym - split v
 
+        ##### moving windows to workspaces #####
         #bindsym $mod+s scratchpad show
         #bindsym $mod+Shift+s mark LAST; move scratchpad
         # arrow keys
@@ -260,7 +261,7 @@ for_window [class="(?i)copyq"] floating enable
 for_window [class="(?i)tilda.Tilda"] floating enable
 for_window [instance="zoom"] floating enable, move absolute center
 #for_window [title="kazam.Kazam"] floating disable
-#for_window [title="Zoom Meeting"] floating disable
+for_window [title="Zoom Meeting"] floating disable
 #for_window [title="(?i)gedit"] floating disable
 
 assign [class="org.gnome.gedit.Org.gnome.gedit"] 2

@@ -1,5 +1,5 @@
-#compdef gh
-gh_completions=(
+#compdef github
+github_completions=(
   'clone:clone a repo by url into ~/github'
   'commits:open commits page'
   'issues:open issues page'
@@ -7,4 +7,4 @@ gh_completions=(
   'pull-requests:open pull requests'
   'repo:open repository base url'
 )
-_describe 'gh' gh_completions
+_describe 'github' github_completions
