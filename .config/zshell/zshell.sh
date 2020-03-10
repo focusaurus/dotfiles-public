@@ -22,7 +22,7 @@ prompt-git-branch() {
   local branch
   branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
   if [[ -n "${branch}" ]]; then
-    printf "branch: %s " "${branch}"
+    printf "b: %s " "${branch}"
   fi
 }
 
@@ -36,7 +36,7 @@ prompt-git-status() {
     sort |
     uniq -c |
     xargs)
-  echo -n "status: "
+  echo -n "s: "
   if [[ -z "${git_status}" ]]; then
     echo -n "clean"
   else
@@ -72,7 +72,7 @@ prompt-dotfiles() {
 }
 
 setup-prompt() {
-  export PROMPT='╭%~ $(prompt-git-branch)$(prompt-git-status)$(prompt-dotfiles)$(prompt-aws-profile)$(prompt-kube-context)$(prompt-kube-namespace)%n@%m
+  export PROMPT='╭%2~ [%n@%m]
 ╰○ '
   # https://unicode-search.net/unicode-namesearch.pl?term=down&.submit=Search
   # 𝄱
@@ -83,7 +83,7 @@ setup-prompt() {
   # ❯ '
   # small white square ▫️ '
   # ❯
-  # export RPROMPT='%n@%m$(prompt-branch)'
+  export RPROMPT='$(prompt-git-branch)$(prompt-git-status)$(prompt-dotfiles)$(prompt-aws-profile)$(prompt-kube-context)$(prompt-kube-namespace)'
 }
 setup-prompt
 
@@ -99,7 +99,6 @@ TRAPUSR1() {
 }
 
 rss() {
-  # TODO check this still works properly on macos
   ps -U "${USER}" | egrep '( -zsh$|[ /]zsh$)' | awk '{print $1}' | xargs kill -USR1 &
 }
 

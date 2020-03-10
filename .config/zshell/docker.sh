@@ -170,7 +170,7 @@ dcrunsp() {
   if [[ $# -eq 0 ]]; then
     command=(sh -c 'bash || sh')
   fi
-  docker-compose run --rm --service-ports --volume "${PWD}:/host" "${container}" "${command[@]}"
+  docker-compose run --rm --volume "${PWD}:/host" --service-ports --use-aliases "${container}" "${command[@]}"
 }
 
 dcservices() {

@@ -1,5 +1,13 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
+##### i3 itself #####
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+Escape exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
 # Main i3 modifier key is alt
 # See readme.md in dotfiles-public for reasoning
 set $mod Mod1
@@ -8,6 +16,19 @@ set $alt Mod1
 
 workspace_layout tabbed
 focus_follows_mouse no
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
 
 ##### font #####
 # Font for window titles. Will also be used by the bar unless a different font
@@ -60,20 +81,28 @@ bindsym $mod+e mark TEMP; [con_mark="LAST"] focus; [con_mark="TEMP"] mark LAST
 bindsym $mod+u mark LAST;focus right
 bindsym $mod+j focus down
 
+##### move a window #####
+# arrow keys
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+Down move down
+# left hand home row
+bindsym $mod+Shift+o move left
+bindsym $mod+Shift+e move up
+bindsym $mod+Shift+u move right
+bindsym $mod+Shift+j move down
+# right hand home row
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+t move up
+bindsym $mod+Shift+n move right
+bindsym $mod+Shift+w move down
 
-
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
+##### workspace modeless modifiers #####
+#bindsym $mod+apostrophe mark LAST; move to workspace previous
+#bindsym $mod+comma mark LAST; move to workspace next
+#bindsym $mod+period workspace previous
+#bindsym $mod+Period workspace next
 
 # split in horizontal orientation
 bindsym $mod+bar split h
@@ -101,67 +130,6 @@ bindsym $mod+space focus mode_toggle
 # focus the child container
 #bindsym $mod+d focus child
 
-##### app nav #####
-# right hand home row
-#bindsym $super+h exec ~/bin/app-nav left
-#bindsym $super+t exec ~/bin/app-nav up
-#bindsym $super+n exec ~/bin/app-nav right
-#bindsym $super+w exec ~/bin/app-nav down
-#
-## left hand home row
-#bindsym $super+o exec ~/bin/app-nav left
-#bindsym $super+e exec ~/bin/app-nav up
-#bindsym $super+u exec ~/bin/app-nav right
-#bindsym $super+j exec ~/bin/app-nav down
-#
-#
-## alternatively, you can use the arrow keys:
-#bindsym $super+Left exec ~/bin/app-nav left
-#bindsym $super+Up exec ~/bin/app-nav up
-#bindsym $super+Right exec ~/bin/app-nav right
-#bindsym $super+Down exec ~/bin/app-nav down
-#
-#bindsym $super+space exec ~/bin/fuzz-script-choose
-#bindsym Ctrl+1 exec ~/bin/fuzz-script-choose
-#bindsym Ctrl+2 exec ~/bin/fuzz-snippet
-#bindsym Ctrl+3 exec rofi -show run
-#bindsym Ctrl+4 exec rofi -show window
-#
-#bindsym $super+v exec copyq show
-#bindsym F1 exec ~/bin/fkeys f1
-#bindsym Ctrl+F1 exec ~/bin/fkeys ctrl+f1
-#bindsym F2 exec ~/bin/fkeys f2
-#bindsym F3 exec ~/bin/fkeys f3
-#bindsym F4 exec ~/bin/fkeys f4
-#bindsym F5 exec ~/bin/fkeys f5
-#bindsym F6 exec ~/bin/fkeys f6
-#bindsym Shift+F6 exec ~/bin/fkeys shift+f6
-#bindsym Ctrl+F6 exec ~/bin/fkeys ctrl+f6
-#bindsym F7 exec ~/bin/fkeys f7
-#bindsym F8 exec ~/bin/fkeys f8
-#bindsym F9 exec ~/bin/fkeys f9
-#bindsym F10 exec ~/bin/fkeys f10
-#bindsym F11 exec ~/bin/fkeys f11
-#bindsym F12 exec ~/bin/fkeys f12
-#bindsym Ctrl+F12 exec ~/bin/fkeys ctrl+f12
-#
-#bindsym XF86MonBrightnessDown exec sudo brightnessctl set 20%-
-#bindsym XF86MonBrightnessUp exec sudo brightnessctl set 20%+
-#bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +10% && killall -SIGUSR1 i3status
-#bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -10% && killall -SIGUSR1 i3status
-#bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && killall -SIGUSR1 i3status
-#bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle && killall -SIGUSR1 i3status
-
-
-
-
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+Escape exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
-
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -187,14 +155,6 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 bindsym $mod+shift+z mode "resize"
-
-#mode "focus" {
-#  bindsym l focus left; mode "default"
-#  bindsym r focus right; mode "default"
-#  bindsym u focus up; mode "default"
-#  bindsym d focus down; mode "default"
-#}
-#bindsym $mod+f mode "focus"
 
 mode "i3-2nd-tier" {
         ##### focus a window #####
@@ -292,13 +252,19 @@ bar {
         status_command i3status
 }
 
+for_window [window_role="pop-up"] floating enable, move absolute center
 for_window [class="(?i)fxlauncher"] floating disable
 for_window [class="(?i)yad"] floating enable
 for_window [title="(?i)event tester"] floating enable
 for_window [class="(?i)copyq"] floating enable
 for_window [class="(?i)tilda.Tilda"] floating enable
-for_window [class="(?i)zoom"] floating disable
+for_window [instance="zoom"] floating enable, move absolute center
 #for_window [title="kazam.Kazam"] floating disable
 #for_window [title="Zoom Meeting"] floating disable
+#for_window [title="(?i)gedit"] floating disable
+
+assign [class="org.gnome.gedit.Org.gnome.gedit"] 2
 
 exec --no-startup-id ~/bin/setup-desktop-environment
+exec --no-startup-id gedit
+exec --no-startup-id termite

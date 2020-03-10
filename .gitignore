@@ -119,3 +119,4 @@ npm-debug.log
 /.config/obs-studio
 /.config/cura
 /.config/QtProject.conf
+/.docker

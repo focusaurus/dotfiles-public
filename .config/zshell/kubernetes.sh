@@ -50,6 +50,9 @@ k-exec() {
   if [[ "${pod}" =~ "pricing-engine" ]]; then
     container=(-c reaction-pricing-engine)
   fi
+  if [[ "${pod}" =~ "categories" ]]; then
+    container=(-c reaction-categories)
+  fi
   kubectl -n "${n}" exec -it "${container[@]}" "${pod}" -- "${command[@]}"
 }
 
