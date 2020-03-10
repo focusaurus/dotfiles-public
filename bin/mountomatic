@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
+
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -o errexit  # always exit on error
+set -o errtrace # trap errors in functions as well
+set -o pipefail # don't ignore exit codes when piping output
+set -o posix    # more strict failures in subshells
+# set -x          # enable debugging
+
+IFS=$'\n\t'
+# ---- End unofficial bash strict mode boilerplate
+
+mounted=$(findmnt --list --noheadings --output target,source --types vfat || true)
+echo "existing mounts:"
+echo "${mounted}"
+partition=$(lsblk -J | jq -r '.blockdevices[].children[]| .name' | ~/bin/fuzzy-filter "$@")
+point="/mnt/${partition}"
+sudo mkdir -p "${point}"
+sudo mount -o "uid=$(id -u)" "/dev/${partition}" "${point}"
+if compgen -G "${point}/RECORD/*.WAV" >/dev/null; then
+  # It's my voice memo USB stick. Let's transcribe them!
+  ranger "${point/RECORD/}"
+fi
