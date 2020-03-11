@@ -4,7 +4,6 @@
 unalias cal
 alias cal="cal -y"
 alias chrome='open -a "Google Chrome"'
-alias gh='open -a "GitHub" .'
 alias screen-unlock="defaults write com.apple.screensaver askForPassword 0 && defaults write com.apple.screensaver askForPasswordDelay 0"
 alias screen-lock="defaults write com.apple.screensaver askForPassword 1 && defaults write com.apple.screensaver askForPasswordDelay 60"
 alias top="top -o cpu -s 5"
