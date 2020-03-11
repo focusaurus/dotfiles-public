@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
 
 # ---- Start unofficial bash strict mode boilerplate
@@ -12,4 +11,6 @@ set -o posix    # more strict failures in subshells
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-jq --sort-keys
+for path in "$@"; do
+  ~/bin/json-pretty-print <"${path}" | sponge "${path}"
+done

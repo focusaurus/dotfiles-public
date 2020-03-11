@@ -120,3 +120,4 @@ npm-debug.log
 /.config/cura
 /.config/QtProject.conf
 /.docker
+/.config/TabNine

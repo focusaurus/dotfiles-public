@@ -17,6 +17,7 @@ circleci-cli-bin
 clojure
 copyq
 cups-pdf
+cura
 dfu-util
 docker-compose
 dunst
@@ -50,11 +51,13 @@ macchanger
 make
 man-db
 mate-calc
+moreutils
 mpv
 neovim
 network-manager-applet
 nordvpn-bin
 nvm
+obs-studio
 openvpn
 patch
 pavucontrol
@@ -76,6 +79,8 @@ rustup
 shellcheck
 shfmt
 slack-desktop
+slack-term-bin
+sshuttle
 sxhkd
 system-config-printer
 termite
@@ -100,7 +105,6 @@ xautomation
 xbindkeys
 xcape
 xf86-input-synaptics
-xorg-server
 xorg-xev
 xorg-xfontsel
 xorg-xinput
