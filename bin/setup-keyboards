@@ -12,9 +12,19 @@ set -o posix    # more strict failures in subshells
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-# The udev rule will pass %N which the device node
-# We check for this so we only run the script once
-# each time the ergodox is connected
-if [[ -n "$1" ]]; then
-  touch /home/plyons/.ergodox-udev
-fi
+
+main() {
+
+  # Use software dvorak. Caps lock key is ctrl, swap left windows and alt
+  # See  /usr/share/X11/xkb/rules/base for more available options
+  setxkbmap dvorak -option -option "ctrl:nocaps,altwin:swap_lalt_lwin"
+
+  # 2018-04-10 plyons set fast keyboard repeat
+  # syntax is delay (ms) then repeat rate (cps I think)
+  delay=300
+  rate=70
+  xset r rate "${delay}" "${rate}"
+
+}
+
+main "$@"

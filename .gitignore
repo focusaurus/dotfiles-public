@@ -121,3 +121,4 @@ npm-debug.log
 /.config/QtProject.conf
 /.docker
 /.config/TabNine
+/.ergodox-udev

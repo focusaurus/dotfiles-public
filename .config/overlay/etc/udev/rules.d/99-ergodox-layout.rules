@@ -1,3 +1,8 @@
-ACTION=="add", ATTRS{idVendor}=="1c11", ATTRS{idProduct}=="b04d", RUN+="/home/plyons/bin/ergodox-udev", OWNER="plyons"
+ACTION=="bind", \
+  ATTRS{idVendor}=="1c11", \
+  ATTRS{idProduct}=="b04d", \
+  RUN+="/home/plyons/bin/ergodox-udev %N"
+
+
 #ACTION=="add", SUBSYSTEM=="input", ATTRS{name}=="Input Club Infinity_Ergodox/QMK", RUN+="/home/plyons/bin/ergodox-udev", OWNER="plyons"
 #, ATTRS{idProduct}=="b04d", RUN+="/home/plyons/bin/ergodox-udev", OWNER="plyons"

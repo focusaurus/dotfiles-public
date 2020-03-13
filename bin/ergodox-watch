@@ -12,9 +12,21 @@ set -o posix    # more strict failures in subshells
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-# The udev rule will pass %N which the device node
-# We check for this so we only run the script once
-# each time the ergodox is connected
-if [[ -n "$1" ]]; then
-  touch /home/plyons/.ergodox-udev
-fi
+
+log_path="/tmp/$(basename ${BASH_SOURCE[0]}).log"
+
+log() {
+  echo $(date) "$@" | tee -a "${log_path}"
+}
+
+main() {
+  log "starting"
+  fswatch --event Updated ~/.ergodox-udev | {
+    while IFS= read -r file_path; do
+			log "setup-keyboards"
+      ~/bin/setup-keyboards
+    done
+  }
+}
+
+main "$@"
