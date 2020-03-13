@@ -23,7 +23,7 @@ main() {
   log "starting"
   fswatch --event Updated ~/.ergodox-udev | {
     while IFS= read -r file_path; do
-			log "setup-keyboards"
+      log "setup-keyboards"
       ~/bin/setup-keyboards
     done
   }

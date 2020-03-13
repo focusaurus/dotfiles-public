@@ -1,6 +1,6 @@
 ACTION=="bind", \
-  ATTRS{idVendor}=="1c11", \
-  ATTRS{idProduct}=="b04d", \
+  ATTRS{idVendor}=="1c11|feed", \
+  ATTRS{idProduct}=="b04d|1307", \
   RUN+="/home/plyons/bin/ergodox-udev %N"
 
 
