@@ -52,7 +52,7 @@ _base-url() {
     uniq |
     grep -E 'github\.com' |
     head -1 |
-    sed -e 's_^\s*git@_https://_' -e 's_\.git$__'
+    sed -e 's_^\s*git@_https://_' -e 's_\.git$__' -e 's_://\(.*\):_://\1/_'
 }
 
 github() {

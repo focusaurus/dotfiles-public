@@ -29,12 +29,13 @@
 "command! -nargs=* TestCommand :python testCommand1(<f-args>)
 "shiftwidth 0
 "tabstab 4
-:set shiftwidth=2
-:set indentkeys-=:
-:set cursorline
+set shiftwidth=2
+set indentkeys-=:
+set cursorline
 ":colorscheme koehler
 ":colorscheme ron
-:colorscheme slate
+colorscheme slate
 autocmd Filetype yaml setlocal shiftwidth=2 tabstop=2
 autocmd Filetype yml setlocal shiftwidth=2 tabstop=2
 autocmd Filetype sh setlocal shiftwidth=2 tabstop=2
+set clipboard=unnamedplus
