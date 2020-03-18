@@ -72,7 +72,7 @@ prompt-dotfiles() {
 }
 
 setup-prompt() {
-  export PROMPT='╭%2~ [%n@%m]
+  export PROMPT='╭%4~ [%n@%m]
 ╰○ '
   # https://unicode-search.net/unicode-namesearch.pl?term=down&.submit=Search
   # 𝄱

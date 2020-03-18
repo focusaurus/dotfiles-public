@@ -30,6 +30,8 @@
 "shiftwidth 0
 "tabstab 4
 set shiftwidth=2
+set expandtab
+set tabstop=2
 set indentkeys-=:
 set cursorline
 ":colorscheme koehler
