@@ -122,3 +122,4 @@ npm-debug.log
 /.docker
 /.config/TabNine
 /.ergodox-udev
+/tmp
