@@ -34,6 +34,10 @@ set expandtab
 set tabstop=2
 set indentkeys-=:
 set cursorline
+set ignorecase
+set hlsearch
+set incsearch
+runtime! vim-plug-setup.vim
 ":colorscheme koehler
 ":colorscheme ron
 colorscheme slate

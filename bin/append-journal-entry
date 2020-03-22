@@ -19,7 +19,7 @@ main() {
   local entry
   entry="$*"
   if [[ -z "${entry}" ]]; then
-    entry=$(~/bin/prompt-or-clipboard "Entry: $(basename ${journal_dir})")
+    entry=$(MULTILINE=true ~/bin/prompt-or-clipboard "Entry: $(basename ${journal_dir})")
   fi
   local year
   year=$(date +%Y)

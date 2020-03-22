@@ -13,8 +13,8 @@ set -o posix    # more strict failures in subshells
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
-query=
-label="${1:-query}"
+value=
+label="${1:-value}"
 clipboard_preview=$(~/bin/paste | head -c 12 | tr '\n' ' ')
 text=$(
   cat <<EOF
@@ -23,15 +23,23 @@ text=$(
 EOF
 )
 
-#if false; then
-if [[ "${X}" == "1" || ! -t 1 ]]; then
+if true; then
+  #if [[ "${X}" == "1" || ! -t 1 ]]; then
   # echo "${clipboard_preview}" >/dev/tty
-  query=$(yad --entry --title "${label}" --text "${text}" --width 500)
+  if [[ "${MULTILINE}" == "true" ]]; then
+    value=$(yad --title "${label}" \
+      --text "ctrl+ENTER when ready" \
+      --width 500 --height 500 \
+      --form --separator="" --field=Entry:TXT |
+      sed -e 's/\\n/\n/g' -e '$ s/|$//')
+  else
+    value=$(yad --entry --title "${label}" --text "${text}" --width 500)
+  fi
 else
-  query=$(zsh -c "query=; vared -p \"${label}: \" query; echo \"\${query}\"")
+  value=$(zsh -c "value=; vared -p \"${label}: \" value; echo \"\${value}\"")
 fi
-if [[ -z "${query}" ]]; then
+if [[ -z "${value}" ]]; then
   ~/bin/paste
 else
-  echo "${query}"
+  echo "${value}"
 fi
