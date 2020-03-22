@@ -19,6 +19,10 @@ source-if-exists() {
     fi
   done
 }
+have_exe() {
+  command -v "$1" >/dev/null
+}
+
 
 source-if-exists ~/.config/zshell/*.sh
 source-if-exists ~/work-reaction/common/shell-setup.sh
@@ -28,3 +32,7 @@ source-if-exists "${HOME}/.nvm/nvm.sh"
 
 export SDKMAN_DIR="/home/plyons/.sdkman"
 source-if-exists "${SDKMAN_DIR}/bin/sdkman-init.sh"
+
+if have_exe navi; then
+  source <(navi widget zsh)
+fi

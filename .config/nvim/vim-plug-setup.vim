@@ -1,7 +1,6 @@
 " automatically install vim-plug if missing
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 endif
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.local/share/nvim/site/vim-plug-plugins')

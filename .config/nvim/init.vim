@@ -1,7 +1,5 @@
 "set nocompatible
-"autocmd BufWritePost,FileWritePost *.coffee :silent !coffee -c <afile>
 "autocmd FileType coffee setlocal shiftwidth=2 tabstop=2
-"color solarized
 "set guioptions-=L
 "set autoread
 ":au BufNewFile,BufRead *.py so <sfile>:h/html.vim
@@ -27,8 +25,6 @@
 "  print len(vim.current.buffer)
 "EOF
 "command! -nargs=* TestCommand :python testCommand1(<f-args>)
-"shiftwidth 0
-"tabstab 4
 set shiftwidth=2
 set expandtab
 set tabstop=2
