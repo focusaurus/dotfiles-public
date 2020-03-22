@@ -123,3 +123,5 @@ npm-debug.log
 /.config/TabNine
 /.ergodox-udev
 /tmp
+/.config/coc/extensions
+/.config/coc/memos.json
