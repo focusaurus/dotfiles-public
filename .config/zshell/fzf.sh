@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-export FZF_DEFAULT_COMMAND='rg -g ""'
+#export FZF_DEFAULT_COMMAND='rg -g ""'
 export FZF_COMPLETION_TRIGGER="''"
 export FZF_DEFAULT_OPTS='--bind=alt-enter:print-query'
 if [[ -n "${ZSH_VERSION}" ]]; then
