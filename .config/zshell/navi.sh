@@ -1,1 +1,0 @@
-source <(navi widget zsh)
