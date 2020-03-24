@@ -1,8 +1,8 @@
 #!/usr/bin/env zsh
+
 export HISTFILE=/dev/null
 export TERM="xterm-color"
 export TZ="America/Denver"
-set -o emacs
 
 tt() {
   export TERMINAL_TITLE="$*"

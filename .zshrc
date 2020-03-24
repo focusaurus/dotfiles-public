@@ -12,6 +12,8 @@ zle -C complete-file complete-word _generic
 zstyle ':completion:complete-file::::' completer _files
 bindkey '^t' complete-file
 
+set -o emacs
+
 source-if-exists() {
   for file in "$@"; do
     if [[ -e "${file}" ]]; then
@@ -19,6 +21,7 @@ source-if-exists() {
     fi
   done
 }
+
 have_exe() {
   command -v "$1" >/dev/null
 }
