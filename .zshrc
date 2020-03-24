@@ -1,7 +1,7 @@
-# zshell setup
+# zsh setup
 
 ##### completion #####
-fpath=(~/.config/zshell/completions $fpath)
+fpath=(~/.config/zsh/completions $fpath)
 autoload -Uz compinit && compinit
 #autoload -Uz compinstall && compinstall
 
@@ -27,9 +27,9 @@ have_exe() {
 }
 
 
-source-if-exists ~/.config/zshell/*.sh
+source-if-exists ~/.config/zsh/*.sh
 source-if-exists ~/work-reaction/common/shell-setup.sh
-source-if-exists "${HOME}/.config/zshell/os/$(uname).sh"
+source-if-exists "${HOME}/.config/zsh/os/$(uname).sh"
 source-if-exists "${HOME}/.nvm/nvm.sh"
 #source-if-exists ~/github/Aloxaf/fzf-tab/fzf-tab.zsh
 
