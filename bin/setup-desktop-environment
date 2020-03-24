@@ -14,11 +14,11 @@ IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
 kill_ok() {
-  killall --exact "$1" 2>/dev/null || true
+  killall --user "${USER}" --exact "$1" 2>/dev/null || true
 }
 
 send_sigusr1() {
-  killall --exact --signal SIGUSR1 2>/dev/null
+  killall --exact --signal SIGUSR1 "$@" 2>/dev/null
 }
 
 have_exe() {
@@ -33,10 +33,6 @@ main() {
   xset s 3600 3600
   # screen standby after 1 hour, suspend 2 hours, off 3 hours
   xset dpms 3600 7200 10800
-
-  if have_exe ssh-agent; then
-    eval $(ssh-agent -s &>/dev/null)
-  fi
 
   # 2018-04-17 plyons natural scrolling everywhere in X11
   if have_exe synclient; then
