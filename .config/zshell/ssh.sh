@@ -3,9 +3,11 @@
 alias s="ssh"
 alias kill-ssh='jobs -l|egrep " ss?h? " | cut -d " " -f 4| xargs kill; fg'
 alias skr="ssh-keygen -R"
+
 # alias passwordless="eval $(ssh-agent -s) >/dev/null; ssh-add 2>/dev/null"
+eval $(ssh-agent -s) >/dev/null
+
 passwordless() {
-	eval $(ssh-agent -s)
   for key in ~/.ssh/id_ed25519 ~/.ssh/id_rsa; do
     if [[ -e "${key}" ]]; then
       ssh-add "${key}"
