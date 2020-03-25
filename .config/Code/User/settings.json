@@ -22,7 +22,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "files.autoSave": "onFocusChange",
-  "window.zoomLevel": 2,
+  "window.zoomLevel": 0,
   "breadcrumbs.enabled": true,
   "editor.copyWithSyntaxHighlighting": false,
   "editor.occurrencesHighlight": false,
