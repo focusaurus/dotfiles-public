@@ -12,4 +12,5 @@ set -o posix    # more strict failures in subshells
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-git diff --stat --quiet
+
+command -v "$@" >/dev/null
