@@ -76,10 +76,10 @@ bindsym $mod+t mark TEMP; [con_mark="LAST"] focus; [con_mark="TEMP"] mark LAST
 bindsym $mod+n mark LAST;focus right
 bindsym $mod+w focus down
 # left hand home row
-bindsym $mod+o mark LAST;focus left
+bindsym $mod+a mark LAST;focus left
+bindsym $mod+o focus down
 bindsym $mod+e mark TEMP; [con_mark="LAST"] focus; [con_mark="TEMP"] mark LAST
 bindsym $mod+u mark LAST;focus right
-bindsym $mod+j focus down
 
 ##### move a window #####
 # arrow keys
@@ -99,7 +99,10 @@ bindsym $mod+Shift+n move right
 bindsym $mod+Shift+w move down
 
 ##### workspace modeless modifiers #####
-#bindsym $mod+apostrophe mark LAST; move to workspace previous
+bindsym $mod+semicolon mark LAST; exec "~/bin/window-manager-nav previous"
+bindsym $mod+q mark LAST; exec "~/bin/window-manager-nav previous move"
+bindsym $mod+j mark LAST; exec "~/bin/window-manager-nav next move"
+bindsym $mod+k mark LAST; exec "~/bin/window-manager-nav next"
 #bindsym $mod+comma mark LAST; move to workspace next
 #bindsym $mod+period workspace previous
 #bindsym $mod+Period workspace next

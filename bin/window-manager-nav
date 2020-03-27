@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
+
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -o errexit  # always exit on error
+set -o errtrace # trap errors in functions as well
+set -o pipefail # do nott ignore exit codes when piping output
+set -o posix    # more strict failures in subshells
+# set -x          # enable debugging
+
+IFS="$(printf "\n\t")"
+# ---- End unofficial bash strict mode boilerplate
+ENABLE_LOG=1
+init() {
+  script_name=$(basename "${BASH_SOURCE[0]}")
+  log_path="/tmp/${script_name}.log"
+}
+
+log() {
+  if [[ "${ENABLE_LOG}" == "1" ]]; then
+    echo -e "$@" >>"${log_path}"
+  fi
+}
+
+main() {
+  init
+  log "----\n$(date)\n $@"
+  local start=1
+  local end=2
+  local current=$(wmctrl -d | grep '\*' | awk '{print $1}')
+  # wmctrl is zero-based index, i3 I'm using 1-based names
+  current=$((current + 1))
+  log "current: ${current}"
+  local msg=(workspace)
+  case "$1" in
+  next)
+    target=$((current + 1))
+    if [[ "${target}" -gt "${end}" ]]; then
+      target="${start}"
+    fi
+    ;;
+  previous)
+    target=$((current - 1))
+    if [[ "${target}" -lt "${start}" ]]; then
+      target="${end}"
+    fi
+    ;;
+  esac
+
+  case "$2" in
+  move)
+    msg=(move to workspace)
+    ;;
+  esac
+  log "target: ${target}"
+  i3-msg "${msg[@]}" "${target}"
+}
+
+main "$@"
