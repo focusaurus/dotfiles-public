@@ -3,9 +3,13 @@
 alias s="ssh"
 alias kill-ssh='jobs -l|egrep " ss?h? " | cut -d " " -f 4| xargs kill; fg'
 alias skr="ssh-keygen -R"
-# alias passwordless="eval $(ssh-agent -s) >/dev/null; ssh-add 2>/dev/null"
+
+ssh_agent_sock_path="/run/user/$(id -u)/ssh-agent.sock"
+if [[ -z "${SSH_AUTH_SOCK}" && -e "${ssh_agent_sock_path}" ]]; then
+  export SSH_AUTH_SOCK="${ssh_agent_sock_path}"
+fi
+
 passwordless() {
-	eval $(ssh-agent -s)
   for key in ~/.ssh/id_ed25519 ~/.ssh/id_rsa; do
     if [[ -e "${key}" ]]; then
       ssh-add "${key}"
@@ -33,14 +37,14 @@ dump-ssh-key() {
       base64 -D |
       xxd -p)
     case "${hex}" in
-      30*)
-        # Looks like ASN.1 data, dump it
-        # openssl asn1parse -in "${key_path}"
-        grep -v - "${key_path}" | base64 -D | der2ascii
-        ;;
-      *)
-        echo "${hex}"
-        ;;
+    30*)
+      # Looks like ASN.1 data, dump it
+      # openssl asn1parse -in "${key_path}"
+      grep -v - "${key_path}" | base64 -D | der2ascii
+      ;;
+    *)
+      echo "${hex}"
+      ;;
     esac
   else
     # openssh public key format

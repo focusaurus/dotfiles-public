@@ -32,7 +32,6 @@ i3_mark_last() {
   fi
 }
 
-current_workspace=$(xdotool get_desktop)
 activate_window() {
   class="$1"
   shift
@@ -71,6 +70,7 @@ activate_firefox_main_window() {
 }
 
 main() {
+  current_workspace=$(xdotool get_desktop)
   case $1 in
   f1)
     activate_firefox_main_window
@@ -101,7 +101,13 @@ main() {
     ;;
   f6)
     if wmctrl -l | grep -q "Zoom Meeting ID:"; then
-      activate_window 'Zoom Meeting ID:' true
+      if xdotool getactivewindow getwindowname | grep -q 'Zoom Meeting ID:'; then
+        # zoom is active, switch to slack
+        activate_window 'slack' 'slack'
+      else
+        # zoom is open but not active, activate it
+        activate_window 'Zoom Meeting ID:' true
+      fi
     else
       activate_window 'slack' 'slack'
     fi

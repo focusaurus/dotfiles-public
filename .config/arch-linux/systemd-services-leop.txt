@@ -10,6 +10,7 @@ docker.service
 getty@.service
 lenovo_fix.service
 lightdm.service
+machines.target
 NetworkManager-dispatcher.service
 NetworkManager.service
 NetworkManager-wait-online.service
@@ -17,8 +18,13 @@ nordvpnd.service
 org.cups.cupsd.path
 org.cups.cupsd.service
 org.cups.cupsd.socket
+reboot.target
+remote-cryptsetup.target
 remote-fs.target
 systemd-fsck-root.service
+systemd-networkd.service
+systemd-pstore.service
 systemd-remount-fs.service
+systemd-resolved.service
 systemd-timesyncd.service
 tlp.service

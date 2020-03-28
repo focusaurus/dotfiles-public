@@ -14,6 +14,7 @@ brightnessctl
 broot
 brother-hl2280dw
 circleci-cli-bin
+clang
 clojure
 copyq
 cups-pdf
@@ -31,9 +32,8 @@ feh
 firefox
 foomatic-db-nonfree-ppds
 foomatic-db-ppds
-fzf
+fswatch
 gcalcli
-gcc
 gedit
 git-delta
 gnome-screenshot
@@ -45,6 +45,7 @@ i3tree-git
 icdiff
 insomnia
 intel-ucode
+jo
 keybase-gui
 kubectl
 macchanger
@@ -53,6 +54,7 @@ man-db
 mate-calc
 moreutils
 mpv
+navi-bin
 neovim
 network-manager-applet
 nordvpn-bin
@@ -79,7 +81,6 @@ rustup
 shellcheck
 shfmt
 slack-desktop
-slack-term-bin
 sshuttle
 sxhkd
 system-config-printer
@@ -94,6 +95,8 @@ topgrade
 tree
 ttf-fira-code
 ttf-inconsolata
+ttf-iosevka-ss03
+ttf-iosevka-term-ss03
 upower
 urlview-git
 visual-studio-code-bin

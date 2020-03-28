@@ -1,5 +1,6 @@
 [options]
 font = Inconsolata 14
+#font = Iosevka 14
 #font = Fira Code 14
 #font = Noto Sans 14
 #font = DejaVu Mono 14

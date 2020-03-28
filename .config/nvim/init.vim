@@ -33,11 +33,12 @@ set cursorline
 set ignorecase
 set hlsearch
 set incsearch
+set clipboard=unnamedplus
 runtime! vim-plug-setup.vim
+runtime! mappings.vim
 ":colorscheme koehler
 ":colorscheme ron
 colorscheme slate
 autocmd Filetype yaml setlocal shiftwidth=2 tabstop=2
 autocmd Filetype yml setlocal shiftwidth=2 tabstop=2
 autocmd Filetype sh setlocal shiftwidth=2 tabstop=2
-set clipboard=unnamedplus

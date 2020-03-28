@@ -15,6 +15,8 @@ Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'eraserhd/parinfer-rust', { 'for': 'clojure', 'do': 'cargo build --release' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc-tabnine'
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+Plug 'venantius/vim-cljfmt'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 

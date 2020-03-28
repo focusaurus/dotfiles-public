@@ -67,39 +67,42 @@ bindsym Ctrl+Shift+w kill
 ##### focus a window #####
 # arrow keys
 bindsym $mod+Left mark LAST;focus left
+bindsym $mod+Down focus down
 bindsym $mod+Up mark TEMP; [con_mark="LAST"] focus; [con_mark="TEMP"] mark LAST
 bindsym $mod+Right mark LAST;focus right
-bindsym $mod+Down focus down
-# right hand home row
-bindsym $mod+h mark LAST;focus left
-bindsym $mod+t mark TEMP; [con_mark="LAST"] focus; [con_mark="TEMP"] mark LAST
-bindsym $mod+n mark LAST;focus right
-bindsym $mod+w focus down
 # left hand home row
-bindsym $mod+o mark LAST;focus left
+bindsym $mod+a mark LAST;focus left
+bindsym $mod+o focus down
 bindsym $mod+e mark TEMP; [con_mark="LAST"] focus; [con_mark="TEMP"] mark LAST
 bindsym $mod+u mark LAST;focus right
-bindsym $mod+j focus down
+# right hand home row
+bindsym $mod+h mark LAST;focus left
+bindsym $mod+t focus down
+bindsym $mod+n mark TEMP; [con_mark="LAST"] focus; [con_mark="TEMP"] mark LAST
+bindsym $mod+s mark LAST;focus right
 
 ##### move a window #####
 # arrow keys
 bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
-bindsym $mod+Shift+Down move down
 # left hand home row
-bindsym $mod+Shift+o move left
+bindsym $mod+Shift+a move left
+bindsym $mod+Shift+o move down
 bindsym $mod+Shift+e move up
 bindsym $mod+Shift+u move right
-bindsym $mod+Shift+j move down
 # right hand home row
 bindsym $mod+Shift+h move left
-bindsym $mod+Shift+t move up
-bindsym $mod+Shift+n move right
-bindsym $mod+Shift+w move down
+bindsym $mod+Shift+t move down
+bindsym $mod+Shift+n move up
+bindsym $mod+Shift+s move right
 
 ##### workspace modeless modifiers #####
-#bindsym $mod+apostrophe mark LAST; move to workspace previous
+bindsym $mod+semicolon mark LAST; exec "~/bin/window-manager-nav previous"
+bindsym $mod+q mark LAST; exec "~/bin/window-manager-nav previous move"
+bindsym $mod+j mark LAST; exec "~/bin/window-manager-nav next move"
+bindsym $mod+k mark LAST; exec "~/bin/window-manager-nav next"
 #bindsym $mod+comma mark LAST; move to workspace next
 #bindsym $mod+period workspace previous
 #bindsym $mod+Period workspace next
@@ -115,7 +118,7 @@ bindsym $mod+minus split v
 
 # change container layout (stacked, tabbed, toggle split)
 #bindsym $mod+s layout stacking
-bindsym $mod+shift+a layout tabbed
+bindsym $mod+shift+b layout tabbed
 #bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
