@@ -16,9 +16,9 @@ IFS=$'\n\t'
 mounted=$(findmnt --list --noheadings --output target,source --types vfat || true)
 echo "existing mounts:"
 echo "${mounted}"
-partition=$(lsblk -J | jq -r '.blockdevices[].children[]| .name' | ~/bin/fuzzy-filter "$@")
-point="/mnt/${partition}"
-sudo mkdir -p "${point}"
+partition=$(lsblk -J | jq -r '.blockdevices[].children[]| .name' | grep -v sda | ~/bin/fuzzy-filter "$@")
+point="/mnt/usb-drive"
+#sudo mkdir -p "${point}"
 sudo mount -o "uid=$(id -u)" "/dev/${partition}" "${point}"
 if compgen -G "${point}/RECORD/*.WAV" >/dev/null; then
   # It's my voice memo USB stick. Let's transcribe them!
