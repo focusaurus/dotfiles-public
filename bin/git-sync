@@ -13,12 +13,17 @@ set -o posix    # more strict failures in subshells
 IFS="$(printf "\n\t")"
 # ---- End unofficial bash strict mode boilerplate
 sync_dir() {
-  if ! ~/bin/git-is-work-tree-clean; then
-    echo "Not syncing: not clean: ${PWD}"
-    return
-  fi
   if ! ~/bin/git-is-default-branch; then
     echo "Not syncing: not default branch: ${PWD}"
+    return
+  fi
+  if ! ~/bin/git-is-work-tree-clean; then
+    echo "Work tree not clean. Press ENTER to launch tig."
+    read wait_for_enter
+    tig status
+  fi
+  if ! ~/bin/git-is-work-tree-clean; then
+    echo "Work tree not clean. Not syncing."
     return
   fi
   echo -n "syncing: ${PWD} "

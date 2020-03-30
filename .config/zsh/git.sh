@@ -330,8 +330,5 @@ search-dotfiles() {
 
 git-sync-full() {
   ~/bin/git-autocommit ~/projects/journals
-  ~/bin/git-sync ~/projects/journals ~/projects/dotfiles
-  dotfiles-begin
-  ~/bin/git-sync ~
-  dotfiles-end
+  ~/bin/git-sync ~/projects/journals ~/projects/dotfiles ~
 }
