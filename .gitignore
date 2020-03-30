@@ -125,3 +125,4 @@ npm-debug.log
 /tmp
 /.config/coc/extensions
 /.config/coc/memos.json
+/.gdfuse
