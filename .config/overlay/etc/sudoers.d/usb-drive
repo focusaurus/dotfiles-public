@@ -1,0 +1,1 @@
+%sudo ALL = NOPASSWD: /usr/bin/mount -o uid=1000 /dev/sd?? /mnt/usb-drive, /usr/bin/umount /mnt/usb-drive
