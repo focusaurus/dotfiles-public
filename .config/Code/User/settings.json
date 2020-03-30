@@ -88,5 +88,6 @@
   "[dockerfile]": {
     "editor.defaultFormatter": "ms-azuretools.vscode-docker"
   },
-  "workbench.editor.showTabs": true
+  "workbench.editor.showTabs": true,
+  "editor.wordWrap": "bounded"
 }

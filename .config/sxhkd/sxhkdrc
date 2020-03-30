@@ -11,12 +11,9 @@ ctrl + 4
   rofi -show window
 
 ##### app-nav #####
-# left hand home row "arrows"
-super + {o,e,u,j}
-  ~/bin/app-nav {left,up,right,down}
-# right hand home row "arrows"
-super + {h,t,n,w}
-  ~/bin/app-nav {left,up,right,down}
+# right hand home row vim arrows
+super + {h,t,n,s}
+  ~/bin/app-nav {left,down,up,right}
 # actual arrow keys
 super + {Left,Up,Right,Down}
   ~/bin/app-nav {left,up,right,down}

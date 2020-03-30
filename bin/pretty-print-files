@@ -30,5 +30,13 @@ for path in "$@"; do
   *.md)
     prettier --parser markdown --write "${path}"
     ;;
+  *)
+    if grep -q -E '\b(bash|sh|zsh)\b' "${path}"; then
+      shfmt -i 2 -w "${path}"
+    else
+      echo "unsupported file extension: ${path}" 1>&2
+      exit 10
+    fi
+    ;;
   esac
 done

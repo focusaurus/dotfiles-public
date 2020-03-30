@@ -41,19 +41,19 @@ nav_tmux() {
   case "$1" in
   left)
     tmux previous-window
-		# xdotool key --clearmodifiers ctrl+b p
-		;;
+    # xdotool key --clearmodifiers ctrl+b p
+    ;;
   up)
-    tmux select-pane -l
-		# xdotool key --clearmodifiers ctrl+b o
+    tmux switch-client -n
+    # xdotool key --clearmodifiers ctrl+b parenright
     ;;
   right)
     tmux next-window
-		# xdotool key --clearmodifiers ctrl+b n
+    # xdotool key --clearmodifiers ctrl+b n
     ;;
   down)
-		tmux switch-client -n
-		# xdotool key --clearmodifiers ctrl+b parenright
+    tmux select-pane -l
+    # xdotool key --clearmodifiers ctrl+b o
     ;;
   esac
 }
@@ -76,7 +76,7 @@ nav_vs_code() {
 }
 
 main() {
-	#export PATH="${HOME}/github/jordansissel/xdotool:${PATH}"
+  #export PATH="${HOME}/github/jordansissel/xdotool:${PATH}"
   cmdline=$(cat /proc/$(xdotool getactivewindow getwindowpid)/cmdline)
   log "----\n$(date)\n${cmdline} $@"
   # It seems if we issue the synthetic keystrokes before the physical keys are lifted,
