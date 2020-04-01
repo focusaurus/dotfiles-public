@@ -30,6 +30,7 @@ fasd
 fd
 feh
 firefox
+fluxctl-bin
 foomatic-db-nonfree-ppds
 foomatic-db-ppds
 fswatch
@@ -48,6 +49,7 @@ intel-ucode
 jo
 keybase-gui
 kubectl
+kustomize
 macchanger
 make
 man-db

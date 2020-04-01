@@ -11,12 +11,12 @@ ctrl + 4
   rofi -show window
 
 ##### app-nav #####
-# right hand home row vim arrows
-super + {h,t,n,s}
+# left hand home row vim arrows
+super + {a,o,e,u}
   ~/bin/app-nav {left,down,up,right}
 # actual arrow keys
-super + {Left,Up,Right,Down}
-  ~/bin/app-nav {left,up,right,down}
+super + {Left,Down,Up,Right}
+  ~/bin/app-nav {left,down,up,right}
 
 super + v
   copyq show
