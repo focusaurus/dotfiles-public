@@ -215,6 +215,9 @@ mode "windows-and-workspaces" {
         bindsym Shift+9 move container to workspace number $ws9
         bindsym Shift+0 move container to workspace number $ws10
 
+        ##### sound #####
+        bindsym m exec "~/bin/mic-toggle"
+
         ##### switch back to default mode #####
         bindsym Return mode "default"
         bindsym Escape mode "default"
