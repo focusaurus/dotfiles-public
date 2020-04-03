@@ -21,5 +21,5 @@ else
 fi
 
 vimrc() {
-  fd . ~/.config/nvim | ~/bin/fuzzy-filter "$@" | xargs nvim
+  fd . ~/.config/nvim | xargs nvim -p
 }
