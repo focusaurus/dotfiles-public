@@ -26,6 +26,7 @@ setup-path() {
   add-path "${HOME}/projects/md-to-pdf/bin"
   add-path "${HOME}/.cargo/bin"
   add-path "${NVM_BIN}"
+  add-path "/opt/nosqlbooster-mongodb"
   if [[ -e ~/.nvm/alias/default ]]; then
     add-path ~/".nvm/versions/node/$(cat ~/.nvm/alias/default)/bin"
   fi

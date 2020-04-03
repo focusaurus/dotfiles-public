@@ -12,7 +12,6 @@ general {
 }
 
 #order += "ipv6"
-order += "wireless _first_"
 #order += "ethernet _first_"
 order += "volume master"
 order += "read_file mic"
@@ -21,11 +20,12 @@ order += "battery 1"
 #order += "disk /"
 #order += "load"
 #order += "memory"
+order += "wireless _first_"
 order += "tztime local"
 
 wireless _first_ {
-  format_up = "Wifi %essid %ip"
-  format_down = "Wifi down"
+  format_up = "📶 %essid %ip"
+  format_down = "📶 down"
 }
 
 ethernet _first_ {

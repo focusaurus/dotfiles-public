@@ -12,4 +12,4 @@ set -o posix    # more strict failures in subshells
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-code --new-window "$@"
+code
