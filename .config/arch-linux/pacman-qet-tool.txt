@@ -9,6 +9,7 @@ brother-hl2280dw
 copyq
 cryptmount
 cups-pdf
+cura
 dfu-util
 dhclient
 docker-compose
@@ -22,17 +23,19 @@ fd
 firefox
 foomatic-db-nonfree-ppds
 foomatic-db-ppds
-fzf
+fswatch
 gcalcli
 gcc
 gedit
 git-delta
 gnome-screenshot
 google-chrome
+google-drive-ocamlfuse
 grub
 hadolint-bin
 intel-ucode
 jq
+keybase-gui
 libmp4v2
 macchanger
 make
@@ -40,6 +43,7 @@ man-db
 mate-calc
 mpd
 mpv
+navi-bin
 ncmpc
 neovim
 network-manager-applet
@@ -74,7 +78,8 @@ ttf-fantasque-sans-mono
 ttf-inconsolata
 unzip
 upower
-urlview
+urlview-git
+visidata
 visual-studio-code-bin
 wireless_tools
 wmctrl
@@ -89,8 +94,10 @@ xorg-xev
 xorg-xfontsel
 xorg-xinput
 xorg-xmodmap
+xournalpp
 xss-lock
 yad
 yay
 zenity
+zoom
 zulip-desktop
