@@ -7,6 +7,7 @@ chpwd-path() {
 }
 
 ##### node version manager (nvm) #####
+source "$(dirname "${(%):-%N}")/node.sh"
 chpwd-nvm() {
   if [[ -f ".nvmrc" ]]; then
     nvm use

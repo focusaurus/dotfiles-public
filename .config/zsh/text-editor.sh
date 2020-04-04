@@ -6,7 +6,7 @@ rgte() {
 }
 
 paste-to-vim() {
-  ~/bin/paste | vim -n -c startinsert -
+  ~/bin/paste | v -n -c startinsert -
 }
 
 if command -v nvim >/dev/null; then
@@ -19,3 +19,7 @@ else
   alias v="vi"
   export EDITOR="vi"
 fi
+
+vimrc() {
+  fd . ~/.config/nvim | xargs nvim -p
+}
