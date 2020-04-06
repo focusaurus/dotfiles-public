@@ -246,5 +246,5 @@ for_window [title="Zoom Meeting"] floating disable
 assign [class="org.gnome.gedit.Org.gnome.gedit"] 2
 
 exec --no-startup-id ~/bin/setup-desktop-environment
-exec --no-startup-id gedit
-exec --no-startup-id termite
+exec --no-startup-id termite --exec=tmux --title=terminal
+exec --no-startup-id firefox
