@@ -94,6 +94,7 @@ main() {
 
   pkill --uid "${USER}" --full ergodox-watch || true
   ~/bin/ergodox-watch &>/dev/null &
+  ~/bin/mic-toggle
   # 2018-04-09 plyons https://superuser.com/questions/410657/enabling-sticky-keys-under-xorg-awesome-desktop-manager#414535
   # Turn on stickykeys. don't let two keys pressed at the same time disable it.
   # don't turn on "latch lock", ie pressing a modifier key twice "locks" it on.
