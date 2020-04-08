@@ -36,6 +36,7 @@ set incsearch
 set clipboard=unnamedplus
 runtime! vim-plug-setup.vim
 runtime! mappings.vim
+runtime! syntastic.vim
 ":colorscheme koehler
 ":colorscheme ron
 colorscheme slate
