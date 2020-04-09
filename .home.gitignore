@@ -128,3 +128,6 @@ npm-debug.log
 /.config/NoSQLBooster for MongoDB
 /.android
 /.circleci
+/.config/htop
+/.serverless
+/.serverlessrc
