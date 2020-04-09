@@ -153,6 +153,9 @@ mode "resize" {
 bindsym $mod+shift+z mode "resize"
 
 mode "windows-and-workspaces" {
+        #### keep kill binding always #####
+        bindsym Ctrl+Shift+w kill
+
         ##### focus a window #####
         # arrow keys
         bindsym Left mark LAST; focus left
