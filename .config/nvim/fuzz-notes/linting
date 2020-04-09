@@ -1,0 +1,5 @@
+I'm using Syntastic for linting.
+
+Run :SyntasticCheck command to do it.
+
+It refreshes on file save.

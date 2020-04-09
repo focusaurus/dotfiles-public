@@ -12,8 +12,8 @@ At the moment the approach I'm using is my actual home directory is a checked-ou
 Briefly, it goes like this:
 
 - Use a bare repo at `~/.home.git` just to avoid the fact that git by default searches upward in the filesystem for any directory named `.git`. That means if you have non-git-repos in your home directory and accidentally run git commands there's some chance it affects your dotfiles repo. Not sure exactly how this would play out, I guess an errant `git add .` perhaps? But anyway, just choosing a different name solves that.
-- As a consequence of the nonstandard name, we need to tell git how our setup works when we do want to work with it.
-  - I do this as needed by setting 2 environment variables by way of a pair of 1-liner zsh functions.
+  - As a consequence of the nonstandard name, we need to tell git how our setup works when we do want to work with it.
+    - I do this as needed by setting 2 environment variables by way of a pair of 1-liner zsh functions.
 
 ```sh
 
@@ -22,9 +22,13 @@ dotfiles-begin() { export GIT_DIR="${HOME}/.home.git" GIT_WORK_TREE="${HOME}" }
 dotfiles-end() { unset GIT_DIR GIT_WORK_TREE }
 ```
 
-- I do it this way so my dozens of git alias and shell functions just work. Other tutorials have techniques like dedicated aliases or functions that cause everything else git related to be broken, so this is better.
-- I have an indicator in my prompt to remind me when I'm in this mode
-- I have a huge `~/.gitignore` which is the main trade-off vs a complex symlink setup. It's easy enough to maintain but it is a lot of small tasks, especially when my software stack is undergoing a lot of churn, which has been the case recently, but should be starting to stabilize for a while now
+  - I have an indicator in my prompt to remind me when I'm in this mode
+  - I do it this way so my dozens of git alias and shell functions just work. Other tutorials have techniques like dedicated aliases or functions that cause everything else git related to be broken, so this is better.
+- I keep a separate gitignore file just for my home directory repository at `~/.home.gitignore`
+  - This is setup initially via `git config core.excludesfile ~/.home.gitignore`
+  - This file is huge and I add to it regularly as programs write nonimportant stuff to my home directory
+  - Maintaining this file is the main trade-off of this dotfiles approach compared to some symlink management approach. It's easy enough to maintain this large gitignore file, but it does require a lot of small tasks, especially when my software stack is undergoing a lot of churn, which has been the case recently, but should be starting to stabilize for a while now
+  - My actual `~/.gitignore` is the main one inherited for me across all repos 
 
 ## Key parts of my stack
 

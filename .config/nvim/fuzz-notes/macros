@@ -1,0 +1,6 @@
+Start recording a macro with q then the macro name letter: qa
+q when done to finish the macro
+@q to run macro q
+@@ to run the most recently run macro again
+
+You can also edit macros after recording them

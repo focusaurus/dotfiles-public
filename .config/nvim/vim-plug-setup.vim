@@ -18,5 +18,9 @@ Plug 'neoclide/coc-tabnine'
 "Plug 'neoclide/coc-tsserver'
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'venantius/vim-cljfmt'
+"Plug 'tpope/vim-surround'
+"Plug 'tpope/vim-repeat'
+Plug 'machakann/vim-sandwich'
+Plug 'vim-syntastic/syntastic'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
