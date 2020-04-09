@@ -1,0 +1,14 @@
+Manage pairs () [] {} "" '' etc with the sandwich plugin.
+
+The classic plugin is tpope vim-surround.
+
+Sandwich is the hipster modern version.
+
+https://github.com/machakann/vim-sandwich
+
+Add quotes around the current little word: saiw"
+Add quotes around the current big word: saiW"
+Delete quotes: sdb
+Change single quotes to double quotes: sr'"
+
+'test'
