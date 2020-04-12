@@ -4,7 +4,8 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
 endif
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.local/share/nvim/site/vim-plug-plugins')
-
+"needed for orgmode
+Plug 'neovim/pynvim'
 " auto-detect indent settings
 Plug 'tpope/vim-sleuth'
 " fuzzyness
@@ -22,5 +23,6 @@ Plug 'venantius/vim-cljfmt'
 "Plug 'tpope/vim-repeat'
 Plug 'machakann/vim-sandwich'
 Plug 'vim-syntastic/syntastic'
+Plug 'jceb/vim-orgmode'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()

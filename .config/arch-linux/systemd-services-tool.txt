@@ -21,10 +21,13 @@ org.cups.cupsd.socket
 reboot.target
 remote-cryptsetup.target
 remote-fs.target
+systemd-homed.service
 systemd-networkd.service
 systemd-pstore.service
 systemd-remount-fs.service
+systemd-repart.service
 systemd-resolved.service
 systemd-timesyncd.service
+systemd-userdbd.socket
 tlp.service
 wpa_supplicant.service

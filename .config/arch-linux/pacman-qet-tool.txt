@@ -1,3 +1,4 @@
+android-tools
 at
 base
 bat
@@ -45,7 +46,7 @@ mpd
 mpv
 navi-bin
 ncmpc
-neovim
+neovim-git
 network-manager-applet
 noto-fonts-emoji
 nvm
@@ -54,6 +55,7 @@ patch
 pavucontrol
 pinta
 pkgconf
+ponymix
 pulldown-cmark
 pulseaudio-equalizer
 pulseaudio-jack

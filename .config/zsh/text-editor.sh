@@ -21,5 +21,5 @@ else
 fi
 
 vimrc() {
-  fd . ~/.config/nvim | xargs nvim -p
+  fd .vim ~/.config/nvim | xargs nvim -p
 }
