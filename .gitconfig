@@ -5,7 +5,7 @@
   ignorecase = false
   autocrlf = input
   precomposeunicode = true
-  excludesfile = ~/.global.gitignore
+  excludesfile = ~/.config/git/ignore
 #  pager = delta --dark
 [color]
   branch = auto
