@@ -34,16 +34,19 @@ EOF
 
 alias i3config="~/bin/text-editor ~/.config/i3/config"
 reset-i3sock() {
-  export I3SOCK="/run/user/${UID}/i3/ipc-socket.$(pidof i3)"
+  I3SOCK="/run/user/${UID}/i3/ipc-socket.$(pidof i3)"
+  export I3SOCK
 }
 
 view-systemd-service-logs() {
-  service=$(ls ~/.config/systemd/user/*.service | xargs -n 1 basename | ~/bin/fuzzy-filter "$@")
+  service=$(find ~/.config/systemd/user -name '*.service' -print0 |
+    xargs -0 -n 1 basename |
+    ~/bin/fuzzy-filter "$@")
   journalctl --user --unit "${service}"
 }
 
 arch-pacman-cheat-sheet() {
-cat <<EOF | less
+  cat <<EOF | less
 Querying package databases
 
 Pacman queries the local package database with the -Q flag, the sync database with the -S flag and the files database with the -F flag. See pacman -Q --help, pacman -S --help and pacman -F --help for the respective suboptions of each flag.
@@ -112,4 +115,3 @@ See Pacman/Tips and tricks for more examples.
 Pactree
 EOF
 }
-
