@@ -1,0 +1,13 @@
+*.bk
+*.log
+*.pyc
+*~
+.DS_Store
+._.DS_Store
+.terraform
+/target
+__pycache__
+/local
+elm-stuff
+node_modules
+npm-debug.log
