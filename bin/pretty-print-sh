@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-jq --sort-keys
+shfmt -i 2

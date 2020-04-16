@@ -111,7 +111,7 @@ bindsym $mod+minus split v
 # change container layout (stacked, tabbed, toggle split)
 #bindsym $mod+s layout stacking
 bindsym $mod+shift+b layout tabbed
-#bindsym $mod+e layout toggle split
+bindsym $mod+shift+s layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -243,7 +243,7 @@ for_window [class="(?i)copyq"] floating enable
 for_window [class="(?i)tilda.Tilda"] floating enable
 for_window [instance="zoom"] floating enable, move absolute center
 #for_window [title="kazam.Kazam"] floating disable
-for_window [title="Zoom Meeting"] floating disable
+for_window [title="Zoom"] floating disable
 #for_window [title="(?i)gedit"] floating disable
 
 assign [class="org.gnome.gedit.Org.gnome.gedit"] 2

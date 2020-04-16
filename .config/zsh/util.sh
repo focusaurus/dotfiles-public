@@ -16,7 +16,7 @@ ap4() {
 }
 
 sigusr1() {
-  killall --user $(id -u -n) --signal USR1 "$@"
+  killall --user "$(id -u -n)" --signal USR1 "$@"
 }
 
 copy-dir-name() {
@@ -31,7 +31,7 @@ alias paste=~/bin/paste
 
 copy-recent-command() {
   fzf_args=(--no-sort --tac)
-  if [[ -n "$@" ]]; then
+  if [[ -n "$*" ]]; then
     fzf_args+=(--query "$@")
   fi
   command=$(fc -l -10 -1 | awk '{$1=""; print $0}' | fzf "${fzf_args[@]}")
@@ -135,6 +135,12 @@ tstmp() {
   cd "${DIR}" || return 1
 }
 
+scratch-daily() {
+  scratch="${HOME}/scratch/$(date +%Y/%m-%d)"
+  mkdir -p "${scratch}"
+  cd "${scratch}" || return 1
+}
+
 whos-listening() {
   if [[ -n "$1" ]]; then
     port=":$1"
@@ -153,7 +159,7 @@ kill-listener() {
   whos-listening "$1"
   echo -n "ENTER to kill process ${pid} to free port $1. CTRL-c to abort."
   # shellcheck disable=SC2034
-  read confirm
+  read -r confirm
   kill "${pid}"
 }
 
@@ -178,7 +184,7 @@ watch-movie() {
   find ~/Downloads -maxdepth 2 -type "f" -size +200M | sort | {
     while IFS= read -r file_path; do
       echo -n Watch "$(basename "${file_path}")? y/n"
-      read -q response
+      read -r -q response
       echo
       if [[ "${response}" == "y" ]]; then
         open "${file_path}"
@@ -242,6 +248,7 @@ sort-file() {
 # Will do case-insensitive search for SOME_VAR case and someVar case
 # Searches all files in the git repo plus `.env` if it's present
 snake-search() {
+  # shellcheck disable=SC2001
   snake_var=$(echo "$1" | sed -e 's/_/_?/g')
   (
     if [[ -f ".env" ]]; then
@@ -255,6 +262,7 @@ alias rgyaml="rg --glob '*.y*ml'"
 
 br_source="${HOME}/.config/broot/launcher/bash/br"
 if [[ -f "${br_source}" ]]; then
+  # shellcheck disable=SC1090
   source "${br_source}"
 fi
 

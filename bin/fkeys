@@ -40,7 +40,7 @@ activate_window() {
   #echo matches "${matches}"
   if [[ -z "${matches}" ]]; then
     # No matching windows, launch the app
-    # shellcheck disable=SC2093
+    # shellcheck disable=SC2086
     exec ${command}
     return
   fi
@@ -92,7 +92,7 @@ main() {
     activate_window 'termite' 'termite'
     ;;
   f4)
-    local app_image
+    #local app_image
     #app_image="$(find "${HOME}/aur/workflowy" -type f -name 'WorkFlowy-*.AppImage' | sort -n | head -1)"
     activate_window 'workflowy' "/opt/WorkFlowy-x86_64.AppImage"
     ;;
@@ -100,13 +100,13 @@ main() {
     ~/projects/dotfiles/fuzzball/workflowy-done
     ;;
   f6)
-    if wmctrl -l | grep -q "Zoom Meeting ID:"; then
-      if xdotool getactivewindow getwindowname | grep -q 'Zoom Meeting ID:'; then
+    if wmctrl -l | grep -qi "zoom"; then
+      if xdotool getactivewindow getwindowname | grep -qi 'Zoom'; then
         # zoom is active, switch to slack
         activate_window 'slack' 'slack'
       else
         # zoom is open but not active, activate it
-        activate_window 'Zoom Meeting ID:' true
+        activate_window 'zoom' true
       fi
     else
       activate_window 'slack' 'slack'
@@ -138,28 +138,28 @@ main() {
     # xdotool key alt+3
     ;;
   f11)
-    new_workspace=$((${current_workspace} - 1))
+    new_workspace=$((current_workspace - 1))
     if [[ ${new_workspace} -lt 0 ]]; then
       new_workspace=1
     fi
     xdotool set_desktop "${new_workspace}"
     ;;
   shift+f11)
-    new_workspace=$((${current_workspace} - 1))
+    new_workspace=$((current_workspace - 1))
     if [[ ${new_workspace} -lt 0 ]]; then
       new_workspace=1
     fi
     xdotool getactivewindow set_desktop_for_window "${new_workspace}"
     ;;
   f12)
-    new_workspace=$((${current_workspace} + 1))
+    new_workspace=$((current_workspace + 1))
     if [[ ${new_workspace} -gt 3 ]]; then
       new_workspace=0
     fi
     xdotool set_desktop "${new_workspace}"
     ;;
   shift+f12)
-    new_workspace=$((${current_workspace} + 1))
+    new_workspace=$((current_workspace + 1))
     if [[ ${new_workspace} -gt 3 ]]; then
       new_workspace=0
     fi

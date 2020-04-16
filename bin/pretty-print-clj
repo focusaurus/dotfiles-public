@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 # Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
 
 # ---- Start unofficial bash strict mode boilerplate
@@ -11,19 +12,7 @@ set -o posix    # more strict failures in subshells
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-for path in "$@"; do
-  extension=${path##*.}
-  case "${extension}" in
-  clj|css|graphql|html|js|json|md|sh|yaml)
-    "${HOME}/bin/pretty-print-${extension}" <"${path}" | sponge "${path}"
-    ;;
-  *)
-    if grep -q -E '\b(bash|sh|zsh)\b' "${path}"; then
-      ~/bin/pretty-print-sh <"${path}" | sponge "${path}"
-    else
-      echo "unsupported file extension: ${path}" 1>&2
-      exit 10
-    fi
-    ;;
-  esac
-done
+# shellcheck disable=SC1091
+source /usr/share/nvm/nvm.sh
+nvm use 12 &>/dev/null
+cljfmt
