@@ -34,6 +34,7 @@ set ignorecase
 set hlsearch
 set incsearch
 set clipboard=unnamedplus
+set statusline+=%F
 runtime! vim-plug-setup.vim
 runtime! mappings.vim
 runtime! syntastic.vim
