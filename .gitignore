@@ -9,7 +9,6 @@
 __pycache__
 _local
 elm-stuff
-my_stuff
 node_modules
 npm-debug.log
 
@@ -95,7 +94,6 @@ npm-debug.log
 /.stack
 /.tig_history
 /.tmux
-/.tmux/plugins
 /.viminfo
 /.visidata/cache
 /.wget-hsts
