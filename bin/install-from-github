@@ -14,7 +14,7 @@ IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
 log_repo() {
-  log_dir=~/.config/install-from-github
+  log_dir="/run/user/$(id -u)/install-from-github"
   mkdir -p "${log_dir}"
   echo "$1" >>"${log_dir}/repos.log"
 }
