@@ -1,0 +1,6 @@
+[Unit]
+Description=Archive daily todo list and generate future ones
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c '~/projects/org/bin/daily-archive.sh'

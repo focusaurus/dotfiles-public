@@ -59,6 +59,7 @@ npm-debug.log
 /.config/pulse
 /.config/rclone
 /.config/syncthing
+/.config/systemd/user/timers.target.wants
 /.config/twg
 /.config/vlc/vlc-qt-interface.conf
 /.config/zoomus.conf
