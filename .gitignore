@@ -132,3 +132,4 @@ npm-debug.log
 /.serverless
 /.serverlessrc
 /work-*
+/scratch
