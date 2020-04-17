@@ -34,6 +34,7 @@
 /.config/nvim/.netrwhist
 /.config/pulse
 /.config/twg
+/.config/systemd/user/timers.target.wants
 /.cpcache
 /.electron-gyp
 /.fasd
