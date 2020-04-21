@@ -1,10 +1,10 @@
 acpi
 acpid
+alacritty
 at
-autoconf
-automake
 aws-cli
 aws-iam-authenticator-bin
+babashka-bin
 base
 bat
 bind-tools
@@ -22,6 +22,7 @@ cura
 dfu-util
 docker-compose
 dunst
+entr
 espeak
 evince
 exa
@@ -56,10 +57,12 @@ man-db
 mate-calc
 moreutils
 mpv
+mupdf
 navi-bin
-neovim
+neovim-git
 network-manager-applet
 nordvpn-bin
+nosqlbooster-mongodb
 nvm
 obs-studio
 openvpn
@@ -69,6 +72,7 @@ pinta
 pkgconf
 pod2man
 polybar
+ponymix
 prettier
 pulldown-cmark
 pulseaudio-equalizer
@@ -83,8 +87,10 @@ rustup
 shellcheck
 shfmt
 slack-desktop
+sops
 sshuttle
 sxhkd
+syncthing
 system-config-printer
 termite
 testdisk
