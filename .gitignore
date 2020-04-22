@@ -12,6 +12,14 @@ elm-stuff
 node_modules
 npm-debug.log
 
+/Applications
+/Desktop
+/Documents
+/Library
+/Movies
+/Pictures
+/Public
+/.CFUserTextEncoding
 /.3T
 /.Conduktor
 /.Xauthority
