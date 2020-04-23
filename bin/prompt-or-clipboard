@@ -23,15 +23,28 @@ text=$(
 EOF
 )
 
-if true; then
-  #if [[ "${X}" == "1" || ! -t 1 ]]; then
+applescript=$(
+  cat <<EOF
+display dialog "${label}" default answer "" buttons {"Ok", "Cancel"} default button 1
+text returned of the result
+EOF
+)
+#This is old multiline support that I had for a hot minute
+# there on linux for journal entries
+# now I just journal-append-vim
+#  if [[ "${MULTILINE}" == "true" ]]; then
+#   value=$(yad --title "${label}" \
+#      --text "ctrl+ENTER when ready" \
+#      --width 500 --height 500 \
+#      --form --separator="" --field=Entry:TXT |
+#      sed -e 's/\\n/\n/g' -e '$ s/|$//')
+#  else
+
+#if true; then
+if [[ "${X}" == "1" || ! -t 1 ]]; then
   # echo "${clipboard_preview}" >/dev/tty
-  if [[ "${MULTILINE}" == "true" ]]; then
-    value=$(yad --title "${label}" \
-      --text "ctrl+ENTER when ready" \
-      --width 500 --height 500 \
-      --form --separator="" --field=Entry:TXT |
-      sed -e 's/\\n/\n/g' -e '$ s/|$//')
+  if [[ $(uname) == "Darwin" ]]; then
+    value=$(osascript -e "${applescript}")
   else
     value=$(yad --entry --title "${label}" --text "${text}" --width 500)
   fi
