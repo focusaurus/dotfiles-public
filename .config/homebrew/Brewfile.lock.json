@@ -234,6 +234,48 @@
             }
           }
         }
+      },
+      "shfmt": {
+        "version": "3.1.0",
+        "bottle": {
+          "cellar": ":any_skip_relocation",
+          "prefix": "/usr/local",
+          "files": {
+            "catalina": {
+              "url": "https://homebrew.bintray.com/bottles/shfmt-3.1.0.catalina.bottle.tar.gz",
+              "sha256": "de4f24af10a68d1a89f8eed7cbac18aeb243a156b6ecac589172c8d51a463c7a"
+            },
+            "mojave": {
+              "url": "https://homebrew.bintray.com/bottles/shfmt-3.1.0.mojave.bottle.tar.gz",
+              "sha256": "da56c76f78ccd8de55136f72326cf22bac6d74a1ca3b32304e8e837b3b0866a7"
+            },
+            "high_sierra": {
+              "url": "https://homebrew.bintray.com/bottles/shfmt-3.1.0.high_sierra.bottle.tar.gz",
+              "sha256": "fecaf473648c22ee1c62b54d6ed56ee651182ce0550db35cf2f33ae954bb4ecf"
+            }
+          }
+        }
+      },
+      "bash": {
+        "version": "5.0.16",
+        "bottle": {
+          "cellar": "/usr/local/Cellar",
+          "prefix": "/usr/local",
+          "files": {
+            "catalina": {
+              "url": "https://homebrew.bintray.com/bottles/bash-5.0.16.catalina.bottle.tar.gz",
+              "sha256": "a124202b5a5c0896ab93c8603eefae655ef622d34f9e15e4d4aa77f1cd314c1d"
+            },
+            "mojave": {
+              "url": "https://homebrew.bintray.com/bottles/bash-5.0.16.mojave.bottle.tar.gz",
+              "sha256": "dd9c4711dc1be6d54ea74143b224b21ab0d165fca090fbcb921efaa0c0bb2f12"
+            },
+            "high_sierra": {
+              "url": "https://homebrew.bintray.com/bottles/bash-5.0.16.high_sierra.bottle.tar.gz",
+              "sha256": "d8c36b430ff928f72b33bad666f1ae2170802e85b8b51594c953e583fd4f11be"
+            }
+          }
+        }
       }
     },
     "cask": {
@@ -247,6 +289,12 @@
         "version": "3.362-1578",
         "options": {
           "full_name": "bettertouchtool"
+        }
+      },
+      "copyq": {
+        "version": "3.10.0",
+        "options": {
+          "full_name": "copyq"
         }
       }
     }
