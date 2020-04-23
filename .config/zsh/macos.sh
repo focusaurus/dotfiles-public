@@ -16,3 +16,18 @@ macos-fix-compaudit() {
 macos-install-brew() {
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 }
+
+_brew_bundle() {
+  cd ~/.config/homebrew || return 1
+  echo "$1 '$2'" >> Brewfile
+  brew bundle
+  cd - || return 1
+}
+
+macos-brew-cask() {
+  _brew_bundle cask "$@"
+}
+
+macos-brew() {
+  _brew_bundle brew "$@"
+}

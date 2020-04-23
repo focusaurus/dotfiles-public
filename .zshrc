@@ -29,6 +29,7 @@ have_exe() {
 
 source-if-exists ~/.config/zsh/*.sh
 source-if-exists ~/work-reaction/common/shell-setup.sh
+source-if-exists ~/mailchimp/mailchimp.sh
 source-if-exists "${HOME}/.config/zsh/os/$(uname).sh"
 source-if-exists "${HOME}/.nvm/nvm.sh"
 #source-if-exists ~/github/Aloxaf/fzf-tab/fzf-tab.zsh
