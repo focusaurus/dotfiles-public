@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
+
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -o errexit  # always exit on error
+set -o errtrace # trap errors in functions as well
+set -o pipefail # don't ignore exit codes when piping output
+set -o posix    # more strict failures in subshells
+# set -x          # enable debugging
+
+IFS=$'\n\t'
+# ---- End unofficial bash strict mode boilerplate
+
+log_name=$(basename "$1")
+shift
+log_dir=
+log_dir="/run/user/$(id -u)"
+if [[ ! -d "${log_dir}" ]]; then
+log_dir="/tmp"
+fi
+log_file="${log_dir}/${log_name}.log"
+echo "$(~/bin/rfc-3339) ${log_name} $@" >> "${log_file}"
