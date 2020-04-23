@@ -323,6 +323,8 @@ dotfiles-begin() {
 dotfiles-end() {
   unset GIT_DIR GIT_WORK_TREE
 }
+alias dfb="dotfiles-begin"
+alias dfe="dotfiles-end"
 
 search-dotfiles() {
   GIT_DIR="${HOME}/.home.git" git ls-files | xargs rg "$@"

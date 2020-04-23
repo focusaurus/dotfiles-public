@@ -28,7 +28,7 @@ install-shfmt() {
 # https://github.com/Homebrew/brew/blob/master/share/doc/homebrew/Analytics.md#opting-out
 export HOMEBREW_NO_ANALYTICS=1
 
-save-brew() {
+macos-save-brew() {
   (cd ~/.config/homebrew && brew bundle dump --force)
 }
 
