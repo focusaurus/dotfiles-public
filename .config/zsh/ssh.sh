@@ -12,7 +12,7 @@ fi
 passwordless() {
   for key in ~/.ssh/id_ed25519 ~/.ssh/id_rsa; do
     if [[ -e "${key}" ]]; then
-      ssh-add "${key}"
+      ssh-add -t 4h "${key}"
     fi
   done
 }
