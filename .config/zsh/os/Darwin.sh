@@ -29,9 +29,7 @@ install-shfmt() {
 export HOMEBREW_NO_ANALYTICS=1
 
 save-brew() {
-  brew leaves >~/projects/dotfiles/brew-leaves.txt
-  brew cask list >~/projects/dotfiles/brew-cask-list.txt
-  (cd ~/projects/dotfiles && brew bundle dump --force)
+  (cd ~/.config/homebrew && brew bundle dump --force)
 }
 
 homebrew-ssl-vars() {

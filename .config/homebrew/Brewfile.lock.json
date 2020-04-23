@@ -276,6 +276,73 @@
             }
           }
         }
+      },
+      "fd": {
+        "version": "8.0.0",
+        "bottle": {
+          "cellar": ":any_skip_relocation",
+          "prefix": "/usr/local",
+          "files": {
+            "catalina": {
+              "url": "https://homebrew.bintray.com/bottles/fd-8.0.0.catalina.bottle.tar.gz",
+              "sha256": "d3eafb3efc4c62d824ebc316c73ca1562cb92eca8049864ae1716144969c8c3d"
+            },
+            "mojave": {
+              "url": "https://homebrew.bintray.com/bottles/fd-8.0.0.mojave.bottle.tar.gz",
+              "sha256": "c6c7349e7bfbe9893478d06c7c599934c1e07e017ced1b5d13a5716487327de3"
+            },
+            "high_sierra": {
+              "url": "https://homebrew.bintray.com/bottles/fd-8.0.0.high_sierra.bottle.tar.gz",
+              "sha256": "49998bf05261897f03f5026a8394c5106e83bec4eb79dcd1b0846c3248e2573b"
+            }
+          }
+        }
+      },
+      "ripgrep": {
+        "version": "12.0.1",
+        "bottle": {
+          "cellar": ":any",
+          "prefix": "/usr/local",
+          "files": {
+            "catalina": {
+              "url": "https://homebrew.bintray.com/bottles/ripgrep-12.0.1.catalina.bottle.tar.gz",
+              "sha256": "61b5686741206e584aa2f94746ecdd68bea29ad381b2a6c0ce2076cacb8408ca"
+            },
+            "mojave": {
+              "url": "https://homebrew.bintray.com/bottles/ripgrep-12.0.1.mojave.bottle.tar.gz",
+              "sha256": "1203664c55ee33d9b668cc9e8f4fe06b2cfe48ae7bc1374b3576104defc279ac"
+            },
+            "high_sierra": {
+              "url": "https://homebrew.bintray.com/bottles/ripgrep-12.0.1.high_sierra.bottle.tar.gz",
+              "sha256": "7a0ff676fe9bfc33f3c4279856c45238e3cc61a396cbd5e266d23796a5003e72"
+            }
+          }
+        }
+      },
+      "nvm": {
+        "version": "0.35.3",
+        "bottle": false
+      },
+      "prettier": {
+        "version": "2.0.4",
+        "bottle": {
+          "cellar": ":any_skip_relocation",
+          "prefix": "/usr/local",
+          "files": {
+            "catalina": {
+              "url": "https://homebrew.bintray.com/bottles/prettier-2.0.4.catalina.bottle.tar.gz",
+              "sha256": "574dda64087b9a45f5f62f43da87f6874748c908a4f87ed02d90b10d1badcade"
+            },
+            "mojave": {
+              "url": "https://homebrew.bintray.com/bottles/prettier-2.0.4.mojave.bottle.tar.gz",
+              "sha256": "6983cf4b630f60456c411f46c44560a3df82c822ca3fe47336979903f528356f"
+            },
+            "high_sierra": {
+              "url": "https://homebrew.bintray.com/bottles/prettier-2.0.4.high_sierra.bottle.tar.gz",
+              "sha256": "7f62f204a42a3b8093820068b636e142f184219f4308eeca3639eab78bc3866d"
+            }
+          }
+        }
       }
     },
     "cask": {
@@ -296,6 +363,12 @@
         "options": {
           "full_name": "copyq"
         }
+      },
+      "font-inconsolata-nerd-font": {
+        "version": "2.1.0",
+        "options": {
+          "full_name": "homebrew/cask-fonts/font-inconsolata-nerd-font"
+        }
       }
     }
   },
@@ -304,9 +377,9 @@
       "catalina": {
         "HOMEBREW_VERSION": "2.2.13",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "e803140d3624bf8bcdfe94987449055ebe1edc16",
+        "Homebrew/homebrew-core": "a66256a8ff985a80a1b73418f0508aa884c4bf14",
         "CLT": "1103.0.32.59",
-        "Xcode": "11.4",
+        "Xcode": "11.4.1",
         "macOS": "10.15.4"
       }
     }
