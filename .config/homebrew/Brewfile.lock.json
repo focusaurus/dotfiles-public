@@ -343,6 +343,10 @@
             }
           }
         }
+      },
+      "ranger": {
+        "version": "1.9.3",
+        "bottle": false
       }
     },
     "cask": {
@@ -367,8 +371,28 @@
       "font-inconsolata-nerd-font": {
         "version": "2.1.0",
         "options": {
-          "full_name": "homebrew/cask-fonts/font-inconsolata-nerd-font"
+          "full_name": "font-inconsolata-nerd-font"
         }
+      },
+      "workflowy": {
+        "version": "1.3.5-7075",
+        "options": {
+          "full_name": "workflowy"
+        }
+      }
+    },
+    "tap": {
+      "homebrew/bundle": {
+        "revision": "784f4e47c2e527c515454212db158149f869c7f3"
+      },
+      "homebrew/cask": {
+        "revision": "22f9687358e41313e3b5113f9ec524c480cdf1fb"
+      },
+      "homebrew/cask-fonts": {
+        "revision": "ab9f2e72409c19947b4a6fe8d0bd12cf73f7734d"
+      },
+      "homebrew/core": {
+        "revision": "a66256a8ff985a80a1b73418f0508aa884c4bf14"
       }
     }
   },
