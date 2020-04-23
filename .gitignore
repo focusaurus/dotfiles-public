@@ -12,15 +12,8 @@ elm-stuff
 node_modules
 npm-debug.log
 
-/Applications
-/Desktop
-/Documents
-/Library
-/Movies
-/Pictures
-/Public
-/.CFUserTextEncoding
 /.3T
+/.CFUserTextEncoding
 /.Conduktor
 /.Xauthority
 /.android
@@ -111,7 +104,14 @@ npm-debug.log
 /.xsession-errors*
 /.zcompdump
 /.zoom
+/Applications
+/Desktop
+/Documents
 /Downloads
+/Library
+/Movies
+/Pictures
+/Public
 /archive
 /backups
 /books
@@ -120,6 +120,7 @@ npm-debug.log
 /github
 /keybase
 /local
+/mailchimp
 /music
 /nohup.out
 /projects
