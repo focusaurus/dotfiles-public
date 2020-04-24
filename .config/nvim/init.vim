@@ -39,6 +39,7 @@ set statusline+=%F
 runtime! vim-plug-setup.vim
 runtime! mappings.vim
 runtime! syntastic.vim
+runtime! abbreviations.vim
 ":colorscheme koehler
 ":colorscheme ron
 colorscheme slate
