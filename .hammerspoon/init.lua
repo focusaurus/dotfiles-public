@@ -1,9 +1,11 @@
---TODO refactor helper functions
+local hbin = "/Users/peterlyons/bin"
+local function winScreenFrame() 
+  local win = hs.window.focusedWindow()
+  return win, win:screen():frame(), win:frame()
+end
 ----- maximize -----
 hs.hotkey.bind({"cmd", "shift"}, "m", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screenFrame = win:screen():frame()
+  win, screenFrame, f = winScreenFrame()
   f.x = screenFrame.x
   f.y = screenFrame.y 
   f.w = screenFrame.w
@@ -13,9 +15,7 @@ end)
 
 ----- left half -----
 hs.hotkey.bind({"cmd", "shift"}, "l", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screenFrame = win:screen():frame()
+  win, screenFrame, f = winScreenFrame()
   f.x = screenFrame.x 
   f.y = screenFrame.y 
   f.w = screenFrame.w / 2
@@ -25,9 +25,7 @@ end)
 
 ----- right half -----
 hs.hotkey.bind({"cmd", "shift"}, "r", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screenFrame = win:screen():frame()
+  win, screenFrame, f = winScreenFrame()
   f.x = screenFrame.w / 2 
   f.y = screenFrame.y 
   f.w = screenFrame.w / 2
@@ -59,14 +57,15 @@ end)
 
 ----- snippets -----
 hs.hotkey.bind({"control"}, ".", function()
-  ok, result = hs.applescript("do shell script \"/Users/peterlyons/bin/fuzz-snippet\"")
+  ok, result = hs.applescript("do shell script \"" .. hbin .. "/fuzz-snippet\"")
+  -- TODO log error
   hs.pasteboard.setContents(result)
   hs.eventtap.keyStroke({"cmd"}, "v",50)
 end)
 
 ----- fuzzball scripts -----
 hs.hotkey.bind({"command"}, "Space", function()
-  ok, result = hs.applescript("do shell script \"/Users/peterlyons/bin/fuzz-script-choose\"")
+  os.execute(hbin .. "/fuzz-script-choose")
 end)
 
 ----- application navigation -----
@@ -74,7 +73,7 @@ end)
 hs.hotkey.bind({"option"}, "a", function ()
   name = hs.application.frontmostApplication():name()
   if name == "iTerm2" then
-    ok, result = hs.applescript("do shell script \"bash -c '/usr/local/bin/tmux previous-window'\"")
+    os.execute("/usr/local/bin/tmux previous-window")
   elseif name == "Google Chrome" or name == "Code" then
     hs.eventtap.keyStroke({"control", "shift"}, "Tab", 25)
   end
@@ -84,7 +83,7 @@ end)
 hs.hotkey.bind({"option"}, "o", function ()
   name = hs.application.frontmostApplication():name()
   if name == "iTerm2" then
-    ok, result = hs.applescript("do shell script \"bash -c '/usr/local/bin/tmux switch-client -n'\"")
+    os.execute("/usr/local/bin/tmux switch-client -n")
   elseif name == "Google Chrome" then
     hs.eventtap.keyStroke({}, "PageDown", 25)
   end
@@ -94,7 +93,7 @@ end)
 hs.hotkey.bind({"option"}, "e", function ()
   name = hs.application.frontmostApplication():name()
   if name == "iTerm2" then
-    ok, result = hs.applescript("do shell script \"bash -c '/usr/local/bin/tmux select-pane -l'\"")
+    os.execute("/usr/local/bin/tmux select-pane -l")
   elseif name == "Google Chrome" then
     hs.eventtap.keyStroke({}, "Home", 25)
   end
@@ -104,7 +103,7 @@ end)
 hs.hotkey.bind({"option"}, "u", function ()
   name = hs.application.frontmostApplication():name()
   if name == "iTerm2" then
-    ok, result = hs.applescript("do shell script \"bash -c '/usr/local/bin/tmux next-window'\"")
+    os.execute("/usr/local/bin/tmux next-window")
   elseif name == "Google Chrome" or name == "Code" then
     hs.eventtap.keyStroke({"control"}, "Tab", 25)
   end
