@@ -19,4 +19,4 @@ if [[ -z "${repo}" ]]; then
   exit
 fi
 cd ~/projects
-git clone "ssh://git.peterlyons.com${PWD}/${repo}"
+git clone "ssh://plyons@git.peterlyons.com/home/plyons/projects/${repo}"

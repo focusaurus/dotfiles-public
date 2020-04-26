@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-export HISTFILE=/dev/null
+unset HISTFILE
 export TZ="America/Denver"
 
 tt() {
@@ -71,7 +71,7 @@ prompt-dotfiles() {
 }
 
 setup-prompt() {
-  export PROMPT='╭%4~ [%n@%m]
+  export PROMPT='╭%4~ %n@%m
 ╰○ '
   # https://unicode-search.net/unicode-namesearch.pl?term=down&.submit=Search
   # 𝄱
@@ -86,23 +86,13 @@ setup-prompt() {
 }
 setup-prompt
 
-save-zsh-history() {
-  # http://stackoverflow.com/a/842366/266795
-  fc -W
-}
-
 TRAPUSR1() {
   { echo reloading due to rss USR1 signal; } 1>&2
-  save-zsh-history
   exec "${SHELL}"
 }
 
 rss() {
   ps -U "${USER}" | egrep '( -zsh$|[ /]zsh$)' | awk '{print $1}' | xargs kill -USR1 &
-}
-
-histsearch() {
-  grep -R "$1" ~/.history | cut -d : -f 2-
 }
 
 # control-left-arrow goes back a word, right goes forward

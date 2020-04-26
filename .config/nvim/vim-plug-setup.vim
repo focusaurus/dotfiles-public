@@ -24,5 +24,6 @@ Plug 'venantius/vim-cljfmt'
 Plug 'machakann/vim-sandwich'
 Plug 'vim-syntastic/syntastic'
 Plug 'jceb/vim-orgmode'
+Plug 'tomtom/tcomment_vim'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()

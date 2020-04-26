@@ -13,7 +13,9 @@ node_modules
 npm-debug.log
 
 /.3T
+/.CFUserTextEncoding
 /.Conduktor
+/.Trash
 /.Xauthority
 /.android
 /.aws
@@ -103,7 +105,14 @@ npm-debug.log
 /.xsession-errors*
 /.zcompdump
 /.zoom
+/Applications
+/Desktop
+/Documents
 /Downloads
+/Library
+/Movies
+/Pictures
+/Public
 /archive
 /backups
 /books
@@ -112,6 +121,7 @@ npm-debug.log
 /github
 /keybase
 /local
+/mailchimp
 /music
 /nohup.out
 /projects

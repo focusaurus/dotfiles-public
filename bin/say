@@ -19,6 +19,6 @@ Linux)
   ;;
 Darwin)
   voice=Karen # I also like Daniel (British), Yuri (Russian), and Fred (Robot)
-  say -v "${voice}" "$*"
+  /usr/bin/say -v "${voice}" "$*"
   ;;
 esac

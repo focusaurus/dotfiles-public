@@ -1,0 +1,13 @@
+Use the plugin tomtom/tcomment_vim
+
+To comment out a line
+
+gcc
+
+To comment out a "paragraph" (blank-delimited block)
+
+gcap
+
+or 
+
+gcip

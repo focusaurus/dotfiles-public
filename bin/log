@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 # Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
 
 # ---- Start unofficial bash strict mode boilerplate
@@ -11,10 +12,13 @@ set -o posix    # more strict failures in subshells
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-extension="$1"
-if ~/bin/paste | "${HOME}/bin/pretty-print-${extension}" &>/dev/null; then
-  ~/bin/paste | "${HOME}/bin/pretty-print-${extension}" | ~/bin/copy
-  ~/bin/notify "Pretty ${extension} copied"
-else
-  notify "Error: $(paste | "${HOME}/bin/pretty-print-${extension}" 2>&1)"
+
+log_name=$(basename "$1")
+shift
+log_dir=
+log_dir="/run/user/$(id -u)"
+if [[ ! -d "${log_dir}" ]]; then
+  log_dir="/tmp"
 fi
+log_file="${log_dir}/${log_name}.log"
+echo "$("${HOME}/bin/rfc-3339") ${log_name} $@" >>"${log_file}"

@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+export TERM=xterm-256color
 # make PATH system wide
 # launchctl setenv PATH $PATH
 unalias cal
@@ -27,10 +28,8 @@ install-shfmt() {
 # https://github.com/Homebrew/brew/blob/master/share/doc/homebrew/Analytics.md#opting-out
 export HOMEBREW_NO_ANALYTICS=1
 
-save-brew() {
-  brew leaves >~/projects/dotfiles/brew-leaves.txt
-  brew cask list >~/projects/dotfiles/brew-cask-list.txt
-  (cd ~/projects/dotfiles && brew bundle dump --force)
+macos-save-brew() {
+  (cd ~/.config/homebrew && brew bundle dump --force)
 }
 
 homebrew-ssl-vars() {

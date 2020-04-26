@@ -14,24 +14,27 @@ IFS="$(printf "\n\t")"
 # ---- End unofficial bash strict mode boilerplate
 
 log() {
-  echo "$@" >> /tmp/fuzz.log
+  echo "$@" >>/tmp/fuzz.log
 }
 
-#log $(date)
-
+log $(date)
+log PATH "$PATH"
+log $(which choose)
 cd "$(dirname "${BASH_SOURCE[0]}")"
+PATH="/usr/local/bin:${PATH}"
 task_dir="${1:-${HOME}/projects/dotfiles/fuzzball}"
 
-if [[ -t 1 ]]; then
-#if false; then
-  task=$(ls "${task_dir}" | fzf --color=bw --layout=reverse)
-#  log "selected ${task} from fzf"
-else
-  task=$(
-    ls "${task_dir}" |
-      rofi -dmenu -p task -theme /usr/share/rofi/themes/fancy.rasi
-  )
-#  log "selected ${task} from rofi"
+# Presume running from desktop environment hotkey, use GUI
+# linux: rofi
+chooser=(rofi -dmenu -p task -theme /usr/share/rofi/themes/fancy.rasi)
+if [[ $(uname) == "Darwin" ]]; then
+  # macos: choose
+  chooser=(choose)
 fi
-#log "running ${task_dir}" "${task}"
+if [[ -t 1 ]]; then
+  # terminal/tty mode. Use fzf directly
+  chooser=(fzf --color=bw --layout=reverse)
+fi
+task=$(ls "${task_dir}" | "${chooser[@]}")
+log "selected ${task} from ${chooser[@]}"
 exec ./fuzz-script-exec "${task_dir}" "${task}"

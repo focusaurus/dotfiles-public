@@ -14,12 +14,17 @@ IFS="$(printf "\n\t")"
 # ---- End unofficial bash strict mode boilerplate
 snippet_dir=~/projects/dotfiles/snippets
 
+chooser=(rofi -dmenu -p snippet -theme /usr/share/rofi/themes/solarized_alternate.rasi)
+if [[ $(uname) == "Darwin" ]]; then
+  # Sigh. Can't control environment PATH in alfred
+  chooser=(/usr/local/bin/choose)
+fi
 # show a dmenu of possible snippets, prints the selected snippet abbreviation
 abbreviation="${snippet_dir}/"$(
   find "${snippet_dir}" -type f -not -name '*-post.sh' -print0 |
     xargs -0 -n 1 basename |
     sort |
-    rofi -dmenu -p snippet -theme /usr/share/rofi/themes/solarized_alternate.rasi
+    "${chooser}"
 )
 
 if [[ -x "${abbreviation}" ]]; then
@@ -34,8 +39,15 @@ else
     expansion=$(echo "${expansion}" | tr -d '\n')
   fi
 fi
+
+if [[ $(uname) == "Darwin" ]]; then
+  # macos via keyboard maestro will automatically paste the output
+  printf "${expansion}"
+  exit
+fi
+
 # copy the expanded text to the clipboard
-echo -n "${expansion}" | xclip -selection clipboard
+echo -n "${expansion}" | ~/bin/copy
 
 #check for terminal or not
 pid=$(xdotool getactivewindow getwindowpid)
