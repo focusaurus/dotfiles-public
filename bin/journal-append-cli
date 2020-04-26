@@ -10,9 +10,9 @@ set -o pipefail # don't ignore exit codes when piping output
 set -o posix    # more strict failures in subshells
 # set -x          # enable debugging
 
-IFS=$'\n\t'
+IFS="$(printf "\n\t")"
 # ---- End unofficial bash strict mode boilerplate
 
-for file in "$@"; do
-  yaml-pretty-print < "${file}" | sponge "${file}"
-done
+file=$(~/bin/journal-append-stamp "$1")
+shift
+echo "$@" >> "${file}"
