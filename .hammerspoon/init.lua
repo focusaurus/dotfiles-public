@@ -1,3 +1,4 @@
+local log = hs.logger.new("main", "debug")
 local hbin = "/Users/peterlyons/bin"
 local function winScreenFrame() 
   local win = hs.window.focusedWindow()
@@ -37,29 +38,79 @@ end)
 hs.hotkey.bind({}, "f1", function()
   hs.application.launchOrFocus("Google Chrome")
 end)
+
 hs.hotkey.bind({"shift"}, "f1", function()
   hs.application.launchOrFocus("Google Chrome")
-  hs.eventtap.keyStroke({"cmd"}, "1", 50)
+  hs.eventtap.keyStroke({"cmd"}, "1")
 end)
+
 hs.hotkey.bind({}, "f3", function()
   hs.application.launchOrFocus("iTerm")
 end)
+
 hs.hotkey.bind({}, "f4", function()
   hs.application.launchOrFocus("WorkFlowy")
 end)
+
 hs.hotkey.bind({}, "f5", function()
-  -- hs.eventtap.keyStroke({"cmd"}, "Tab", 25)
   hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, true):post()
   hs.eventtap.event.newKeyEvent("Tab", true):post()
   hs.eventtap.event.newKeyEvent("Tab", false):post()
   hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, false):post()
 end)
+
 hs.hotkey.bind({}, "f6", function()
-  hs.application.launchOrFocus("Slack")
+  local zoomIsRunning = false
+  local apps = hs.application.runningApplications()
+  for i = 1, #apps do
+    -- log.df(apps[i]:name())
+    if apps[i]:name() == "zoom.us" then
+      zoomIsRunning = true
+    end
+  end
+  -- log.df("zoomIsRunning %s", zoomIsRunning)
+  if zoomIsRunning then
+    if hs.window.frontmostWindow():application():name() == "Slack" then
+      hs.application.launchOrFocus("zoom.us")
+    else
+      hs.application.launchOrFocus("Slack")
+    end
+  else
+    hs.application.launchOrFocus("Slack")
+  end
 end)
+
 hs.hotkey.bind({}, "f7", function()
   hs.application.launchOrFocus("Google Chrome")
-  hs.eventtap.keyStroke({"cmd"}, "2", 50)
+  hs.eventtap.keyStroke({"cmd"}, "2")
+end)
+
+hs.hotkey.bind({}, "f8", function()
+  hs.application.launchOrFocus("Google Chrome")
+  hs.eventtap.keyStroke({"cmd"}, "3")
+end)
+
+-- sound: toggle mute output
+hs.hotkey.bind({}, "f9", function()
+  local device = hs.audiodevice.defaultOutputDevice()
+  device:setMuted(not device:muted())
+end)
+
+-- decrease volume
+hs.hotkey.bind({}, "f10", function()
+  local device = hs.audiodevice.defaultOutputDevice()
+  local level = device:volume() - 10
+  if level < 0 then level = 0 end
+  device:setVolume(level)
+end)
+
+-- increase volume
+hs.hotkey.bind({}, "f11", function()
+  local device = hs.audiodevice.defaultOutputDevice()
+  local level = device:volume() + 10
+  log.f("increase volume %s", level)
+  if level > 100 then level = 100 end
+  device:setVolume(level)
 end)
 
 ----- snippets -----
@@ -67,7 +118,7 @@ hs.hotkey.bind({"control"}, ".", function()
   ok, result = hs.applescript("do shell script \"" .. hbin .. "/fuzz-snippet\"")
   -- TODO log error
   hs.pasteboard.setContents(result)
-  hs.eventtap.keyStroke({"cmd"}, "v", 50)
+  hs.eventtap.keyStroke({"cmd"}, "v")
 end)
 
 ----- fuzzball scripts -----
@@ -82,7 +133,7 @@ hs.hotkey.bind({"option"}, "a", function ()
   if name == "iTerm2" then
     os.execute("/usr/local/bin/tmux previous-window")
   elseif name == "Google Chrome" or name == "Code" then
-    hs.eventtap.keyStroke({"control", "shift"}, "Tab", 25)
+    hs.eventtap.keyStroke({"control", "shift"}, "Tab")
   end
 end)
 
@@ -92,7 +143,7 @@ hs.hotkey.bind({"option"}, "o", function ()
   if name == "iTerm2" then
     os.execute("/usr/local/bin/tmux switch-client -n")
   elseif name == "Google Chrome" then
-    hs.eventtap.keyStroke({}, "PageDown", 25)
+    hs.eventtap.keyStroke({}, "PageDown")
   end
 end)
 
@@ -102,7 +153,7 @@ hs.hotkey.bind({"option"}, "e", function ()
   if name == "iTerm2" then
     os.execute("/usr/local/bin/tmux select-pane -l")
   elseif name == "Google Chrome" then
-    hs.eventtap.keyStroke({}, "Home", 25)
+    hs.eventtap.keyStroke({}, "Home")
   end
 end)
 
@@ -112,6 +163,6 @@ hs.hotkey.bind({"option"}, "u", function ()
   if name == "iTerm2" then
     os.execute("/usr/local/bin/tmux next-window")
   elseif name == "Google Chrome" or name == "Code" then
-    hs.eventtap.keyStroke({"control"}, "Tab", 25)
+    hs.eventtap.keyStroke({"control"}, "Tab")
   end
 end)
