@@ -4,35 +4,46 @@ local function winScreenFrame()
   local win = hs.window.focusedWindow()
   return win, win:screen():frame(), win:frame()
 end
------ maximize -----
-hs.hotkey.bind({"cmd", "shift"}, "m", function()
+
+local function maximize() 
   win, screenFrame, f = winScreenFrame()
   f.x = screenFrame.x
   f.y = screenFrame.y 
   f.w = screenFrame.w
   f.h = screenFrame.h
   win:setFrame(f)
-end)
+end
+----- maximize -----
+hs.hotkey.bind({"cmd", "shift"}, "m", maximize)
+--home row "ldur" "up"
+hs.hotkey.bind({"option"}, "n", maximize)
 
 ----- left half -----
-hs.hotkey.bind({"cmd", "shift"}, "l", function()
+local function left()
   win, screenFrame, f = winScreenFrame()
   f.x = screenFrame.x 
   f.y = screenFrame.y 
   f.w = screenFrame.w / 2
   f.h = screenFrame.h
   win:setFrame(f)
-end)
+end
+
+hs.hotkey.bind({"cmd", "shift"}, "l", left)
+--home row "ldur" "left"
+hs.hotkey.bind({"option"}, "h", left)
 
 ----- right half -----
-hs.hotkey.bind({"cmd", "shift"}, "r", function()
+local function right()
   win, screenFrame, f = winScreenFrame()
   f.x = screenFrame.w / 2 
   f.y = screenFrame.y 
   f.w = screenFrame.w / 2
   f.h = screenFrame.h
   win:setFrame(f)
-end)
+end
+hs.hotkey.bind({"cmd", "shift"}, "r", right)
+--home row "ldur" "right"
+hs.hotkey.bind({"option"}, "s", right)
 
 ----- fkeys -----
 hs.hotkey.bind({}, "f1", function()
