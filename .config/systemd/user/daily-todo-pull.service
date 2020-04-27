@@ -1,0 +1,6 @@
+[Unit]
+Description=Pull latest code into daily-todos project
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'cd ~/projects/daily-todos.sh && git pull'

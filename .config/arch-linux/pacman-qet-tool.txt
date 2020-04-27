@@ -1,5 +1,7 @@
 android-tools
+appimage-git
 at
+aws-cli
 base
 bat
 bind-tools
@@ -14,6 +16,7 @@ cura
 dfu-util
 dhclient
 docker-compose
+dos2unix
 dunst
 espeak
 evince
@@ -21,12 +24,12 @@ exa
 fakeroot
 fasd
 fd
+feh
 firefox
 foomatic-db-nonfree-ppds
 foomatic-db-ppds
 fswatch
 gcalcli
-gcc
 gedit
 git-delta
 gnome-screenshot
@@ -70,7 +73,9 @@ shellcheck
 shfmt
 slack-desktop
 sxhkd
+syncthing
 system-config-printer
+teensy-loader
 termite
 tig
 tilda

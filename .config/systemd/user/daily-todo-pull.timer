@@ -1,0 +1,9 @@
+[Unit]
+Description=Pull latest code into daily-todos project
+
+[Timer]
+# This is in UTC
+OnCalendar=*-*-* 07:50:00
+
+[Install]
+WantedBy=timers.target
