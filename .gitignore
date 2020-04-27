@@ -23,6 +23,8 @@ npm-debug.log
 /.cargo
 /.circleci
 /.config/3T
+/.config/karabiner/assets
+/.config/karabiner/automatic_backups
 /.config/Insomnia
 /.config/Keybase
 /.config/NoSQLBooster for MongoDB
