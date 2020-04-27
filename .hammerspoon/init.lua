@@ -70,10 +70,10 @@ hs.hotkey.bind({}, "f6", function()
   end
   -- log.df("zoomIsRunning %s", zoomIsRunning)
   if zoomIsRunning then
-    if hs.window.frontmostWindow():application():name() == "Slack" then
-      hs.application.launchOrFocus("zoom.us")
-    else
+    if hs.window.frontmostWindow():application():name() == "zoom.us" then
       hs.application.launchOrFocus("Slack")
+    else
+      hs.application.launchOrFocus("zoom.us")
     end
   else
     hs.application.launchOrFocus("Slack")
