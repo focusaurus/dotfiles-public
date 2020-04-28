@@ -17,6 +17,10 @@ arch-uninstall-package() {
   yay -Rs "$@"
 }
 
+arch-clear-cache() {
+  sudo pacman -Sc
+}
+
 sample-rofi-themes() {
   find /usr/share/rofi/themes -type f -name '*.rasi' | {
     while IFS= read -r file_path; do
