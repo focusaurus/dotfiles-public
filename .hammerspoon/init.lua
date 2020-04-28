@@ -1,5 +1,9 @@
+
+
 local log = hs.logger.new("main", "debug")
 local hbin = "/Users/peterlyons/bin"
+
+----- window management -----
 local function winScreenFrame() 
   local win = hs.window.focusedWindow()
   return win, win:screen():frame(), win:frame()
@@ -13,12 +17,10 @@ local function maximize()
   f.h = screenFrame.h
   win:setFrame(f)
 end
------ maximize -----
-hs.hotkey.bind({"cmd", "shift"}, "m", maximize)
+hs.hotkey.bind({"command", "shift"}, "m", maximize)
 --home row "ldur" "up"
 hs.hotkey.bind({"option"}, "n", maximize)
 
------ left half -----
 local function left()
   win, screenFrame, f = winScreenFrame()
   f.x = screenFrame.x 
@@ -28,11 +30,10 @@ local function left()
   win:setFrame(f)
 end
 
-hs.hotkey.bind({"cmd", "shift"}, "l", left)
+hs.hotkey.bind({"command", "shift"}, "l", left)
 --home row "ldur" "left"
 hs.hotkey.bind({"option"}, "h", left)
 
------ right half -----
 local function right()
   win, screenFrame, f = winScreenFrame()
   f.x = screenFrame.w / 2 
@@ -41,7 +42,7 @@ local function right()
   f.h = screenFrame.h
   win:setFrame(f)
 end
-hs.hotkey.bind({"cmd", "shift"}, "r", right)
+hs.hotkey.bind({"command", "shift"}, "r", right)
 --home row "ldur" "right"
 hs.hotkey.bind({"option"}, "s", right)
 
@@ -52,12 +53,13 @@ end)
 
 hs.hotkey.bind({"shift"}, "f1", function()
   hs.application.launchOrFocus("Google Chrome")
-  hs.eventtap.keyStroke({"cmd"}, "1")
+  hs.eventtap.keyStroke({"command"}, "1")
 end)
 
-hs.hotkey.bind({}, "f3", function()
+local function iterm2() 
   hs.application.launchOrFocus("iTerm")
-end)
+end
+hs.hotkey.bind({}, "f3", iterm2)
 
 hs.hotkey.bind({}, "f4", function()
   hs.application.launchOrFocus("WorkFlowy")
@@ -93,12 +95,12 @@ end)
 
 hs.hotkey.bind({}, "f7", function()
   hs.application.launchOrFocus("Google Chrome")
-  hs.eventtap.keyStroke({"cmd"}, "2")
+  hs.eventtap.keyStroke({"command"}, "2")
 end)
 
 hs.hotkey.bind({}, "f8", function()
   hs.application.launchOrFocus("Google Chrome")
-  hs.eventtap.keyStroke({"cmd"}, "3")
+  hs.eventtap.keyStroke({"command"}, "3")
 end)
 
 -- sound: toggle mute output
@@ -129,7 +131,7 @@ hs.hotkey.bind({"control"}, ".", function()
   ok, result = hs.applescript("do shell script \"" .. hbin .. "/fuzz-snippet\"")
   -- TODO log error
   hs.pasteboard.setContents(result)
-  hs.eventtap.keyStroke({"cmd"}, "v")
+  hs.eventtap.keyStroke({"command"}, "v")
 end)
 
 ----- fuzzball scripts -----
@@ -177,3 +179,12 @@ hs.hotkey.bind({"option"}, "u", function ()
     hs.eventtap.keyStroke({"control"}, "Tab")
   end
 end)
+
+----- journal -----
+local function journal() 
+  iterm2()
+  hs.timer.doAfter(0.2, function()
+    hs.eventtap.keyStroke({"command", "control"}, "j")
+  end)
+end
+hs.hotkey.bind({"option"}, "j", journal)

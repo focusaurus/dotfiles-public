@@ -9,15 +9,21 @@ paste-to-vim() {
   ~/bin/paste | v -n -c startinsert -
 }
 
+cte() {
+ c "$@"
+ v -p *.*
+}
+
 tedaily() {
   org="${HOME}/projects/org"
   "${EDITOR}" "${org}/$("${org}/bin/file-name-for" 0)"
 }
 
-if command -v nvim >/dev/null; then
+
+if ~/bin/have-exe nvim; then
   alias v="nvim"
   export EDITOR="nvim"
-elif command -v vim >/dev/null; then
+elif ~/bin/have-exe vim; then
   alias v="vim"
   export EDITOR="vim"
 else
