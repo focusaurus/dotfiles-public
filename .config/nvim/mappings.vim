@@ -11,6 +11,7 @@ autocmd FileType org :nmap cc <Plug>OrgCheckBoxToggle
 " easy ref to system clipboard (CLIPBOARD)
 nnoremap <c-c> "+
 vnoremap y "+y
-
+cmap ww wq
+cmap qq q!
 " paste without comments mucking everything up
 nnoremap cop :set invpaste<cr>
