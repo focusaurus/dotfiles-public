@@ -24,7 +24,7 @@ abbreviation="${snippet_dir}/"$(
   find "${snippet_dir}" -type f -not -name '*-post.sh' -print0 |
     xargs -0 -n 1 basename |
     sort |
-    "${chooser}"
+    "${chooser[@]}"
 )
 
 if [[ -x "${abbreviation}" ]]; then
