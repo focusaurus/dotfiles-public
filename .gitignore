@@ -23,8 +23,6 @@ npm-debug.log
 /.cargo
 /.circleci
 /.config/3T
-/.config/karabiner/assets
-/.config/karabiner/automatic_backups
 /.config/Insomnia
 /.config/Keybase
 /.config/NoSQLBooster for MongoDB
@@ -49,12 +47,15 @@ npm-debug.log
 /.config/dconf/user
 /.config/enchant
 /.config/evince
+/.config/gcloud
 /.config/gedit
 /.config/gh
 /.config/google-chrome
 /.config/gtk-2.0/gtkfilechooser.ini
 /.config/history
 /.config/htop
+/.config/karabiner/assets
+/.config/karabiner/automatic_backups
 /.config/keybase
 /.config/mono.addins
 /.config/nordvpn
@@ -69,8 +70,10 @@ npm-debug.log
 /.config/vlc/vlc-qt-interface.conf
 /.config/zoomus.conf
 /.cpcache
+/.devtool.env
 /.docker
 /.electron-gyp
+/.env.*
 /.ergodox-udev
 /.fasd
 /.fxlauncher.Launcher
@@ -78,9 +81,12 @@ npm-debug.log
 /.gdfuse
 /.gitlibs
 /.gnupg
+/.gradle
 /.history
 /.home.git
+/.iterm2
 /.iwctl_history
+/.jfrog
 /.kube
 /.lesshst
 /.local
@@ -89,10 +95,14 @@ npm-debug.log
 /.mpd
 /.node_repl_history
 /.npm
+/.npmrc
 /.nvm
+/.pip
 /.pki
 /.pvpn-cli
+/.pypirc
 /.rustup
+/.sbt
 /.sdkman
 /.serverless
 /.serverlessrc
@@ -100,6 +110,7 @@ npm-debug.log
 /.stack
 /.tig_history
 /.tmux
+/.vagrant.d
 /.viminfo
 /.visidata/cache
 /.wget-hsts
@@ -125,6 +136,7 @@ npm-debug.log
 /keybase
 /local
 /mailchimp
+/mc
 /music
 /nohup.out
 /projects
@@ -134,5 +146,3 @@ npm-debug.log
 /tmp
 /work-*
 /work-reaction
-/.iterm2
-/.vagrant.d

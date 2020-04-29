@@ -10,14 +10,18 @@ add-path() {
 }
 
 setup-path() {
-   # shellcheck disable=SC2123
+  # shellcheck disable=SC2123
   PATH=
   # Normal system stuff comes early for security
   # So npm packages can't override basic commands like ls
   add-path "${HOME}/bin"
   # Allow GNU binaries to take precedent on macos
   # See https://apple.stackexchange.com/questions/69223/how-to-replace-mac-os-x-utilities-with-gnu-core-utilities#69332
-  add-path "/usr/local/opt/coreutils/libexec/gnubin"
+  /usr/bin/find /usr/local/Cellar /usr/local/opt -type d -name gnubin | {
+    while IFS= read -r file_path; do
+      add-path "${file_path}"
+    done
+  }
 
   add-path "/usr/local/bin"
   add-path "/bin"
@@ -31,6 +35,7 @@ setup-path() {
   add-path "${HOME}/.cargo/bin"
   add-path "${NVM_BIN}"
   add-path "/opt/nosqlbooster-mongodb"
+
   if [[ -e ~/.nvm/alias/default ]]; then
     add-path ~/".nvm/versions/node/$(cat ~/.nvm/alias/default)/bin"
   fi

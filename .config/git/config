@@ -1,11 +1,11 @@
 [user]
   name = Peter Lyons
-  email = pete@peterlyons.com
+  email = pete.lyons@mailchimp.com
 [core]
   ignorecase = false
   autocrlf = input
   precomposeunicode = true
-  excludesfile = ~/.config/git/ignore
+#  excludesfile = ~/.config/git/ignore
 #  pager = delta --dark
 [color]
   branch = auto

@@ -127,7 +127,7 @@ hs.hotkey.bind({}, "f11", function()
 end)
 
 ----- snippets -----
-hs.hotkey.bind({"control"}, ".", function()
+hs.hotkey.bind({"control"}, ",", function()
   ok, result = hs.applescript("do shell script \"" .. hbin .. "/fuzz-snippet\"")
   -- TODO log error
   hs.pasteboard.setContents(result)
