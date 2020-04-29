@@ -41,7 +41,7 @@ else
 fi
 
 if [[ $(uname) == "Darwin" ]]; then
-  # macos via keyboard maestro will automatically paste the output
+  # macos via hammerspoon will automatically paste the output
   printf "${expansion}"
   exit
 fi
