@@ -279,3 +279,7 @@ change-time-zone() {
   [[ -z "${zone}" ]] && return
   echo sudo timedatectl set-timezone "${zone}"
 }
+
+fz-ranger() {
+  ranger $(fasd -dl "$@")
+}

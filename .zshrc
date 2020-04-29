@@ -31,10 +31,10 @@ source-if-exists ~/.config/zsh/*.sh
 source-if-exists ~/work-reaction/common/shell-setup.sh
 source-if-exists ~/mailchimp/mailchimp.sh
 source-if-exists "${HOME}/.config/zsh/os/$(uname).sh"
-source-if-exists "${HOME}/.nvm/nvm.sh"
+source-if-exists ~/.nvm/nvm.sh
 #source-if-exists ~/github/Aloxaf/fzf-tab/fzf-tab.zsh
-source-if-exists "${HOME}/.config/iterm2/iterm2-shell-integration.zsh"
-export SDKMAN_DIR="/home/plyons/.sdkman"
+source-if-exists ~/.config/iterm2/iterm2-shell-integration.zsh
+export SDKMAN_DIR=~/.sdkman
 source-if-exists "${SDKMAN_DIR}/bin/sdkman-init.sh"
 
 if have_exe navi; then

@@ -1,20 +1,17 @@
 #!/usr/bin/env bash
 alias te="text-editor"
 
-rgte() {
+te-files-with-matches() {
   rg --ignore-case --files-with-matches watch "${@}" | xargs ~/bin/text-editor
 }
 
-paste-to-vim() {
+
+te-clipboard() {
   ~/bin/paste | v -n -c startinsert -
 }
+alias paste-to-vim="te-clipboard"
 
-cte() {
- c "$@"
- v -p *.*
-}
-
-tedaily() {
+te-daily() {
   org="${HOME}/projects/org"
   "${EDITOR}" "${org}/$("${org}/bin/file-name-for" 0)"
 }
@@ -31,6 +28,6 @@ else
   export EDITOR="vi"
 fi
 
-vimrc() {
+te-vimrc() {
   fd .vim ~/.config/nvim | xargs nvim -p
 }

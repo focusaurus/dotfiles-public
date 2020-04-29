@@ -8,10 +8,12 @@ nnoremap <Space> @q
 autocmd FileType markdown :nnoremap k gk
 autocmd FileType markdown :nnoremap j gj
 autocmd FileType org :nmap cc <Plug>OrgCheckBoxToggle
+autocmd FileType org :nmap cn <Plug>OrgCheckBoxNewBelow
+autocmd FileType org :nmap cN <Plug>OrgCheckBoxNewAbove
+autocmd FileType org :nmap ct <Plug>OrgTodoToggleNonInteractive
 " easy ref to system clipboard (CLIPBOARD)
 nnoremap <c-c> "+
 vnoremap y "+y
-cmap ww wq
 cmap qq q!
 " paste without comments mucking everything up
 nnoremap cop :set invpaste<cr>

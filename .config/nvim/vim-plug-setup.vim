@@ -25,5 +25,7 @@ Plug 'machakann/vim-sandwich'
 Plug 'vim-syntastic/syntastic'
 Plug 'jceb/vim-orgmode'
 Plug 'tomtom/tcomment_vim'
+" settings toggles and symmetrical before/after mappings
+Plug 'tpope/vim-unimpaired'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()

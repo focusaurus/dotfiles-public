@@ -2,7 +2,6 @@
 export TERM=xterm-256color
 # make PATH system wide
 # launchctl setenv PATH $PATH
-unalias cal
 alias cal="cal -y"
 alias chrome='open -a "Google Chrome"'
 alias screen-unlock="defaults write com.apple.screensaver askForPassword 0 && defaults write com.apple.screensaver askForPasswordDelay 0"
