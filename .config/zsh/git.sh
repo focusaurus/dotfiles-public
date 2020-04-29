@@ -330,7 +330,7 @@ search-dotfiles() {
   GIT_DIR="${HOME}/.home.git" git ls-files | xargs rg "$@"
 }
 
-git-sync-full() {
+gsync() {
   ~/bin/git-autocommit ~/projects/journals
   ~/bin/git-sync ~/projects/journals ~/projects/dotfiles ~
 }

@@ -12,19 +12,14 @@ alias top="top -o cpu -s 5"
 # homebrew
 # macos + homebrew + python + virtualenv = :-(
 # I hard code this because $(brew --prefix openssl) is super slow
-brew_prefix="/usr/local/opt"
-if [[ -d "${brew_prefix}" ]]; then
-  CFLAGS="-I${brew_prefix}/openssl/include"
-  export CFLAGS
-  LDFLAGS="-L${brew_prefix}/lib -L${brew_prefix}/libyaml/lib"
-  export LDFLAGS
-fi
+#brew_prefix="/usr/local/opt"
+#if [[ -d "${brew_prefix}" ]]; then
+#  CFLAGS="-I${brew_prefix}/openssl/include"
+#  export CFLAGS
+#  LDFLAGS="-L${brew_prefix}/lib -L${brew_prefix}/libyaml/lib"
+#  export LDFLAGS
+#fi
 
-install-shfmt() {
-  curl --silent --location --fail \
-    'https://github.com/mvdan/sh/releases/download/v0.1.0/shfmt_v0.1.0_darwin_amd64' >/usr/local/bin/shfmt
-  chmod 755 /usr/local/bin/shfmt
-}
 # https://github.com/Homebrew/brew/blob/master/share/doc/homebrew/Analytics.md#opting-out
 export HOMEBREW_NO_ANALYTICS=1
 
@@ -32,29 +27,19 @@ macos-save-brew() {
   (cd ~/.config/homebrew && brew bundle dump --force)
 }
 
-homebrew-ssl-vars() {
-  export LDFLAGS="-L$(brew --prefix openssl)/lib"
-  export CFLAGS="-I$(brew --prefix openssl)/include"
-  export SWIG_FEATURES="-cpperraswarn -includeall -I$(brew --prefix openssl)/include"
-}
+#homebrew-ssl-vars() {
+#  export LDFLAGS="-L$(brew --prefix openssl)/lib"
+#  export CFLAGS="-I$(brew --prefix openssl)/include"
+#  export SWIG_FEATURES="-cpperraswarn -includeall -I$(brew --prefix openssl)/include"
+#}
 
-ct() {
-  open -a "Google Chrome" --args --enable-vertical-tabs
-}
-
-##### z cd utility #####
-# z_conf="$(brew --prefix)/etc/profile.d/z.sh"
-# if [[ -f "${z_conf}" ]]; then
-#   source "${z_conf}"
-# fi
-
-prefs() {
+macos-app-config() {
   local OP="${1}"
   shift
   case "${OP}" in
     export | import) ;;
     *)
-      echo "Usage: prefs <export|import> <app>" 1>&2
+      echo "Usage: $0 <export|import> <app>" 1>&2
       return 1
       ;;
   esac
@@ -72,23 +57,19 @@ prefs() {
       ;;
   esac
   local BIN="${HOME}/${PLIST}"
-  local XML="${HOME}/projects/dotfiles/${PLIST}"
+  local JSON="${HOME}/projects/dotfiles/${PLIST}"
   case "${OP}" in
     export)
-      cp "${BIN}" "${XML}"
-      plutil -convert xml1 "${XML}"
+      cp "${BIN}" "${JSON}"
+      plutil -convert json "${JSON}"
       cd ~/projects/dotfiles || exit
       git status
       ;;
     import)
-      cp "${XML}" "${BIN}"
+      cp "${JSON}" "${BIN}"
       plutil -convert binary1 "${BIN}"
       ;;
   esac
-}
-
-brewify() {
-  cat "${DOTFILES}/brew_leaves.txt" | xargs brew install
 }
 
 export MANPATH=$MANPATH:/usr/local/share/man
@@ -119,23 +100,23 @@ _dns() {
   networksetup -setdnsservers Wi-Fi "$@"
 }
 
-dns-cloudflare() {
+macos-dns-cloudflare() {
   _dns 1.1.1.1
 }
 
-dns-google() {
+macos-dns-google() {
   _dns 8.8.8.8
 }
 
-dns-opendns() {
+macos-dns-opendns() {
   _dns 208.67.222.222
 }
 
-dns-quad9() {
+macos-dns-quad9() {
   _dns 9.9.9.9
 }
 
-dns-dhcp() {
+macos-dns-dhcp() {
   _dns empty
 }
 
@@ -145,7 +126,10 @@ dns-dhcp() {
 # http://www.applegazette.com/mac/10-useful-defaults-write-commands-osx/
 # https://gist.github.com/2260182
 # Many things removed or edited by Pete
-osxprefs() {
+_macos_prefs() {
+  # Immediately return for now. It would be very dangerous to just run
+  # this entire function without vetting against recent versions of macos
+  return
   # Kill system preferences to not have it trying to override config we're about
   # to change.
   osascript -e "tell application \"System Preferences\" to quit"
@@ -296,15 +280,3 @@ osxprefs() {
   echo "Kill affected applications"
   for app in Safari Finder Dock Mail SystemUIServer; do killall "$app" >/dev/null 2>&1; done
 }
-
-##### gpg
-# Ensure that gpg can find the agent when needed
-# if [[ -f ~/.gnupg/.gpg-agent-info ]] && [[ -n "$(pgrep gpg-agent)" ]]; then
-#   source ~/.gnupg/.gpg-agent-info
-#   export GPG_AGENT_INFO
-# else
-#   eval $(gpg-agent --daemon)
-# fi
-
-# This line is important for GUI tools to also find it
-#launchctl setenv GPG_AGENT_INFO $GPG_AGENT_INFO

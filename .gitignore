@@ -135,3 +135,4 @@ npm-debug.log
 /work-*
 /work-reaction
 /.iterm2
+/.vagrant.d
