@@ -5,6 +5,7 @@ noremap ; :
 noremap <leader>; ;
 noremap F :w<cr>:silent !pretty-print-files %<cr>:edit!<cr>
 nnoremap <Space> @q
+inoremap <C-s> <Esc>:w<CR>a
 autocmd FileType markdown :nnoremap k gk
 autocmd FileType markdown :nnoremap j gj
 autocmd FileType org :nmap cc <Plug>OrgCheckBoxToggle
