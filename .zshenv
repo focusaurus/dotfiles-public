@@ -1,4 +1,15 @@
 #!/usr/bin/env bash
+gnubin() {
+dir="$1"
+if [[ -d "${dir}" ]]; then
+    /usr/bin/find "${dir}" -type d -name gnubin | {
+    while IFS= read -r file_path; do
+      add-path "${file_path}"
+    done
+  }
+fi
+}
+
 add-path() {
   if [[ -d "${1}" ]]; then
     if [[ -z "${PATH}" ]]; then
@@ -17,12 +28,8 @@ setup-path() {
   add-path "${HOME}/bin"
   # Allow GNU binaries to take precedent on macos
   # See https://apple.stackexchange.com/questions/69223/how-to-replace-mac-os-x-utilities-with-gnu-core-utilities#69332
-  /usr/bin/find /usr/local/Cellar /usr/local/opt -type d -name gnubin | {
-    while IFS= read -r file_path; do
-      add-path "${file_path}"
-    done
-  }
-
+  gnubin /usr/local/Cellar
+  gnubin /usr/local/opt
   add-path "/usr/local/bin"
   add-path "/bin"
   add-path "/usr/bin"

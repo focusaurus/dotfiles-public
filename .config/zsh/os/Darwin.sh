@@ -7,6 +7,7 @@ alias chrome='open -a "Google Chrome"'
 alias screen-unlock="defaults write com.apple.screensaver askForPassword 0 && defaults write com.apple.screensaver askForPasswordDelay 0"
 alias screen-lock="defaults write com.apple.screensaver askForPassword 1 && defaults write com.apple.screensaver askForPasswordDelay 60"
 alias top="top -o cpu -s 5"
+source-if-exists ~/.config/iterm2/iterm2-shell-integration.zsh
 
 # homebrew
 # macos + homebrew + python + virtualenv = :-(
@@ -43,7 +44,7 @@ macos-app-config() {
       ;;
   esac
   local NAME
-  NAME=$(echo "${1}" | tr A-Z a-z)
+  NAME=$(echo "${1}" | tr '[:upper:]' '[:lower:]')
   local DIR="Library/Preferences"
   local PLIST
   case ${NAME} in
