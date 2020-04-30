@@ -1,4 +1,8 @@
 
+----- hammerspoon debugging -----
+hs.hotkey.bind({"control"}, "2", function()
+  hs.alert(hs.application.frontmostApplication():selectMenuItem(".* - Google Play Music$", true))
+end)
 
 local log = hs.logger.new("main", "debug")
 local hbin = "/Users/peterlyons/bin"
@@ -19,8 +23,10 @@ local function maximize()
   win:setFrame(f)
 end
 hs.hotkey.bind({"command", "shift"}, "m", maximize)
---home row "ldur" "up"
+--right hand home row "up"
 hs.hotkey.bind({"option"}, "n", maximize)
+--left hand bottom row "up"
+hs.hotkey.bind({"option"}, "j", maximize)
 
 local function left()
   log.d("left")
@@ -33,8 +39,10 @@ local function left()
 end
 
 hs.hotkey.bind({"command", "shift"}, "l", left)
---home row "ldur" "left"
+--right hand home row "left"
 hs.hotkey.bind({"option"}, "h", left)
+--left hand bottom row "left"
+hs.hotkey.bind({"option"}, ";", left)
 
 local function right()
   log.d("right")
@@ -46,8 +54,32 @@ local function right()
   win:setFrame(f)
 end
 hs.hotkey.bind({"command", "shift"}, "r", right)
---home row "ldur" "right"
+--right hand home row "right"
 hs.hotkey.bind({"option"}, "s", right)
+--left hand bottom row "right"
+hs.hotkey.bind({"option"}, "k", right)
+
+local function iterm2() 
+  log.d("fkeys f3")
+  hs.application.launchOrFocus("iTerm")
+end
+hs.hotkey.bind({}, "f3", iterm2)
+
+----- journal -----
+local function journalVim() 
+  log.d("journalVim")
+  iterm2()
+  hs.timer.doAfter(0.2, function()
+    hs.eventtap.keyStroke({"command", "control"}, "j")
+  end)
+end
+hs.hotkey.bind({"command"}, "j", journalVim)
+
+local function journalDialog() 
+  log.d("journalDialog")
+  os.execute(hbin .. "/fuzz-script-exec ~/projects/dotfiles/fuzzball journal-mailchimp")
+end
+
 
 ----- fkeys -----
 hs.hotkey.bind({}, "f1", function()
@@ -60,12 +92,6 @@ hs.hotkey.bind({"shift"}, "f1", function()
   hs.application.launchOrFocus("Google Chrome")
   hs.eventtap.keyStroke({"command"}, "1")
 end)
-
-local function iterm2() 
-  log.d("fkeys f3")
-  hs.application.launchOrFocus("iTerm")
-end
-hs.hotkey.bind({}, "f3", iterm2)
 
 hs.hotkey.bind({}, "f4", function()
   log.d("fkeys f4")
@@ -116,16 +142,18 @@ hs.hotkey.bind({}, "f8", function()
   hs.eventtap.keyStroke({"command"}, "3")
 end)
 
+hs.hotkey.bind({}, "f9", journalDialog)
+
 -- sound: toggle mute output
-hs.hotkey.bind({}, "f9", function()
+hs.hotkey.bind({}, "f10", function()
   log.d("fkeys f9")
   local device = hs.audiodevice.defaultOutputDevice()
   device:setMuted(not device:muted())
 end)
 
 -- decrease volume
-hs.hotkey.bind({}, "f10", function()
-  log.d("fkeys f10")
+hs.hotkey.bind({}, "f11", function()
+  log.d("fkeys f11")
   local device = hs.audiodevice.defaultOutputDevice()
   local level = device:volume() - 10
   if level < 0 then level = 0 end
@@ -133,8 +161,8 @@ hs.hotkey.bind({}, "f10", function()
 end)
 
 -- increase volume
-hs.hotkey.bind({}, "f11", function()
-  log.d("fkeys f11")
+hs.hotkey.bind({}, "f12", function()
+  log.d("fkeys f12")
   local device = hs.audiodevice.defaultOutputDevice()
   local level = device:volume() + 10
   log.f("increase volume %s", level)
@@ -205,12 +233,26 @@ hs.hotkey.bind({"option"}, "u", function ()
   end
 end)
 
------ journal -----
-local function journal() 
-  log.d("journal")
-  iterm2()
-  hs.timer.doAfter(0.2, function()
-    hs.eventtap.keyStroke({"command", "control"}, "j")
-  end)
+
+----- autotype sign in -----
+hs.urlevent.bind("autotypeSignIn", function(eventName, params)
+    hs.eventtap.keyStrokes(params.u)
+    hs.eventtap.keyStroke({}, "Tab")
+    hs.eventtap.keyStrokes(params.p)
+end)
+
+----- hammerspoon config reloading -----
+function reloadConfig(files)
+  log.d("reloadConfig")
+    local doReload = false
+    for _,file in pairs(files) do
+        if file:sub(-4) == ".lua" then
+            doReload = true
+        end
+    end
+    if doReload then
+        hs.reload()
+    end
 end
-hs.hotkey.bind({"option"}, "j", journal)
+myWatcher = hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", reloadConfig):start()
+hs.alert.show("Hammerspoon config reloaded")
