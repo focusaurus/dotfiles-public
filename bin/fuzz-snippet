@@ -17,7 +17,7 @@ snippet_dir=~/projects/dotfiles/snippets
 chooser=(rofi -dmenu -p snippet -theme /usr/share/rofi/themes/solarized_alternate.rasi)
 if [[ $(uname) == "Darwin" ]]; then
   # Sigh. Can't control environment PATH in alfred
-  chooser=(/usr/local/bin/choose)
+  chooser=(/usr/local/bin/choose -c highlight=111111)
 fi
 # show a dmenu of possible snippets, prints the selected snippet abbreviation
 abbreviation="${snippet_dir}/"$(
