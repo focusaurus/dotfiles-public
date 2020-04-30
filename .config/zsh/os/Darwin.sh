@@ -119,6 +119,9 @@ macos-dns-dhcp() {
   _dns empty
 }
 
+# macos preferences 2020 edition
+# defaults write com.google.Chrome ExternalProtocolDialogShowAlwaysOpenCheckbox -bool true
+
 ########## OS X Preferences ##########
 # Sources:
 # https://github.com/mathiasbynens/dotfiles/blob/master/.osx
