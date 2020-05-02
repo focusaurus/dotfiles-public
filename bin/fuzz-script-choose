@@ -29,7 +29,7 @@ task_dir="${1:-${HOME}/projects/dotfiles/fuzzball}"
 chooser=(rofi -dmenu -p task -theme /usr/share/rofi/themes/fancy.rasi)
 if [[ $(uname) == "Darwin" ]]; then
   # macos: choose
-  chooser=(choose)
+  chooser=(/usr/local/bin/choose -c highlight=111111)
 fi
 if [[ -t 1 ]]; then
   # terminal/tty mode. Use fzf directly

@@ -37,38 +37,38 @@ macos-app-config() {
   local OP="${1}"
   shift
   case "${OP}" in
-    export | import) ;;
-    *)
-      echo "Usage: $0 <export|import> <app>" 1>&2
-      return 1
-      ;;
+  export | import) ;;
+  *)
+    echo "Usage: $0 <export|import> <app>" 1>&2
+    return 1
+    ;;
   esac
   local NAME
   NAME=$(echo "${1}" | tr '[:upper:]' '[:lower:]')
   local DIR="Library/Preferences"
   local PLIST
   case ${NAME} in
-    terminal)
-      PLIST="${DIR}/com.apple.Terminal.plist"
-      ;;
-    *)
-      echo "Uknown App name ${1}" 1>&2
-      return 10
-      ;;
+  terminal)
+    PLIST="${DIR}/com.apple.Terminal.plist"
+    ;;
+  *)
+    echo "Uknown App name ${1}" 1>&2
+    return 10
+    ;;
   esac
   local BIN="${HOME}/${PLIST}"
   local JSON="${HOME}/projects/dotfiles/${PLIST}"
   case "${OP}" in
-    export)
-      cp "${BIN}" "${JSON}"
-      plutil -convert json "${JSON}"
-      cd ~/projects/dotfiles || exit
-      git status
-      ;;
-    import)
-      cp "${JSON}" "${BIN}"
-      plutil -convert binary1 "${BIN}"
-      ;;
+  export)
+    cp "${BIN}" "${JSON}"
+    plutil -convert json "${JSON}"
+    cd ~/projects/dotfiles || exit
+    git status
+    ;;
+  import)
+    cp "${JSON}" "${BIN}"
+    plutil -convert binary1 "${BIN}"
+    ;;
   esac
 }
 
@@ -83,15 +83,15 @@ tc() {
   local white="{${max}, ${max}, ${max}, ${max}}"
   local color="${grey}"
   case "$1" in
-    red | production | prod)
-      local color="${red}"
-      ;;
-    grey | remote)
-      local color="${grey}"
-      ;;
-    white | local)
-      local color="${white}"
-      ;;
+  red | production | prod)
+    local color="${red}"
+    ;;
+  grey | remote)
+    local color="${grey}"
+    ;;
+  white | local)
+    local color="${white}"
+    ;;
   esac
   osascript -e "tell application \"Terminal\" to set background color of window 1 to ${color}"
 }
@@ -118,6 +118,20 @@ macos-dns-quad9() {
 
 macos-dns-dhcp() {
   _dns empty
+}
+
+# macos preferences 2020 edition
+system-prefs-chrome-protocol-dialog() {
+  # 2020-05-01 plyons confirmed on macos Catalina 10.15.4
+  defaults write com.google.Chrome ExternalProtocolDialogShowAlwaysOpenCheckbox -bool true
+}
+
+system-prefs-keyboard-repeat() {
+  defaults write -g ApplePressAndHoldEnabled -bool false
+  # Set a blazingly fast keyboard repeat rate
+  defaults write -g KeyRepeat -int 1
+  # Set a shorter Delay until key repeat
+  defaults write -g InitialKeyRepeat -int 10
 }
 
 ########## OS X Preferences ##########
