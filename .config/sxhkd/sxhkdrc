@@ -1,11 +1,11 @@
 ##### rofi windows #####
 super + space
   ~/bin/fuzz-script-choose
-ctrl + 1
-  ~/bin/fuzz-script-choose
-ctrl + 2
+#ctrl + 1
+#  ~/bin/fuzz-script-choose
+ctrl + comma
   ~/bin/fuzz-snippet
-ctrl + 3
+super + shift + space
   rofi -show run
 ctrl + 4
   rofi -show window
