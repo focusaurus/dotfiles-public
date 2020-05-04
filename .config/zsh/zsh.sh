@@ -15,6 +15,24 @@ alias -g /p='$(paste)'
 ##### shell prompt setup #####
 setopt prompt_subst
 
+# vi mode
+# https://unix.stackexchange.com/a/393705/25728
+bindkey -v
+bindkey "^R" history-incremental-search-backward
+KEYTIMEOUT=1
+
+function zle-line-init zle-keymap-select {
+    case ${KEYMAP} in
+        (vicmd)      ZLE_VI_MODE="N" ;;
+        (main|viins) ZLE_VI_MODE="I" ;;
+        (*)          ZLE_VI_MODE="I" ;;
+    esac
+    zle reset-prompt
+}
+
+zle -N zle-line-init
+zle -N zle-keymap-select
+
 #For reference and other fanciness:
 #http://stackoverflow.com/q/1128496/266795
 prompt-git-branch() {
@@ -82,7 +100,7 @@ setup-prompt() {
   # ❯ '
   # small white square ▫️ '
   # ❯
-  export RPROMPT='$(prompt-git-branch)$(prompt-git-status)$(prompt-dotfiles)$(prompt-aws-profile)$(prompt-kube-context)$(prompt-kube-namespace)'
+  export RPROMPT='vi:${ZLE_VI_MODE}$(prompt-git-branch)$(prompt-git-status)$(prompt-dotfiles)$(prompt-aws-profile)$(prompt-kube-context)$(prompt-kube-namespace)'
 }
 setup-prompt
 
