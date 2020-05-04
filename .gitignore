@@ -138,3 +138,5 @@
 /tmp
 /voice-memos
 /work-*
+/.node-gyp
+/.cups

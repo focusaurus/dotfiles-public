@@ -17,6 +17,9 @@ for path in "$@"; do
   clj|css|graphql|html|js|json|md|sh|yaml)
     "${HOME}/bin/pretty-print-${extension}" <"${path}" | sponge "${path}"
     ;;
+  php)
+    php-cs-fixer fix --cache-file /dev/null "${path}"
+    ;;
   *)
     if grep -q -E '\b(bash|sh|zsh)\b' "${path}"; then
       ~/bin/pretty-print-sh <"${path}" | sponge "${path}"
