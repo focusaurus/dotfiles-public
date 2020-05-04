@@ -12,7 +12,7 @@ set -o posix    # more strict failures in subshells
 
 IFS="$(printf "\n\t")"
 # ---- End unofficial bash strict mode boilerplate
-snippet_dir=~/projects/dotfiles/snippets
+snippet_dir=~/git.peterlyons.com/dotfiles/snippets
 
 chooser=(rofi -dmenu -p snippet -theme /usr/share/rofi/themes/solarized_alternate.rasi)
 if [[ $(uname) == "Darwin" ]]; then

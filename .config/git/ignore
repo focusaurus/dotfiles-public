@@ -5,9 +5,11 @@
 .DS_Store
 ._.DS_Store
 .terraform
+.vscode
+/local
 /target
 __pycache__
-/local
 elm-stuff
 node_modules
+nohup.out
 npm-debug.log

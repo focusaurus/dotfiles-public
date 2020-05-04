@@ -97,7 +97,7 @@ main() {
     activate_window 'workflowy' "/opt/WorkFlowy-x86_64.AppImage"
     ;;
   ctrl+f4)
-    ~/projects/dotfiles/fuzzball/workflowy-done
+    ~/git.peterlyons.com/dotfiles/fuzzball/workflowy-done
     ;;
   f6)
     if wmctrl -l | grep -qi "zoom"; then

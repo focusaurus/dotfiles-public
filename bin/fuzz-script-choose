@@ -22,7 +22,7 @@ log PATH "$PATH"
 log $(which choose)
 cd "$(dirname "${BASH_SOURCE[0]}")"
 PATH="/usr/local/bin:${PATH}"
-task_dir="${1:-${HOME}/projects/dotfiles/fuzzball}"
+task_dir="${1:-${HOME}/git.peterlyons.com/dotfiles/fuzzball}"
 
 # Presume running from desktop environment hotkey, use GUI
 # linux: rofi

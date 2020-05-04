@@ -331,6 +331,6 @@ search-dotfiles() {
 }
 
 gsync() {
-  ~/bin/git-autocommit ~/projects/journals
-  ~/bin/git-sync ~/projects/journals ~/projects/dotfiles ~
+  ~/bin/git-autocommit ~/projects/journals ~/mc
+  ~/bin/git-sync ~/projects/journals ~/projects/dotfiles ~/mc ~
 }

@@ -1,16 +1,6 @@
-.config/Code/*
+/.config/Code/*
 !.config/Code/User
 .config/Code/User/*Storage
-
-.terminal_title
-.terraform
-.vscode
-.zedstate
-__pycache__
-_local
-elm-stuff
-node_modules
-npm-debug.log
 
 /.3T
 /.CFUserTextEncoding
@@ -79,6 +69,7 @@ npm-debug.log
 /.fxlauncher.Launcher
 /.gcalcli*
 /.gdfuse
+/.gem
 /.gitlibs
 /.gnupg
 /.gradle
@@ -97,6 +88,7 @@ npm-debug.log
 /.npm
 /.npmrc
 /.nvm
+/.op
 /.pip
 /.pki
 /.pvpn-cli
@@ -132,20 +124,17 @@ npm-debug.log
 /books
 /clients
 /clients_old
+/git.peterlyons.com
 /github
 /keybase
 /local
 /mailchimp
 /mc
 /music
-/nohup.out
 /projects
 /scratch
 /screens
 /target
 /tmp
-/work-*
-/work-reaction
-/.gem
-/.op
 /voice-memos
+/work-*
