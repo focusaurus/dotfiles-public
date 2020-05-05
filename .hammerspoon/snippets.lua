@@ -1,5 +1,5 @@
 local log = hs.logger.new("snippets", "debug")
-local hbin = "/Users/peterlyons/bin"
+local hbin = os.getenv("HOME") .. "/bin"
 
 hs.hotkey.bind({"control"}, ",", function()
   log.d("snippets")

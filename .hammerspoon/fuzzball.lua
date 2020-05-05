@@ -1,5 +1,5 @@
 local log = hs.logger.new("fuzzball", "debug")
-local hbin = "/Users/peterlyons/bin"
+local hbin = os.getenv("HOME") .. "/bin"
 
 ----- fuzzball scripts -----
 hs.hotkey.bind({"command"}, "Space", function()

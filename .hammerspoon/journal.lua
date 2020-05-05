@@ -1,5 +1,5 @@
 local log = hs.logger.new("journal", "debug")
-local hbin = "/Users/peterlyons/bin"
+local fuzzball = os.getenv("HOME") .. "/git.peterlyons.com/dotfiles/fuzzball"
 
 ----- journal -----
 local function journalVim() 
@@ -13,13 +13,12 @@ hs.hotkey.bind({"command"}, "j", journalVim)
 
 local function journalDialog() 
   log.d("journalDialog")
-  -- os.execute(hbin .. "/fuzz-script-exec ~/projects/dotfiles/fuzzball journal-mailchimp")
-  os.execute(os.getenv("HOME") .. "/git.peterlyons.com/dotfiles/fuzzball/journal-mailchimp")
+  os.execute(fuzzball .. "/journal-mailchimp")
 end
 hs.hotkey.bind({}, "f9", journalDialog)
 
 local function journalStandupDialog() 
   log.d("journalStandupDialog")
-  os.execute(os.getenv("HOME") .. "/git.peterlyons.com/dotfiles/fuzzball/journal-mailchimp-standup")
+  os.execute(fuzzball .. "/journal-mailchimp-standup")
 end
 hs.hotkey.bind({"shift"}, "f9", journalStandupDialog)

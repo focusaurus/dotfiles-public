@@ -1,5 +1,4 @@
 local log = hs.logger.new("app-nav", "debug")
-local hbin = "/Users/peterlyons/bin"
 
 ----- application navigation -----
 -- left
