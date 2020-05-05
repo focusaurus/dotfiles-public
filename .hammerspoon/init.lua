@@ -12,10 +12,12 @@ require("window-management")
 
 ----- hammerspoon debugging -----
 hs.hotkey.bind({"control"}, "2", function()
-  local windows = hs.application.frontmostApplication():visibleWindows()
-  hs.alert("frontmost app has " .. #windows .. " windows open")
-  if #windows > 1 then
-  -- for i,v in ipairs(windows) do 
+  local windows = hs.application.frontmostApplication():allWindows()
+  for i, v in pairs(windows) do
+    if window:title() == "journal mailchimp" then
+      window:focus()
+      return
+    end
   end
 end)
 
