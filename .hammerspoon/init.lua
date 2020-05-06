@@ -12,13 +12,18 @@ require("window-management")
 
 ----- hammerspoon debugging -----
 hs.hotkey.bind({"control"}, "2", function()
-  local windows = hs.application.frontmostApplication():allWindows()
-  for i, v in pairs(windows) do
-    if window:title() == "journal mailchimp" then
-      window:focus()
-      return
+  local menuItems = hs.application.frontmostApplication():getMenuItems()
+  local tabTitles = ""
+  for _, menuItem in pairs(menuItems) do
+    -- hs.alert("menu: " .. menuItem.AXTitle)
+    if menuItem.AXTitle == "Tab" then
+     log.d(hs.inspect(menuItem))
+     for _, subItem in pairs(menuItem.AXChildren[1]) do
+       tabTitles = tabTitles .. subItem.AXTitle .. "\n"
+     end
     end
   end
+  hs.alert(tabTitles)
 end)
 
 ----- hammerspoon config reloading -----

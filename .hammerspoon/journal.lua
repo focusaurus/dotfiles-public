@@ -16,7 +16,7 @@ local function journalVim()
   end
   hs.timer.doAfter(0.2, function()
     hs.eventtap.keyStroke({"command", "control"}, "j")
-    hs.timer.doAfter(1, function()
+    hs.timer.doAfter(0.5, function()
       log.d("about to bottomRight")
       windowManagement.bottomRight()
     end)
