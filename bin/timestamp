@@ -10,7 +10,8 @@ set -o pipefail # don't ignore exit codes when piping output
 set -o posix    # more strict failures in subshells
 # set -x          # enable debugging
 
-IFS=$'\n\t'
+IFS=$'
+	'
 # ---- End unofficial bash strict mode boilerplate
 
-find "${1:-.}" -type f -name '*.md' | sort -n | xargs cat | less +F
+date +%Y%m%d-%H%M%S
