@@ -105,6 +105,7 @@
 /.vagrant.d
 /.viminfo
 /.visidata/cache
+/.vscode
 /.wget-hsts
 /.xournal
 /.xournalpp
