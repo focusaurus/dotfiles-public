@@ -1,8 +1,8 @@
 # Additional git repositories to pull
 git_repos = [
-    "~/projects/dotfiles",
-    "~/projects/edc",
-    "~/projects/journals"
+#    "~/projects/dotfiles",
+#    "~/projects/edc",
+#    "~/projects/journals"
 ]
 
 # Disable specific steps - same options as the command line flag
