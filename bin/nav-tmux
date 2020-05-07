@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
+
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -o errexit  # always exit on error
+set -o errtrace # trap errors in functions as well
+set -o pipefail # do nott ignore exit codes when piping output
+set -o posix    # more strict failures in subshells
+# set -x          # enable debugging
+
+IFS="$(printf "\n\t")"
+# ---- End unofficial bash strict mode boilerplate
+
+main() {
+  ~/bin/log "$0" "$@"
+  export PATH=/usr/local/bin:$PATH
+  case "$1" in
+  left)
+    if tmux list-panes | head -1 | grep -qE '\W\(active\)$'; then
+      # first pane is active (might be only 1), go to previous window
+      tmux previous-window
+    else
+      # go to next pane to the left in this window
+      tmux select-pane -L
+    fi
+    ;;
+  down)
+    tmux switch-client -n
+    # xdotool key --clearmodifiers ctrl+b parenright
+    ;;
+  up)
+    tmux select-pane -l
+    # xdotool key --clearmodifiers ctrl+b o
+    ;;
+  right)
+    if tmux list-panes | tail -1 | grep -qE '\W\(active\)$'; then
+      # last pane is active (might be only 1), go to next window
+      tmux next-window
+    else
+      # go to next pane to the right in this window
+      tmux select-pane -R
+    fi
+    ;;
+  esac
+}
+
+main "$@"

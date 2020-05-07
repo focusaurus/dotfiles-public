@@ -75,19 +75,19 @@ github() {
     cd "$(basename "${repo}" .git)" || return 1
     ;;
   commits)
-    xdg-open "$(_base-url)/commits"
+    ~/bin/open "$(_base-url)/commits"
     ;;
   issues)
-    xdg-open "$(_base-url)/issues"
+    ~/bin/open "$(_base-url)/issues"
     ;;
   pr-description)
     git log --reverse '--pretty=format:%s%n%b' "$(git-get-default-branch)..HEAD" | grep -Ev Signed-off-by
     ;;
   pull-requests)
-    xdg-open "$(_base-url)/pulls"
+    ~/bin/open "$(_base-url)/pulls"
     ;;
   repo)
-    xdg-open "$(_base-url)"
+    ~/bin/open "$(_base-url)"
     ;;
   *)
     echo "Unknown subcommand"
@@ -142,7 +142,7 @@ gmdown() {
 
 github-repo() {
   # shellcheck disable=SC2016
-  xdg-open "$(git remote -v |
+  ~/bin/open "$(git remote -v |
     awk '{print $2}' |
     sort |
     uniq |

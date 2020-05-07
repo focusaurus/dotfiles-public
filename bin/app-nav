@@ -12,13 +12,6 @@ set -o posix    # more strict failures in subshells
 
 IFS="$(printf "\n\t")"
 # ---- End unofficial bash strict mode boilerplate
-log_path=/tmp/app-nav.log
-log() {
-  if [[ "${ENABLE_APP_NAV_LOG}" == "1" ]]; then
-    echo -e "$@" >>"${log_path}"
-  fi
-}
-
 nav_firefox() {
   case "$1" in
   left)
@@ -33,37 +26,6 @@ nav_firefox() {
   down)
     # "Next" maps to Page Down
     xdotool key --clearmodifiers Next
-    ;;
-  esac
-}
-
-nav_tmux() {
-  case "$1" in
-  left)
-    if tmux list-panes | head -1 | grep -qE '\W\(active\)$'; then
-      # first pane is active (might be only 1), go to previous window
-      tmux previous-window
-    else
-      # go to next pane to the left in this window
-      tmux select-pane -L
-    fi
-    ;;
-  down)
-    tmux switch-client -n
-    # xdotool key --clearmodifiers ctrl+b parenright
-    ;;
-  up)
-    tmux select-pane -l
-    # xdotool key --clearmodifiers ctrl+b o
-    ;;
-  right)
-    if tmux list-panes | tail -1 | grep -qE '\W\(active\)$'; then
-      # last pane is active (might be only 1), go to next window
-      tmux next-window
-    else
-      # go to next pane to the right in this window
-      tmux select-pane -R
-    fi
     ;;
   esac
 }
@@ -86,23 +48,30 @@ nav_vs_code() {
 }
 
 main() {
-  #export PATH="${HOME}/github/jordansissel/xdotool:${PATH}"
-  cmdline=$(cat "/proc/$(xdotool getactivewindow getwindowpid)/cmdline")
-  log "----\n$(date)\n${cmdline} $*"
+  ~/bin/log "$0" "$@"
+  export PATH=/usr/local/bin:$PATH
+  # macos/hammerspoon mode. Active app is passed in on the command line
+  app="$1"
+  direction="$2"
+  if [[ $# -lt 2 ]]; then
+    # linux mode, get active window/app name from cmdline
+    direction="$1"
+    app=$(cat "/proc/$(xdotool getactivewindow getwindowpid)/cmdline")
+  fi
   # It seems if we issue the synthetic keystrokes before the physical keys are lifted,
   # presumably especially the modifier key(s),
   # the app doesn't get the right keystrokes,
   # so we wait for the keys to be released
   sleep 0.1
-  case "${cmdline}" in
+  case "${app}" in
   *firefox*)
-    nav_firefox "$@"
+    nav_firefox "${direction}"
     ;;
-  *termite*)
-    nav_tmux "$@"
+  *termite* | *iTerm2*)
+    ~/bin/nav-tmux "${direction}"
     ;;
   *code*)
-    nav_vs_code "$@"
+    nav_vs_code "${direction}"
     ;;
   esac
 }
