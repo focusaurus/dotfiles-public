@@ -40,37 +40,15 @@ main() {
     synclient HorizScrollDelta=-119
   fi
 
-  # 2019-09-26 plyons press and release a modifier sends key combos
+  # 2020-05-07 plyons press and release a modifier sends key combos
+  # left control press & release is the same as Escape
+  # left super press & release is the same as supert+space
   # left shift press & release is the same as control+comma
-  # left control press & release is the same as control+space
   if have_exe xcape; then
     kill_ok xcape
 
-    if false; then
-      ##### spacebar as modifier (mod4) ####
-      # Use spacebar as a modifier key (mod4)
-      # See https://github.com/alols/xcape#examples
-      # Map an unused modifier's keysym to the spacebar's keycode and make it a
-      # mod4 modifier. It needs to be an existing key so that emacs won't
-      # spazz out when you press it. Hyper_L is a good candidate.
-      spare_modifier="Hyper_L"
-      xmodmap -e "keycode 65 = $spare_modifier"
-      xmodmap -e "remove mod4 = $spare_modifier" # hyper_l is mod4 by default
-      xmodmap -e "add mod4 = $spare_modifier"
-
-      # Map space to an unused keycode (to keep it around for xcape to
-      # use).
-      xmodmap -e "keycode any = space"
-
-      # Finally use xcape to cause the space bar to generate a space when tapped.
-      xcape -e "$spare_modifier=space"
-
-    fi
-    ##### Tap caps lock sends escape #####
-    xcape -t 200 -e "Control_L=Escape;"
-
     # Need Super_R for ergodox but really should remap that to Super_L
-    # xcape -t 200 -e "Super_L=Control_L|1;Super_R=Control_L|1;Control_L=Control_L|2;"
+    xcape -t 200 -e "Control_L=Escape;Super_R=Super_R|space;Super_L=Super_L|space;Shift_L=Control_L|comma"
   fi
 
   # start xbindkeys daemon which remaps extra mouse buttons
@@ -117,8 +95,8 @@ main() {
   ~/bin/touchscreen disable || true
 
   pkill --uid "${USER}" --full ergodox-watch || true
+  ~/bin/mic-toggle >/dev/null
   ~/bin/ergodox-watch &>/dev/null &
-  ~/bin/mic-toggle
   # 2018-04-09 plyons https://superuser.com/questions/410657/enabling-sticky-keys-under-xorg-awesome-desktop-manager#414535
   # Turn on stickykeys. don't let two keys pressed at the same time disable it.
   # don't turn on "latch lock", ie pressing a modifier key twice "locks" it on.

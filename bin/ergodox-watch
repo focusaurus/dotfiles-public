@@ -13,17 +13,12 @@ set -o posix    # more strict failures in subshells
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
-log_path="/tmp/$(basename ${BASH_SOURCE[0]}).log"
-
-log() {
-  echo $(date) "$@" | tee -a "${log_path}"
-}
-
 main() {
-  log "starting"
+  ~/bin/log "$0" "starting"
   fswatch --event Updated ~/.ergodox-udev | {
-    while IFS= read -r file_path; do
-      log "setup-keyboards"
+    # shellcheck disable=SC2034
+    while IFS= read -r _file_path; do
+      log "$0" "setup-keyboards"
       ~/bin/setup-keyboards
     done
   }
