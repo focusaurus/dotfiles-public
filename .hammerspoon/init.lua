@@ -10,8 +10,8 @@ require("snippets")
 require("sound")
 require("window-management")
 
------ hammerspoon debugging -----
-hs.hotkey.bind({"control"}, "2", function()
+----- hammerspoon debugging and exploration -----
+local function chromeTabs()
   local menuItems = hs.application.frontmostApplication():getMenuItems()
   local tabTitles = ""
   for _, menuItem in pairs(menuItems) do
@@ -24,8 +24,13 @@ hs.hotkey.bind({"control"}, "2", function()
     end
   end
   hs.alert(tabTitles)
-end)
+end
 
+local function notification() 
+  hs.notify.show("Hello, world!", "two", "three")
+end
+
+hs.hotkey.bind({"control"}, "2", notification);
 ----- hammerspoon config reloading -----
 function reloadConfig(files)
   log.d("reloadConfig")
