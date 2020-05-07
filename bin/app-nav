@@ -40,8 +40,13 @@ nav_firefox() {
 nav_tmux() {
   case "$1" in
   left)
-    tmux previous-window
-    # xdotool key --clearmodifiers ctrl+b p
+    if tmux list-panes | head -1 | grep -qE '\W\(active\)$'; then
+      # first pane is active (might be only 1), go to previous window
+      tmux previous-window
+    else
+      # go to next pane to the left in this window
+      tmux select-pane -L
+    fi
     ;;
   down)
     tmux switch-client -n
@@ -52,8 +57,13 @@ nav_tmux() {
     # xdotool key --clearmodifiers ctrl+b o
     ;;
   right)
-    tmux next-window
-    # xdotool key --clearmodifiers ctrl+b n
+    if tmux list-panes | tail -1 | grep -qE '\W\(active\)$'; then
+      # last pane is active (might be only 1), go to next window
+      tmux next-window
+    else
+      # go to next pane to the right in this window
+      tmux select-pane -R
+    fi
     ;;
   esac
 }
@@ -77,8 +87,8 @@ nav_vs_code() {
 
 main() {
   #export PATH="${HOME}/github/jordansissel/xdotool:${PATH}"
-  cmdline=$(cat /proc/$(xdotool getactivewindow getwindowpid)/cmdline)
-  log "----\n$(date)\n${cmdline} $@"
+  cmdline=$(cat "/proc/$(xdotool getactivewindow getwindowpid)/cmdline")
+  log "----\n$(date)\n${cmdline} $*"
   # It seems if we issue the synthetic keystrokes before the physical keys are lifted,
   # presumably especially the modifier key(s),
   # the app doesn't get the right keystrokes,
