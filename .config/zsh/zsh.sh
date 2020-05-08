@@ -62,6 +62,21 @@ prompt-git-status() {
   echo -n " "
 }
 
+prompt-git-dir() {
+  if [[ -n "${GIT_DIR}" ]]; then
+    printf "GIT_DIR "
+  fi
+}
+
+prompt-git() {
+  if [[ "${PWD}" =~ ^/Volumes/CaseSensitive ]]; then
+    # For super large repositories, this slows the shell prompt down too much
+    # so just disable it
+    return
+  fi
+  echo "$(prompt-git-branch)$(prompt-git-status)$(prompt-git-dir)"
+}
+
 prompt-kube-context() {
   local context
   context="$(kubectl config current-context 2>/dev/null | cut -d . -f 1)"
@@ -82,12 +97,6 @@ prompt-aws-profile() {
   fi
 }
 
-prompt-dotfiles() {
-  if [[ -n "${GIT_DIR}" ]]; then
-    printf "DOTFILES "
-  fi
-}
-
 setup-prompt() {
   export PROMPT='╭%4~ %n@%m
 ╰○ '
@@ -100,7 +109,7 @@ setup-prompt() {
   # ❯ '
   # small white square ▫️ '
   # ❯
-  export RPROMPT='vi:${ZLE_VI_MODE}$(prompt-git-branch)$(prompt-git-status)$(prompt-dotfiles)$(prompt-aws-profile)$(prompt-kube-context)$(prompt-kube-namespace)'
+  export RPROMPT='vi:${ZLE_VI_MODE}$(prompt-git)$(prompt-aws-profile)$(prompt-kube-context)$(prompt-kube-namespace)'
 }
 setup-prompt
 

@@ -326,11 +326,12 @@ dotfiles-end() {
 alias dfb="dotfiles-begin"
 alias dfe="dotfiles-end"
 
-search-dotfiles() {
+dotfiles-search() {
   GIT_DIR="${HOME}/.home.git" git ls-files | xargs rg "$@"
 }
 
 gsync() {
+  dotfiles-end
   ~/bin/git-autocommit ~/projects/journals ~/mc
   ~/bin/git-sync ~/projects/journals ~/projects/dotfiles ~/mc ~
 }

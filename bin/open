@@ -14,8 +14,8 @@ IFS=$'
 	'
 # ---- End unofficial bash strict mode boilerplate
 
-if $(uname) == "Darwin"; then
-  open "$@"
+if [[ "$(uname)" == "Darwin" ]]; then
+  /usr/bin/open "$@"
 else
   xdg-open "$@"
 fi
