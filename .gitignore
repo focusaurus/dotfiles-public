@@ -141,3 +141,4 @@
 /work-*
 /.node-gyp
 /.cups
+/.config/gthumb
