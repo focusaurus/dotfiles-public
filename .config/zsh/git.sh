@@ -45,6 +45,8 @@ alias amend="git commit --amend"
 alias git-not-pushed="git log --branches --not --remotes"
 
 _base-url() {
+  # heads up. Depends on a slightly obscure utility
+  # https://github.com/sgreben/url
   # shellcheck disable=SC2016
   git remote -v |
     awk '{print $2}' |
@@ -52,7 +54,7 @@ _base-url() {
     uniq |
     grep -E 'github\.com' |
     head -1 |
-    sed -e 's_^\s*git@_https://_' -e 's_\.git$__' -e 's_://\(.*\):_://\1/_'
+    xargs url -p -set-scheme https
 }
 
 github() {

@@ -14,7 +14,7 @@ IFS=$'\n\t'
 for path in "$@"; do
   extension=${path##*.}
   case "${extension}" in
-  clj|css|graphql|html|js|json|md|sh|yaml)
+  clj|css|graphql|html|js|json|md|sh|xml|yaml)
     "${HOME}/bin/pretty-print-${extension}" <"${path}" | sponge "${path}"
     ;;
   php)

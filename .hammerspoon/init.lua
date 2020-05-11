@@ -29,8 +29,15 @@ end
 local function notification() 
   hs.notify.show("Hello, world!", "two", "three")
 end
+local function runningApplications()
+  local apps = hs.application.runningApplications()
 
-hs.hotkey.bind({"control"}, "2", notification);
+  for _, app in pairs(apps) do
+    log.d(app:name())
+  end
+end
+
+hs.hotkey.bind({"control"}, "2", runningApplications);
 ----- hammerspoon config reloading -----
 function reloadConfig(files)
   log.d("reloadConfig")
