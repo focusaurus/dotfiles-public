@@ -13,10 +13,10 @@ set -o posix    # more strict failures in subshells
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 if [[ "$(uname)" == "Darwin" ]]; then
-  open -g "hammerspoon://autotypeSignIn?u=$1&p=$2"
-exit
+  cliclick "t:$1" "w:10" "kp:tab" "t:$2" "w:10" "kp:enter"
+  # open -g "hammerspoon://autotypeSignIn?u=$1&p=$2"
+  exit
 fi
-# xdotool key ctrl+space # hide fuzzball terminal window
 xdotool type "$1"
 xdotool key Tab
 xdotool type "$2"

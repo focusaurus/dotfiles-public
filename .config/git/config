@@ -5,7 +5,6 @@
   ignorecase = false
   autocrlf = input
   precomposeunicode = true
-#  excludesfile = ~/.config/git/ignore
 #  pager = delta --dark
 [color]
   branch = auto
@@ -46,7 +45,5 @@
   fsckobjects = true
 [rerere]
   enabled = true
-#[init]
-#	templatedir = /home/plyons/work-reaction/common/git-template
 [diff "sopsdiffer"]
   textconv = sops -d
