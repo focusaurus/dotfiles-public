@@ -24,13 +24,11 @@ dotfiles-end() { unset GIT_DIR GIT_WORK_TREE }
 
   - I have an indicator in my prompt to remind me when I'm in this mode
   - I do it this way so my dozens of git alias and shell functions just work. Other tutorials have techniques like dedicated aliases or functions that cause everything else git related to be broken, so this is better.
-- I keep a separate gitignore file just for my home directory repository at `~/.home.gitignore`
-  - This is setup initially via `git config core.excludesfile ~/.home.gitignore`
-  - This file is huge and I add to it regularly as programs write nonimportant stuff to my home directory
+- Another consequence of this approach is I need a large `~/.gitignore` which I maintain and add to regularly as programs write nonimportant stuff to my home directory
   - Maintaining this file is the main trade-off of this dotfiles approach compared to some symlink management approach. It's easy enough to maintain this large gitignore file, but it does require a lot of small tasks, especially when my software stack is undergoing a lot of churn, which has been the case recently, but should be starting to stabilize for a while now
-  - My actual `~/.gitignore` is the main one inherited for me across all repos 
+- My global gitignore file is at the default path of `~/.config/git/ignore`
 
-## Key parts of my stack
+## Key parts of my stack (linux)
 
 - lightdm as display manager
   - Suggestion from Ross. I don't particularly like it. Would prefer if keyboard layout was displayed and switchable via mouse on the lock screen
@@ -44,7 +42,16 @@ dotfiles-end() { unset GIT_DIR GIT_WORK_TREE }
   - I prefer this to bash as it really is better, but most of my scripts for non-interactive stuff are still coded as bash scripts (not bourne, bash)
 - tmux
   - I'm using this because the cool kids do but I have at best mixed feelings. Yeah it's powerful and I can keep things nicely organized, and urlview is fantastic as is doing most text selection with the mouse and vim keybindings, but otherwise tmux still sits squarely in my definition of "medieval software" which in general I try to avoid.
+- sxhkd (simple X11 hot key daemon) for non-window-manager key bindings. I really like having a dedicated program to this and the sxhkd config file format is probably near-ideal.
+- xcape and xmodmap for keyboard tweaking
 
+## Key parts of my stack (macos)
+
+- hammerspoon for general automation, hot keys, window manipulation
+- choose for rofi-like fuzzy filter GUI menu
+- bettertouchtool for mouse keys, fixing scroll wheel direction, and clipboard history
+- karabiner-elements for keyboard tweaking
+- spacelauncher for keyboard tweaking
 
 ## Philosophy of mind: menus and hotkeys
 
