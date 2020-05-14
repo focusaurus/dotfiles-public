@@ -142,3 +142,4 @@
 /.node-gyp
 /.cups
 /.config/gthumb
+/.cmake

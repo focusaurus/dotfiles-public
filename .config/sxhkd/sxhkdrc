@@ -12,7 +12,7 @@ ctrl + 4
 
 ##### app-nav #####
 # left hand home row vim arrows
-alt + {a,o,e,u}
+super + {a,o,e,u}
   ~/bin/app-nav {left,down,up,right}
 # actual arrow keys
 super + {Left,Down,Up,Right}
