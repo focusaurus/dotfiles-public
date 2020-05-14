@@ -12,13 +12,22 @@ set -o posix    # more strict failures in subshells
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-ponymix -t source toggle
-status=on
-set +o errexit
-if ponymix -t source is-muted; then
-  status=off
-fi
-set -o errexit
-echo "${status}" >"/run/user/$(id -u)/mic.txt"
-notify-send --expire-time=2000 "mic is ${status}"
-killall -SIGUSR1 i3status
+notify() {
+  notify-send --expire-time=2000 "mic is $(cat "${file}")"
+  killall -SIGUSR1 i3status
+}
+
+main() {
+  file="/run/user/$(id -u)/mic.txt"
+  set +o errexit
+  if ponymix -t source is-muted; then
+    echo off >"${file}"
+    notify
+    exit
+  fi
+  set -o errexit
+  ponymix -t source get-volume >"/run/user/$(id -u)/mic.txt"
+  notify
+}
+
+main "$@"
