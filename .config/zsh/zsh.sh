@@ -16,12 +16,6 @@ alias -g /p='$(paste)'
 ##### shell prompt setup #####
 setopt prompt_subst
 
-# emacs mode
-bindkey -e
-# vi mode
-# https://unix.stackexchange.com/a/393705/25728
-#bindkey -v
-#bindkey "^R" history-incremental-search-backward
 KEYTIMEOUT=1
 
 function zle-line-init zle-keymap-select {

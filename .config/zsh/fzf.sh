@@ -49,7 +49,7 @@ if [[ -n "${ZSH_VERSION}" ]]; then
   #  - command line ended with a trailing space when hotkey was pressed
   #  - Do an unfiltered fuzzy find and append the chosen path to the command line
   function fuzz-all-into-line() {
-    echo "fuzz-all-into-line @: $@ " >>/tmp/fuzz.log
+    ~/bin/log $0 "fuzz-all-into-line @: $@ "
     # Print a newline or we'll clobber the old prompt.
     echo
     local query=""
@@ -60,11 +60,11 @@ if [[ -n "${ZSH_VERSION}" ]]; then
     fi
 
     declare -a fd_opts=(--max-depth 12 "$@")
-    echo "fuzz-all-into-line fd_opts: ${fd_opts}" >>/tmp/fuzz.log
+    ~/bin/log $0 "fuzz-all-into-line fd_opts: ${fd_opts}"
     # Find the path; abort if the user doesn't select anything.
     local chosen_path
     chosen_path=$(fd "${fd_opts[@]}" | fzf --select-1 --exit-0 --query "${query}") || return
-    echo "fuzz-all-into-line chosen_path: ${chosen_path}" >>/tmp/fuzz.log
+    ~/bin/log "$0" "fuzz-all-into-line chosen_path: ${chosen_path}"
     local new_buffer
     if [[ "${LBUFFER}" =~ "\s$" ]]; then
       # no-query-mode: append the chosen path
@@ -79,24 +79,21 @@ if [[ -n "${ZSH_VERSION}" ]]; then
     zle reset-prompt
   }
   zle -N fuzz-all-into-line # Create the zle widget
-  bindkey "^[a" "fuzz-all-into-line"
+  bindkey "^A" "fuzz-all-into-line"
 
   function fuzz-directory-into-line() {
     fuzz-all-into-line --type directory
   }
   zle -N fuzz-directory-into-line # Create the zle widget
-  bindkey "^[d" "fuzz-directory-into-line"
+  bindkey "^D" "fuzz-directory-into-line"
 
   function fuzz-file-into-line() {
     fuzz-all-into-line --type file
   }
   zle -N fuzz-file-into-line # Create the zle widget
-  bindkey "^[f" "fuzz-file-into-line"
-fi
+  bindkey "^F" "fuzz-file-into-line"
 
-# fuzzy-filter() {
-#   cat | (fzf --select-1 --query "$1" || fzf --query "${1}")
-# }
+fi
 
 c() {
   local dir
@@ -107,14 +104,6 @@ c() {
     echo "No match!" 1>&2
   fi
 }
-
-# fuzz-directory-command-line() {
-#   local dir
-#   # dir="$(fd --hidden --no-ignore-vcs --type directory . 2>/dev/null |
-#   #   FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --multi --reverse $FZF_DEFAULT_OPTS $FZF_ALT_C_OPTS" fzf)"
-#   dir="$(fd --hidden --no-ignore-vcs --type directory . 2>/dev/null | fzf)"
-#   cat | fzf --select-1 --exit-0 --query "$1"
-# }
 
 kill-fzf() {
   pkill --full 'fzf.*select-1.*query'

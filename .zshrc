@@ -1,5 +1,8 @@
 # zsh setup
 
+#emacs mode
+bindkey -e
+
 ##### completion #####
 fpath=(~/.config/zsh/completions $fpath)
 autoload -Uz compinit && compinit
@@ -11,8 +14,6 @@ autoload -Uz compinit && compinit
 zle -C complete-file complete-word _generic
 zstyle ':completion:complete-file::::' completer _files
 bindkey '^t' complete-file
-
-set -o vi
 
 source-if-exists() {
   for file in "$@"; do
