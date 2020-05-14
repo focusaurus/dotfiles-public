@@ -22,7 +22,7 @@ local function journalVim()
     end)
   end)
 end
-hs.hotkey.bind({"command"}, "j", journalVim)
+-- hs.hotkey.bind({"command"}, "j", journalVim)
 
 local function journalDialog() 
   log.d("journalDialog")

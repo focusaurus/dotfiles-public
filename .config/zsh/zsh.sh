@@ -9,16 +9,19 @@ tt() {
 
 alias -g /l='| less'
 alias -g //l='2>&1 | less'
+alias -g /c='| copy'
 alias -g /p='$(paste)'
 
 # alias -g devlog='json -g -a -0 -e "delete this.v; delete this.hostname;delete this.level; delete this.pid; delete this.name"'
 ##### shell prompt setup #####
 setopt prompt_subst
 
+# emacs mode
+bindkey -e
 # vi mode
 # https://unix.stackexchange.com/a/393705/25728
-bindkey -v
-bindkey "^R" history-incremental-search-backward
+#bindkey -v
+#bindkey "^R" history-incremental-search-backward
 KEYTIMEOUT=1
 
 function zle-line-init zle-keymap-select {
@@ -109,7 +112,8 @@ setup-prompt() {
   # ❯ '
   # small white square ▫️ '
   # ❯
-  export RPROMPT='vi:${ZLE_VI_MODE}$(prompt-git)$(prompt-aws-profile)$(prompt-kube-context)$(prompt-kube-namespace)'
+  # export RPROMPT='vi:${ZLE_VI_MODE}$(prompt-git)$(prompt-aws-profile)$(prompt-kube-context)$(prompt-kube-namespace)'
+  export RPROMPT='$(prompt-git)$(prompt-aws-profile)$(prompt-kube-context)$(prompt-kube-namespace)'
 }
 setup-prompt
 

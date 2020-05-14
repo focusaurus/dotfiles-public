@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 if ~/bin/have-exe fasd; then
   eval "$(fasd --init auto)"
   #alias a='fasd -a'        # any

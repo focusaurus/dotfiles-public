@@ -318,6 +318,10 @@ git-checkout() {
   git checkout "${name}" 2>/dev/null || git checkout -b "${name}" "${first_origin}/${default_branch}"
 }
 
+git-repo-path() {
+  git rev-parse --show-prefix
+}
+
 dotfiles-begin() {
   export GIT_DIR="${HOME}/.home.git" GIT_WORK_TREE="${HOME}"
 }
@@ -332,8 +336,23 @@ dotfiles-search() {
   GIT_DIR="${HOME}/.home.git" git ls-files | xargs rg "$@"
 }
 
+dotfiles-edit-by-search() {
+  (
+    cd ~
+    dotfiles-begin
+    git ls-files | xargs rg -l "$@" | xargs nvim -p
+  )
+}
+
 gsync() {
   dotfiles-end
   ~/bin/git-autocommit ~/projects/journals ~/mc
   ~/bin/git-sync ~/projects/journals ~/projects/dotfiles ~/mc ~
+}
+
+git-cd-repo-dir-fuzzy() {
+  dir=$(git ls-files --full-name | xargs dirname | ~/bin/fuzzy-filter "$@")
+  if [[ -d "${dir}" ]]; then
+    cd "${dir}"
+  fi
 }

@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 arch-install-package() {
   yay -S "$@"
   hash -r

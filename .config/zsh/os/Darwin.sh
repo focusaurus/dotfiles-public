@@ -121,17 +121,36 @@ macos-dns-dhcp() {
 }
 
 # macos preferences 2020 edition
-system-prefs-chrome-protocol-dialog() {
+macos-system-prefs-font-blur() {
+  defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
+  defaults -currentHost write -globalDomain AppleFontSmoothing -int 3
+}
+
+macos-system-prefs-chrome-protocol-dialog() {
   # 2020-05-01 plyons confirmed on macos Catalina 10.15.4
   defaults write com.google.Chrome ExternalProtocolDialogShowAlwaysOpenCheckbox -bool true
 }
 
-system-prefs-keyboard-repeat() {
+macos-system-prefs-keyboard-repeat() {
   defaults write -g ApplePressAndHoldEnabled -bool false
   # Set a blazingly fast keyboard repeat rate
   defaults write -g KeyRepeat -int 1
   # Set a shorter Delay until key repeat
   defaults write -g InitialKeyRepeat -int 10
+}
+
+macos-system-prefs-dialog-keyboard() {
+  # 2020-05-12 plyons this does not seem to work
+  # Enable full keyboard access for all controls
+  # (e.g. enable Tab in modal dialogs)
+  defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+}
+
+macos-system-prefs-chrome-print-dialog-native() {
+  # 2020-05-12 plyons confirmed working
+  # Use the system-native print preview dialog
+  defaults write com.google.Chrome DisablePrintPreview -bool true
+
 }
 
 ########## OS X Preferences ##########
