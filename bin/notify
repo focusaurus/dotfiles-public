@@ -14,8 +14,10 @@ IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
-if ! ~/bin/have-exe notify-send; then
-  exit
+if ~/bin/have-exe notify-send; then
+  notify-send --expire-time=2000 "$@"
+elif ~/bin/have-exe hs; then
+  cat <<EOF | hs >/dev/null
+hs.notify.show("$@", "", "")
+EOF
 fi
-
-notify-send --expire-time=2000 "$@"

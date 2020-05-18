@@ -10,6 +10,9 @@ require("snippets")
 require("sound")
 require("window-management")
 
+-- required for the "hs" command line utility to work
+require("hs.ipc")
+
 ----- hammerspoon debugging and exploration -----
 local function chromeTabs()
   local menuItems = hs.application.frontmostApplication():getMenuItems()
@@ -53,3 +56,8 @@ function reloadConfig(files)
 end
 myWatcher = hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", reloadConfig):start()
 hs.alert.show("Hammerspoon config reloaded")
+
+
+function notify(message)
+
+end
