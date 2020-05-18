@@ -30,7 +30,8 @@ set expandtab
 set tabstop=2
 set indentkeys-=:
 set cursorline
-set ignorecase
+set number
+set noignorecase
 set hlsearch
 set incsearch
 "set clipboard=unnamedplus

@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 #export FZF_DEFAULT_COMMAND='rg -g ""'
+if ~/bin/have-exe fd; then
+  export FZF_DEFAULT_COMMAND="fd --exclude vendor ."
+fi
 export FZF_COMPLETION_TRIGGER="''"
 export FZF_DEFAULT_OPTS='--bind=alt-enter:print-query'
 if [[ -n "${ZSH_VERSION}" ]]; then
-  #[[ -f "/usr/share/fzf/competion.zsh" ]] && source "/usr/share/fzf/competion.zsh"
-  #[[ -f "/usr/share/fzf/key-bindings.zsh" ]] && source "/usr/share/fzf/key-bindings.zsh"
+  source-if-exists /usr/local/Cellar/fzf/*/shell/key-bindings.zsh /usr/share/fzf/key-bindings.zsh
 
   # fzf-cd-all-widget() {
   #   setopt localoptions pipefail 2>/dev/null
@@ -79,19 +81,22 @@ if [[ -n "${ZSH_VERSION}" ]]; then
     zle reset-prompt
   }
   zle -N fuzz-all-into-line # Create the zle widget
-  bindkey "^A" "fuzz-all-into-line"
+  # TODO find a good keybinding for this
+  bindkey "^F" "fuzz-all-into-line"
 
   function fuzz-directory-into-line() {
     fuzz-all-into-line --type directory
   }
   zle -N fuzz-directory-into-line # Create the zle widget
-  bindkey "^D" "fuzz-directory-into-line"
+  # TODO find a good keybinding for this
+  # bindkey "^F" "fuzz-directory-into-line"
 
   function fuzz-file-into-line() {
     fuzz-all-into-line --type file
   }
   zle -N fuzz-file-into-line # Create the zle widget
-  bindkey "^F" "fuzz-file-into-line"
+  # TODO find a good keybinding for this
+  # bindkey "^F" "fuzz-file-into-line"
 
 fi
 
@@ -114,4 +119,17 @@ sigusr1-fuzzy() {
   shift
   [[ -z "${pid}" ]] && return 1
   /bin/kill --signal USR1 "${pid}"
+}
+
+xargs-fuzzy() {
+  query="$1"
+  shift
+  file_command=(fd --type file)
+  if git rev-parse HEAD &>/dev/null; then
+    # we are inside a git repository
+    file_command=(git ls-files)
+  fi
+  "${file_command[@]}" |
+    fzf --no-sort --filter="${query}" |
+    xargs "$@"
 }

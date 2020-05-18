@@ -1,0 +1,5 @@
+:%sort
+
+command mode
+% means whole file
+sort command sorts lines

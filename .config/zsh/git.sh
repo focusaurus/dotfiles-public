@@ -43,6 +43,7 @@ alias undo-git-rm='git checkout HEAD'
 alias gbmd="git branch --merged develop"
 alias amend="git commit --amend"
 alias git-not-pushed="git log --branches --not --remotes"
+alias gls="git ls-files"
 
 _base-url() {
   # heads up. Depends on a slightly obscure utility
