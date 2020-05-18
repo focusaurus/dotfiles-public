@@ -53,6 +53,7 @@ activate_window() {
     i3_mark_last
     wmctrl -i -a "${id}"
   else
+    # shellcheck disable=SC2086
     eval ${command}
   fi
 }
@@ -98,6 +99,9 @@ main() {
     ;;
   ctrl+f4)
     ~/git.peterlyons.com/dotfiles/fuzzball/workflowy-done
+    ;;
+  f5)
+    ~/bin/notify "f5 pressed"
     ;;
   f6)
     if wmctrl -l | grep -qi "zoom"; then

@@ -13,11 +13,43 @@ set -o posix    # more strict failures in subshells
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
+kill_ok() {
+  killall --user "${USER}" --exact "$1" 2>/dev/null || true
+}
+
+send_sigusr1() {
+  killall --exact --signal SIGUSR1 "$@" 2>/dev/null
+}
+
+have_exe() {
+  command -v "$1" >/dev/null
+}
+
 main() {
 
-  # Use software dvorak. Caps lock key is ctrl, swap left windows and alt
-  # See  /usr/share/X11/xkb/rules/base for more available options
-  setxkbmap dvorak -option -option "ctrl:nocaps,altwin:swap_lalt_lwin"
+  # use software dvorak for laptop keyboard
+  # caps lock key is ctrl
+  # swap left windows and alt
+  # See /usr/share/X11/xkb/rules/base for more available options
+  thinkpad_device="$(xinput --list |
+    grep keyboard |
+    grep "AT Translated" |
+    grep --extended-regexp --only-matching 'id=[0-9]+' |
+    tr -d -c '[:digit:]')"
+  # setxkbmap -device "${thinkpad_device}" -option "ctrl:nocaps,altwin:swap_lalt_lwin" dvorak
+  setxkbmap -option "ctrl:nocaps,altwin:swap_lalt_lwin" dvorak
+
+  # for ergodox it's already set to dvorak layout
+  # so nothing to do
+
+  # 2020-05-07 plyons press and release a modifier sends key combos
+  # left control press & release is the same as Escape (for vim)
+  # super press & release is the same as super+space (for fuzzball)
+  # left shift press & release is the same as control+comma (for snippets)
+  if have_exe xcape; then
+    kill_ok xcape
+    xcape -t 200 -e "Control_L=Escape;Control_R=Escape;Super_L=Super_L|space;Super_R=Super_R|space;Shift_L=Control_L|comma;Shift_R=Control_R|comma"
+  fi
 
   # 2018-04-10 plyons set fast keyboard repeat
   # syntax is delay (ms) then repeat rate (cps I think)
@@ -25,6 +57,15 @@ main() {
   rate=70
   xset r rate "${delay}" "${rate}"
 
+  # start xbindkeys daemon which remaps extra mouse buttons
+  if ! send_sigusr1 xbindkeys; then
+    xbindkeys
+  fi
+
+  if have_exe sxhkd; then
+    kill_ok sxhkd
+    sxhkd -r "/run/user/${UID}/sxhkd.log" &
+  fi
 }
 
 main "$@"
