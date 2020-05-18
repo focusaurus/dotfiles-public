@@ -11,6 +11,7 @@ alias -g /l='| less'
 alias -g //l='2>&1 | less'
 alias -g /c='| copy'
 alias -g /p='$(paste)'
+alias -g /x='| xargs'
 
 # alias -g devlog='json -g -a -0 -e "delete this.v; delete this.hostname;delete this.level; delete this.pid; delete this.name"'
 ##### shell prompt setup #####

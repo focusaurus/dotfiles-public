@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
 #export FZF_DEFAULT_COMMAND='rg -g ""'
+if ~/bin/have-exe fd; then
+  export FZF_DEFAULT_COMMAND="fd --exclude vendor ."
+fi
 export FZF_COMPLETION_TRIGGER="''"
 export FZF_DEFAULT_OPTS='--bind=alt-enter:print-query'
 if [[ -n "${ZSH_VERSION}" ]]; then
-  #[[ -f "/usr/share/fzf/competion.zsh" ]] && source "/usr/share/fzf/competion.zsh"
-  #[[ -f "/usr/share/fzf/key-bindings.zsh" ]] && source "/usr/share/fzf/key-bindings.zsh"
+  if [[ "$(uname)" == "Darwin" ]]; then
+    source-if-exists /usr/local/Cellar/fzf/*/shell/key-bindings.zsh
+  fi
+  source-if-exists /usr/share/fzf/key-bindings.zsh
 
   # fzf-cd-all-widget() {
   #   setopt localoptions pipefail 2>/dev/null
@@ -49,7 +54,7 @@ if [[ -n "${ZSH_VERSION}" ]]; then
   #  - command line ended with a trailing space when hotkey was pressed
   #  - Do an unfiltered fuzzy find and append the chosen path to the command line
   function fuzz-all-into-line() {
-    ~/bin/log $0 "fuzz-all-into-line @: $@ "
+    ~/bin/log "$0" "fuzz-all-into-line @: $* "
     # Print a newline or we'll clobber the old prompt.
     echo
     local query=""
@@ -60,7 +65,8 @@ if [[ -n "${ZSH_VERSION}" ]]; then
     fi
 
     declare -a fd_opts=(--max-depth 12 "$@")
-    ~/bin/log $0 "fuzz-all-into-line fd_opts: ${fd_opts}"
+    # shellcheck disable=SC2145
+    ~/bin/log "$0" "fuzz-all-into-line fd_opts: ${fd_opts[@]}"
     # Find the path; abort if the user doesn't select anything.
     local chosen_path
     chosen_path=$(fd "${fd_opts[@]}" | fzf --select-1 --exit-0 --query "${query}") || return
@@ -68,30 +74,34 @@ if [[ -n "${ZSH_VERSION}" ]]; then
     local new_buffer
     if [[ "${LBUFFER}" =~ "\s$" ]]; then
       # no-query-mode: append the chosen path
-      new_buffer="$(echo "${LBUFFER}${chosen_path}")"
+      new_buffer="${LBUFFER}${chosen_path}"
     else
       # pre-filter mode, replace the last token with the chosen path
       new_buffer="$(echo "${LBUFFER}" | awk '{$NF=""; print $0}')${chosen_path}"
     fi
     # Append the selection to the current command buffer.
+    # shellcheck disable=SC2034
     eval 'LBUFFER="${new_buffer} "'
     # Redraw the prompt since fzf has drawn several new lines of text.
     zle reset-prompt
   }
   zle -N fuzz-all-into-line # Create the zle widget
-  bindkey "^A" "fuzz-all-into-line"
+  # TODO find a good keybinding for this
+  bindkey "^F" "fuzz-all-into-line"
 
   function fuzz-directory-into-line() {
     fuzz-all-into-line --type directory
   }
   zle -N fuzz-directory-into-line # Create the zle widget
-  bindkey "^D" "fuzz-directory-into-line"
+  # TODO find a good keybinding for this
+  # bindkey "^F" "fuzz-directory-into-line"
 
   function fuzz-file-into-line() {
     fuzz-all-into-line --type file
   }
   zle -N fuzz-file-into-line # Create the zle widget
-  bindkey "^F" "fuzz-file-into-line"
+  # TODO find a good keybinding for this
+  # bindkey "^F" "fuzz-file-into-line"
 
 fi
 
@@ -114,4 +124,17 @@ sigusr1-fuzzy() {
   shift
   [[ -z "${pid}" ]] && return 1
   /bin/kill --signal USR1 "${pid}"
+}
+
+xargs-fuzzy() {
+  query="$1"
+  shift
+  file_command=(fd --type file)
+  if git rev-parse HEAD &>/dev/null; then
+    # we are inside a git repository
+    file_command=(git ls-files)
+  fi
+  "${file_command[@]}" |
+    fzf --no-sort --filter="${query}" |
+    xargs "$@"
 }

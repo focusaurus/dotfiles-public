@@ -12,11 +12,11 @@ set -o posix    # more strict failures in subshells
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-repo=$(ssh git.peterlyons.com ls -d "git.peterlyons.com/*.git" |
+repo=$(ssh plyons@git.peterlyons.com ls -d 'projects/*.git' |
   xargs -n 1 basename |
   ~/bin/fuzzy-filter "$@")
 if [[ -z "${repo}" ]]; then
   exit
 fi
 cd ~/git.peterlyons.com
-git clone "ssh://plyons@git.peterlyons.com/home/plyons/git.peterlyons.com/${repo}"
+git clone "ssh://plyons@git.peterlyons.com/home/plyons/projects/${repo}"
