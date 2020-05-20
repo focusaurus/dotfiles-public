@@ -16,7 +16,7 @@ function maximize()
   f.h = screenFrame.h
   win:setFrame(f)
 end
-hs.hotkey.bind({"command", "shift"}, "m", maximize)
+-- hs.hotkey.bind({"command", "shift"}, "m", maximize)
 --right hand home row "up"
 hs.hotkey.bind({"option"}, "n", maximize)
 --left hand bottom row "up"
@@ -32,7 +32,7 @@ function left()
   win:setFrame(f)
 end
 
-hs.hotkey.bind({"command", "shift"}, "l", left)
+-- hs.hotkey.bind({"command", "shift"}, "l", left)
 --right hand home row "left"
 hs.hotkey.bind({"option"}, "h", left)
 --left hand bottom row "left"
@@ -47,7 +47,7 @@ function right()
   f.h = screenFrame.h
   win:setFrame(f)
 end
-hs.hotkey.bind({"command", "shift"}, "r", right)
+-- hs.hotkey.bind({"command", "shift"}, "r", right)
 --right hand home row "right"
 hs.hotkey.bind({"option"}, "s", right)
 --left hand bottom row "right"

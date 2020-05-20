@@ -44,6 +44,7 @@ alias gbmd="git branch --merged develop"
 alias amend="git commit --amend"
 alias git-not-pushed="git log --branches --not --remotes"
 alias gls="git ls-files"
+alias ts="tig status"
 
 _base-url() {
   # heads up. Depends on a slightly obscure utility

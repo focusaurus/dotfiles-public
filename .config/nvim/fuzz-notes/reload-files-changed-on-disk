@@ -1,0 +1,4 @@
+https://vi.stackexchange.com/questions/458/how-can-i-reload-all-buffers-at-once
+
+:bufdo! e
+:checktime
