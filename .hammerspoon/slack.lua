@@ -1,0 +1,13 @@
+function lunch()
+  hs.application.launchOrFocus("Slack")
+  hs.eventtap.keyStroke({"command", "shift"}, "k")
+  hs.timer.doAfter(0.5, function()
+    hs.eventtap.keyStrokes("Peter Lyons")
+    hs.eventtap.keyStroke({}, "Return")
+    -- hs.eventtap.keyStroke({"command"}, "a")
+    -- hs.eventtap.keyStroke({}, "Delete")
+    hs.eventtap.keyStrokes("/status :knife_fork_plate: At lunch")
+    -- hs.eventtap.keyStrokes("lunch")
+    -- hs.eventtap.keyStroke({}, "Return")
+  end)
+end

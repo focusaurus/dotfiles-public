@@ -1,0 +1,3 @@
+Yank entire line into the "+ register which is system clipboard:
+
+:%y+
