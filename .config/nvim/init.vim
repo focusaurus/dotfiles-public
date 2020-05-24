@@ -34,6 +34,7 @@ set number
 set noignorecase
 set hlsearch
 set incsearch
+set list
 "set clipboard=unnamedplus
 set statusline+=%F
 

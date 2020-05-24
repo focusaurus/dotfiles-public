@@ -1,27 +1,30 @@
 local log = hs.logger.new("sound", "debug")
+local module = {}
 
--- sound: toggle mute output
-hs.hotkey.bind({}, "f10", function()
-  log.d("fkeys f9")
+function module.toggleMute()
+  log.d("toggleMute")
   local device = hs.audiodevice.defaultOutputDevice()
   device:setMuted(not device:muted())
-end)
+end
 
--- decrease volume
-hs.hotkey.bind({}, "f11", function()
-  log.d("fkeys f11")
+function module.volumeDown()
+  log.d("volumeDown")
   local device = hs.audiodevice.defaultOutputDevice()
-  local level = device:volume() - 10
+  local level = math.floor(device:volume() - 10)
   if level < 0 then level = 0 end
+  log.df("volume %s", level)
+  hs.alert("volume " .. level)
   device:setVolume(level)
-end)
+end
 
--- increase volume
-hs.hotkey.bind({}, "f12", function()
-  log.d("fkeys f12")
+function module.volumeUp()
+  log.d("volumeUp")
   local device = hs.audiodevice.defaultOutputDevice()
-  local level = device:volume() + 10
-  log.f("increase volume %s", level)
+  local level = math.floor(device:volume() + 10)
   if level > 100 then level = 100 end
+  log.df("volume %s", level)
+  hs.alert("volume " .. level)
   device:setVolume(level)
-end)
+end
+
+return module

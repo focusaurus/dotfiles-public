@@ -41,7 +41,7 @@ main() {
   local artifact_path
   artifact_path=$(curl --silent --location --fail --show-error "${latest_url}" |
     pup 'a attr{href}' |
-    grep -Ei 'linux|deb|tar|gz|bz2' |
+    grep -Ei 'linux|darwin|deb|tar|gz|bz2' |
     ~/bin/fuzzy-filter)
   if [[ -z "${artifact_path}" ]]; then
     exit

@@ -1,4 +1,5 @@
 local log = hs.logger.new("fkeys", "debug")
+local sound = require("sound")
 
 local function iterm2() 
   log.d("fkeys f3")
@@ -17,6 +18,12 @@ hs.hotkey.bind({"shift"}, "f1", function()
   hs.application.launchOrFocus("Google Chrome")
   hs.eventtap.keyStroke({"command"}, "1")
 end)
+
+hs.hotkey.bind({}, "f2", function()
+  log.d("fkeys f2")
+  hs.application.launchOrFocus("Postman")
+end)
+
 
 hs.hotkey.bind({}, "f4", function()
   log.d("fkeys f4")
@@ -65,4 +72,14 @@ hs.hotkey.bind({}, "f8", function()
   log.d("fkeys f8")
   hs.application.launchOrFocus("Google Chrome")
   hs.eventtap.keyStroke({"command"}, "3")
+end)
+
+hs.hotkey.bind({}, "f11", function()
+  log.d("fkeys f11")
+  sound.volumeDown()
+end)
+
+hs.hotkey.bind({}, "f13", function()
+  log.d("fkeys f13")
+  sound.volumeUp()
 end)

@@ -15,7 +15,7 @@ IFS=$'\n\t'
 
 value=
 label="${1:-value}"
-clipboard_preview=$(~/bin/paste | head -c 12 | tr -d -c '[:alnum:]')
+clipboard_preview=$(~/bin/paste | head -c 12 | tr -d -c '[:alnum:] !@#$%^*(){}[].?-_/')
 text=$(
   cat <<EOF
 <span font="Helvetica Bold 24">${label}</span>
