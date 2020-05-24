@@ -1,8 +1,19 @@
+##### clipboard linux/macos parity #####
+super + c
+  xte "keyup c" "keyup Super_L" "keydown Control_L" "key c" "keyup Control_L" "keydown Super_L"
+super + v
+  xte "keyup v" "keyup Super_L" "keydown Control_L" "key v" "keyup Control_L" "keydown Super_L"
+super + x
+  xte "keyup x" "keyup Super_L" "keydown Control_L" "key x" "keyup Control_L" "keydown Super_L"
+
+##### close tab linux/macos parity #####
+super + w
+  xte "keyup w" "keyup Super_L" "keydown Control_L" "key w" "keyup Control_L" "keydown Super_L"
+
 ##### rofi fuzzy overlays #####
 super + space
   ~/bin/fuzz-script-choose
-#ctrl + 1
-#  ~/bin/fuzz-script-choose
+
 ctrl + comma
   ~/bin/fuzz-snippet
 super + shift + space
@@ -12,13 +23,13 @@ ctrl + 4
 
 ##### app-nav #####
 # left hand home row vim arrows
-super + {a,o,e,u}
+alt + {a,o,e,u}
   ~/bin/app-nav {left,down,up,right}
 # actual arrow keys
-super + {Left,Down,Up,Right}
+alt + {Left,Down,Up,Right}
   ~/bin/app-nav {left,down,up,right}
 
-super + v
+super + shift + v
   copyq show
 
 ##### function keys #####
