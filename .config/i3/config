@@ -8,34 +8,34 @@ set $alt Mod1
 
 ##### focus a window #####
 # arrow keys
-bindsym $mod+Left mark LAST;focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up mark TEMP; [con_mark="LAST"] focus; [con_mark="TEMP"] mark LAST
-bindsym $mod+Right mark LAST;focus right
-# right hand home row
-bindsym $mod+h mark LAST;focus left
-bindsym $mod+t focus down
-bindsym $mod+n mark TEMP; [con_mark="LAST"] focus; [con_mark="TEMP"] mark LAST
-bindsym $mod+s mark LAST;focus right
+#bindsym $mod+Left mark LAST;focus left
+# bindsym $mod+Down focus down
+# bindsym $mod+Up mark TEMP; [con_mark="LAST"] focus; [con_mark="TEMP"] mark LAST
+# bindsym $mod+Right mark LAST;focus right
+# left hand bottom row
+bindsym $mod+semicolon mark LAST;focus left
+bindsym $mod+q focus down
+bindsym $mod+j mark TEMP; [con_mark="LAST"] focus; [con_mark="TEMP"] mark LAST
+bindsym $mod+k mark LAST;focus right
 
 ##### move a window #####
 # shifted arrow keys
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+# bindsym $mod+Shift+Left move left
+# bindsym $mod+Shift+Down move down
+# bindsym $mod+Shift+Up move up
+# bindsym $mod+Shift+Right move right
 # right hand top row
-bindsym $mod+g move left
-bindsym $mod+c move down
-bindsym $mod+r move up
-bindsym $mod+l move right
+# bindsym $mod+g move left
+# bindsym $mod+c move down
+# bindsym $mod+r move up
+# bindsym $mod+l move right
 
 ##### workspace modeless modifiers #####
 # right hand bottom row
-bindsym $mod+m mark LAST; exec "~/bin/window-manager-nav previous"
-bindsym $mod+w mark LAST; exec "~/bin/window-manager-nav previous move"
-bindsym $mod+v mark LAST; exec "~/bin/window-manager-nav next move"
-bindsym $mod+z mark LAST; exec "~/bin/window-manager-nav next"
+# bindsym $mod+m mark LAST; exec "~/bin/window-manager-nav previous"
+# bindsym $mod+w mark LAST; exec "~/bin/window-manager-nav previous move"
+# bindsym $mod+v mark LAST; exec "~/bin/window-manager-nav next move"
+# bindsym $mod+z mark LAST; exec "~/bin/window-manager-nav next"
 
 ##### i3 itself #####
 # reload the configuration file
@@ -110,14 +110,14 @@ bindsym $mod+minus split v
 
 # change container layout (stacked, tabbed, toggle split)
 #bindsym $mod+s layout stacking
-bindsym $mod+shift+b layout tabbed
-bindsym $mod+shift+s layout toggle split
+# bindsym $mod+shift+b layout tabbed
+# bindsym $mod+shift+s layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+# bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+# bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 #bindsym $mod+a focus parent

@@ -27,6 +27,10 @@ have_exe() {
 
 main() {
 
+  # clear all options so they don't compound
+  setxkbmap -option
+  # first set all keyboards to dvorak
+  setxkbmap -layout dvorak
   # use software dvorak for laptop keyboard
   # caps lock key is ctrl
   # swap left windows and alt
@@ -36,11 +40,10 @@ main() {
     grep "AT Translated" |
     grep --extended-regexp --only-matching 'id=[0-9]+' |
     tr -d -c '[:digit:]')"
-  # setxkbmap -device "${thinkpad_device}" -option "ctrl:nocaps,altwin:swap_lalt_lwin" dvorak
-  setxkbmap -option "ctrl:nocaps,altwin:swap_lalt_lwin" dvorak
-
-  # for ergodox it's already set to dvorak layout
-  # so nothing to do
+  if [[ -n "${thinkpad_device}" ]]; then
+    setxkbmap -device "${thinkpad_device}" -option "ctrl:nocaps,altwin:swap_lalt_lwin" -layout dvorak
+  fi
+  # setxkbmap -option "ctrl:nocaps,altwin:swap_lalt_lwin" dvorak
 
   # 2020-05-07 plyons press and release a modifier sends key combos
   # left control press & release is the same as Escape (for vim)
