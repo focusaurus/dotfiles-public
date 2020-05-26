@@ -19,3 +19,4 @@ vnoremap y "+y
 cmap qq q!
 " paste without comments mucking everything up
 nnoremap cop :set invpaste<cr>
+command CopyToClipboard let @+=@0

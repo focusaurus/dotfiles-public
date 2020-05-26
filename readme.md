@@ -36,13 +36,13 @@ dotfiles-end() { unset GIT_DIR GIT_WORK_TREE }
   - Suggestion from Ross. I think the keybinding modes has a lot of potential, but otherwise I don't like it and I will be shopping for a less-radical window manager
   - I don't think I get much benefit from tiling as 95% of the time I use maximized windows and 5% of the time I want side-by-side view and i3 wants me to prepare for side-by-side before launching a window vs easily switching after I have both windows launched
   - I did a bit of shopping around for other window managers and the landscape seems really bleak, so for the moment I'm going to stick with i3wm. I'm getting better at its way of working and understanding how to get 2 existing windows side-by-side and then back to maximized
-- simple X hotkey daemon (sxhkd) for hotkey bindings
+- simple X hotkey daemon (sxhkd) for non-window-manager hotkey bindings
+  - I really like having a dedicated program to this and the sxhkd config file format is probably near-ideal.
   - So far so good. Very nice. Very clean design.
 - zsh
   - I prefer this to bash as it really is better, but most of my scripts for non-interactive stuff are still coded as bash scripts (not bourne, bash)
 - tmux
-  - I'm using this because the cool kids do but I have at best mixed feelings. Yeah it's powerful and I can keep things nicely organized, and urlview is fantastic as is doing most text selection with the mouse and vim keybindings, but otherwise tmux still sits squarely in my definition of "medieval software" which in general I try to avoid.
-- sxhkd (simple X11 hot key daemon) for non-window-manager key bindings. I really like having a dedicated program to this and the sxhkd config file format is probably near-ideal.
+  - I'm using this because the cool kids do but I have at best mixed feelings. Yeah it's powerful and I can keep things nicely organized, and extract_url is fantastic as is doing most text selection with the mouse and vim keybindings, but otherwise tmux still sits squarely in my definition of "medieval software" which in general I try to avoid.
 - xcape and xmodmap for keyboard tweaking
 
 ## Key parts of my stack (macos)
@@ -51,6 +51,7 @@ dotfiles-end() { unset GIT_DIR GIT_WORK_TREE }
 - choose for rofi-like fuzzy filter GUI menu
 - bettertouchtool for mouse keys, fixing scroll wheel direction, and clipboard history
 - karabiner-elements for keyboard tweaking
+- cliclick for typing stuff and simulating keystrokes from scripts
 - spacelauncher for keyboard tweaking
 
 ## Philosophy of mind: menus and hotkeys
