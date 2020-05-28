@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 gnubin() {
-dir="$1"
-if [[ -d "${dir}" ]]; then
-    /usr/bin/find "${dir}" -type d -name gnubin | {
-    while IFS= read -r file_path; do
-      add-path "${file_path}"
-    done
-  }
-fi
+  dir="$1"
+
+  if [[ -d "${dir}" ]]; then
+    /usr/bin/find /usr/local/Cellar/{coreutils,findutils,gawk,gnu-indent,gnu-sed,gnu-tar,grep}/ -type d -name gnubin | {
+      while IFS= read -r file_path; do
+        add-path "${file_path}"
+      done
+    }
+  fi
 }
 
 add-path() {
