@@ -29,5 +29,8 @@ Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-unimpaired'
 Plug 'laher/fuzzymenu.vim'
 Plug 'liuchengxu/vim-which-key'
+" look at registers
+Plug 'junegunn/vim-peekaboo'
+Plug 'machakann/vim-highlightedyank'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
