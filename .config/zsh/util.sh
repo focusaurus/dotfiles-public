@@ -181,7 +181,7 @@ hpost() {
 alias ht="noglob http --timeout 600"
 
 watch-movie() {
-  find ~/Downloads -maxdepth 2 -type "f" -size +200M | sort | {
+  find ~/Downloads -maxdepth 2 -type "f" -size +100M | sort -n | {
     while IFS= read -r file_path; do
       echo -n Watch "$(basename "${file_path}")? y/n"
       read -r -q response

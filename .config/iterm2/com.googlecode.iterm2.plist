@@ -24,16 +24,14 @@
 	<true/>
 	<key>MaxVertically</key>
 	<true/>
+	<key>NSColorPanelMode</key>
+	<string>7</string>
+	<key>NSColorPickerPageableNameListDefaults</key>
+	<string>1System</string>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/git.peterlyons.com/mailchimp/2020</string>
-	<key>NSNavLastUserSetHideExtensionButtonState</key>
-	<false/>
+	<string>~</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
 	<string>{799, 448}</string>
-	<key>NSNavPanelExpandedSizeForSaveMode</key>
-	<string>{712, 448}</string>
-	<key>NSNavPanelExpandedStateForSaveMode</key>
-	<true/>
 	<key>NSQuotedKeystrokeBinding</key>
 	<string></string>
 	<key>NSRepeatCountBinding</key>
@@ -42,11 +40,6 @@
 	<false/>
 	<key>NSScrollViewShouldScrollUnderTitlebar</key>
 	<false/>
-	<key>NSSplitView Subview Frames NSColorPanelSplitView</key>
-	<array>
-		<string>0.000000, 0.000000, 224.000000, 258.000000, NO, NO</string>
-		<string>0.000000, 259.000000, 224.000000, 48.000000, NO, NO</string>
-	</array>
 	<key>NSTableView Columns v2 KeyBingingTable</key>
 	<data>
 	YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMS
@@ -54,7 +47,7 @@
 	dWxs0g0ODxJaTlMub2JqZWN0c1YkY2xhc3OiEBGAAoAKgA3TFA0OFRkdV05TLmtleXOj
 	FhcYgAOABIAFoxobHIAGgAeACIAJWklkZW50aWZpZXJVV2lkdGhWSGlkZGVuUTAjQGjA
 	AAAAAAAI0iUmJyhaJGNsYXNzbmFtZVgkY2xhc3Nlc1xOU0RpY3Rpb25hcnmiJylYTlNP
-	YmplY3TTFA0OKy8doxYXGIADgASABaMwMRyAC4AMgAiACVExI0BzsZ2yLQ5W0iUmNzhe
+	YmplY3TTFA0OKy8doxYXGIADgASABaMwMRyAC4AMgAiACVExI0BzsAAAAAAA0iUmNzhe
 	TlNNdXRhYmxlQXJyYXmjNzkpV05TQXJyYXkACAARABoAJAApADIANwBJAEwAUgBUAGMA
 	aQBuAHkAgACDAIUAhwCJAJAAmACcAJ4AoACiAKYAqACqAKwArgC5AL8AxgDIANEA0gDX
 	AOIA6wD4APsBBAELAQ8BEQETARUBGQEbAR0BHwEhASMBLAExAUABRAAAAAAAAAIBAAAA
@@ -76,15 +69,33 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSColorPanel</key>
-	<string>0 125 224 275 0 0 1792 1097 </string>
+	<string>357 327 228 325 0 0 1440 877 </string>
+	<key>NSWindow Frame NSFontPanel</key>
+	<string>477 33 959 337 0 0 1440 877 </string>
 	<key>NSWindow Frame NSNavPanelAutosaveName</key>
-	<string>496 423 799 448 0 0 1792 1097 </string>
+	<string>320 321 799 448 0 0 1440 877 </string>
+	<key>NSWindow Frame Preferences</key>
+	<string>209 308 606 456 0 0 1440 877 </string>
+	<key>NSWindow Frame SUStatusFrame</key>
+	<string>0 748 400 129 0 0 1440 877 </string>
+	<key>NSWindow Frame SUUpdateAlert</key>
+	<string>370 449 700 278 0 0 1440 877 </string>
+	<key>NSWindow Frame SharedPreferences</key>
+	<string>245 384 796 473 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>1280 0 1273 1417 0 0 2560 1417 </string>
+	<string>0 416 665 450 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>896 133 665 427 0 0 1792 1097 </string>
+	<string>0 35 1439 842 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>896 5 889 555 0 0 1792 1097 </string>
+	<string>0 147 1124 730 0 0 1440 877 </string>
+	<key>NSWindow Frame iTerm Window 3</key>
+	<string>0 336 1439 538 0 0 1440 877 </string>
+	<key>NSWindow Frame iTerm Window 4</key>
+	<string>0 19 1439 858 0 0 1440 877 </string>
+	<key>NSWindow Frame iTerm Window 5</key>
+	<string>0 19 1439 858 0 0 1440 877 </string>
+	<key>NSWindow Frame iTerm Window 6</key>
+	<string>0 4 1439 873 0 0 1440 877 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -269,7 +280,7 @@
 			<key>Columns</key>
 			<integer>80</integer>
 			<key>Command</key>
-			<string></string>
+			<string>/usr/bin/login -qpf plyons /usr/local/bin/zsh</string>
 			<key>Cursor Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -289,7 +300,7 @@
 				<real>1</real>
 			</dict>
 			<key>Custom Command</key>
-			<string>No</string>
+			<string>Yes</string>
 			<key>Custom Directory</key>
 			<string>No</string>
 			<key>Default Bookmark</key>
@@ -1608,32 +1619,37 @@
 	</array>
 	<key>NoSyncAllAppVersions</key>
 	<array>
+		<string>3.3.6</string>
+		<string>3.3.3</string>
+		<string>3.3.7</string>
 		<string>3.3.9</string>
-	</array>
-	<key>NoSyncBFPRecents</key>
-	<array>
-		<string>Inconsolata Nerd Font Mono</string>
-		<string>Monaco</string>
+		<string>3.2.9</string>
+		<string>3.3.2</string>
+		<string>3.3.0</string>
 	</array>
 	<key>NoSyncCommandHistoryHasEverBeenUsed</key>
 	<true/>
 	<key>NoSyncFrame_SharedPreferences</key>
 	<dict>
 		<key>screenFrame</key>
-		<string>{{0, 0}, {2560, 1440}}</string>
+		<string>{{0, 0}, {1440, 900}}</string>
 		<key>topLeft</key>
-		<string>{269, 595}</string>
+		<string>{398, 710}</string>
 	</dict>
-	<key>NoSyncInstallationId</key>
-	<string>7F7D34F2-A5D8-41B2-8661-7FA4208BC1E1</string>
-	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>13</integer>
-	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
+	<key>NoSyncHaveRequestedFullDiskAccess</key>
 	<true/>
-	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
-	<integer>0</integer>
+	<key>NoSyncHaveShownPromoWithId_4</key>
+	<true/>
+	<key>NoSyncHaveWarnedAboutPasteConfirmationChange</key>
+	<true/>
+	<key>NoSyncInstallationId</key>
+	<string>F21F52A1-7CB2-4734-8358-787B13253292</string>
+	<key>NoSyncLaunchExperienceControllerRunCount</key>
+	<integer>26</integer>
+	<key>NoSyncNeverRemindPrefsChangesLost</key>
+	<true/>
 	<key>NoSyncNextAnnoyanceTime</key>
-	<real>609662014.91405106</real>
+	<real>588740628.96438003</real>
 	<key>NoSyncOnboardingWindowHasBeenShown</key>
 	<true/>
 	<key>NoSyncPermissionToShowTip</key>
@@ -2060,14 +2076,6 @@
 				<key>isTerminal</key>
 				<true/>
 				<key>name</key>
-				<string>number</string>
-				<key>nonterminalContext</key>
-				<integer>0</integer>
-			</dict>
-			<dict>
-				<key>isTerminal</key>
-				<true/>
-				<key>name</key>
 				<string>currentTab.currentSession.path</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
@@ -2077,6 +2085,14 @@
 				<true/>
 				<key>name</key>
 				<string>currentTab.currentSession.commandLine</string>
+				<key>nonterminalContext</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>isTerminal</key>
+				<true/>
+				<key>name</key>
+				<string>number</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
 			</dict>
@@ -2133,14 +2149,6 @@
 		<array>
 			<dict>
 				<key>isTerminal</key>
-				<false/>
-				<key>name</key>
-				<string>currentSession</string>
-				<key>nonterminalContext</key>
-				<integer>1</integer>
-			</dict>
-			<dict>
-				<key>isTerminal</key>
 				<true/>
 				<key>name</key>
 				<string>currentSession.commandLine</string>
@@ -2149,19 +2157,19 @@
 			</dict>
 			<dict>
 				<key>isTerminal</key>
+				<true/>
+				<key>name</key>
+				<string>currentSession.terminalIconName</string>
+				<key>nonterminalContext</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>isTerminal</key>
 				<false/>
 				<key>name</key>
 				<string>title</string>
 				<key>nonterminalContext</key>
 				<integer>1</integer>
-			</dict>
-			<dict>
-				<key>isTerminal</key>
-				<true/>
-				<key>name</key>
-				<string>title</string>
-				<key>nonterminalContext</key>
-				<integer>0</integer>
 			</dict>
 			<dict>
 				<key>isTerminal</key>
@@ -2175,7 +2183,7 @@
 				<key>isTerminal</key>
 				<true/>
 				<key>name</key>
-				<string>currentSession.terminalIconName</string>
+				<string>title</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
 			</dict>
@@ -2191,7 +2199,7 @@
 				<key>isTerminal</key>
 				<true/>
 				<key>name</key>
-				<string>iterm2.localhostName</string>
+				<string>currentSession.jobPid</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
 			</dict>
@@ -2199,7 +2207,7 @@
 				<key>isTerminal</key>
 				<true/>
 				<key>name</key>
-				<string>currentSession.jobPid</string>
+				<string>iterm2.localhostName</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
 			</dict>
@@ -2255,14 +2263,6 @@
 				<key>isTerminal</key>
 				<true/>
 				<key>name</key>
-				<string>currentSession.lastCommand</string>
-				<key>nonterminalContext</key>
-				<integer>0</integer>
-			</dict>
-			<dict>
-				<key>isTerminal</key>
-				<true/>
-				<key>name</key>
 				<string>id</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
@@ -2287,7 +2287,7 @@
 				<key>isTerminal</key>
 				<true/>
 				<key>name</key>
-				<string>currentSession.termid</string>
+				<string>currentSession.path</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
 			</dict>
@@ -2311,14 +2311,6 @@
 				<key>isTerminal</key>
 				<true/>
 				<key>name</key>
-				<string>currentSession.terminalWindowName</string>
-				<key>nonterminalContext</key>
-				<integer>0</integer>
-			</dict>
-			<dict>
-				<key>isTerminal</key>
-				<true/>
-				<key>name</key>
 				<string>currentSession.hostname</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
@@ -2327,7 +2319,7 @@
 				<key>isTerminal</key>
 				<true/>
 				<key>name</key>
-				<string>currentSession.path</string>
+				<string>currentSession.terminalWindowName</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
 			</dict>
@@ -2346,6 +2338,14 @@
 				<string>tmuxWindow</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>isTerminal</key>
+				<false/>
+				<key>name</key>
+				<string>currentSession</string>
+				<key>nonterminalContext</key>
+				<integer>1</integer>
 			</dict>
 			<dict>
 				<key>isTerminal</key>
@@ -2384,13 +2384,12 @@
 			</dict>
 		</array>
 	</dict>
-	<key>NoSyncSavePanelSavedSettings_SaveProfile</key>
-	<dict>
-		<key>Initial Directory</key>
-		<string>/Users/peterlyons</string>
-	</dict>
-	<key>NoSyncTipOfTheDayEligibilityBeganTime</key>
-	<real>609348070.99472106</real>
+	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
+	<real>489543191.440651</real>
+	<key>NoSyncTimeOfLastPromo</key>
+	<real>477530810.76989198</real>
+	<key>NoSyncTimeOfLastPromoDownload</key>
+	<real>489543177.27775103</real>
 	<key>OnlyWhenMoreTabs</key>
 	<false/>
 	<key>OpenArrangementAtStartup</key>
@@ -2398,20 +2397,22 @@
 	<key>OpenNoWindowsAtStartup</key>
 	<false/>
 	<key>PrefsCustomFolder</key>
-	<string>~/.config/iterm2</string>
+	<string>/Users/plyons/.config/iterm2</string>
 	<key>PromptOnQuit</key>
 	<false/>
 	<key>QuitWhenAllWindowsClosed</key>
 	<true/>
 	<key>SUEnableAutomaticChecks</key>
-	<false/>
+	<true/>
 	<key>SUFeedAlternateAppNameKey</key>
 	<string>iTerm</string>
 	<key>SUFeedURL</key>
-	<string>https://iterm2.com/appcasts/final_new.xml?shard=58</string>
+	<string>https://iterm2.com/appcasts/final_new.xml?shard=10</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
-	<key>SUSendProfileInfo</key>
+	<key>SULastCheckTime</key>
+	<date>2020-05-28T04:39:11Z</date>
+	<key>SUUpdateRelaunchingMarker</key>
 	<false/>
 	<key>SoundForEsc</key>
 	<false/>
@@ -2419,5 +2420,7 @@
 	<false/>
 	<key>iTerm Version</key>
 	<string>3.3.9</string>
+	<key>moveToApplicationsFolderAlertSuppress</key>
+	<true/>
 </dict>
 </plist>
