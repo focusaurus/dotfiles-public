@@ -17,9 +17,9 @@ super + l
   xte "keyup l" "keyup Super_L" "keydown Control_L" "key l" "keyup Control_L" "keydown Super_L"
 
 ##### rofi fuzzy overlays #####
-super + space
+ctrl + 2
+#super + space
   ~/bin/fuzz-script-choose
-
 ctrl + comma
   ~/bin/fuzz-snippet
 super + shift + space
