@@ -24,11 +24,11 @@ bindsym $mod+k mark LAST;focus right
 # bindsym $mod+Shift+Down move down
 # bindsym $mod+Shift+Up move up
 # bindsym $mod+Shift+Right move right
-# right hand top row
-# bindsym $mod+g move left
-# bindsym $mod+c move down
-# bindsym $mod+r move up
-# bindsym $mod+l move right
+# left hand top row
+bindsym $mod+apostrophe move left
+bindsym $mod+comma move down
+bindsym $mod+period move up
+bindsym $mod+p move right
 
 ##### workspace modeless modifiers #####
 # right hand bottom row

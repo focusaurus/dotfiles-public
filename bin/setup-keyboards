@@ -51,7 +51,7 @@ main() {
   # left shift press & release is the same as control+comma (for snippets)
   if have_exe xcape; then
     kill_ok xcape
-    xcape -t 200 -e "Control_L=Escape;Control_R=Escape;Super_L=Control_L|2;Super_R=Control_R|2;Shift_L=Control_L|comma;Shift_R=Control_R|comma"
+    xcape -t 200 -e "Control_L=Escape;Control_R=Escape;Super_L=Control_L|space;Super_R=Control_R|space;Shift_L=Control_L|comma;Shift_R=Control_R|comma"
   fi
 
   # 2018-04-10 plyons set fast keyboard repeat
