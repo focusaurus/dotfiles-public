@@ -10,6 +10,7 @@ if [[ -z "${SSH_AUTH_SOCK}" && -e "${ssh_agent_sock_path}" ]]; then
 fi
 
 passwordless() {
+  eval $(ssh-agent -s)
   for key in ~/.ssh/id_ed25519 ~/.ssh/id_rsa; do
     if [[ -e "${key}" ]]; then
       ssh-add -t 4h "${key}"

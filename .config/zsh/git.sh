@@ -56,6 +56,7 @@ _base-url() {
     uniq |
     grep -E 'github\.com' |
     head -1 |
+    sed -e 's_^git@_ssh://git@_' -e 's_github\.com:_github.com/_' |
     xargs url -p -set-scheme https
 }
 
@@ -73,8 +74,8 @@ github() {
     repo="$(echo "${org_repo}" | cut -d / -f 2)"
     echo "${org}"
     echo "${repo}"
-    mkdir -p "${HOME}/github/${org}"
-    cd "${HOME}/github/${org}" || return 1
+    mkdir -p "${HOME}/github.com/${org}"
+    cd "${HOME}/github.com/${org}" || return 1
     git clone "${url}"
     cd "$(basename "${repo}" .git)" || return 1
     ;;
@@ -142,17 +143,6 @@ gmdown() {
     return 1
   fi
   git mv "$1" "${target}"
-}
-
-github-repo() {
-  # shellcheck disable=SC2016
-  ~/bin/open "$(git remote -v |
-    awk '{print $2}' |
-    sort |
-    uniq |
-    grep -E 'github\.com' |
-    head -1 |
-    sed -e 's_:_/_' -e 's_^\s*git@_https://_' -e 's_\.git$__')"
 }
 
 #git delete remote branches
@@ -357,4 +347,14 @@ git-cd-repo-dir-fuzzy() {
   if [[ -d "${dir}" ]]; then
     cd "${dir}"
   fi
+}
+
+gcob-fuzzy() {
+  name=$(git branch --all --format '%(refname)' | ~/bin/fuzzy-filter "$@")
+  [[ -z "${name}" ]] && return 1
+    local_name=$(echo "${name}" | cut -d / -f 3-)
+  if [[ "${name}" =~ ^refs/remotes/ ]]; then
+    local_name=$(echo "${name}" | cut -d / -f 4-)
+  fi
+  git checkout --track -B "${local_name}" "${name}"
 }

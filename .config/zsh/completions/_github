@@ -1,5 +1,4 @@
-#!/usr/bin/env bash
-##compdef github
+#compdef github
 github_completions=(
   'clone:clone a repo by url into ~/github'
   'commits:open commits page'

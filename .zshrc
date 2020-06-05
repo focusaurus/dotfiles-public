@@ -23,21 +23,9 @@ source-if-exists() {
   done
 }
 
-have_exe() {
-  command -v "$1" >/dev/null
-}
-
-
 source-if-exists ~/.config/zsh/*.sh
-source-if-exists ~/work-reaction/common/shell-setup.sh
-source-if-exists ~/projects/mailchimp/mailchimp.sh
+source-if-exists ~/git.peterlyons.com/mailchimp/mailchimp.sh
+source-if-exists ~/git.peterlyons.com/reaction-common/reaction-commerce.sh
 source-if-exists ~/.devtool.env
 source-if-exists "${HOME}/.config/zsh/os/$(uname).sh"
 source-if-exists ~/.nvm/nvm.sh
-#source-if-exists ~/github/Aloxaf/fzf-tab/fzf-tab.zsh
-export SDKMAN_DIR=~/.sdkman
-source-if-exists "${SDKMAN_DIR}/bin/sdkman-init.sh"
-
-if have_exe navi; then
-  source <(navi widget zsh)
-fi
