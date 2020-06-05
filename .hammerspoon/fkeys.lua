@@ -71,7 +71,10 @@ end)
 hs.hotkey.bind({}, "f8", function()
   log.d("fkeys f8")
   hs.application.launchOrFocus("Google Chrome")
-  hs.eventtap.keyStroke({"command"}, "3")
+  -- command-3 is my normal way to activate a pinned tab with 
+  -- google play music, but temporarily doing 4
+  -- since I'm fascinated with mynoise.net at the moment
+  hs.eventtap.keyStroke({"command"}, "4")
 end)
 
 hs.hotkey.bind({}, "f10", function()
@@ -84,6 +87,9 @@ hs.hotkey.bind({}, "f11", function()
   sound.volumeDown()
 end)
 
+-- TODO Conflict on plain f12 but I don't know from what,
+-- so I'm temporarily binding f12 until I figure it out
+-- and kill it with fire
 hs.hotkey.bind({}, "f12", function()
   log.d("fkeys f12")
   sound.volumeUp()
