@@ -1,4 +1,4 @@
-##### clipboard linux/macos parity #####
+##### linux/macos parity clipboard hotkeys #####
 super + c
   xte "keyup c" "keyup Super_L" "keydown Control_L" "key c" "keyup Control_L" "keydown Super_L"
 super + v
@@ -6,14 +6,20 @@ super + v
 super + x
   xte "keyup x" "keyup Super_L" "keydown Control_L" "key x" "keyup Control_L" "keydown Super_L"
 
-##### close tab linux/macos parity #####
+##### linux/macos parity browser hotkeys #####
 super + w
   xte "keyup w" "keyup Super_L" "keydown Control_L" "key w" "keyup Control_L" "keydown Super_L"
+super + t
+  xte "keyup t" "keyup Super_L" "keydown Control_L" "key t" "keyup Control_L" "keydown Super_L"
+super + n
+  xte "keyup n" "keyup Super_L" "keydown Control_L" "key n" "keyup Control_L" "keydown Super_L"
+super + l
+  xte "keyup l" "keyup Super_L" "keydown Control_L" "key l" "keyup Control_L" "keydown Super_L"
 
 ##### rofi fuzzy overlays #####
-super + space
+ctrl + space
+#super + space
   ~/bin/fuzz-script-choose
-
 ctrl + comma
   ~/bin/fuzz-snippet
 super + shift + space

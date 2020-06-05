@@ -64,7 +64,6 @@ main() {
   ~/bin/touchscreen disable || true
 
   pkill --uid "${USER}" --full ergodox-watch || true
-  # ~/bin/mic-toggle >/dev/null
   ~/bin/microphone-write-status
   ~/bin/ergodox-watch &>/dev/null &
 }
