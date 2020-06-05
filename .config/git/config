@@ -16,6 +16,7 @@
   followTags = true
 [pull]
   default = simple
+	rebase = false
 [diff]
   algorithm = histogram
   submodule = log
