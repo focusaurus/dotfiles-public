@@ -90,7 +90,7 @@ end)
 -- TODO Conflict on plain f12 but I don't know from what,
 -- so I'm temporarily binding f12 until I figure it out
 -- and kill it with fire
-hs.hotkey.bind({}, "f12", function()
+hs.hotkey.bind({"shift"}, "f12", function()
   log.d("fkeys f12")
   sound.volumeUp()
 end)
