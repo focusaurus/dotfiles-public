@@ -1,4 +1,14 @@
 #!/usr/bin/env bash
+add-path() {
+  if [[ -d "${1}" ]]; then
+    if [[ -z "${PATH}" ]]; then
+      export PATH="${1}"
+    else
+      export PATH=$PATH:"${1}"
+    fi
+  fi
+}
+
 gnubin() {
   dir="$1"
 
@@ -11,16 +21,6 @@ gnubin() {
   fi
 }
 
-add-path() {
-  if [[ -d "${1}" ]]; then
-    if [[ -z "${PATH}" ]]; then
-      export PATH="${1}"
-    else
-      export PATH=$PATH:"${1}"
-    fi
-  fi
-}
-
 setup-path() {
   # shellcheck disable=SC2123
   PATH=
@@ -30,7 +30,7 @@ setup-path() {
   # Allow GNU binaries to take precedent on macos
   # See https://apple.stackexchange.com/questions/69223/how-to-replace-mac-os-x-utilities-with-gnu-core-utilities#69332
   gnubin /usr/local/Cellar
-  gnubin /usr/local/opt
+  # gnubin /usr/local/opt
   add-path "/usr/local/bin"
   add-path "/bin"
   add-path "/usr/bin"
@@ -38,19 +38,13 @@ setup-path() {
   add-path "/usr/sbin"
   add-path "/usr/X11/bin"
   add-path "${HOME}/.local/bin"
-  add-path "${HOME}/projects/daily-todos/bin"
   add-path "${HOME}/projects/md-to-pdf/bin"
   add-path "${HOME}/.cargo/bin"
   add-path "${NVM_BIN}"
-  add-path "/opt/nosqlbooster-mongodb"
 
   if [[ -e ~/.nvm/alias/default ]]; then
     add-path ~/".nvm/versions/node/$(cat ~/.nvm/alias/default)/bin"
   fi
-
-  # Local pwd stuff
-  add-path "${PWD}/script"
-  add-path "${PWD}/bin"
 
   # For node and elm
   add-path "${PWD}/node_modules/.bin"

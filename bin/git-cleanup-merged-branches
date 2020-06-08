@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
+
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -o errexit  # always exit on error
+set -o errtrace # trap errors in functions as well
+set -o pipefail # don't ignore exit codes when piping output
+set -o posix    # more strict failures in subshells
+# set -x          # enable debugging
+
+IFS=$'
+	'
+# ---- End unofficial bash strict mode boilerplate
+
+git fetch --quiet --all
+git remote | {
+  while IFS= read -r remote; do
+    git remote prune "${remote}"
+  done
+}
+working_branch=$(git rev-parse --abbrev-ref HEAD)
+git branch --format '%(refname:short)' --merged |
+  grep -Ev "$(~/bin/git-get-default-branch)" |
+  grep -Ev "^${working_branch}\$" |
+  xargs --no-run-if-empty git branch --delete

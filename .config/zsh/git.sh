@@ -252,21 +252,6 @@ commits-by-year() {
   done
 }
 
-git-cleanup-merged-branches() {
-  git fetch --quiet --all
-  git remote | {
-    while IFS= read -r remote; do
-      git remote prune "${remote}"
-    done
-  }
-  working_branch=$(git rev-parse --abbrev-ref HEAD)
-  # Adapted from https://stackoverflow.com/a/6127884/266795
-  git branch --format '%(refname:short)' --merged |
-    grep -Ev "^(master|develop|release-latest|dev|next|trunk)" |
-    grep -Ev "^${working_branch}\$" |
-    xargs --no-run-if-empty git branch --delete
-}
-
 git-ztrash() {
   # I use this to keep a branch around but indicate it's in the trash can
   # "z" prefix pushes it to the bottom of sorted listings
