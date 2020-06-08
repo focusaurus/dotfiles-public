@@ -1,17 +1,20 @@
 #!/usr/bin/env bash
 op-add-ssh-key() {
-  mc-copy-password-by-title "ssh focusaurus private keys"
+  op-copy-password-by-title my "ssh focusaurus private keys"
 }
 
 op-copy-password-by-title() {
+  account="$1"
+  shift
+  session="OP_SESSION_${account}"
   # shellcheck disable=SC2154
-  if [[ -z "${OP_SESSION_my}" ]]; then
-    eval "$(op signin)"
+  if [[ -z "${!session}" ]]; then
+    eval "$(op signin "${account}")"
   fi
   items=$(op list items)
   if [[ -z "${items}" ]]; then
-    unset OP_SESSION_my
-    eval "$(op signin)"
+    unset "${!session}"
+    eval "$(op signin "${account}")"
     return 1
   fi
   title=$(echo "${items}" |
