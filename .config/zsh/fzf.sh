@@ -2,7 +2,7 @@
 #export FZF_DEFAULT_COMMAND='rg -g ""'
 if ~/bin/have-exe fd; then
   #  export FZF_DEFAULT_COMMAND="fd --exclude vendor ."
-  export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+  #  export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 fi
 export FZF_COMPLETION_TRIGGER="''"
 export FZF_DEFAULT_OPTS='--bind=alt-enter:print-query'
