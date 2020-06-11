@@ -9,28 +9,26 @@ add-path() {
   fi
 }
 
-gnubin() {
-  dir="$1"
-
-  if [[ -d "${dir}" ]]; then
-    /usr/bin/find /usr/local/Cellar/{coreutils,findutils,gawk,gnu-indent,gnu-sed,gnu-tar,grep}/ -type d -name gnubin | {
-      while IFS= read -r file_path; do
-        add-path "${file_path}"
-      done
-    }
-  fi
-}
-
 setup-path() {
   # shellcheck disable=SC2123
   PATH=
   # Normal system stuff comes early for security
   # So npm packages can't override basic commands like ls
   add-path "${HOME}/bin"
+
   # Allow GNU binaries to take precedent on macos
   # See https://apple.stackexchange.com/questions/69223/how-to-replace-mac-os-x-utilities-with-gnu-core-utilities#69332
-  gnubin /usr/local/Cellar
-  # gnubin /usr/local/opt
+  # https://ryanparman.com/posts/2019/using-gnu-command-line-tools-in-macos-instead-of-freebsd-tools/
+  # Regenerate this list with the following command
+  #  /usr/bin/find /usr/local/opt -follow -name gnubin -type d
+  add-path /usr/local/opt/coreutils/libexec/gnubin
+  add-path /usr/local/opt/gnu-indent/libexec/gnubin
+  add-path /usr/local/opt/gnu-tar/libexec/gnubin
+  add-path /usr/local/opt/grep/libexec/gnubin
+  add-path /usr/local/opt/gnu-sed/libexec/gnubin
+  add-path /usr/local/opt/gawk/libexec/gnubin
+  add-path /usr/local/opt/findutils/libexec/gnubin
+
   add-path "/usr/local/bin"
   add-path "/bin"
   add-path "/usr/bin"

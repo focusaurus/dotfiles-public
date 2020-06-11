@@ -27,7 +27,8 @@ main() {
     fi
     ;;
   down)
-    tmux switch-client -n
+    tmux select-pane -D
+    #tmux switch-client -n
     # xdotool key --clearmodifiers ctrl+b parenright
     ;;
   up)

@@ -21,6 +21,13 @@ git remote | {
   done
 }
 working_branch=$(git rev-parse --abbrev-ref HEAD)
+
+# macos/linux compatibility
+gxargs_path="/usr/local/opt/findutils/bin/gxargs"
+if [[ -x "${gxargs_path}" ]]; then
+  alias xargs="${gxargs_path}"
+fi
+
 git branch --format '%(refname:short)' --merged |
   grep -Ev "$(~/bin/git-get-default-branch)" |
   grep -Ev "^${working_branch}\$" |
