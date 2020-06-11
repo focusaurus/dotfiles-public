@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 op-add-ssh-key() {
   op-copy-password-by-title my "ssh focusaurus private keys"
+  passwordless
 }
 
 op-copy-password-by-title() {
@@ -14,7 +15,7 @@ op-copy-password-by-title() {
   items=$(op list items)
   if [[ -z "${items}" ]]; then
     eval "$(op signin "${account}")"
-    return 1
+    items=$(op list items)
   fi
   title=$(echo "${items}" |
     jq -r ".[].overview.title" |
