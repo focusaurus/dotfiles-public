@@ -42,6 +42,7 @@ runtime! vim-plug-setup.vim
 runtime! mappings.vim
 runtime! syntastic.vim
 runtime! abbreviations.vim
+runtime! vim-pencil.vim
 ":colorscheme koehler
 ":colorscheme ron
 colorscheme slate

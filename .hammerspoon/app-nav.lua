@@ -1,6 +1,10 @@
 local log = hs.logger.new("app-nav", "debug")
 local hbin = os.getenv("HOME") .. "/bin"
 
+function useTabNav(appName)
+  return appName == "Google Chrome" or appName == "Firefox" or appName == "Code"
+end
+
 ----- application navigation -----
 -- left
 hs.hotkey.bind({"option"}, "a", function ()
@@ -8,7 +12,7 @@ hs.hotkey.bind({"option"}, "a", function ()
   local name = hs.application.frontmostApplication():name()
   if name == "iTerm2" then
     os.execute(hbin .. "/nav-tmux left")
-  elseif name == "Google Chrome" or name == "Code" then
+  elseif useTabNav(name) then
     hs.eventtap.keyStroke({"control", "shift"}, "Tab")
   end
 end)
@@ -19,7 +23,7 @@ hs.hotkey.bind({"option"}, "o", function ()
   local name = hs.application.frontmostApplication():name()
   if name == "iTerm2" then
     os.execute(hbin .. "/nav-tmux down")
-  elseif name == "Google Chrome" then
+  elseif useTabNav(name) then
     hs.eventtap.keyStroke({}, "PageDown")
   end
 end)
@@ -30,7 +34,7 @@ hs.hotkey.bind({"option"}, "e", function ()
   local name = hs.application.frontmostApplication():name()
   if name == "iTerm2" then
     os.execute(hbin .. "/nav-tmux up")
-  elseif name == "Google Chrome" then
+  elseif useTabNav(name) then
     hs.eventtap.keyStroke({}, "Home")
   end
 end)
@@ -41,7 +45,7 @@ hs.hotkey.bind({"option"}, "u", function ()
   local name = hs.application.frontmostApplication():name()
   if name == "iTerm2" then
     os.execute(hbin .. "/nav-tmux right")
-  elseif name == "Google Chrome" or name == "Code" then
+  elseif useTabNav(name) then
     hs.eventtap.keyStroke({"control"}, "Tab")
   end
 end)

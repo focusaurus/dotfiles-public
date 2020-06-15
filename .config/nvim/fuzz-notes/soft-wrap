@@ -1,0 +1,5 @@
+TL;DR vim can only do real soft wrap using the full window width. You can't specify 80 characters.
+
+https://stackoverflow.com/a/989317/266795
+
+:set wrap linebreak
