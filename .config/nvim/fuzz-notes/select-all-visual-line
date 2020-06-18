@@ -5,3 +5,8 @@ V to start visual line
 G go to end of the file
 
 https://vi.stackexchange.com/a/9029/29445
+
+
+BUT if you just want to yank the whole buffer to the system clipboard:
+
+:%y+
