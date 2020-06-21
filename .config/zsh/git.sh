@@ -317,12 +317,19 @@ dotfiles-edit-by-search() {
   (
     cd ~
     dotfiles-begin
-    git ls-files | xargs rg -l "$@" | xargs nvim -p
+    git ls-files | xargs rg -l "$@" | xargs nvim -p -c "/${@}"
   )
 }
 
 gsync() {
   dotfiles-end
+  if ! ssh-agent -l &>/dev/null; then
+    if [[ "$(hostname)" =~ RSG ]]; then
+      mc-add-ssh-key
+    else
+      op-add-ssh-key
+    fi
+  fi
   ~/bin/git-autocommit ~/projects/journals ~/mc
   ~/bin/git-sync ~/projects/journals ~/projects/dotfiles ~/mc ~
 }

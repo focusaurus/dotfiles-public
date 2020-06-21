@@ -1,7 +1,6 @@
 - with CoC and tabnine the completion UI is called a popup menu (pum)
 - The default bindings to choose are <C-p> and <C-n> which are actually fine
 - no <CR> needed
-Ross Hadden  29 minutes ago
 The dialog boxes that come up for completions are actually a native vim construct, not created by coc
 
 You can navigate them with <c-n> and <c-p>, just like other native vim constructs (command history for example)
@@ -20,3 +19,5 @@ This is saying:
 - otherwise, type <tab>
 
 I used to use this and use tab/s-tab for everything but to be honest at some point I got used to c-n/c-p and they feel much more ergonomic to me. But you have an ergodox and that probably has a nicer way to hit tab/s-tab
+
+For insert mode, <c-p> triggers the basic completion popup menu (pum).

@@ -1,0 +1,11 @@
+Use the "m" command to set a mark. Can be any letter, so `ma` sets mark a at the current cursor position.
+
+Go to marks with `a `b `c etc. That's the exact position.
+
+Go to the beginning of the line containing the mark with 'a 'b 'c etc.
+
+
+To yank something, navigate to the start, mark it with ma, navigate to the end, yank it with
+y`a. If you want to copy to system clipboard, :CopyToClipboard. Or you can do it in on flurry with:
+
+"+y`a
