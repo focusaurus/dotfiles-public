@@ -9,9 +9,11 @@
 /.Xauthority
 /.android
 /.aws
+/.bundle
 /.cache
 /.cargo
 /.circleci
+/.cmake
 /.config/3T
 /.config/Insomnia
 /.config/Keybase
@@ -41,6 +43,7 @@
 /.config/gedit
 /.config/gh
 /.config/google-chrome
+/.config/gthumb
 /.config/gtk-2.0/gtkfilechooser.ini
 /.config/history
 /.config/htop
@@ -60,12 +63,15 @@
 /.config/vlc/vlc-qt-interface.conf
 /.config/zoomus.conf
 /.cpcache
+/.cups
+/.dcm.yaml
 /.devtool.env
 /.docker
 /.electron-gyp
 /.env.*
 /.ergodox-udev
 /.fasd
+/.finda
 /.fxlauncher.Launcher
 /.gcalcli*
 /.gdfuse
@@ -84,6 +90,7 @@
 /.m2
 /.mozilla
 /.mpd
+/.node-gyp
 /.node_repl_history
 /.npm
 /.npmrc
@@ -100,6 +107,7 @@
 /.serverlessrc
 /.ssh
 /.stack
+/.teensy
 /.tig_history
 /.tmux
 /.vagrant.d
@@ -127,6 +135,7 @@
 /clients_old
 /git.peterlyons.com
 /github
+/github.com
 /keybase
 /local
 /mailchimp
@@ -139,11 +148,3 @@
 /tmp
 /voice-memos
 /work-*
-/.node-gyp
-/.cups
-/.config/gthumb
-/.cmake
-/.teensy
-/github.com
-/.bundle
-/.dcm.yaml
