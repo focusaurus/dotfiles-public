@@ -234,11 +234,6 @@ new-git-project() {
   cd "${REPO}" || return 1
 }
 
-plgc() {
-  cd ~/projects || exit
-  git clone "ssh://git.peterlyons.com/home/plyons/projects/${1}.git"
-}
-
 commits-by-year() {
   local first_hash
   first_hash=$(git rev-list --max-parents=0 HEAD)
@@ -323,15 +318,15 @@ dotfiles-edit-by-search() {
 
 gsync() {
   dotfiles-end
-  if ! ssh-agent -l &>/dev/null; then
+  if ! ssh-add -l &>/dev/null; then
     if [[ "$(hostname)" =~ RSG ]]; then
       mc-add-ssh-key
     else
       op-add-ssh-key
     fi
   fi
-  ~/bin/git-autocommit ~/projects/journals ~/mc
-  ~/bin/git-sync ~/projects/journals ~/projects/dotfiles ~/mc ~
+  ~/bin/git-autocommit ~/git.peterlyons.com/journals ~/mc
+  ~/bin/git-sync ~/git.peterlyons.com/journals ~/git.peterlyons.com/dotfiles ~/mc ~
 }
 
 git-cd-repo-dir-fuzzy() {
