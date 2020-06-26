@@ -1,2 +1,5 @@
 [Added Associations]
 application/pdf=com.github.xournalpp.xournalpp.desktop;firefox.desktop;
+
+[Default Applications]
+x-scheme-handler/postman=Postman.desktop
