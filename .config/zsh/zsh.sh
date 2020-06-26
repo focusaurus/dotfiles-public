@@ -67,7 +67,7 @@ prompt-git-dir() {
 }
 
 prompt-git() {
-  if [[ "${PWD}" =~ rsglab.*mailchimp$ ]]; then
+  if [[ "${PWD}" =~ rsglab.*mailchimp ]]; then
     # For super large repositories, this slows the shell prompt down too much
     # so just disable it
     return

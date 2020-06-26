@@ -9,13 +9,37 @@ if [[ -z "${SSH_AUTH_SOCK}" && -e "${ssh_agent_sock_path}" ]]; then
   export SSH_AUTH_SOCK="${ssh_agent_sock_path}"
 fi
 
-passwordless() {
-  eval $(ssh-agent -s)
+_ssh_add_keys() {
   for key in ~/.ssh/id_ed25519 ~/.ssh/id_rsa; do
     if [[ -e "${key}" ]]; then
+      echo "adding ${key}"
       ssh-add -t 4h "${key}"
     fi
   done
+}
+
+passwordless() {
+  set +e
+  ssh-add -l &>/dev/null
+  ec=$?
+  set -e
+  case ${ec} in
+  0)
+    # Agent is running and already has identities loaded. All good.
+    echo agent already loaded
+    return
+    ;;
+  1)
+    # Agent is running but has no identities loaded.
+    _ssh_add_keys
+    ;;
+  *)
+    # ssh-agent is not running or not configured
+    echo starting new agent
+    eval $(ssh-agent -s)
+    _ssh_add_keys
+    ;;
+  esac
 }
 
 encrypt-ssh-private-key() {

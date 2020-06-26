@@ -2,6 +2,7 @@
 ########## General utility stuff ##########
 alias @bug="rg @bug"
 alias cx="chmod +x"
+alias edq='echo $?'
 alias -g /ap1="| awk '{print \$1}'"
 ap1() {
   awk '{print $1}'

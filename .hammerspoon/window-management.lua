@@ -20,7 +20,7 @@ end
 --right hand home row "up"
 hs.hotkey.bind({"option"}, "n", maximize)
 --left hand bottom row "up"
-hs.hotkey.bind({"option"}, "j", maximize)
+-- hs.hotkey.bind({"option"}, "j", maximize)
 
 function left()
   log.d("left")
@@ -36,7 +36,7 @@ end
 --right hand home row "left"
 hs.hotkey.bind({"option"}, "h", left)
 --left hand bottom row "left"
-hs.hotkey.bind({"option"}, ";", left)
+-- hs.hotkey.bind({"option"}, ";", left)
 
 function right()
   log.d("right")
@@ -51,7 +51,7 @@ end
 --right hand home row "right"
 hs.hotkey.bind({"option"}, "s", right)
 --left hand bottom row "right"
-hs.hotkey.bind({"option"}, "k", right)
+-- hs.hotkey.bind({"option"}, "k", right)
 
 function Module.bottomRight()
   log.d("bottomRight")
