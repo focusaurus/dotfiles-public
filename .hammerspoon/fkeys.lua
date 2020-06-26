@@ -19,10 +19,10 @@ hs.hotkey.bind({"shift"}, "f1", function()
   hs.eventtap.keyStroke({"command"}, "1")
 end)
 
-hs.hotkey.bind({}, "f2", function()
-  log.d("fkeys f2")
-  hs.application.launchOrFocus("Postman")
-end)
+-- hs.hotkey.bind({}, "f2", function()
+--   log.d("fkeys f2")
+--   hs.application.launchOrFocus("Postman")
+-- end)
 
 
 hs.hotkey.bind({}, "f4", function()

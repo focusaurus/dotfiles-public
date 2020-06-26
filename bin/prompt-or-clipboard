@@ -25,7 +25,7 @@ EOF
 
 applescript=$(
   cat <<EOF
-display dialog "ENTER for 📋 ${clipboard_preview}" with icon note with title "${label}" default answer "" buttons {"Ok", "Cancel"} default button 1
+display dialog "${label}\nENTER for 📋 ${clipboard_preview}" with icon note with title "${label}" default answer "" buttons {"Ok", "Cancel"} default button 1
 text returned of the result
 EOF
 )
