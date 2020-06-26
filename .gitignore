@@ -10,15 +10,18 @@
 /.android
 /.aws
 /.bundle
+/.bundle
 /.cache
 /.cargo
 /.circleci
+/.cmake
 /.cmake
 /.config/3T
 /.config/Insomnia
 /.config/Keybase
 /.config/NoSQLBooster for MongoDB
 /.config/Pinta
+/.config/Postman
 /.config/QtProject.conf
 /.config/Slack
 /.config/TabNine
