@@ -17,6 +17,11 @@ bindsym $mod+semicolon mark LAST;focus left
 bindsym $mod+q focus down
 bindsym $mod+j mark TEMP; [con_mark="LAST"] focus; [con_mark="TEMP"] mark LAST
 bindsym $mod+k mark LAST;focus right
+# right hand home row
+bindsym $mod+h mark LAST;focus left
+bindsym $mod+t focus down
+bindsym $mod+n mark TEMP; [con_mark="LAST"] focus; [con_mark="TEMP"] mark LAST
+bindsym $mod+s mark LAST;focus right
 
 ##### move a window #####
 # shifted arrow keys

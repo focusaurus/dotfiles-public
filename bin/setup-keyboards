@@ -29,22 +29,24 @@ main() {
 
   # clear all options so they don't compound
   setxkbmap -option
-  # first set all keyboards to dvorak
-  setxkbmap -layout dvorak
-  # use software dvorak for laptop keyboard
   # caps lock key is ctrl
-  # swap left windows and alt
-  # See /usr/share/X11/xkb/rules/base for more available options
-  thinkpad_device="$(xinput --list |
-    grep keyboard |
-    grep "AT Translated" |
-    grep --extended-regexp --only-matching 'id=[0-9]+' |
-    tr -d -c '[:digit:]')"
-  if [[ -n "${thinkpad_device}" ]]; then
-    setxkbmap -device "${thinkpad_device}" -option "ctrl:nocaps,altwin:swap_lalt_lwin" -layout dvorak
-  fi
-  # setxkbmap -option "ctrl:nocaps,altwin:swap_lalt_lwin" dvorak
+  setxkbmap -layout dvorak -option "ctrl:nocaps"
 
+  # This section disabled but left for future use maybe
+  if false; then
+    # use software dvorak for laptop keyboard
+    # caps lock key is ctrl
+    # swap left windows and alt
+    # See /usr/share/X11/xkb/rules/base for more available options
+    thinkpad_device="$(xinput --list |
+      grep keyboard |
+      grep "AT Translated" |
+      grep --extended-regexp --only-matching 'id=[0-9]+' |
+      tr -d -c '[:digit:]')"
+    if [[ -n "${thinkpad_device}" ]]; then
+      setxkbmap -device "${thinkpad_device}" -layout dvorak -option "ctrl:nocaps,altwin:swap_lalt_lwin"
+    fi
+  fi
   # 2020-05-07 plyons press and release a modifier sends key combos
   # left control press & release is the same as Escape (for vim)
   # super press & release is the same as super+space (for fuzzball)

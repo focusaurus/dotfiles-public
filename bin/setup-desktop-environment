@@ -40,11 +40,11 @@ main() {
     synclient HorizScrollDelta=-119
   fi
 
-  i3dir="/run/user/${UID}/i3"
-  if [[ -d "${i3dir}" ]]; then
-    #export I3SOCK="${i3dir}/ipc-socket.$(pidof i3)"
-    export I3SOCK
-  fi
+  # i3dir="/run/user/${UID}/i3"
+  # if [[ -d "${i3dir}" ]]; then
+    # export I3SOCK="${i3dir}/ipc-socket.$(pidof i3)"
+    # export I3SOCK
+  # fi
 
   if have_exe copyq; then
     kill_ok copyq
