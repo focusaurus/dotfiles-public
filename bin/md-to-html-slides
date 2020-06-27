@@ -22,7 +22,7 @@ install_marp() {
 
 main() {
   base="${PWD}"
-	(cd /tmp && install_marp)
+  (cd /tmp && install_marp)
   /tmp/node_modules/.bin/marp "${@}"
 }
 

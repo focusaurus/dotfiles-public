@@ -3,7 +3,7 @@
   email = pete.lyons@mailchimp.com
 [core]
   ignorecase = false
-  autocrlf = input
+  autocrlf = false
   precomposeunicode = true
 #  pager = delta --dark
 [color]
@@ -48,3 +48,5 @@
   enabled = true
 [diff "sopsdiffer"]
   textconv = sops -d
+[credential]
+	helper = osxkeychain
