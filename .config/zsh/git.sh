@@ -310,7 +310,7 @@ dotfiles-search() {
 
 dotfiles-edit-by-search() {
   (
-    cd ~
+    cd ~ || return 1
     dotfiles-begin
     git ls-files | xargs rg -l "$@" | xargs nvim -p -c "/${@}"
   )
@@ -339,7 +339,7 @@ git-cd-repo-dir-fuzzy() {
 gcob-fuzzy() {
   name=$(git branch --all --format '%(refname)' | ~/bin/fuzzy-filter "$@")
   [[ -z "${name}" ]] && return 1
-    local_name=$(echo "${name}" | cut -d / -f 3-)
+  local_name=$(echo "${name}" | cut -d / -f 3-)
   if [[ "${name}" =~ ^refs/remotes/ ]]; then
     local_name=$(echo "${name}" | cut -d / -f 4-)
   fi

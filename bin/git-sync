@@ -19,7 +19,8 @@ sync_dir() {
   fi
   if ! ~/bin/git-is-work-tree-clean; then
     echo "Work tree not clean. Press ENTER to launch tig."
-    read wait_for_enter
+    # shellcheck disable=SC2034
+    read -r wait_for_enter
     tig status
   fi
   if ! ~/bin/git-is-work-tree-clean; then
@@ -27,7 +28,7 @@ sync_dir() {
     return
   fi
   echo -n "syncing: ${PWD} "
-  git pull --quiet
+  GIT_EDITOR=true git pull --quiet
   git push --quiet
   echo ✓
 }
