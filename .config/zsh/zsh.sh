@@ -1,8 +1,19 @@
 #!/usr/bin/env zsh
 
-unset HISTFILE
-export TZ="America/Denver"
+# zsh history setup
+export APPEND_HIST
+export HISTFILE=~/.zsh-history
+export HISTSIZE="10000"
+export HIST_EXPIRE_DUPS_FIRST
+export HIST_FIND_NO_DUPS
+export HIST_IGNORE_DUPS
+export HIST_NO_DUPS
+export HIST_REDUCE_BLANKS
+export INC_APPEND_HISTORY="1"
+export SAVEHIST="10000"
+export SHARE_HISTORY="1"
 
+export TZ="America/Denver"
 tt() {
   export TERMINAL_TITLE="$*"
 }

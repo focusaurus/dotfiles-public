@@ -2,6 +2,7 @@ local log = hs.logger.new("init", "debug")
 
 require("app-nav")
 require("autotype")
+require("browser-tabs")
 require("fkeys")
 require("fuzzball")
 require("journal")
