@@ -3,7 +3,7 @@ local windowManagement = require("window-management")
 local fuzzball = os.getenv("HOME") .. "/git.peterlyons.com/dotfiles/fuzzball"
 
 ----- journal -----
-local function journalVim() 
+local function journalVim()
   log.d("journalVim")
   hs.application.launchOrFocus("iTerm")
   local windows = hs.application.frontmostApplication():allWindows()
@@ -24,14 +24,15 @@ local function journalVim()
 end
 -- hs.hotkey.bind({"command"}, "j", journalVim)
 
-local function journalDialog() 
+local function journalDialog()
   log.d("journalDialog")
   os.execute(fuzzball .. "/journal-mailchimp")
 end
 hs.hotkey.bind({}, "f9", journalDialog)
 
-local function journalStandupDialog() 
+local function journalStandupDialog()
   log.d("journalStandupDialog")
   os.execute(fuzzball .. "/journal-mailchimp-standup")
 end
-hs.hotkey.bind({"shift"}, "f9", journalStandupDialog)
+hs.hotkey.bind({"control"}, "9", journalStandupDialog)
+

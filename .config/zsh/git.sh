@@ -54,9 +54,8 @@ _base-url() {
     awk '{print $2}' |
     sort |
     uniq |
-    grep -E 'github\.com' |
     head -1 |
-    sed -e 's_^git@_ssh://git@_' -e 's_github\.com:_github.com/_' |
+    sed -e 's_^git@_ssh://git@_' -e 's_github\.com:_github.com/_' -e 's_\.git$__' |
     xargs url -p -set-scheme https
 }
 

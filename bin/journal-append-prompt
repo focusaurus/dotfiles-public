@@ -16,26 +16,13 @@ IFS="$(printf "\n\t")"
 main() {
   local journal_dir=$1
   shift
-  local entry
-  entry="$*"
-  if [[ -z "${entry}" ]]; then
-    entry=$(MULTILINE=true ~/bin/prompt-or-clipboard "Entry: $(basename ${journal_dir})")
+  local label
+  label="$*"
+  if [[ -z "${label}" ]]; then
+    label="Entry: $(basename ${journal_dir})"
   fi
-  local year
-  year=$(date +%Y)
-  local month
-  month=$(date +%m)
-  local day
-  day=$(date +%d)
-  local ts
-  ts=$(date +%Y-%m-%dT%H:%M:%S%z)
-  dir="${journal_dir}/${year}"
-  mkdir -p "${dir}"
-  cat <<EOF >>"${dir}/${month}-${day}.md"
-
-# ${ts}
-- ${entry}
-EOF
+  entry=$(MULTILINE=true ~/bin/prompt-or-clipboard "${label}")
+  ~/bin/journal-append-cli "${journal_dir}" "- ${entry}"
 }
 
 main "$@"
