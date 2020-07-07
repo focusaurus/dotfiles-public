@@ -9,7 +9,7 @@ git_repos = [
 #disable = ["system", "emacs"]
 
 # Run specific steps - same options as the command line flag
-only = ["system", "gitrepos"]
+only = ["system", "git_repos"]
 
 # Do not ask to retry failed steps (default: false)
 #no_retry = true
