@@ -78,7 +78,9 @@ prompt-git-dir() {
 }
 
 prompt-git() {
-  if [[ "${PWD}" =~ rsglab.*mailchimp ]]; then
+  if [[ "${PWD}" =~ rsglab.*mailchimp ||
+      "${PWD}" =~ /monolith$ ||
+      "${PWD}" =~ /shopchimp$ ]]; then
     # For super large repositories, this slows the shell prompt down too much
     # so just disable it
     return
@@ -129,7 +131,7 @@ TRAPUSR1() {
 }
 
 rss() {
-  ps -U "${USER}" | egrep '( -zsh$|[ /]zsh$)' | awk '{print $1}' | xargs kill -USR1 &
+   ps -U $USER -c | grep 'ttys.*zsh$' | awk '{print $1}' | xargs kill -USR1 &
 }
 
 # control-left-arrow goes back a word, right goes forward
