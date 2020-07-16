@@ -164,6 +164,8 @@ local function set_wallpaper(s)
 end
 
 local battery_widget = require("awesome-wm-widgets.battery-widget.battery")
+local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
+
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
@@ -218,6 +220,7 @@ awful.screen.connect_for_each_screen(function(s)
             -- mykeyboardlayout,
             wibox.widget.systray(),
             battery_widget(),
+            volume_widget({display_notification = true}),
             mytextclock,
             s.mylayoutbox,
         },
@@ -270,15 +273,15 @@ globalkeys = gears.table.join(
               {description = "focus the previous screen", group = "screen"}),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
-    awful.key({ modkey,           }, "Tab",
-        function ()
-            awful.client.focus.history.previous()
-            if client.focus then
-                client.focus:raise()
-            end
-        end,
-        {description = "go back", group = "client"}),
-
+    -- awful.key({ modkey,           }, "Tab",
+    --     function ()
+    --         awful.client.focus.history.previous()
+    --         if client.focus then
+    --             client.focus:raise()
+    --         end
+    --     end,
+    --     {description = "go back", group = "client"}),
+    --
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
@@ -334,7 +337,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey }, "p", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"})
 )
-
+local cyclefocus = require("cyclefocus")
 clientkeys = gears.table.join(
     awful.key({ modkey,           }, "f",
         function (c)
@@ -376,7 +379,15 @@ clientkeys = gears.table.join(
             c.maximized_horizontal = not c.maximized_horizontal
             c:raise()
         end ,
-        {description = "(un)maximize horizontally", group = "client"})
+        {description = "(un)maximize horizontally", group = "client"}),
+    cyclefocus.key({ modkey, }, "Tab", {
+       -- cycle_filters as a function callback:
+       -- cycle_filters = { function (c, source_c) return c.screen == source_c.screen end },
+
+       -- cycle_filters from the default filters:
+       cycle_filters = { cyclefocus.filters.same_screen, cyclefocus.filters.common_tag },
+       keys = {"Tab", "ISO_Left_Tab"}  -- default, could be left out
+    })
 )
 
 -- Bind all key numbers to tags.
