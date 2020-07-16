@@ -1,5 +1,6 @@
 # Additional git repositories to pull
-git_repos = [
+[git]
+repos = [
 #    "~/projects/dotfiles",
 #    "~/projects/edc",
 #    "~/projects/journals"

@@ -156,3 +156,6 @@
 /monolith
 /commerce-stores
 /.zsh-history
+/.config/awesome/awesome-wm-widgets
+/.tor-browser
+/.config/transmission
