@@ -5,3 +5,4 @@ export DISPLAY=:0.0
 
 # https://wiki.archlinux.org/index.php/Firefox/Tweaks#Pixel-perfect_trackpad_scrolling
 export MOZ_USE_XINPUT2=1
+~/bin/setup-desktop-environment

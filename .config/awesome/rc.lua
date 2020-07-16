@@ -5,13 +5,18 @@ pcall(require, "luarocks.loader")
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
+-- Notification library
+local naughty = require("naughty")
 require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
+
+local volume = require("volume-vicious")
+-- naughty.notify({ preset = naughty.config.presets.critical,
+   -- title = "volume module loaded",
+   -- text = string.format("volume module loaded %s", volume.widget)})
 -- Theme handling library
 local beautiful = require("beautiful")
--- Notification library
-local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
@@ -104,12 +109,9 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
--- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
-
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock()
+local mytextclock = wibox.widget.textclock()
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -163,10 +165,6 @@ local function set_wallpaper(s)
     end
 end
 
-local battery_widget = require("awesome-wm-widgets.battery-widget.battery")
-local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
-
-
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
@@ -203,10 +201,10 @@ awful.screen.connect_for_each_screen(function(s)
     }
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, height=30 })
+    s.mywibar = awful.wibar({ position = "top", screen = s, height=30 })
 
     -- Add widgets to the wibox
-    s.mywibox:setup {
+    s.mywibar:setup {
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
@@ -217,10 +215,8 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            -- mykeyboardlayout,
+            volume.widget,
             wibox.widget.systray(),
-            battery_widget(),
-            volume_widget({display_notification = true}),
             mytextclock,
             s.mylayoutbox,
         },
@@ -580,18 +576,6 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 
--- Autorun programs
-autorun = false
-autorunApps =
-{
-   "sxhkd",
-   "nm-applet",
-   "termite",
-   "firefox",
-   os.getenv("HOME") .. "/bin/setup-desktop-environment"
-}
-if autorun then
-   for app = 1, #autorunApps do
-       awful.util.spawn(autorunApps[app])
-   end
-end
+-- autorun programs
+-- local startup = require("startup")
+-- startup.init()
