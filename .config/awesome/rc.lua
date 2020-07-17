@@ -148,6 +148,10 @@ local volume_script_widget = awful.widget.watch(
 local battery_script_widget = awful.widget.watch(
                                   os.getenv("HOME") .. "/bin/widgets/battery",
                                   10)
+local screen_brightness_script_widget = awful.widget.watch(
+                                            os.getenv("HOME") ..
+                                                "/bin/widgets/screen-brightness",
+                                            4)
 
 awful.screen.connect_for_each_screen(function(s)
 
@@ -198,6 +202,7 @@ awful.screen.connect_for_each_screen(function(s)
     { -- Right widgets
       layout = wibox.layout.fixed.horizontal,
       battery_script_widget,
+      screen_brightness_script_widget,
       microphone_script_widget,
       volume_script_widget,
       wibox.widget.systray(),
@@ -249,7 +254,7 @@ awful.key({modkey}, "u", awful.client.urgent.jumpto,
           {description = "jump to urgent client", group = "client"}),
 -- Standard program
 -- awful.key({modkey}, "Return", function() awful.spawn(terminal) end,
-          -- {description = "open a terminal", group = "launcher"}),
+-- {description = "open a terminal", group = "launcher"}),
 awful.key({modkey, "Control"}, "r", awesome.restart,
           {description = "reload awesome", group = "awesome"}),
 awful.key({modkey, "Control"}, "q", awesome.quit,
