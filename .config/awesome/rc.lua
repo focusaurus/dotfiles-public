@@ -18,7 +18,7 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
-
+local placement = require("placement")
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -290,6 +290,7 @@ awful.key({modkey, "Control"}, "q", awesome.quit,
 -- {description = "restore minimized", group = "client"}),
 
 -- Prompt
+
 awful.key({modkey}, "r",
           function() awful.screen.focused().mypromptbox:run() end,
           {description = "run prompt", group = "launcher"}),
@@ -314,17 +315,25 @@ end, {description = "toggle fullscreen", group = "client"}),
   description = "close",
   group = "client"
 }),
+awful.key({modkey, "Control"}, "s", placement.right_half, {
+  description = "snap window to right half of the screen",
+  group = "placement"
+}),
+awful.key({modkey, "Control"}, "h", placement.left_half, {
+  description = "snap window to left half of the screen",
+  group = "placement"
+}),
 -- awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
 -- {description = "toggle floating", group = "client"}),
-                              awful.key({modkey, "Control"}, "Return",
-                                        function(c)
-  c:swap(awful.client.getmaster())
-end, {description = "move to master", group = "client"}),
-                              awful.key({modkey}, "o",
-                                        function(c) c:move_to_screen() end, {
-  description = "move to screen",
-  group = "client"
-}),
+-- awful.key({modkey, "Control"}, "Return",
+-- function(c)
+-- c:swap(awful.client.getmaster())
+-- end, {description = "move to master", group = "client"}),
+-- awful.key({modkey}, "o",
+-- function(c) c:move_to_screen() end, {
+-- description = "move to screen",
+-- group = "client"
+-- }),
 -- awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
 -- {description = "toggle keep on top", group = "client"}),
 -- awful.key({ modkey,           }, "n",
@@ -334,19 +343,19 @@ end, {description = "move to master", group = "client"}),
 -- c.minimized = true
 -- end ,
 -- {description = "minimize", group = "client"}),
-                              awful.key({modkey}, "m", function(c)
-  c.maximized = not c.maximized
-  c:raise()
-end, {description = "(un)maximize", group = "client"}),
-                              awful.key({modkey, "Control"}, "m", function(c)
-  c.maximized_vertical = not c.maximized_vertical
-  c:raise()
-end, {description = "(un)maximize vertically", group = "client"}),
-                              awful.key({modkey, "Shift"}, "m", function(c)
-  c.maximized_horizontal = not c.maximized_horizontal
-  c:raise()
-end, {description = "(un)maximize horizontally", group = "client"}),
-                              cyclefocus.key({modkey}, "Tab", {
+                              awful.key({modkey, "Control"}, "n",
+                                        placement.maximize_toggle, {
+  description = "(un)maximize",
+  group = "client"
+}), -- awful.key({modkey, "Control"}, "m", function(c)
+-- c.maximized_vertical = not c.maximized_vertical
+-- c:raise()
+-- end, {description = "(un)maximize vertically", group = "client"}),
+-- awful.key({modkey, "Shift"}, "m", function(c)
+-- c.maximized_horizontal = not c.maximized_horizontal
+-- c:raise()
+-- end, {description = "(un)maximize horizontally", group = "client"}),
+cyclefocus.key({modkey}, "Tab", {
   -- cycle_filters as a function callback:
   -- cycle_filters = { function (c, source_c) return c.screen == source_c.screen end },
 
