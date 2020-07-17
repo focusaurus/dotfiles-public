@@ -5,4 +5,7 @@ export DISPLAY=:0.0
 
 # https://wiki.archlinux.org/index.php/Firefox/Tweaks#Pixel-perfect_trackpad_scrolling
 export MOZ_USE_XINPUT2=1
+if ~/bin/have-exe luarocks; then
+  eval $(luarocks path --bin | grep -v "export PATH=")
+fi
 ~/bin/setup-desktop-environment

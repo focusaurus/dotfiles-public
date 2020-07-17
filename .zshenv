@@ -39,6 +39,7 @@ setup-path() {
   add-path "${HOME}/projects/md-to-pdf/bin"
   add-path "${HOME}/.cargo/bin"
   add-path "${NVM_BIN}"
+  add-path "${HOME}/.luarocks/bin"
 
   if [[ -e ~/.nvm/alias/default ]]; then
     add-path ~/".nvm/versions/node/$(cat ~/.nvm/alias/default)/bin"
@@ -50,3 +51,7 @@ setup-path() {
   export PATH
 }
 setup-path
+
+if ~/bin/have-exe luarocks; then
+  eval $(luarocks path --bin | grep -v "export PATH=")
+fi
