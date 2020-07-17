@@ -160,3 +160,4 @@
 /.tor-browser
 /.config/transmission
 /.config/awesome/cyclefocus
+/.luarocks
