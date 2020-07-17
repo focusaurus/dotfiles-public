@@ -11,10 +11,6 @@ require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
 
-local volume = require("volume-vicious")
--- naughty.notify({ preset = naughty.config.presets.critical,
-   -- title = "volume module loaded",
-   -- text = string.format("volume module loaded %s", volume.widget)})
 -- Theme handling library
 local beautiful = require("beautiful")
 local menubar = require("menubar")
@@ -51,8 +47,7 @@ end
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
--- beautiful.init({font="Monospace Bould 16"})
-beautiful.get().font = "Inconsolata 20"
+beautiful.get().font = "Inconsolata 16"
 
 -- This is used later as the default terminal and editor to run.
 terminal = "termite"
@@ -110,8 +105,6 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- }}}
 
 -- {{{ Wibar
--- Create a textclock widget
-local mytextclock = wibox.widget.textclock()
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -153,32 +146,14 @@ local tasklist_buttons = gears.table.join(
                                               awful.client.focus.byidx(-1)
                                           end))
 
-local function set_wallpaper(s)
-    -- Wallpaper
-    if beautiful.wallpaper then
-        local wallpaper = beautiful.wallpaper
-        -- If wallpaper is a function, call it with the screen
-        if type(wallpaper) == "function" then
-            wallpaper = wallpaper(s)
-        end
-        gears.wallpaper.maximized(wallpaper, s, true)
-    end
-end
-
--- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
-screen.connect_signal("property::geometry", set_wallpaper)
-local volumearc_widget = require("awesome-wm-widgets.volumearc-widget.volumearc")
-local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
+local clock_widget = wibox.widget.textclock()
 local microphone_script_widget = awful.widget.watch(os.getenv("HOME") .. "/bin/widgets/microphone", 2)
 local volume_script_widget = awful.widget.watch(os.getenv("HOME") .. "/bin/widgets/volume", 2)
 local battery_script_widget = awful.widget.watch(os.getenv("HOME") .. "/bin/widgets/battery", 10)
 
 awful.screen.connect_for_each_screen(function(s)
-    -- Wallpaper
-    set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    -- awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
     awful.tag({ "1", "2", "3", "4"}, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
@@ -223,11 +198,9 @@ awful.screen.connect_for_each_screen(function(s)
             battery_script_widget,
             microphone_script_widget,
             volume_script_widget,
-            -- batteryarc_widget({show_current_level=true, size=30, font="Inconsolata 12"}),
-            -- volumearc_widget({height=30}),
             wibox.widget.systray(),
             s.mylayoutbox,
-            mytextclock,
+            clock_widget,
         },
     }
 end)
@@ -278,35 +251,26 @@ globalkeys = gears.table.join(
               {description = "focus the previous screen", group = "screen"}),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
-    -- awful.key({ modkey,           }, "Tab",
-    --     function ()
-    --         awful.client.focus.history.previous()
-    --         if client.focus then
-    --             client.focus:raise()
-    --         end
-    --     end,
-    --     {description = "go back", group = "client"}),
-    --
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
-    awful.key({ modkey, "Shift"   }, "q", awesome.quit,
+    awful.key({ modkey, "Control"   }, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
 
     -- awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               -- {description = "increase master width factor", group = "layout"}),
-    awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)          end,
-              {description = "decrease master width factor", group = "layout"}),
-    awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1, nil, true) end,
-              {description = "increase the number of master clients", group = "layout"}),
-    awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1, nil, true) end,
-              {description = "decrease the number of master clients", group = "layout"}),
-    awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1, nil, true)    end,
-              {description = "increase the number of columns", group = "layout"}),
-    awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1, nil, true)    end,
-              {description = "decrease the number of columns", group = "layout"}),
+    -- awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)          end,
+              -- {description = "decrease master width factor", group = "layout"}),
+    -- awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1, nil, true) end,
+              -- {description = "increase the number of master clients", group = "layout"}),
+    -- awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1, nil, true) end,
+              -- {description = "decrease the number of master clients", group = "layout"}),
+    -- awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1, nil, true)    end,
+              -- {description = "increase the number of columns", group = "layout"}),
+    -- awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1, nil, true)    end,
+              -- {description = "decrease the number of columns", group = "layout"}),
     -- awful.key({ modkey,           }, "space", function () awful.layout.inc( 1)                end,
               -- {description = "select next", group = "layout"}),
     -- awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
@@ -584,7 +548,3 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
-
--- autorun programs
--- local startup = require("startup")
--- startup.init()
