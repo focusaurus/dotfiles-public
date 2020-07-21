@@ -3,6 +3,7 @@
 alias @bug="rg @bug"
 alias cx="chmod +x"
 alias edq='echo $?'
+# shellcheck disable=SC2142
 alias -g /ap1="| awk '{print \$1}'"
 ap1() {
   awk '{print $1}'
@@ -218,7 +219,6 @@ hex-to-ascii() {
 }
 
 # https://lobste.rs/s/vyfhpm/bash_aliases_are_great_so_is_dired
-alias spaces2underscores='for i in *; do mv -iv "$i" "${i// /_}"; done'
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
 
 tar-year() {
@@ -277,11 +277,11 @@ md-clipboard-to-pdf() {
 }
 
 change-time-zone() {
-  zone=$(find /usr/share/zoneinfo-posix/ | cut -d / -f 6- | ~/bin/fuzzy-filter "$@")
-  [[ -z "${zone}" ]] && return
-  echo sudo timedatectl set-timezone "${zone}"
+  # zone=$(find /usr/share/zoneinfo-posix/ | cut -d / -f 6- | ~/bin/fuzzy-filter "$@")
+  # [[ -z "${zone}" ]] && return
+  sudo timedatectl set-timezone "$(curl --fail https://ipapi.co/timezone)"
 }
 
 fz-ranger() {
-  ranger $(fasd -dl "$@")
+  ranger "$(fasd -dl "$@")"
 }

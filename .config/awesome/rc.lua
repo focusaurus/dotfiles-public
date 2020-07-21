@@ -221,44 +221,50 @@ root.buttons(gears.table.join(awful.button({}, 3,
 -- }}}
 
 -- {{{ Key bindings
-globalkeys = gears.table
-                 .join( -- awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
--- {description="show help", group="awesome"}),
-awful.key({modkey}, "Left", awful.tag.viewprev,
-          {description = "view previous", group = "tag"}),
-awful.key({modkey}, "Right", awful.tag.viewnext,
-          {description = "view next", group = "tag"}),
-awful.key({modkey}, "Escape", awful.tag.history.restore,
-          {description = "go back", group = "tag"}),
-
-awful.key({modkey}, "s", function() awful.client.focus.byidx(1) end,
-          {description = "focus next by index", group = "client"}),
-awful.key({modkey}, "h", function() awful.client.focus.byidx(-1) end,
-          {description = "focus previous by index", group = "client"}),
+globalkeys = gears.table.join(awful.key({modkey}, "Left", awful.tag.viewprev, {
+  description = "view previous",
+  group = "tag"
+}), awful.key({modkey}, "Right", awful.tag.viewnext,
+              {description = "view next", group = "tag"}),
+                              awful.key({modkey}, "Escape",
+                                        awful.tag.history.restore, {
+  description = "go back",
+  group = "tag"
+}), awful.key({modkey}, "s", function() awful.client.focus.byidx(1) end,
+              {description = "focus next by index", group = "client"}),
+                              awful.key({modkey}, "h", function()
+  awful.client.focus.byidx(-1)
+end, {description = "focus previous by index", group = "client"}),
 -- awful.key({ modkey,           }, "w", function () mymainmenu:show() end,
 -- {description = "show main menu", group = "awesome"}),
 
 -- Layout manipulation
-awful.key({modkey, "Shift"}, "j", function() awful.client.swap.byidx(1) end,
-          {description = "swap with next client by index", group = "client"}),
-awful.key({modkey, "Shift"}, "k", function() awful.client.swap.byidx(-1) end, {
-  description = "swap with previous client by index",
+                              awful.key({modkey, "Shift"}, "j", function()
+  awful.client.swap.byidx(1)
+end, {description = "swap with next client by index", group = "client"}),
+                              awful.key({modkey, "Shift"}, "k", function()
+  awful.client.swap.byidx(-1)
+end, {description = "swap with previous client by index", group = "client"}),
+                              awful.key({modkey, "Control"}, "j", function()
+  awful.screen.focus_relative(1)
+end, {description = "focus the next screen", group = "screen"}),
+                              awful.key({modkey, "Control"}, "k", function()
+  awful.screen.focus_relative(-1)
+end, {description = "focus the previous screen", group = "screen"}),
+                              awful.key({modkey}, "u",
+                                        awful.client.urgent.jumpto, {
+  description = "jump to urgent client",
   group = "client"
-}), awful.key({modkey, "Control"}, "j",
-              function() awful.screen.focus_relative(1) end,
-              {description = "focus the next screen", group = "screen"}),
-awful.key({modkey, "Control"}, "k",
-          function() awful.screen.focus_relative(-1) end,
-          {description = "focus the previous screen", group = "screen"}),
-awful.key({modkey}, "u", awful.client.urgent.jumpto,
-          {description = "jump to urgent client", group = "client"}),
--- Standard program
+}), -- Standard program
 -- awful.key({modkey}, "Return", function() awful.spawn(terminal) end,
 -- {description = "open a terminal", group = "launcher"}),
 awful.key({modkey, "Control"}, "r", awesome.restart,
           {description = "reload awesome", group = "awesome"}),
-awful.key({modkey, "Control"}, "q", awesome.quit,
-          {description = "quit awesome", group = "awesome"}),
+                              awful.key({modkey, "Control"}, "q", awesome.quit,
+                                        {
+  description = "quit awesome",
+  group = "awesome"
+}),
 
 -- awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
 -- {description = "increase master width factor", group = "layout"}),
@@ -291,11 +297,11 @@ awful.key({modkey, "Control"}, "q", awesome.quit,
 
 -- Prompt
 
-awful.key({modkey}, "r",
-          function() awful.screen.focused().mypromptbox:run() end,
-          {description = "run prompt", group = "launcher"}),
+                              awful.key({modkey}, "r", function()
+  awful.screen.focused().mypromptbox:run()
+end, {description = "run prompt", group = "launcher"}),
 
-awful.key({modkey}, "x", function()
+                              awful.key({modkey}, "x", function()
   awful.prompt.run {
     prompt = "Run Lua code: ",
     textbox = awful.screen.focused().mypromptbox.widget,
@@ -314,12 +320,10 @@ end, {description = "toggle fullscreen", group = "client"}),
                                         function(c) c:kill() end, {
   description = "close",
   group = "client"
-}),
-awful.key({modkey, "Control"}, "s", placement.right_half, {
+}), awful.key({modkey, "Control"}, "s", placement.right_half, {
   description = "snap window to right half of the screen",
   group = "placement"
-}),
-awful.key({modkey, "Control"}, "h", placement.left_half, {
+}), awful.key({modkey, "Control"}, "h", placement.left_half, {
   description = "snap window to left half of the screen",
   group = "placement"
 }),
@@ -356,14 +360,16 @@ awful.key({modkey, "Control"}, "h", placement.left_half, {
 -- c:raise()
 -- end, {description = "(un)maximize horizontally", group = "client"}),
 cyclefocus.key({modkey}, "Tab", {
-  -- cycle_filters as a function callback:
-  -- cycle_filters = { function (c, source_c) return c.screen == source_c.screen end },
-
-  -- cycle_filters from the default filters:
   cycle_filters = {
     cyclefocus.filters.same_screen, cyclefocus.filters.common_tag
   },
-  keys = {"Tab", "ISO_Left_Tab"} -- default, could be left out
+  keys = {"Tab", "ISO_Left_Tab", "n"}
+}), cyclefocus.key({modkey}, "n", {
+  -- TODO would like to also bind this to Super+n but this doesn't work
+  cycle_filters = {
+    cyclefocus.filters.same_screen, cyclefocus.filters.common_tag
+  },
+  keys = {"Tab", "ISO_Left_Tab", "n"}
 }))
 
 -- Bind all key numbers to tags.
