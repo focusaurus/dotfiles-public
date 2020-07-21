@@ -29,6 +29,7 @@ setup-path() {
   add-path /usr/local/opt/gawk/libexec/gnubin
   add-path /usr/local/opt/findutils/libexec/gnubin
 
+  add-path "${HOME}/.n/bin"
   add-path "/usr/local/bin"
   add-path "/bin"
   add-path "/usr/bin"
@@ -38,7 +39,6 @@ setup-path() {
   add-path "${HOME}/.local/bin"
   add-path "${HOME}/projects/md-to-pdf/bin"
   add-path "${HOME}/.cargo/bin"
-  add-path "${NVM_BIN}"
 
   if [[ -e ~/.nvm/alias/default ]]; then
     add-path ~/".nvm/versions/node/$(cat ~/.nvm/alias/default)/bin"
