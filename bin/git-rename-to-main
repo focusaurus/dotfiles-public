@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
+
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -o errexit  # always exit on error
+set -o errtrace # trap errors in functions as well
+set -o pipefail # don't ignore exit codes when piping output
+set -o posix    # more strict failures in subshells
+# set -x          # enable debugging
+
+IFS=$'\n\t'
+# ---- End unofficial bash strict mode boilerplate
+
+confirm() {
+  read -r -n 1 -p "Proceed?" ok
+
+  if [[ "${ok}" != "y" ]]; then
+    return 1
+  fi
+}
+origin=$(git remote | head -1)
+new_default="main"
+old_default=$(~/bin/git-get-default-branch)
+git fetch --all
+
+echo "Switching from default branch name ${old_default} to ${new_default} on remote ${origin}"
+if ! confirm; then
+  exit 2
+fi
+git checkout -b "${new_default}" "${origin}/${old_default}"
+git branch -d "${old_default}"
+git push --set-upstream "${origin}" "${new_default}"
+git symbolic-ref "refs/remotes/${origin}/HEAD" "refs/remotes/${origin}/${new_default}"
+git remote prune "${origin}"
+
+head_path="/$(git remote -v | head -1 | awk '{print $2}' | cut -d / -f 4-)/HEAD"
+
+echo "Next: update remote's HEAD file"
+if confirm; then
+  ssh git.peterlyons.com sed -i "s/${old_default}/${new_default}/g" "${head_path}"
+fi
+
+echo "Next: delete ${old_default} from remote ${origin}"
+if confirm; then
+  git push "${origin}" --delete "${old_default}"
+fi

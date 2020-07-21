@@ -34,6 +34,12 @@ main() {
   # screen standby after 1 hour, suspend 2 hours, off 3 hours
   xset dpms 3600 7200 10800
 
+  # Network Manager
+  if have_exe nm-applet; then
+    kill_ok nm-applet
+    nm-applet &>/dev/null &
+  fi
+
   # 2018-04-17 plyons natural scrolling everywhere in X11
   if have_exe synclient; then
     synclient VertScrollDelta=-119
@@ -42,8 +48,8 @@ main() {
 
   # i3dir="/run/user/${UID}/i3"
   # if [[ -d "${i3dir}" ]]; then
-    # export I3SOCK="${i3dir}/ipc-socket.$(pidof i3)"
-    # export I3SOCK
+  # export I3SOCK="${i3dir}/ipc-socket.$(pidof i3)"
+  # export I3SOCK
   # fi
 
   if have_exe copyq; then
