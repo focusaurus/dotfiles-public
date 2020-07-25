@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 #export FZF_DEFAULT_COMMAND='rg -g ""'
+if ~/bin/have-exe ag; then
+  export FZF_DEFAULT_COMMAND="ag --hidden -g ''"
+fi
 if ~/bin/have-exe fd; then
   #  export FZF_DEFAULT_COMMAND="fd --exclude vendor ."
   #  export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+  export FZF_DEFAULT_COMMAND='fd --type f --hidden --ignore-file .gitignore'
 fi
 export FZF_COMPLETION_TRIGGER="''"
 export FZF_DEFAULT_OPTS='--bind=alt-enter:print-query'
@@ -138,4 +142,17 @@ xargs-fuzzy() {
   "${file_command[@]}" |
     fzf --no-sort --filter="${query}" |
     xargs "$@"
+}
+
+edf-fuzzy() {
+  file=$(
+    cd
+    dotfiles-begin
+    git ls-files | fuzzy-filter "$@"
+    dotfiles-end
+  )
+  if [[ ! -f "${file}" ]]; then
+    return
+  fi
+  nvim "${HOME}/${file}"
 }

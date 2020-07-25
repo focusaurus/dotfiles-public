@@ -16,7 +16,7 @@ IFS=$'\n\t'
 # Used to filter to specific well-known names.
 # grep -E '^(origin|upstream|github)\b' |
 # But I think just "the first origin" is a good heuristic
-remote=$(git remote -v | awk '{print $2}' | head -1)
+remote=$(git remote -v | awk '{print $1}' | head -1)
 git ls-remote --symref "${remote}" HEAD |
   grep -E '^ref: ' |
   awk '{print $2}' |

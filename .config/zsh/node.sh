@@ -108,6 +108,8 @@ nvm() {
   echo "nvm is not installed" >&2
 }
 
+export N_PREFIX="$HOME/.n"
+
 devlog() {
   file="$1"
   grep -e '^\{' "${file}" |
