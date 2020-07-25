@@ -219,16 +219,7 @@ root.buttons(gears.table.join(awful.button({}, 3,
                               awful.button({}, 4, awful.tag.viewnext),
                               awful.button({}, 5, awful.tag.viewprev)))
 -- }}}
-local function wm_nav_left() awful.client.focus.byidx(-1) end
-local wm_nav_left_config = {
-  description = "focus previous (left) by index",
-  group = "client"
-}
-local function wm_nav_right() awful.client.focus.byidx(1) end
-local wm_nav_right_config = {
-  description = "focus next (right) by index",
-  group = "client"
-}
+require("focus")
 -- {{{ Key bindings
 local bindg = awful.keyboard.append_global_keybinding
 local bindc = awful.keyboard.append_client_keybinding
@@ -236,10 +227,6 @@ local bindc = awful.keyboard.append_client_keybinding
 -- local function bindg(key) awful.keyboard.append_global_keybinding(key) end
 -- local function bindc(key) awful.keyboard.append_client_keybinding(key) end
 
-bindg(awful.key({modkey}, "a", wm_nav_left, wm_nav_left_config))
-bindg(awful.key({modkey}, "u", wm_nav_right, wm_nav_right_config))
-bindg(awful.key({modkey}, "h", wm_nav_left, wm_nav_left_config))
-bindg(awful.key({modkey}, "s", wm_nav_right, wm_nav_right_config))
 bindg(awful.key({modkey}, "Left", awful.tag.viewprev,
                 {description = "view previous", group = "tag"}))
 bindg(awful.key({modkey}, "Right", awful.tag.viewnext,
@@ -367,7 +354,7 @@ awful.rules.rules = {
       class = {
         "Arandr", "Blueman-manager", "Gpick", "Kruler", "MessageWin", -- kalarm.
         "Sxiv", "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
-        "Wpa_gui", "veromix", "xtightvncviewer"
+        "Wpa_gui", "veromix", "xtightvncviewer", "zenity"
       },
 
       -- Note that the name property shown in xprop might be set slightly after creation of the client
@@ -386,7 +373,7 @@ awful.rules.rules = {
   {
     rule_any = {type = {"normal", "dialog"}},
     properties = {titlebars_enabled = true}
-  }
+  }, {properties = {ontop = true}, rule_any = {class = {"zenity"}}}
 
   -- Set Firefox to always map on the tag named "2" on screen 1.
   -- { rule = { class = "Firefox" },
