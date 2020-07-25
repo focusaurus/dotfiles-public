@@ -230,30 +230,34 @@ local wm_nav_right_config = {
   group = "client"
 }
 -- {{{ Key bindings
-local function bind(key) awful.keyboard.append_global_keybinding(key) end
+local bindg = awful.keyboard.append_global_keybinding
+local bindc = awful.keyboard.append_client_keybinding
 
-bind(awful.key({modkey}, "a", wm_nav_left, wm_nav_left_config))
-bind(awful.key({modkey}, "u", wm_nav_right, wm_nav_right_config))
-bind(awful.key({modkey}, "h", wm_nav_left, wm_nav_left_config))
-bind(awful.key({modkey}, "s", wm_nav_right, wm_nav_right_config))
-bind(awful.key({modkey}, "Left", awful.tag.viewprev,
-               {description = "view previous", group = "tag"}))
-bind(awful.key({modkey}, "Right", awful.tag.viewnext,
-               {description = "view next", group = "tag"}))
-bind(awful.key({modkey}, "Escape", awful.tag.history.restore,
-               {description = "go back", group = "tag"}))
+-- local function bindg(key) awful.keyboard.append_global_keybinding(key) end
+-- local function bindc(key) awful.keyboard.append_client_keybinding(key) end
 
-bind(awful.key({modkey, "Control"}, "r", awesome.restart,
-               {description = "reload awesome", group = "awesome"}))
-bind(awful.key({modkey, "Control"}, "q", awesome.quit,
-               {description = "quit awesome", group = "awesome"}))
+bindg(awful.key({modkey}, "a", wm_nav_left, wm_nav_left_config))
+bindg(awful.key({modkey}, "u", wm_nav_right, wm_nav_right_config))
+bindg(awful.key({modkey}, "h", wm_nav_left, wm_nav_left_config))
+bindg(awful.key({modkey}, "s", wm_nav_right, wm_nav_right_config))
+bindg(awful.key({modkey}, "Left", awful.tag.viewprev,
+                {description = "view previous", group = "tag"}))
+bindg(awful.key({modkey}, "Right", awful.tag.viewnext,
+                {description = "view next", group = "tag"}))
+bindg(awful.key({modkey}, "Escape", awful.tag.history.restore,
+                {description = "go back", group = "tag"}))
+
+bindg(awful.key({modkey, "Control"}, "r", awesome.restart,
+                {description = "reload awesome", group = "awesome"}))
+bindg(awful.key({modkey, "Control"}, "q", awesome.quit,
+                {description = "quit awesome", group = "awesome"}))
 -- Prompt
 
-bind(awful.key({modkey}, "r",
-               function() awful.screen.focused().mypromptbox:run() end,
-               {description = "run prompt", group = "launcher"}))
+bindg(awful.key({modkey}, "r",
+                function() awful.screen.focused().mypromptbox:run() end,
+                {description = "run prompt", group = "launcher"}))
 
-bind(awful.key({modkey}, "x", function()
+bindg(awful.key({modkey}, "x", function()
   awful.prompt.run {
     prompt = "Run Lua code: ",
     textbox = awful.screen.focused().mypromptbox.widget,
@@ -262,33 +266,34 @@ bind(awful.key({modkey}, "x", function()
   }
 end, {description = "lua execute prompt", group = "awesome"}))
 -- Menubar
-bind(awful.key({modkey}, "p", function() menubar.show() end,
-               {description = "show the menubar", group = "launcher"}))
+bindg(awful.key({modkey}, "p", function() menubar.show() end,
+                {description = "show the menubar", group = "launcher"}))
 
 local cyclefocus = require("cyclefocus")
-clientkeys = gears.table.join(awful.key({modkey}, "f", function(c)
+bindc(awful.key({modkey}, "f", function(c)
   c.fullscreen = not c.fullscreen
   c:raise()
-end, {description = "toggle fullscreen", group = "client"}),
-                              awful.key({modkey, "Shift"}, "w",
-                                        function(c) c:kill() end, {
-  description = "close",
-  group = "client"
-}), awful.key({modkey, "Control"}, "s", placement.right_half, {
+end, {description = "toggle fullscreen", group = "client"}))
+bindc(awful.key({modkey, "Shift"}, "w", function(c) c:kill() end,
+                {description = "close", group = "client"}))
+bindc(awful.key({modkey, "Control"}, "s", placement.right_half, {
   description = "snap window to right half of the screen",
   group = "placement"
-}), awful.key({modkey, "Control"}, "h", placement.left_half, {
+}))
+bindc(awful.key({modkey, "Control"}, "h", placement.left_half, {
   description = "snap window to left half of the screen",
   group = "placement"
-}), awful.key({modkey, "Control"}, "n", placement.maximize_toggle,
-              {description = "(un)maximize", group = "client"}),
-                              cyclefocus.key({modkey}, "Tab", {
+}))
+bindc(awful.key({modkey, "Control"}, "n", placement.maximize_toggle,
+                {description = "(un)maximize", group = "client"}),
+      cyclefocus.key({modkey}, "Tab", {
   cycle_filters = {
     cyclefocus.filters.same_screen, cyclefocus.filters.common_tag
   },
   keys = {"Tab", "ISO_Left_Tab", "n"}
-}), cyclefocus.key({modkey}, "n", {
-  -- TODO would like to also bind this to Super+n but this doesn't work
+}))
+bindc(cyclefocus.key({modkey}, "n", {
+  -- TODO would like to also bindg this to Super+n but this doesn't work
   cycle_filters = {
     cyclefocus.filters.same_screen, cyclefocus.filters.common_tag
   },
@@ -299,26 +304,26 @@ end, {description = "toggle fullscreen", group = "client"}),
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
 for i = 1, 9 do
-  bind(awful.key({modkey}, "#" .. i + 9, function()
+  bindg(awful.key({modkey}, "#" .. i + 9, function()
     local screen = awful.screen.focused()
     local tag = screen.tags[i]
     if tag then tag:view_only() end
   end, {description = "view tag #" .. i, group = "tag"}))
   -- Toggle tag display.
-  bind(awful.key({modkey, "Control"}, "#" .. i + 9, function()
+  bindg(awful.key({modkey, "Control"}, "#" .. i + 9, function()
     local screen = awful.screen.focused()
     local tag = screen.tags[i]
     if tag then awful.tag.viewtoggle(tag) end
   end, {description = "toggle tag #" .. i, group = "tag"}))
   -- Move client to tag.
-  bind(awful.key({modkey, "Shift"}, "#" .. i + 9, function()
+  bindg(awful.key({modkey, "Shift"}, "#" .. i + 9, function()
     if client.focus then
       local tag = client.focus.screen.tags[i]
       if tag then client.focus:move_to_tag(tag) end
     end
   end, {description = "move focused client to tag #" .. i, group = "tag"}))
   -- Toggle tag on focused client.
-  bind(awful.key({modkey, "Control", "Shift"}, "#" .. i + 9, function()
+  bindg(awful.key({modkey, "Control", "Shift"}, "#" .. i + 9, function()
     if client.focus then
       local tag = client.focus.screen.tags[i]
       if tag then client.focus:toggle_tag(tag) end
@@ -347,7 +352,6 @@ awful.rules.rules = {
       border_color = beautiful.border_normal,
       focus = awful.client.focus.filter,
       raise = true,
-      keys = clientkeys,
       buttons = clientbuttons,
       screen = awful.screen.preferred,
       placement = awful.placement.no_overlap + awful.placement.no_offscreen
