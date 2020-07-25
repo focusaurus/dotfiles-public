@@ -32,6 +32,9 @@ main() {
   # caps lock key is ctrl
   setxkbmap -layout dvorak -option "ctrl:nocaps"
 
+  #Remap PrtSc (2nd to the right of spacebar) to an additional Super modifier
+  xmodmap -e 'keysym Print = Super_R'
+
   # This section disabled but left for future use maybe
   if false; then
     # use software dvorak for laptop keyboard
