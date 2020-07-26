@@ -3,7 +3,7 @@ Description=Archive daily org mode todos
 
 [Timer]
 # This is in UTC
-OnCalendar=*-*-* *:00:00
+OnCalendar=*-*-* 8:00:00
 
 [Install]
 WantedBy=timers.target
