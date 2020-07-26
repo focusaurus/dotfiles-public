@@ -1,4 +1,5 @@
 local awful = require("awful")
+require("awful.autofocus")
 local function wm_nav_left() awful.client.focus.byidx(-1) end
 local wm_nav_left_config = {
   description = "focus previous (left) by index",
@@ -11,7 +12,7 @@ local wm_nav_right_config = {
 }
 local bindg = awful.keyboard.append_global_keybinding
 
-local super = "Mod4"
+super = "Mod4"
 bindg(awful.key({super}, "a", wm_nav_left, wm_nav_left_config))
 bindg(awful.key({super}, "u", wm_nav_right, wm_nav_right_config))
 bindg(awful.key({super}, "h", wm_nav_left, wm_nav_left_config))
