@@ -3,4 +3,4 @@ Description=Pull latest code into daily-todos project
 
 [Service]
 Type=oneshot
-ExecStart=/bin/sh -c 'cd ~/projects/daily-todos.sh && git pull'
+ExecStart=/bin/sh -c 'cd ~/projects/daily-todos && git pull'
