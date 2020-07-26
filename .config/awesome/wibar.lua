@@ -8,8 +8,10 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
--- {{{ Menu
--- Create a launcher widget and a main menu
+--- This is used later as the default terminal and editor to run.
+terminal = "termite"
+editor = os.getenv("EDITOR") or "nano"
+editor_cmd = terminal .. " -e " .. editor
 myawesomemenu = {
   {
     "hotkeys",
@@ -31,9 +33,7 @@ mylauncher = awful.widget.launcher({
   menu = mymainmenu
 })
 
--- Menubar configuration
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
--- }}}
+menubar.utils.terminal = terminal
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
