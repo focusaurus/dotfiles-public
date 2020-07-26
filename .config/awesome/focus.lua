@@ -9,12 +9,15 @@ local wm_nav_right_config = {
   description = "focus next (right) by index",
   group = "client"
 }
--- {{{ Key bindings
 local bindg = awful.keyboard.append_global_keybinding
 
+local super = "Mod4"
+bindg(awful.key({super}, "a", wm_nav_left, wm_nav_left_config))
+bindg(awful.key({super}, "u", wm_nav_right, wm_nav_right_config))
+bindg(awful.key({super}, "h", wm_nav_left, wm_nav_left_config))
+bindg(awful.key({super}, "s", wm_nav_right, wm_nav_right_config))
 
-bindg(awful.key({modkey}, "a", wm_nav_left, wm_nav_left_config))
-bindg(awful.key({modkey}, "u", wm_nav_right, wm_nav_right_config))
-bindg(awful.key({modkey}, "h", wm_nav_left, wm_nav_left_config))
-bindg(awful.key({modkey}, "s", wm_nav_right, wm_nav_right_config))
-
+-- Enable sloppy focus, so that focus follows mouse.
+client.connect_signal("mouse::enter", function(c)
+    c:activate { context = "mouse_enter", raise = false }
+end)
