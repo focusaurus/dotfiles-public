@@ -7,18 +7,17 @@ super + x
   xte "keyup x" "keyup Super_L" "keydown Control_L" "key x" "keyup Control_L" "keydown Super_L"
 
 ##### linux/macos parity browser hotkeys #####
-super + w
-  xte "keyup w" "keyup Super_L" "keydown Control_L" "key w" "keyup Control_L" "keydown Super_L"
-super + t
-  xte "keyup t" "keyup Super_L" "keydown Control_L" "key t" "keyup Control_L" "keydown Super_L"
-super + n
-  xte "keyup n" "keyup Super_L" "keydown Control_L" "key n" "keyup Control_L" "keydown Super_L"
-super + l
-  xte "keyup l" "keyup Super_L" "keydown Control_L" "key l" "keyup Control_L" "keydown Super_L"
+# super + w
+  # xte "keyup w" "keyup Super_L" "keydown Control_L" "key w" "keyup Control_L" "keydown Super_L"
+# super + t
+#   xte "keyup t" "keyup Super_L" "keydown Control_L" "key t" "keyup Control_L" "keydown Super_L"
+# super + n
+#   xte "keyup n" "keyup Super_L" "keydown Control_L" "key n" "keyup Control_L" "keydown Super_L"
+# super + l
+#   xte "keyup l" "keyup Super_L" "keydown Control_L" "key l" "keyup Control_L" "keydown Super_L"
 
 ##### rofi fuzzy overlays #####
 ctrl + space
-#super + space
   ~/bin/fuzz-script-choose
 ctrl + comma
   ~/bin/fuzz-snippet
@@ -85,10 +84,10 @@ XF86MonBrightnessUp
 
 ##### Volume #####
 XF86AudioRaiseVolume
-  pactl set-sink-volume @DEFAULT_SINK@ +10% && killall -SIGUSR1 i3status
+  ~/bin/volume +10%
 XF86AudioLowerVolume
-  pactl set-sink-volume @DEFAULT_SINK@ -10% && killall -SIGUSR1 i3status
+  ~/bin/volume -10%
 XF86AudioMute
-  pactl set-sink-mute @DEFAULT_SINK@ toggle && killall -SIGUSR1 i3status
+  ~/bin/volume-toggle-mute
 XF86AudioMicMute
-  pactl set-source-mute @DEFAULT_SOURCE@ toggle && killall -SIGUSR1 i3status
+  ~/bin/microphone-toggle

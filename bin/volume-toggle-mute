@@ -13,4 +13,4 @@ set -o posix    # more strict failures in subshells
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
-pactl set-sink-volume @DEFAULT_SINK@ "$@"
+pactl set-sink-mute @DEFAULT_SINK@ toggle
