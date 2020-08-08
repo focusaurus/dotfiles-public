@@ -68,6 +68,7 @@ github() {
     local org
     local repo
     url="${1:-$(~/bin/paste)}"
+    # shellcheck disable=SC2001
     org_repo=$(echo "${url}" | sed 's/.*github\.com.//')
     org="$(echo "${org_repo}" | cut -d / -f 1)"
     repo="$(echo "${org_repo}" | cut -d / -f 2)"
@@ -311,7 +312,8 @@ dotfiles-edit-by-search() {
   (
     cd ~ || return 1
     dotfiles-begin
-    git ls-files | xargs rg -l "$@" | xargs nvim -p -c "/${@}"
+    # shellcheck disable=SC2145
+    git ls-files | xargs rg -l "$@" | xargs nvim -p -c "/$@"
   )
 }
 
@@ -331,7 +333,7 @@ gsync() {
 git-cd-repo-dir-fuzzy() {
   dir=$(git ls-files --full-name | xargs dirname | ~/bin/fuzzy-filter "$@")
   if [[ -d "${dir}" ]]; then
-    cd "${dir}"
+    cd "${dir}" || return 1
   fi
 }
 
