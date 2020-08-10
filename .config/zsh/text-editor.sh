@@ -12,7 +12,7 @@ te-clipboard() {
 alias paste-to-vim="te-clipboard"
 
 te-daily() {
-  org="${HOME}/projects/org"
+  org="${HOME}/projects/exocortex/personal"
   "${EDITOR}" "${org}/$("${org}/bin/file-name-for" 0)"
 }
 
