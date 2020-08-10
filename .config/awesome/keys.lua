@@ -59,8 +59,8 @@ bindc(awful.key({super, alt}, "h", placement.left_half, {
   group = "placement"
 }))
 bindc(awful.key({super, alt}, "n", placement.maximize_toggle,
-                {description = "(un)maximize", group = "client"}),
-      cyclefocus.key({super}, "Tab", {
+                {description = "(un)maximize", group = "client"}))
+bindc(cyclefocus.key({super}, "Tab", {
   cycle_filters = {
     cyclefocus.filters.same_screen, cyclefocus.filters.common_tag
   },

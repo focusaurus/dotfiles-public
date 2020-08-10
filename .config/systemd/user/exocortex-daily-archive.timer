@@ -1,5 +1,5 @@
 [Unit]
-Description=Archive daily org mode todos
+Description=Archive daily exocortex mode todos
 
 [Timer]
 # This is in UTC

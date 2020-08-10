@@ -17,9 +17,8 @@ log() {
   echo "$@" >>/tmp/fuzz.log
 }
 
-log $(date)
-log PATH "$PATH"
-log $(which choose)
+~/bin/log "$0" PATH "$PATH"
+~/bin/log "$0" "$(which choose)"
 cd "$(dirname "${BASH_SOURCE[0]}")"
 PATH="/usr/local/bin:${PATH}"
 task_dir="${1:-${HOME}/git.peterlyons.com/dotfiles/fuzzball}"
@@ -35,6 +34,7 @@ if [[ -t 1 ]]; then
   # terminal/tty mode. Use fzf directly
   chooser=(fzf --color=bw --layout=reverse)
 fi
+# shellcheck disable=SC2012
 task=$(ls "${task_dir}" | "${chooser[@]}")
-log "selected ${task} from ${chooser[@]}"
+~/bin/log "$0" "selected ${task} from ${chooser[@]}"
 exec ./fuzz-script-exec "${task_dir}" "${task}"
