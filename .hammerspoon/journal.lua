@@ -34,5 +34,5 @@ local function journalStandupDialog()
   log.d("journalStandupDialog")
   os.execute(fuzzball .. "/journal-mailchimp-standup")
 end
-hs.hotkey.bind({"control"}, "9", journalStandupDialog)
+hs.hotkey.bind({"shift"}, "f9", journalStandupDialog)
 
