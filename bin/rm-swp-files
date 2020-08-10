@@ -13,11 +13,8 @@ set -o posix    # more strict failures in subshells
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
-# protonvpn status
-echo -n "VPN: "
-if ip route | grep -qE 'tun0'; then
-  echo on
-else
-  echo off
+args=(~/.local/share/nvim/swap -type f -name '*.swp')
+if [[ "$1" == "y" ]]; then
+  args+=(-delete)
 fi
-
+find "${args[@]}"

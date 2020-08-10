@@ -20,8 +20,14 @@ op-copy-password-by-title() {
   title=$(echo "${items}" |
     jq -r ".[].overview.title" |
     ~/bin/fuzzy-filter "$@")
+  if [[ -z "${items}" ]]; then
+    return 1
+  fi
   uuid=$(echo "${items}" |
     jq -r ".[] | select(.overview.title == \"${title}\") | .uuid")
+  if [[ -z "${uuid}" ]]; then
+    return 1
+  fi
   echo "${uuid} ${title}"
   op get item "${uuid}" |
     jq -r '.details.password // (.details.fields[] | select(.designation=="password").value)' |
