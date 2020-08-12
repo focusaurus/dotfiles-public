@@ -5,7 +5,6 @@ te-files-with-matches() {
   rg --ignore-case --files-with-matches watch "${@}" | xargs ~/bin/text-editor
 }
 
-
 te-clipboard() {
   ~/bin/paste | v -n -c startinsert -
 }
@@ -15,7 +14,6 @@ te-daily() {
   org="${HOME}/projects/org"
   "${EDITOR}" "${org}/$("${org}/bin/file-name-for" 0)"
 }
-
 
 if ~/bin/have-exe nvim; then
   alias v="nvim"
@@ -30,4 +28,8 @@ fi
 
 te-vimrc() {
   fd .vim ~/.config/nvim | xargs nvim -p
+}
+
+te-git-changed() {
+  git status --short | awk '{print $2}' | xargs "${EDITOR}" -p
 }
