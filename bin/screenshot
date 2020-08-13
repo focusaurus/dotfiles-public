@@ -12,6 +12,10 @@ set -o posix    # more strict failures in subshells
 
 IFS="$(printf "\n\t")"
 # ---- End unofficial bash strict mode boilerplate
+if [[ "$(uname)" == "Darwin" ]]; then
+  cliclick kd:cmd,shift  t:4 ku:cmd,shift
+  exit
+fi
 suffix=$(zenity --entry --text suffix)
 dest="${HOME}/screens"
 mkdir -p "${dest}"

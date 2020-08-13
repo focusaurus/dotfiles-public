@@ -6,7 +6,7 @@ fi
 if ~/bin/have-exe fd; then
   #  export FZF_DEFAULT_COMMAND="fd --exclude vendor ."
   #  export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
-  export FZF_DEFAULT_COMMAND='fd --type f --hidden --ignore-file .gitignore'
+  export FZF_DEFAULT_COMMAND='fd --type f --hidden --ignore-file .gitignore --ignore-file .ignore'
 fi
 export FZF_COMPLETION_TRIGGER="''"
 export FZF_DEFAULT_OPTS='--bind=alt-enter:print-query'
@@ -69,7 +69,7 @@ if [[ -n "${ZSH_VERSION}" ]]; then
       query=$(echo "${LBUFFER}" | awk '{print $NF}')
     fi
 
-    declare -a fd_opts=(--max-depth 12 "$@")
+    declare -a fd_opts=(--ignore-file .gitignore --ignore-file .ignore --max-depth 12 "$@")
     # shellcheck disable=SC2145
     ~/bin/log "$0" "fuzz-all-into-line fd_opts: ${fd_opts[@]}"
     # Find the path; abort if the user doesn't select anything.
@@ -92,7 +92,7 @@ if [[ -n "${ZSH_VERSION}" ]]; then
   }
   zle -N fuzz-all-into-line # Create the zle widget
   # TODO find a good keybinding for this
-  bindkey "^F" "fuzz-all-into-line"
+  bindkey "^F" "fuzz-file-into-line"
 
   function fuzz-directory-into-line() {
     fuzz-all-into-line --type directory

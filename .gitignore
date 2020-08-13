@@ -65,6 +65,7 @@
 /.config/pavucontrol.ini
 /.config/pulse
 /.config/rclone
+/.config/stripe
 /.config/syncthing
 /.config/systemd/user/timers.target.wants
 /.config/transmission
@@ -133,6 +134,7 @@
 /.xournal
 /.xournalpp
 /.xsession-errors*
+/.zcompcache
 /.zcompdump
 /.zoom
 /.zsh-history
