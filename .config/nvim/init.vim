@@ -1,5 +1,4 @@
 "set nocompatible
-"autocmd FileType coffee setlocal shiftwidth=2 tabstop=2
 "set guioptions-=L
 "set autoread
 ":au BufNewFile,BufRead *.py so <sfile>:h/html.vim
