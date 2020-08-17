@@ -83,10 +83,8 @@ XF86MonBrightnessUp
   sudo brightnessctl set 20%+
 
 ##### Volume #####
-XF86AudioRaiseVolume
-  ~/bin/volume +10%
-XF86AudioLowerVolume
-  ~/bin/volume -10%
+XF86Audio{Raise,Lower}Volume
+  ~/bin/volume {+,-}10%
 XF86AudioMute
   ~/bin/volume-toggle-mute
 XF86AudioMicMute
