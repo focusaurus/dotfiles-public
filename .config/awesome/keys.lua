@@ -50,15 +50,15 @@ bindc(awful.key({super}, "f", function(c)
 end, {description = "toggle fullscreen", group = "client"}))
 bindc(awful.key({super, "Shift"}, "w", function(c) c:kill() end,
                 {description = "close", group = "client"}))
-bindc(awful.key({super, alt}, "s", placement.right_half, {
+bindc(awful.key({alt}, "s", placement.right_half, {
   description = "snap window to right half of the screen",
   group = "placement"
 }))
-bindc(awful.key({super, alt}, "h", placement.left_half, {
+bindc(awful.key({alt}, "h", placement.left_half, {
   description = "snap window to left half of the screen",
   group = "placement"
 }))
-bindc(awful.key({super, alt}, "n", placement.maximize_toggle,
+bindc(awful.key({alt}, "n", placement.maximize_toggle,
                 {description = "(un)maximize", group = "client"}))
 bindc(cyclefocus.key({super}, "Tab", {
   cycle_filters = {

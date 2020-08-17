@@ -14,7 +14,7 @@ IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 notify() {
   notify-send --expire-time=2000 "mic is $(cat "${file}")"
-  killall -SIGUSR1 i3status
+  # killall -SIGUSR1 i3status
 }
 
 main() {
