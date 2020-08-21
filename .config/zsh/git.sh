@@ -320,7 +320,7 @@ dotfiles-edit-by-search() {
 gsync() {
   dotfiles-end
   if ! ssh-add -l &>/dev/null; then
-    if [[ "$(hostname)" =~ RSG ]]; then
+    if [[ "$(uname -n)" =~ RSG ]]; then
       mc-add-ssh-key
     else
       op-add-ssh-key
