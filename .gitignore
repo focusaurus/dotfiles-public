@@ -176,3 +176,4 @@
 /voice-memos
 /work-*
 /.emacs.d
+/.config/xbuild
