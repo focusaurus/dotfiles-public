@@ -1,7 +1,7 @@
 [Unit]
 Description=IMWheel
-Wants=display-manager.service
-After=display-manager.service
+; Wants=display-manager.service
+; After=display-manager.service
 
 [Service]
 Type=simple
