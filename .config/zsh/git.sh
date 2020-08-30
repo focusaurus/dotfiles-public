@@ -304,6 +304,23 @@ dotfiles-end() {
 alias dfb="dotfiles-begin"
 alias dfe="dotfiles-end"
 
+dotfiles-ignore() {
+  (
+    dotfiles-begin
+    cd || exit
+    git status --short | grep '^??' | cut -d ' ' -f 2- | {
+      while IFS= read -r file_path; do
+        echo -n "Ignore ${file_path}? y/n"
+        read -r -q response
+        echo
+        if [[ "${response}" == "y" ]]; then
+          echo "/${file_path}" >>.gitignore
+        fi
+      done
+    }
+  )
+}
+
 dotfiles-search() {
   GIT_DIR="${HOME}/.home.git" git ls-files | xargs rg "$@"
 }

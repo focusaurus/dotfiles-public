@@ -177,3 +177,5 @@
 /work-*
 /.emacs.d
 /.config/xbuild
+/snippets
+/exocortex
