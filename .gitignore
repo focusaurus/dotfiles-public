@@ -176,3 +176,6 @@
 /tmp
 /voice-memos
 /work-*
+/snippets
+/.emacs.d
+/.npmrc*
