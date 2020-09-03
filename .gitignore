@@ -14,7 +14,6 @@
 /.cargo
 /.circleci
 /.cmake
-/.cmake
 /.config/3T
 /.config/Insomnia
 /.config/Keybase
@@ -72,6 +71,7 @@
 /.config/transmission
 /.config/twg
 /.config/vlc/vlc-qt-interface.conf
+/.config/xbuild
 /.config/zoomus.conf
 /.cpcache
 /.cups
@@ -79,6 +79,8 @@
 /.devtool.env
 /.docker
 /.electron-gyp
+/.emacs.d
+/.emacs.d
 /.env.*
 /.ergodox-udev
 /.fasd
@@ -108,6 +110,7 @@
 /.node_repl_history
 /.npm
 /.npmrc
+/.npmrc*
 /.nvm
 /.op
 /.pip
@@ -125,7 +128,6 @@
 /.tig_history
 /.tmux
 /.tor-browser
-/.tor-browser
 /.vagrant.d
 /.viminfo
 /.visidata/cache
@@ -137,7 +139,6 @@
 /.zcompcache
 /.zcompdump
 /.zoom
-/.zsh-history
 /.zsh-history
 /Applications
 /Desktop
@@ -152,8 +153,6 @@
 /books
 /clients
 /clients_old
-/commerce-stores
-/commerce-stores
 /exocortex
 /git.peterlyons.com
 /github
@@ -165,17 +164,14 @@
 /mailchimp
 /mc
 /monolith
-/monolith
 /music
 /org
 /projects
 /scratch
 /screens
 /shopchimp
+/snippets
 /target
 /tmp
 /voice-memos
 /work-*
-/snippets
-/.emacs.d
-/.npmrc*

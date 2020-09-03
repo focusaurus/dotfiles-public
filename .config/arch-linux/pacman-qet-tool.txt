@@ -3,6 +3,7 @@ acpi
 alsa-utils
 android-tools
 appimage-git
+arandr
 arc-icon-theme-full-git
 arc-x-icons-theme
 at
@@ -51,6 +52,10 @@ jq
 keybase-gui
 libmp4v2
 light-locker
+lua51-bit32
+lua-bit32
+lua-lpeg
+lua-mpack
 luarocks
 macchanger
 make
@@ -65,6 +70,7 @@ neovim-git
 network-manager-applet
 nvm
 openvpn-protonvpn
+pandoc
 patch
 pavucontrol
 perl-extract-url

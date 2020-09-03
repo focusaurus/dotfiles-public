@@ -19,10 +19,8 @@ _ssh_add_keys() {
 }
 
 passwordless() {
-  set +e
   ssh-add -l &>/dev/null
   ec=$?
-  set -e
   case ${ec} in
   0)
     # Agent is running and already has identities loaded. All good.

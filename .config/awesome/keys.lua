@@ -66,8 +66,7 @@ bindc(cyclefocus.key({super}, "Tab", {
   },
   keys = {"Tab", "ISO_Left_Tab", "n"}
 }))
-bindc(cyclefocus.key({super}, "n", {
-  -- TODO would like to also bindg this to Super+n but this doesn't work
+bindg(cyclefocus.key({super}, "n", {
   cycle_filters = {
     cyclefocus.filters.same_screen, cyclefocus.filters.common_tag
   },

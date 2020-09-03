@@ -85,9 +85,9 @@ main() {
     ;;
   f2)
     # switch to workspace 2 (text editor)
-    wmctrl -s 1
+    # wmctrl -s 1
     # activate_window 'atom.atom' 'atom'
-    activate_window 'Visual Studio Code' 'code'
+    activate_window 'emacs@' 'emacs'
     ;;
   f3)
     activate_window termite termite --title termite

@@ -1,13 +1,7 @@
 atd.service
-autovt@.service
 avahi-daemon.service
 avahi-daemon.socket
 bluetooth.service
-dbus-fi.w1.wpa_supplicant1.service
-dbus-org.bluez.service
-dbus-org.freedesktop.Avahi.service
-dbus-org.freedesktop.nm-dispatcher.service
-display-manager.service
 docker.service
 getty@.service
 lightdm.service
@@ -25,7 +19,6 @@ systemd-homed.service
 systemd-networkd.service
 systemd-pstore.service
 systemd-remount-fs.service
-systemd-repart.service
 systemd-resolved.service
 systemd-timesyncd.service
 systemd-userdbd.socket
