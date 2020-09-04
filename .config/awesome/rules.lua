@@ -10,7 +10,7 @@ awful.rules.rules = {
       border_color = beautiful.border_normal,
       focus = awful.client.focus.filter,
       raise = true,
-      -- maximized = true,
+      maximized = true,
       buttons = clientbuttons,
       screen = awful.screen.preferred,
       placement = awful.placement.no_overlap + awful.placement.no_offscreen
@@ -26,7 +26,7 @@ awful.rules.rules = {
       class = {
         "Arandr", "Blueman-manager", "Gpick", "Kruler", "MessageWin", -- kalarm.
         "Sxiv", "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
-        "Wpa_gui", "veromix", "xtightvncviewer", "yad", "zenity"
+        "Wpa_gui", "veromix", "xtightvncviewer", "Yad", "zenity"
       },
 
       -- Note that the name property shown in xprop might be set slightly after creation of the client
@@ -50,10 +50,9 @@ awful.rules.rules = {
       ontop = true,
       floating = true,
       sticky = true,
-      -- TODO this does not seem to work on yad windows
-      --awful.placement.centered
+      placement = awful.placement.centered
     },
-    rule_any = {class = {"yad", "zenity"}}
+    rule_any = {class = {"Yad", "zenity"}}
   }
 
   -- Set Firefox to always map on the tag named "2" on screen 1.

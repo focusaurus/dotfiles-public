@@ -87,7 +87,7 @@ main() {
     # switch to workspace 2 (text editor)
     # wmctrl -s 1
     # activate_window 'atom.atom' 'atom'
-    activate_window 'emacs@' 'emacs'
+    activate_window 'Emacs' 'emacs'
     ;;
   f3)
     activate_window termite termite --title termite
@@ -135,11 +135,9 @@ main() {
     xdotool key alt+2
     ;;
   f8)
-    # activate_window 'Google Play Music' "${HOME}/bin/launch-chrome-app.sh" google-play
-    activate_window 'Google Play Music' firefox --new-window "https://play.google.com/music/listen?u=1#/home"
-    # activate_firefox_main_window
-    # sleep 0.2
-    # xdotool key alt+3
+    activate_firefox_main_window
+    sleep 0.2
+    xdotool key alt+3
     ;;
   f11)
     new_workspace=$((current_workspace - 1))
