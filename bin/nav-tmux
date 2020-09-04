@@ -32,7 +32,7 @@ main() {
     # xdotool key --clearmodifiers ctrl+b parenright
     ;;
   up)
-    tmux select-pane -l
+    tmux select-pane -U
     # xdotool key --clearmodifiers ctrl+b o
     ;;
   right)
