@@ -5,24 +5,24 @@ op-add-ssh-key() {
 }
 
 op-copy-password-by-title() {
-  account="$1"
+  local account="$1"
   shift
   session=$(echo -n "\${OP_SESSION_${account}}")
   # shellcheck disable=SC2154
   if [[ -z "${session}" ]]; then
     eval "$(op signin "${account}")"
   fi
-  items=$(op list items)
+  local items=$(op list items 2>/dev/null)
   if [[ -z "${items}" ]]; then
     eval "$(op signin "${account}")"
     items=$(op list items)
   fi
-  title=$(echo "${items}" |
-    jq -r ".[].overview.title" |
-    ~/bin/fuzzy-filter "$@")
   if [[ -z "${items}" ]]; then
     return 1
   fi
+  title=$(echo "${items}" |
+    jq -r ".[].overview.title" |
+    ~/bin/fuzzy-filter "$@")
   uuid=$(echo "${items}" |
     jq -r ".[] | select(.overview.title == \"${title}\") | .uuid")
   if [[ -z "${uuid}" ]]; then

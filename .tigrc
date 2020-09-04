@@ -1,5 +1,5 @@
 bind status <C-f> >git push --force
-bind status <C-p> !git push
+bind status <C-p> !git push --set-upstream
 bind status <C-a> >git commit --amend
 bind generic c >git commit
 #bind status <esc>hey !sh -c 'echo hey;echo $(ls)'

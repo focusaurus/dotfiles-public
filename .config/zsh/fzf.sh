@@ -106,7 +106,7 @@ if [[ -n "${ZSH_VERSION}" ]]; then
   }
   zle -N fuzz-file-into-line # Create the zle widget
   # TODO find a good keybinding for this
-  # bindkey "^F" "fuzz-file-into-line"
+  bindkey "^F" "fuzz-file-into-line"
 
 fi
 

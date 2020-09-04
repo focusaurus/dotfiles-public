@@ -21,7 +21,7 @@ end)
 
 hs.hotkey.bind({}, "f2", function()
   log.d("fkeys f2")
-  hs.application.launchOrFocus("Firefox")
+  hs.application.launchOrFocus("Emacs")
 end)
 
 
