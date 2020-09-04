@@ -26,20 +26,27 @@ have_exe() {
 }
 
 main() {
-
+  ~/bin/log "$0" starting
+  ~/bin/log "$0" calling setup keyboards
   ~/bin/setup-keyboards
 
+  ~/bin/log "$0" xset
   # screen lock after 60 minutes
   xset s 3600 3600
   # screen standby after 1 hour, suspend 2 hours, off 3 hours
   xset dpms 3600 7200 10800
+  if have_exe xss-lock; then
+    xss-lock ~/bin/lock-screen
+  fi
 
+  ~/bin/log "$0" nm-applet
   # Network Manager
   if have_exe nm-applet; then
     kill_ok nm-applet
     nm-applet &>/dev/null &
   fi
 
+  ~/bin/log "$0" synclient
   # 2018-04-17 plyons natural scrolling everywhere in X11
   if have_exe synclient; then
     synclient VertScrollDelta=-119
@@ -52,26 +59,37 @@ main() {
   # export I3SOCK
   # fi
 
+  ~/bin/log "$0" copyq
   if have_exe copyq; then
     kill_ok copyq
     sleep 0.8
     copyq &>/dev/null &
   fi
 
-  if have_exe light-locker; then
-    kill_ok light-locker
-    light-locker &
-  fi
-
+  # ~/bin/log "$0" light-locker
+  # if have_exe light-locker; then
+  #   kill_ok light-locker
+  #   light-locker &
+  # fi
+  #
+  ~/bin/log "$0" tilda
   if have_exe tilda; then
     kill_ok tilda
     tilda --hidden &>/dev/null &
   fi
+
+  ~/bin/log "$0" touchscreen-disable
   ~/bin/touchscreen disable || true
 
+  ~/bin/log "$0" ergodox-watch
   pkill --uid "${USER}" --full ergodox-watch || true
-  ~/bin/microphone-write-status
   ~/bin/ergodox-watch &>/dev/null &
+
+  ~/bin/log "$0" microphone-write-status
+  echo ~/bin/microphone-write-status | at now +1 minute
+
+  ~/bin/log "$0" imwheel
+  systemctl --user start imwheel
 }
 
 main "$@"
