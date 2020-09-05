@@ -21,4 +21,4 @@ if [[ ! -d "${log_dir}" ]]; then
   log_dir="/tmp"
 fi
 log_file="${log_dir}/${log_name}.log"
-echo "$("${HOME}/bin/rfc-3339") ${log_name} $@" >>"${log_file}"
+echo "$("${HOME}/bin/rfc-3339") $@" >>"${log_file}"

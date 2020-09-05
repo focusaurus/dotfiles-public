@@ -30,7 +30,7 @@ Plug 'tomtom/tcomment_vim'
 Plug 'laher/fuzzymenu.vim'
 Plug 'liuchengxu/vim-which-key'
 " look at registers
-Plug 'junegunn/vim-peekaboo'
+" Plug 'junegunn/vim-peekaboo'
 Plug 'machakann/vim-highlightedyank'
 Plug 'reedes/vim-pencil'
 " List ends here. Plugins become visible to Vim after this call.
