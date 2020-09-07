@@ -1,0 +1,13 @@
+[Unit]
+Description=IMWheel
+; Wants=display-manager.service
+; After=display-manager.service
+
+[Service]
+Type=simple
+Environment=XAUTHORITY=%h/.Xauthority
+Environment=DISPLAY=:0
+ExecStart=/bin/xbindkeys --nodaemon
+
+[Install]
+WantedBy=graphical-session.target
