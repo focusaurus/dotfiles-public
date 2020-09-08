@@ -1,5 +1,7 @@
 [options]
-font = Inconsolata 14
+font = JetBrains Mono 16
+# font = Inconsolata 14
+# oooooo
 #font = Iosevka 14
 #font = Fira Code 14
 #font = Noto Sans 14

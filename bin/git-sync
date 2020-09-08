@@ -13,6 +13,10 @@ set -o posix    # more strict failures in subshells
 IFS="$(printf "\n\t")"
 # ---- End unofficial bash strict mode boilerplate
 sync_dir() {
+  if ! ~/bin/git-is-repo; then
+    echo "Not syncing: not git repo: ${PWD}"
+    return
+  fi
   if ! ~/bin/git-is-default-branch; then
     echo "Not syncing: not default branch: ${PWD}"
     return

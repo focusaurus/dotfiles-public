@@ -12,12 +12,18 @@ set -o posix    # more strict failures in subshells
 
 IFS="$(printf "\n\t")"
 # ---- End unofficial bash strict mode boilerplate
+
+ensure_repo() {
+  git status &>/dev/null && exit_code=$? || exit_code=$?
+  return $exit_code
+}
+
 autocommit() {
   if ~/bin/git-is-default-branch; then
     echo "autocommitting: ${PWD}"
     git add .
     git commit -m "autocommit ad hoc"
-		return
+    return
   fi
   echo "Not committing: not default branch: ${PWD}"
 }
@@ -29,6 +35,10 @@ main() {
       continue
     fi
     cd "${dir}" >/dev/null
+    if ! ensure_repo; then
+      echo "Skip: not git repo: ${dir}"
+      continue
+    fi
     autocommit
     cd - >/dev/null
   done
