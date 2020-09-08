@@ -60,6 +60,7 @@ alias ll="ls -l"
 alias lla="ls -al"
 alias lsl="ls|less"
 alias md="mkdir -p"
+alias ppf="pretty-print-files"
 alias show-dns-servers="nmcli dev show |grep DNS"
 # Useful when you know you are going to copy/paste
 # some stuff to a journal or blog
