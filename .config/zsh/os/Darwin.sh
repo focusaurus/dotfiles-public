@@ -27,6 +27,10 @@ macos-save-brew() {
   (cd ~/.config/homebrew && brew bundle dump --force)
 }
 
+macos-brewup() {
+  brew update && brew upgrade
+}
+
 #homebrew-ssl-vars() {
 #  export LDFLAGS="-L$(brew --prefix openssl)/lib"
 #  export CFLAGS="-I$(brew --prefix openssl)/include"
