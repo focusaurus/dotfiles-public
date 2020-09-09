@@ -87,7 +87,7 @@ main() {
     # switch to workspace 2 (text editor)
     # wmctrl -s 1
     # activate_window 'atom.atom' 'atom'
-    activate_window 'Emacs' 'emacs'
+    activate_window 'emacs.Emacs' 'emacs'
     ;;
   f3)
     activate_window termite termite --title termite
