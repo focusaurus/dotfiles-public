@@ -5,6 +5,7 @@ alias cx="chmod +x"
 alias edq='echo $?'
 # shellcheck disable=SC2142
 alias -g /ap1="| awk '{print \$1}'"
+alias -g /x="| xargs"
 ap1() {
   awk '{print $1}'
 }
