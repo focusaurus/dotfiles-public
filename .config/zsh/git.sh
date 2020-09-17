@@ -77,7 +77,7 @@ github() {
     echo "${repo}"
     mkdir -p "${HOME}/github.com/${org}"
     cd "${HOME}/github.com/${org}" || return 1
-    git clone "${url}"
+    git clone --recursive "${url}"
     cd "$(basename "${repo}" .git)" || return 1
     ;;
   commits)

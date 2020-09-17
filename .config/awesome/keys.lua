@@ -50,28 +50,28 @@ bindc(awful.key({super}, "f", function(c)
 end, {description = "toggle fullscreen", group = "client"}))
 bindc(awful.key({super, "Shift"}, "w", function(c) c:kill() end,
                 {description = "close", group = "client"}))
-bindc(awful.key({alt}, "s", placement.right_half, {
-  description = "snap window to right half of the screen",
-  group = "placement"
-}))
-bindc(awful.key({alt}, "h", placement.left_half, {
+bindc(awful.key({super}, "h", placement.left_half, {
   description = "snap window to left half of the screen",
   group = "placement"
 }))
-bindc(awful.key({alt}, "n", placement.maximize_toggle,
+bindc(awful.key({super}, "n", placement.maximize_toggle,
                 {description = "(un)maximize", group = "client"}))
+bindc(awful.key({super}, "s", placement.right_half, {
+  description = "snap window to right half of the screen",
+  group = "placement"
+}))
 bindc(cyclefocus.key({super}, "Tab", {
   cycle_filters = {
     cyclefocus.filters.same_screen, cyclefocus.filters.common_tag
   },
   keys = {"Tab", "ISO_Left_Tab", "n"}
 }))
-bindg(cyclefocus.key({super}, "n", {
-  cycle_filters = {
-    cyclefocus.filters.same_screen, cyclefocus.filters.common_tag
-  },
-  keys = {"Tab", "ISO_Left_Tab", "n"}
-}))
+-- bindg(cyclefocus.key({super}, "n", {
+--   cycle_filters = {
+--     cyclefocus.filters.same_screen, cyclefocus.filters.common_tag
+--   },
+--   keys = {"Tab", "ISO_Left_Tab", "n"}
+-- }))
 
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.
