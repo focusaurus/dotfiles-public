@@ -344,7 +344,7 @@ gsync() {
       op-add-ssh-key
     fi
   fi
-  ~/bin/git-autocommit ~/git.peterlyons.com/journals ~/mc
+  ~/bin/git-autocommit ~/git.peterlyons.com/journals ~/git.peterlyons.com/mailchimp
   ~/bin/git-sync ~/git.peterlyons.com/journals ~/git.peterlyons.com/dotfiles ~/git.peterlyons.com/mailchimp ~
 }
 
