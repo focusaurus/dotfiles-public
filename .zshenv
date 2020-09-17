@@ -32,6 +32,7 @@ setup-path() {
   add-path "${HOME}/.n/bin"
   add-path "${HOME}/.cargo/bin"
   add-path "${HOME}/.luarocks/bin"
+  add-path "${HOME}/go/bin"
   add-path "/usr/local/bin"
   add-path "/bin"
   add-path "/usr/bin"

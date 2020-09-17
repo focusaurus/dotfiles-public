@@ -13,7 +13,8 @@ alias tnib='NODE_ENV=test nvm exec v8.9.0 node --inspect-brk'
 alias t='NODE_ENV=test tap --reporter=spec --timeout=3'
 alias mdb='NODE_ENV=test mocha --inspect-brk'
 alias debug-node-pid='kill -SIGUSR1'
-alias ndj='node . | json -g -a -0 -e "delete this.v; delete this.hostname;delete this.level; delete this.pid; delete this.name"'
+# alias ndj='node . | json -g -a -0 -e "delete this.v; delete this.hostname;delete this.level; delete this.pid; delete this.name"'
+alias ndjson="jq -c -r -R 'fromjson? | select(type == \"object\") | del(.instance,.version,.instance_id,.service,.tlsEnabled,.time)'"
 alias bunson='json -g -a -0 -e "delete this.v; delete this.hostname;delete this.level; delete this.pid; delete this.name"'
 alias td='NODE_ENV=test node --inspect-brk'
 
