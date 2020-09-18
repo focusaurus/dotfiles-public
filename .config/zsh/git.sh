@@ -35,6 +35,7 @@ alias gp='git push'
 alias gpu='git pull upstream'
 # alias gunassume='git update-index --no-assume-unchanged'
 alias gush='git push'
+alias gushup='git push --set-upstream'
 alias gphm='git push heroku master --tags'
 alias gpr='hub pull-request'
 alias enable-signed-git-commits='git config user.signingkey E205D5C6 && git config commit.gpgsign true'
@@ -343,8 +344,8 @@ gsync() {
       op-add-ssh-key
     fi
   fi
-  ~/bin/git-autocommit ~/git.peterlyons.com/journals ~/mc
-  ~/bin/git-sync ~/git.peterlyons.com/journals ~/git.peterlyons.com/dotfiles ~/mc ~
+  ~/bin/git-autocommit ~/git.peterlyons.com/journals ~/git.peterlyons.com/mailchimp
+  ~/bin/git-sync ~/git.peterlyons.com/journals ~/git.peterlyons.com/dotfiles ~/git.peterlyons.com/mailchimp ~
 }
 
 git-cd-repo-dir-fuzzy() {
