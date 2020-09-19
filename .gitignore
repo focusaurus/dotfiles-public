@@ -8,6 +8,7 @@
 /.Trash
 /.Xauthority
 /.android
+/.awesome-client_history
 /.aws
 /.bundle
 /.cache
@@ -78,6 +79,7 @@
 /.dcm.yaml
 /.devtool.env
 /.docker
+/.eclipse
 /.electron-gyp
 /.emacs.d
 /.emacs.d
@@ -175,4 +177,3 @@
 /tmp
 /voice-memos
 /work-*
-/.eclipse
