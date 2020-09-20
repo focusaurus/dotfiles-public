@@ -3,12 +3,15 @@ local gears = require("gears")
 local menubar = require("menubar")
 local naughty = require("naughty")
 
+local cyclefocus = require("cyclefocus")
+
 local placement = require("placement")
 local focus = require("focus")
 
 alt = "Mod1"
 control = "Control"
 super = "Mod4"
+shift = "Shift"
 
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(awful.button({}, 3,
@@ -26,9 +29,9 @@ local bindc = awful.keyboard.append_client_keybinding
 -- bindg(awful.key({super}, "Escape", awful.tag.history.restore,
 --                 {description = "go back", group = "tag"}))
 
-bindg(awful.key({super, alt}, "r", awesome.restart,
+bindg(awful.key({super, shift}, "r", awesome.restart,
                 {description = "reload awesome", group = "awesome"}))
-bindg(awful.key({super, alt}, "q", awesome.quit,
+bindg(awful.key({super, shift}, "q", awesome.quit,
                 {description = "quit awesome", group = "awesome"}))
 
 -- bindg(awful.key({super}, "r",
@@ -55,10 +58,9 @@ bindg(awful.key({super}, "u", focus.right, {
 bindg(awful.key({super}, "p", function() menubar.show() end,
                 {description = "show the menubar", group = "launcher"}))
 
-local cyclefocus = require("cyclefocus")
 bindc(awful.key({super}, "f", placement.fullscreen_toggle,
                 {description = "toggle fullscreen", group = "client"}))
-bindc(awful.key({super, alt}, "w", function(c) c:kill() end,
+bindc(awful.key({super, shift}, "w", function(c) c:kill() end,
                 {description = "close", group = "client"}))
 bindc(awful.key({super}, "h", placement.left_half, {
   description = "snap window to left half of the screen",
@@ -78,11 +80,12 @@ bindc(cyclefocus.key({super}, "Tab", {
   },
   keys = {"Tab", "ISO_Left_Tab", "n"}
 }))
--- bindg(cyclefocus.key({super}, "n", {
+cyclefocus.default_preset.base_font_size = 14
+-- bindg(cyclefocus.key({}, "f5", {
 --   cycle_filters = {
 --     cyclefocus.filters.same_screen, cyclefocus.filters.common_tag
 --   },
---   keys = {"Tab", "ISO_Left_Tab", "n"}
+--   keys = {"Tab", "ISO_Left_Tab", "f5"}
 -- }))
 
 -- Bind all key numbers to tags.
