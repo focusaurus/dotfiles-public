@@ -66,14 +66,12 @@ bindc(awful.key({super}, "h", placement.left_half, {
   description = "snap window to left half of the screen",
   group = "placement"
 }))
-bindc(awful.key({super}, "n", placement.maximize_toggle,
-                {description = "(un)maximize", group = "client"}))
+bindc(awful.key({super}, "n", placement.cycle,
+                {description = "cycle window placement", group = "client"}))
 bindc(awful.key({super}, "s", placement.right_half, {
   description = "snap window to right half of the screen",
   group = "placement"
 }))
-bindc(awful.key({super}, "e", placement.cycle,
-                {description = "cycle window placement", group = "client"}))
 bindc(cyclefocus.key({super}, "Tab", {
   cycle_filters = {
     cyclefocus.filters.same_screen, cyclefocus.filters.common_tag

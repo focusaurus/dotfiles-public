@@ -44,15 +44,20 @@
 )
 
 (defalias
-  u-S (tap-hold-next 200 u lsft)
-  h-S (tap-hold-next 200 h rsft))
+  u-S (tap-hold-next-release 500 u lsft)
+  h-S (tap-hold-next-release 500 h lsft)
+  mtc (tap-hold-next-release 200 esc lctl)
+  mts (tap-hold-next-release 200 C-2 lsft)
+  hyp (around lctl lmet)
+  sup (tap-hold-next-release 200 C-spc lmet)
+)
 
 (deflayer dvorak
   _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _
-  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    [    ]    _
   _    '    ,    .    p    y    f    g    c    r    l    /    =    \
-  lctl a    o    e    @u-S i    d    @h-S t    n    s    -    _
-  _    ;    q    j    k    x    b    m    w    v    z    _
-  _    _    _              _              _    _    _    _    _    _    _    _    _
+  @mtc a    o    e    @u-S i    d    @h-S t    n    s    -    _
+  @mts    ;    q    j    k    x    b    m    w    v    z    _
+  _    @sup    @hyp              _              _    @sup _    _    _    _
+  _    _    _
 )
-
