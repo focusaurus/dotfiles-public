@@ -12,6 +12,7 @@ alt = "Mod1"
 control = "Control"
 super = "Mod4"
 shift = "Shift"
+hyper_pl = {"Control", "Mod4"}
 
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(awful.button({}, 3,
@@ -29,9 +30,9 @@ local bindc = awful.keyboard.append_client_keybinding
 -- bindg(awful.key({super}, "Escape", awful.tag.history.restore,
 --                 {description = "go back", group = "tag"}))
 
-bindg(awful.key({super, shift}, "r", awesome.restart,
+bindg(awful.key(hyper_pl, "r", awesome.restart,
                 {description = "reload awesome", group = "awesome"}))
-bindg(awful.key({super, shift}, "q", awesome.quit,
+bindg(awful.key(hyper_pl, "q", awesome.quit,
                 {description = "quit awesome", group = "awesome"}))
 
 -- bindg(awful.key({super}, "r",
@@ -45,11 +46,13 @@ bindg(awful.key({super, shift}, "q", awesome.quit,
 --     history_path = awful.util.get_cache_dir() .. "/history_eval"
 --   }
 -- end, {description = "lua execute prompt", group = "awesome"}))
-bindg(awful.key({super}, "a", focus.left, {
+bindg(awful.key(hyper_pl, "h", focus.left, {
   description = "focus previous (left) by index",
   group = "client"
 }))
-bindg(awful.key({super}, "u", focus.right, {
+bindc(awful.key(hyper_pl, "t", placement.cycle,
+                {description = "cycle window placement", group = "client"}))
+bindg(awful.key(hyper_pl, "n", focus.right, {
   description = "focus previous (right) by index",
   group = "client"
 }))
@@ -62,16 +65,14 @@ bindc(awful.key({super}, "f", placement.fullscreen_toggle,
                 {description = "toggle fullscreen", group = "client"}))
 bindc(awful.key({super, shift}, "w", function(c) c:kill() end,
                 {description = "close", group = "client"}))
-bindc(awful.key({super}, "h", placement.left_half, {
-  description = "snap window to left half of the screen",
-  group = "placement"
-}))
-bindc(awful.key({super}, "n", placement.cycle,
-                {description = "cycle window placement", group = "client"}))
-bindc(awful.key({super}, "s", placement.right_half, {
-  description = "snap window to right half of the screen",
-  group = "placement"
-}))
+-- bindc(awful.key({super}, "h", placement.left_half, {
+--   description = "snap window to left half of the screen",
+--   group = "placement"
+-- }))
+-- bindc(awful.key({super}, "s", placement.right_half, {
+--   description = "snap window to right half of the screen",
+--   group = "placement"
+-- }))
 bindc(cyclefocus.key({super}, "Tab", {
   cycle_filters = {
     cyclefocus.filters.same_screen, cyclefocus.filters.common_tag

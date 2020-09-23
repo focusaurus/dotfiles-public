@@ -19,17 +19,17 @@ super + x
 ##### rofi fuzzy overlays #####
 control + space
   ~/bin/fuzz-script-choose
-control + comma
+control + 2
   ~/bin/fuzz-snippet
-super + shift + space
+control + 3
   rofi -show run
 control + 4
   rofi -show window
 
 ##### app-nav #####
 # left hand home row vim arrows
-control + super + {a,o,e,u}
-  ~/bin/app-nav {left,down,up,right}
+control + super + {o,e,u}
+  ~/bin/app-nav {left,up,right}
 # actual arrow keys
 control + super + {Left,Down,Up,Right}
   ~/bin/app-nav {left,down,up,right}
