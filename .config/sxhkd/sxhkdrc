@@ -17,21 +17,21 @@ super + x
 #   xte "keyup l" "keyup Super_L" "keydown Control_L" "key l" "keyup Control_L" "keydown Super_L"
 
 ##### rofi fuzzy overlays #####
-ctrl + space
+control + space
   ~/bin/fuzz-script-choose
-ctrl + comma
+control + 2
   ~/bin/fuzz-snippet
-super + shift + space
+control + 3
   rofi -show run
-ctrl + 4
+control + 4
   rofi -show window
 
 ##### app-nav #####
 # left hand home row vim arrows
-alt + {a,o,e,u}
-  ~/bin/app-nav {left,down,up,right}
+control + super + {o,e,u}
+  ~/bin/app-nav {left,up,right}
 # actual arrow keys
-alt + {Left,Down,Up,Right}
+control + super + {Left,Down,Up,Right}
   ~/bin/app-nav {left,down,up,right}
 
 super + shift + v
@@ -40,8 +40,8 @@ super + shift + v
 ##### function keys #####
 F1
   ~/bin/fkeys f1
-ctrl + F1
-  ~/bin/fkeys ctrl+f1
+control + F1
+  ~/bin/fkeys control+f1
 F2
   ~/bin/fkeys f2
 F3
@@ -54,8 +54,8 @@ F6
   ~/bin/fkeys f6
 shift + F6
   ~/bin/fkeys shift+f6
-ctrl + F6
-  ~/bin/fkeys ctrl+f6
+control + F6
+  ~/bin/fkeys control+f6
 F7
   ~/bin/fkeys f7
 F8
@@ -72,8 +72,8 @@ F12
   ~/bin/fkeys f12
 shift + F12
   ~/bin/fkeys shift+f12
-ctrl + F12
-  ~/bin/fkeys ctrl+f12
+control + F12
+  ~/bin/fkeys control+f12
 
 ##### screen brightness #####
 XF86MonBrightnessDown

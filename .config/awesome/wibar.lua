@@ -12,9 +12,15 @@ require("awful.hotkeys_popup.keys")
 terminal = "termite"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
+beautiful.hotkeys_font = "JetBrains Mono 14"
+beautiful.hotkeys_description_font = "JetBrains Mono 12"
+beautiful.menu_font = "JetBrains Mono 14"
+beautiful.menu_height = 24
+beautiful.menu_width = 300
 myawesomemenu = {
   {
     "hotkeys",
+
     function() hotkeys_popup.show_help(nil, awful.screen.focused()) end
   }, {"manual", terminal .. " -e man awesome"},
   {"edit config", editor_cmd .. " " .. awesome.conffile},
