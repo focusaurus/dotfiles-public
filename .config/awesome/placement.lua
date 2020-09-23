@@ -4,6 +4,7 @@ local awful = require("awful")
 local honor = {honor_workarea = true}
 
 function placement.left_half(client)
+  client.maximized = false
   awful.placement.scale(client.focus, {
     to_percent = 0.5,
     direction = "left",
@@ -20,6 +21,7 @@ function placement.left_half(client)
 end
 
 function placement.right_half(client)
+  client.maximized = false
   awful.placement.scale(client.focus, {
     to_percent = 0.5,
     direction = "right",

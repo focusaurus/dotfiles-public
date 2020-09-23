@@ -24,6 +24,7 @@ dos2unix
 entr
 espeak
 evince
+evtest
 exa
 fakeroot
 fasd
@@ -39,13 +40,13 @@ gedit
 gnome-screenshot
 google-chrome
 grub
+gthumb
 imwheel
 intel-ucode
 jq
 keybase-gui
 lf-bin
 libmp4v2
-light-locker
 lsof
 luarocks
 macchanger
@@ -56,7 +57,7 @@ moreutils
 mpd
 mpv
 ncmpc
-neovim-git
+neovim
 network-manager-applet
 nvm
 openvpn-protonvpn
@@ -79,6 +80,8 @@ rustup
 shellcheck
 shfmt
 slack-desktop
+spacemacs-dev
+stack
 sxhkd
 syncthing
 system-config-printer
@@ -91,6 +94,8 @@ topgrade
 transmission-cli
 ttf-fantasque-sans-mono
 ttf-inconsolata
+ttf-jetbrains-mono
+upower
 urlview-git
 visidata
 wireless_tools

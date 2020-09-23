@@ -32,8 +32,9 @@ main() {
   # caps lock key is ctrl
   setxkbmap -layout dvorak -option "ctrl:nocaps"
 
-  #Remap PrtSc (2nd to the right of spacebar) to an additional Super modifier
-  xmodmap -e 'keysym Print = Super_R'
+  #Remap PrtSc (2nd to the right of spacebar) (A.K.A SysRq)
+  # to an additional Super modifier
+  # xmodmap -e 'keysym Print = Super_R'
 
   # This section disabled but left for future use maybe
   if false; then
@@ -54,10 +55,10 @@ main() {
   # left control press & release is the same as Escape (for vim)
   # super press & release is the same as super+space (for fuzzball)
   # left shift press & release is the same as control+comma (for snippets)
-  if have_exe xcape; then
-    kill_ok xcape
-    xcape -t 200 -e "Control_L=Escape;Control_R=Escape;Super_L=Control_L|space;Super_R=Control_R|space;Shift_L=Control_L|comma;Shift_R=Control_R|comma"
-  fi
+  # if have_exe xcape; then
+  #   kill_ok xcape
+  #   xcape -t 200 -e "Control_L=Escape;Control_R=Escape;Super_L=Control_L|space;Super_R=Control_R|space;Shift_L=Control_L|comma;Shift_R=Control_R|comma"
+  # fi
 
   # 2018-04-10 plyons set fast keyboard repeat
   # syntax is delay (ms) then repeat rate (cps I think)
@@ -69,10 +70,10 @@ main() {
   if ! send_sigusr1 xbindkeys; then
     xbindkeys
   fi
-  if have_exe sxhkd; then
-    kill_ok sxhkd
-    sxhkd -r "/run/user/${UID}/sxhkd.log" &
-  fi
+  # if have_exe sxhkd; then
+  #   kill_ok sxhkd
+  #   sxhkd -r "/run/user/${UID}/sxhkd.log" &
+  # fi
 }
 
 main "$@"

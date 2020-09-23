@@ -76,7 +76,7 @@ main() {
   f1)
     activate_firefox_main_window
     ;;
-  ctrl+f1)
+  control+f1)
     # activate_window 'pete@' "${HOME}/bin/launch-chrome-app.sh" gmail
     # activate_window 'pete@' firefox --new-window "https://mail.google.com/mail/u/0/#search/is%3Astarred+OR+is%3Aunread"
     activate_firefox_main_window
@@ -97,7 +97,7 @@ main() {
     #app_image="$(find "${HOME}/aur/workflowy" -type f -name 'WorkFlowy-*.AppImage' | sort -n | head -1)"
     activate_window 'workflowy' "/opt/WorkFlowy-x86_64.AppImage"
     ;;
-  ctrl+f4)
+  control+f4)
     ~/git.peterlyons.com/dotfiles/fuzzball/workflowy-done
     ;;
   f5)
@@ -124,7 +124,7 @@ main() {
       activate_window 'Zoom Meeting ID:' 'zoom'
     fi
     ;;
-  ctrl+f6)
+  control+f6)
     activate_window 'zulip' /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=zulip --file-forwarding org.zulip.Zulip
     ;;
   f7)
