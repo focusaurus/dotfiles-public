@@ -82,6 +82,6 @@ function Module.cycle()
 end
 end
 -- hs.hotkey.bind({"shift"}, "f1", Module.cycle)
-hs.hotkey.bind({"option"}, ".", Module.cycle)
+hs.hotkey.bind({"option"}, "c", Module.cycle)
 
 return Module
