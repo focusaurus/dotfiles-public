@@ -46,19 +46,24 @@ root.keys(
 --   }
 -- end, {description = "lua execute prompt", group = "awesome"}),
 
-cyclefocus.key({super}, "Tab", {
-  cycle_filters = {
-    cyclefocus.filters.same_screen, cyclefocus.filters.common_tag
-  },
-  keys = {"Tab", "ISO_Left_Tab", "n"}
-})
 cyclefocus.default_preset.base_font_size = 14
 
+local function focus_previous()
+  awful.client.focus.history.previous()
+  if client.focus then
+    client.focus:raise()
+  end
+end
+
 local clientkeys = gears.table.join(
-  awful.key(hyper_pl, "t", placement.cycle,
+  awful.key(hyper_pl, "c", placement.cycle,
     {description = "cycle window placement", group = "client"}),
   awful.key({super, shift}, "w", function(c) c:kill() end,
-    {description = "close", group = "client"}))
+    {description = "close", group = "client"}),
+  awful.key(hyper_pl, "t", focus_previous,
+   {description="focus previous", group="client"}),
+  cyclefocus.key(hyper_pl, "Tab",
+    {cycle_filters = {cyclefocus.filters.same_screen, cyclefocus.filters.common_tag}}))
 
 local clientbuttons = gears.table.join(awful.button({}, 1, function(c)
   c:emit_signal("request::activate", "mouse_click", {raise = true})

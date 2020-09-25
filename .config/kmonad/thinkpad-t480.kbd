@@ -45,12 +45,11 @@
 
 (defalias
   hyp (around lctl lmet)
-  u-S (tap-hold-next-release 500 u lsft)
-  h-S (tap-hold-next-release 500 h lsft)
-  a-H (tap-hold-next-release 500 a @hyp)
-  s-H (tap-hold-next-release 500 s @hyp)
-  mtc (tap-hold-next-release 200 esc lctl)
-  mts (tap-hold-next-release 100 C-2 lsft)
+  s-S (tap-hold-next-release 500 spc  lsft)
+  a-H (tap-hold-next-release 500 a    @hyp)
+  s-H (tap-hold-next-release 500 s    @hyp)
+  mtc (tap-hold-next-release 200 esc  lctl)
+  mts (tap-hold-next-release 100 C-2  lsft)
   sup (tap-hold-next-release 200 C-spc lmet)
 )
 
@@ -60,6 +59,6 @@
   _    '    ,    .    p    y    f    g    c    r    l    /    =    \
   @mtc @a-H o    e    u    i    d    h    t    n    @s-H    -    _
   @mts    ;    q    j    k    x    b    m    w    v    z    _
-  _    @sup    @hyp              _              _    @sup _    _    _    _
+  _    @sup    @hyp              @s-S              _    @sup _    _    _    _
   _    _    _
 )
