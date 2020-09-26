@@ -1,0 +1,110 @@
+(defcfg
+  input (iokit-name "Apple Internal Keyboard / Trackpad")
+  output (kext)
+  fallthrough true
+  allow-cmd false
+)
+
+(defsrc
+  - ;; -
+  = ;; =
+  q ;; q
+  w ;; w
+  e ;; e
+  r ;; r
+  t ;; t
+  y ;; y
+  u ;; u
+  i ;; i
+  o ;; o
+  p ;; p
+  [ ;; [
+  ] ;; ]
+  \ ;; \
+  a ;; a
+  s ;; s
+  d ;; d
+  f ;; f
+  g ;; g
+  h ;; h
+  j ;; j
+  k ;; k
+  l ;; l
+  ; ;; ;
+  ' ;; '
+  z ;; z
+  x ;; x
+  c ;; c
+  v ;; v
+  b ;; b
+  n ;; n
+  m ;; m
+  , ;; ,
+  . ;; .
+  / ;; /
+
+  caps ;; caps
+  lsft ;; lsft
+  lctl ;; lctl
+  lalt ;; lalt
+  lmet ;; lmet
+  spc ;; spc
+)
+
+;; met is command
+;; alt is option
+(defalias
+  hyp (around met alt)
+  a-H (tap-hold-next-release 200 a @hyp)
+  s-H (tap-hold-next-release 200 s @hyp)
+  CTL (tap-hold-next-release 200 esc lctl)
+  SFT (tap-hold-next-release 200 C-, lsft)
+  SUP (tap-hold-next-release 200 M-spc met)
+  SPC (tap-hold-next-release 200 spc lsft)
+)
+
+(deflayer dvorak
+  [ ;; -
+  ] ;; =
+  ' ;; q
+  , ;; w
+  . ;; e
+  p ;; r
+  y ;; t
+  f ;; y
+  g ;; u
+  c ;; i
+  r ;; o
+  l ;; p
+  / ;; [
+  = ;; ]
+  \ ;; \
+  @a-H ;; a
+  o ;; s
+  e ;; d
+  u ;; f
+  i ;; g
+  d ;; h
+  h ;; j
+  t ;; k
+  n ;; l
+  @s-H ;; ;
+  - ;; '
+  ; ;; z
+  q ;; x
+  j ;; c
+  k ;; v
+  x ;; b
+  b ;; n
+  m ;; m
+  w ;; ,
+  v ;; .
+  z ;; /
+
+  @CTL ;; caps
+  @SFT ;; lsft
+  - ;; lctl
+  - ;; lalt
+  @SUP ;; lmet
+  @SPC ;; spc
+)

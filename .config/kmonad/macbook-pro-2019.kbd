@@ -5,8 +5,9 @@
   allow-cmd false
 )
 
-(defalias a-S (tap-next a lsft))
+(defsrc a z)
 
-(defsrc a)
+(deflayer test1 z z)
+;;(defalias a-S (tap-next a lsft))
+;;(deflayer base @a-S)
 
-(deflayer base @a-S)
