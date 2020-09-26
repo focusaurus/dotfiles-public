@@ -28,7 +28,6 @@
 /.config/WorkFlowy
 /.config/Zulip
 /.config/awesome/awesome-wm-widgets
-/.config/awesome/awesome-wm-widgets
 /.config/awesome/cyclefocus
 /.config/awesome/cyclefocus
 /.config/chrysalis
@@ -82,7 +81,6 @@
 /.eclipse
 /.electron-gyp
 /.emacs.d
-/.emacs.d
 /.env.*
 /.ergodox-udev
 /.fasd
@@ -99,6 +97,7 @@
 /.iterm2
 /.iwctl_history
 /.jfrog
+/.keybase
 /.kube
 /.lesshst
 /.local
@@ -146,6 +145,8 @@
 /Desktop
 /Documents
 /Downloads
+/Dropbox
+/Google Drive
 /Library
 /Movies
 /Pictures

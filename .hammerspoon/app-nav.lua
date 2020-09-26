@@ -5,9 +5,10 @@ function useTabNav(appName)
   return appName == "Google Chrome" or appName == "Firefox" or appName == "Code"
 end
 
+local hyper_pl = {"command", "option"}
 ----- application navigation -----
 -- left
-hs.hotkey.bind({"option"}, "a", function ()
+hs.hotkey.bind(hyper_pl, "o", function ()
   log.d("app-nav left")
   local name = hs.application.frontmostApplication():name()
   if name == "iTerm2" then
@@ -18,7 +19,7 @@ hs.hotkey.bind({"option"}, "a", function ()
 end)
 
 -- down
-hs.hotkey.bind({"option"}, "o", function ()
+hs.hotkey.bind(hyper_pl, "j", function ()
   log.d("app-nav down")
   local name = hs.application.frontmostApplication():name()
   if name == "iTerm2" then
@@ -29,7 +30,7 @@ hs.hotkey.bind({"option"}, "o", function ()
 end)
 
 -- up
-hs.hotkey.bind({"option"}, "e", function ()
+hs.hotkey.bind(hyper_pl, "e", function ()
   log.d("app-nav up")
   local name = hs.application.frontmostApplication():name()
   if name == "iTerm2" then
@@ -40,7 +41,7 @@ hs.hotkey.bind({"option"}, "e", function ()
 end)
 
 -- right
-hs.hotkey.bind({"option"}, "u", function ()
+hs.hotkey.bind(hyper_pl, "u", function ()
   log.d("app-nav right")
   local name = hs.application.frontmostApplication():name()
   if name == "iTerm2" then

@@ -1,6 +1,8 @@
 local log = hs.logger.new("window-management", "debug")
 local Module = {}
 
+local hyper_pl = {"command", "option"}
+
 ----- window management -----
 local function winScreenFrame()
   local win = hs.window.focusedWindow()
@@ -82,6 +84,6 @@ function Module.cycle()
 end
 end
 -- hs.hotkey.bind({"shift"}, "f1", Module.cycle)
-hs.hotkey.bind({"option"}, "c", Module.cycle)
+hs.hotkey.bind(hyper_pl, "c", Module.cycle)
 
 return Module
