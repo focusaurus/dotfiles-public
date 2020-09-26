@@ -10,8 +10,7 @@ set -o pipefail # don't ignore exit codes when piping output
 set -o posix    # more strict failures in subshells
 # set -x          # enable debugging
 
-IFS=$'\n\t'
+IFS=$'
+	'
 # ---- End unofficial bash strict mode boilerplate
-# https://stackoverflow.com/a/3879077/266795
-git update-index --refresh
-git diff-index --quiet HEAD --
+git rev-parse HEAD
