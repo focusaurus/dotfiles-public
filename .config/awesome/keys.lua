@@ -12,6 +12,7 @@ alt = "Mod1"
 control = "Control"
 super = "Mod4"
 shift = "Shift"
+-- Note I have kmonad mod-taps for hyper_pl on home row pinkies also
 hyper_pl = {"Control", "Mod4"}
 
 -- mouse bindings
