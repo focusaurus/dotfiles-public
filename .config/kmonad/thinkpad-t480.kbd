@@ -119,8 +119,8 @@
   ;;;;; modifiers
   @tap-escape-hold-control ;; caps
   @tap-snippet-hold-shift ;; sft
-  - ;; ctl
-  - ;; alt
+  _ ;; ctl
+  _ ;; alt
   @tap-fuzzball-hold-super ;; met
   @tap-space-hold-shift ;; spc
 )
