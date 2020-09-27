@@ -1,15 +1,10 @@
 local log = hs.logger.new("init", "debug")
 
-require("app-nav")
+require("keys")
 require("autotype")
 require("browser-tabs")
 require("fkeys")
-require("fuzzball")
-require("journal")
 require("screenshots")
-require("snippets")
-require("sound")
-require("window-management")
 
 -- required for the "hs" command line utility to work
 require("hs.ipc")
@@ -30,7 +25,7 @@ local function chromeTabs()
   hs.alert(tabTitles)
 end
 
-local function notification() 
+local function notification()
   hs.notify.show("Hello, world!", "two", "three")
 end
 local function runningApplications()
@@ -57,8 +52,3 @@ function reloadConfig(files)
 end
 myWatcher = hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", reloadConfig):start()
 hs.alert.show("Hammerspoon config reloaded")
-
-
-function notify(message)
-
-end

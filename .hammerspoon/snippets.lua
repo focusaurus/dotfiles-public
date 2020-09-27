@@ -1,7 +1,7 @@
 local log = hs.logger.new("snippets", "debug")
 local hbin = os.getenv("HOME") .. "/bin"
 
-hs.hotkey.bind({"control"}, ",", function()
+local function chooseByUIAndType()
   log.d("snippets")
   ok, result = hs.applescript("do shell script \"" .. hbin .. "/fuzz-snippet\"")
   if ok then
@@ -10,4 +10,8 @@ hs.hotkey.bind({"control"}, ",", function()
   else
     log.d("snippet cancelled" .. result)
   end
-end)
+end
+
+return {
+  chooseByUIAndType = chooseByUIAndType
+}

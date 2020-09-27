@@ -13,7 +13,6 @@ set -o posix    # more strict failures in subshells
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
-cd "$(dirname "${BASH_SOURCE[0]}")/.."
 if ~/bin/have-exe notify-send; then
   notify-send --expire-time=2000 "$@"
 elif ~/bin/have-exe hs; then
