@@ -1,22 +1,3 @@
-#| --------------------------------------------------------------------------
-
-                         KMonad: US ansi 100% template
-
-  This file contains the `defsrc` configuration for a standard US-ansi 100%
-  keyboard. Modelled on a standard DAS-keyboard 100%. Copy out the 'defsrc'
-  layer to start your own keyboard configuration. Copy out the `deflayer`
-  template to easily start a new layer with matching `transparent` buttons.
-
-(deflayer name
-  _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _
-  _    _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _     _    _    _    _
-  _    _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _     _    _    _    _
-  _    _    _    _    _    _    _    _    _    _    _    _    _                          _    _    _
-  _    _    _    _    _    _    _    _    _    _    _    _                    _          _    _    _    _
-  _    _    _              _              _    _    _    _               _    _    _     _    _
-)
-
-  -------------------------------------------------------------------------- |#
 (defcfg
   ;; For Linux
   input  (device-file "/dev/input/by-path/platform-i8042-serio-0-event-kbd")
@@ -34,31 +15,112 @@
 )
 
 (defsrc
-  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  home end  ins  del
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-  caps a    s    d    f    g    h    j    k    l    ;    '    ret
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft
-  lctl lmet lalt           spc            ralt ssrq rctl pgup up   pgdn
-  left down rght
+  ;;;;; letters (qwerty)
+  - ;; - number row after 0
+  = ;; = number row 2nd after 0
+  q ;; q
+  w ;; w
+  e ;; e
+  r ;; r
+  t ;; t
+  y ;; y
+  u ;; u
+  i ;; i
+  o ;; o
+  p ;; p
+  [ ;; [
+  ] ;; ]
+  \ ;; \
+
+  a ;; a
+  s ;; s
+  d ;; d
+  f ;; f
+  g ;; g
+  h ;; h
+  j ;; j
+  k ;; k
+  l ;; l
+  ; ;; ;
+  ' ;; '
+
+  z ;; z
+  x ;; x
+  c ;; c
+  v ;; v
+  b ;; b
+  n ;; n
+  m ;; m
+  , ;; ,
+  . ;; .
+  / ;; /
+
+  ;;;;; modifiers
+  caps ;; caps
+  sft ;; sft
+  ctl ;; ctl
+  alt ;; alt
+  met ;; met
+  spc ;; spc
 )
 
 (defalias
-  hyp (around lctl lmet)
-  s-S (tap-hold-next-release 500 spc  lsft)
-  a-H (tap-hold-next-release 500 a    @hyp)
-  s-H (tap-hold-next-release 500 s    @hyp)
-  mtc (tap-hold-next-release 200 esc  lctl)
-  mts (tap-hold-next-release 100 C-2  lsft)
-  sup (tap-hold-next-release 200 C-spc lmet)
+  hyper (around lctl lmet)
+  tap-space-hold-shift (tap-hold-next-release 500 spc lsft)
+  tap-a-hold-hyper (tap-hold-next-release 500 a @hyper)
+  tap-s-hold-hyper (tap-hold-next-release 500 s @hyper)
+  tap-escape-hold-control (tap-hold-next-release 200 esc  lctl)
+  tap-snippet-hold-shift (tap-hold-next-release 100 C-2  lsft)
+  tap-fuzzball-hold-super (tap-hold-next-release 200 C-spc lmet)
 )
 
 (deflayer dvorak
-  _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _
-  _    _    _    _    _    _    _    _    _    _    _    [    ]    _
-  _    '    ,    .    p    y    f    g    c    r    l    /    =    \
-  @mtc @a-H o    e    u    i    d    h    t    n    @s-H    -    _
-  @mts    ;    q    j    k    x    b    m    w    v    z    _
-  _    @sup    @hyp              @s-S              _    @sup _    _    _    _
-  _    _    _
+
+  ;;;;; letters (dvorak)
+  [ ;; - number row after 0
+  ] ;; = number row 2nd after 0
+  ' ;; q
+  , ;; w
+  . ;; e
+  p ;; r
+  y ;; t
+  f ;; y
+  g ;; u
+  c ;; i
+  r ;; o
+  l ;; p
+  / ;; [
+  = ;; ]
+  \ ;; \
+
+  @tap-a-hold-hyper ;; a
+  o ;; s
+  e ;; d
+  u ;; f
+  i ;; g
+  d ;; h
+  h ;; j
+  t ;; k
+  n ;; l
+  @tap-s-hold-hyper ;; ;
+  - ;; '
+
+  ; ;; z
+  q ;; x
+  j ;; c
+  k ;; v
+  x ;; b
+  b ;; n
+  m ;; m
+  w ;; ,
+  v ;; .
+  z ;; /
+
+  ;;;;; modifiers
+  @tap-escape-hold-control ;; caps
+  @tap-snippet-hold-shift ;; sft
+  _ ;; ctl
+  _ ;; alt
+  @tap-fuzzball-hold-super ;; met
+  @tap-space-hold-shift ;; spc
 )

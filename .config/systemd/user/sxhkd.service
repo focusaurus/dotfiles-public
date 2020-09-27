@@ -1,13 +1,17 @@
+; https://github.com/baskerville/sxhkd/blob/master/contrib/systemd/sxhkd.service
 [Unit]
 Description=Simple X Hotkey Daemon
 Documentation=man:sxhkd(1)
-; BindsTo=display-manager.service
-; After=display-manager.service
+
 
 [Service]
+Type=simple
+Environment=XAUTHORITY=%h/.Xauthority
+Environment=DISPLAY=:0
 ExecStartPre=/usr/bin/sleep 2
-ExecStart=/usr/bin/sxhkd
+ExecStart=/usr/bin/sxhkd -r /run/user/%U/sxhkd.out
 ExecReload=/usr/bin/kill -SIGUSR1 $MAINPID
+;RemainAfterExit=yes
 
 [Install]
-WantedBy=graphical.target
+WantedBy=default.target

@@ -28,9 +28,9 @@ have_exe() {
 main() {
 
   # clear all options so they don't compound
-  setxkbmap -option
+  # setxkbmap -option
   # caps lock key is ctrl
-  setxkbmap -layout dvorak -option "ctrl:nocaps"
+  # setxkbmap -layout dvorak -option "ctrl:nocaps"
 
   #Remap PrtSc (2nd to the right of spacebar) (A.K.A SysRq)
   # to an additional Super modifier
@@ -67,9 +67,9 @@ main() {
   xset r rate "${delay}" "${rate}"
 
   # start xbindkeys daemon which remaps extra mouse buttons
-  if ! send_sigusr1 xbindkeys; then
-    xbindkeys
-  fi
+  # if ! send_sigusr1 xbindkeys; then
+    # xbindkeys
+  # fi
   # if have_exe sxhkd; then
   #   kill_ok sxhkd
   #   sxhkd -r "/run/user/${UID}/sxhkd.log" &
