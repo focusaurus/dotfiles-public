@@ -1,5 +1,5 @@
-local log = hs.logger.new("placement", "debug")
 local module = {}
+local log = hs.logger.new("placement", "debug")
 
 local function winScreenFrame()
   local win = hs.window.focusedWindow()

@@ -1,3 +1,4 @@
+local module = {}
 local log = hs.logger.new("journal", "debug")
 -- local windowManagement = require("window-management")
 local fuzzball = os.getenv("HOME") .. "/git.peterlyons.com/dotfiles/fuzzball"
@@ -22,17 +23,14 @@ local fuzzball = os.getenv("HOME") .. "/git.peterlyons.com/dotfiles/fuzzball"
 --   end)
 -- end
 
-local function appendByDialog()
+function module.appendByDialog()
   log.d("appendByDialog")
   os.execute(fuzzball .. "/journal-mailchimp")
 end
 
-local function appendByDialogStandup()
+function module.appendByDialogStandup()
   log.d("appendByDialogStandup")
   os.execute(fuzzball .. "/journal-mailchimp-standup")
 end
 
-return {
-  appendByDialog = appendByDialog,
-  appendByDialogStandup = appendByDialogStandup,
-}
+return module

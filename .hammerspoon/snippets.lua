@@ -1,7 +1,8 @@
+local module = {}
 local log = hs.logger.new("snippets", "debug")
 local hbin = os.getenv("HOME") .. "/bin"
 
-local function chooseByUIAndType()
+function module.chooseByUIAndType()
   log.d("snippets")
   ok, result = hs.applescript("do shell script \"" .. hbin .. "/fuzz-snippet\"")
   if ok then
@@ -12,6 +13,4 @@ local function chooseByUIAndType()
   end
 end
 
-return {
-  chooseByUIAndType = chooseByUIAndType
-}
+return module

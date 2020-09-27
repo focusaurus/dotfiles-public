@@ -1,3 +1,4 @@
+local module= {}
 local log = hs.logger.new("app-nav", "debug")
 local hbin = os.getenv("HOME") .. "/bin"
 
@@ -5,7 +6,7 @@ function useTabNav(appName)
   return appName == "Google Chrome" or appName == "Firefox" or appName == "Code"
 end
 
-local function left()
+function module.left()
   log.d("app-nav left")
   local name = hs.application.frontmostApplication():name()
   if name == "iTerm2" then
@@ -15,7 +16,7 @@ local function left()
   end
 end
 
-local function down()
+function module.down()
   log.d("app-nav down")
   local name = hs.application.frontmostApplication():name()
   if name == "iTerm2" then
@@ -25,7 +26,7 @@ local function down()
   end
 end
 
-local function up()
+function module.up()
   log.d("app-nav up")
   local name = hs.application.frontmostApplication():name()
   if name == "iTerm2" then
@@ -35,7 +36,7 @@ local function up()
   end
 end
 
-local function right()
+function module.right()
   log.d("app-nav right")
   local name = hs.application.frontmostApplication():name()
   if name == "iTerm2" then
@@ -45,9 +46,4 @@ local function right()
   end
 end
 
-return {
-  down = down,
-  left = left,
-  right = right,
-  up = up,
-}
+return module
