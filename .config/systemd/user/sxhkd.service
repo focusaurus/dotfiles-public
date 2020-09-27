@@ -9,7 +9,7 @@ Type=simple
 Environment=XAUTHORITY=%h/.Xauthority
 Environment=DISPLAY=:0
 ExecStartPre=/usr/bin/sleep 2
-ExecStart=/usr/bin/sxhkd
+ExecStart=/usr/bin/sxhkd -r /run/user/%U/sxhkd.out
 ExecReload=/usr/bin/kill -SIGUSR1 $MAINPID
 ;RemainAfterExit=yes
 

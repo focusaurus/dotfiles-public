@@ -1,10 +1,10 @@
 ##### linux/macos parity clipboard hotkeys #####
-super + c
-  xte "keyup c" "keyup Super_L" "keydown Control_L" "key c" "keyup Control_L" "keydown Super_L"
-super + v
-  xte "keyup v" "keyup Super_L" "keydown Control_L" "key v" "keyup Control_L" "keydown Super_L"
-super + x
-  xte "keyup x" "keyup Super_L" "keydown Control_L" "key x" "keyup Control_L" "keydown Super_L"
+#super + c
+  # xte "keyup c" "keyup Super_L" "keydown Control_L" "key c" "keyup Control_L" "keydown Super_L"
+# super + v
+  # xte "keyup v" "keyup Super_L" "keydown Control_L" "key v" "keyup Control_L" "keydown Super_L"
+# super + x
+  # xte "keyup x" "keyup Super_L" "keydown Control_L" "key x" "keyup Control_L" "keydown Super_L"
 
 ##### linux/macos parity browser hotkeys #####
 # super + w
@@ -21,7 +21,7 @@ control + space
   ~/bin/fuzz-script-choose
 control + 2
   ~/bin/fuzz-snippet
-control + 3
+super + shift + space
   rofi -show run
 control + 4
   rofi -show window
