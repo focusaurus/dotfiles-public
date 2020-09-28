@@ -1,9 +1,10 @@
 [Unit]
 Description=kmonad keyboard fancifier
+ConditionPathExists=/dev/input/by-path/platform-i8042-serio-0-event-kbd
 
 [Service]
-ExecStartPre=/usr/bin/sleep 1
-ExecStart=/usr/local/bin/kmonad "${HOME}/.config/kmonad/thinkpad.kbd"
+ExecStartPre="%h/.config/kmonad/render.sh"
+ExecStart=/usr/local/bin/kmonad "%h/.config/kmonad/thinkpad.kbd"
 Restart=on-failure
 
 [Install]
