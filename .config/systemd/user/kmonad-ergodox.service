@@ -1,0 +1,10 @@
+[Unit]
+Description=kmonad keyboard fancifier
+
+[Service]
+ExecStartPre=/usr/bin/sleep 1
+ExecStart=/usr/local/bin/kmonad "${HOME}/.config/kmonad/ergodox.kbd"
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

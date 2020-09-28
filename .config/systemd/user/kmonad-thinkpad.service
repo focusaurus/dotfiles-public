@@ -3,7 +3,7 @@ Description=kmonad keyboard fancifier
 
 [Service]
 ExecStartPre=/usr/bin/sleep 1
-ExecStart=/usr/local/bin/kmonad "${HOME}/.config/kmonad/thinkpad-t480.kbd"
+ExecStart=/usr/local/bin/kmonad "${HOME}/.config/kmonad/thinkpad.kbd"
 Restart=on-failure
 
 [Install]

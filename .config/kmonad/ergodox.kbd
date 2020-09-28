@@ -1,16 +1,7 @@
 (defcfg
-  ;; For Linux
-  input  (device-file "/dev/input/by-path/platform-i8042-serio-0-event-kbd")
-  output (uinput-sink "kmonad"
-    ;; To understand the importance of the following line, see the section on
-    ;; Compose-key sequences at the near-bottom of this file.
-    ;; "/run/current-system/sw/bin/sleep 1 && /run/current-system/sw/bin/setxkbmap -option compose:ralt"
-    )
-
-  ;; Comment this is you want unhandled events not to be emitted
+  input  (device-file "/dev/input/by-id/usb-ErgoDox_EZ_ErgoDox_EZ_0-event-kbd")
+  output (uinput-sink "kmonad-ergodox")
   fallthrough true
-
-  ;; Set this to false to disable any command-execution in KMonad
   allow-cmd false
 )
 
