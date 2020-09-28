@@ -1,5 +1,5 @@
-local log = hs.logger.new("sound", "debug")
 local module = {}
+local log = hs.logger.new("sound", "debug")
 
 function module.toggleMute()
   log.d("toggleMute")
