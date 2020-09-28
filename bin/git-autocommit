@@ -23,6 +23,7 @@ autocommit() {
     echo "${ME}: Skip: not default branch: ${PWD}"
     return
   fi
+  git add .
   if ~/bin/git-is-work-tree-clean; then
     echo "${ME}: Skip: work tree clean: ${PWD}"
     return
