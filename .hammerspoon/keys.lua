@@ -11,6 +11,12 @@ hs.hotkey.bind(hyper_pl, "e", appNav.up)
 hs.hotkey.bind(hyper_pl, "u", appNav.right)
 hs.hotkey.bind(hyper_pl, "j", appNav.down)
 
+-- for compat until kmonad on mac is fully working
+hs.hotkey.bind({"option"}, "o", appNav.left)
+hs.hotkey.bind({"option"}, "e", appNav.up)
+hs.hotkey.bind({"option"}, "u", appNav.right)
+hs.hotkey.bind({"option"}, "j", appNav.down)
+
 hs.hotkey.bind({"command"}, "space", fuzzball.chooseScript)
 
 hs.hotkey.bind({}, "f9", journal.appendByDialog)
@@ -19,5 +25,6 @@ hs.hotkey.bind({"shift"}, "f9", journal.appendByDialogStandup)
 hs.hotkey.bind({"control"}, ",", snippets.chooseByUIAndType)
 
 hs.hotkey.bind(hyper_pl, "c", placement.cycle)
+hs.hotkey.bind({"option"}, "c", placement.cycle)
 -- for compat until kmonad on mac is fully working
 hs.hotkey.bind({"option"}, "c", placement.cycle)

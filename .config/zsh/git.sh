@@ -16,6 +16,7 @@ alias gfap='git fetch --all --prune'
 alias gcb='git rev-parse --abbrev-ref HEAD'
 alias gco='git checkout'
 alias gcob='git checkout -b'
+alias gcot='git checkout --track'
 alias gcod='git checkout develop'
 alias gcom='git checkout master'
 alias gd='git diff --ignore-all-space'
@@ -253,7 +254,7 @@ git-ztrash() {
   # "z" prefix pushes it to the bottom of sorted listings
   local name
   name="$1"
-  name=$(git branch | awk '{print $NF}' | fuzzy-filter "$@")
+  name=$(git branch | awk '{print $NF}' | grep -v 'ztrash' | fuzzy-filter "$@")
   [[ -z "${name}" ]] && return
   git branch -m "${name}" "ztrash-${name}"
 }
