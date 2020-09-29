@@ -1,47 +1,44 @@
-local log = hs.logger.new("fkeys", "debug")
-local sound = require("sound")
+local module = {}
+local log = hs.logger.new("focus", "debug")
 
-local function iterm2() 
-  log.d("fkeys f3")
+function module.terminal()
+  log.d("terminal")
   hs.application.launchOrFocus("iTerm")
 end
-hs.hotkey.bind({}, "f3", iterm2)
 
------ fkeys -----
-hs.hotkey.bind({}, "f1", function()
-  log.d("fkeys f1")
+function module.browser()
+  log.d("browser")
   hs.application.launchOrFocus("Google Chrome")
-end)
+end
 
-hs.hotkey.bind({"shift"}, "f1", function()
-  log.d("fkeys shift+f1")
+function module.email()
+  log.d("email")
   hs.application.launchOrFocus("Google Chrome")
   hs.eventtap.keyStroke({"command"}, "1")
-end)
+end
 
-hs.hotkey.bind({}, "f2", function()
-  log.d("fkeys f2")
+function module.emacs()
+  log.d("emacs")
   hs.application.launchOrFocus("Emacs")
-end)
+end
 
-
-hs.hotkey.bind({}, "f4", function()
-  log.d("fkeys f4")
+function module.workflowy()
+  log.d("workflowy")
   hs.application.launchOrFocus("WorkFlowy")
-end)
+end
 
-hs.hotkey.bind({}, "f5", function()
-  log.d("fkeys f5")
+function module.previous()
+  log.d("previous")
   hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, true):post()
   hs.eventtap.event.newKeyEvent("Tab", true):post()
   -- hs.timer.doAfter(0.2, function()
     hs.eventtap.event.newKeyEvent("Tab", false):post()
     hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, false):post()
-  -- end)
-end)
+  -- end
+end
 
-hs.hotkey.bind({}, "f6", function()
-  log.d("fkeys f6")
+function module.slackOrZoom()
+  log.d("slackOrZoom")
   local zoomIsFront = hs.window.frontmostWindow():application():name() == "zoom.us"
   local zoomIsRunning = false
   -- window count > 1 used as a proxy for "has active meeting window"
@@ -60,34 +57,21 @@ hs.hotkey.bind({}, "f6", function()
   else
     hs.application.launchOrFocus("Slack")
   end
-end)
+end
 
-hs.hotkey.bind({}, "f7", function()
-  log.d("fkeys f7")
+function module.calendar()
+  log.d("calendar")
   hs.application.launchOrFocus("Google Chrome")
   hs.eventtap.keyStroke({"command"}, "2")
-end)
+end
 
-hs.hotkey.bind({}, "f8", function()
-  log.d("fkeys f8")
+function module.music()
+  log.d("music")
   hs.application.launchOrFocus("Google Chrome")
   -- command-3 is my normal way to activate a pinned tab with 
   -- google play music, but temporarily doing 4
   -- since I'm fascinated with mynoise.net at the moment
   hs.eventtap.keyStroke({"command"}, "4")
-end)
+end
 
-hs.hotkey.bind({}, "f10", function()
-  log.d("fkeys f10")
-  sound.toggleMute()
-end)
-
-hs.hotkey.bind({}, "f11", function()
-  log.d("fkeys f11")
-  sound.volumeDown()
-end)
-
-hs.hotkey.bind({}, "f12", function()
-  log.d("fkeys f12")
-  sound.volumeUp()
-end)
+return module

@@ -3,7 +3,6 @@ local log = hs.logger.new("init", "debug")
 require("keys")
 require("autotype")
 require("browser-tabs")
-require("fkeys")
 require("screenshots")
 
 -- required for the "hs" command line utility to work
