@@ -30,7 +30,7 @@ for name in thinkpad macbook ergodox; do
   case "${name}" in
   thinkpad)
     cat <<EOF >>"${name}.kbd"
-  input  (device-file "/dev/input/by-id/usb-ErgoDox_EZ_ErgoDox_EZ_0-event-kbd")
+  input  (device-file "/dev/input/by-path/platform-i8042-serio-0-event-kbd")
   output (uinput-sink "kmonad-${name}")
 EOF
     ;;
