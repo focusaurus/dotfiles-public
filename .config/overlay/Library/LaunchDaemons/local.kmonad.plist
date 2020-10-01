@@ -6,12 +6,7 @@
     <key>Label</key>
     <string>local.kmonad</string>
     <key>Program</key>
-    <string>/usr/local/bin/kmonad</string>
-    <key>ProgramArguments</key>
-    <array>
-      <string>/usr/local/bin/kmonad</string>
-      <string>/Library/LaunchDaemons/macbook.kbd</string>
-    </array>
+    <string>/Library/LaunchDaemons/kmonad.sh</string>
     <key>RunAtLoad</key>
     <true />
     <key>StandardErrorPath</key>
