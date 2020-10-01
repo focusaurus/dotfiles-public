@@ -14,7 +14,7 @@ IFS=$'\n\t'
 for path in "$@"; do
   extension=${path##*.}
   case "${extension}" in
-  clj | css | go | graphql | html | js | json | lua | md | sh | xml | yaml | yml)
+  clj | css | go | graphql | html | js | json | lua | md | plist | sh | xml | yaml | yml)
     # first, test run to force nonzero exit code and abort if file not valid
     "${HOME}/bin/pretty-print-${extension}" <"${path}" >/dev/null
     "${HOME}/bin/pretty-print-${extension}" <"${path}" | sponge "${path}"
