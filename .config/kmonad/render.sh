@@ -96,10 +96,15 @@ EOF
 
   ;;;;; modifiers
   caps ;; caps
-  sft ;; sft
-  ctl ;; ctl
-  alt ;; alt
-  met ;; met
+  lsft ;; lsft
+  rsft ;; rsft
+  lctl ;; lctl
+  rctl ;; rctl
+  lalt ;; lalt
+  ralt ;; ralt
+  ssrq ;; ssrq
+  lmet ;; lmet
+
   spc ;; spc
 )
 
@@ -157,10 +162,15 @@ EOF
 
   ;;;;; modifiers
   @tap-escape-hold-control ;; caps
-  @tap-snippet-hold-shift ;; sft
-  _ ;; ctl
-  _ ;; alt
-  @tap-fuzzball-hold-super ;; met
+  @tap-snippet-hold-shift ;; lsft
+  @tap-snippet-hold-shift ;; rsft
+  _ ;; lctl
+  _ ;; rctl
+  _ ;; lalt
+  _ ;; ralt
+  @tap-fuzzball-hold-super ;; ssrq
+  @tap-fuzzball-hold-super ;; lmet
+
   @tap-space-hold-shift ;; spc
 )
 EOF
