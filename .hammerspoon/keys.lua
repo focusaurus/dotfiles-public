@@ -26,6 +26,7 @@ hs.hotkey.bind({"option"}, "c", placement.cycle)
 -- for compat until kmonad on mac is fully working
 hs.hotkey.bind({"option"}, "c", placement.cycle)
 
+
 -- fuzzy prompts
 hs.hotkey.bind({"command"}, "space", fuzzball.chooseScript)
 hs.hotkey.bind({"control"}, ",", snippets.chooseByUIAndType)
@@ -41,6 +42,7 @@ hs.hotkey.bind({}, "f2", focus.emacs)
 hs.hotkey.bind({}, "f3", focus.terminal)
 hs.hotkey.bind({}, "f4", focus.workflowy)
 hs.hotkey.bind({}, "f5", focus.previous)
+hs.hotkey.bind(hyper_pl, "t", focus.previous)
 hs.hotkey.bind({}, "f6", focus.slackOrZoom)
 hs.hotkey.bind({}, "f7", focus.calendar)
 hs.hotkey.bind({}, "f8", focus.music)
