@@ -22,7 +22,6 @@ hs.hotkey.bind({"option"}, "j", appNav.down)
 
 -- placement
 hs.hotkey.bind(hyper_pl, "c", placement.cycle)
-hs.hotkey.bind({"option"}, "c", placement.cycle)
 -- for compat until kmonad on mac is fully working
 hs.hotkey.bind({"option"}, "c", placement.cycle)
 
