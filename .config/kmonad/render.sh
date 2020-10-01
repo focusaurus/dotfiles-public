@@ -59,6 +59,17 @@ EOF
   allow-cmd false
 )
 
+(defalias
+  hyper (around lctl lmet)
+  tap-space-hold-shift (tap-hold-next-release 500 spc lsft)
+  tap-a-hold-hyper (tap-hold-next-release 500 a @hyper)
+  tap-s-hold-hyper (tap-hold-next-release 500 s @hyper)
+  tap-escape-hold-control (tap-hold-next-release 200 esc lctl)
+  tap-snippet-hold-shift (tap-hold-next-release 100 C-2 lsft)
+  tap-fuzzball-hold-super (tap-hold-next-release 200 M-spc lmet)
+)
+
+
 (defsrc
   ;;;;; letters (qwerty)
   - ;; - number row after 0
@@ -112,16 +123,6 @@ EOF
   ssrq ;; ssrq
 
   spc ;; spc
-)
-
-(defalias
-  hyper (around lctl lmet)
-  tap-space-hold-shift (tap-hold-next-release 500 spc lsft)
-  tap-a-hold-hyper (tap-hold-next-release 500 a @hyper)
-  tap-s-hold-hyper (tap-hold-next-release 500 s @hyper)
-  tap-escape-hold-control (tap-hold-next-release 200 esc lctl)
-  tap-snippet-hold-shift (tap-hold-next-release 100 C-2 lsft)
-  tap-fuzzball-hold-super (tap-hold-next-release 200 C-spc lmet)
 )
 
 (deflayer dvorak
