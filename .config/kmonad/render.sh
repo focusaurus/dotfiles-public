@@ -30,7 +30,7 @@ for name in thinkpad macbook ergodox ergodox-infinity-mac; do
   case "${name}" in
   thinkpad)
     cat <<EOF >>"${name}.kbd"
-  input  (device-file "/dev/input/by-id/usb-ErgoDox_EZ_ErgoDox_EZ_0-event-kbd")
+  input  (device-file "/dev/input/by-path/platform-i8042-serio-0-event-kbd")
   output (uinput-sink "kmonad-${name}")
 EOF
     ;;
@@ -58,6 +58,17 @@ EOF
   fallthrough true
   allow-cmd false
 )
+
+(defalias
+  hyper (around lctl lmet)
+  tap-space-hold-shift (tap-hold-next-release 500 spc lsft)
+  tap-a-hold-hyper (tap-hold-next-release 500 a @hyper)
+  tap-s-hold-hyper (tap-hold-next-release 500 s @hyper)
+  tap-escape-hold-control (tap-hold-next-release 200 esc lctl)
+  tap-snippet-hold-shift (tap-hold-next-release 100 C-2 lsft)
+  tap-fuzzball-hold-super (tap-hold-next-release 200 M-spc lmet)
+)
+
 
 (defsrc
   ;;;;; letters (qwerty)
@@ -102,21 +113,16 @@ EOF
 
   ;;;;; modifiers
   caps ;; caps
-  sft ;; sft
-  ctl ;; ctl
-  alt ;; alt
-  met ;; met
-  spc ;; spc
-)
+  lsft ;; lsft
+  rsft ;; rsft
+  lctl ;; lctl
+  rctl ;; rctl
+  lalt ;; lalt
+  ralt ;; ralt
+  lmet ;; lmet
+  ssrq ;; ssrq
 
-(defalias
-  hyper (around lctl lmet)
-  tap-space-hold-shift (tap-hold-next-release 500 spc lsft)
-  tap-a-hold-hyper (tap-hold-next-release 500 a @hyper)
-  tap-s-hold-hyper (tap-hold-next-release 500 s @hyper)
-  tap-escape-hold-control (tap-hold-next-release 200 esc lctl)
-  tap-snippet-hold-shift (tap-hold-next-release 100 C-2 lsft)
-  tap-fuzzball-hold-super (tap-hold-next-release 200 C-spc lmet)
+  spc ;; spc
 )
 
 (deflayer dvorak
@@ -163,10 +169,15 @@ EOF
 
   ;;;;; modifiers
   @tap-escape-hold-control ;; caps
-  @tap-snippet-hold-shift ;; sft
-  _ ;; ctl
-  _ ;; alt
-  @tap-fuzzball-hold-super ;; met
+  @tap-snippet-hold-shift ;; lsft
+  @tap-snippet-hold-shift ;; rsft
+  _ ;; lctl
+  _ ;; rctl
+  _ ;; lalt
+  _ ;; ralt
+  @tap-fuzzball-hold-super ;; lmet
+  @tap-fuzzball-hold-super ;; ssrq
+
   @tap-space-hold-shift ;; spc
 )
 EOF
