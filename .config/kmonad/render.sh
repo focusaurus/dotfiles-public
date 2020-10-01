@@ -108,8 +108,8 @@ EOF
   rctl ;; rctl
   lalt ;; lalt
   ralt ;; ralt
-  ssrq ;; ssrq
   lmet ;; lmet
+  ssrq ;; ssrq
 
   spc ;; spc
 )
@@ -174,8 +174,8 @@ EOF
   _ ;; rctl
   _ ;; lalt
   _ ;; ralt
-  @tap-fuzzball-hold-super ;; ssrq
   @tap-fuzzball-hold-super ;; lmet
+  @tap-fuzzball-hold-super ;; ssrq
 
   @tap-space-hold-shift ;; spc
 )
