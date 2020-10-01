@@ -6,7 +6,7 @@ local placement = require("placement")
 local snippets = require("snippets")
 local sound = require("sound")
 
-local hyper_pl = {"command", "option"}
+local hyper_pl = {"command", "control"}
 
 -- app nav
 hs.hotkey.bind(hyper_pl, "o", appNav.left)

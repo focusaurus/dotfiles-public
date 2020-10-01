@@ -1,3 +1,4 @@
+local log = hs.logger.new("init", "debug")
 -- required for the "hs" command line utility to work
 require("hs.ipc")
 
