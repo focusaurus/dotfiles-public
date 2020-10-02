@@ -42,7 +42,7 @@
                         ]
                     },
                     {
-                        "description": "Change shift to control+comma if pressed alone.",
+                        "description": "Change shift to control+2 if pressed alone.",
                         "manipulators": [
                             {
                                 "from": {
@@ -60,7 +60,7 @@
                                 ],
                                 "to_if_alone": [
                                     {
-                                        "key_code": "w",
+                                        "key_code": "2",
                                         "modifiers": [
                                             "left_control"
                                         ]

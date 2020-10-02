@@ -50,15 +50,18 @@ function module.cycle()
   log.d("cycle")
   win, screenFrame, f =  winScreenFrame()
   ratio = f.w / screenFrame.w
-  if ratio > 0.95 then
+  log.d("ratio" .. ratio)
+  if ratio > 0.9 then
+    -- Maximized already or nearly so, proceed to left
     module.left()
-  else if ratio < 0.55 then
+  else
     if f.x < 100 then
+      -- pretty close to left edge, proceed to right
       module.right()
     else
+      -- go to maximized in all other cases
       module.maximize()
     end
-  end
   end
 end
 

@@ -500,7 +500,7 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (setq-default dotspacemacs-themes '(spacemacs-light spacemacs-dark))
   (setq-default org-agenda-files '("~/mc/mailchimp.org"))
-  (setq-default org-todo-keywords '((sequence "NEXT" "TODO" "NOPE" "DONE")))
+  (setq-default org-todo-keywords '((sequence "NEXT" "TODO" "|" "NOPE" "DONE")))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
