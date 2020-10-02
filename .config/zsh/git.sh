@@ -346,7 +346,7 @@ gsync() {
     fi
   fi
   ~/bin/git-autocommit ~/git.peterlyons.com/journals ~/git.peterlyons.com/mailchimp
-  ~/bin/git-sync ~/git.peterlyons.com/journals ~/git.peterlyons.com/dotfiles ~/git.peterlyons.com/mailchimp ~
+  ~/bin/git-sync ~ ~/git.peterlyons.com/dotfiles ~/git.peterlyons.com/journals ~/git.peterlyons.com/mailchimp
 }
 
 git-cd-repo-dir-fuzzy() {
