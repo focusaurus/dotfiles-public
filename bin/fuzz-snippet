@@ -42,7 +42,7 @@ fi
 
 if [[ $(uname) == "Darwin" ]]; then
   # macos via hammerspoon will automatically paste the output
-  printf "${expansion}"
+  printf "%s" "${expansion}"
   exit
 fi
 
