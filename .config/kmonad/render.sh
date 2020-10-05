@@ -15,68 +15,83 @@ IFS=$'\n\t'
 
 cd "$(dirname "${BASH_SOURCE[0]}")"
 
-defcfg_thinkpad='input  (device-file "/dev/input/by-path/platform-i8042-serio-0-event-kbd")
-  output (uinput-sink "kmonad-thinkpad")'
+defcfg_thinkpad='
+input  (device-file "/dev/input/by-path/platform-i8042-serio-0-event-kbd")
+  output (uinput-sink "kmonad-thinkpad")
+'
 
-defcfg_ergodox_linux='input  (device-file "/dev/input/by-id/usb-ErgoDox_EZ_ErgoDox_EZ_0-event-kbd")
-  output (uinput-sink "kmonad-ergodox")'
+defcfg_ergodox_linux='
+input  (device-file "/dev/input/by-id/usb-ErgoDox_EZ_ErgoDox_EZ_0-event-kbd")
+  output (uinput-sink "kmonad-ergodox")
+'
 
-defcfg_macbook='input (iokit-name "Apple Internal Keyboard / Trackpad")
-  output (kext)'
+defcfg_macbook='
+input (iokit-name "Apple Internal Keyboard / Trackpad")
+  output (kext)
+'
 
-defcfg_ergodox_macos='input (iokit-name "Infinity_Ergodox/QMK")
-  output (kext)'
+defcfg_ergodox_macos='
+input (iokit-name "Infinity_Ergodox/QMK")
+  output (kext)
+'
 
-modifiers='caps @tap-escape-hold-control
+modifiers='
+caps @tap-escape-hold-control
 lsft @tap-snippet-hold-shift
 rsft @tap-snippet-hold-shift
+lctl @tap-escape-hold-control
+rctl @tap-escape-hold-control
 lmet @tap-fuzzball-hold-super
 rmet @tap-fuzzball-hold-super
 ssrq @tap-fuzzball-hold-super
 spc @tap-space-hold-shift
 '
 
-letters_macos='a @tap-a-hold-hyper
-; @tap-semi-hold-hyper'
+letters_macos='
+a @tap-a-hold-hyper
+; @tap-semi-hold-hyper
+'
 
-letters_linux="[ ;; - number row after 0
-  ] ;; = number row 2nd after 0
-  ' ;; q
-  , ;; w
-  . ;; e
-  p ;; r
-  y ;; t
-  f ;; y
-  g ;; u
-  c ;; i
-  r ;; o
-  l ;; p
-  / ;; [
-  = ;; ]
-  \ ;; \
+letters_linux="
+- [
+= ]
+q '
+w ,
+e .
+r p
+t y
+y f
+u g
+i c
+o r
+p l
+[ /
+] =
+\\ \\
 
-  @tap-a-hold-hyper ;; a
-  o ;; s
-  e ;; d
-  u ;; f
-  i ;; g
-  d ;; h
-  h ;; j
-  t ;; k
-  n ;; l
-  @tap-s-hold-hyper ;; ;
-  - ;; '
+a @tap-a-hold-hyper
+s o
+d e
+f u
+g i
+h d
+j h
+k t
+l n
+; @tap-s-hold-hyper
+' -
 
-  ; ;; z
-  q ;; x
-  j ;; c
-  k ;; v
-  x ;; b
-  b ;; n
-  m ;; m
-  w ;; ,
-  v ;; .
-  z ;; /"
+z ;
+x q
+c j
+v k
+b x
+n b
+m m
+, w
+. v
+/ z
+"
 
 # NAME=ergodox \
 #   DEVICE='/dev/input/by-id/usb-ErgoDox_EZ_ErgoDox_EZ_0-event-kbd' \
@@ -122,14 +137,14 @@ for name in thinkpad macbook ergodox-linux ergodox-macos; do
   tap-a-hold-hyper (tap-hold-next-release 500 a @hyper)
   tap-s-hold-hyper (tap-hold-next-release 500 s @hyper)
   tap-semi-hold-hyper (tap-hold-next-release 500 ; @hyper)
-  tap-escape-hold-control (tap-hold-next-release 200 esc lctl)
-  tap-snippet-hold-shift (tap-hold-next-release 100 C-2 lsft)
-  tap-fuzzball-hold-super (tap-hold-next-release 200 M-spc lmet)
+  tap-escape-hold-control (tap-hold-next-release 150 esc lctl)
+  tap-snippet-hold-shift (tap-hold-next-release 150 C-2 lsft)
+  tap-fuzzball-hold-super (tap-hold-next-release 150 M-spc lmet)
 )
 
 (defsrc"
 
-    echo "${modifiers}${letters}" | {
+    echo -e "${modifiers}${letters}" | {
       while IFS= read -r mapping; do
         echo -n "  "
         echo "${mapping}" | awk '{print $1}'
@@ -142,7 +157,6 @@ for name in thinkpad macbook ergodox-linux ergodox-macos; do
     echo "${modifiers}${letters}" | {
       while IFS= read -r mapping; do
         echo -n "${mapping}" | awk '{print "  " $2 " ;; " $1}'
-        # echo "${mapping}" | cut -d ';' -f 2-
       done
     }
     echo ")"
