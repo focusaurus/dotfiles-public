@@ -18,8 +18,8 @@ main() {
   fswatch --event Updated ~/.ergodox-udev | {
     # shellcheck disable=SC2034
     while IFS= read -r _file_path; do
-      log "$0" "setup-keyboards"
-      ~/bin/setup-keyboards
+      log "$0" "systemctl --user restart kmonad-ergodox"
+      systemctl --user restart kmonad-ergodox
     done
   }
 }

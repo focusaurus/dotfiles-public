@@ -67,9 +67,9 @@ main() {
   xset r rate "${delay}" "${rate}"
 
   # start xbindkeys daemon which remaps extra mouse buttons
-  # if ! send_sigusr1 xbindkeys; then
-    # xbindkeys
-  # fi
+  if ! send_sigusr1 xbindkeys; then
+    xbindkeys
+  fi
   # if have_exe sxhkd; then
   #   kill_ok sxhkd
   #   sxhkd -r "/run/user/${UID}/sxhkd.log" &
