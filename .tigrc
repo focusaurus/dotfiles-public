@@ -6,4 +6,4 @@ bind status <C-u> >git commit -m "updates"
 #bind status <esc>hey !sh -c 'echo hey;echo $(ls)'
 # for debugging
 bind generic 1 !echo '%(remote)'
-bind generic <C-r> @zsh -i -c github-repo
+bind generic <C-r> @zsh -i -c "github repo"

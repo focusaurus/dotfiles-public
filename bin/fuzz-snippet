@@ -41,8 +41,20 @@ else
 fi
 
 if [[ $(uname) == "Darwin" ]]; then
-  # macos via hammerspoon will automatically paste the output
-  printf "%s" "${expansion}"
+  approach="hammerspoon"
+  if [[ "${approach}" == hammerspoon ]]; then
+    # macos via hammerspoon will automatically paste the output
+    printf "%s" "${expansion}"
+  else
+    # cliclick does not seem to work for this via hammerspoon hotkey
+    # https://github.com/BlueM/cliclick/issues/38#issuecomment-703943164
+    printf "%s" "${expansion}" | ~/bin/copy
+    ~/bin/log "$0" copied. Sleeping.
+    sleep 5
+    ~/bin/log "$0" pasting
+    cliclick kd:cmd t:v ku:cmd
+    ~/bin/log "$0" done
+  fi
   exit
 fi
 

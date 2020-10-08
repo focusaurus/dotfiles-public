@@ -46,6 +46,8 @@ alias gbmd="git branch --merged develop"
 alias amend="git commit --amend"
 alias git-not-pushed="git log --branches --not --remotes"
 alias gls="git ls-files"
+alias gw="git switch"
+alias gorce="git push --force"
 alias ts="tig status"
 
 _base-url() {
