@@ -146,8 +146,7 @@ for name in thinkpad macbook ergodox-linux ergodox-macos; do
 
     echo -e "${modifiers}${letters}" | {
       while IFS= read -r mapping; do
-        echo -n "  "
-        echo "${mapping}" | awk '{print $1}'
+        echo "${mapping}" | awk '{print "  " $1}'
       done
     }
     echo ")
