@@ -1,1 +1,1 @@
-PASTER=~/.tmux/plugins/tmux-butler/pasters/paste-to-xsel
+PASTER=~/bin/copy
