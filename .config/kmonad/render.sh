@@ -37,7 +37,7 @@ input (iokit-name "Infinity_Ergodox/QMK")
 
 modifiers='
 caps @tap-escape-hold-control
-lsft @tap-snippet-hold-shift
+lsft _
 rsft @tap-snippet-hold-shift
 lctl @tap-escape-hold-control
 rctl @tap-escape-hold-control
