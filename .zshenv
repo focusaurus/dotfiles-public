@@ -56,3 +56,8 @@ setup-path
 if ~/bin/have-exe luarocks; then
   eval $(luarocks path --bin | grep -v "export PATH=")
 fi
+
+export PAGER=less
+if ~/bin/have-exe bat; then
+  export PAGER=bat
+fi
