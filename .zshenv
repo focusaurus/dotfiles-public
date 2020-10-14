@@ -59,5 +59,5 @@ fi
 
 export PAGER=less
 if ~/bin/have-exe bat; then
-  export PAGER=bat
+  export PAGER="bat --paging=always"
 fi
