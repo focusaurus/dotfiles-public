@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
+
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -o errexit  # always exit on error
+set -o errtrace # trap errors in functions as well
+set -o pipefail # don't ignore exit codes when piping output
+set -o posix    # more strict failures in subshells
+# set -x          # enable debugging
+
+IFS=$'
+	'
+# ---- End unofficial bash strict mode boilerplate
+
+# args: browser
+# example: ./getOpenTabs.sh "Brave Browser"
+# credits:
+#  https://gist.github.com/samyk/65c12468686707b388ec43710430a421
+
+# TODO:
+#  validate args
+#  don't open app if not already open
+
+osascript << EOF
+# build the output with this variable
+set titleString to ""
+
+# Apple Script must be able to compile tell statments
+# which mean's they can't be variable in Apple Script its self
+# but not Bash ;)
+tell application "${1:-Google Chrome}"
+        set window_list to every window # get the windows
+
+        repeat with the_window in window_list # for every window
+                set tab_list to every tab in the_window # get the tabs
+
+                repeat with the_tab in tab_list # for every tab
+                        set the_url to the URL of the_tab # grab the URL
+                        set the_title to the title of the_tab
+                        set the_id to the id of the_tab
+                        set titleString to titleString & the_id & ":" & the_title & ": " & the_url & "\n"
+                end repeat
+        end repeat
+        return titleString
+end tell
+EOF
