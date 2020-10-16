@@ -27,6 +27,7 @@ alias -g /x='| xargs'
 # alias -g devlog='json -g -a -0 -e "delete this.v; delete this.hostname;delete this.level; delete this.pid; delete this.name"'
 ##### shell prompt setup #####
 setopt prompt_subst
+setopt interactivecomments
 
 KEYTIMEOUT=1
 
