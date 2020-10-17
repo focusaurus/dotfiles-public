@@ -2,12 +2,13 @@ acpi
 acpid
 alacritty
 at
+awesome
 aws-cli
 aws-iam-authenticator-bin
-babashka-bin
 base
 bat
-bind-tools
+bind
+bison
 blueman
 bluez-utils
 brightnessctl
@@ -51,6 +52,7 @@ jo
 keybase-gui
 kubectl
 kustomize
+lua54
 macchanger
 make
 man-db
@@ -62,7 +64,6 @@ navi-bin
 neovim-git
 network-manager-applet
 nordvpn-bin
-nosqlbooster-mongodb
 nvm
 obs-studio
 openvpn
@@ -71,7 +72,6 @@ pavucontrol
 pinta
 pkgconf
 pod2man
-polybar
 ponymix
 prettier
 pulldown-cmark
@@ -89,6 +89,7 @@ shfmt
 slack-desktop
 sops
 sshuttle
+stack
 sxhkd
 syncthing
 system-config-printer
@@ -105,6 +106,7 @@ ttf-fira-code
 ttf-inconsolata
 ttf-iosevka-ss03
 ttf-iosevka-term-ss03
+ttf-jetbrains-mono
 upower
 urlview-git
 visual-studio-code-bin
