@@ -37,14 +37,14 @@ input (iokit-name "Infinity_Ergodox/QMK")
 
 modifiers='
 caps @tap-escape-hold-control
-lsft @tap-snippet-hold-shift
+lsft _
 rsft @tap-snippet-hold-shift
 lctl @tap-escape-hold-control
 rctl @tap-escape-hold-control
 lmet @tap-fuzzball-hold-super
 rmet @tap-fuzzball-hold-super
 ssrq @tap-fuzzball-hold-super
-spc @tap-space-hold-shift
+spc @tap-space-hold-navigation XX
 '
 
 letters_macos='
@@ -56,9 +56,9 @@ letters_linux="
 - [
 = ]
 q '
-w ,
-e .
-r p
+w , bspc
+e . spc
+r p del
 t y
 y f
 u g
@@ -70,9 +70,9 @@ p l
 \\ \\
 
 a @tap-a-hold-hyper
-s o
-d e
-f u
+s o lft
+d e up
+f u rght
 g i
 h d
 j h
@@ -82,9 +82,9 @@ l n
 ' -
 
 z ;
-x q
-c j
-v k
+x q home
+c j down
+v k end
 b x
 n b
 m m
@@ -134,12 +134,14 @@ for name in thinkpad macbook ergodox-linux ergodox-macos; do
 (defalias
   hyper (around lctl lmet)
   tap-space-hold-shift (tap-hold-next-release 500 spc lsft)
+  tap-space-hold-navigation (tap-hold-next-release 500 spc (layer-toggle navigation))
   tap-a-hold-hyper (tap-hold-next-release 500 a @hyper)
   tap-s-hold-hyper (tap-hold-next-release 500 s @hyper)
   tap-semi-hold-hyper (tap-hold-next-release 500 ; @hyper)
   tap-escape-hold-control (tap-hold-next-release 150 esc lctl)
   tap-snippet-hold-shift (tap-hold-next-release 150 C-2 lsft)
   tap-fuzzball-hold-super (tap-hold-next-release 150 M-spc lmet)
+
 )
 
 (defsrc"
@@ -158,7 +160,15 @@ for name in thinkpad macbook ergodox-linux ergodox-macos; do
         echo -n "${mapping}" | awk '{print "  " $2 " ;; " $1}'
       done
     }
-    echo ")"
-  ) >>"${name}.kbd"
+    echo ")
 
+(deflayer navigation"
+
+    echo "${modifiers}${letters}" | {
+      while IFS= read -r mapping; do
+        echo -n "${mapping}" | awk '{print "  " ($3==""?"_":$3) " ;; " $1}'
+      done
+    }
+    echo ")"
+    ) >>"${name}.kbd"
 done

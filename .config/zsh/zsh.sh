@@ -21,12 +21,13 @@ tt() {
 alias -g /l='| less'
 alias -g //l='2>&1 | less'
 alias -g /c='| copy'
-alias -g /p='$(paste)'
+alias -g /p='"$(paste)"'
 alias -g /x='| xargs'
 
 # alias -g devlog='json -g -a -0 -e "delete this.v; delete this.hostname;delete this.level; delete this.pid; delete this.name"'
 ##### shell prompt setup #####
 setopt prompt_subst
+setopt interactivecomments
 
 KEYTIMEOUT=1
 
@@ -128,8 +129,12 @@ TRAPUSR1() {
   exec "${SHELL}"
 }
 
+# reload shell setup (rss mnemonic)
+# Basically send a USR1 signal to every zsh process so they reload
+# their config on next command
+# Helpful when I add new functions and aliases
 rss() {
-   ps -U $USER -c | grep 'ttys.*zsh$' | awk '{print $1}' | xargs kill -USR1 &
+   killall -c 'zsh' -u "${USER}" -SIGUSR1
 }
 
 # control-left-arrow goes back a word, right goes forward

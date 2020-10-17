@@ -42,11 +42,11 @@
                         ]
                     },
                     {
-                        "description": "Change shift to control+2 if pressed alone.",
+                        "description": "Change right shift to control+2 if pressed alone.",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "left_shift",
+                                    "key_code": "right_shift",
                                     "modifiers": {
                                         "optional": [
                                             "any"
@@ -55,7 +55,7 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "left_shift"
+                                        "key_code": "right_shift"
                                     }
                                 ],
                                 "to_if_alone": [

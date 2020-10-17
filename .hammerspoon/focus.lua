@@ -22,6 +22,12 @@ function module.emacs()
   hs.application.launchOrFocus("Emacs")
 end
 
+function module.code()
+  log.d("code")
+  hs.application.launchOrFocus("Visual Studio Code")
+end
+
+
 function module.workflowy()
   log.d("workflowy")
   hs.application.launchOrFocus("WorkFlowy")
