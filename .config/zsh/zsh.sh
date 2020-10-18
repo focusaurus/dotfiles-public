@@ -134,7 +134,7 @@ TRAPUSR1() {
 # their config on next command
 # Helpful when I add new functions and aliases
 rss() {
-   killall -c 'zsh' -u "${USER}" -SIGUSR1
+  killall -u "${USER}" -SIGUSR1 'zsh'
 }
 
 # control-left-arrow goes back a word, right goes forward
