@@ -25,6 +25,11 @@ input  (device-file "/dev/input/by-id/usb-ErgoDox_EZ_ErgoDox_EZ_0-event-kbd")
   output (uinput-sink "kmonad-ergodox")
 '
 
+defcfg_infinity_linux='
+input  (device-file "/dev/input/by-id/usb-Input_Club_Infinity_Ergodox_QMK_0-event-kbd")
+  output (uinput-sink "kmonad-infinity")
+'
+
 defcfg_macbook='
 input (iokit-name "Apple Internal Keyboard / Trackpad")
   output (kext)
@@ -100,7 +105,7 @@ m m
 #   DEVICE='/dev/input/by-path/platform-i8042-serio-0-event-kbd' \
 #   envsubst < main.kbd.tpl > "${NAME}.kbd"
 
-for name in thinkpad macbook ergodox-linux ergodox-macos; do
+for name in thinkpad macbook ergodox-linux infinity-linux ergodox-macos; do
   case "${name}" in
   thinkpad)
     defcfg="${defcfg_thinkpad}"
@@ -108,6 +113,10 @@ for name in thinkpad macbook ergodox-linux ergodox-macos; do
     ;;
   ergodox-linux)
     defcfg="${defcfg_ergodox_linux}"
+    letters="${letters_linux}"
+    ;;
+  infinity-linux)
+    defcfg="${defcfg_infinity_linux}"
     letters="${letters_linux}"
     ;;
   macbook)
