@@ -74,7 +74,8 @@ main() {
   current_workspace=$(xdotool get_desktop)
   case $1 in
   f1)
-    activate_firefox_main_window
+   activate_window 'google-chrome.Google-chrome' 'google-chrome-stable'
+    # activate_firefox_main_window
     ;;
   control+f1)
     # activate_window 'pete@' "${HOME}/bin/launch-chrome-app.sh" gmail

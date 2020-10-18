@@ -1,0 +1,10 @@
+[Unit]
+Description=kmonad keyboard fancifier
+
+[Service]
+ExecStartPre=/bin/bash "${HOME}/.config/kmonad/render.sh"
+ExecStart=/usr/local/bin/kmonad "${HOME}/.config/kmonad/infinity-linux.kbd"
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
