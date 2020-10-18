@@ -3,3 +3,10 @@ application/pdf=com.github.xournalpp.xournalpp.desktop;org.gnome.Evince.desktop;
 
 [Default Applications]
 x-scheme-handler/postman=Postman.desktop
+text/html=google-chrome.desktop
+x-scheme-handler/http=google-chrome.desktop
+x-scheme-handler/https=google-chrome.desktop
+x-scheme-handler/about=google-chrome.desktop
+x-scheme-handler/unknown=google-chrome.desktop
+x-scheme-handler/mailto=google-chrome.desktop
+x-scheme-handler/webcal=google-chrome.desktop
