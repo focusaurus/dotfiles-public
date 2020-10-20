@@ -95,7 +95,11 @@ whatismyipaddress() {
   ip=$(curl --silent --fail https://myip.dnsomatic.com/)
   echo -n "${ip}" | ~/bin/copy
   echo "${ip} (copied to clipboard)"
-  ip -o -4 -br address | grep -v '^br-'
+  if [[ "$(uname)" == "Darwin" ]]; then
+    ifconfig -a | grep inet
+  else
+    ip -o -4 -br address | grep -v '^br-'
+  fi
 }
 alias myip="curl http://myip.dnsomatic.com;echo"
 TAILER="/usr/bin/less"
