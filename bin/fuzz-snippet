@@ -53,7 +53,7 @@ if [[ $(uname) == "Darwin" ]]; then
     sleep 5
     ~/bin/log "$0" pasting
     cliclick kd:cmd t:v ku:cmd
-    ~/bin/log "$0" done
+    ~/bin/log "$0" "done"
   fi
   exit
 fi
@@ -65,10 +65,13 @@ echo -n "${expansion}" | ~/bin/copy
 pid=$(xdotool getactivewindow getwindowpid)
 if grep -E '(gnome-terminal|termite)' "/proc/${pid}/cmdline" >/dev/null; then
   # paste into the active window via keyboard shortcut
-  xdotool key ctrl+shift+v
+  xdotool key "ctrl+shift+period"
 else
   # paste into the active window via keyboard shortcut
-  xdotool key ctrl+v
+  # WARNING: Due to kmonad handling dvorak at the kernel level,
+  # we need to send the qwerty button that will yield the dvorak
+  # keysym we want, so here we are sending "period" to get "v" for paste
+  xdotool key "ctrl+period"
 fi
 post="${abbreviation}-post.sh"
 if [[ -x "${post}" ]]; then

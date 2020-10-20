@@ -16,7 +16,9 @@ if [[ "$(uname)" == "Darwin" ]]; then
   cliclick kd:cmd,shift  t:4 ku:cmd,shift
   exit
 fi
-suffix=$(zenity --entry --text suffix)
+# suffix=$(zenity --entry --text suffix)
+suffix=$(yad --entry --title "suffix" --text "suffix" --width 500)
+
 dest="${HOME}/screens"
 mkdir -p "${dest}"
 # Select an area
