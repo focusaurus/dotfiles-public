@@ -63,6 +63,8 @@ local clientkeys = gears.table.join(
     {description = "close", group = "client"}),
   awful.key(hyper_pl, "t", focus_previous,
    {description="focus previous", group="client"}),
+  cyclefocus.key({super}, "Tab",
+    {cycle_filters = {cyclefocus.filters.same_screen, cyclefocus.filters.common_tag}}),
   cyclefocus.key(hyper_pl, "Tab",
     {cycle_filters = {cyclefocus.filters.same_screen, cyclefocus.filters.common_tag}}))
 

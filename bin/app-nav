@@ -12,7 +12,7 @@ set -o posix    # more strict failures in subshells
 
 IFS="$(printf "\n\t")"
 # ---- End unofficial bash strict mode boilerplate
-nav_firefox() {
+nav_browser() {
   case "$1" in
   left)
     xdotool key --clearmodifiers ctrl+shift+Tab
@@ -64,8 +64,8 @@ main() {
   # so we wait for the keys to be released
   sleep 0.1
   case "${app}" in
-  *firefox*)
-    nav_firefox "${direction}"
+  *firefox*|*chrome*)
+    nav_browser "${direction}"
     ;;
   *termite* | *iTerm2*)
     ~/bin/nav-tmux "${direction}"

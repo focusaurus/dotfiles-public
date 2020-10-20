@@ -48,11 +48,15 @@ function placement.fullscreen_toggle(client)
 end
 
 function placement.cycle(client)
-  ratio = client.width / client.screen.geometry.width
-  if ratio > 0.75 then
+  local ratio = client.width / client.screen.geometry.width
+  local x_pos = client.x - client.screen.geometry.x
+  -- local debug = require("gears.debug")
+  -- debug.print_warning("client.x " .. client.x)
+  -- debug.print_warning("screen.geometry.x " .. client.screen.geometry.x)
+  if ratio > 0.9 then
     placement.left_half(client)
   else
-    if client.x < 100 then
+    if x_pos < 50 then
       placement.right_half(client)
     else
       placement.maximize_toggle(client)

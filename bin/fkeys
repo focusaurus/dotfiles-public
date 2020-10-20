@@ -26,12 +26,6 @@ IFS="$(printf "\n\t")"
 #   exec "${command}"
 # }
 
-i3_mark_last() {
-  if [[ -n "${I3SOCK}" ]]; then
-    i3-msg mark LAST
-  fi
-}
-
 activate_window() {
   class="$1"
   shift
@@ -50,7 +44,6 @@ activate_window() {
   id=$(echo "${same_desktop}${matches}" | head -1 | cut -d , -f 3)
   #echo "HEY MATCHED ${id}"
   if [[ -n "${id}" ]]; then
-    i3_mark_last
     wmctrl -i -a "${id}"
   else
     # shellcheck disable=SC2086
@@ -58,12 +51,19 @@ activate_window() {
   fi
 }
 
+browser() {
+  activate_window 'google-chrome.Google-chrome' 'google-chrome-stable'
+}
+
+browser_tab() {
+  xdotool key "ctrl+$1"
+}
+
 activate_firefox_main_window() {
   # This is not super robust. It assumes the main firefox general purpose
   # window is the first one launched
   id=$(wmctrl -lx | grep -i "Navigator.firefox" | head -1 | awk '{print $1}' || true)
   if [[ -n "${id}" ]]; then
-    i3_mark_last
     wmctrl -i -a "${id}"
   else
     exec firefox
@@ -74,14 +74,15 @@ main() {
   current_workspace=$(xdotool get_desktop)
   case $1 in
   f1)
-    activate_firefox_main_window
+    browser
+    # activate_firefox_main_window
     ;;
   control+f1)
     # activate_window 'pete@' "${HOME}/bin/launch-chrome-app.sh" gmail
     # activate_window 'pete@' firefox --new-window "https://mail.google.com/mail/u/0/#search/is%3Astarred+OR+is%3Aunread"
     activate_firefox_main_window
     sleep 0.4
-    xdotool key alt+1
+    browser_tab 1
     ;;
   f2)
     # switch to workspace 2 (text editor)
@@ -90,7 +91,17 @@ main() {
     activate_window 'emacs.Emacs' 'emacs'
     ;;
   f3)
-    activate_window termite termite --title termite
+    if wmctrl -l | grep -qi "termite"; then
+      if xdotool getactivewindow getwindowname | grep -qi 'termite-mailchimp'; then
+        # mailchimp is active, switch to local
+        activate_window termite termite --title termite
+      else
+        # termite is open but not active, activate it
+        activate_window termite-mailchimp true
+      fi
+    else
+      activate_window termite termite --title termite
+    fi
     ;;
   f4)
     #local app_image
@@ -128,44 +139,53 @@ main() {
     activate_window 'zulip' /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=zulip --file-forwarding org.zulip.Zulip
     ;;
   f7)
-    # activate_window ' - Calendar' "${HOME}/bin/launch-chrome-app.sh" google-calendar
+    browser
+    # activate_window ' - Calendar' "google-chrome-stable" google-calendar
     # activate_window ' - Calendar' firefox --new-window "https://calendar.google.com/calendar/r"
-    activate_firefox_main_window
+    # activate_firefox_main_window
     sleep 0.2
-    xdotool key alt+2
+    browser_tab 2
     ;;
   f8)
-    activate_firefox_main_window
+    browser
+    # activate_firefox_main_window
     sleep 0.2
-    xdotool key alt+3
+    browser_tab 3
+    ;;
+  f9)
+    ~/git.peterlyons.com/dotfiles/fuzzball/journal-mailchimp
+
+    ;;
+  shift+f9)
+    ~/git.peterlyons.com/dotfiles/fuzzball/journal-mailchimp-standup
     ;;
   f11)
-    new_workspace=$((current_workspace - 1))
-    if [[ ${new_workspace} -lt 0 ]]; then
-      new_workspace=1
-    fi
-    xdotool set_desktop "${new_workspace}"
+    # new_workspace=$((current_workspace - 1))
+    # if [[ ${new_workspace} -lt 0 ]]; then
+    #   new_workspace=1
+    # fi
+    # xdotool set_desktop "${new_workspace}"
     ;;
   shift+f11)
-    new_workspace=$((current_workspace - 1))
-    if [[ ${new_workspace} -lt 0 ]]; then
-      new_workspace=1
-    fi
-    xdotool getactivewindow set_desktop_for_window "${new_workspace}"
+    # new_workspace=$((current_workspace - 1))
+    # if [[ ${new_workspace} -lt 0 ]]; then
+    #   new_workspace=1
+    # fi
+    # xdotool getactivewindow set_desktop_for_window "${new_workspace}"
     ;;
   f12)
-    new_workspace=$((current_workspace + 1))
-    if [[ ${new_workspace} -gt 3 ]]; then
-      new_workspace=0
-    fi
-    xdotool set_desktop "${new_workspace}"
+    # new_workspace=$((current_workspace + 1))
+    # if [[ ${new_workspace} -gt 3 ]]; then
+    #   new_workspace=0
+    # fi
+    # xdotool set_desktop "${new_workspace}"
     ;;
   shift+f12)
-    new_workspace=$((current_workspace + 1))
-    if [[ ${new_workspace} -gt 3 ]]; then
-      new_workspace=0
-    fi
-    xdotool getactivewindow set_desktop_for_window "${new_workspace}"
+    # new_workspace=$((current_workspace + 1))
+    # if [[ ${new_workspace} -gt 3 ]]; then
+    #   new_workspace=0
+    # fi
+    # xdotool getactivewindow set_desktop_for_window "${new_workspace}"
     ;;
   esac
 }

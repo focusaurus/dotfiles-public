@@ -1,11 +1,6 @@
 acpid.service
 atd.service
-autovt@.service
 bluetooth.service
-dbus-org.bluez.service
-dbus-org.freedesktop.nm-dispatcher.service
-dbus-org.freedesktop.timesync1.service
-display-manager.service
 docker.service
 getty@.service
 lenovo_fix.service
@@ -26,7 +21,6 @@ systemd-homed.service
 systemd-networkd.service
 systemd-pstore.service
 systemd-remount-fs.service
-systemd-repart.service
 systemd-resolved.service
 systemd-timesyncd.service
 systemd-userdbd.socket

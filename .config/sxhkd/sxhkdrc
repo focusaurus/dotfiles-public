@@ -19,11 +19,11 @@
 ##### rofi fuzzy overlays #####
 super + space
   ~/bin/fuzz-script-choose
-control + 2
+super + 2
   ~/bin/fuzz-snippet
 super + shift + space
   rofi -show run
-control + 4
+super + 4
   rofi -show window
 
 ##### app-nav #####
@@ -62,6 +62,8 @@ F8
   ~/bin/fkeys f8
 F9
   ~/bin/fkeys f9
+shift+F9
+  ~/bin/fkeys shift+f9
 F10
   ~/bin/fkeys f10
 F11
