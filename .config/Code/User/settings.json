@@ -31,7 +31,7 @@
   "editor.autoClosingBrackets": "never",
   "editor.autoClosingQuotes": "never",
   "editor.acceptSuggestionOnCommitCharacter": false,
-  "workbench.colorTheme": "Quiet Light",
+  "workbench.colorTheme": "Visual Studio Dark",
   "window.newWindowDimensions": "maximized",
   "window.openFilesInNewWindow": "on",
   "window.openFoldersInNewWindow": "on",
@@ -52,14 +52,14 @@
   "explorer.confirmDelete": false,
   "workbench.editor.enablePreview": false,
   "workbench.editor.enablePreviewFromQuickOpen": false,
-  "editor.renderWhitespace": "boundary",
+  "editor.renderWhitespace": "trailing",
   "editor.acceptSuggestionOnEnter": "off",
   "shellcheck.disableVersionCheck": true,
   "diffEditor.ignoreTrimWhitespace": false,
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
   },
-  "editor.fontFamily": "'Inconsolata', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+  "editor.fontFamily": "'JetBrains Mono', 'Inconsolata', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
   "markdown.preview.markEditorSelection": false,
   "markdown.preview.scrollEditorWithPreview": false,
   "gitlens.advanced.telemetry.enabled": false,
@@ -88,6 +88,5 @@
   "[dockerfile]": {
     "editor.defaultFormatter": "ms-azuretools.vscode-docker"
   },
-  "workbench.editor.showTabs": true,
-  "editor.wordWrap": "bounded"
+  "workbench.editor.showTabs": true
 }
