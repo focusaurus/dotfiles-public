@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-##### golang #####
+export GOBIN=~/go/bin
