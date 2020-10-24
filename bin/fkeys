@@ -31,7 +31,7 @@ activate_window() {
   shift
   command=$*
   matches=$(wmctrl -lx | grep -i "${class}" | tac | awk '{print $2 "," $3 "," $1 "," $4}' || true)
-  #echo matches "${matches}"
+  # echo matches "${matches}"
   if [[ -z "${matches}" ]]; then
     # No matching windows, launch the app
     # shellcheck disable=SC2086
@@ -52,7 +52,8 @@ activate_window() {
 }
 
 browser() {
-  activate_window 'google-chrome.Google-chrome' 'google-chrome-stable'
+  # activate_window 'google-chrome.Google-chrome' 'google-chrome-stable'
+  activate_firefox_main_window
 }
 
 browser_tab() {
@@ -91,17 +92,18 @@ main() {
     activate_window 'emacs.Emacs' 'emacs'
     ;;
   f3)
-    if wmctrl -l | grep -qi "termite"; then
-      if xdotool getactivewindow getwindowname | grep -qi 'termite-mailchimp'; then
-        # mailchimp is active, switch to local
-        activate_window termite termite --title termite
-      else
-        # termite is open but not active, activate it
-        activate_window termite-mailchimp true
-      fi
-    else
-      activate_window termite termite --title termite
-    fi
+    activate_window termite termite --title termite
+    # if wmctrl -lx | grep -qi "termite"; then
+    #   if xdotool getactivewindow getwindowname | grep -qi 'termite-mailchimp'; then
+    #     # mailchimp is active, switch to local
+    #     activate_window termite termite --title termite
+    #   else
+    #     # termite is open but not active, activate it
+    #     activate_window termite-mailchimp true
+    #   fi
+    # else
+    #   activate_window termite termite --title termite
+    # fi
     ;;
   f4)
     #local app_image
