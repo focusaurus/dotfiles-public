@@ -108,7 +108,8 @@ main() {
   f4)
     #local app_image
     #app_image="$(find "${HOME}/aur/workflowy" -type f -name 'WorkFlowy-*.AppImage' | sort -n | head -1)"
-    activate_window 'workflowy' "/opt/WorkFlowy-x86_64.AppImage"
+    # activate_window 'workflowy' "/opt/WorkFlowy-x86_64.AppImage"
+    activate_window 'emacs.Emacs' 'emacs'
     ;;
   control+f4)
     ~/git.peterlyons.com/dotfiles/fuzzball/workflowy-done

@@ -7,6 +7,7 @@ local cyclefocus = require("cyclefocus")
 
 local placement = require("placement")
 local focus = require("focus")
+local wibar = require("wibar")
 
 alt = "Mod1"
 control = "Control"
@@ -34,7 +35,9 @@ root.keys(
     awful.key(hyper_pl, "h", focus.left,
       {description = "focus previous (left) by index", group = "client" }),
     awful.key(hyper_pl, "n", focus.right,
-      {description = "focus previous (right) by index", group = "client" })))
+      {description = "focus previous (right) by index", group = "client" }),
+    awful.key(hyper_pl, "F1", wibar.set_volume,
+      {description = "dev", group = "dev" })))
 -- awful.key(hyper_pl, "r",
 --   function() awful.screen.focused().mypromptbox:run() end,
 --   {description = "run prompt", group = "launcher"}),

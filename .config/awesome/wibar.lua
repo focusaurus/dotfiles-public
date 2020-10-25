@@ -8,6 +8,8 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
+
+local module = {}
 --- This is used later as the default terminal and editor to run.
 terminal = "termite"
 editor = os.getenv("EDITOR") or "nano"
@@ -76,15 +78,16 @@ local clock_widget = wibox.widget.textclock()
 local microphone_script_widget = awful.widget.watch(
                                      os.getenv("HOME") ..
                                          "/bin/widgets/microphone", 2)
-local volume_script_widget = awful.widget.watch(
-                                 os.getenv("HOME") .. "/bin/widgets/volume", 2)
+-- local volume_script_widget = awful.widget.watch(
+                                 -- os.getenv("HOME") .. "/bin/widgets/volume", 20)
 local battery_script_widget = awful.widget.watch(
                                   os.getenv("HOME") .. "/bin/widgets/battery",
-                                  10)
+                                  30)
 local screen_brightness_script_widget = awful.widget.watch(
                                             os.getenv("HOME") ..
                                                 "/bin/widgets/screen-brightness",
                                             4)
+local volume_widget = wibox.widget.textbox("")
 
 awful.screen.connect_for_each_screen(function(s)
 
@@ -136,7 +139,8 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytasklist, -- Middle widget
     { -- Right widgets
       layout = wibox.layout.fixed.horizontal,
-      volume_script_widget,
+      -- volume_script_widget,
+      volume_widget,
       battery_script_widget,
       microphone_script_widget,
       screen_brightness_script_widget,
@@ -146,3 +150,23 @@ awful.screen.connect_for_each_screen(function(s)
     }
   }
 end)
+
+local volume_script_path = os.getenv("HOME") .. "/bin/widgets/volume"
+
+function module.set_volume()
+   awful.spawn.easy_async_with_shell(volume_script_path, function(stdout)
+     volume_widget.text = stdout
+    end)
+end
+module.set_volume()
+-- Sleeps until pactl detects an event (volume up/down/toggle mute)
+local volume_script = [[
+    bash -c "
+    LANG=C pactl subscribe 2> /dev/null | grep --line-buffered \"Event 'change' on sink #\"
+    "]]
+-- Kill old pactl subscribe processes
+awful.spawn.easy_async_with_shell("pkill -f \"pactl subscribe\"", function ()
+  awful.spawn.with_line_callback(volume_script, { stdout = module.set_volume })
+end)
+
+return module
