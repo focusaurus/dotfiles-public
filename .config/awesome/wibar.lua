@@ -78,8 +78,6 @@ local clock_widget = wibox.widget.textclock()
 local microphone_script_widget = awful.widget.watch(
                                      os.getenv("HOME") ..
                                          "/bin/widgets/microphone", 2)
--- local volume_script_widget = awful.widget.watch(
-                                 -- os.getenv("HOME") .. "/bin/widgets/volume", 20)
 local battery_script_widget = awful.widget.watch(
                                   os.getenv("HOME") .. "/bin/widgets/battery",
                                   30)
@@ -139,7 +137,6 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytasklist, -- Middle widget
     { -- Right widgets
       layout = wibox.layout.fixed.horizontal,
-      -- volume_script_widget,
       volume_widget,
       battery_script_widget,
       microphone_script_widget,
@@ -151,6 +148,7 @@ awful.screen.connect_for_each_screen(function(s)
   }
 end)
 
+-- https://github.com/elenapan/dotfiles/blob/master/config/awesome/evil/volume.lua
 local volume_script_path = os.getenv("HOME") .. "/bin/widgets/volume"
 
 function module.set_volume()
