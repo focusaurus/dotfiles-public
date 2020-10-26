@@ -5,7 +5,7 @@ arandr
 arc-icon-theme-full-git
 arc-x-icons-theme
 at
-awesome-git
+awesome
 aws-cli
 base
 bat
@@ -37,10 +37,12 @@ fswatch
 fzf
 gcalcli
 gedit
+gitui-bin
 gnome-screenshot
 google-chrome
 grub
 gthumb
+hwinfo
 imwheel
 intel-ucode
 jq
@@ -69,8 +71,6 @@ pinta
 pkgconf
 ponymix
 pulldown-cmark
-pulseaudio-equalizer
-pulseaudio-jack
 pup-bin
 rclone
 ripgrep
