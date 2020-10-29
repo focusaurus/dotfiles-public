@@ -4,6 +4,7 @@ alsa-utils
 arandr
 arc-icon-theme-full-git
 arc-x-icons-theme
+arduino
 at
 awesome
 aws-cli
