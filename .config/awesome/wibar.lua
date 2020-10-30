@@ -163,7 +163,7 @@ local volume_script = [[
     LANG=C pactl subscribe 2> /dev/null | grep --line-buffered \"Event 'change' on sink #\"
     "]]
 -- Kill old pactl subscribe processes
-awful.spawn.easy_async_with_shell("pkill -f \"pactl subscribe\"", function ()
+awful.spawn.easy_async({"pkill", "--full", "--uid", os.getenv("USER"), "^pactl subscribe"}, function ()
   awful.spawn.with_line_callback(volume_script, { stdout = module.set_volume })
 end)
 
