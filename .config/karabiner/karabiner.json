@@ -60,7 +60,7 @@
                                 ],
                                 "to_if_alone": [
                                     {
-                                        "key_code": "2",
+                                        "key_code": "3",
                                         "modifiers": [
                                             "left_control"
                                         ]
