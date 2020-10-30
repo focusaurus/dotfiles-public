@@ -69,7 +69,13 @@ if [[ -n "${ZSH_VERSION}" ]]; then
       query=$(echo "${LBUFFER}" | awk '{print $NF}')
     fi
 
-    declare -a fd_opts=(--ignore-file .gitignore --ignore-file .ignore --max-depth 12 "$@")
+    declare -a fd_opts=(--max-depth 12 "$@")
+
+    for file in .gitignore .ignore; do
+      if [[ -f "${file}" ]]; then
+        fd_opts+=(--ignore-file "${file}")
+      fi
+    done
     # shellcheck disable=SC2145
     ~/bin/log "$0" "fuzz-all-into-line fd_opts: ${fd_opts[@]}"
     # Find the path; abort if the user doesn't select anything.
@@ -79,7 +85,7 @@ if [[ -n "${ZSH_VERSION}" ]]; then
     local new_buffer
     if [[ "${LBUFFER}" =~ "\s$" ]]; then
       # no-query-mode: append the chosen path
-      new_buffer="${LBUFFER}${chosen_path}"
+      new_buffer="${LBUFFER} ${chosen_path}"
     else
       # pre-filter mode, replace the last token with the chosen path
       new_buffer="$(echo "${LBUFFER}" | awk '{$NF=""; print $0}')${chosen_path}"
