@@ -59,11 +59,12 @@ if [[ -n "${ZSH_VERSION}" ]]; then
   #  - command line ended with a trailing space when hotkey was pressed
   #  - Do an unfiltered fuzzy find and append the chosen path to the command line
   function fuzz-all-into-line() {
-    ~/bin/log "$0" "fuzz-all-into-line @: $* "
+    ~/bin/log "$0" "fuzz-all-into-line @: $*"
     # Print a newline or we'll clobber the old prompt.
     echo
     local query=""
     if [[ ! "${LBUFFER}" =~ "\s$" ]]; then
+      ~/bin/log "$0" "No trailing space: query mode"
       # query-mode: grab last word of command line as the query
       # Command line does not end with a trailing space, use a pre-filter query
       query=$(echo "${LBUFFER}" | awk '{print $NF}')
@@ -79,8 +80,9 @@ if [[ -n "${ZSH_VERSION}" ]]; then
     # shellcheck disable=SC2145
     ~/bin/log "$0" "fuzz-all-into-line fd_opts: ${fd_opts[@]}"
     # Find the path; abort if the user doesn't select anything.
+    ~/bin/log "$0" "running skim pipeline"
     local chosen_path
-    chosen_path=$(fd "${fd_opts[@]}" | fzf --select-1 --exit-0 --query "${query}") || return
+    chosen_path=$(fd "${fd_opts[@]}" | skim --select-1 --exit-0 --query "${query}") || return
     ~/bin/log "$0" "fuzz-all-into-line chosen_path: ${chosen_path}"
     local new_buffer
     if [[ "${LBUFFER}" =~ "\s$" ]]; then
@@ -93,7 +95,7 @@ if [[ -n "${ZSH_VERSION}" ]]; then
     # Append the selection to the current command buffer.
     # shellcheck disable=SC2034
     eval 'LBUFFER="${new_buffer} "'
-    # Redraw the prompt since fzf has drawn several new lines of text.
+    # Redraw the prompt since skim has drawn several new lines of text.
     zle reset-prompt
   }
   zle -N fuzz-all-into-line # Create the zle widget

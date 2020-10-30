@@ -12,5 +12,8 @@ set -o posix    # more strict failures in subshells
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-
-cat | (fzf --select-1 --query "$1" || fzf --query "${1}")
+fuzzer='fzf'
+if ~/bin/have-exe skim; then
+  fuzzer='skim'
+fi
+cat | ("${fuzzer}" --select-1 --query "$1" || "${fuzzer}" --query "${1}")
