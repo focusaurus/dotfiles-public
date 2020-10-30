@@ -23,10 +23,10 @@ sync_dir() {
     return
   fi
   if ! ~/bin/git-is-work-tree-clean; then
-    echo "${ME}: work tree not clean. Press ENTER to launch tig."
+    echo "${ME}: work tree not clean. Press ENTER to launch gitui."
     # shellcheck disable=SC2034
     read -r wait_for_enter
-    tig status
+    gitui
   fi
   # if ! ~/bin/git-is-work-tree-clean; then
   #   echo "Work tree not clean. Not syncing."

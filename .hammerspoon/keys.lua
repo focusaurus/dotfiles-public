@@ -29,7 +29,7 @@ hs.hotkey.bind({"option"}, "c", placement.cycle)
 
 -- fuzzy prompts
 hs.hotkey.bind({"command"}, "space", fuzzball.chooseScript)
-hs.hotkey.bind({"control"}, "2", snippets.chooseByUIAndType)
+hs.hotkey.bind({"control"}, "3", snippets.chooseByUIAndType)
 
 -- journal
 hs.hotkey.bind({}, "f9", journal.appendByDialog)
