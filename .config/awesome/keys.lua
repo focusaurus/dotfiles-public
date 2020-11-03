@@ -14,6 +14,7 @@ local control = "Control"
 local super = "Mod4"
 local shift = "Shift"
 local home_bin = os.getenv("HOME") .. "/bin"
+local app_nav = home_bin .. "/app-nav"
 -- Note I have kmonad mod-taps for hyper_pl on home row pinkies also
 local hyper_pl = {"Control", "Mod4"}
 local function noop() end
@@ -27,7 +28,6 @@ local function fkeys(modifers, keysym, arg)
   if arg == nil then
     arg = string.lower(keysym)
   end
-  -- the above goes to ~/.xsession-errors
   return awful.key(
     modifers,
     keysym,
@@ -36,6 +36,14 @@ local function fkeys(modifers, keysym, arg)
       awful.spawn.easy_async({fkeys_path, arg}, noop)
     end,
     {description="fkeys", group="fkeys"})
+end
+
+local function key_run(modifers, key, cmd)
+  return awful.key(
+    modifers,
+    key,
+    function() awful.spawn.easy_async(cmd, noop) end,
+    {description="key_run", group="keys"})
 end
 
 -- mouse bindings
@@ -73,19 +81,23 @@ root.keys(
     fkeys({}, "F8"),
     fkeys({}, "F9"),
     fkeys({shift}, "F9", "shift+f9"),
-    awful.key({super}, "space", runner({home_bin .. "/fuzz-script-choose"})),
-    awful.key({super}, "2", runner({home_bin .. "/fuzz-snippet"})),
-    awful.key({super, shift}, "space", runner({"rofi", "-show", "run"})),
-    awful.key({super}, "4", runner({"rofi", "-show", "window"})),
-    awful.key({super, control}, "o", runner({home_bin .. "/app-nav", "left"})),
-    awful.key({super, control}, "e", runner({home_bin .. "/app-nav", "up"})),
-    awful.key({super, control}, "u", runner({home_bin .. "/app-nav", "right"})),
-    awful.key({super, control}, "Left", runner({home_bin .. "/app-nav", "left"})),
-    awful.key({super, control}, "Down", runner({home_bin .. "/app-nav", "down"})),
-    awful.key({super, control}, "Up", runner({home_bin .. "/app-nav", "up"})),
-    awful.key({super, control}, "Right", runner({home_bin .. "/app-nav", "right"})),
-    awful.key({}, "XF86MonBrightnessDown", runner({"sudo", "brightnessctl", "set", "20%-"})),
-    awful.key({}, "XF86MonBrightnessUp", runner({"sudo", "brightnessctl", "set", "20%+"}))
+    key_run({super}, "space", {home_bin .. "/fuzz-script-choose"}),
+    key_run({super}, "2", {home_bin .. "/fuzz-snippet"}),
+    key_run({super, shift}, "space", {"rofi", "-show", "run"}),
+    key_run({super}, "4", {"rofi", "-show", "window"}),
+    key_run({super, control}, "o", {app_nav, "left"}),
+    key_run({super, control}, "e", {app_nav, "up"}),
+    key_run({super, control}, "u", {app_nav, "right"}),
+    key_run({super, control}, "Left", {app_nav, "left"}),
+    key_run({super, control}, "Down", {app_nav, "down"}),
+    key_run({super, control}, "Up", {app_nav, "up"}),
+    key_run({super, control}, "Right", {app_nav, "right"}),
+    key_run({}, "XF86MonBrightnessDown", {"sudo", "brightnessctl", "set", "20%-"}),
+    key_run({}, "XF86MonBrightnessUp", {"sudo", "brightnessctl", "set", "20%+"}),
+    key_run({}, "XF86AudioRaiseVolume", {home_bin .. "/volume", "+10%"}),
+    key_run({}, "XF86AudioLowerVolume", {home_bin .. "/volume", "-10%"}),
+    key_run({}, "XF86AudioMute", {home_bin .. "/volume-toggle-mute"}),
+    key_run({}, "XF86AudioMicMute", {home_bin .. "/microphone-toggle"})
   )
 )
 -- awful.key(hyper_pl, "r",
