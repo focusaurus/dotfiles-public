@@ -70,19 +70,25 @@ github() {
   shift
   case "${subcommand}" in
   clone)
-    local url
+    repo_any_url="$1"
+    if [[ -z "${repo_any_url}" ]]; then
+      repo_any_url=$(~/bin/prompt-or-clipboard "Github Repo URL")
+    fi
+    local repo_base_url
+    repo_base_url=$(echo "${repo_any_url}" | cut -d / -f 1-5)
+    ~/bin/log "$0" "${repo_base_url}"
+    if [[ ! "${repo_base_url}" =~ \.git$ ]]; then
+      repo_base_url="${repo_base_url}.git"
+    fi
     local org
     local repo
-    url="${1:-$(~/bin/paste)}"
-    # shellcheck disable=SC2001
-    org_repo=$(echo "${url}" | sed 's/.*github\.com.//')
-    org="$(echo "${org_repo}" | cut -d / -f 1)"
-    repo="$(echo "${org_repo}" | cut -d / -f 2)"
+    org="$(echo "${repo_base_url}" | cut -d / -f 4)"
+    repo="$(echo "${repo_base_url}" | cut -d / -f 5)"
     echo "${org}"
     echo "${repo}"
     mkdir -p "${HOME}/github.com/${org}"
     cd "${HOME}/github.com/${org}" || return 1
-    git clone --recursive "${url}"
+    git clone --recursive "${repo_base_url}"
     cd "$(basename "${repo}" .git)" || return 1
     ;;
   commits)

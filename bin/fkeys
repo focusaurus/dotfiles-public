@@ -30,7 +30,7 @@ activate_window() {
   class="$1"
   shift
   command=$*
-  matches=$(wmctrl -lx | grep -i "${class}" | tac | awk '{print $2 "," $3 "," $1 "," $4}' || true)
+  matches=$(wmctrl -lx | grep "${class}" | tac | awk '{print $2 "," $3 "," $1 "," $4}' || true)
   # echo matches "${matches}"
   if [[ -z "${matches}" ]]; then
     # No matching windows, launch the app
@@ -92,7 +92,7 @@ main() {
     activate_window 'emacs.Emacs' 'emacs'
     ;;
   f3)
-    activate_window termite termite --title termite
+    activate_window termite.Termite termite --title termite
     # if wmctrl -lx | grep -qi "termite"; then
     #   if xdotool getactivewindow getwindowname | grep -qi 'termite-mailchimp'; then
     #     # mailchimp is active, switch to local
