@@ -58,6 +58,6 @@ if ~/bin/have-exe luarocks; then
 fi
 
 export PAGER=less
-if ~/bin/have-exe bat; then
-  export PAGER="bat --paging=always"
-fi
+# if ~/bin/have-exe bat; then
+#   export PAGER="bat --paging=always"
+# fi
