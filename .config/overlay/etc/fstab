@@ -1,0 +1,20 @@
+# Static information about the filesystems.
+# See fstab(5) for details.
+
+# <file system> <dir> <type> <options> <dump> <pass>
+# /dev/sda2
+# UUID=88ea86ba-5002-43b6-8404-dcaf6ec31fb8	/         	ext4      	rw,relatime	0 1
+
+# /dev/sda4
+UUID=3997592f-880b-43dc-a45d-8e4557e05dec	/home     	ext4      	rw,relatime	0 2
+
+
+# /dev/sda3
+UUID=b19761da-3ab7-4aae-89ce-78266f267b8c	none      	swap      	defaults  	0 0
+
+
+# plyons 2020-11-02
+# root partition is starting to fill up
+# mostly due to docker but also a lot of arch packages
+# Need more space so bind mount /var from the big partition
+/home/var /var none bind 0 0

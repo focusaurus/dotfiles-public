@@ -30,7 +30,7 @@ activate_window() {
   class="$1"
   shift
   command=$*
-  matches=$(wmctrl -lx | grep -i "${class}" | tac | awk '{print $2 "," $3 "," $1 "," $4}' || true)
+  matches=$(wmctrl -lx | grep "${class}" | tac | awk '{print $2 "," $3 "," $1 "," $4}' || true)
   # echo matches "${matches}"
   if [[ -z "${matches}" ]]; then
     # No matching windows, launch the app
@@ -57,7 +57,7 @@ browser() {
 }
 
 browser_tab() {
-  xdotool key "ctrl+$1"
+  xdotool key "alt+$1"
 }
 
 activate_firefox_main_window() {
@@ -82,7 +82,7 @@ main() {
     # activate_window 'pete@' "${HOME}/bin/launch-chrome-app.sh" gmail
     # activate_window 'pete@' firefox --new-window "https://mail.google.com/mail/u/0/#search/is%3Astarred+OR+is%3Aunread"
     activate_firefox_main_window
-    sleep 0.4
+    sleep 0.2
     browser_tab 1
     ;;
   f2)
@@ -92,7 +92,7 @@ main() {
     activate_window 'emacs.Emacs' 'emacs'
     ;;
   f3)
-    activate_window termite termite --title termite
+    activate_window termite.Termite termite --title termite
     # if wmctrl -lx | grep -qi "termite"; then
     #   if xdotool getactivewindow getwindowname | grep -qi 'termite-mailchimp'; then
     #     # mailchimp is active, switch to local
@@ -111,9 +111,9 @@ main() {
     # activate_window 'workflowy' "/opt/WorkFlowy-x86_64.AppImage"
     activate_window 'emacs.Emacs' 'emacs'
     ;;
-  control+f4)
-    ~/git.peterlyons.com/dotfiles/fuzzball/workflowy-done
-    ;;
+  # control+f4)
+  #   ~/git.peterlyons.com/dotfiles/fuzzball/workflowy-done
+  #   ;;
   f5)
     ~/bin/notify "f5 pressed"
     ;;
@@ -139,14 +139,15 @@ main() {
     fi
     ;;
   control+f6)
-    activate_window 'zulip' /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=zulip --file-forwarding org.zulip.Zulip
+    activate_window 'zulip' 'zulip'
+    # activate_window 'zulip' /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=zulip --file-forwarding org.zulip.Zulip
     ;;
   f7)
     browser
     # activate_window ' - Calendar' "google-chrome-stable" google-calendar
     # activate_window ' - Calendar' firefox --new-window "https://calendar.google.com/calendar/r"
     # activate_firefox_main_window
-    sleep 0.2
+    sleep 0.3
     browser_tab 2
     ;;
   f8)
@@ -162,34 +163,34 @@ main() {
   shift+f9)
     ~/git.peterlyons.com/dotfiles/fuzzball/journal-mailchimp-standup
     ;;
-  f11)
+  # f11)
     # new_workspace=$((current_workspace - 1))
     # if [[ ${new_workspace} -lt 0 ]]; then
     #   new_workspace=1
     # fi
     # xdotool set_desktop "${new_workspace}"
-    ;;
-  shift+f11)
+    # ;;
+  # shift+f11)
     # new_workspace=$((current_workspace - 1))
     # if [[ ${new_workspace} -lt 0 ]]; then
     #   new_workspace=1
     # fi
     # xdotool getactivewindow set_desktop_for_window "${new_workspace}"
-    ;;
-  f12)
+    # ;;
+  # f12)
     # new_workspace=$((current_workspace + 1))
     # if [[ ${new_workspace} -gt 3 ]]; then
     #   new_workspace=0
     # fi
     # xdotool set_desktop "${new_workspace}"
-    ;;
-  shift+f12)
+    # ;;
+  # shift+f12)
     # new_workspace=$((current_workspace + 1))
     # if [[ ${new_workspace} -gt 3 ]]; then
     #   new_workspace=0
     # fi
     # xdotool getactivewindow set_desktop_for_window "${new_workspace}"
-    ;;
+    # ;;
   esac
 }
 

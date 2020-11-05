@@ -9,12 +9,42 @@ local placement = require("placement")
 local focus = require("focus")
 local wibar = require("wibar")
 
-alt = "Mod1"
-control = "Control"
-super = "Mod4"
-shift = "Shift"
+local alt = "Mod1"
+local control = "Control"
+local super = "Mod4"
+local shift = "Shift"
+local home_bin = os.getenv("HOME") .. "/bin"
+local app_nav = home_bin .. "/app-nav"
 -- Note I have kmonad mod-taps for hyper_pl on home row pinkies also
-hyper_pl = {"Control", "Mod4"}
+local hyper_pl = {"Control", "Mod4"}
+local function noop() end
+local function runner(cmd_map)
+  return function()
+    awful.spawn.easy_async(cmd_map, noop)
+  end
+end
+local fkeys_path = home_bin .. "/fkeys"
+local function fkeys(modifers, keysym, arg)
+  if arg == nil then
+    arg = string.lower(keysym)
+  end
+  return awful.key(
+    modifers,
+    keysym,
+    function()
+      require("gears.debug").print_warning("@BUGBUG 3" .. arg)
+      awful.spawn.easy_async({fkeys_path, arg}, noop)
+    end,
+    {description="fkeys", group="fkeys"})
+end
+
+local function key_run(modifers, key, cmd)
+  return awful.key(
+    modifers,
+    key,
+    function() awful.spawn.easy_async(cmd, noop) end,
+    {description="key_run", group="keys"})
+end
 
 -- mouse bindings
 root.buttons(
@@ -37,7 +67,39 @@ root.keys(
     awful.key(hyper_pl, "n", focus.right,
       {description = "focus previous (right) by index", group = "client" }),
     awful.key(hyper_pl, "F1", wibar.set_volume,
-      {description = "dev", group = "dev" })))
+      {description = "dev", group = "dev" }),
+    fkeys({}, "F1"),
+    fkeys({control}, "F1", "control+f1"),
+    fkeys({}, "F2"),
+    fkeys({}, "F3"),
+    fkeys({}, "F4"),
+    fkeys({},"F5"),
+    fkeys({}, "F6"),
+    fkeys({shift}, "F6", "shift+f6"),
+    fkeys({control}, "F6", "control+f6"),
+    fkeys({}, "F7"),
+    fkeys({}, "F8"),
+    fkeys({}, "F9"),
+    fkeys({shift}, "F9", "shift+f9"),
+    key_run({super}, "space", {home_bin .. "/fuzz-script-choose"}),
+    key_run({super}, "2", {home_bin .. "/fuzz-snippet"}),
+    key_run({super, shift}, "space", {"rofi", "-show", "run"}),
+    key_run({super}, "4", {"rofi", "-show", "window"}),
+    key_run({super, control}, "o", {app_nav, "left"}),
+    key_run({super, control}, "e", {app_nav, "up"}),
+    key_run({super, control}, "u", {app_nav, "right"}),
+    key_run({super, control}, "Left", {app_nav, "left"}),
+    key_run({super, control}, "Down", {app_nav, "down"}),
+    key_run({super, control}, "Up", {app_nav, "up"}),
+    key_run({super, control}, "Right", {app_nav, "right"}),
+    key_run({}, "XF86MonBrightnessDown", {"sudo", "brightnessctl", "set", "20%-"}),
+    key_run({}, "XF86MonBrightnessUp", {"sudo", "brightnessctl", "set", "20%+"}),
+    key_run({}, "XF86AudioRaiseVolume", {home_bin .. "/volume", "+10%"}),
+    key_run({}, "XF86AudioLowerVolume", {home_bin .. "/volume", "-10%"}),
+    key_run({}, "XF86AudioMute", {home_bin .. "/volume-toggle-mute"}),
+    key_run({}, "XF86AudioMicMute", {home_bin .. "/microphone-toggle"})
+  )
+)
 -- awful.key(hyper_pl, "r",
 --   function() awful.screen.focused().mypromptbox:run() end,
 --   {description = "run prompt", group = "launcher"}),

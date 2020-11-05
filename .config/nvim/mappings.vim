@@ -4,6 +4,20 @@ noremap , :
 noremap ; :
 noremap <leader>; ;
 noremap F :w<cr>:silent !pretty-print-files %<cr>:edit!<cr>
+
+" The default mappings for back (b), end (e), and word (w)
+" navigation treat dashes and some other characters as word
+" separators. Normally the uppercase version is the version
+" that only considers whitespace to be a word delimiter.
+" I want the bigger, whitespace-only flavors to be the
+" more ergonomic unshifted versions. The following
+" mappings swap b, e, w and B, E, W
+nnoremap b B
+nnoremap B b
+nnoremap e E
+nnoremap E e
+nnoremap w W
+nnoremap W w
 " nnoremap <Space> @q
 inoremap <C-s> <Esc>:w<CR>a
 " nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
