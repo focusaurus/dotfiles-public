@@ -33,3 +33,16 @@ te-vimrc() {
 te-git-changed() {
   git status --short | awk '{print $2}' | xargs "${EDITOR}" -p
 }
+
+#Note to self, use sudoedit to edit files with my nvim config as root
+
+# https://medium.com/@bobbypriambodo/blazingly-fast-spacemacs-with-persistent-server-92260f2118b7
+em() {
+  # Checks if there's a frame open
+  emacsclient -n -e "(if (> (length (frame-list)) 1) ‘t)" 2>/dev/null | grep -q t
+  if [ "$?" -eq "1" ]; then
+    emacsclient -a '' -nqc "$@" &>/dev/null
+  else
+    emacsclient -nq "$@" &>/dev/null
+  fi
+}

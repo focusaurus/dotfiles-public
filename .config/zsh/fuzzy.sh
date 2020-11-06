@@ -1,4 +1,12 @@
 #!/usr/bin/env bash
+
+# more widely-used program as the default
+export FUZZER='fzf'
+if ~/bin/have-exe sk; then
+  FUZZER='sk'
+elif ~/bin/have-exe skim; then
+  FUZZER='skim'
+fi
 #export FZF_DEFAULT_COMMAND='rg -g ""'
 if ~/bin/have-exe ag; then
   export FZF_DEFAULT_COMMAND="ag --hidden -g ''"
@@ -90,10 +98,10 @@ if [[ -n "${ZSH_VERSION}" ]]; then
       new_buffer="${LBUFFER} ${chosen_path}"
     else
       # pre-filter mode, replace the last token with the chosen path
+      # shellcheck disable=SC2034
       new_buffer="$(echo "${LBUFFER}" | awk '{$NF=""; print $0}')${chosen_path}"
     fi
     # Append the selection to the current command buffer.
-    # shellcheck disable=SC2034
     eval 'LBUFFER="${new_buffer} "'
     # Redraw the prompt since skim has drawn several new lines of text.
     zle reset-prompt
@@ -154,7 +162,7 @@ xargs-fuzzy() {
 
 edf-fuzzy() {
   file=$(
-    cd
+    cd || exit 1
     dotfiles-begin
     git ls-files | fuzzy-filter "$@"
     dotfiles-end
