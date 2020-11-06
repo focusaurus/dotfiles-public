@@ -52,7 +52,7 @@
   "explorer.confirmDelete": false,
   "workbench.editor.enablePreview": false,
   "workbench.editor.enablePreviewFromQuickOpen": false,
-  "editor.renderWhitespace": "trailing",
+  "editor.renderWhitespace": "boundary",
   "editor.acceptSuggestionOnEnter": "off",
   "shellcheck.disableVersionCheck": true,
   "diffEditor.ignoreTrimWhitespace": false,
@@ -88,5 +88,6 @@
   "[dockerfile]": {
     "editor.defaultFormatter": "ms-azuretools.vscode-docker"
   },
-  "workbench.editor.showTabs": true
+  "workbench.editor.showTabs": true,
+  "editor.cursorWidth": 2
 }
