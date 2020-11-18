@@ -100,7 +100,7 @@ if [[ -n "${ZSH_VERSION}" ]]; then
   }
   zle -N fuzz-all-into-line # Create the zle widget
   # TODO find a good keybinding for this
-  bindkey "^F" "fuzz-file-into-line"
+  # bindkey "^F" "fuzz-all-into-line"
 
   function fuzz-directory-into-line() {
     fuzz-all-into-line --type directory
@@ -113,8 +113,8 @@ if [[ -n "${ZSH_VERSION}" ]]; then
     fuzz-all-into-line --type file
   }
   zle -N fuzz-file-into-line # Create the zle widget
-  # TODO find a good keybinding for this
-  bindkey "^F" "fuzz-file-into-line"
+  # TODO find a better keybinding for this
+  bindkey "^F" "fuzz-all-into-line"
 
 fi
 

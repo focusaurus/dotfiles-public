@@ -17,6 +17,7 @@ if ~/bin/have-exe notify-send; then
   notify-send --expire-time=6000 "$@"
 elif ~/bin/have-exe hs; then
   cat <<EOF | hs >/dev/null
-hs.notify.show("$@", "", "")
+local text="$@"
+hs.notify.show(text, "", "")
 EOF
 fi

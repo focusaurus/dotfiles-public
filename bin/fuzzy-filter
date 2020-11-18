@@ -16,4 +16,4 @@ fuzzer='fzf'
 if ~/bin/have-exe skim; then
   fuzzer='skim'
 fi
-cat | ("${fuzzer}" --select-1 --query "$1" || "${fuzzer}" --query "${1}")
+cat | "${fuzzer}" --select-1 --query "$1"

@@ -63,7 +63,7 @@
   "markdown.preview.markEditorSelection": false,
   "markdown.preview.scrollEditorWithPreview": false,
   "gitlens.advanced.telemetry.enabled": false,
-  "workbench.activityBar.visible": false,
+  "workbench.activityBar.visible": true,
   "terminal.integrated.allowChords": false,
   "window.customMenuBarAltFocus": false,
   "window.enableMenuBarMnemonics": false,

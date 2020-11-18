@@ -9,6 +9,7 @@ end
 function module.browser()
   log.d("browser")
   hs.application.launchOrFocus("Google Chrome")
+  -- hs.application.launchOrFocus("Firefox")
 end
 
 function module.email()
