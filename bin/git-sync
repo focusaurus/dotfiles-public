@@ -29,7 +29,7 @@ sync_dir() {
     if [[ -n "${GIT_DIR}" ]]; then
       #gitui does not currently support bare repos.
       # Need tig in this case.
-      tig
+      tig status
     else
       gitui
     fi

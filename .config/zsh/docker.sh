@@ -208,3 +208,7 @@ dps() {
   format=$(echo "${format}" | tr -d '\n')
   docker ps --format "${format}" | column -t -s '|'
 }
+
+dps-names() {
+   docker ps --format='{{json .Names}}' | jq -r
+}

@@ -6,7 +6,8 @@ local placement = require("placement")
 local snippets = require("snippets")
 local sound = require("sound")
 
-local hyper_pl = {"command", "control"}
+-- CAG in QMK is control, alt (option), gui (command)
+local hyper_pl = {"control", "option", "command"}
 
 -- app nav
 hs.hotkey.bind(hyper_pl, "o", appNav.left)

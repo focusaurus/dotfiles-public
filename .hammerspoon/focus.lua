@@ -9,6 +9,7 @@ end
 function module.browser()
   log.d("browser")
   hs.application.launchOrFocus("Google Chrome")
+  -- hs.application.launchOrFocus("Firefox")
 end
 
 function module.email()
@@ -74,10 +75,7 @@ end
 function module.music()
   log.d("music")
   hs.application.launchOrFocus("Google Chrome")
-  -- command-3 is my normal way to activate a pinned tab with
-  -- google play music, but temporarily doing 4
-  -- since I'm fascinated with mynoise.net at the moment
-  hs.eventtap.keyStroke({"command"}, "4")
+  hs.eventtap.keyStroke({"command"}, "3")
 end
 
 return module
