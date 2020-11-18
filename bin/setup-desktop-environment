@@ -78,10 +78,6 @@ main() {
   # screen standby after 1 hour, suspend 2 hours, off 3 hours
   xset dpms 3600 7200 10800
 
-  ~/bin/log "$0" ergodox-watch
-  pkill --uid "${USER}" --full ergodox-watch || true
-  ~/bin/ergodox-watch &>/dev/null &
-
   ~/bin/log "$0" microphone-write-status
   echo ~/bin/microphone-write-status | at now +1 minute
 

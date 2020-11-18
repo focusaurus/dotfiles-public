@@ -502,7 +502,7 @@ before packages are loaded."
   (setq-default org-agenda-files '("~/exocortex/personal/personal.org" "~/exocortex/personal/tech.org" "~/mc/mailchimp.org"))
   (setq-default org-todo-keywords '((sequence "NEXT" "TODO" "|" "DONE" "NOPE")))
   (evil-leader/set-key "q q" 'spacemacs/frame-killer)
-  (global-set-key (kbd "C-c i d") (lambda () (interactive) (insert (shell-command-to-string "~/projects/daily-todos/daily-todos.sh"))))
+  (global-set-key (kbd "C-c i d") (lambda () (interactive) (insert (shell-command-to-string "~/projects/daily-todos/daily-todos.sh 0"))))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

@@ -1,6 +1,7 @@
 1password-cli
 acpi
 alsa-utils
+arandr
 arc-icon-theme-full-git
 arc-x-icons-theme
 arduino-avr-core
@@ -12,6 +13,7 @@ bind
 blueman
 bluez-utils
 brightnessctl
+broot
 brother-hl2280dw
 choose-rust-git
 copyq
@@ -22,6 +24,7 @@ docker-compose
 dos2unix
 entr
 espeak
+eva
 evince
 evtest
 exa
@@ -33,7 +36,6 @@ firefox
 foomatic-db-nonfree-ppds
 foomatic-db-ppds
 fswatch
-fzf
 gcalcli
 gedit
 gitui-bin
@@ -56,6 +58,8 @@ man-db
 mate-calc
 moreutils
 mpv
+mupdf
+navi-bin
 ncmpc
 network-manager-applet
 nvm
@@ -71,11 +75,11 @@ pup-bin
 rclone
 ripgrep
 rofimoji
+rot13
 rsync
 rustup
 shellcheck
 shfmt
-skim
 slack-desktop
 spacemacs-dev
 stack
@@ -90,12 +94,14 @@ topgrade
 ttf-inconsolata
 ttf-jetbrains-mono
 upower
+via-bin
 visidata
 wireless_tools
 wmctrl
 xautomation
 xbindkeys
 xcape
+xdiskusage
 xf86-input-synaptics
 xorg-server
 xorg-xev
