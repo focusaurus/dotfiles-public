@@ -16,7 +16,7 @@ local shift = "Shift"
 local home_bin = os.getenv("HOME") .. "/bin"
 local app_nav = home_bin .. "/app-nav"
 -- Note I have kmonad mod-taps for hyper_pl on home row pinkies also
-local hyper_pl = {control, alt, super}
+local hyper_pl = {alt, super}
 local function noop() end
 local function runner(cmd_map)
   return function()
@@ -82,7 +82,9 @@ root.keys(
     fkeys({}, "F9"),
     fkeys({shift}, "F9", "shift+f9"),
     key_run({super}, "space", {home_bin .. "/fuzz-script-choose"}),
+    key_run({}, "F11", {home_bin .. "/fuzz-script-choose"}),
     key_run({super}, "2", {home_bin .. "/fuzz-snippet"}),
+    key_run({}, "F12", {home_bin .. "/fuzz-snippet"}),
     key_run({super, shift}, "space", {"rofi", "-show", "run"}),
     key_run({super}, "4", {"rofi", "-show", "window"}),
     key_run(hyper_pl, "o", {app_nav, "left"}),

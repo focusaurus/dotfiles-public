@@ -80,7 +80,7 @@ p l
 ] =
 \\ \\
 
-a a
+a @tap-a-hold-hyper
 s o lft
 d e up
 f u rght
@@ -89,7 +89,7 @@ h d
 j h
 k t
 l n
-; s
+; @tap-s-hold-hyper
 ' -
 
 z ;
@@ -151,7 +151,7 @@ for name in thinkpad macbook ergodox-linux iris-linux infinity-linux ergodox-mac
 )
 
 (defalias
-  hyper (around lctl lmet)
+  hyper (around lalt lmet)
   tap-space-hold-shift (tap-hold-next-release 500 spc lsft)
   tap-space-hold-navigation (tap-hold-next-release 500 spc (layer-toggle navigation))
   tap-a-hold-hyper (tap-hold-next-release 500 a @hyper)

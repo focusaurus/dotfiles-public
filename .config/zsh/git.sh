@@ -48,7 +48,7 @@ alias git-not-pushed="git log --branches --not --remotes"
 alias gls="git ls-files"
 alias gw="git switch"
 alias gwc="git switch --create"
-alias gorce="git push --force"
+alias gorce="git push --force-with-lease"
 alias ts="tig status"
 
 _base-url() {
