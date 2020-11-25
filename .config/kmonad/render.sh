@@ -19,10 +19,16 @@ defcfg_thinkpad='
 input  (device-file "/dev/input/by-path/platform-i8042-serio-0-event-kbd")
   output (uinput-sink "kmonad-thinkpad")
 '
+# input  (device-file "/dev/input/by-id/usb-ErgoDox_EZ_ErgoDox_EZ_0-event-kbd")
 
 defcfg_ergodox_linux='
-input  (device-file "/dev/input/by-id/usb-ErgoDox_EZ_ErgoDox_EZ_0-event-kbd")
+input  (device-file "/dev/input/by-id/usb-ZSA_Technology_Labs_ErgoDox_EZ_0-event-kbd")
   output (uinput-sink "kmonad-ergodox")
+'
+
+defcfg_iris_linux='
+input  (device-file "/dev/input/by-id/usb-Keebio_Keebio_Iris_Rev._4_0-event-kbd")
+  output (uinput-sink "kmonad-iris")
 '
 
 defcfg_infinity_linux='
@@ -105,7 +111,7 @@ m m
 #   DEVICE='/dev/input/by-path/platform-i8042-serio-0-event-kbd' \
 #   envsubst < main.kbd.tpl > "${NAME}.kbd"
 
-for name in thinkpad macbook ergodox-linux infinity-linux ergodox-macos; do
+for name in thinkpad macbook ergodox-linux iris-linux infinity-linux ergodox-macos; do
   case "${name}" in
   thinkpad)
     defcfg="${defcfg_thinkpad}"
@@ -113,6 +119,10 @@ for name in thinkpad macbook ergodox-linux infinity-linux ergodox-macos; do
     ;;
   ergodox-linux)
     defcfg="${defcfg_ergodox_linux}"
+    letters="${letters_linux}"
+    ;;
+  iris-linux)
+    defcfg="${defcfg_iris_linux}"
     letters="${letters_linux}"
     ;;
   infinity-linux)
@@ -141,7 +151,7 @@ for name in thinkpad macbook ergodox-linux infinity-linux ergodox-macos; do
 )
 
 (defalias
-  hyper (around lctl lmet)
+  hyper (around lalt lmet)
   tap-space-hold-shift (tap-hold-next-release 500 spc lsft)
   tap-space-hold-navigation (tap-hold-next-release 500 spc (layer-toggle navigation))
   tap-a-hold-hyper (tap-hold-next-release 500 a @hyper)
@@ -179,5 +189,5 @@ for name in thinkpad macbook ergodox-linux infinity-linux ergodox-macos; do
       done
     }
     echo ")"
-    ) >>"${name}.kbd"
+  ) >>"${name}.kbd"
 done

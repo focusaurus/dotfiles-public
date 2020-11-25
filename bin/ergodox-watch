@@ -18,8 +18,16 @@ main() {
   fswatch --event Updated ~/.ergodox-udev | {
     # shellcheck disable=SC2034
     while IFS= read -r _file_path; do
-      log "$0" "systemctl --user restart kmonad-ergodox"
-      systemctl --user restart kmonad-ergodox
+      ~/bin/log "$0" "triggered. Sleeping 1s"
+      sleep 1
+      presence="absent"
+      action="stop"
+      if compgen -G "/dev/input/by-id/*ErgoDox*" >/dev/null; then
+        presence="present"
+        action="start"
+      fi
+      ~/bin/log "$0" "ErgoDox ${presence}. Will ${action} kmonad-ergodox service."
+      systemctl --user "${action}" kmonad-ergodox
     done
   }
 }

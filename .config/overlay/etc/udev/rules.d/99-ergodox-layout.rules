@@ -1,0 +1,13 @@
+SUBSYSTEM=="input", \
+  ACTION=="add|remove", \
+  # ATTRS{idVendor}=="1c11|feed|3297", \
+  # ATTRS{idProduct}=="b04d|1307|3297|4974", \
+  RUN+="/home/plyons/bin/ergodox-udev %N"
+
+# ErgoDox now uses vendor ZSA Technology Labs
+# vendor id 3297
+# product 4974
+# Found with: udevadm monitor --subsystem-match=usb --property --udev
+
+#ACTION=="add", SUBSYSTEM=="input", ATTRS{name}=="Input Club Infinity_Ergodox/QMK", RUN+="/home/plyons/bin/ergodox-udev", OWNER="plyons"
+#, ATTRS{idProduct}=="b04d", RUN+="/home/plyons/bin/ergodox-udev", OWNER="plyons"

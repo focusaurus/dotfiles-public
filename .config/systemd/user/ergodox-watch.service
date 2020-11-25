@@ -1,0 +1,9 @@
+[Unit]
+Description=ErgoDox Watch
+
+[Service]
+Type=simple
+ExecStart="%h/bin/ergodox-watch"
+
+[Install]
+WantedBy=graphical-session.target

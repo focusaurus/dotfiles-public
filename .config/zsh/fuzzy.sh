@@ -1,4 +1,12 @@
 #!/usr/bin/env bash
+
+# more widely-used program as the default
+export FUZZER='fzf'
+if ~/bin/have-exe sk; then
+  FUZZER='sk'
+elif ~/bin/have-exe skim; then
+  FUZZER='skim'
+fi
 #export FZF_DEFAULT_COMMAND='rg -g ""'
 if ~/bin/have-exe ag; then
   export FZF_DEFAULT_COMMAND="ag --hidden -g ''"
@@ -82,9 +90,8 @@ if [[ -n "${ZSH_VERSION}" ]]; then
     # Find the path; abort if the user doesn't select anything.
     ~/bin/log "$0" "running skim pipeline"
     local chosen_path
-    chosen_path=$(fd "${fd_opts[@]}" | "${FUZZER}" --select-1 --exit-0 --query "${query}") || return
+    chosen_path=$(fd "${fd_opts[@]}" | skim --select-1 --exit-0 --query "${query}") || return
     ~/bin/log "$0" "fuzz-all-into-line chosen_path: ${chosen_path}"
-    # shellcheck disable=SC2034
     local new_buffer
     if [[ "${LBUFFER}" =~ "\s$" ]]; then
       # no-query-mode: append the chosen path
@@ -95,14 +102,13 @@ if [[ -n "${ZSH_VERSION}" ]]; then
       new_buffer="$(echo "${LBUFFER}" | awk '{$NF=""; print $0}')${chosen_path}"
     fi
     # Append the selection to the current command buffer.
-    # shellcheck disable=SC2034
     eval 'LBUFFER="${new_buffer} "'
     # Redraw the prompt since skim has drawn several new lines of text.
     zle reset-prompt
   }
   zle -N fuzz-all-into-line # Create the zle widget
   # TODO find a good keybinding for this
-  # bindkey "^F" "fuzz-all-into-line"
+  bindkey "^F" "fuzz-file-into-line"
 
   function fuzz-directory-into-line() {
     fuzz-all-into-line --type directory
@@ -115,8 +121,8 @@ if [[ -n "${ZSH_VERSION}" ]]; then
     fuzz-all-into-line --type file
   }
   zle -N fuzz-file-into-line # Create the zle widget
-  # TODO find a better keybinding for this
-  bindkey "^F" "fuzz-all-into-line"
+  # TODO find a good keybinding for this
+  bindkey "^F" "fuzz-file-into-line"
 
 fi
 
@@ -156,7 +162,7 @@ xargs-fuzzy() {
 
 edf-fuzzy() {
   file=$(
-    cd || exit
+    cd || exit 1
     dotfiles-begin
     git ls-files | fuzzy-filter "$@"
     dotfiles-end

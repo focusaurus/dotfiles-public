@@ -96,7 +96,7 @@ alias nums="alias | grep '^[0-9]'"
 alias rd="rmdir"
 alias timestamp='date +%Y%m%d-%H%M%S'
 alias ucdrom="umount /dev/cdrom"
-alias veh="sudo vim /etc/hosts"
+alias veh="sudoedit  /etc/hosts"
 whatismyipaddress() {
   local ip
   ip=$(curl --silent --fail https://myip.dnsomatic.com/)

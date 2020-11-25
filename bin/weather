@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
+
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -o errexit  # always exit on error
+set -o errtrace # trap errors in functions as well
+set -o pipefail # don't ignore exit codes when piping output
+set -o posix    # more strict failures in subshells
+# set -x          # enable debugging
+
+IFS=$'\n\t'
+# ---- End unofficial bash strict mode boilerplate
+
+api_key=$(jq -r '.openweathermap_api_key' ~/git.peterlyons.com/edc/mycommands-conf.json)
+zip="${1:-80027}"
+
+# curl --silent --fail "pro.openweathermap.org/data/2.5/forecast/hourly?zip=${zip}&appid=${api_key}"
+# curl --silent "api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${api_key}&units=imperial" |
+#   jq -r '"Weather in ",.name," today: Low ",.main.temp_min," High ",.main.temp_max," ",.weather[0].description' |
+#   tr -d '\n'
+filter='"Weather in "
+.city.name
+"____"
+"Today: "
+.list[0].main.temp
+" "
+.list[0].weather[0].description
+"____"
+"Tomorrow: "
+.list[8].main.temp
+" "
+.list[8].weather[0].description'
+filter=$(echo -n "${filter}" | tr '\n' ',')
+# echo "${filter}"
+# exit
+curl --silent --fail "https://api.openweathermap.org/data/2.5/forecast?units=imperial&zip=${zip}&appid=${api_key}" |
+  jq -r "${filter}" |
+  tr -d '\n' |
+  sed 's/____/\n/g'
+
+echo

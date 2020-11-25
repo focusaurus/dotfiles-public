@@ -16,7 +16,7 @@ local shift = "Shift"
 local home_bin = os.getenv("HOME") .. "/bin"
 local app_nav = home_bin .. "/app-nav"
 -- Note I have kmonad mod-taps for hyper_pl on home row pinkies also
-local hyper_pl = {"Control", "Mod4"}
+local hyper_pl = {alt, super}
 local function noop() end
 local function runner(cmd_map)
   return function()
@@ -82,16 +82,18 @@ root.keys(
     fkeys({}, "F9"),
     fkeys({shift}, "F9", "shift+f9"),
     key_run({super}, "space", {home_bin .. "/fuzz-script-choose"}),
+    key_run({}, "F11", {home_bin .. "/fuzz-script-choose"}),
     key_run({super}, "2", {home_bin .. "/fuzz-snippet"}),
+    key_run({}, "F12", {home_bin .. "/fuzz-snippet"}),
     key_run({super, shift}, "space", {"rofi", "-show", "run"}),
     key_run({super}, "4", {"rofi", "-show", "window"}),
-    key_run({super, control}, "o", {app_nav, "left"}),
-    key_run({super, control}, "e", {app_nav, "up"}),
-    key_run({super, control}, "u", {app_nav, "right"}),
-    key_run({super, control}, "Left", {app_nav, "left"}),
-    key_run({super, control}, "Down", {app_nav, "down"}),
-    key_run({super, control}, "Up", {app_nav, "up"}),
-    key_run({super, control}, "Right", {app_nav, "right"}),
+    key_run(hyper_pl, "o", {app_nav, "left"}),
+    key_run(hyper_pl, "e", {app_nav, "up"}),
+    key_run(hyper_pl, "u", {app_nav, "right"}),
+    key_run(hyper_pl, "Left", {app_nav, "left"}),
+    key_run(hyper_pl, "Down", {app_nav, "down"}),
+    key_run(hyper_pl, "Up", {app_nav, "up"}),
+    key_run(hyper_pl, "Right", {app_nav, "right"}),
     key_run({}, "XF86MonBrightnessDown", {"sudo", "brightnessctl", "set", "20%-"}),
     key_run({}, "XF86MonBrightnessUp", {"sudo", "brightnessctl", "set", "20%+"}),
     key_run({}, "XF86AudioRaiseVolume", {home_bin .. "/volume", "+10%"}),
