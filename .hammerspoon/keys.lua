@@ -7,7 +7,7 @@ local snippets = require("snippets")
 local sound = require("sound")
 
 -- CAG in QMK is control, alt (option), gui (command)
-local hyper_pl = {"control", "option", "command"}
+local hyper_pl = {"option", "command"}
 
 -- app nav
 hs.hotkey.bind(hyper_pl, "o", appNav.left)
@@ -30,7 +30,9 @@ hs.hotkey.bind({"option"}, "c", placement.cycle)
 
 -- fuzzy prompts
 hs.hotkey.bind({"command"}, "space", fuzzball.chooseScript)
+hs.hotkey.bind({}, "F11", fuzzball.chooseScript)
 hs.hotkey.bind({"control"}, "3", snippets.chooseByUIAndType)
+hs.hotkey.bind({}, "F12", snippets.chooseByUIAndType)
 
 -- journal
 hs.hotkey.bind({}, "f9", journal.appendByDialog)
@@ -40,10 +42,9 @@ hs.hotkey.bind({"shift"}, "f9", journal.appendByDialogStandup)
 hs.hotkey.bind({}, "f1", focus.browser)
 hs.hotkey.bind({"shift"}, "f1", focus.email)
 hs.hotkey.bind({}, "f2", focus.code)
--- hs.hotkey.bind({"shift"}, "f2", focus.emacs)
 hs.hotkey.bind({}, "f3", focus.terminal)
 hs.hotkey.bind({}, "f4", focus.emacs)
-hs.hotkey.bind({}, "f5", focus.previous)
+hs.hotkey.bind({}, "f5", focus.slackOrZoom)
 hs.hotkey.bind(hyper_pl, "t", focus.previous)
 -- for compat until kmonad on mac is fully working
 hs.hotkey.bind({"option"}, "t", focus.previous)
@@ -52,6 +53,6 @@ hs.hotkey.bind({}, "f7", focus.calendar)
 hs.hotkey.bind({}, "f8", focus.music)
 
 -- sound
-hs.hotkey.bind({}, "f10", sound.toggleMute)
-hs.hotkey.bind({}, "f11", sound.volumeDown)
-hs.hotkey.bind({}, "f12", sound.volumeUp)
+-- hs.hotkey.bind({}, "f10", sound.toggleMute)
+-- hs.hotkey.bind({}, "f11", sound.volumeDown)
+-- hs.hotkey.bind({}, "f12", sound.volumeUp)
