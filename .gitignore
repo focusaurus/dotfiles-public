@@ -5,6 +5,7 @@
 /.3T
 /.CFUserTextEncoding
 /.Conduktor
+/.FreeCAD
 /.Trash
 /.Xauthority
 /.android
@@ -16,6 +17,7 @@
 /.circleci
 /.cmake
 /.config/3T
+/.config/FreeCAD
 /.config/Insomnia
 /.config/Keybase
 /.config/NoSQLBooster for MongoDB
@@ -25,11 +27,13 @@
 /.config/Slack
 /.config/TabNine
 /.config/Unknown Organization
+/.config/VIA
 /.config/WorkFlowy
 /.config/Zulip
 /.config/awesome/awesome-wm-widgets
 /.config/awesome/cyclefocus
 /.config/awesome/cyclefocus
+/.config/broot/launcher
 /.config/chrysalis
 /.config/coc/extensions
 /.config/coc/memos.json
@@ -156,6 +160,7 @@
 /books
 /clients
 /clients_old
+/downloads
 /exocortex
 /git.peterlyons.com
 /github
@@ -178,6 +183,3 @@
 /tmp
 /voice-memos
 /work-*
-/.config/broot/launcher
-/downloads
-/.config/VIA

@@ -62,9 +62,9 @@ root.keys(
         {description = "quit awesome", group = "awesome"}),
     awful.key(hyper_pl, "p", function() menubar.show() end,
       {description = "show the menubar", group = "launcher"}),
-    awful.key(hyper_pl, "h", focus.left,
+    awful.key(hyper_pl, "o", focus.left,
       {description = "focus previous (left) by index", group = "client" }),
-    awful.key(hyper_pl, "n", focus.right,
+    awful.key(hyper_pl, "u", focus.right,
       {description = "focus previous (right) by index", group = "client" }),
     awful.key(hyper_pl, "F1", wibar.set_volume,
       {description = "dev", group = "dev" }),
@@ -82,18 +82,23 @@ root.keys(
     fkeys({}, "F9"),
     fkeys({shift}, "F9", "shift+f9"),
     key_run({super}, "space", {home_bin .. "/fuzz-script-choose"}),
+    key_run({super}, "1", {home_bin .. "/blezz"}),
+    key_run({}, "F10", {home_bin .. "/blezz"}),
+    key_run({super}, "2", {home_bin .. "/fuzz-script-choose"}),
     key_run({}, "F11", {home_bin .. "/fuzz-script-choose"}),
-    key_run({super}, "2", {home_bin .. "/fuzz-snippet"}),
+    key_run({super}, "3", {home_bin .. "/fuzz-snippet"}),
     key_run({}, "F12", {home_bin .. "/fuzz-snippet"}),
     key_run({super, shift}, "space", {"rofi", "-show", "run"}),
+    key_run(hyper_pl, "w", {"rofi", "-show", "window"}),
     key_run({super}, "4", {"rofi", "-show", "window"}),
-    key_run(hyper_pl, "o", {app_nav, "left"}),
-    key_run(hyper_pl, "e", {app_nav, "up"}),
-    key_run(hyper_pl, "u", {app_nav, "right"}),
+    key_run(hyper_pl, "h", {app_nav, "left"}),
+    key_run(hyper_pl, "t", {app_nav, "up"}),
+    key_run(hyper_pl, "n", {app_nav, "right"}),
+    -- key_run(hyper_pl, "w", {app_nav, "down"}),
     key_run(hyper_pl, "Left", {app_nav, "left"}),
-    key_run(hyper_pl, "Down", {app_nav, "down"}),
     key_run(hyper_pl, "Up", {app_nav, "up"}),
     key_run(hyper_pl, "Right", {app_nav, "right"}),
+    key_run(hyper_pl, "Down", {app_nav, "down"}),
     key_run({}, "XF86MonBrightnessDown", {"sudo", "brightnessctl", "set", "20%-"}),
     key_run({}, "XF86MonBrightnessUp", {"sudo", "brightnessctl", "set", "20%+"}),
     key_run({}, "XF86AudioRaiseVolume", {home_bin .. "/volume", "+10%"}),
@@ -116,19 +121,12 @@ root.keys(
 
 cyclefocus.default_preset.base_font_size = 14
 
-local function focus_previous()
-  awful.client.focus.history.previous()
-  if client.focus then
-    client.focus:raise()
-  end
-end
-
 local clientkeys = gears.table.join(
-  awful.key(hyper_pl, "c", placement.cycle,
+  awful.key(hyper_pl, ".", placement.cycle,
     {description = "cycle window placement", group = "client"}),
   awful.key({super, shift}, "w", function(c) c:kill() end,
     {description = "close", group = "client"}),
-  awful.key(hyper_pl, "t", focus_previous,
+  awful.key(hyper_pl, "e", focus.previous,
    {description="focus previous", group="client"}),
   cyclefocus.key({super}, "Tab",
     {cycle_filters = {cyclefocus.filters.same_screen, cyclefocus.filters.common_tag}}),
