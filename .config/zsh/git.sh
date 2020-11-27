@@ -55,7 +55,16 @@ _base-url() {
   # heads up. Depends on a slightly obscure utility
   # https://github.com/sgreben/url
   # shellcheck disable=SC2016
-  git remote -v |
+  remotes=$(git remote -v)
+  if [[ "${remotes}" =~ upstream ]]; then
+    # If a remote named upstream exists, it's probably what we want
+    remotes=$(echo "${remotes}" | grep upstream)
+  elif [[ "${remotes}" =~ origin ]]; then
+    # Otherwise, if a remote named origin exists, it's probably what we want
+    remotes=$(echo "${remotes}" | grep origin)
+  fi
+  # Otherwise we're not sure so we take the first sorted one/shrug
+  echo "${remotes}" |
     awk '{print $2}' |
     sort |
     uniq |
