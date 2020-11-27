@@ -38,10 +38,10 @@ function module.previous()
   log.d("previous")
   hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, true):post()
   hs.eventtap.event.newKeyEvent("Tab", true):post()
-  -- hs.timer.doAfter(0.2, function()
+  hs.timer.doAfter(0.5, function()
     hs.eventtap.event.newKeyEvent("Tab", false):post()
     hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, false):post()
-  -- end)
+  end)
 end
 
 function module.slackOrZoom()
