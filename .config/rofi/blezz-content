@@ -1,0 +1,8 @@
+Main:
+act(t, termite, focus-terminal)
+act(b, browser, focus-browser)
+act(c, calendar, focus-calendar)
+act(m, music, focus-music)
+act(i, firefox, focus-firefox)
+act(e, emacs, focus-emacs)
+act(s, slack, focus-slack-or-zoom)
