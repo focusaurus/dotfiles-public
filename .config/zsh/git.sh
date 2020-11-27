@@ -64,6 +64,7 @@ _base-url() {
     remotes=$(echo "${remotes}" | grep origin)
   fi
   # Otherwise we're not sure so we take the first sorted one/shrug
+  # shellcheck disable=SC2016
   echo "${remotes}" |
     awk '{print $2}' |
     sort |
@@ -363,8 +364,16 @@ gsync() {
       op-add-ssh-key
     fi
   fi
-  ~/bin/git-autocommit ~/git.peterlyons.com/journals ~/git.peterlyons.com/mailchimp
-  ~/bin/git-sync ~ ~/git.peterlyons.com/dotfiles ~/git.peterlyons.com/journals ~/git.peterlyons.com/mailchimp
+  ~/bin/git-autocommit \
+    ~/git.peterlyons.com/journals \
+    ~/git.peterlyons.com/mailchimp \
+    ~/github.com/focusaurus/qmk_firmware
+  ~/bin/git-sync \
+    ~ \
+    ~/git.peterlyons.com/dotfiles \
+    ~/git.peterlyons.com/journals \
+    ~/git.peterlyons.com/mailchimp \
+    ~/github.com/focusaurus/qmk_firmware
 }
 
 git-cd-repo-dir-fuzzy() {

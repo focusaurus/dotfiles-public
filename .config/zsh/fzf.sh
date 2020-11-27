@@ -120,16 +120,6 @@ if [[ -n "${ZSH_VERSION}" ]]; then
 
 fi
 
-c() {
-  local dir
-  dir=$(fasd -dl | ~/bin/fuzzy-filter "$@")
-  if [[ -n "${dir}" ]]; then
-    cd "${dir}" || return
-  else
-    echo "No match!" 1>&2
-  fi
-}
-
 kill-fzf() {
   pkill --full 'fzf.*select-1.*query'
 }
