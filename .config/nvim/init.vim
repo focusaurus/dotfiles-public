@@ -51,3 +51,4 @@ autocmd Filetype sh setlocal shiftwidth=2 tabstop=2
 autocmd Filetype markdown CocDisable
 autocmd FocusLost * silent! wa
 autocmd Filetype org SoftPencil
+autocmd Filetype c SyntasticToggleMode
