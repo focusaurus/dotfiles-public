@@ -45,7 +45,13 @@ browser_tab() {
 activate_firefox_main_window() {
   # This is not super robust. It assumes the main firefox general purpose
   # window is the first one launched
-  id=$(wmctrl -lx | grep -i "Navigator.firefox" | head -1 | awk '{print $1}' || true)
+  # We filter out the dedicated windows
+  id=$(wmctrl -lx |
+    grep -i "Navigator.firefox" |
+    grep --extended-regexp --invert-match "(YouTube Music|Calendar|Peterlyons.com Mail)" |
+    head -1 |
+    awk '{print $1}' ||
+    true)
   if [[ -n "${id}" ]]; then
     wmctrl -i -a "${id}"
   else
@@ -66,28 +72,27 @@ main() {
     # blezz is kind of rubbish, so decide what to do based on
     # our symlink's own file base name without the "focus-" prefix
     command=$(basename "$0")
-    command="${command/focus-/}"
+    command="${command#focus-}"
   fi
   case "${command}" in
   browser|firefox|f1)
     browser
-    # activate_firefox_main_window
     ;;
   email|gmail|control+f1)
     # activate_window 'pete@' "${HOME}/bin/launch-chrome-app.sh" gmail
-    # activate_window 'pete@' firefox --new-window "https://mail.google.com/mail/u/0/#search/is%3Astarred+OR+is%3Aunread"
-    activate_firefox_main_window
-    sleep 0.2
-    browser_tab 1
+    activate_window 'Peterlyons.com Mail' firefox --new-window "https://mail.google.com/mail/u/0/#search/is%3Astarred+OR+is%3Aunread"
+    # activate_firefox_main_window
+    # sleep 0.2
+    # browser_tab 1
     ;;
   editor|code|f2)
     # switch to workspace 2 (text editor)
     # wmctrl -s 1
-    # activate_window 'atom.atom' 'atom'
     activate_window 'Visul Studio Code' 'code'
     ;;
-  terminal|termite|f3)
-    activate_window termite.Termite termite --title termite
+  terminal|kitty|termite|f3)
+    # activate_window termite.Termite termite --title termite
+    activate_window kitty.kitty kitty --single-instance --title kitty
     # if wmctrl -lx | grep -qi "termite"; then
     #   if xdotool getactivewindow getwindowname | grep -qi 'termite-mailchimp'; then
     #     # mailchimp is active, switch to local
@@ -128,22 +133,23 @@ main() {
   #   fi
   #   ;;
   zulip|control+f6)
-    activate_window 'zulip' 'zulip'
+    activate_window 'Zulip' 'zulip'
     # activate_window 'zulip' /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=zulip --file-forwarding org.zulip.Zulip
     ;;
   calendar|gcal|f7)
-    browser
+    # browser
     # activate_window ' - Calendar' "google-chrome-stable" google-calendar
-    # activate_window ' - Calendar' firefox --new-window "https://calendar.google.com/calendar/r"
+    activate_window ' - Calendar' firefox --new-window "https://calendar.google.com/calendar/r"
     # activate_firefox_main_window
-    sleep 0.3
-    browser_tab 2
+    # sleep 0.3
+    # browser_tab 2
     ;;
   music|f8)
-    browser
+    # browser
+    activate_window 'YouTube Music' firefox --new-window "https://music.youtube.com"
     # activate_firefox_main_window
-    sleep 0.2
-    browser_tab 3
+    # sleep 0.2
+    # browser_tab 3
     ;;
   journal-mailchimp|f9)
     ~/git.peterlyons.com/dotfiles/fuzzball/journal-mailchimp
