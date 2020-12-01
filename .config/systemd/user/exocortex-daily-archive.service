@@ -1,6 +1,0 @@
-[Unit]
-Description=Archive daily todo list and generate future ones
-
-[Service]
-Type=oneshot
-ExecStart=/bin/sh -c '~/projects/exocortex/personal/bin/daily-archive.sh'
