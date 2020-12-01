@@ -500,10 +500,12 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (setq-default dotspacemacs-themes '(spacemacs-light spacemacs-dark))
   (setq org-agenda-span 'day)
-  (setq-default org-agenda-files '("~/exocortex/personal/personal.org" "~/exocortex/personal/tech.org"))
+  (setq vc-follow-symlinks t)
+  (setq vc-handled-backends nil)
+  (setq-default org-agenda-files '("~/exocortex/personal/personal.org" "~/exocortex/personal/tech.org" "~/exocortex/personal/daily-routine.org"))
   ;; on the work macbook, use the work org file for agenda
   (when (eq system-type 'darwin)
-    (setq-default org-agenda-files '("~/mc/mailchimp.org")))
+    (setq-default org-agenda-files '("~/mc/mailchimp.org" "~/exocortex/personal/daily-routine.org")))
   (setq-default org-todo-keywords '((sequence "TODO" "|" "DONE" "NOPE")))
   (evil-leader/set-key "q q" 'spacemacs/frame-killer)
   (global-set-key (kbd "C-c i d") (lambda () (interactive) (insert (shell-command-to-string "~/projects/daily-todos/daily-todos.sh 0"))))
