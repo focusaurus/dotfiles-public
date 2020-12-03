@@ -9,9 +9,6 @@ machines.target
 NetworkManager-dispatcher.service
 NetworkManager.service
 NetworkManager-wait-online.service
-org.cups.cupsd.path
-org.cups.cupsd.service
-org.cups.cupsd.socket
 reboot.target
 remote-cryptsetup.target
 remote-fs.target

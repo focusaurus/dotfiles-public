@@ -89,7 +89,7 @@ root.keys(
     key_run({super}, "3", {home_bin .. "/fuzz-snippet"}),
     key_run({}, "F12", {home_bin .. "/fuzz-snippet"}),
     key_run({super, shift}, "space", {"rofi", "-show", "run"}),
-    key_run(hyper_pl, "w", {"rofi", "-show", "window"}),
+    key_run(hyper_pl, "w", {"rofi", "-show", "window", "-theme", "gruvbox-light-soft"}),
     key_run({super}, "4", {"rofi", "-show", "window"}),
     key_run(hyper_pl, "h", {app_nav, "left"}),
     key_run(hyper_pl, "t", {app_nav, "up"}),
