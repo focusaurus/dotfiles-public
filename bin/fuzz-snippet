@@ -14,7 +14,7 @@ IFS="$(printf "\n\t")"
 # ---- End unofficial bash strict mode boilerplate
 snippet_dir=~/git.peterlyons.com/dotfiles/snippets
 
-chooser=(rofi -dmenu -p snippet -theme /usr/share/rofi/themes/solarized_alternate.rasi)
+chooser=(rofi -dmenu -p snippet -theme sidebar)
 if [[ $(uname) == "Darwin" ]]; then
   # Sigh. Can't control environment PATH in alfred
   chooser=(/usr/local/bin/choose -c highlight=111111)
