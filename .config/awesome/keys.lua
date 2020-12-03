@@ -32,7 +32,7 @@ local function fkeys(modifers, keysym, arg)
     modifers,
     keysym,
     function()
-      require("gears.debug").print_warning("@BUGBUG 3" .. arg)
+      -- require("gears.debug").print_warning("@BUGBUG 3" .. arg)
       awful.spawn.easy_async({fkeys_path, arg}, noop)
     end,
     {description="fkeys", group="fkeys"})
@@ -60,12 +60,12 @@ root.keys(
       {description = "reload awesome", group = "awesome"}),
     awful.key(hyper_pl, "q", awesome.quit,
         {description = "quit awesome", group = "awesome"}),
-    awful.key(hyper_pl, "p", function() menubar.show() end,
+    awful.key(hyper_pl, "m", function() menubar.show() end,
       {description = "show the menubar", group = "launcher"}),
-    awful.key(hyper_pl, "o", focus.left,
+    awful.key(hyper_pl, ",", focus.left,
       {description = "focus previous (left) by index", group = "client" }),
-    awful.key(hyper_pl, "u", focus.right,
-      {description = "focus previous (right) by index", group = "client" }),
+    awful.key(hyper_pl, "p", focus.right,
+      {description = "focus next (right) by index", group = "client" }),
     awful.key(hyper_pl, "F1", wibar.set_volume,
       {description = "dev", group = "dev" }),
     fkeys({}, "F1"),
@@ -91,10 +91,10 @@ root.keys(
     key_run({super, shift}, "space", {"rofi", "-show", "run"}),
     key_run(hyper_pl, "w", {"rofi", "-show", "window", "-theme", "gruvbox-light-soft"}),
     key_run({super}, "4", {"rofi", "-show", "window"}),
-    key_run(hyper_pl, "h", {app_nav, "left"}),
-    key_run(hyper_pl, "t", {app_nav, "up"}),
-    key_run(hyper_pl, "n", {app_nav, "right"}),
-    -- key_run(hyper_pl, "w", {app_nav, "down"}),
+    key_run(hyper_pl, "o", {app_nav, "left"}),
+    -- key_run(hyper_pl, "t", {app_nav, "up"}),
+    key_run(hyper_pl, "u", {app_nav, "right"}),
+    key_run(hyper_pl, "j", {app_nav, "down"}),
     key_run(hyper_pl, "Left", {app_nav, "left"}),
     key_run(hyper_pl, "Up", {app_nav, "up"}),
     key_run(hyper_pl, "Right", {app_nav, "right"}),
@@ -124,6 +124,8 @@ cyclefocus.default_preset.base_font_size = 14
 local clientkeys = gears.table.join(
   awful.key(hyper_pl, ".", placement.cycle,
     {description = "cycle window placement", group = "client"}),
+  awful.key(hyper_pl, "x", function(c) c:kill() end,
+    {description = "close", group = "client"}),
   awful.key({super, shift}, "w", function(c) c:kill() end,
     {description = "close", group = "client"}),
   awful.key(hyper_pl, "e", focus.previous,
