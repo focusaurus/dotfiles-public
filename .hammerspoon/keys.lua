@@ -9,16 +9,16 @@ local sound = require("sound")
 local hyper_pl = {"option", "command"}
 
 -- app nav
-hs.hotkey.bind(hyper_pl, "h", appNav.left)
-hs.hotkey.bind(hyper_pl, "t", appNav.up)
-hs.hotkey.bind(hyper_pl, "n", appNav.right)
-hs.hotkey.bind(hyper_pl, "w", appNav.down)
+hs.hotkey.bind(hyper_pl, "o", appNav.left)
+-- hs.hotkey.bind(hyper_pl, "t", appNav.up)
+hs.hotkey.bind(hyper_pl, "u", appNav.right)
+hs.hotkey.bind(hyper_pl, "j", appNav.down)
 
 -- for compat until kmonad on mac is fully working
-hs.hotkey.bind({"option"}, "h", appNav.left)
-hs.hotkey.bind({"option"}, "t", appNav.up)
-hs.hotkey.bind({"option"}, "n", appNav.right)
-hs.hotkey.bind({"option"}, "w", appNav.down)
+hs.hotkey.bind({"option"}, "o", appNav.left)
+-- hs.hotkey.bind({"option"}, "t", appNav.up)
+hs.hotkey.bind({"option"}, "u", appNav.right)
+hs.hotkey.bind({"option"}, "j", appNav.down)
 
 -- Disabled temporarily due to conflict with org-mode
 -- hs.hotkey.bind({"option"}, "j", appNav.down)
