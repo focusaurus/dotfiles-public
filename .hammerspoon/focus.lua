@@ -1,6 +1,8 @@
 local module = {}
 local log = hs.logger.new("focus", "debug")
 
+local allowSlack = true
+
 function module.terminal()
   log.d("terminal")
   hs.application.launchOrFocus("iTerm")
@@ -46,6 +48,7 @@ end
 
 function module.slackOrZoom()
   log.d("slackOrZoom")
+  if not allowSlack then return end
   local zoomIsFront = hs.window.frontmostWindow():application():name() == "zoom.us"
   local zoomIsRunning = false
   -- window count > 1 used as a proxy for "has active meeting window"

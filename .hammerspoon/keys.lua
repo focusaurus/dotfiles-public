@@ -45,7 +45,10 @@ hs.hotkey.bind({}, "f2", focus.code)
 hs.hotkey.bind({}, "f3", focus.terminal)
 hs.hotkey.bind({}, "f4", focus.emacs)
 hs.hotkey.bind({}, "f5", focus.slackOrZoom)
-hs.hotkey.bind(hyper_pl, "e", focus.previous)
+switcher = hs.window.switcher.new() -- default windowfilter: only visible windows, all Spaces
+
+-- hs.hotkey.bind(hyper_pl, "e", focus.previous)
+hs.hotkey.bind(hyper_pl, "e", switcher.nextWindow)
 -- for compat until kmonad on mac is fully working
 hs.hotkey.bind({"option"}, "e", focus.previous)
 hs.hotkey.bind({}, "f6", focus.slackOrZoom)
