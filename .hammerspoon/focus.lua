@@ -1,5 +1,6 @@
 local module = {}
 local log = hs.logger.new("focus", "debug")
+local focusMode = require("focus-mode")
 
 function module.terminal()
   log.d("terminal")
@@ -14,6 +15,7 @@ end
 
 function module.email()
   log.d("email")
+  if focusMode then return end
   hs.application.launchOrFocus("Google Chrome")
   hs.eventtap.keyStroke({"command"}, "1")
 end
@@ -34,18 +36,19 @@ function module.workflowy()
   hs.application.launchOrFocus("WorkFlowy")
 end
 
-function module.previous()
-  log.d("previous")
-  hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, true):post()
-  hs.eventtap.event.newKeyEvent("Tab", true):post()
-  -- hs.timer.doAfter(0.5, function()
-    hs.eventtap.event.newKeyEvent("Tab", false):post()
-    hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, false):post()
-  -- end)
-end
+-- function module.previous()
+--   log.d("previous")
+--   hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, true):post()
+--   hs.eventtap.event.newKeyEvent("Tab", true):post()
+--   hs.timer.doAfter(0.2, function()
+--     hs.eventtap.event.newKeyEvent("Tab", false):post()
+--     hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, false):post()
+--   end)
+-- end
 
 function module.slackOrZoom()
   log.d("slackOrZoom")
+  if focusMode then return end
   local zoomIsFront = hs.window.frontmostWindow():application():name() == "zoom.us"
   local zoomIsRunning = false
   -- window count > 1 used as a proxy for "has active meeting window"
