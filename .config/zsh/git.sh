@@ -366,14 +366,18 @@ gsync() {
   fi
   ~/bin/git-autocommit \
     ~/git.peterlyons.com/journals \
-    ~/git.peterlyons.com/mailchimp \
-    ~/github.com/focusaurus/qmk_firmware
+    ~/git.peterlyons.com/mailchimp
+
   ~/bin/git-sync \
     ~ \
     ~/git.peterlyons.com/dotfiles \
     ~/git.peterlyons.com/journals \
-    ~/git.peterlyons.com/mailchimp \
-    ~/github.com/focusaurus/qmk_firmware
+    ~/git.peterlyons.com/mailchimp
+  (
+    cd ~/github.com/focusaurus/qmk_firmware
+    git commit -a -m "autocommit"
+    git push origin focusaurus
+  )
 }
 
 git-cd-repo-dir-fuzzy() {
