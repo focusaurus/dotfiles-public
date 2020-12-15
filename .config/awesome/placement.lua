@@ -1,9 +1,11 @@
-local placement = {}
+local module = {}
 
 local awful = require("awful")
 local honor = {honor_workarea = true}
 
-function placement.left_half(client)
+local log = require("log")
+
+function module.left_half(client)
   client.maximized = false
   awful.placement.scale(client.focus, {
     to_percent = 0.5,
@@ -20,7 +22,7 @@ function placement.left_half(client)
   client:raise()
 end
 
-function placement.right_half(client)
+function module.right_half(client)
   client.maximized = false
   awful.placement.scale(client.focus, {
     to_percent = 0.5,
@@ -37,31 +39,43 @@ function placement.right_half(client)
   client:raise()
 end
 
-function placement.maximize_toggle(client)
+function module.maximize_toggle(client)
   client.maximized = not client.maximized
   client:raise()
 end
 
-function placement.fullscreen_toggle(client)
+function module.fullscreen_toggle(client)
   client.fullscreen = not client.fullscreen
   client:raise()
 end
 
-function placement.cycle(client)
+function module.cycle(client)
   local ratio = client.width / client.screen.geometry.width
   local x_pos = client.x - client.screen.geometry.x
   -- local debug = require("gears.debug")
   -- debug.print_warning("client.x " .. client.x)
   -- debug.print_warning("screen.geometry.x " .. client.screen.geometry.x)
   if ratio > 0.9 then
-    placement.left_half(client)
+    module.left_half(client)
   else
     if x_pos < 50 then
-      placement.right_half(client)
+      module.right_half(client)
     else
-      placement.maximize_toggle(client)
+      module.maximize_toggle(client)
     end
   end
 end
 
-return placement
+function module.move_all_clients_to_screen()
+  for s in screen do
+    -- log.log("dev4: " .. s.index)
+    for k,v in pairs(s.all_clients) do
+      log.log("dev5 " .. (v.name or "") .. "screen index: " .. v.screen.index)
+      -- if string.match((v.name or ""), "gedit") then
+        v:move_to_screen(2)
+      -- end
+   end
+  end
+end
+
+return module

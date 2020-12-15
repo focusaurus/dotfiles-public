@@ -16,6 +16,7 @@ brightnessctl
 broot
 brother-hl2280dw
 choose-rust-git
+chromium
 chrysalis-bin
 copyq
 cryptmount
@@ -65,7 +66,6 @@ navi-bin
 ncmpc
 network-manager-applet
 nvm
-openvpn-protonvpn
 pandoc
 patch
 pavucontrol
@@ -73,6 +73,7 @@ pinta
 pkgconf
 polkit-gnome
 ponymix
+protonvpn-cli-ng
 pulldown-cmark
 pup-bin
 qmk
@@ -119,6 +120,7 @@ xournalpp
 xterm
 yad
 yay
+zeal
 zenity
 zoom
 zulip-desktop

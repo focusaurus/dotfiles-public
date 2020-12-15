@@ -66,7 +66,7 @@ root.keys(
       {description = "focus previous (left) by index", group = "client" }),
     awful.key(hyper_pl, "p", focus.right,
       {description = "focus next (right) by index", group = "client" }),
-    awful.key(hyper_pl, "F1", wibar.set_volume,
+    awful.key(hyper_pl, "F1", placement.screen_dev,
       {description = "dev", group = "dev" }),
     fkeys({}, "F1"),
     fkeys({control}, "F1", "control+f1"),
