@@ -158,7 +158,7 @@ for name in thinkpad macbook ergodox-linux iris-linux infinity-linux ergodox-mac
   tap-s-hold-hyper (tap-hold-next-release 500 s @hyper)
   tap-semi-hold-hyper (tap-hold-next-release 500 ; @hyper)
   tap-escape-hold-control (tap-hold-next-release 150 esc lctl)
-  tap-snippet-hold-shift (tap-hold-next-release 150 M-2 lsft)
+  tap-snippet-hold-shift (tap-hold-next-release 150 M-3 lsft)
   tap-fuzzball-hold-super (tap-hold-next-release 150 M-spc lmet)
 
 )

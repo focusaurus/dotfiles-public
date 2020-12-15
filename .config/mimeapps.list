@@ -11,6 +11,7 @@ application/x-extension-shtml=firefox.desktop;
 application/xhtml+xml=firefox.desktop;
 application/x-extension-xhtml=firefox.desktop;
 application/x-extension-xht=firefox.desktop;
+image/jpeg=firefox.desktop;
 
 [Default Applications]
 x-scheme-handler/postman=Postman.desktop

@@ -507,6 +507,8 @@ before packages are loaded."
   (when (eq system-type 'darwin)
     (setq-default org-agenda-files '("~/mc/mailchimp.org" "~/exocortex/personal/daily-routine.org")))
   (setq-default org-todo-keywords '((sequence "TODO" "|" "DONE" "NOPE")))
+  (setq org-show-context-detail
+        '((default       . ancestors)))
   (evil-leader/set-key "q q" 'spacemacs/frame-killer)
   (global-set-key (kbd "C-c i d") (lambda () (interactive) (insert (shell-command-to-string "~/projects/daily-todos/daily-todos.sh 0"))))
   )
