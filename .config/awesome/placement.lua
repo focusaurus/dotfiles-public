@@ -68,13 +68,13 @@ end
 
 function module.move_all_clients_to_screen()
   for s in screen do
-    -- log.log("dev4: " .. s.index)
-    for k,v in pairs(s.all_clients) do
-      log.log("dev5 " .. (v.name or "") .. "screen index: " .. v.screen.index)
-      -- if string.match((v.name or ""), "gedit") then
-        v:move_to_screen(2)
-      -- end
-   end
+    log.log("dev6: index: " .. s.index .. " clients: " .. #s.all_clients)
+    if #s.all_clients == 0 then
+      for k,v in pairs(s.all_clients) do
+        log.log("dev7 " .. (v.name or "") .. "screen index: " .. v.screen.index)
+        v:move_to_screen(s.index)
+      end
+    end
   end
 end
 

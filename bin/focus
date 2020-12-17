@@ -48,7 +48,7 @@ activate_firefox_main_window() {
   # We filter out the dedicated windows
   id=$(wmctrl -lx |
     grep -i "Navigator.firefox" |
-    grep --extended-regexp --invert-match "(YouTube Music|Calendar|Peterlyons.com Mail)" |
+    grep --extended-regexp --invert-match "YouTube Music" |
     head -1 |
     awk '{print $1}' ||
     true)
