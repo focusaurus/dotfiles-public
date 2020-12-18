@@ -89,5 +89,7 @@
     "editor.defaultFormatter": "ms-azuretools.vscode-docker"
   },
   "workbench.editor.showTabs": true,
-  "editor.cursorWidth": 2
+  "editor.cursorWidth": 2,
+  "editor.renderLineHighlight": "all",
+  "editor.foldingHighlight": false
 }
