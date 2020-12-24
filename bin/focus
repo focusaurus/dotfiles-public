@@ -29,7 +29,7 @@ activate_window() {
   # Find first matching window, but prefer window on current desktop
 
   id=$(echo "${same_desktop}${matches}" | head -1 | cut -d , -f 3)
-  #echo "HEY MATCHED ${id}"
+  echo "HEY MATCHED ${id}"
   if [[ -n "${id}" ]]; then
     wmctrl -i -a "${id}"
   else
@@ -48,7 +48,7 @@ activate_firefox_main_window() {
   # We filter out the dedicated windows
   id=$(wmctrl -lx |
     grep -i "Navigator.firefox" |
-    grep --extended-regexp --invert-match "YouTube Music" |
+    grep --extended-regexp --invert-match "(YouTube Music| - Calendar)" |
     head -1 |
     awk '{print $1}' ||
     true)
