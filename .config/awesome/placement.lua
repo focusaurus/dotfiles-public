@@ -67,14 +67,51 @@ function module.cycle(client)
 end
 
 function module.move_all_clients_to_screen()
+  -- Default to assuming only 1 screen.
+  -- We still want to move all clients to it because
+  -- awesomewm doesn't do this for us automatically
+
+  local screen_from = screen[1]
+  local screen_to = screen[1]
   for s in screen do
-    log.log("dev6: index: " .. s.index .. " clients: " .. #s.all_clients)
+    log.log("dev8: s.index: " .. s.index .. " clients: " .. #s.all_clients)
     if #s.all_clients == 0 then
-      for k,v in pairs(s.all_clients) do
-        log.log("dev7 " .. (v.name or "") .. "screen index: " .. v.screen.index)
-        v:move_to_screen(s.index)
-      end
+      log.log(s.index .. " is screen_to since has zero clients")
+      screen_to = s
+    else
+      log.log(s.index .. " is screen_from since has some clients")
+      screen_from = s
     end
+
+    -- if #s.all_clients < #screen_to.all_clients then
+    --   screen_to = s
+    -- end
+    -- if #s.all_clients >= #screen_from.all_clients then
+    --   log.log(s.index .. " is screen_from since has most clients")
+    --   screen_from = s
+    -- end
+    -- if screen_from == nil then
+    --   log.log("screen_from default is " .. s.index)
+    --   screen_from = s
+    -- end
+    -- if screen_to == nil then
+    --   log.log("screen_to default is " .. s.index)
+    --   screen_to = s
+    -- end
+    -- if #s.all_clients == 0 then
+    --   log.log("Screen " .. s.index .. " has no clients, is screen_to")
+    --   screen_to = s
+    -- else
+    --   log.log("Screen " .. s.index .. " has some clients, is screen_from")
+    --   screen_from = s
+    -- end
+  end
+
+  log.log("dev9 WTF " .. #screen_from.all_clients)
+  for key, value in pairs(screen_from.all_clients) do
+    log.log("dev10 WTF")
+    log.log("dev7 moving " .. (value.name or "") .. " from " .. value.screen.index .. " to " .. screen_to.index)
+    value:move_to_screen(screen_to.index)
   end
 end
 

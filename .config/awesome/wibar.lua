@@ -11,7 +11,7 @@ require("awful.hotkeys_popup.keys")
 
 local module = {}
 --- This is used later as the default terminal and editor to run.
-terminal = "termite"
+terminal = "kitty"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 beautiful.hotkeys_font = "JetBrains Mono 14"
