@@ -1,7 +1,7 @@
 local log = require("log")
 local module = {}
 
-log.log("dev loaded")
+-- log.log("dev loaded")
 screen.connect_signal("list", function()
   log.log("screen list. Screen count: " .. screen:count())
 end)

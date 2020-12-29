@@ -80,10 +80,10 @@ main() {
     ;;
   email|gmail|control+f1)
     # activate_window 'pete@' "${HOME}/bin/launch-chrome-app.sh" gmail
-    activate_window 'Peterlyons.com Mail' firefox --new-window "https://mail.google.com/mail/u/0/#search/is%3Astarred+OR+is%3Aunread"
-    # activate_firefox_main_window
-    # sleep 0.2
-    # browser_tab 1
+    # activate_window 'Peterlyons.com Mail' firefox --new-window "https://mail.google.com/mail/u/0/#search/is%3Astarred+OR+is%3Aunread"
+    activate_firefox_main_window
+    sleep 0.2
+    browser_tab 1
     ;;
   editor|code|f2)
     # switch to workspace 2 (text editor)
