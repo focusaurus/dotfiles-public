@@ -71,14 +71,15 @@ end
 
 function module.calendar()
   log.d("calendar")
-  hs.application.launchOrFocus("Google Chrome")
-  hs.eventtap.keyStroke({"command"}, "2")
+  hs.application.launchOrFocus("Google Calendar")
+  -- hs.eventtap.keyStroke({"command"}, "2")
 end
 
 function module.music()
   log.d("music")
-  hs.application.launchOrFocus("Google Chrome")
-  hs.eventtap.keyStroke({"command"}, "3")
+  hs.application.launchOrFocus("YouTube Music")
+  -- hs.application.launchOrFocus("Google Chrome")
+  -- hs.eventtap.keyStroke({"command"}, "3")
 end
 
 return module

@@ -210,7 +210,7 @@ menuHammerMenuList = {
             -- {cons.cat.submenu, '', 'g', 'Toggles', { {cons.act.menu, toggleMenu} }},
             -- {cons.cat.submenu, '', 'x', 'Text', { {cons.act.menu, textMenu} }},
             {cons.cat.submenu, '', '/', 'Scripts', { {cons.act.menu, scriptsMenu} }},
-            {cons.cat.action, '', 'space', 'Spotlight', { {cons.act.keycombo, {'cmd'}, 'space'} }},
+            {cons.cat.action, '', 'space', 'Spotlight', { {cons.act.keycombo, {'cmd', 'shift'}, 'space'} }},
             {cons.cat.action, '', 'i', 'Firefox', { {cons.act.launcher, 'Firefox'} }},
             {cons.cat.action, '', 'f', 'Fuzzball', { {cons.act.func, fuzzball.chooseScript } }},
             {cons.cat.action, '', 'm', 'Music', { {cons.act.func, focus.music } }},
