@@ -29,7 +29,7 @@ activate_window() {
   # Find first matching window, but prefer window on current desktop
 
   id=$(echo "${same_desktop}${matches}" | head -1 | cut -d , -f 3)
-  #echo "HEY MATCHED ${id}"
+  echo "HEY MATCHED ${id}"
   if [[ -n "${id}" ]]; then
     wmctrl -i -a "${id}"
   else
@@ -48,7 +48,7 @@ activate_firefox_main_window() {
   # We filter out the dedicated windows
   id=$(wmctrl -lx |
     grep -i "Navigator.firefox" |
-    grep --extended-regexp --invert-match "YouTube Music" |
+    grep --extended-regexp --invert-match "(YouTube Music| - Calendar)" |
     head -1 |
     awk '{print $1}' ||
     true)
@@ -80,10 +80,10 @@ main() {
     ;;
   email|gmail|control+f1)
     # activate_window 'pete@' "${HOME}/bin/launch-chrome-app.sh" gmail
-    activate_window 'Peterlyons.com Mail' firefox --new-window "https://mail.google.com/mail/u/0/#search/is%3Astarred+OR+is%3Aunread"
-    # activate_firefox_main_window
-    # sleep 0.2
-    # browser_tab 1
+    # activate_window 'Peterlyons.com Mail' firefox --new-window "https://mail.google.com/mail/u/0/#search/is%3Astarred+OR+is%3Aunread"
+    activate_firefox_main_window
+    sleep 0.2
+    browser_tab 1
     ;;
   editor|code|f2)
     # switch to workspace 2 (text editor)

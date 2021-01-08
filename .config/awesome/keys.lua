@@ -8,6 +8,7 @@ local cyclefocus = require("cyclefocus")
 local placement = require("placement")
 local focus = require("focus")
 local wibar = require("wibar")
+local dev = require("dev")
 
 local alt = "Mod1"
 local control = "Control"
@@ -66,7 +67,7 @@ root.keys(
       {description = "focus previous (left) by index", group = "client" }),
     awful.key(hyper_pl, "p", focus.right,
       {description = "focus next (right) by index", group = "client" }),
-    awful.key(hyper_pl, "F1", focus.highest,
+    awful.key(hyper_pl, "F1", dev.dev,
       {description = "dev", group = "dev" }),
     fkeys({}, "F1"),
     fkeys({control}, "F1", "control+f1"),

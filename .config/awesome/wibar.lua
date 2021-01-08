@@ -11,7 +11,7 @@ require("awful.hotkeys_popup.keys")
 
 local module = {}
 --- This is used later as the default terminal and editor to run.
-terminal = "termite"
+terminal = "kitty"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 beautiful.hotkeys_font = "JetBrains Mono 14"
@@ -119,7 +119,8 @@ awful.screen.connect_for_each_screen(function(s)
     screen = s,
     filter = awful.widget.tasklist.filter.currenttags,
     buttons = tasklist_buttons,
-    style = {shape = gears.shape.rounded_bar}
+    style = {shape = gears.shape.rounded_rect}
+    -- layout = wibox.layout.flex.horizontal()
   }
 
   -- Create the wibar
