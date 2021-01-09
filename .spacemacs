@@ -502,7 +502,7 @@ before packages are loaded."
   (setq org-agenda-span 'day)
   (setq vc-follow-symlinks t)
   (setq vc-handled-backends nil)
-  (setq-default org-agenda-files '("~/exocortex/personal/personal.org" "~/exocortex/personal/tech.org" "~/exocortex/personal/daily-routine.org"))
+  (setq-default org-agenda-files '("~/exocortex/personal/personal.org" "~/exocortex/personal/tech.org" "~/exocortex/personal/daily-routine.org" "~/exocortex/personal/monthly-routine.org"))
   ;; on the work macbook, use the work org file for agenda
   (when (eq system-type 'darwin)
     (setq-default org-agenda-files '("~/mc/mailchimp.org" "~/exocortex/personal/daily-routine.org")))
