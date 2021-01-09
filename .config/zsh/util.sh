@@ -173,6 +173,7 @@ scratch-daily() {
 }
 
 whos-listening() {
+  local port
   if [[ -n "$1" ]]; then
     port=":$1"
   fi
