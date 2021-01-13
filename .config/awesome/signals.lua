@@ -2,6 +2,7 @@ local gears = require("gears")
 local awful = require("awful")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
+local focus = require("focus")
 
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function(c)
@@ -15,6 +16,8 @@ client.connect_signal("manage", function(c)
     awful.placement.no_offscreen(c)
   end
 end)
+
+client.connect_signal("unmanage", focus.highest)
 
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
 client.connect_signal("request::titlebars", function(c)

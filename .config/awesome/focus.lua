@@ -1,8 +1,6 @@
 local module = {}
 
 local awful = require("awful")
-local signals = require("signals")
-
 local log = require("log")
 
 function module.left()
@@ -50,6 +48,6 @@ end
 --     c:activate { context = "mouse_enter", raise = false }
 -- end)
 
-awesome.connect_signal("request::autoactivate", module.highest)
-awful.screen.focused():connect_signal("request::autoactivate", module.highest)
+-- awesome.connect_signal("unmanage", module.highest)
+-- awful.screen.focused():connect_signal("request::autoactivate", module.highest)
 return module
