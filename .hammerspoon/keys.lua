@@ -35,16 +35,16 @@ hs.hotkey.bind({"control"}, "3", snippets.chooseByUIAndType)
 hs.hotkey.bind({}, "F12", snippets.chooseByUIAndType)
 
 -- journal
-hs.hotkey.bind({}, "f9", journal.appendByDialog)
-hs.hotkey.bind({"shift"}, "f9", journal.appendByDialogStandup)
+---- hs.hotkey.bind({}, "f9", journal.appendByDialog)
+-- hs.hotkey.bind({"shift"}, "f9", journal.appendByDialogStandup)
 
 -- focus
-hs.hotkey.bind({}, "f1", focus.browser)
-hs.hotkey.bind({"shift"}, "f1", focus.email)
-hs.hotkey.bind({}, "f2", focus.code)
-hs.hotkey.bind({}, "f3", focus.terminal)
-hs.hotkey.bind({}, "f4", focus.emacs)
-hs.hotkey.bind({}, "f5", focus.slackOrZoom)
+-- hs.hotkey.bind({}, "f1", focus.browser)
+-- hs.hotkey.bind({"shift"}, "f1", focus.email)
+-- hs.hotkey.bind({}, "f2", focus.code)
+-- hs.hotkey.bind({}, "f3", focus.terminal)
+-- hs.hotkey.bind({}, "f4", focus.emacs)
+-- hs.hotkey.bind({}, "f5", focus.slackOrZoom)
 switcher = hs.window.switcher.new() -- default windowfilter: only visible windows, all Spaces
 
 -- hs.hotkey.bind(hyper_pl, "e", focus.previous)
@@ -53,9 +53,9 @@ switcher = hs.window.switcher.new() -- default windowfilter: only visible window
 hs.hotkey.bind(hyper_pl, "e", switcher.nextWindow)
 -- for compat until kmonad on mac is fully working
 hs.hotkey.bind({"option"}, "e", switcher.nextWindow)
-hs.hotkey.bind({}, "f6", focus.slackOrZoom)
-hs.hotkey.bind({}, "f7", focus.calendar)
-hs.hotkey.bind({}, "f8", focus.music)
+-- hs.hotkey.bind({}, "f6", focus.slackOrZoom)
+-- hs.hotkey.bind({}, "f7", focus.calendar)
+-- hs.hotkey.bind({}, "f8", focus.music)
 
 -- sound
 -- hs.hotkey.bind({}, "f10", sound.toggleMute)
