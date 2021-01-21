@@ -188,3 +188,5 @@
 /.gitkraken
 /photos
 /.dlv
+/.config/PrusaSlicer/cache
+/.config/PrusaSlicer/vendor
