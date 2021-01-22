@@ -189,3 +189,5 @@
 /photos
 /.dlv
 /*.auth
+/.config/PrusaSlicer/cache
+/.config/PrusaSlicer/vendor
