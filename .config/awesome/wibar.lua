@@ -3,6 +3,7 @@ local awful = require("awful")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 local menubar = require("menubar")
+local placement = require("placement")
 
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
@@ -19,20 +20,14 @@ beautiful.hotkeys_description_font = "JetBrains Mono 12"
 beautiful.menu_font = "JetBrains Mono 14"
 beautiful.menu_height = 24
 beautiful.menu_width = 300
-myawesomemenu = {
-  {
-    "hotkeys",
-
-    function() hotkeys_popup.show_help(nil, awful.screen.focused()) end
-  }, {"manual", terminal .. " -e man awesome"},
-  {"edit config", editor_cmd .. " " .. awesome.conffile},
-  {"restart", awesome.restart}, {"quit", function() awesome.quit() end}
-}
 
 mymainmenu = awful.menu({
   items = {
-    {"awesome", myawesomemenu, beautiful.awesome_icon},
-    {"open terminal", terminal}
+    {"open terminal", terminal},
+    {"awesome: hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
+    {"awesome: restart", awesome.restart},
+    {"awesome: quit", function() awesome.quit() end},
+    {"awesome: move all clients", placement.move_all_clients_to_screen}
   }
 })
 
