@@ -252,7 +252,7 @@ menuHammerMenuList = {
         menuItems = {
             {cons.cat.action, '', 'A', 'App Store', { {cons.act.launcher, 'App Store'} }},
             {cons.cat.action, '', 'C', 'Chrome', { {cons.act.launcher, 'Google Chrome'} }},
-            {cons.cat.action, '', 'D', 'DBeaver', { {cons.act.launcher, 'DBeaver'} }},
+            {cons.cat.action, '', 'D', 'Dash', { {cons.act.launcher, 'Dash'} }},
             {cons.cat.action, '', 'F', 'Firefox', { {cons.act.launcher, 'Firefox'} }},
             {cons.cat.action, '', 'K', 'Karabiner', { {cons.act.launcher, 'Karabiner-Elements'} }},
             {cons.cat.action, '', 'S', 'Slack', { {cons.act.launcher, 'Slack'} }},
