@@ -817,16 +817,7 @@
 			<key>Transparency</key>
 			<real>0.0</real>
 			<key>Triggers</key>
-			<array>
-				<dict>
-					<key>action</key>
-					<string>iTermUserNotificationTrigger</string>
-					<key>parameter</key>
-					<string>script/setup needs input</string>
-					<key>regex</key>
-					<string>Would you like to proceed with downloading the latest base box</string>
-				</dict>
-			</array>
+			<array/>
 			<key>Unlimited Scrollback</key>
 			<false/>
 			<key>Use Bold Font</key>
@@ -1653,7 +1644,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>7F7D34F2-A5D8-41B2-8661-7FA4208BC1E1</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>79</integer>
+	<integer>80</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -2472,6 +2463,8 @@
 	<true/>
 	<key>SUSendProfileInfo</key>
 	<false/>
+	<key>Secure Input</key>
+	<true/>
 	<key>SoundForEsc</key>
 	<false/>
 	<key>VisualIndicatorForEsc</key>
