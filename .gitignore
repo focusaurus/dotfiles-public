@@ -191,3 +191,4 @@
 /*.auth
 /.config/PrusaSlicer/cache
 /.config/PrusaSlicer/vendor
+/.lein
