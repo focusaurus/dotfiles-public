@@ -499,7 +499,7 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (setq-default dotspacemacs-themes '(spacemacs-light spacemacs-dark))
-  (setq org-agenda-span 'day)
+  (setq inhibit-splash-screen t)
   (setq vc-follow-symlinks t)
   (setq truncate-lines nil)
   (setq vc-handled-backends nil)
@@ -507,12 +507,20 @@ before packages are loaded."
   ;; on the work macbook, use the work org file for agenda
   (when (eq system-type 'darwin)
     (setq-default org-agenda-files '("~/mc/mailchimp.org" "~/exocortex/personal/daily-routine.org")))
+  (setq org-agenda-span 'day)
   (setq-default org-todo-keywords '((sequence "TODO" "SOON" "|" "DONE" "NOPE")))
   (setq org-show-context-detail
         '((default       . ancestors)))
   (evil-leader/set-key "q q" 'spacemacs/frame-killer)
-  (global-set-key (kbd "C-c i d") (lambda () (interactive) (insert (shell-command-to-string "~/projects/daily-todos/daily-todos.sh 0"))))
+  ;; (global-set-key (kbd "C-c i d") (lambda () (interactive) (insert (shell-command-to-string "~/projects/daily-todos/daily-todos.sh 0"))))
+  (find-file "~/exocortex/personal/tech.org")
+  (find-file "~/exocortex/personal/personal.org")
   (find-file "~/exocortex/personal/daily-routine.org")
+  (org-show-all)
+  (when (eq system-type 'darwin)
+    (find-file "~/mc/mailchimp.org"))
+  (kill-buffer "*spacemacs*")
+  (org-todo-list 'T)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
