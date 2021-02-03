@@ -250,6 +250,7 @@ menuHammerMenuList = {
         parentMenu = mainMenu,
         menuHotkey = {{'cmd', 'alt', 'ctrl'}, 'a'},
         menuItems = {
+            {cons.cat.action, '', '1', '1Password', { {cons.act.launcher, '1Password 7'} }},
             {cons.cat.action, '', 'A', 'App Store', { {cons.act.launcher, 'App Store'} }},
             {cons.cat.action, '', 'C', 'Chrome', { {cons.act.launcher, 'Google Chrome'} }},
             {cons.cat.action, '', 'D', 'Dash', { {cons.act.launcher, 'Dash'} }},

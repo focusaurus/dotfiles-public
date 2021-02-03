@@ -376,6 +376,7 @@ gsync() {
   (
     cd ~/github.com/focusaurus/qmk_firmware
     git commit -a -m "autocommit"
+    git pull origin focusaurus
     git push origin focusaurus
   )
 }
