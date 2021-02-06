@@ -508,7 +508,7 @@ before packages are loaded."
   (when (eq system-type 'darwin)
     (setq-default org-agenda-files '("~/mc/mailchimp.org" "~/exocortex/personal/daily-routine.org")))
   (setq org-agenda-span 'day)
-  (setq-default org-todo-keywords '((sequence "TODO" "SOON" "|" "DONE" "NOPE")))
+  (setq-default org-todo-keywords '((sequence "SOON" "TODO" "|" "DONE" "NOPE")))
   (setq org-show-context-detail
         '((default       . ancestors)))
   (evil-leader/set-key "q q" 'spacemacs/frame-killer)
@@ -521,6 +521,7 @@ before packages are loaded."
     (find-file "~/mc/mailchimp.org"))
   (kill-buffer "*spacemacs*")
   (org-todo-list 'T)
+  (spacemacs/alternate-window)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

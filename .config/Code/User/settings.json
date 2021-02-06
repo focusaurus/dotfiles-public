@@ -38,7 +38,7 @@
   "window.restoreWindows": "all",
   "window.title": "${folderName}${separator}${activeEditorShort}${separator}${appName}",
   "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "vscode.json-language-features"
   },
   "[rs]": {
     "editor.tabSize": 4
