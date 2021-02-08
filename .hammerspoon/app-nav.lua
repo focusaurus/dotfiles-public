@@ -3,7 +3,7 @@ local log = hs.logger.new("app-nav", "debug")
 local hbin = os.getenv("HOME") .. "/bin"
 
 function useTabNav(appName)
-  return appName == "Google Chrome" or appName == "Firefox" or appName == "Code"
+  return appName == "Google Chrome" or appName == "Firefox"
 end
 
 function module.left()
@@ -11,6 +11,11 @@ function module.left()
   local name = hs.application.frontmostApplication():name()
   if name == "iTerm2" then
     os.execute(hbin .. "/nav-tmux left")
+  elseif name == "Code" then
+    -- vim style tab navigation
+    hs.eventtap.keyStroke({}, "Escape")
+    hs.eventtap.keyStroke({}, "g")
+    hs.eventtap.keyStroke({"shift"}, "T")
   elseif useTabNav(name) then
     hs.eventtap.keyStroke({"control", "shift"}, "Tab")
   end
@@ -41,6 +46,11 @@ function module.right()
   local name = hs.application.frontmostApplication():name()
   if name == "iTerm2" then
     os.execute(hbin .. "/nav-tmux right")
+  elseif name == "Code" then
+    -- vim style tab navigation
+    hs.eventtap.keyStroke({}, "Escape")
+    hs.eventtap.keyStroke({}, "g")
+    hs.eventtap.keyStroke({}, "t")
   elseif useTabNav(name) then
     hs.eventtap.keyStroke({"control"}, "Tab")
   end
