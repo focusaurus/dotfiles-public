@@ -30,3 +30,4 @@ source-if-exists ~/.devtool.env
 source-if-exists "${HOME}/.config/zsh/os/$(uname).sh"
 source-if-exists ~/.nvm/nvm.sh
 source-if-exists ~/.config/broot/launcher/bash/br
+source-if-exists /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
