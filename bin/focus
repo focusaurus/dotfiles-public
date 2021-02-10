@@ -92,7 +92,7 @@ main() {
     ;;
   terminal|kitty|termite|f3)
     # activate_window termite.Termite termite --title termite
-    activate_window kitty.kitty kitty --single-instance --title kitty
+    activate_window kitty.kitty kitty --single-instance --title terminal-kitty
     # if wmctrl -lx | grep -qi "termite"; then
     #   if xdotool getactivewindow getwindowname | grep -qi 'termite-mailchimp'; then
     #     # mailchimp is active, switch to local
