@@ -6,21 +6,24 @@ arc-icon-theme-full-git
 arc-x-icons-theme
 arduino-avr-core
 at
+autorandr
 awesome
 base
 bat
 bind
+bison
+blender
 blueman
 bluez-utils
 brightnessctl
 broot
 brother-hl2280dw
 choose-rust-git
-chromium
 chrysalis-bin
 copyq
 cryptmount
 cups-pdf
+cura
 docker-compose
 dos2unix
 entr
@@ -36,7 +39,7 @@ feh
 firefox
 foomatic-db-nonfree-ppds
 foomatic-db-ppds
-freecad
+freecad-appimage-git
 fswatch
 gcalcli
 gedit
@@ -51,6 +54,7 @@ intel-ucode
 jq
 keybase-gui
 kitty
+leiningen
 lf-bin
 libmp4v2
 lsof
@@ -66,6 +70,8 @@ navi-bin
 ncmpc
 network-manager-applet
 nvm
+obs-studio
+openscad
 pandoc
 patch
 pavucontrol
@@ -74,6 +80,7 @@ pkgconf
 polkit-gnome
 ponymix
 protonvpn-cli-ng
+prusa-slicer
 pulldown-cmark
 pup-bin
 qmk
@@ -123,4 +130,5 @@ yay
 zeal
 zenity
 zoom
+zsh-autosuggestions
 zulip-desktop

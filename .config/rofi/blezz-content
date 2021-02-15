@@ -1,13 +1,18 @@
 Main:
-act(t, terminal, focus terminal)
+dir(a, applications)
 act(b, browser, focus browser)
 act(c, calendar, focus calendar)
 act(e, email, focus email)
-act(m, music, focus music)
+act(f, fuzzball, fuzz-script-choose)
 act(i, firefox, focus firefox)
+act(m, music, focus music)
 act(o, emacs, focus emacs)
 act(s, slack, focus slack-or-zoom)
+act(t, terminal, focus terminal)
 act(u, zulip, focus zulip)
-act(f, fuzzball, fuzz-script-choose)
 act(x, executables, rofi -show run)
 act(z, zeal, zeal)
+
+applications:
+act(f, freecad, focus freecad)
+act(p, prusa-slicer, focus prusa-slicer)

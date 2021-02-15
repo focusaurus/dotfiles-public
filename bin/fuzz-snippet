@@ -70,7 +70,7 @@ pid=$(xdotool getactivewindow getwindowpid)
 paste_keysym="v"
 # Sometimes need this when doing dvorak via X11
 # paste_keysym="period"
-if grep -E '(gnome-terminal|termite|kitty)' "/proc/${pid}/cmdline" >/dev/null; then
+if grep -E '(gnome-terminal|termite)' "/proc/${pid}/cmdline" >/dev/null; then
   # paste into the active window via keyboard shortcut
   ~/bin/log "$0" "pasting using terminal keyboard shortcut"
   xdotool key "ctrl+shift+${paste_keysym}"

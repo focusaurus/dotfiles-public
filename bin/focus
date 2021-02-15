@@ -92,7 +92,7 @@ main() {
     ;;
   terminal|kitty|termite|f3)
     # activate_window termite.Termite termite --title termite
-    activate_window kitty.kitty kitty --single-instance --title kitty
+    activate_window kitty.kitty kitty --single-instance --title terminal-kitty
     # if wmctrl -lx | grep -qi "termite"; then
     #   if xdotool getactivewindow getwindowname | grep -qi 'termite-mailchimp'; then
     #     # mailchimp is active, switch to local
@@ -156,6 +156,12 @@ main() {
     ;;
   journal-mailchimp-standup|shift+f9)
     ~/git.peterlyons.com/dotfiles/fuzzball/journal-mailchimp-standup
+    ;;
+  freecad)
+    activate_window FreeCAD freecad
+    ;;
+  prusa-slicer)
+    activate_window PrusaSlicer prusa-slicer
     ;;
   esac
 }
