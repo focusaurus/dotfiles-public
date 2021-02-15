@@ -6,10 +6,13 @@ arc-icon-theme-full-git
 arc-x-icons-theme
 arduino-avr-core
 at
+autorandr
 awesome
 base
 bat
 bind
+bison
+blender
 blueman
 bluez-utils
 brightnessctl
@@ -36,7 +39,7 @@ feh
 firefox
 foomatic-db-nonfree-ppds
 foomatic-db-ppds
-freecad
+freecad-appimage-git
 fswatch
 gcalcli
 gedit
@@ -67,6 +70,7 @@ navi-bin
 ncmpc
 network-manager-applet
 nvm
+obs-studio
 openscad
 pandoc
 patch
@@ -126,4 +130,5 @@ yay
 zeal
 zenity
 zoom
+zsh-autosuggestions
 zulip-desktop

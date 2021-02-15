@@ -157,6 +157,12 @@ main() {
   journal-mailchimp-standup|shift+f9)
     ~/git.peterlyons.com/dotfiles/fuzzball/journal-mailchimp-standup
     ;;
+  freecad)
+    activate_window FreeCAD freecad
+    ;;
+  prusa-slicer)
+    activate_window PrusaSlicer prusa-slicer
+    ;;
   esac
 }
 
