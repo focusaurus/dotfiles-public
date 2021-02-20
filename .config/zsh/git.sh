@@ -373,12 +373,14 @@ gsync() {
     ~/git.peterlyons.com/dotfiles \
     ~/git.peterlyons.com/journals \
     ~/git.peterlyons.com/mailchimp
-  (
-    cd ~/github.com/focusaurus/qmk_firmware
-    git commit -a -m "autocommit"
-    git pull origin focusaurus
-    git push origin focusaurus
-  )
+  if [[ -d ~/github.com/focusaurus/qmk_firmware ]]; then
+    (
+      cd ~/github.com/focusaurus/qmk_firmware || exit
+      git commit -a -m "autocommit"
+      git pull origin focusaurus
+      git push origin focusaurus
+    )
+  fi
 }
 
 git-cd-repo-dir-fuzzy() {
