@@ -12,7 +12,9 @@ set -o posix    # more strict failures in subshells
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-
+echo -n "syncing…"
+sync
+echo "✓"
 (findmnt --list --noheadings --output target --types vfat || true) | {
   while IFS= read -r file_path
   do

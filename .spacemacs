@@ -503,7 +503,7 @@ before packages are loaded."
   (setq vc-follow-symlinks t)
   (setq truncate-lines nil)
   (setq vc-handled-backends nil)
-  (setq-default org-agenda-files '("~/exocortex/personal/personal.org" "~/exocortex/personal/tech.org" "~/exocortex/personal/daily-routine.org" "~/exocortex/personal/monthly-routine.org"))
+  (setq-default org-agenda-files '("~/exocortex/personal/personal.org" "~/exocortex/personal/daily-routine.org" "~/exocortex/personal/monthly-routine.org"))
   ;; on the work macbook, use the work org file for agenda
   (when (eq system-type 'darwin)
     (setq-default org-agenda-files '("~/mc/mailchimp.org" "~/exocortex/personal/daily-routine.org")))
@@ -513,7 +513,6 @@ before packages are loaded."
         '((default       . ancestors)))
   (evil-leader/set-key "q q" 'spacemacs/frame-killer)
   ;; (global-set-key (kbd "C-c i d") (lambda () (interactive) (insert (shell-command-to-string "~/projects/daily-todos/daily-todos.sh 0"))))
-  (find-file "~/exocortex/personal/tech.org")
   (find-file "~/exocortex/personal/personal.org")
   (find-file "~/exocortex/personal/daily-routine.org")
   (org-show-all)
