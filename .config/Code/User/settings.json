@@ -91,5 +91,7 @@
   "workbench.editor.showTabs": true,
   "editor.cursorWidth": 2,
   "editor.renderLineHighlight": "all",
-  "editor.foldingHighlight": false
+  "editor.foldingHighlight": false,
+  "vscode-neovim.neovimInitVimPaths.darwin": "/usr/local/bin/nvim",
+  "vscode-neovim.neovimExecutablePaths.darwin": "/usr/local/bin/nvim"
 }

@@ -1,6 +1,9 @@
 local module = {}
 local log = hs.logger.new("focus", "debug")
 local focusMode = require("focus-mode")
+local wf = hs.window.filter.new()
+-- wf.setDefaultFilter({})
+
 
 function module.terminal()
   log.d("terminal")
@@ -36,15 +39,20 @@ function module.workflowy()
   hs.application.launchOrFocus("WorkFlowy")
 end
 
--- function module.previous()
---   log.d("previous")
---   hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, true):post()
---   hs.eventtap.event.newKeyEvent("Tab", true):post()
---   hs.timer.doAfter(0.2, function()
---     hs.eventtap.event.newKeyEvent("Tab", false):post()
---     hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, false):post()
---   end)
--- end
+function module.previous()
+  log.d("previous")
+  lastWindow = wf:getWindows(wf.sortByFocusedLast)[2]
+  if lastWindow == nil then return end
+  log.d("Previous: " .. lastWindow:title())
+  lastWindow:focus()
+
+  -- hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, true):post()
+  -- hs.eventtap.event.newKeyEvent("Tab", true):post()
+  -- hs.timer.doAfter(0.2, function()
+  --   hs.eventtap.event.newKeyEvent("Tab", false):post()
+  --   hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, false):post()
+  -- end)
+end
 
 function module.slackOrZoom()
   log.d("slackOrZoom")
