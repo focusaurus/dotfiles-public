@@ -16,3 +16,4 @@ act(z, zeal, zeal)
 applications:
 act(f, freecad, focus freecad)
 act(p, prusa-slicer, focus prusa-slicer)
+act(c, calculator, focus calculator)

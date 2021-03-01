@@ -12,12 +12,15 @@ set -o posix    # more strict failures in subshells
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-echo -n "syncing…"
-sync
-echo "✓"
-(findmnt --list --noheadings --output target --types vfat || true) | {
-  while IFS= read -r file_path
-  do
-    sudo umount "${file_path}"
-  done
-}
+udiskie-umount -a
+# old implementation before I learned about udiskie
+if false; then
+  echo -n "syncing…"
+  sync
+  echo "✓"
+  (findmnt --list --noheadings --output target --types vfat || true) | {
+    while IFS= read -r file_path; do
+      sudo umount "${file_path}"
+    done
+  }
+fi

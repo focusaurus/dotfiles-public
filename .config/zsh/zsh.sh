@@ -13,6 +13,8 @@ export INC_APPEND_HISTORY="1"
 export SAVEHIST="10000"
 export SHARE_HISTORY="1"
 
+setopt autopushd pushdignoredups pushdsilent
+
 export TZ="America/Denver"
 tt() {
   export TERMINAL_TITLE="$*"

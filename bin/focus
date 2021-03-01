@@ -59,9 +59,27 @@ activate_firefox_main_window() {
   fi
 }
 
+activate_chrome_main_window() {
+  # This is not super robust. It assumes the main firefox general purpose
+  # window is the first one launched
+  # We filter out the dedicated windows
+  id=$(wmctrl -lx |
+    grep -i "google-chrome.Google-chrome" |
+    grep --extended-regexp --invert-match "(YouTube Music| - Calendar)" |
+    head -1 |
+    awk '{print $1}' ||
+    true)
+  if [[ -n "${id}" ]]; then
+    wmctrl -i -a "${id}"
+  else
+    exec google-chrome-stable
+  fi
+}
+
 browser() {
   # activate_window 'google-chrome.Google-chrome' 'google-chrome-stable'
-  activate_firefox_main_window
+  # activate_firefox_main_window
+  activate_chrome_main_window
 }
 
 main() {
@@ -75,22 +93,26 @@ main() {
     command="${command#focus-}"
   fi
   case "${command}" in
-  browser|firefox|f1)
+  firefox)
+    activate_firefox_main_window
+    ;;
+  browser | f1)
     browser
     ;;
-  email|gmail|control+f1)
+  email | gmail | control+f1)
     # activate_window 'pete@' "${HOME}/bin/launch-chrome-app.sh" gmail
     # activate_window 'Peterlyons.com Mail' firefox --new-window "https://mail.google.com/mail/u/0/#search/is%3Astarred+OR+is%3Aunread"
-    activate_firefox_main_window
+    # activate_firefox_main_window
+    browser
     sleep 0.2
     browser_tab 1
     ;;
-  editor|code|f2)
+  editor | code | f2)
     # switch to workspace 2 (text editor)
     # wmctrl -s 1
     activate_window 'Visul Studio Code' 'code'
     ;;
-  terminal|kitty|termite|f3)
+  terminal | kitty | termite | f3)
     # activate_window termite.Termite termite --title termite
     activate_window kitty.kitty kitty --single-instance --title terminal-kitty
     # if wmctrl -lx | grep -qi "termite"; then
@@ -105,13 +127,13 @@ main() {
     #   activate_window termite termite --title termite
     # fi
     ;;
-  emacs|orgmode|f4)
+  emacs | orgmode | f4)
     #local app_image
     #app_image="$(find "${HOME}/aur/workflowy" -type f -name 'WorkFlowy-*.AppImage' | sort -n | head -1)"
     # activate_window 'workflowy' "/opt/WorkFlowy-x86_64.AppImage"
     activate_window 'emacs.Emacs' 'emacs'
     ;;
-  slack|zoom|slack-or-zoom|f6)
+  slack | zoom | slack-or-zoom | f6)
     if wmctrl -l | grep -qi "zoom"; then
       if xdotool getactivewindow getwindowname | grep -qi 'Zoom'; then
         # zoom is active, switch to slack
@@ -132,29 +154,27 @@ main() {
   #     activate_window 'Zoom Meeting ID:' 'zoom'
   #   fi
   #   ;;
-  zulip|control+f6)
+  zulip | control+f6)
     activate_window 'Zulip' 'zulip'
     # activate_window 'zulip' /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=zulip --file-forwarding org.zulip.Zulip
     ;;
-  calendar|gcal|f7)
-    # browser
-    # activate_window ' - Calendar' "google-chrome-stable" google-calendar
-    activate_window ' - Calendar' firefox --new-window "https://calendar.google.com/calendar/r"
+  calendar | gcal | f7)
+    activate_window ' - Calendar' "google-chrome-stable" "https://calendar.google.com/calendar/r"
+    # activate_window ' - Calendar' firefox --new-window "https://calendar.google.com/calendar/r"
     # activate_firefox_main_window
     # sleep 0.3
     # browser_tab 2
     ;;
-  music|f8)
-    # browser
-    activate_window 'YouTube Music' firefox --new-window "https://music.youtube.com"
+  music | f8)
+    activate_window 'YouTube Music' "google-chrome-stable" --new-window "https://music.youtube.com"
     # activate_firefox_main_window
     # sleep 0.2
     # browser_tab 3
     ;;
-  journal-mailchimp|f9)
+  journal-mailchimp | f9)
     ~/git.peterlyons.com/dotfiles/fuzzball/journal-mailchimp
     ;;
-  journal-mailchimp-standup|shift+f9)
+  journal-mailchimp-standup | shift+f9)
     ~/git.peterlyons.com/dotfiles/fuzzball/journal-mailchimp-standup
     ;;
   freecad)
@@ -162,6 +182,9 @@ main() {
     ;;
   prusa-slicer)
     activate_window PrusaSlicer prusa-slicer
+    ;;
+  calculator)
+    activate_window Calculator mate-calc
     ;;
   esac
 }
