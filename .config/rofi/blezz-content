@@ -11,9 +11,11 @@ act(s, slack, focus slack-or-zoom)
 act(t, terminal, focus terminal)
 act(u, zulip, focus zulip)
 act(x, executables, rofi -show run)
-act(z, zeal, zeal)
+act(z, zoom, zoom)
 
 applications:
 act(f, freecad, focus freecad)
 act(p, prusa-slicer, focus prusa-slicer)
 act(c, calculator, focus calculator)
+act(z, zeal, zeal)
+act(u, cura, cura)

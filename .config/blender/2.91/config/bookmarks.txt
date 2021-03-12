@@ -1,0 +1,5 @@
+[Bookmarks]
+/home/plyons/github.com/abstracthat/dactyl-manuform/things/
+[Recent]
+/usr/share/fonts/adobe-source-code-pro/
+/home/plyons/github.com/abstracthat/dactyl-manuform/things/

@@ -36,5 +36,5 @@ if [[ -t 1 ]]; then
 fi
 # shellcheck disable=SC2012
 task=$(ls "${task_dir}" | "${chooser[@]}")
-~/bin/log "$0" "selected ${task} from ${chooser[@]}"
+~/bin/log "$0" "selected ${task} from" "${chooser[@]}"
 exec ./fuzz-script-exec "${task_dir}" "${task}"
