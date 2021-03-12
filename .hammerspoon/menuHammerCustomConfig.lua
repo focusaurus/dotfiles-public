@@ -150,6 +150,7 @@ local helpMenu = 'helpMenu'
 -- Applications Menus
 local applicationMenu = 'applicationMenu'
 local utilitiesMenu = 'utilitiesMenu'
+local journalMenu = 'journalMenu'
 
 -- Browser menus
 local browserMenu = 'browserMenu'
@@ -200,8 +201,7 @@ menuHammerMenuList = {
             {cons.cat.submenu, '', 'a', 'Applications', { {cons.act.menu, applicationMenu} }},
             {cons.cat.action, '', 'b', 'Browser', { {cons.act.func, focus.browser} }},
             {cons.cat.action, '', 'e', 'email', { {cons.act.func, focus.email} }},
-            {cons.cat.action, '', 'j', 'Journal', { {cons.act.func, journal.appendByDialog} }},
-            {cons.cat.action, 'shift', 'j', 'Journal Standup', { {cons.act.func, journal.appendByDialogStandup} }},
+            {cons.cat.submenu, '', 'j', 'Journal', { {cons.act.menu, journalMenu} }},
             {cons.cat.action, '', 'c', 'Calendar', { {cons.act.func, focus.calendar} }},
             {cons.cat.action, '', 'd', 'DBeaver', { {cons.act.launcher, 'DBeaver'} }},
             {cons.cat.action, '', 'o', 'Org Mode Emacs', { {cons.act.launcher, 'Emacs'} }},
@@ -264,6 +264,22 @@ menuHammerMenuList = {
             {cons.cat.action, '', 'Z', 'Zoom', { {cons.act.launcher, 'Zoom'} }},
         }
     },
+    --------------------------------------------------------------------
+    -- Journal Menu
+    ------------------------------------------------------------------------------------------------
+    journalMenu = {
+        parentMenu = mainMenu,
+        meunHotkey = nil,
+        menuItems = {
+            {cons.cat.action, '', 'j', 'Journal', {
+                {cons.act.func, journal.appendByDialog}
+            }},
+            {cons.cat.action, '', 's', 'Standup', {
+                {cons.act.func, journal.appendByDialogStandup}
+            }},
+        }
+    },
+
 
     ------------------------------------------------------------------------------------------------
     -- Utilities Menu

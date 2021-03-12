@@ -18,9 +18,6 @@
       "bookmarks.expand-selection-to-next"
     ]
   },
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "files.autoSave": "onFocusChange",
   "window.zoomLevel": 0,
   "breadcrumbs.enabled": true,
@@ -45,9 +42,6 @@
   },
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
-  "[clojure]": {
-    "editor.defaultFormatter": "pedrorgirardi.vscode-cljfmt"
-  },
   "calva.paredit.defaultKeyMap": "none",
   "explorer.confirmDelete": false,
   "workbench.editor.enablePreview": false,
@@ -85,13 +79,19 @@
       "level": 1,
     }
   ],
-  "[dockerfile]": {
-    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
-  },
   "workbench.editor.showTabs": true,
   "editor.cursorWidth": 2,
   "editor.renderLineHighlight": "all",
   "editor.foldingHighlight": false,
   "vscode-neovim.neovimInitVimPaths.darwin": "/usr/local/bin/nvim",
-  "vscode-neovim.neovimExecutablePaths.darwin": "/usr/local/bin/nvim"
+  "vscode-neovim.neovimExecutablePaths.darwin": "/usr/local/bin/nvim",
+  "go.formatFlags": [
+    "-local git.rsglab.com"
+  ],
+  "gopls": {
+    "local": "git.rsglab.com"
+  },
+  "protoc": {
+  "options": ["-I" , "./proto"]
+  }
 }

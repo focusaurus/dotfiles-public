@@ -13,16 +13,4 @@ set -o posix    # more strict failures in subshells
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
-if ~/bin/have-exe notify-send; then
-  notify-send --expire-time=6000 "$@"
-elif ~/bin/have-exe osascript; then
-  text=$(echo "$@" | tr -d '"')
-  osascript -e "display notification \"${text}\" with title \"bin/notify\""
-elif ~/bin/have-exe hs; then
-  echo "$@" >/tmp/notify
-  cat <<EOF | hs >/dev/null
-local notifications = require("notifications")
-notifications.show("/tmp/notify")
-EOF
-  echo >/tmp/notify
-fi
+/usr/local/bin/kitty --single-instance --title 'terminal-kitty'

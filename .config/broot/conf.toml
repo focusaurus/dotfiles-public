@@ -107,8 +107,18 @@ execution = "$EDITOR {file}"
 leave_broot = false
 
 [[verbs]]
+internal = "focus"
+shortcut = "f"
+leave_broot = false
+
+[[verbs]]
 invocation = "create {subpath}"
 execution = "$EDITOR {directory}/{subpath}"
+leave_broot = false
+
+[[verbs]]
+invocation = "tp"
+execution = ":toggle_preview"
 leave_broot = false
 
 [[verbs]]

@@ -107,7 +107,8 @@ github() {
     ~/bin/open "$(_base-url)/issues"
     ;;
   pr-description)
-    git log --reverse '--pretty=format:%s%n%b' "$(git-get-default-branch)..HEAD" | grep -Ev Signed-off-by
+    git log --reverse '--pretty=format:%s%n%b' "$(git-get-default-branch)..HEAD" |
+      grep --extended --invert-match '(Signed-off-by|Merge branch)'
     ;;
   pull-requests)
     ~/bin/open "$(_base-url)/pulls"
