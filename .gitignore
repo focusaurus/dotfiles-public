@@ -192,3 +192,5 @@
 /.config/PrusaSlicer/cache
 /.config/PrusaSlicer/vendor
 /.lein
+/.config/gocket/auth.json
+/.python_history

@@ -93,5 +93,6 @@
   },
   "protoc": {
   "options": ["-I" , "./proto"]
-  }
+  },
+  "go.toolsManagement.autoUpdate": true
 }

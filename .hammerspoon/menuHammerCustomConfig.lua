@@ -1,11 +1,10 @@
+local appNav = require('app-nav')
 local focus = require('focus')
 local fuzzball = require('fuzzball')
 local journal = require('journal')
 local snippets = require('snippets')
 
-----------------------------------------------------------------------------------------------------
 --------------------------------------- General Config ---------------------------------------------
-----------------------------------------------------------------------------------------------------
 
 -- If enabled, the menus will appear over full screen applications.
 -- However, the Hammerspoon dock icon will also be disabled (required for fullscreen).
@@ -31,40 +30,27 @@ menuTextEditor = '/usr/local/bin/emacsclient -c'
 -- Location of the askpass executable.  Required for running script with admin privs.
 askpassLocation = '/usr/local/bin/ssh-askpass'
 
-----------------------------------------------------------------------------------------------------
 ----------------------------------------- Menu options ---------------------------------------------
-----------------------------------------------------------------------------------------------------
 
 -- The number of columns to display in the menus.  Setting this too high or too low will
 -- probably have odd results.
-menuNumberOfColumns = 5
+menuNumberOfColumns = 7
 
 -- The minimum number of rows to show in menus
 menuMinNumberOfRows = 4
 
 -- The height of menu rows in pixels
-menuRowHeight = 20
+menuRowHeight = 22
 
 -- The padding to apply to each side of the menu
-menuOuterPadding = 50
+menuOuterPadding = 20
 
-----------------------------------------------------------------------------------------------------
 ----------------------------------------- Font options ---------------------------------------------
-----------------------------------------------------------------------------------------------------
-
--- The font to apply to menu items.
-menuItemFont = 'Courier-Bold'
-
--- The font size to apply to menu items.
+menuItemFont = 'JetBrains Mono'
 menuItemFontSize = 16
-
--- The text alignment to apply to menu items.
 menuItemTextAlign = 'left'
 
-----------------------------------------------------------------------------------------------------
 ---------------------------------------- Color options ---------------------------------------------
-----------------------------------------------------------------------------------------------------
-
 menuItemColors = {
     -- The default colors to use.
     default = {
@@ -213,6 +199,8 @@ menuHammerMenuList = {
             {cons.cat.action, '', 'space', 'Spotlight', { {cons.act.keycombo, {'cmd', 'shift'}, 'space'} }},
             {cons.cat.action, '', 'i', 'Firefox', { {cons.act.launcher, 'Firefox'} }},
             {cons.cat.action, '', 'f', 'Fuzzball', { {cons.act.func, fuzzball.chooseScript } }},
+            {cons.cat.action, '', 'l', 'Left (App Nav)', { {cons.act.func, appNav.left } }},
+            {cons.cat.action, '', 'r', 'Right (App Nav)', { {cons.act.func, appNav.right } }},
             {cons.cat.action, '', 'm', 'Music', { {cons.act.func, focus.music } }},
             {cons.cat.action, '', 'n', 'Snippet', { {cons.act.func, snippets.chooseByUIAndType } }},
             {cons.cat.action, '', 'p', 'Postman', { {cons.act.launcher, 'Postman'} }},
