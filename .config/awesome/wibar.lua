@@ -1,9 +1,11 @@
-local gears = require("gears")
 local awful = require("awful")
-local wibox = require("wibox")
 local beautiful = require("beautiful")
+local gears = require("gears")
+local wibox = require("wibox")
+
 local menubar = require("menubar")
 local placement = require("placement")
+local titles = require("titles")
 
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
@@ -26,6 +28,8 @@ mymainmenu = awful.menu({
     {"open terminal", terminal},
     {"awesome: hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
     {"awesome: restart", awesome.restart},
+    {"awesome: unminimize", placement.unminimize},
+    {"awesome: titles", titles.dev},
     {"awesome: quit", function() awesome.quit() end},
     {"awesome: move all clients", placement.move_all_clients_to_screen}
   }

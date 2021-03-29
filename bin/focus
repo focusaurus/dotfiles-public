@@ -65,7 +65,7 @@ activate_chrome_main_window() {
   # We filter out the dedicated windows
   id=$(wmctrl -lx |
     grep -i "google-chrome.Google-chrome" |
-    grep --extended-regexp --invert-match "(YouTube Music| - Calendar)" |
+    grep --extended-regexp --invert-match "(YouTube Music| - Calendar|WorkFlowy)" |
     head -1 |
     awk '{print $1}' ||
     true)
@@ -185,6 +185,9 @@ main() {
     ;;
   calculator)
     activate_window Calculator mate-calc
+    ;;
+  workflowy)
+    activate_window 'WorkFlowy' "google-chrome-stable" --new-window "https://workflowy.com"
     ;;
   esac
 }
