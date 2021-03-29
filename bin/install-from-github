@@ -17,20 +17,22 @@ install_exe() {
   from_path="$(find . -type f -executable -print0)"
   if [[ -v "${from_path}" ]]; then
     from_path="$(find . -type f -print0 | xargs -0 file | grep 'executable' | cut -d : -f 1)"
-	fi
-	if [[ -z "${from_path}" ]]; then
+  fi
+  if [[ -z "${from_path}" ]]; then
     echo "No exe found!"
     return 1
   fi
   read -r -e -p "exe name: " to_name
-  mv "${from_path}" "${to_name}"
+  if [[ "${from_path}" != "${to_name}" ]]; then
+    mv "${from_path}" "${to_name}" || true
+  fi
   sudo install --mode=755 --target-directory /usr/local/bin "${to_name}"
 }
 
 main() {
   repo_any_url="$1"
   if [[ -z "${repo_any_url}" ]]; then
-    repo_any_url=$(prompt-or-clipboard.sh "Github Repo URL")
+    repo_any_url=$(prompt-or-clipboard "Github Repo URL")
   fi
   local repo_base_url
   repo_base_url=$(echo "${repo_any_url}" | cut -d / -f 1-5)
