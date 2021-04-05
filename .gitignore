@@ -194,3 +194,9 @@
 /.lein
 /.config/gocket/auth.json
 /.python_history
+/.arduino15
+/.config/skypeforlinux
+/.vpython-root
+/.java
+/.vpython*
+/.config/blender
