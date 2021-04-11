@@ -250,7 +250,7 @@ new-git-project() {
   local REPO="${1}"
   local GIT=git.peterlyons.com
   # shellcheck disable=SC2029
-  ssh "${GIT}" git init --bare "projects/${REPO}.git"
+  ssh "${GIT}" git init --bare --initial-branch=main "projects/${REPO}.git"
   cd ~/projects || return 1
   git clone "ssh://${GIT}/home/plyons/projects/${REPO}.git" "${REPO}"
   cd "${REPO}" || return 1
