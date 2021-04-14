@@ -127,6 +127,9 @@ main() {
     #   activate_window termite termite --title termite
     # fi
     ;;
+  cura)
+    activate_window 'cura.cura' 'cura'
+    ;;
   emacs | orgmode | f4)
     #local app_image
     #app_image="$(find "${HOME}/aur/workflowy" -type f -name 'WorkFlowy-*.AppImage' | sort -n | head -1)"
