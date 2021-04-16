@@ -113,6 +113,12 @@ prompt-aws-profile() {
   fi
 }
 
+prompt-pando-target() {
+  if [[ -n "${PANDO_TARGET}" ]]; then
+    printf "🅿️ %s " "${PANDO_TARGET}"
+  fi
+}
+
 setup-prompt() {
   export PROMPT='╭%4~ %n@%m
 ╰○ '
@@ -126,7 +132,7 @@ setup-prompt() {
   # small white square ▫️ '
   # ❯
   # export RPROMPT='vi:${ZLE_VI_MODE}$(prompt-git)$(prompt-aws-profile)$(prompt-kube-context)$(prompt-kube-namespace)'
-  export RPROMPT='$(prompt-git)$(prompt-aws-profile)$(prompt-kube-context)$(prompt-kube-namespace)'
+  export RPROMPT='$(prompt-git)$(prompt-pando-target)'
 }
 setup-prompt
 

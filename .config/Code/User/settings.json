@@ -19,7 +19,6 @@
     ]
   },
   "files.autoSave": "onFocusChange",
-  "window.zoomLevel": 0,
   "breadcrumbs.enabled": true,
   "editor.copyWithSyntaxHighlighting": false,
   "editor.occurrencesHighlight": false,
