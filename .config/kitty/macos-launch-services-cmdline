@@ -1,0 +1,1 @@
+--single-instance --title=terminal-kitty -o allow_remote_control=yes

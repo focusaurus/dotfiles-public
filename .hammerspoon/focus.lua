@@ -4,10 +4,21 @@ local focusMode = require("focus-mode")
 local wf = hs.window.filter.new()
 -- wf.setDefaultFilter({})
 
-
+local hbin = os.getenv("HOME") .. "/bin"
 function module.terminal()
   log.d("terminal")
-  hs.application.launchOrFocus("iTerm")
+  -- kitty = hs.application.get("kitty")
+  -- if kitty then
+  --   kitty:activate()
+  --   return
+  -- end
+  -- os.execute(".hammerspoon/terminal-kitty-wrapper.sh")
+  hs.application.launchOrFocus("kitty")
+end
+
+function module.terminalQuick()
+  log.d("terminalQuick")
+  hs.execute(hbin .. "/terminal-quick", true)
 end
 
 function module.browser()
