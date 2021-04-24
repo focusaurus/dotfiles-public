@@ -12,6 +12,15 @@ set -o posix    # more strict failures in subshells
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-session="/tmp/kitty-quick-session.conf"
-echo launch "$@" >"${session}"
-kitty --single-instance --title=HUD --session="${session}"
+
+kitty --single-instance --title=terminal-quick "$@"
+# declare -a args=(--single-instance --title=HUD)
+# if [[ -n "$@" ]]; then
+  # session="/tmp/kitty-quick-session.conf"
+  # echo launch "$@" >"${session}"
+  # args+=(--session=-)
+  # echo "launch zsh -c \"$@\"" | kitty "${args[@]}"
+  # echo "launch zsh -c \"$@\"" | cat
+# else
+  # kitty "${args[@]}"
+# fi

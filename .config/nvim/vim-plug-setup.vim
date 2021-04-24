@@ -33,5 +33,7 @@ Plug 'liuchengxu/vim-which-key'
 " Plug 'junegunn/vim-peekaboo'
 Plug 'machakann/vim-highlightedyank'
 Plug 'reedes/vim-pencil'
+Plug 'kana/vim-textobj-user'
+Plug 'Chun-Yang/vim-textobj-chunk'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
