@@ -132,7 +132,8 @@ setup-prompt() {
   # small white square ▫️ '
   # ❯
   # export RPROMPT='vi:${ZLE_VI_MODE}$(prompt-git)$(prompt-aws-profile)$(prompt-kube-context)$(prompt-kube-namespace)'
-  export RPROMPT='$(prompt-git)$(prompt-pando-target)'
+  # export RPROMPT='$(prompt-git)$(prompt-pando-target)'
+  export RPROMPT='$(prompt-pando-target)'
 }
 setup-prompt
 
