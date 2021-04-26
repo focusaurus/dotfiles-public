@@ -32,3 +32,4 @@ source-if-exists ~/.nvm/nvm.sh
 source-if-exists ~/.config/broot/launcher/bash/br
 source-if-exists /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source-if-exists /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source-if-exists /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
