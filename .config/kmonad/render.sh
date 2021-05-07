@@ -111,7 +111,8 @@ m m
 #   DEVICE='/dev/input/by-path/platform-i8042-serio-0-event-kbd' \
 #   envsubst < main.kbd.tpl > "${NAME}.kbd"
 
-for name in thinkpad macbook ergodox-linux iris-linux infinity-linux ergodox-macos; do
+# for name in thinkpad macbook ergodox-linux iris-linux infinity-linux ergodox-macos; do
+for name in thinkpad; do
   case "${name}" in
   thinkpad)
     defcfg="${defcfg_thinkpad}"
