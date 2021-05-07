@@ -48,14 +48,24 @@ alias git-not-pushed="git log --branches --not --remotes"
 alias gls="git ls-files"
 alias gw="git switch"
 alias gwc="git switch --create"
-alias gorce="git push --force"
+alias gorce="git push --force-with-lease"
 alias ts="tig status"
 
 _base-url() {
   # heads up. Depends on a slightly obscure utility
   # https://github.com/sgreben/url
   # shellcheck disable=SC2016
-  git remote -v |
+  remotes=$(git remote -v)
+  if [[ "${remotes}" =~ upstream ]]; then
+    # If a remote named upstream exists, it's probably what we want
+    remotes=$(echo "${remotes}" | grep upstream)
+  elif [[ "${remotes}" =~ origin ]]; then
+    # Otherwise, if a remote named origin exists, it's probably what we want
+    remotes=$(echo "${remotes}" | grep origin)
+  fi
+  # Otherwise we're not sure so we take the first sorted one/shrug
+  # shellcheck disable=SC2016
+  echo "${remotes}" |
     awk '{print $2}' |
     sort |
     uniq |
@@ -97,7 +107,8 @@ github() {
     ~/bin/open "$(_base-url)/issues"
     ;;
   pr-description)
-    git log --reverse '--pretty=format:%s%n%b' "$(git-get-default-branch)..HEAD" | grep -Ev Signed-off-by
+    git log --reverse '--pretty=format:%s%n%b' "$(git-get-default-branch)..HEAD" |
+      grep --extended --invert-match '(Signed-off-by|Merge branch)'
     ;;
   pull-requests)
     ~/bin/open "$(_base-url)/pulls"
@@ -239,7 +250,7 @@ new-git-project() {
   local REPO="${1}"
   local GIT=git.peterlyons.com
   # shellcheck disable=SC2029
-  ssh "${GIT}" git init --bare "projects/${REPO}.git"
+  ssh "${GIT}" git init --bare --initial-branch=main "projects/${REPO}.git"
   cd ~/projects || return 1
   git clone "ssh://${GIT}/home/plyons/projects/${REPO}.git" "${REPO}"
   cd "${REPO}" || return 1
@@ -354,8 +365,23 @@ gsync() {
       op-add-ssh-key
     fi
   fi
-  ~/bin/git-autocommit ~/git.peterlyons.com/journals ~/git.peterlyons.com/mailchimp
-  ~/bin/git-sync ~ ~/git.peterlyons.com/dotfiles ~/git.peterlyons.com/journals ~/git.peterlyons.com/mailchimp
+  ~/bin/git-autocommit \
+    ~/git.peterlyons.com/journals \
+    ~/git.peterlyons.com/mailchimp
+
+  ~/bin/git-sync \
+    ~ \
+    ~/git.peterlyons.com/dotfiles \
+    ~/git.peterlyons.com/journals \
+    ~/git.peterlyons.com/mailchimp
+  if [[ -d ~/github.com/focusaurus/qmk_firmware ]]; then
+    (
+      cd ~/github.com/focusaurus/qmk_firmware || exit
+      git commit -a -m "autocommit"
+      git pull origin focusaurus
+      git push origin focusaurus
+    )
+  fi
 }
 
 git-cd-repo-dir-fuzzy() {

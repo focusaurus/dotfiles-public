@@ -13,6 +13,8 @@ export INC_APPEND_HISTORY="1"
 export SAVEHIST="10000"
 export SHARE_HISTORY="1"
 
+setopt autopushd pushdignoredups pushdsilent
+
 export TZ="America/Denver"
 tt() {
   export TERMINAL_TITLE="$*"
@@ -24,6 +26,9 @@ alias -g /c='| copy'
 alias -g /p='"$(paste)"'
 alias -g /x='| xargs'
 alias -g /bd='!$'
+alias -g /g='| grep'
+alias -g /gv='| grep -v'
+alias -g /w='| wc -l'
 
 # alias -g devlog='json -g -a -0 -e "delete this.v; delete this.hostname;delete this.level; delete this.pid; delete this.name"'
 ##### shell prompt setup #####
@@ -108,6 +113,12 @@ prompt-aws-profile() {
   fi
 }
 
+prompt-pando-target() {
+  if [[ -n "${PANDO_TARGET}" ]]; then
+    printf "🅿️ %s " "${PANDO_TARGET}"
+  fi
+}
+
 setup-prompt() {
   export PROMPT='╭%4~ %n@%m
 ╰○ '
@@ -121,7 +132,8 @@ setup-prompt() {
   # small white square ▫️ '
   # ❯
   # export RPROMPT='vi:${ZLE_VI_MODE}$(prompt-git)$(prompt-aws-profile)$(prompt-kube-context)$(prompt-kube-namespace)'
-  export RPROMPT='$(prompt-git)$(prompt-aws-profile)$(prompt-kube-context)$(prompt-kube-namespace)'
+  # export RPROMPT='$(prompt-git)$(prompt-pando-target)'
+  export RPROMPT='$(prompt-pando-target)'
 }
 setup-prompt
 
@@ -142,7 +154,6 @@ rss() {
 bindkey ";5C" forward-word
 bindkey ";5D" backward-word
 bindkey "^S" kill-word
-alias -g /g='| grep'
 
 function watch-zsh() {
   WATCH_COMMAND='zsh -ci' /usr/local/bin/watch "$@"

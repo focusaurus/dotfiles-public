@@ -1,0 +1,6 @@
+[Unit]
+Description=Generate a daily routine org file and symlink it for today
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c '~/projects/exocortex/personal/bin/daily-routine.sh'

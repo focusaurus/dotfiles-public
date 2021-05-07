@@ -126,9 +126,15 @@ if [[ -n "${ZSH_VERSION}" ]]; then
 
 fi
 
+fuzzer='fzf'
+if ~/bin/have-exe sk; then
+  fuzzer='sk'
+elif ~/bin/have-exe skim; then
+  fuzzer='skim'
+fi
 c() {
   local dir
-  dir=$(fasd -dl | ~/bin/fuzzy-filter "$@")
+  dir=$(fasd -dl | "${fuzzer}" --select-1 --tac --query "$@")
   if [[ -n "${dir}" ]]; then
     cd "${dir}" || return
   else

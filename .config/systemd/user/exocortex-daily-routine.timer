@@ -1,5 +1,5 @@
 [Unit]
-Description=Archive daily exocortex mode todos
+Description=Generate new daily routine and symlink it into place
 
 [Timer]
 # This is in UTC

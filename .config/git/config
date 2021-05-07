@@ -50,3 +50,5 @@
   textconv = sops -d
 [credential]
 	helper = osxkeychain
+[merge]
+	conflictstyle = diff3

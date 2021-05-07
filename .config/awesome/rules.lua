@@ -28,7 +28,7 @@ awful.rules.rules = {
       class = {
         "Arandr", "Blueman-manager", "Gpick", "Kruler", "MessageWin", -- kalarm.
         "Sxiv", "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
-        "Wpa_gui", "veromix", "xtightvncviewer", "Yad", "zenity"
+        "Wpa_gui", "veromix", "xtightvncviewer", "Yad", "zenity", "FreeCAD"
       },
 
       -- Note that the name property shown in xprop might be set slightly after creation of the client
@@ -39,7 +39,8 @@ awful.rules.rules = {
       role = {
         "AlarmWindow", -- Thunderbird's calendar.
         "ConfigManager", -- Thunderbird's about:config.
-        "pop-up" -- e.g. Google Chrome's (detached) Developer Tools.
+        "pop-up", -- e.g. Google Chrome's (detached) Developer Tools.
+        "Dialog" -- e.g. Firefox
       }
     },
     properties = {floating = true, maximized = false}
@@ -54,10 +55,11 @@ awful.rules.rules = {
       sticky = true,
       placement = awful.placement.centered
     },
-    rule_any = {class = {"Yad", "zenity"}, name = {"Chat"}}
+    rule_any = {class = {"Yad", "zenity"}, name = {"Chat"}, role = {"Dialog"}}
   }
 
   -- Set Firefox to always map on the tag named "2" on screen 1.
   -- { rule = { class = "Firefox" },
   --   properties = { screen = 1, tag = "2" } },
 }
+

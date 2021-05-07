@@ -52,6 +52,7 @@ lsft _
 rsft @tap-snippet-hold-shift
 lctl @tap-escape-hold-control
 rctl @tap-escape-hold-control
+lalt @tap-leader-hold-alt
 lmet @tap-fuzzball-hold-super
 rmet @tap-fuzzball-hold-super
 ssrq @tap-fuzzball-hold-super
@@ -80,7 +81,7 @@ p l
 ] =
 \\ \\
 
-a a
+a @tap-a-hold-hyper
 s o lft
 d e up
 f u rght
@@ -89,7 +90,7 @@ h d
 j h
 k t
 l n
-; s
+; @tap-s-hold-hyper
 ' -
 
 z ;
@@ -152,14 +153,15 @@ for name in thinkpad; do
 )
 
 (defalias
-  hyper (around lctl lmet)
+  hyper (around lalt lmet)
   tap-space-hold-shift (tap-hold-next-release 500 spc lsft)
   tap-space-hold-navigation (tap-hold-next-release 500 spc (layer-toggle navigation))
   tap-a-hold-hyper (tap-hold-next-release 500 a @hyper)
   tap-s-hold-hyper (tap-hold-next-release 500 s @hyper)
   tap-semi-hold-hyper (tap-hold-next-release 500 ; @hyper)
   tap-escape-hold-control (tap-hold-next-release 150 esc lctl)
-  tap-snippet-hold-shift (tap-hold-next-release 150 M-2 lsft)
+  tap-leader-hold-alt (tap-hold-next-release 150 M-1 lalt)
+  tap-snippet-hold-shift (tap-hold-next-release 150 M-3 lsft)
   tap-fuzzball-hold-super (tap-hold-next-release 150 M-spc lmet)
 
 )

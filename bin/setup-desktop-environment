@@ -57,6 +57,13 @@ main() {
     copyq &>/dev/null &
   fi
 
+  ~/bin/log "$0" udiskie
+  if have_exe udiskie; then
+    kill_ok udiskie
+    sleep 0.8
+    udiskie &>/dev/null &
+  fi
+
   # ~/bin/log "$0" light-locker
   # if have_exe light-locker; then
   #   kill_ok light-locker

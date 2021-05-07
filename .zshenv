@@ -41,6 +41,7 @@ setup-path() {
   add-path "/usr/X11/bin"
   add-path "${HOME}/.local/bin"
   add-path "${HOME}/projects/md-to-pdf/bin"
+  add-path "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin"
 
   if [[ -e ~/.nvm/alias/default ]]; then
     add-path ~/".nvm/versions/node/$(cat ~/.nvm/alias/default)/bin"

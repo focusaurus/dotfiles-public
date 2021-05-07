@@ -18,11 +18,7 @@
       "bookmarks.expand-selection-to-next"
     ]
   },
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "files.autoSave": "onFocusChange",
-  "window.zoomLevel": 0,
   "breadcrumbs.enabled": true,
   "editor.copyWithSyntaxHighlighting": false,
   "editor.occurrencesHighlight": false,
@@ -31,23 +27,20 @@
   "editor.autoClosingBrackets": "never",
   "editor.autoClosingQuotes": "never",
   "editor.acceptSuggestionOnCommitCharacter": false,
-  "workbench.colorTheme": "Visual Studio Dark",
+  "workbench.colorTheme": "Visual Studio Light",
   "window.newWindowDimensions": "maximized",
   "window.openFilesInNewWindow": "on",
   "window.openFoldersInNewWindow": "on",
   "window.restoreWindows": "all",
   "window.title": "${folderName}${separator}${activeEditorShort}${separator}${appName}",
   "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "vscode.json-language-features"
   },
   "[rs]": {
     "editor.tabSize": 4
   },
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
-  "[clojure]": {
-    "editor.defaultFormatter": "pedrorgirardi.vscode-cljfmt"
-  },
   "calva.paredit.defaultKeyMap": "none",
   "explorer.confirmDelete": false,
   "workbench.editor.enablePreview": false,
@@ -85,9 +78,21 @@
       "level": 1,
     }
   ],
-  "[dockerfile]": {
-    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
-  },
   "workbench.editor.showTabs": true,
-  "editor.cursorWidth": 2
+  "editor.cursorWidth": 2,
+  "editor.renderLineHighlight": "all",
+  "editor.foldingHighlight": false,
+  "vscode-neovim.neovimInitVimPaths.darwin": "/usr/local/bin/nvim",
+  "vscode-neovim.neovimExecutablePaths.darwin": "/usr/local/bin/nvim",
+  "go.formatFlags": [
+    "-local git.rsglab.com"
+  ],
+  "gopls": {
+    "local": "git.rsglab.com"
+  },
+  "protoc": {
+  "options": ["-I" , "./proto"]
+  },
+  "go.toolsManagement.autoUpdate": true,
+  "go.lintTool": "golangci-lint"
 }

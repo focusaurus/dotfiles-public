@@ -7,6 +7,9 @@ require("keys")
 require("screenshots")
 hs.alert.show("Hammerspoon config loaded")
 
+menuHammer = hs.loadSpoon("MenuHammer")
+menuHammer:enter()
+
 ----- hammerspoon config reloading -----
 function reloadConfig(files)
   log.d("reloadConfig")

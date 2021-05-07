@@ -12,9 +12,10 @@ set -o posix    # more strict failures in subshells
 
 IFS="$(printf "\n\t")"
 # ---- End unofficial bash strict mode boilerplate
+~/bin/log "$0" "start"
 snippet_dir=~/git.peterlyons.com/dotfiles/snippets
 
-chooser=(rofi -dmenu -p snippet -theme /usr/share/rofi/themes/solarized_alternate.rasi)
+chooser=(rofi -dmenu -p snippet -theme sidebar)
 if [[ $(uname) == "Darwin" ]]; then
   # Sigh. Can't control environment PATH in alfred
   chooser=(/usr/local/bin/choose -c highlight=111111)
@@ -27,7 +28,9 @@ abbreviation="${snippet_dir}/"$(
     "${chooser[@]}"
 )
 
+~/bin/log "$0" chose "${abbreviation}"
 if [[ -x "${abbreviation}" ]]; then
+  ~/bin/log "$0" "running as script"
   # run snippet as script
   expansion=$("${abbreviation}")
 else
@@ -43,15 +46,16 @@ fi
 if [[ $(uname) == "Darwin" ]]; then
   approach="hammerspoon"
   if [[ "${approach}" == hammerspoon ]]; then
+    ~/bin/log "$0" "writing to stdout for hammerspoon to paste"
     # macos via hammerspoon will automatically paste the output
     printf "%s" "${expansion}"
   else
     # cliclick does not seem to work for this via hammerspoon hotkey
     # https://github.com/BlueM/cliclick/issues/38#issuecomment-703943164
     printf "%s" "${expansion}" | ~/bin/copy
-    ~/bin/log "$0" copied. Sleeping.
-    sleep 5
-    ~/bin/log "$0" pasting
+    ~/bin/log "$0" "copied. Sleeping."
+    sleep 1
+    ~/bin/log "$0" "pasting"
     cliclick kd:cmd t:v ku:cmd
     ~/bin/log "$0" "done"
   fi
@@ -63,17 +67,25 @@ echo -n "${expansion}" | ~/bin/copy
 
 #check for terminal or not
 pid=$(xdotool getactivewindow getwindowpid)
+paste_keysym="v"
+# Sometimes need this when doing dvorak via X11
+# paste_keysym="period"
 if grep -E '(gnome-terminal|termite)' "/proc/${pid}/cmdline" >/dev/null; then
   # paste into the active window via keyboard shortcut
-  xdotool key "ctrl+shift+period"
+  ~/bin/log "$0" "pasting using terminal keyboard shortcut"
+  xdotool key "ctrl+shift+${paste_keysym}"
 else
   # paste into the active window via keyboard shortcut
   # WARNING: Due to kmonad handling dvorak at the kernel level,
   # we need to send the qwerty button that will yield the dvorak
   # keysym we want, so here we are sending "period" to get "v" for paste
-  xdotool key "ctrl+period"
+  ~/bin/log "$0" "pasting using qwerty->dvorak keyboard shortcut"
+  xdotool key "ctrl+${paste_keysym}"
+  # ~/bin/log "$0" "pasting using qwerty keyboard shortcut"
+  # xdotool key "ctrl+v"
 fi
 post="${abbreviation}-post.sh"
 if [[ -x "${post}" ]]; then
+  ~/bin/log "$0" "running post script"
   "${post}"
 fi

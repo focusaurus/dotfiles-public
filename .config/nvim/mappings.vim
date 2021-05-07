@@ -1,8 +1,8 @@
 " shift is for suckers!
 let mapleader=','
 noremap , :
-noremap ; :
-noremap <leader>; ;
+" noremap ; :
+" noremap <leader>; ;
 noremap F :w<cr>:silent !pretty-print-files %<cr>:edit!<cr>
 
 " The default mappings for back (b), end (e), and word (w)

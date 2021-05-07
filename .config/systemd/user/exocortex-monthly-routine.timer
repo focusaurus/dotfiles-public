@@ -1,0 +1,10 @@
+[Unit]
+Description=Generate new monthly routine and symlink it into place
+
+[Timer]
+# Run at 1 AM MST on the 16th day of every month
+# This is in UTC
+OnCalendar=*-*-16 8:00:00
+
+[Install]
+WantedBy=timers.target

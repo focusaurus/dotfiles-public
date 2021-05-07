@@ -1,8 +1,11 @@
-local gears = require("gears")
 local awful = require("awful")
-local wibox = require("wibox")
 local beautiful = require("beautiful")
+local gears = require("gears")
+local wibox = require("wibox")
+
 local menubar = require("menubar")
+local placement = require("placement")
+local titles = require("titles")
 
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
@@ -11,7 +14,7 @@ require("awful.hotkeys_popup.keys")
 
 local module = {}
 --- This is used later as the default terminal and editor to run.
-terminal = "termite"
+terminal = "kitty"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 beautiful.hotkeys_font = "JetBrains Mono 14"
@@ -19,20 +22,16 @@ beautiful.hotkeys_description_font = "JetBrains Mono 12"
 beautiful.menu_font = "JetBrains Mono 14"
 beautiful.menu_height = 24
 beautiful.menu_width = 300
-myawesomemenu = {
-  {
-    "hotkeys",
-
-    function() hotkeys_popup.show_help(nil, awful.screen.focused()) end
-  }, {"manual", terminal .. " -e man awesome"},
-  {"edit config", editor_cmd .. " " .. awesome.conffile},
-  {"restart", awesome.restart}, {"quit", function() awesome.quit() end}
-}
 
 mymainmenu = awful.menu({
   items = {
-    {"awesome", myawesomemenu, beautiful.awesome_icon},
-    {"open terminal", terminal}
+    {"open terminal", terminal},
+    {"awesome: hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
+    {"awesome: restart", awesome.restart},
+    {"awesome: unminimize", placement.unminimize},
+    {"awesome: titles", titles.dev},
+    {"awesome: quit", function() awesome.quit() end},
+    {"awesome: move all clients", placement.move_all_clients_to_screen}
   }
 })
 
@@ -119,7 +118,8 @@ awful.screen.connect_for_each_screen(function(s)
     screen = s,
     filter = awful.widget.tasklist.filter.currenttags,
     buttons = tasklist_buttons,
-    style = {shape = gears.shape.rounded_bar}
+    style = {shape = gears.shape.rounded_rect}
+    -- layout = wibox.layout.flex.horizontal()
   }
 
   -- Create the wibar

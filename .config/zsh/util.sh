@@ -14,6 +14,19 @@ alias -g /ap4="| awk '{print \$4}'"
 # shellcheck disable=SC2142
 alias -g /ap5="| awk '{print \$5}'"
 alias -g /x="| xargs"
+syncthing-gui() {
+  ssh_command=(ssh -L 8333:127.0.0.1:8384 zooz.peterlyons.com)
+  echo "Manage local at http://localhost:8334"
+  echo "Access zooz gui with ${ssh_command[*]}"
+  echo "Then open http://localhost:8337"
+  echo -n "Run ssh for you now? y/n"
+  read -r -q response
+  echo
+  if [[ "${response}" == "y" ]]; then
+    "${ssh_command[@]}"
+  fi
+}
+alias image-view="feh -."
 ap1() {
   awk '{print $1}'
 }
@@ -160,6 +173,7 @@ scratch-daily() {
 }
 
 whos-listening() {
+  local port
   if [[ -n "$1" ]]; then
     port=":$1"
   fi
@@ -291,9 +305,13 @@ md-clipboard-to-pdf() {
   open "!$"
 }
 
-change-time-zone() {
-  # zone=$(find /usr/share/zoneinfo-posix/ | cut -d / -f 6- | ~/bin/fuzzy-filter "$@")
-  # [[ -z "${zone}" ]] && return
+change-time-zone-fuzzy() {
+  zone=$(find /usr/share/zoneinfo-posix/ | cut -d / -f 6- | ~/bin/fuzzy-filter "$@")
+  [[ -z "${zone}" ]] && return
+  sudo timedatectl set-timezone "${zone}"
+}
+
+change-time-zone-by-ip() {
   sudo timedatectl set-timezone "$(curl --fail https://ipapi.co/timezone)"
 }
 
