@@ -7,6 +7,10 @@ alias chrome='open -a "Google Chrome"'
 alias screen-unlock="defaults write com.apple.screensaver askForPassword 0 && defaults write com.apple.screensaver askForPasswordDelay 0"
 alias screen-lock="defaults write com.apple.screensaver askForPassword 1 && defaults write com.apple.screensaver askForPasswordDelay 60"
 alias top="top -o cpu -s 5"
+# Get delete key working properly
+# https://itectec.com/superuser/terminal-on-mac-delete-key-behavior/
+bindkey "^[[3~" delete-char
+
 source-if-exists ~/.config/iterm2/iterm2-shell-integration.zsh
 
 # homebrew

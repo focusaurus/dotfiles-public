@@ -2,17 +2,12 @@ local module = {}
 local log = hs.logger.new("focus", "debug")
 local focusMode = require("focus-mode")
 local wf = hs.window.filter.new()
--- wf.setDefaultFilter({})
 
 local hbin = os.getenv("HOME") .. "/bin"
+local browserName = "Google Chrome"
+
 function module.terminal()
   log.d("terminal")
-  -- kitty = hs.application.get("kitty")
-  -- if kitty then
-  --   kitty:activate()
-  --   return
-  -- end
-  -- os.execute(".hammerspoon/terminal-kitty-wrapper.sh")
   hs.application.launchOrFocus("kitty")
 end
 
@@ -21,16 +16,29 @@ function module.terminalQuick()
   hs.execute(hbin .. "/terminal-quick", true)
 end
 
+function module.browser1()
+  log.d("browser1")
+  hs.application.launchOrFocus(browserName)
+end
+
+generalBrowser = hs.window.filter.new():setAppFilter(browserName,{rejectTitles={"YouTube Music", "- Calendar -"}})
 function module.browser()
   log.d("browser")
-  hs.application.launchOrFocus("Google Chrome")
-  -- hs.application.launchOrFocus("Firefox")
+  for _, window in pairs(generalBrowser:getWindows()) do
+    if window:application():name() == browserName then
+      log.d(window:title())
+      window:focus()
+      break
+    end
+  end
+  -- if we get here, we didn't find any windows, launch the app
+  hs.application.launchOrFocus(browserName)
 end
 
 function module.email()
   log.d("email")
   if focusMode then return end
-  hs.application.launchOrFocus("Google Chrome")
+  module.browser()
   hs.eventtap.keyStroke({"command"}, "1")
 end
 
@@ -94,17 +102,45 @@ end
 --   end
 -- end
 
-function module.calendar()
-  log.d("calendar")
+function module.calendar1()
+  log.d("calendar1")
   hs.application.launchOrFocus("Google Calendar")
   -- hs.eventtap.keyStroke({"command"}, "2")
 end
 
+musicFilter = hs.window.filter.new():setAppFilter(browserName,{allowTitles="YouTube Music"})
 function module.music()
   log.d("music")
+  for _, window in pairs(musicFilter:getWindows()) do
+    if window:application():name() == browserName then
+      log.d(window:title())
+      window:focus()
+      break
+    end
+  end
+  -- if we get here, we didn't find any windows, launch the app
+  hs.application.launchOrFocus(browserName)
+end
+
+function module.music1()
+  log.d("music1")
   hs.application.launchOrFocus("YouTube Music")
   -- hs.application.launchOrFocus("Google Chrome")
   -- hs.eventtap.keyStroke({"command"}, "3")
+end
+
+calendarFilter = hs.window.filter.new():setAppFilter(browserName,{allowTitles="- Calendar -"})
+function module.calendar()
+  log.d("calendar")
+  for _, window in pairs(calendarFilter:getWindows()) do
+    if window:application():name() == browserName then
+      log.d(window:title())
+      window:focus()
+      break
+    end
+  end
+  -- if we get here, we didn't find any windows, launch the app
+  hs.application.launchOrFocus(browserName)
 end
 
 return module
