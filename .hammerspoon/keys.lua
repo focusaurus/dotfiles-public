@@ -56,6 +56,7 @@ hs.hotkey.bind({"option"}, "e", focus.previous)
 -- hs.hotkey.bind({}, "f6", focus.slackOrZoom)
 -- hs.hotkey.bind({}, "f7", focus.calendar)
 -- hs.hotkey.bind({}, "f8", focus.music)
+-- hs.hotkey.bind({}, "f2", focus.calendar2)
 
 -- sound
 -- hs.hotkey.bind({}, "f10", sound.toggleMute)
