@@ -7,13 +7,12 @@
 set -o errexit  # always exit on error
 set -o errtrace # trap errors in functions as well
 set -o pipefail # do nott ignore exit codes when piping output
-set -o posix    # more strict failures in subshells
 # set -x          # enable debugging
 
 IFS="$(printf "\n\t")"
 # ---- End unofficial bash strict mode boilerplate
 
-main() {
+main::panes() {
   ~/bin/log "$0" "$@"
   export PATH=/usr/local/bin:$PATH
   case "$1" in
@@ -47,4 +46,24 @@ main() {
   esac
 }
 
-main "$@"
+main::windows() {
+  ~/bin/log "$0" "$@"
+  export PATH=/usr/local/bin:$PATH
+  case "$1" in
+  left)
+    tmux previous-window
+    ;;
+  down)
+    tmux select-pane -D
+    ;;
+  up)
+    tmux select-pane -U
+    ;;
+  right)
+      tmux next-window
+    ;;
+  esac
+}
+
+
+main::windows "$@"
