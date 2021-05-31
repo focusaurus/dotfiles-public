@@ -10,13 +10,14 @@ local hyper_pl = {"option", "command"}
 
 -- app nav
 hs.hotkey.bind(hyper_pl, "o", appNav.left)
--- hs.hotkey.bind(hyper_pl, "t", appNav.up)
 hs.hotkey.bind(hyper_pl, "u", appNav.right)
 hs.hotkey.bind(hyper_pl, "j", appNav.down)
+hs.hotkey.bind(hyper_pl, "left", appNav.left)
+hs.hotkey.bind(hyper_pl, "right", appNav.right)
+hs.hotkey.bind(hyper_pl, "down", appNav.down)
 
 -- for compat until kmonad on mac is fully working
 hs.hotkey.bind({"option"}, "o", appNav.left)
--- hs.hotkey.bind({"option"}, "t", appNav.up)
 hs.hotkey.bind({"option"}, "u", appNav.right)
 hs.hotkey.bind({"option"}, "j", appNav.down)
 
@@ -56,6 +57,7 @@ hs.hotkey.bind({"option"}, "e", focus.previous)
 -- hs.hotkey.bind({}, "f6", focus.slackOrZoom)
 -- hs.hotkey.bind({}, "f7", focus.calendar)
 -- hs.hotkey.bind({}, "f8", focus.music)
+-- hs.hotkey.bind({}, "f2", focus.calendar2)
 
 -- sound
 -- hs.hotkey.bind({}, "f10", sound.toggleMute)

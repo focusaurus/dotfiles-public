@@ -14,6 +14,9 @@ IFS="$(printf "\n\t")"
 # ---- End unofficial bash strict mode boilerplate
 
 activate_window() {
+  if [[ -z "${current_workspace}" ]]; then
+    current_workspace=$(xdotool get_desktop)
+  fi
   class="$1"
   shift
   command=$*
@@ -60,9 +63,11 @@ activate_firefox_main_window() {
 }
 
 activate_chrome_main_window() {
-  # This is not super robust. It assumes the main firefox general purpose
-  # window is the first one launched
-  # We filter out the dedicated windows
+  # This is not super robust.
+  # We list all chrome windows and
+  # explicitly filter out the special/dedicated purpose ones
+  # by partial title match with the goal of identifying the
+  # generic main window.
   id=$(wmctrl -lx |
     grep -i "google-chrome.Google-chrome" |
     grep --extended-regexp --invert-match "(YouTube Music| - Calendar|WorkFlowy)" |
@@ -77,13 +82,16 @@ activate_chrome_main_window() {
 }
 
 browser() {
+  if [[ "$(uname)" == "Darwin" ]]; then
+    echo 'require("focus").browser()' | hs >/dev/null
+    return
+  fi
   # activate_window 'google-chrome.Google-chrome' 'google-chrome-stable'
   # activate_firefox_main_window
   activate_chrome_main_window
 }
 
 main() {
-  current_workspace=$(xdotool get_desktop)
   command="$1"
   if [[ $# -lt 1 ]]; then
     # If run with no arguments, we are in symlink mode because

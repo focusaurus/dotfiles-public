@@ -213,3 +213,6 @@ dps() {
 dps-names() {
   docker ps --format='{{json .Names}}' | jq -r
 }
+
+# https://github.com/docker/scan-cli-plugin/issues/149#issuecomment-823969364
+export DOCKER_SCAN_SUGGEST=false
