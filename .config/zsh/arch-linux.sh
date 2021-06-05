@@ -18,6 +18,10 @@ arch-uninstall-package() {
   yay -Rs "$@"
 }
 
+arch-uninstall-orhphans() {
+  pacman -Qtdq | sudo pacman -Rns -
+}
+
 arch-clear-cache() {
   sudo pacman -Sc
 }
