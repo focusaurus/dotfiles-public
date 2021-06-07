@@ -76,6 +76,14 @@ main() {
     echo "${args}" | xargs -n 1 xdg-open
     ;;
   Darwin)
+    # Focus the main browser window to avoid
+    # opening links in dedicated windows like
+    # calendar or music just because they
+    # happen to be the most recently focused.
+    #
+    # Disabling for now because, sigh, hammerspoon
+    # is so slow with external scripts
+    # ~/bin/focus browser
     echo "${args}" | xargs open
     ;;
   esac

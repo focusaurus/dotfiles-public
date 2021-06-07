@@ -18,15 +18,16 @@ nnoremap e E
 nnoremap E e
 nnoremap w W
 nnoremap W w
+
 " nnoremap <Space> @q
 inoremap <C-s> <Esc>:w<CR>a
 " nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 autocmd FileType markdown :nnoremap k gk
 autocmd FileType markdown :nnoremap j gj
-autocmd FileType org :nmap cc <Plug>OrgCheckBoxToggle
-autocmd FileType org :nmap cn <Plug>OrgCheckBoxNewBelow
-autocmd FileType org :nmap cN <Plug>OrgCheckBoxNewAbove
-autocmd FileType org :nmap ct <Plug>OrgTodoToggleNonInteractive
+"autocmd FileType org :nmap cc <Plug>OrgCheckBoxToggle
+"autocmd FileType org :nmap cn <Plug>OrgCheckBoxNewBelow
+"autocmd FileType org :nmap cN <Plug>OrgCheckBoxNewAbove
+"autocmd FileType org :nmap ct <Plug>OrgTodoToggleNonInteractive
 " easy ref to system clipboard (CLIPBOARD)
 nnoremap <c-c> "+
 vnoremap y "+y

@@ -519,8 +519,8 @@ before packages are loaded."
   (when (eq system-type 'darwin)
     (find-file "~/mc/mailchimp.org"))
   (kill-buffer "*spacemacs*")
-  (org-todo-list 'T)
-  (spacemacs/alternate-window)
+  ;; (org-todo-list 'T)
+  ;; (spacemacs/alternate-window)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
