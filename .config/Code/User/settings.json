@@ -39,6 +39,10 @@
   "[rs]": {
     "editor.tabSize": 4
   },
+  "[php]": {
+    "editor.tabSize": 4,
+    "editor.detectIndentation": false
+  },
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
   "calva.paredit.defaultKeyMap": "none",
@@ -91,8 +95,12 @@
     "local": "git.rsglab.com"
   },
   "protoc": {
-  "options": ["-I" , "./proto"]
+    "options": [
+      "-I",
+      "./proto"
+    ]
   },
   "go.toolsManagement.autoUpdate": true,
-  "go.lintTool": "golangci-lint"
+  "go.lintTool": "golangci-lint",
+  "intelephense.telemetry.enabled": false
 }

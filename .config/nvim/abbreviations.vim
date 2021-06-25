@@ -7,6 +7,7 @@ iabbrev <silent> sv ${}<Left><C-R>=Eatchar('\s')<CR>
 iabbrev <silent> qo "$1"
 iabbrev <silent> qt "$2"
 iabbrev <silent> qa "$@"
+iabbrev <silent> qda "$@"
 iabbrev <silent> qdo "$1"
 iabbrev <silent> qdt "$2"
 iabbrev <silent> qda "$@"
