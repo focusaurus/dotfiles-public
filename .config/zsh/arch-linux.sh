@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 arch-install-package() {
-  yay -S "$@"
+  yay --nodiffmenu --sync "$@"
   hash -r
 }
 
