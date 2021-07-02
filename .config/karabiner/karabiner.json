@@ -71,7 +71,7 @@
                         ]
                     },
                     {
-                        "description": "Change command to command+space if pressed alone.",
+                        "description": "Change command to f10 (leader) if pressed alone.",
                         "manipulators": [
                             {
                                 "from": {
@@ -89,9 +89,8 @@
                                 ],
                                 "to_if_alone": [
                                     {
-                                        "key_code": "spacebar",
+                                        "key_code": "f10",
                                         "modifiers": [
-                                            "right_command"
                                         ]
                                     }
                                 ],
@@ -100,7 +99,7 @@
                         ]
                     },
                     {
-                        "description": "Change command to command+space if pressed alone.",
+                        "description": "Change command to f10 (leader) if pressed alone.",
                         "manipulators": [
                             {
                                 "from": {
@@ -118,9 +117,8 @@
                                 ],
                                 "to_if_alone": [
                                     {
-                                        "key_code": "spacebar",
+                                        "key_code": "f10",
                                         "modifiers": [
-                                            "left_command"
                                         ]
                                     }
                                 ],
@@ -129,7 +127,7 @@
                         ]
                     },
                     {
-                        "description": "Change left option to F10 (leader) if pressed alone.",
+                        "description": "Change left option to F11 (fuzzball) if pressed alone.",
                         "manipulators": [
                             {
                                 "from": {
@@ -147,7 +145,7 @@
                                 ],
                                 "to_if_alone": [
                                     {
-                                        "key_code": "f10"
+                                        "key_code": "f11"
                                     }
                                 ],
                                 "type": "basic"
@@ -155,7 +153,7 @@
                         ]
                     },
                     {
-                        "description": "Change right option to F10 (leader) if pressed alone.",
+                        "description": "Change right option to F11 (fuzzball) if pressed alone.",
                         "manipulators": [
                             {
                                 "from": {
@@ -173,7 +171,7 @@
                                 ],
                                 "to_if_alone": [
                                     {
-                                        "key_code": "f10"
+                                        "key_code": "f11"
                                     }
                                 ],
                                 "type": "basic"
