@@ -81,8 +81,6 @@ main() {
     # calendar or music just because they
     # happen to be the most recently focused.
     #
-    # Disabling for now because, sigh, hammerspoon
-    # is so slow with external scripts
     # ~/bin/focus browser
     echo "${args}" | xargs open
     ;;
