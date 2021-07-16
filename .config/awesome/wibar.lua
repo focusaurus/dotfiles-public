@@ -6,6 +6,7 @@ local wibox = require("wibox")
 local menubar = require("menubar")
 local placement = require("placement")
 local titles = require("titles")
+local focus = require("focus")
 
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
@@ -31,7 +32,7 @@ mymainmenu = awful.menu({
     {"awesome: unminimize", placement.unminimize},
     {"awesome: titles", titles.dev},
     {"awesome: quit", function() awesome.quit() end},
-    {"awesome: move all clients", placement.move_all_clients_to_screen}
+    {"awesome: gather clients", placement.move_all_clients_to_screen}
   }
 })
 
