@@ -68,7 +68,7 @@ letters_linux="
 - [
 = ]
 q '
-w , bspc
+w @comma-snippet bspc
 e . spc
 r p del
 t y
@@ -154,6 +154,7 @@ for name in thinkpad; do
 
 (defalias
   hyper (around lalt lmet)
+  comma-snippet (multi-tap 200 , f12)
   tap-space-hold-shift (tap-hold-next-release 500 spc lsft)
   tap-space-hold-navigation (tap-hold-next-release 500 spc (layer-toggle navigation))
   tap-a-hold-hyper (tap-hold-next-release 500 a @hyper)
