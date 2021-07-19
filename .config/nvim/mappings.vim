@@ -5,6 +5,23 @@ noremap , :
 " noremap <leader>; ;
 noremap F :w<cr>:silent !pretty-print-files %<cr>:edit!<cr>
 
+" Tab and shift+tab for indent/outdent including visual mode
+"map <tab> >>
+"map <s-tab> <<
+"vmap <tab> >>
+"vmap <s-tab> <<
+
+" Bubble single lines
+" http://vimcasts.org/episodes/bubbling-text/
+"nmap <C-Up> [e
+"nmap <C-Down> ]e
+" Bubble multiple lines
+"vmap <C-Up> [egv
+"vmap <C-Down> ]egv
+
+" Use space instead of colon for commands
+"noremap <Space> :
+
 " The default mappings for back (b), end (e), and word (w)
 " navigation treat dashes and some other characters as word
 " separators. Normally the uppercase version is the version

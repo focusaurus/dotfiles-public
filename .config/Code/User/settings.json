@@ -103,5 +103,6 @@
   "go.toolsManagement.autoUpdate": true,
   "go.lintTool": "golangci-lint",
   "intelephense.telemetry.enabled": false,
-  "window.zoomLevel": -1
+  "window.zoomLevel": -1,
+  "editor.scrollBeyondLastLine": false
 }
