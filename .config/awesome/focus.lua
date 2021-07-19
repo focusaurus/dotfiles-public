@@ -3,6 +3,16 @@ local module = {}
 local awful = require("awful")
 local log = require("log")
 
+function module.by_class(class_name)
+  local match_class = function (c)
+    return awful.rules.match(c, {class = class_name})
+  end
+
+  for c in awful.client.iterate(match_class) do
+    c:emit_signal("request::activate", "tasklist", {raise = true})
+  end
+end
+
 function module.left()
   awful.client.focus.byidx(-1)
 end

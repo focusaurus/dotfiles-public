@@ -41,6 +41,10 @@ activate_window() {
   fi
 }
 
+awm_by_class() {
+  awesome-client "require(\"focus\").by_class(\"$1\")"
+}
+
 browser_tab() {
   xdotool key "alt+$1"
 }
@@ -189,6 +193,7 @@ main() {
     ~/git.peterlyons.com/dotfiles/fuzzball/journal-mailchimp-standup
     ;;
   freecad)
+    awm_by_class "FreeCAD"
     activate_window FreeCAD freecad
     ;;
   prusa-slicer)
