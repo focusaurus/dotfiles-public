@@ -514,7 +514,7 @@ before packages are loaded."
   (evil-leader/set-key "q q" 'spacemacs/frame-killer)
   ;; (global-set-key (kbd "C-c i d") (lambda () (interactive) (insert (shell-command-to-string "~/projects/daily-todos/daily-todos.sh 0"))))
   (find-file "~/exocortex/personal/personal.org")
-  (find-file "~/exocortex/personal/daily-routine.org")
+  ;; (find-file "~/exocortex/personal/daily-routine.org")
   (org-show-all)
   (when (eq system-type 'darwin)
     (find-file "~/mc/mailchimp.org"))
