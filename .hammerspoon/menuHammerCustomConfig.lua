@@ -246,6 +246,7 @@ menuHammerMenuList = {
             {cons.cat.action, '', 'D', 'Dash', { {cons.act.launcher, 'Dash'} }},
             {cons.cat.action, '', 'F', 'Firefox', { {cons.act.launcher, 'Firefox'} }},
             {cons.cat.action, '', 'K', 'Karabiner', { {cons.act.launcher, 'Karabiner-Elements'} }},
+            {cons.cat.action, '', 'I', 'Insomnia', { {cons.act.launcher, 'Insomnia'} }},
             {cons.cat.action, '', 'S', 'Slack', { {cons.act.launcher, 'Slack'} }},
             {cons.cat.action, '', 'T', 'iTerm', { {cons.act.launcher, 'iTerm'} }},
             {cons.cat.action, '', 'V', 'Visual Studio Code', { {cons.act.launcher, 'Visual Studio Code'} }},

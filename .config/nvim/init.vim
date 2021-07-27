@@ -16,6 +16,7 @@ runtime! mappings.vim
 runtime! syntastic.vim
 runtime! abbreviations.vim
 runtime! vim-pencil.vim
+runtime! firenvim.vim
 
 ":colorscheme koehler
 ":colorscheme ron

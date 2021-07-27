@@ -47,6 +47,7 @@ autocmd FileType markdown :nnoremap j gj
 "autocmd FileType org :nmap ct <Plug>OrgTodoToggleNonInteractive
 " easy ref to system clipboard (CLIPBOARD)
 nnoremap <c-c> "+
+nnoremap K "0p
 vnoremap y "+y
 cmap qq q!
 " paste without comments mucking everything up
