@@ -104,5 +104,13 @@
   "go.lintTool": "golangci-lint",
   "intelephense.telemetry.enabled": false,
   "window.zoomLevel": -1,
-  "editor.scrollBeyondLastLine": false
+  "editor.scrollBeyondLastLine": false,
+  "outline.showArrays": false,
+  "outline.showConstants": false,
+  "outline.showEnums": false,
+  "outline.showNumbers": false,
+  "outline.showPackages": false,
+  "outline.showStructs": false,
+  "outline.showStrings": false,
+  "outline.showVariables": false
 }
