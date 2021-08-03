@@ -14,7 +14,7 @@ IFS=$'\n\t'
 
 install_exe() {
   from_path="$(find . -type f -executable -print0)"
-  if [[ -v "${from_path}" ]]; then
+  if [[ -z "${from_path}" ]]; then
     from_path="$(find . -type f -print0 | xargs -0 file | grep 'executable' | cut -d : -f 1)"
   fi
   if [[ -z "${from_path}" ]]; then

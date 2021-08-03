@@ -19,9 +19,9 @@ hs.hotkey.bind(hyper_pl, "right", appNav.right)
 hs.hotkey.bind(hyper_pl, "down", appNav.down)
 
 -- for compat until kmonad on mac is fully working
-hs.hotkey.bind({"option"}, "o", appNav.left)
-hs.hotkey.bind({"option"}, "u", appNav.right)
-hs.hotkey.bind({"option"}, "j", appNav.down)
+-- hs.hotkey.bind({"option"}, "o", appNav.left)
+-- hs.hotkey.bind({"option"}, "u", appNav.right)
+-- hs.hotkey.bind({"option"}, "j", appNav.down)
 
 -- Disabled temporarily due to conflict with org-mode
 -- hs.hotkey.bind({"option"}, "j", appNav.down)
@@ -29,7 +29,7 @@ hs.hotkey.bind({"option"}, "j", appNav.down)
 -- placement
 hs.hotkey.bind(hyper_pl, ".", placement.cycle)
 -- for compat until kmonad on mac is fully working
-hs.hotkey.bind({"option"}, ".", placement.cycle)
+-- hs.hotkey.bind({"option"}, ".", placement.cycle)
 
 -- fuzzy prompts
 hs.hotkey.bind({"command"}, "space", fuzzball.chooseScript)
@@ -52,7 +52,7 @@ switcher = hs.window.switcher.new() -- default windowfilter: only visible window
 
 hs.hotkey.bind(hyper_pl, "e", focus.previous)
 -- for compat until kmonad on mac is fully working
-hs.hotkey.bind({"option"}, "e", focus.previous)
+-- hs.hotkey.bind({"option"}, "e", focus.previous)
 -- hs.hotkey.bind(hyper_pl, "e", switcher.nextWindow)
 -- for compat until kmonad on mac is fully working
 -- hs.hotkey.bind({"option"}, "e", switcher.nextWindow)

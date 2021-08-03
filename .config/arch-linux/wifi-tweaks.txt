@@ -1,0 +1,11 @@
+# If wifi is flakey, especially after idle periods,
+# try disabling power saving on the wifi card
+sudo iw dev wlan0 set power_save off
+
+# To try to get NetworkManager to use systemd-resolved for DNS
+# and use cloudflare/google DNS instead of crappy small-time ISP DNS,
+# I symlinked /etc/resolv.conf as follows
+ls -l /etc/resolv.conf
+lrwxrwxrwx 1 root root 37 Jul 18 09:30 /etc/resolv.conf -> /run/systemd/resolve/stub-resolv.conf
+
+# I also configured systemd-resolved and put that resolved.conf file in ~/.config/overlay
