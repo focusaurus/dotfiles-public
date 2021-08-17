@@ -33,4 +33,9 @@ function module.appendByDialogStandup()
   os.execute(fuzzball .. "/journal-mailchimp-standup &")
 end
 
+function module.appendInTerminalWindow()
+  log.d("appendInTerminalWindow")
+  os.execute(fuzzball .. "/mc-journal-vim &")
+end
+
 return module

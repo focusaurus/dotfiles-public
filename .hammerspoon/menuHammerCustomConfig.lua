@@ -267,6 +267,9 @@ menuHammerMenuList = {
             {cons.cat.action, '', 's', 'Standup', {
                 {cons.act.func, journal.appendByDialogStandup}
             }},
+            {cons.cat.action, '', 'v', 'vim', {
+                {cons.act.func, journal.appendByTerminalWindow}
+            }},
         }
     },
 
