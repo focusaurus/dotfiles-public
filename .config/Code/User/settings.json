@@ -27,7 +27,7 @@
   "editor.autoClosingBrackets": "never",
   "editor.autoClosingQuotes": "never",
   "editor.acceptSuggestionOnCommitCharacter": false,
-  "workbench.colorTheme": "Visual Studio Light",
+  "workbench.colorTheme": "Quiet Light",
   "window.newWindowDimensions": "maximized",
   "window.openFilesInNewWindow": "on",
   "window.openFoldersInNewWindow": "on",
@@ -49,7 +49,7 @@
   "explorer.confirmDelete": false,
   "workbench.editor.enablePreview": false,
   "workbench.editor.enablePreviewFromQuickOpen": false,
-  "editor.renderWhitespace": "boundary",
+  "editor.renderWhitespace": "none",
   "editor.acceptSuggestionOnEnter": "off",
   "shellcheck.disableVersionCheck": true,
   "diffEditor.ignoreTrimWhitespace": false,
@@ -86,7 +86,6 @@
   "editor.cursorWidth": 2,
   "editor.renderLineHighlight": "all",
   "editor.foldingHighlight": false,
-  "vscode-neovim.neovimInitVimPaths.darwin": "/usr/local/bin/nvim",
   "vscode-neovim.neovimExecutablePaths.darwin": "/usr/local/bin/nvim",
   "go.formatFlags": [
     "-local git.rsglab.com"
