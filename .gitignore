@@ -201,3 +201,5 @@
 /.vpython*
 /.config/blender
 /.config/PrusaSlicer/PrusaSlicer.ini
+/.nmcli-history
+/.config/xournalpp
