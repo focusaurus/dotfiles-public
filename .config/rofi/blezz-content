@@ -11,7 +11,7 @@ act(t, terminal, focus terminal)
 act(u, zulip, focus zulip)
 act(w, workflowy, focus workflowy)
 act(x, executables, rofi -show run)
-act(z, zoom, zoom)
+act(z, zoom, focus zoom)
 dir(1, sound)
 dir(a, applications)
 

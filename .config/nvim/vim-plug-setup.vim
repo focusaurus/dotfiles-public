@@ -27,8 +27,8 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'reedes/vim-pencil'
 Plug 'kana/vim-textobj-user'
 Plug 'Chun-Yang/vim-textobj-chunk'
-
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-
 " List ends here. Plugins become visible to Vim after this call.
+
 call plug#end()
