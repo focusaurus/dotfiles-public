@@ -12,8 +12,8 @@ Plug 'tpope/vim-sleuth'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neoclide/coc-tabnine'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc-tabnine'
 "Plug 'neoclide/coc-tsserver'
 
 Plug 'machakann/vim-sandwich'
@@ -29,6 +29,10 @@ Plug 'kana/vim-textobj-user'
 Plug 'Chun-Yang/vim-textobj-chunk'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+Plug 'neovim/nvim-lspconfig'
+Plug 'glepnir/lspsaga.nvim'
+Plug 'nvim-lua/completion-nvim'
+Plug 'nicwest/vim-camelsnek'
 " List ends here. Plugins become visible to Vim after this call.
 
 call plug#end()

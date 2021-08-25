@@ -258,22 +258,21 @@ end
 
 -------------------------------
 -- select window by title
-obj = {}
-theWindows = hs.window.filter.new()
-theWindows:setDefaultFilter{}
-theWindows:setSortOrder(hs.window.filter.sortByFocusedLast)
+windowsByFocus = hs.window.filter.new()
+windowsByFocus:setDefaultFilter{}
+windowsByFocus:setSortOrder(hs.window.filter.sortByFocusedLast)
 local currentWindows = {}
-local previousSelection = nil  -- the idea is that one switches back and forth between two windows all the time
 
 function module.refreshWindowCache()
-  for i,v in ipairs(theWindows:getWindows()) do
+  currentWindows = {}
+  for i,v in ipairs(windowsByFocus:getWindows()) do
     table.insert(currentWindows, v)
   end
 end
 
 module.refreshWindowCache()
 
-function obj:find_window_by_title(t)
+function module.findWindowByTitle(t)
    for i,v in ipairs(currentWindows) do
       if string.find(v:title(), t) then
          return v
@@ -282,15 +281,15 @@ function obj:find_window_by_title(t)
    return nil
 end
 
-function obj:focus_by_title(t)
-   w = obj:find_window_by_title(t)
+function module.focusByTitle(t)
+   w = module.findWindowByTitle(t)
    if w then
       w:focus()
    end
    return w
 end
 
-function obj:focus_by_app(appName)
+function module.focusByApp(appName)
    print(' [' .. appName ..']')
    for i,v in ipairs(currentWindows) do
       print('           [' .. v:application():name() .. ']')
@@ -305,7 +304,7 @@ end
 
 
 
-local function callback_window_created(w, appName, event)
+local function callbackWindowCreated(w, appName, event)
 
    if event == "windowDestroyed" then
 --      print("deleting from windows-----------------", w)
@@ -316,7 +315,6 @@ local function callback_window_created(w, appName, event)
          end
       end
 --      print("Not found .................. ", w)
---      obj:print_table0(currentWindows)
 --      print("Not found ............ :()", w)
       return
    end
@@ -327,18 +325,17 @@ local function callback_window_created(w, appName, event)
    end
    if event == "windowFocused" then
       --otherwise is equivalent to delete and then create
-      callback_window_created(w, appName, "windowDestroyed")
-      callback_window_created(w, appName, "windowCreated")
---      obj:print_table0(currentWindows)
+      callbackWindowCreated(w, appName, "windowDestroyed")
+      callbackWindowCreated(w, appName, "windowCreated")
    end
 end
-theWindows:subscribe(hs.window.filter.windowCreated, callback_window_created)
-theWindows:subscribe(hs.window.filter.windowDestroyed, callback_window_created)
-theWindows:subscribe(hs.window.filter.windowFocused, callback_window_created)
+windowsByFocus:subscribe(hs.window.filter.windowCreated, callbackWindowCreated)
+windowsByFocus:subscribe(hs.window.filter.windowDestroyed, callbackWindowCreated)
+windowsByFocus:subscribe(hs.window.filter.windowFocused, callbackWindowCreated)
 
-local function list_window_choices()
+local function listWindowChoices()
    local windowChoices = {}
---   for i,v in ipairs(theWindows:getWindows()) do
+--   for i,v in ipairs(windowsByFocus:getWindows()) do
    for i,w in ipairs(currentWindows) do
       if w ~= hs.window.focusedWindow() then
          table.insert(windowChoices, {
@@ -364,7 +361,7 @@ end)
 
 
 function module.showWindowChooser()
-  local windowChoices = list_window_choices()
+  local windowChoices = listWindowChoices()
   windowChooser:choices(windowChoices)
   --windowChooser:placeholderText('')
   windowChooser:rows(12)
