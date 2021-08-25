@@ -209,6 +209,7 @@ menuHammerMenuList = {
             {cons.cat.action, '', 'z', 'Zoom', { {cons.act.launcher, 'zoom.us'} }},
             {cons.cat.action, '', 'q', 'Terminal Quick', { {cons.act.func, focus.terminalQuick} }},
             {cons.cat.action, '', 'v', 'Visual Studio Code', { {cons.act.launcher, 'Visual Studio Code'} }},
+            {cons.cat.action, '', 'w', 'Windows', { {cons.act.func, focus.showWindowChooser} }},
             {cons.cat.action, '', 's', 'Slack', { {cons.act.func, focus.slack} }},
         }
     },
