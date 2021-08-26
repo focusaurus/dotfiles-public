@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/Volumes/CaseSensitive/git.rsglab.com/rsg/shopchimp/cmd/shopchimp'
+let g:netrw_dirhist_5='/Users/peterlyons/git.peterlyons.com/mailchimp/shopchimp-local/rpc-local'
+let g:netrw_dirhist_4='/Volumes/CaseSensitive/git.rsglab.com/rsg/shopchimp/internal/spanner/null_boilerplate.go'
+let g:netrw_dirhist_3='/Volumes/CaseSensitive/git.rsglab.com/pete-lyons/mailchimp/web/js/src'
+let g:netrw_dirhist_2='/Volumes/CaseSensitive/git.rsglab.com/pete-lyons/mailchimp/data/api_schemas/3.0/Definitions/AccountLinks'
+let g:netrw_dirhist_1='/Volumes/CaseSensitive/git.rsglab.com/rsg/shopchimp/proto/checkout'
+let g:netrw_dirhist_0='/Users/peterlyons/git.peterlyons.com/reaction-common'
+let g:netrw_dirhist_9='/Users/peterlyons/github.com/reactioncommerce/reaction-development-platform/config/local'
+let g:netrw_dirhist_8='/Users/peterlyons/github.com/reactioncommerce/reaction-development-platform/config'
+let g:netrw_dirhist_7='/Users/peterlyons/.hammerspoon/Spoons'

@@ -4,25 +4,25 @@ local focusMode = false
 local hbin = os.getenv("HOME") .. "/bin"
 local browserName = "Google Chrome"
 
-function findWindow(appName, filter)
-  log.d('findWindow')
-  for _, window in pairs(filter:getWindows()) do
-    log.d("findWindow: title: " .. window:title())
-    if window:application():name() == appName then
-      return window
-    end
-  end
-end
-
--- Sigh. Hammerspoon window filters are unusably slow.
+-- function findWindow(appName, filter)
+--   log.d('findWindow')
+--   for _, window in pairs(filter:getWindows()) do
+--     log.d("findWindow: title: " .. window:title())
+--     if window:application():name() == appName then
+--       return window
+--     end
+--   end
+-- end
+--
+-- -- Sigh. Hammerspoon window filters are unusably slow.
 -- We have to cache the results or hammerspoon locks up
-local filterBrowserGeneral = hs.window.filter.new():setAppFilter(
-  browserName,{rejectTitles={"YouTube Music", "- Calendar -"}})
-local windowBrowserGeneral
+-- local filterBrowserMain = hs.window.filter.new():setAppFilter(
+--   browserName,{rejectTitles={"YouTube Music", "- Calendar -"}})
+local windowBrowserMain
 
--- function module.findBrowserGeneral()
---   log.d('findBrowserGeneral')
---   windowBrowserGeneral = findWindow(browserName, filterBrowserGeneral)
+-- function module.findBrowserMain()
+--   log.d('findBrowserMain')
+--   windowBrowserMain = findWindow(browserName, filterBrowserMain)
 -- end
 --
 
@@ -34,7 +34,7 @@ local windowBrowserGeneral
 
 -- function module.browserWindowFilter()
 --   log.d("browserWindowFilter")
---   for _, window in pairs(filterBrowserGeneral:getWindows()) do
+--   for _, window in pairs(filterBrowserMain:getWindows()) do
 --     if window:application():name() == browserName then
 --       log.d(window:title())
 --       window:focus()
@@ -47,31 +47,47 @@ local windowBrowserGeneral
 --
 
 -- function module.browserByScan()
---   if windowBrowserGeneral == nil then
+--   if windowBrowserMain == nil then
 --     module.scanWindows()
 --   end
---   if windowBrowserGeneral ~= nil then
---     windowBrowserGeneral:focus()
+--   if windowBrowserMain ~= nil then
+--     windowBrowserMain:focus()
 --   end
 -- end
 --
 
-function module.browserByFilterCache()
-  if windowBrowserGeneral == nil then
-    windowBrowserGeneral = findWindow(browserName, filterBrowserGeneral)
+-- function module.browserByFilterCache()
+--   if windowBrowserMain == nil then
+--     windowBrowserMain = findWindow(browserName, filterBrowserMain)
+--   end
+--   if windowBrowserMain == nil then
+--     -- if we get here, we didn't find any windows, launch the app
+--     hs.application.launchOrFocus(browserName)
+--   else
+--     windowBrowserMain:focus()
+--   end
+-- end
+
+function module.browserMainByTitleCache()
+  if windowBrowserMain == nil then
+    windowBrowserMain = module.findWindowByTitle(browserName, "main")
   end
-  if windowBrowserGeneral == nil then
+  if windowBrowserMain == nil then
     -- if we get here, we didn't find any windows, launch the app
     hs.application.launchOrFocus(browserName)
   else
-    windowBrowserGeneral:focus()
+    windowBrowserMain:focus()
   end
 end
 
-module.browser = module.browserByFilterCache
+-- I have had many implementations of this.
+-- So I keep the function names in the module describing
+-- the specific implementation approach, but in the module's
+-- external API, alias it as just the intent.
+module.browser = module.browserMainByTitleCache
 
 local windowCalendar
-filterCalendar = hs.window.filter.new():setAppFilter(browserName, {allowTitles="- Calendar -"})
+-- filterCalendar = hs.window.filter.new():setAppFilter(browserName, {allowTitles="- Calendar -"})
 
 -- function module.calendarByName()
 --   log.d("calendaByName")
@@ -99,9 +115,21 @@ filterCalendar = hs.window.filter.new():setAppFilter(browserName, {allowTitles="
 --   hs.application.launchOrFocus(browserName)
 -- end
 
-function module.calendarByFilterCache()
+-- function module.calendarByFilterCache()
+--   if windowCalendar == nil then
+--     windowCalendar = findWindow(browserName, filterCalendar)
+--   end
+--   if windowCalendar == nil then
+--     -- if we get here, we didn't find any windows, launch the app
+--     hs.application.launchOrFocus(browserName)
+--   else
+--     windowCalendar:focus()
+--   end
+-- end
+
+function module.calendarByTitleCache()
   if windowCalendar == nil then
-    windowCalendar = findWindow(browserName, filterCalendar)
+    windowCalendar = module.findWindowByTitle(browserName, "calendar")
   end
   if windowCalendar == nil then
     -- if we get here, we didn't find any windows, launch the app
@@ -111,9 +139,13 @@ function module.calendarByFilterCache()
   end
 end
 
-module.calendar = module.calendarByFilterCache
+-- I have had many implementations of this.
+-- So I keep the function names in the module describing
+-- the specific implementation approach, but in the module's
+-- external API, alias it as just the intent.
+module.calendar = module.calendarByTitleCache
 
-filterMusic = hs.window.filter.new():setAppFilter(browserName,{allowTitles="YouTube Music"})
+-- filterMusic = hs.window.filter.new():setAppFilter(browserName,{allowTitles="YouTube Music"})
 local windowMusic
 
 -- function module.musicWindowFilter()
@@ -142,9 +174,22 @@ local windowMusic
 --   hs.application.get(browserName):selectMenuItem("^YouTube Music", true)
 -- end
 
-function module.musicByFilterCache()
+-- function module.musicByFilterCache()
+--   if windowMusic == nil then
+--     windowMusic = findWindow(browserName, filterMusic)
+--   end
+--   if windowMusic == nil then
+--     -- if we get here, we didn't find any windows, launch the app
+--     hs.application.launchOrFocus(browserName)
+--   else
+--     windowMusic:focus()
+--   end
+-- end
+--
+
+function module.musicByTitleCache()
   if windowMusic == nil then
-    windowMusic = findWindow(browserName, filterMusic)
+    windowMusic = module.findWindowByTitle(browserName, "music")
   end
   if windowMusic == nil then
     -- if we get here, we didn't find any windows, launch the app
@@ -154,12 +199,16 @@ function module.musicByFilterCache()
   end
 end
 
-module.music = module.musicByFilterCache
+-- I have had many implementations of this.
+-- So I keep the function names in the module describing
+-- the specific implementation approach, but in the module's
+-- external API, alias it as just the intent.
+module.music = module.musicByTitleCache
 
 function module.clearWindowCache()
   windowCalendar = nil
   windowMusic = nil
-  windowBrowserGeneral = nil
+  windowBrowserMain = nil
 end
 
 function module.enableFocusMode()
@@ -272,36 +321,37 @@ end
 
 module.refreshWindowCache()
 
-function module.findWindowByTitle(t)
-   for i,v in ipairs(currentWindows) do
-      if string.find(v:title(), t) then
-         return v
+function module.findWindowByTitle(appName, windowTitle)
+   for i,window in ipairs(currentWindows) do
+     print('findWindowByTitle: query: ' .. windowTitle .. ' window: ' .. window:title())
+      if string.find(window:application():name(), appName) and string.find(window:title(), windowTitle) then
+         return window
       end
    end
    return nil
 end
 
-function module.focusByTitle(t)
-   w = module.findWindowByTitle(t)
-   if w then
-      w:focus()
-   end
-   return w
-end
+-- function module.focusByTitle(t)
+--    w = module.findWindowByTitle(t)
+--    if w then
+--       w:focus()
+--    end
+--    return w
+-- end
 
-function module.focusByApp(appName)
-   print(' [' .. appName ..']')
-   for i,v in ipairs(currentWindows) do
-      print('           [' .. v:application():name() .. ']')
-      if string.find(v:application():name(), appName) then
-         print("Focusing window" .. v:title())
-         v:focus()
-         return v
-      end
-   end
-   return nil
-end
-
+-- function module.focusByApp(appName)
+--    print(' [' .. appName ..']')
+--    for i,v in ipairs(currentWindows) do
+--       print('           [' .. v:application():name() .. ']')
+--       if string.find(v:application():name(), appName) then
+--          print("Focusing window" .. v:title())
+--          v:focus()
+--          return v
+--       end
+--    end
+--    return nil
+-- end
+--
 
 
 local function callbackWindowCreated(w, appName, event)
