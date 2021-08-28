@@ -74,7 +74,7 @@ activate_chrome_main_window() {
   # generic main window.
   id=$(wmctrl -lx |
     grep -i "google-chrome.Google-chrome" |
-    grep --extended-regexp --invert-match "(YouTube Music| - Calendar|WorkFlowy)" |
+    grep --extended-regexp --invert-match "(music|calendar|workflowy)" |
     head -1 |
     awk '{print $1}' ||
     true)
@@ -174,14 +174,14 @@ main() {
     # activate_window 'zulip' /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=zulip --file-forwarding org.zulip.Zulip
     ;;
   calendar | gcal | f7)
-    activate_window ' - Calendar' "google-chrome-stable" "https://calendar.google.com/calendar/r"
+    activate_window 'calendar' "google-chrome-stable" "https://calendar.google.com/calendar/r"
     # activate_window ' - Calendar' firefox --new-window "https://calendar.google.com/calendar/r"
     # activate_firefox_main_window
     # sleep 0.3
     # browser_tab 2
     ;;
   music | f8)
-    activate_window 'YouTube Music' "google-chrome-stable" --new-window "https://music.youtube.com"
+    activate_window 'music' "google-chrome-stable" --new-window "https://music.youtube.com"
     # activate_firefox_main_window
     # sleep 0.2
     # browser_tab 3
@@ -203,7 +203,7 @@ main() {
     activate_window Calculator mate-calc
     ;;
   workflowy)
-    activate_window 'WorkFlowy' "google-chrome-stable" --new-window "https://workflowy.com"
+    activate_window 'workflowy' "google-chrome-stable" --new-window "https://workflowy.com"
     ;;
   esac
 }
