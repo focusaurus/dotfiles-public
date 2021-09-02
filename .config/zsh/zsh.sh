@@ -135,7 +135,9 @@ setup-prompt() {
   # export RPROMPT='$(prompt-git)$(prompt-pando-target)'
   export RPROMPT='$(prompt-pando-target)'
 }
-setup-prompt
+
+# Disabling in favor of starship
+# setup-prompt
 
 TRAPUSR1() {
   { echo reloading due to rss USR1 signal; } 1>&2

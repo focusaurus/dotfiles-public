@@ -47,4 +47,4 @@ em() {
   fi
 }
 
-alias spacevim="nvim -u ~/.SpaceVim/init.vim"
+alias spacevim="nvim -u ~/.SpaceVim/main.vim"
