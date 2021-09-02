@@ -15,7 +15,7 @@ IFS="$(printf "\n\t")"
 
 case $(uname) in
 Linux)
-  xclip -selection clipboard
+  DISPLAY=:0.0 xclip -selection clipboard
   ;;
 Darwin)
   pbcopy

@@ -26,7 +26,6 @@ syncthing-gui() {
     "${ssh_command[@]}"
   fi
 }
-alias image-view="feh -."
 ap1() {
   awk '{print $1}'
 }
