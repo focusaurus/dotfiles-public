@@ -1,6 +1,7 @@
 1password-cli
 acpi
 alsa-utils
+appimagetool-bin
 arandr
 arc-icon-theme-full-git
 arc-x-icons-theme
@@ -49,9 +50,9 @@ gedit
 gitui-bin
 gnome-screenshot
 google-chrome
-graphviz
 grub
 gthumb
+helix-bin
 htop
 hwinfo
 imwheel
@@ -67,6 +68,7 @@ macchanger
 make
 man-db
 mate-calc
+mmv-go
 moreutils
 mpv
 mupdf
@@ -98,10 +100,10 @@ rustup
 sd
 shellcheck
 shfmt
-skypeforlinux-stable-bin
 slack-desktop
 spacemacs-dev
 stack
+starship
 syncthing
 system-config-printer
 tealdeer
@@ -119,6 +121,7 @@ via-bin
 visidata
 wireless_tools
 wmctrl
+xar
 xautomation
 xbindkeys
 xcape
