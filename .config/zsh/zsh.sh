@@ -160,3 +160,5 @@ bindkey "^S" kill-word
 function watch-zsh() {
   WATCH_COMMAND='zsh -ci' /usr/local/bin/watch "$@"
 }
+
+autoload zmv
