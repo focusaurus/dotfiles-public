@@ -243,16 +243,11 @@ menuHammerMenuList = {
         menuItems = {
             {cons.cat.action, '', '1', '1Password', { {cons.act.launcher, '1Password 7'} }},
             {cons.cat.action, '', 'A', 'App Store', { {cons.act.launcher, 'App Store'} }},
-            {cons.cat.action, '', 'C', 'Chrome', { {cons.act.launcher, 'Google Chrome'} }},
+            {cons.cat.action, '', 'C', 'Calculator', { {cons.act.launcher, 'Calculator'} }},
             {cons.cat.action, '', 'D', 'Dash', { {cons.act.launcher, 'Dash'} }},
-            {cons.cat.action, '', 'F', 'Firefox', { {cons.act.launcher, 'Firefox'} }},
             {cons.cat.action, '', 'K', 'Karabiner', { {cons.act.launcher, 'Karabiner-Elements'} }},
             {cons.cat.action, '', 'I', 'Insomnia', { {cons.act.launcher, 'Insomnia'} }},
-            {cons.cat.action, '', 'S', 'Slack', { {cons.act.launcher, 'Slack'} }},
-            {cons.cat.action, '', 'T', 'iTerm', { {cons.act.launcher, 'iTerm'} }},
-            {cons.cat.action, '', 'V', 'Visual Studio Code', { {cons.act.launcher, 'Visual Studio Code'} }},
             {cons.cat.submenu, '', 'U', 'Utilities', { {cons.act.menu, utilitiesMenu} }},
-            {cons.cat.action, '', 'Z', 'Zoom', { {cons.act.launcher, 'Zoom'} }},
         }
     },
     --------------------------------------------------------------------

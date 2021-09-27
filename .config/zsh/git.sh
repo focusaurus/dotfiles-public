@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 ##### git SCM #####
-alias g='gitui'
+alias g='lazygit'
 alias ga='git add'
 # alias gassume='gitupdate-index --assume-unchanged'
 # alias gassumed='!git ls-files -v | grep ^h | cut -c 3-'
