@@ -1,0 +1,16 @@
+gui:
+  mouseEvents: false
+  theme:
+    lightTheme: false
+    activeBorderColor:
+      - white
+      - bold
+    inactiveBorderColor:
+      - white
+    selectedLineBgColor:
+      - reverse
+      - blue
+    # selectedLineBgColor:
+    #   - reverse
+    # selectedRangeBgColor:
+    #   - reverse

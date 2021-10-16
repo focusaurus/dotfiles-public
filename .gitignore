@@ -206,3 +206,4 @@
 /.SpaceVim
 /sdk
 /.config/copyq/copyq.lock
+/.npm-node-*
