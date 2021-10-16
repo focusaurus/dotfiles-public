@@ -81,7 +81,7 @@ activate_chrome_main_window() {
   if [[ -n "${id}" ]]; then
     wmctrl -i -a "${id}"
   else
-    exec google-chrome-stable
+    exec google-chrome-stable --restore-last-session
   fi
 }
 
