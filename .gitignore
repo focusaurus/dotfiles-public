@@ -205,3 +205,4 @@
 /.config/xournalpp
 /.SpaceVim
 /sdk
+/.config/copyq/copyq.lock
