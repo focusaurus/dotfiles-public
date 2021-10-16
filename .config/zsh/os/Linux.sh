@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 export TERM="xterm-256color"
-# if ~/bin/have-exe termite; then
-#   export TERM="xterm-termite"
-# fi
+if ~/bin/have-exe kitty; then
+  export TERM="xterm-kitty"
+elif ~/bin/have-exe termite; then
+  export TERM="xterm-termite"
+fi
 alias aoeu="setxkbmap us"
 alias asdf="setxkbmap dvorak"
 alias dv="setxkbmap dvorak"
