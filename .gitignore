@@ -207,3 +207,5 @@
 /sdk
 /.config/copyq/copyq.lock
 /.npm-node-*
+/.config/geeqie/history
+/.config/geeqie/marks
