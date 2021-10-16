@@ -13,5 +13,10 @@ IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 temp=$(mktemp /tmp/scratch-XXX.txt)
 #@BUGBUG trap "rm '${temp}'" EXIT
+# echo "${DISPLAY}" >> "${temp}"
 nvim -c startinsert "${temp}"
-~/bin/copy < "${temp}"
+if ~/bin/is-one-line <"${temp}"; then
+  cat "${temp}" | tr -d '\n' | ~/bin/copy
+else
+  ~/bin/copy <"${temp}"
+fi
