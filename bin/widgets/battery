@@ -13,7 +13,7 @@ set -o posix    # more strict failures in subshells
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
-acpi | grep --extended --only-matching '[0-9]+%' | {
+acpi | grep --invert-match Unknown | grep --extended --only-matching '[0-9]+%' | {
   while IFS= read -r level
   do
   echo -n "🔋${level}"
