@@ -11,4 +11,4 @@ set -o pipefail # don't ignore exit codes when piping output
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-rofi -theme paper-float -show blezz -modi blezz -auto-select -matching normal -blezz-config ~/.config/rofi/blezz-content
+rofi -window-title leader -theme paper-float -show blezz -modi blezz -auto-select -matching normal -blezz-config ~/.config/rofi/blezz-content

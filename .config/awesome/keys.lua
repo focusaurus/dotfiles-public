@@ -8,6 +8,7 @@ local cyclefocus = require("cyclefocus")
 local placement = require("placement")
 local focus = require("focus")
 local wibar = require("wibar")
+local leader = require("leader")
 local dev = require("dev")
 
 local alt = "Mod1"
@@ -67,7 +68,7 @@ root.keys(
       {description = "focus previous (left) by index", group = "client" }),
     awful.key(hyper_pl, "p", focus.right,
       {description = "focus next (right) by index", group = "client" }),
-    awful.key(hyper_pl, "F1", dev.dev,
+    awful.key(hyper_pl, "F1", leader.dev,
       {description = "dev", group = "dev" }),
     -- fkeys({}, "F1"),
     -- fkeys({control}, "F1", "control+f1"),
@@ -85,6 +86,8 @@ root.keys(
     key_run({super}, "space", {home_bin .. "/fuzz-script-choose"}),
     key_run({super}, "1", {home_bin .. "/blezz"}),
     key_run({}, "F10", {home_bin .. "/blezz"}),
+    -- awful.key({}, "F10", focus.leader,
+    --   {description = "focus", group = "focus" }),
     key_run({super}, "2", {home_bin .. "/fuzz-script-choose"}),
     key_run({}, "F11", {home_bin .. "/fuzz-script-choose"}),
     key_run({super}, "3", {home_bin .. "/fuzz-snippet"}),

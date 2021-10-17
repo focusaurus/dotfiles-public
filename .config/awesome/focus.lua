@@ -3,14 +3,20 @@ local module = {}
 local awful = require("awful")
 local log = require("log")
 
+local home_bin = os.getenv("HOME") .. "/bin"
+function noop() end
+
 function module.by_class(class_name)
+  local found = false
   local match_class = function (c)
     return awful.rules.match(c, {class = class_name})
   end
 
   for c in awful.client.iterate(match_class) do
+    found = true
     c:emit_signal("request::activate", "tasklist", {raise = true})
   end
+  return found
 end
 
 function module.left()
@@ -19,6 +25,12 @@ end
 
 function module.right()
   awful.client.focus.byidx(1)
+end
+
+function module.leader()
+  if not module.by_class("Rofi") then
+    awful.spawn.easy_async(home_bin .. "/blezz", noop)
+  end
 end
 
 function module.previous()
