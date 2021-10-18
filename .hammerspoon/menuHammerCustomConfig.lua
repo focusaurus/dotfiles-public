@@ -245,8 +245,10 @@ menuHammerMenuList = {
             {cons.cat.action, '', 'A', 'App Store', { {cons.act.launcher, 'App Store'} }},
             {cons.cat.action, '', 'C', 'Calculator', { {cons.act.launcher, 'Calculator'} }},
             {cons.cat.action, '', 'D', 'Dash', { {cons.act.launcher, 'Dash'} }},
+            {cons.cat.action, '', 'F', 'Finder', { {cons.act.launcher, 'Finder'} }},
             {cons.cat.action, '', 'K', 'Karabiner', { {cons.act.launcher, 'Karabiner-Elements'} }},
             {cons.cat.action, '', 'I', 'Insomnia', { {cons.act.launcher, 'Insomnia'} }},
+            {cons.cat.action, '', 'P', 'Postman', { {cons.act.launcher, 'Postman'} }},
             {cons.cat.submenu, '', 'U', 'Utilities', { {cons.act.menu, utilitiesMenu} }},
         }
     },
