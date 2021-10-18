@@ -9,6 +9,7 @@ machines.target
 NetworkManager-dispatcher.service
 NetworkManager.service
 NetworkManager-wait-online.service
+ntpd.service
 reboot.target
 remote-cryptsetup.target
 remote-fs.target

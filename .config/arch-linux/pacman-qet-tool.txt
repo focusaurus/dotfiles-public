@@ -27,6 +27,7 @@ copyq
 cryptmount
 cups-pdf
 cura
+docker
 docker-compose
 dos2unix
 dunst
@@ -75,6 +76,7 @@ mupdf
 navi-bin
 ncmpc
 network-manager-applet
+ntp
 nvm
 obs-studio
 openscad
@@ -104,6 +106,7 @@ slack-desktop
 spacemacs-dev
 stack
 starship
+sxiv
 syncthing
 system-config-printer
 tealdeer
