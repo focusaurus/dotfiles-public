@@ -50,13 +50,13 @@ modifiers='
 caps @tap-escape-hold-control
 lsft _
 rsft @tap-snippet-hold-shift
-lctl @tap-escape-hold-control
-rctl @tap-escape-hold-control
+lctl lctl
 lalt @tap-leader-hold-alt
+rctl rctl
 lmet @tap-fuzzball-hold-super
 rmet @tap-fuzzball-hold-super
 ssrq @tap-fuzzball-hold-super
-spc @tap-space-hold-navigation XX
+spc @tap-space-hold-navigation
 '
 
 letters_macos='
@@ -68,7 +68,7 @@ letters_linux="
 - [
 = ]
 q '
-w @comma-snippet bspc
+w , bspc
 e . spc
 r p del
 t y
@@ -85,7 +85,7 @@ a @tap-a-hold-hyper
 s o lft
 d e up
 f u rght
-g i
+g i enter
 h d
 j h
 k t
@@ -161,9 +161,9 @@ for name in thinkpad; do
   tap-s-hold-hyper (tap-hold-next-release 500 s @hyper)
   tap-semi-hold-hyper (tap-hold-next-release 500 ; @hyper)
   tap-escape-hold-control (tap-hold-next-release 150 esc lctl)
-  tap-leader-hold-alt (tap-hold-next-release 150 M-1 lalt)
-  tap-snippet-hold-shift (tap-hold-next-release 150 M-3 lsft)
-  tap-fuzzball-hold-super (tap-hold-next-release 150 M-spc lmet)
+  tap-leader-hold-alt (tap-hold-next-release 150 f10 lalt)
+  tap-snippet-hold-shift (tap-hold-next-release 150 f12 lsft)
+  tap-fuzzball-hold-super (tap-hold-next-release 150 f11 lmet)
 
 )
 
