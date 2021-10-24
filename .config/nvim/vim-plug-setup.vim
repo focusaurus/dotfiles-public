@@ -33,6 +33,8 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'glepnir/lspsaga.nvim'
 Plug 'nvim-lua/completion-nvim'
 Plug 'nicwest/vim-camelsnek'
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
+Plug 'projekt0n/github-nvim-theme'
 " List ends here. Plugins become visible to Vim after this call.
 
 call plug#end()

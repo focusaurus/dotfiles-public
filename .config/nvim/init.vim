@@ -2,7 +2,7 @@ set shiftwidth=2
 set expandtab
 set tabstop=2
 set indentkeys-=:
-set cursorline
+" set cursorline
 set number
 set noignorecase
 set hlsearch
@@ -39,6 +39,8 @@ set completeopt=menuone,noinsert,noselect
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-":colorscheme koehler
-":colorscheme ron
-colorscheme slate
+" colorscheme koehler
+" colorscheme ron
+" colorscheme slate
+colorscheme github_*
+
