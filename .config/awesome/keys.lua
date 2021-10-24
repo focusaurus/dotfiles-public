@@ -25,27 +25,9 @@ local function runner(cmd_map)
     awful.spawn.easy_async(cmd_map, noop)
   end
 end
-local fkeys_path = home_bin .. "/fkeys"
-local function fkeys(modifers, keysym, arg)
-  if arg == nil then
-    arg = string.lower(keysym)
-  end
-  return awful.key(
-    modifers,
-    keysym,
-    function()
-      -- require("gears.debug").print_warning("@BUGBUG 3" .. arg)
-      awful.spawn.easy_async({fkeys_path, arg}, noop)
-    end,
-    {description="fkeys", group="fkeys"})
-end
 
-local function key_run(modifers, key, menu)
-  return awful.key(
-    modifers,
-    key,
-    function() awful.spawn.easy_async(cmd, noop) end,
-    menu)
+local function runner(args)
+  return function() awful.spawn.easy_async(args, noop) end
 end
 
 -- mouse bindings
@@ -59,42 +41,65 @@ root.buttons(
 root.keys(
   gears.table.join(
     awful.key(hyper_pl, "r", awesome.restart,
-      {description = "reload awesome", group = "awesome"}),
+      {description="reload awesome", group="awesome"}),
     awful.key(hyper_pl, "q", awesome.quit,
-      {description = "quit awesome", group = "awesome"}),
+      {description="quit awesome", group="awesome"}),
     -- awful.key(hyper_pl, "m", function() menubar.show() end,
-    --   {description = "show the menubar", group = "launcher"}),
+    --   {description="show the menubar", group="launcher"}),
     awful.key(hyper_pl, ",", focus.left,
-      {description = "focus previous (left) by index", group = "client" }),
+      {description="focus previous (left) by index", group="windows" }),
     awful.key(hyper_pl, "p", focus.right,
-      {description = "focus next (right) by index", group = "client" }),
-    awful.key(hyper_pl, "1", dev.dev1, {description = "dev1", group = "dev" }),
-    awful.key(hyper_pl, "2", dev.dev2, {description = "dev2", group = "dev" }),
-    key_run({super}, "space", {home_bin .. "/fuzz-script-choose"},
-      {description="Fuzz Script Choose", group="rofi"}),
-    awful.key({super}, "1", focus.leader, {description = "leader", group = "focus" }),
-    awful.key({}, "F10", leader.tag_in, {description = "leader", group = "focus" }),
-    awful.key({super}, "2", focus.fuzz_script, {description = "focus", group = "focus" }),
-    awful.key({}, "F11", focus.fuzz_script, {description = "focus", group = "focus" }),
-    awful.key({super}, "3", focus.fuzz_snippet, {description = "focus", group = "focus" }),
-    awful.key({}, "F12", focus.fuzz_snippet, {description = "focus", group = "focus" }),
-    key_run({super, shift}, "space", {"rofi", "-show", "run"}),
-    key_run(hyper_pl, "w", {"rofi", "-show", "window", "-theme", "gruvbox-light-soft"}),
-    key_run({super}, "4", {"rofi", "-show", "window"}),
-    key_run(hyper_pl, "o", {app_nav, "left"}),
-    -- key_run(hyper_pl, "t", {app_nav, "up"}),
-    key_run(hyper_pl, "u", {app_nav, "right"}),
-    key_run(hyper_pl, "j", {app_nav, "down"}),
-    key_run(hyper_pl, "Left", {app_nav, "left"}),
-    key_run(hyper_pl, "Up", {app_nav, "up"}),
-    key_run(hyper_pl, "Right", {app_nav, "right"}),
-    key_run(hyper_pl, "Down", {app_nav, "down"}),
-    key_run({}, "XF86MonBrightnessDown", {"sudo", "brightnessctl", "set", "20%-"}),
-    key_run({}, "XF86MonBrightnessUp", {"sudo", "brightnessctl", "set", "20%+"}),
-    key_run({}, "XF86AudioRaiseVolume", {home_bin .. "/volume", "+10%"}),
-    key_run({}, "XF86AudioLowerVolume", {home_bin .. "/volume", "-10%"}),
-    key_run({}, "XF86AudioMute", {home_bin .. "/volume-toggle-mute"}),
-    key_run({}, "XF86AudioMicMute", {home_bin .. "/microphone-toggle"})
+      {description="focus next (right) by index", group="windows" }),
+    awful.key(hyper_pl, "1", dev.dev1, {description="dev1", group="dev" }),
+    awful.key(hyper_pl, "2", dev.dev2, {description="dev2", group="dev" }),
+    awful.key({super}, "space", runner({home_bin .. "/fuzz-script-choose"}),
+      {description="fuzz script", group="rofi"}),
+    awful.key({super}, "1", focus.leader,
+      {description="leader", group="rofi" }),
+    awful.key({}, "F10", leader.tag_in,
+      {description="leader", group="rofi" }),
+    awful.key({super}, "2", focus.fuzz_script,
+      {description="fuzz script", group="rofi" }),
+    awful.key({}, "F11", focus.fuzz_script,
+      {description = "fuzz script", group = "rofi" }),
+    awful.key({super}, "3", focus.fuzz_snippet,
+      {description = "fuzz snippet", group = "rofi" }),
+    awful.key({}, "F12", focus.fuzz_snippet,
+      {description = "fuzz snippet", group = "rofi" }),
+    awful.key({super, shift}, "space", runner({"rofi", "-show", "run"}),
+      {description = "run", group="rofi"}),
+    awful.key(hyper_pl, "w", runner({"rofi", "-show", "window", "-theme", "gruvbox-light-soft"}),
+      {description="windows", group="rofi"}),
+    awful.key({super}, "4", runner({"rofi", "-show", "window"}),
+      {description="windows", group="rofi"}),
+    awful.key(hyper_pl, "o", runner({app_nav, "left"}),
+      {description="left", group="app nav"}),
+    -- awful.key(hyper_pl, "t", runner({app_nav, "up"}),
+    --   {}),
+    awful.key(hyper_pl, "u", runner({app_nav, "right"}),
+      {description="right", group="app nav"}),
+    awful.key(hyper_pl, "j", runner({app_nav, "down"}),
+      {description="down", group="app nav"}),
+    awful.key(hyper_pl, "Left", runner({app_nav, "left"}),
+      {description="left", group="app nav"}),
+    awful.key(hyper_pl, "Up", runner({app_nav, "up"}),
+      {description="up", group="app nav"}),
+    awful.key(hyper_pl, "Right", runner({app_nav, "right"}),
+      {description="right", group="app nav"}),
+    awful.key(hyper_pl, "Down", runner({app_nav, "down"}),
+      {description="down", group="app nav"}),
+    awful.key({}, "XF86MonBrightnessDown", runner({"sudo", "brightnessctl", "set", "20%-"}),
+      {description="brightness down", group="screen"}),
+    awful.key({}, "XF86MonBrightnessUp", runner({"sudo", "brightnessctl", "set", "20%+"}),
+      {description="brightness up", group="screen"}),
+    awful.key({}, "XF86AudioRaiseVolume", runner({home_bin .. "/volume", "+10%"}),
+      {description="volume up", group="sound"}),
+    awful.key({}, "XF86AudioLowerVolume", runner({home_bin .. "/volume", "-10%"}),
+      {description="volume down", group="sound"}),
+    awful.key({}, "XF86AudioMute", runner({home_bin .. "/volume-toggle-mute"}),
+      {description="toggle volume mute", group="sound"}),
+    awful.key({}, "XF86AudioMicMute", runner({home_bin .. "/microphone-toggle"}),
+      {description="toggle mic mute", group="sound"})
   )
 )
 -- awful.key(hyper_pl, "r",
@@ -113,13 +118,13 @@ cyclefocus.default_preset.base_font_size = 14
 
 local clientkeys = gears.table.join(
   awful.key(hyper_pl, ".", placement.cycle,
-    {description = "cycle window placement", group = "client"}),
+    {description = "cycle window placement", group = "windows"}),
   awful.key(hyper_pl, "x", function(c) c:kill() end,
-    {description = "close", group = "client"}),
+    {description = "close", group = "windows"}),
   awful.key({super, shift}, "w", function(c) c:kill() end,
-    {description = "close", group = "client"}),
+    {description = "close", group = "windows"}),
   awful.key(hyper_pl, "e", focus.previous,
-   {description="focus previous", group="client"}),
+   {description="focus previous", group="windows"}),
   cyclefocus.key({super}, "Tab",
     {cycle_filters = {cyclefocus.filters.same_screen, cyclefocus.filters.common_tag}}),
   cyclefocus.key(hyper_pl, "Tab",
