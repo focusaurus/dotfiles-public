@@ -1,2 +1,3 @@
 cmd blame $git blame $f | bat
 map b blame
+cmd open $bat --paging always $f

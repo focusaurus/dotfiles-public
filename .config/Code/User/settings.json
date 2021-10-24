@@ -109,7 +109,7 @@
   "outline.showEnums": false,
   "outline.showNumbers": false,
   "outline.showPackages": false,
-  "outline.showStructs": false,
   "outline.showStrings": false,
+  "outline.showStructs": false,
   "outline.showVariables": false
 }

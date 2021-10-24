@@ -15,39 +15,39 @@ alias gbd='git branch -d'
 # alias gbl='git branch -a|less'
 alias gc='git commit'
 alias glone='git clone'
+# alias gr='git remote -v'
+# alias gfap='git fetch --all --prune'
 #git current branch
-alias gr='git remote -v'
-alias gfap='git fetch --all --prune'
 alias gcb='git rev-parse --abbrev-ref HEAD'
-alias gco='git checkout'
-alias gcob='git checkout -b'
-alias gcot='git checkout --track'
-alias gcod='git checkout develop'
-alias gcom='git checkout master'
+# alias gco='git checkout'
+# alias gcob='git checkout -b'
+# alias gcot='git checkout --track'
+alias gwmain='git switch main'
+alias gore='git restore'
 alias gd='git diff --ignore-all-space HEAD'
 #conflicts with graphicks-magic., use use full path to graphicsmagick when needed
 alias gm='git merge'
-alias gmnf='git merge --no-ff'
+# alias gmnf='git merge --no-ff'
 # alias gpg='git push github'
-alias gpt='git push && git push --tags'
+# alias gpt='git push && git push --tags'
 alias grpo='git remote prune origin'
-alias gru='git remote update'
+# alias gru='git remote update'
 alias gs='git status --short'
-alias gsnapshot='git stash save "snapshot: $(date)" && git stash apply "stash@{0}"'
-alias gsu='git submodule update'
+# alias gsnapshot='git stash save "snapshot: $(date)" && git stash apply "stash@{0}"'
+# alias gsu='git submodule update'
 alias gull='git pull'
-alias gp='git push'
-alias gpu='git pull upstream'
-# alias gunassume='git update-index --no-assume-unchanged'
 alias gush='git push'
-alias gushup='git push --set-upstream'
-alias gphm='git push heroku master --tags'
+# alias gp='git push'
+# alias gpu='git pull upstream'
+# alias gunassume='git update-index --no-assume-unchanged'
+# alias gushup='git push --set-upstream'
 alias gpr='hub pull-request'
 alias enable-signed-git-commits='git config user.signingkey E205D5C6 && git config commit.gpgsign true'
 alias undo-git-add="git reset"
 alias undo-git-rm='git checkout HEAD'
 alias gbmd="git branch --merged develop"
 alias amend="git commit --amend"
+alias gamend=amend
 alias git-not-pushed="git log --branches --not --remotes"
 alias gls="git ls-files"
 alias gw="git switch"
@@ -229,14 +229,14 @@ gcbm() {
 # so your working directory stays unchanged
 gash() {
   local name
-  name="trash-$(date +%Y-%m-%dT%H:%M:%S)"
+  name="snapshot-$(date +%Y-%m-%dT%H:%M:%S)"
   git stash save --include-untracked "${name}"
   git stash apply 'stash@{0}'
 }
 
 alias gitlog='git log --pretty=oneline --abbrev-commit --branches=\* --graph --decorate'
 #git release notes for weekly sprints
-alias grn='git log "--since=8 days ago" --reverse'
+# alias grn='git log "--since=8 days ago" --reverse'
 
 gmmd() {
   local BRANCH
