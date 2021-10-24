@@ -1,0 +1,13 @@
+{
+  "sort_mode": "closest",
+  "ncurses_mode": true,
+  "always_update_repos": false,
+  "print_pkgbuild": true,
+  "ask_pkgbuild": false,
+  "ask_redo": false,
+  "version": "1.1.7",
+  "silent_update": false,
+  "pacman_limit": 200,
+  "aur_limit": 200,
+  "vim_keybindings": false
+}

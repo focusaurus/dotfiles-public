@@ -33,11 +33,11 @@ mymainmenu = awful.menu({
     {"awesome: restart", awesome.restart},
     {"awesome: unminimize", placement.unminimize},
     {"awesome: titles", titles.dev},
-    {"awesome: leader", leader.dev},
     {"awesome: dev1", dev.dev1},
     {"awesome: dev2", dev.dev2},
-    {"awesome: quit", function() awesome.quit() end},
-    {"awesome: gather clients", placement.move_all_clients_to_screen}
+    {"awesome: quit", awesome.quit},
+    {"awesome: gather clients", placement.move_all_clients_to_screen},
+    {"leader", focus.leader}
   }
 })
 
