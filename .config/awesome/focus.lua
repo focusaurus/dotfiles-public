@@ -33,6 +33,16 @@ function module.leader()
   end
 end
 
+function module.fuzz_script()
+  log.log("focus.fuzz_script() called")
+  awful.spawn.easy_async(home_bin .. "/fuzz-script-choose", noop)
+end
+
+function module.fuzz_snippet()
+  log.log("focus.fuzz_snippet() called")
+  awful.spawn.easy_async(home_bin .. "/fuzz-snippet", noop)
+end
+
 function module.previous()
   awful.client.focus.history.previous()
   if client.focus then

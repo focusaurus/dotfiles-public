@@ -40,12 +40,12 @@ local function fkeys(modifers, keysym, arg)
     {description="fkeys", group="fkeys"})
 end
 
-local function key_run(modifers, key, cmd)
+local function key_run(modifers, key, menu)
   return awful.key(
     modifers,
     key,
     function() awful.spawn.easy_async(cmd, noop) end,
-    {description="key_run", group="keys"})
+    menu)
 end
 
 -- mouse bindings
@@ -61,37 +61,23 @@ root.keys(
     awful.key(hyper_pl, "r", awesome.restart,
       {description = "reload awesome", group = "awesome"}),
     awful.key(hyper_pl, "q", awesome.quit,
-        {description = "quit awesome", group = "awesome"}),
+      {description = "quit awesome", group = "awesome"}),
     -- awful.key(hyper_pl, "m", function() menubar.show() end,
     --   {description = "show the menubar", group = "launcher"}),
     awful.key(hyper_pl, ",", focus.left,
       {description = "focus previous (left) by index", group = "client" }),
     awful.key(hyper_pl, "p", focus.right,
       {description = "focus next (right) by index", group = "client" }),
-    awful.key(hyper_pl, "F1", leader.dev,
-      {description = "dev", group = "dev" }),
-    -- fkeys({}, "F1"),
-    -- fkeys({control}, "F1", "control+f1"),
-    -- fkeys({}, "F2"),
-    -- fkeys({}, "F3"),
-    -- fkeys({}, "F4"),
-    -- fkeys({},"F5"),
-    -- fkeys({}, "F6"),
-    -- fkeys({shift}, "F6", "shift+f6"),
-    -- fkeys({control}, "F6", "control+f6"),
-    -- fkeys({}, "F7"),
-    -- fkeys({}, "F8"),
-    -- fkeys({}, "F9"),
-    -- fkeys({shift}, "F9", "shift+f9"),
-    key_run({super}, "space", {home_bin .. "/fuzz-script-choose"}),
-    key_run({super}, "1", {home_bin .. "/blezz"}),
-    key_run({}, "F10", {home_bin .. "/blezz"}),
-    -- awful.key({}, "F10", focus.leader,
-    --   {description = "focus", group = "focus" }),
-    key_run({super}, "2", {home_bin .. "/fuzz-script-choose"}),
-    key_run({}, "F11", {home_bin .. "/fuzz-script-choose"}),
-    key_run({super}, "3", {home_bin .. "/fuzz-snippet"}),
-    key_run({}, "F12", {home_bin .. "/fuzz-snippet"}),
+    awful.key(hyper_pl, "1", dev.dev1, {description = "dev1", group = "dev" }),
+    awful.key(hyper_pl, "2", dev.dev2, {description = "dev2", group = "dev" }),
+    key_run({super}, "space", {home_bin .. "/fuzz-script-choose"},
+      {description="Fuzz Script Choose", group="rofi"}),
+    awful.key({super}, "1", focus.leader, {description = "leader", group = "focus" }),
+    awful.key({}, "F10", leader.tag_in, {description = "leader", group = "focus" }),
+    awful.key({super}, "2", focus.fuzz_script, {description = "focus", group = "focus" }),
+    awful.key({}, "F11", focus.fuzz_script, {description = "focus", group = "focus" }),
+    awful.key({super}, "3", focus.fuzz_snippet, {description = "focus", group = "focus" }),
+    awful.key({}, "F12", focus.fuzz_snippet, {description = "focus", group = "focus" }),
     key_run({super, shift}, "space", {"rofi", "-show", "run"}),
     key_run(hyper_pl, "w", {"rofi", "-show", "window", "-theme", "gruvbox-light-soft"}),
     key_run({super}, "4", {"rofi", "-show", "window"}),

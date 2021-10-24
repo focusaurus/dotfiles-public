@@ -6,11 +6,55 @@ local log = require("log")
 
 local leader_path = os.getenv("HOME") .. "/bin/blezz"
 local prespawned_client = nil
+local tag1 = awful.tag.find_by_name(awful.screen.focused(), "1")
+local tag2 = awful.tag.find_by_name(awful.screen.focused(), "2")
 
 function module.log_clients()
   for c in awful.client.iterate(function () return true end) do
     log.log("dev1: c.class: " .. c.class .. " c.hidden: " .. tostring(c.hidden) .. " c.modal: " .. tostring(c.modal))
     -- c.hidden = not c.hidden
+  end
+end
+
+function module.tag_off_by_class(class_name)
+  local match_class = function (c)
+    -- return true
+    return awful.rules.match(c, {class = class_name})
+  end
+
+  for c in awful.client.iterate(match_class) do
+   log.log("dev1: c.class: " .. c.class .. " c.hidden: " .. tostring(c.hidden) .. " c.modal: " .. tostring(c.modal))
+   c:tag({tag2})
+  end
+end
+
+function module.tag_in()
+
+  local tag1 = awful.tag.find_by_name(awful.screen.focused(), "1")
+  local tag2 = awful.tag.find_by_name(awful.screen.focused(), "2")
+  local match_class = function (c)
+    return awful.rules.match(c, {class = 'Rofi'})
+  end
+
+  local found = false
+  for c in awful.client.iterate(match_class) do
+    found = true
+    log.log("tagging 1")
+    c:tags({tag1})
+    c:emit_signal("request::activate", "tasklist", {raise = true})
+  end
+  -- if not found then focus.leader() end
+end
+
+function module.tag_on_by_class(class_name)
+  local match_class = function (c)
+    -- return true
+    return awful.rules.match(c, {class = class_name})
+  end
+
+  for c in awful.client.iterate(match_class) do
+   log.log("dev1: c.class: " .. c.class .. " c.hidden: " .. tostring(c.hidden) .. " c.modal: " .. tostring(c.modal))
+   c:tag({tag1})
   end
 end
 
@@ -72,12 +116,9 @@ function module.unmanage(c)
 
   if awful.rules.match(c, {class = "Rofi"}) then
     log.log("leader.unmanage: class matches . spawn fresh below")
-    -- prespawned_client = nil
-    awful.spawn.single_instance(leader_path, {below = true, focusable = false})
+    focus.leader()
+    -- awful.spawn.single_instance(leader_path, {properties = {tag = tag2}})
   end
-  -- if prespawned_client ~= nil 
-  --   if prespawned_client.pid ==_c.pid then
-  -- end
 end
 
 function module.manage(c)
@@ -88,7 +129,7 @@ function module.manage(c)
   end
 end
 
--- client.connect_signal("unmanage", module.unmanage)
+client.connect_signal("unmanage", module.unmanage)
 -- client.connect_signal("manage", module.manage)
 
 return module

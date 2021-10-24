@@ -7,6 +7,7 @@ local menubar = require("menubar")
 local placement = require("placement")
 local titles = require("titles")
 local leader = require("leader")
+local dev = require("dev")
 local focus = require("focus")
 
 local hotkeys_popup = require("awful.hotkeys_popup")
@@ -19,9 +20,9 @@ local module = {}
 terminal = "kitty"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
-beautiful.hotkeys_font = "JetBrains Mono 14"
-beautiful.hotkeys_description_font = "JetBrains Mono 12"
-beautiful.menu_font = "JetBrains Mono 14"
+beautiful.hotkeys_font = "Hack 14"
+beautiful.hotkeys_description_font = "Hack 12"
+beautiful.menu_font = "Hack 14"
 beautiful.menu_height = 24
 beautiful.menu_width = 300
 
@@ -33,6 +34,8 @@ mymainmenu = awful.menu({
     {"awesome: unminimize", placement.unminimize},
     {"awesome: titles", titles.dev},
     {"awesome: leader", leader.dev},
+    {"awesome: dev1", dev.dev1},
+    {"awesome: dev2", dev.dev2},
     {"awesome: quit", function() awesome.quit() end},
     {"awesome: gather clients", placement.move_all_clients_to_screen}
   }
@@ -92,8 +95,8 @@ local volume_widget = wibox.widget.textbox("")
 awful.screen.connect_for_each_screen(function(s)
 
   -- Each screen has its own tag table.
-  -- awful.tag({"1", "2", "3", "4"}, s, awful.layout.layouts[1])
-  awful.tag({"1"}, s, awful.layout.layouts[1])
+  awful.tag({"1", "2", "3", "4"}, s, awful.layout.layouts[1])
+  -- awful.tag({"1"}, s, awful.layout.layouts[1])
 
   -- Create a promptbox for each screen
   s.mypromptbox = awful.widget.prompt()

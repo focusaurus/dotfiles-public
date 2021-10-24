@@ -17,7 +17,8 @@ awful.rules.rules = {
       screen = awful.screen.preferred,
       placement = awful.placement.no_overlap + awful.placement.no_offscreen
     }
-  }, -- Floating clients.
+  },
+  -- Floating clients.
   {
     rule_any = {
       instance = {
@@ -44,20 +45,26 @@ awful.rules.rules = {
       }
     },
     properties = {floating = true, maximized = false, sticky=false, ontop=false}
-  }, -- Add titlebars to normal clients and dialogs
+  },
+  -- Add titlebars to normal clients and dialogs
   {
     rule_any = {type = {"normal", "dialog"}},
     properties = {titlebars_enabled = true}
-  }, {
+  },
+  {
+    rule_any = {class = {"Yad", "zenity"}, name = {"Chat"}, role = {"Dialog"}},
     properties = {
       ontop = true,
       floating = true,
       sticky = true,
       placement = awful.placement.centered
-    },
-    rule_any = {class = {"Yad", "zenity"}, name = {"Chat"}, role = {"Dialog"}}
+    }
+  },
+  {
+    -- rofi for leader key
+    rule_any = {class = {"Rofi"}},
+    properties = {tag = "2", placement = awful.placement.centered, maximized = false}
   }
-
   -- Set Firefox to always map on the tag named "2" on screen 1.
   -- { rule = { class = "Firefox" },
   --   properties = { screen = 1, tag = "2" } },
