@@ -1,6 +1,5 @@
 {
-  "telemetry.enableCrashReporter": false,
-  "telemetry.enableTelemetry": false,
+  "telemetry.telemetryLevel": "off",
   "editor.tabSize": 2,
   "editor.minimap.enabled": false,
   "workbench.startupEditor": "newUntitledFile",
