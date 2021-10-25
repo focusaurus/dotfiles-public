@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 arch-install-package() {
-  yay --nodiffmenu --sync "$@"
+  # yay --nodiffmenu --sync "$@"
+  yup "$@"
   hash -r
 }
 
 arch-search-packages() {
-  yay -Ss "$@" | less
+  # yay -Ss "$@" | less
+  yup "$@"
 }
 # TODO curl -s "https://get.sdkman.io" | bash
 

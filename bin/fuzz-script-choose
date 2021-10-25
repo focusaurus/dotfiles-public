@@ -24,12 +24,12 @@ task_dir="${1:-${HOME}/git.peterlyons.com/dotfiles/fuzzball}"
 
 # Presume running from desktop environment hotkey, use GUI
 # linux: rofi
-chooser=(rofi -dmenu -p task -theme /usr/share/rofi/themes/fancy.rasi)
+chooser=(rofi -dmenu -p task -theme /usr/share/rofi/themes/fancy.rasi -pid "/run/user/$(id -u)/fuzz-script-choose.pid")
 if [[ $(uname) == "Darwin" ]]; then
   # macos: choose
   chooser=(/usr/local/bin/choose -c highlight=111111)
 fi
-if [[ -t 1 ]]; then
+if [[ -t 1  && -z "${GUI}" ]]; then
   # terminal/tty mode. Use fzf directly
   chooser=(fzf --color=bw --layout=reverse)
 fi
