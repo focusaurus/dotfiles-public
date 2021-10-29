@@ -1,9 +1,14 @@
+let mapleader=' '
 " shift is for suckers!
-let mapleader=','
+" Use comma to change from normal mode to command mode
+" (the default keybinding for this is colon)
 noremap , :
-" noremap ; :
-" noremap <leader>; ;
-noremap F :w<cr>:silent !pretty-print-files %<cr>:edit!<cr>
+
+nnoremap <leader>zf :Files<cr>
+nnoremap <leader>zb :Buffers<cr>
+nnoremap <leader>qq :q!<cr>
+nnoremap <leader>wq :wq<cr>
+nnoremap <leader>pp :w<cr>:silent !pretty-print-files %<cr>:edit!<cr>
 
 " Tab and shift+tab for indent/outdent including visual mode
 "map <tab> >>
