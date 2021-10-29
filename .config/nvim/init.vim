@@ -13,6 +13,10 @@ set statusline+=%F
 set notimeout
 set ttimeout
 
+" be smart about case sensitivity with search
+set ignorecase
+set smartcase
+
 runtime! vim-plug-setup.vim
 runtime! abbreviations.vim
 runtime! firenvim.vim
