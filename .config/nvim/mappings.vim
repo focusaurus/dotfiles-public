@@ -1,14 +1,12 @@
 let mapleader=' '
-" shift is for suckers!
-" Use comma to change from normal mode to command mode
-" (the default keybinding for this is colon)
-noremap , :
-
 nnoremap <leader>zf :Files<cr>
 nnoremap <leader>zb :Buffers<cr>
 nnoremap <leader>qq :q!<cr>
 nnoremap <leader>wq :wq<cr>
 nnoremap <leader>pp :w<cr>:silent !pretty-print-files %<cr>:edit!<cr>
+nnoremap <leader>mm :@@<cr>
+nnoremap <leader>cc :CopyToClipboard<cr>
+nnoremap <leader>ca :CopyAll<cr>
 
 " Tab and shift+tab for indent/outdent including visual mode
 "map <tab> >>
@@ -24,8 +22,10 @@ nnoremap <leader>pp :w<cr>:silent !pretty-print-files %<cr>:edit!<cr>
 "vmap <C-Up> [egv
 "vmap <C-Down> ]egv
 
-" Use space instead of colon for commands
-"noremap <Space> :
+" shift is for suckers!
+" Use comma to change from normal mode to command mode
+" (the default keybinding for this is colon)
+noremap , :
 
 " The default mappings for back (b), end (e), and word (w)
 " navigation treat dashes and some other characters as word
