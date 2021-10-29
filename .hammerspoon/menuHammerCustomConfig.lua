@@ -189,7 +189,7 @@ menuHammerMenuList = {
             {cons.cat.action, '', 'e', 'email', { {cons.act.func, focus.email} }},
             {cons.cat.submenu, '', 'j', 'Journal', { {cons.act.menu, journalMenu} }},
             {cons.cat.action, '', 'c', 'Calendar', { {cons.act.func, focus.calendar} }},
-            {cons.cat.action, '', 'd', 'DBeaver', { {cons.act.launcher, 'DBeaver'} }},
+            {cons.cat.action, '', 'd', 'IntelliJ IDEA', { {cons.act.launcher, 'IntelliJ IDEA'} }},
             {cons.cat.action, '', 'o', 'Org Mode Emacs', { {cons.act.launcher, 'Emacs'} }},
             {cons.cat.submenu, '', 'h', 'Hammerspoon', { {cons.act.menu, hammerspoonMenu} }},
             -- {cons.cat.submenu, '', 'm', 'Media Controls', { {cons.act.menu, mediaMenu} }},

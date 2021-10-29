@@ -10,15 +10,19 @@ set -o pipefail # don't ignore exit codes when piping output
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
+if [[ "$(uname)" == "Darwin" ]]; then
+  "/System/Library/CoreServices/Menu Extras/User.menu/Contents/Resources/CGSession" -suspend
+  exit
+fi
 
 # if [[ -n "$(command -v loginctl)" ]]; then
 #   loginctl lock-session
-if [[ -n "$(command -v i3lock)" ]]; then
+if [[ -n "$(command -v light-locker-command)" ]]; then
+  light-locker-command -l
+elif [[ -n "$(command -v i3lock)" ]]; then
   i3lock --color=001060
 elif [[ -n "$(command -v dm-tool)" ]]; then
   dm-tool lock
-elif [[ -n "$(command -v light-locker-command)" ]]; then
-  light-locker-command -l
 else
   xdg-screensaver lock
 fi
