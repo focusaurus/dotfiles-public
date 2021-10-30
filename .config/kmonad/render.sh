@@ -68,13 +68,13 @@ letters_linux="
 - [
 = ]
 q '
-w , bspc
-e . spc
-r p del
+w @comma-snippet bspc
+e @tap-dot-hold-alt spc
+r @tap-p-hold-ctl del
 t y
 y f
-u g
-i c
+u @tap-g-hold-ctl
+i @tap-c-hold-alt
 o r
 p l
 [ /
@@ -164,6 +164,10 @@ for name in thinkpad; do
   tap-leader-hold-alt (tap-hold-next-release 150 f10 lalt)
   tap-snippet-hold-shift (tap-hold-next-release 150 f12 lsft)
   tap-fuzzball-hold-super (tap-hold-next-release 150 f11 lmet)
+  tap-p-hold-ctl (tap-hold-next-release 150 p lctl)
+  tap-dot-hold-alt (tap-hold-next-release 150 . lalt)
+  tap-g-hold-ctl (tap-hold-next-release 150 g lctl)
+  tap-c-hold-alt (tap-hold-next-release 150 c lalt)
 
 )
 
