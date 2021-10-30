@@ -69,12 +69,12 @@ letters_linux="
 = ]
 q '
 w @comma-snippet bspc
-e @tap-dot-hold-alt spc
-r @tap-p-hold-ctl del
+e . spc
+r p del
 t y
 y f
-u @tap-g-hold-ctl
-i @tap-c-hold-alt
+u g
+i c
 o r
 p l
 [ /
