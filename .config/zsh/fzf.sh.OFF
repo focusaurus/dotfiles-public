@@ -48,7 +48,7 @@ if [[ -n "${ZSH_VERSION}" ]]; then
     fi
   }
   zle -N debug-widget
-  bindkey "^g" "debug-widget"
+  # bindkey "^g" "debug-widget"
 
   # Run fd/fzf in the current working directory, appending the chosen path, if
   # any, to the current command, followed by a space.
@@ -116,7 +116,7 @@ if [[ -n "${ZSH_VERSION}" ]]; then
     fuzz-all-into-line --type file
   }
   zle -N fuzz-file-into-line # Create the zle widget
-  bindkey "^F" "fuzz-all-into-line"
+  # bindkey "^F" "fuzz-all-into-line"
 
 fi
 
