@@ -2,8 +2,8 @@ let mapleader=' '
 nnoremap <leader>zf :Files<cr>
 nnoremap <leader>zb :Buffers<cr>
 nnoremap <leader>qq :q!<cr>
-nnoremap <leader>wq :wq<cr>
-nnoremap <leader> :xa<cr>
+nnoremap <leader>w :w<cr>
+nnoremap <leader>x :xa<cr>
 nnoremap <leader>pp :w<cr>:silent !pretty-print-files %<cr>:edit!<cr>
 nnoremap <leader>mm :@@<cr>
 nnoremap <leader>cc :CopyToClipboard<cr>
