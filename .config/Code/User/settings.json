@@ -101,7 +101,6 @@
   "go.toolsManagement.autoUpdate": true,
   "go.lintTool": "golangci-lint",
   "intelephense.telemetry.enabled": false,
-  "window.zoomLevel": -1,
   "editor.scrollBeyondLastLine": false,
   "outline.showArrays": false,
   "outline.showConstants": false,
@@ -110,5 +109,17 @@
   "outline.showPackages": false,
   "outline.showStrings": false,
   "outline.showStructs": false,
-  "outline.showVariables": false
+  "outline.showVariables": false,
+  "files.exclude": {
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true
+  },
+  "java.imports.gradle.wrapper.checksums": [
+    {
+      "sha256": "20cb91d1f40aa1e56e5e9406328e91fa9e37bd6459a705b96304b57bcd5b32b1",
+      "allowed": false
+    }
+  ]
 }

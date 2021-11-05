@@ -25,6 +25,7 @@ source-if-exists() {
 
 source-if-exists ~/.config/zsh/*.sh
 source-if-exists ~/git.peterlyons.com/mailchimp/mailchimp.sh
+source-if-exists ~/git.peterlyons.com/intuit/intuit.sh
 source-if-exists ~/git.peterlyons.com/reaction-common/reaction-commerce.sh
 source-if-exists ~/.devtool.env
 source-if-exists "${HOME}/.config/zsh/os/$(uname).sh"
