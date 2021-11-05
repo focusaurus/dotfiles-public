@@ -360,6 +360,14 @@ dotfiles-edit-by-search() {
   )
 }
 
+dotfiles-edit-fuzzy() {
+  (
+    cd ~ || return 1
+    dotfiles-begin
+    git ls-files | ~/bin/fuzzy-filter "$@" | xargs nvim -p
+  )
+}
+
 gsync() {
   dotfiles-end
   if ! ssh-add -l &>/dev/null; then
