@@ -1,6 +1,7 @@
 local module = {}
 
 local awful = require("awful")
+local gears = require("gears")
 local log = require("log")
 
 local home_bin = os.getenv("HOME") .. "/bin"
@@ -8,6 +9,12 @@ function noop() end
 
 function focus_client(client)
   client:emit_signal("request::activate", "tasklist", {raise = true})
+end
+
+function browser_tab(number)
+  gears.timer.start_new (0.2, function() 
+    awful.key.execute({"Mod1"}, number)
+  end)
 end
 
 function by_class(class_name)
@@ -80,6 +87,12 @@ function module.browser()
   if not found then
     awful.spawn.easy_async({"google-chrome-stable", "--restore-session"} , noop)
   end
+end
+
+function module.email()
+  log.log("focus.email() called")
+  module.browser()
+  browser_tab("1")
 end
 
 function module.calendar()
