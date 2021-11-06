@@ -127,6 +127,20 @@ function module.slack()
   end
 end
 
+function module.gedit()
+  log.log("focus.gedit() called")
+  if not by_class("gedit") then
+    awful.spawn.easy_async("gedit", noop)
+  end
+end
+
+function module.zeal()
+  log.log("focus.zeal() called")
+  if not by_class("zeal") then
+    awful.spawn.easy_async("zeal", noop)
+  end
+end
+
 function module.zoom()
   log.log("focus.zoom() called")
   if not by_class("zoom") then
@@ -171,8 +185,8 @@ end
 
 function module.prusa()
   log.log("focus.prusa() called")
-  if not by_class("PrusaSlicer") then
-    awful.spawn.easy_async("prusa-slicer", noop)
+  if not by_class("Prusa-slicer") then
+    awful.spawn.easy_async("/bin/prusa-slicer", noop)
   end
 end
 

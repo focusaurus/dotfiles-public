@@ -5,7 +5,6 @@ nnoremap <leader>mm :@@<cr>
 nnoremap <leader>pp :w<cr>:silent !pretty-print-files %<cr>:edit!<cr>
 nnoremap <leader>q :q!<cr>
 nnoremap <leader>w :w<cr>
-nnoremap <leader>wq :wq<cr>
 nnoremap <leader>x :xa<cr>
 nnoremap <leader>zb :Buffers<cr>
 nnoremap <leader>zf :Files<cr>
