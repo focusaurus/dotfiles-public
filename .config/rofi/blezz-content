@@ -9,9 +9,9 @@ act(o, emacs, focus emacs)
 act(s, slack, focus slack)
 act(t, terminal, focus terminal)
 act(u, zulip, focus zulip)
-act(w, workflowy, focus workflowy)
 act(x, executables, rofi -show run)
 act(z, zoom, focus zoom)
+dir(w, work)
 dir(1, sound)
 dir(a, applications)
 
@@ -22,6 +22,10 @@ act(g, gedit, focus gedit)
 act(p, prusa-slicer, focus prusa)
 act(u, cura, focus cura)
 act(z, zeal, focus zeal)
+
+work:
+act(b, FRC-browser, focus frc)
+act(w, workflowy, focus workflowy)
 
 sound:
 act(0, mute, volume 0)

@@ -95,6 +95,14 @@ function module.email()
   browser_tab("1")
 end
 
+function module.frc()
+  log.log("focus.frc() called")
+  local found = by_rules({class = "Google-chrome", name = "FRC"})
+  if not found then
+    awful.spawn.easy_async({"google-chrome-stable"}, noop)
+  end
+end
+
 function module.calendar()
   log.log("focus.calendar() called")
   local found = by_rules({class = "Google-chrome", name = "calendar"})
@@ -111,7 +119,13 @@ function module.music()
   end
 end
 
-
+function module.workflowy()
+  log.log("focus.workflowy() called")
+  local found = by_rules({class = "Google-chrome", name = "workflowy"})
+  if not found then
+    awful.spawn.easy_async({"google-chrome-stable", "--new-window", "https://workflowy.com"}, noop)
+  end
+end
 
 function module.terminal()
   log.log("focus.terminal() called")
@@ -203,14 +217,6 @@ function module.freecad()
     awful.spawn.easy_async("freecad", noop)
   end
 end
-
-function module.workflowy()
-  log.log("focus.workflowy() called")
-  if not by_class("workflowy") then
-    awful.spawn.easy_async({"google-chrome-stable", "--new-window", "https://workflowy.com"}, noop)
-  end
-end
-
 
 -- function module.highest()
 --   local s = awful.screen.focused()
