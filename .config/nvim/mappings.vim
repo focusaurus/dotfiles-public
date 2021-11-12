@@ -1,13 +1,19 @@
 let mapleader=' '
-nnoremap <leader>zf :Files<cr>
-nnoremap <leader>zb :Buffers<cr>
-nnoremap <leader>qq :q!<cr>
+nnoremap <leader>ca :CopyAll<cr>
+nnoremap <leader>cc :CopyToClipboard<cr>
+nnoremap <leader>mm :@@<cr>
+nnoremap <leader>pp :w<cr>:silent !pretty-print-files %<cr>:edit!<cr>
+nnoremap <leader>q :q!<cr>
 nnoremap <leader>w :w<cr>
 nnoremap <leader>x :xa<cr>
-nnoremap <leader>pp :w<cr>:silent !pretty-print-files %<cr>:edit!<cr>
-nnoremap <leader>mm :@@<cr>
-nnoremap <leader>cc :CopyToClipboard<cr>
-nnoremap <leader>ca :CopyAll<cr>
+nnoremap <leader>zb :Buffers<cr>
+nnoremap <leader>zf :Files<cr>
+nmap <silent> <C-space> <Plug>(Fzm)
+vmap <silent> <C-space> <Plug>(FzmVisual)
+
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Tab and shift+tab for indent/outdent including visual mode
 "map <tab> >>
