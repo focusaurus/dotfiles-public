@@ -6,6 +6,7 @@ alias ga='git add'
 # alias gassumed='!git ls-files -v | grep ^h | cut -c 3-'
 alias gb='git branch -a'
 alias gri='git rebase -i'
+alias gfom='git fetch origin main'
 alias griom='git rebase -i origin/main'
 alias grium='git rebase -i upstream/main'
 alias gpum='git pull upstream main'
@@ -357,7 +358,7 @@ dotfiles-edit-by-search() {
     cd ~ || return 1
     dotfiles-begin
     # shellcheck disable=SC2145
-    git ls-files | xargs rg -l "$@" | xargs nvim -p -c "/$@"
+    git ls-files | grep --invert-match PrusaSlicer | xargs rg -l "$@" | xargs nvim -p -c "/$@"
   )
 }
 

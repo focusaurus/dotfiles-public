@@ -80,10 +80,24 @@ function module.browserMainByTitleCache()
   end
 end
 
+local windowBrowserIntuit
+function module.browserIntuitByTitleCache()
+  if windowBrowserIntuit == nil then
+    windowBrowserIntuit = module.findWindowByTitle(browserName, "intuit")
+  end
+  if windowBrowserIntuit == nil then
+    -- if we get here, we didn't find any windows, launch the app
+    hs.application.launchOrFocus(browserName)
+  else
+    windowBrowserIntuit:focus()
+  end
+end
+
 -- I have had many implementations of this.
 -- So I keep the function names in the module describing
 -- the specific implementation approach, but in the module's
 -- external API, alias it as just the intent.
+module.browserIntuit = module.browserIntuitByTitleCache
 module.browser = module.browserMainByTitleCache
 
 local windowCalendar
@@ -209,6 +223,7 @@ function module.clearWindowCache()
   windowCalendar = nil
   windowMusic = nil
   windowBrowserMain = nil
+  windowBrowserIntuit = nil
 end
 
 function module.enableFocusMode()
