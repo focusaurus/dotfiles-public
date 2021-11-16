@@ -26,7 +26,6 @@
   "editor.autoClosingBrackets": "never",
   "editor.autoClosingQuotes": "never",
   "editor.acceptSuggestionOnCommitCharacter": false,
-  "workbench.colorTheme": "Quiet Light",
   "window.newWindowDimensions": "maximized",
   "window.openFilesInNewWindow": "on",
   "window.openFoldersInNewWindow": "on",
@@ -121,5 +120,7 @@
       "sha256": "20cb91d1f40aa1e56e5e9406328e91fa9e37bd6459a705b96304b57bcd5b32b1",
       "allowed": false
     }
-  ]
+  ],
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
 }
