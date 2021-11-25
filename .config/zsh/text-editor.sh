@@ -48,3 +48,5 @@ em() {
 }
 
 alias spacevim="nvim -u ~/.SpaceVim/main.vim"
+alias nvim-plugin-update="nvim -c PlugUpdate"
+alias nvim-plugin-install="nvim -c PlugInstall"
