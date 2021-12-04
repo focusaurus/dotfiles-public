@@ -1,15 +1,14 @@
-#!/usr/bin/env bash
-#export FZF_DEFAULT_COMMAND='rg -g ""'
-if ~/bin/have-exe ag; then
-  export FZF_DEFAULT_COMMAND="ag --hidden -g ''"
-fi
 if ~/bin/have-exe fd; then
   #  export FZF_DEFAULT_COMMAND="fd --exclude vendor ."
   #  export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
   export FZF_DEFAULT_COMMAND='fd --type f --hidden --ignore-file .gitignore --ignore-file .ignore'
+elif ~/bin/have-exe ag; then
+  export FZF_DEFAULT_COMMAND="ag --hidden -g ''"
 fi
+
 export FZF_COMPLETION_TRIGGER="''"
 export FZF_DEFAULT_OPTS='--bind=alt-enter:print-query'
+
 if [[ -n "${ZSH_VERSION}" ]]; then
   if [[ "$(uname)" == "Darwin" ]]; then
     source-if-exists /usr/local/Cellar/fzf/*/shell/key-bindings.zsh
@@ -37,17 +36,19 @@ if [[ -n "${ZSH_VERSION}" ]]; then
   # that those keys can be used for other things.
   unsetopt flowcontrol
 
+
   function debug-widget() {
     field_count=$(echo "${LBUFFER}" | awk '{print NF}')
     echo -n "${field_count}"
-    if [[ "${LBUFFER}" =~ "\s$" ]]; then
+    # check if the line ends with a trailing space
+    if [[ "${LBUFFER}" =~ " $" ]]; then
       echo -n "WS"
     else
-      echo -n "Q"
+      echo -n "Q /${LBUFFER}/"
     fi
   }
   zle -N debug-widget
-  bindkey "^[z" "debug-widget"
+  # bindkey "^g" "debug-widget"
 
   # Run fd/fzf in the current working directory, appending the chosen path, if
   # any, to the current command, followed by a space.
@@ -63,7 +64,7 @@ if [[ -n "${ZSH_VERSION}" ]]; then
     # Print a newline or we'll clobber the old prompt.
     echo
     local query=""
-    if [[ ! "${LBUFFER}" =~ "\s$" ]]; then
+    if [[ ! "${LBUFFER}" =~ " $" ]]; then
       ~/bin/log "$0" "No trailing space: query mode"
       # query-mode: grab last word of command line as the query
       # Command line does not end with a trailing space, use a pre-filter query
@@ -80,13 +81,13 @@ if [[ -n "${ZSH_VERSION}" ]]; then
     # shellcheck disable=SC2145
     ~/bin/log "$0" "fuzz-all-into-line fd_opts: ${fd_opts[@]}"
     # Find the path; abort if the user doesn't select anything.
-    ~/bin/log "$0" "running skim pipeline"
+    ~/bin/log "$0" "running fd pipeline"
     local chosen_path
     chosen_path=$(fd "${fd_opts[@]}" | "${FUZZER}" --select-1 --exit-0 --query "${query}") || return
     ~/bin/log "$0" "fuzz-all-into-line chosen_path: ${chosen_path}"
     # shellcheck disable=SC2034
     local new_buffer
-    if [[ "${LBUFFER}" =~ "\s$" ]]; then
+    if [[ "${LBUFFER}" =~ " $" ]]; then
       # no-query-mode: append the chosen path
       new_buffer="${LBUFFER} ${chosen_path}"
     else
@@ -115,8 +116,7 @@ if [[ -n "${ZSH_VERSION}" ]]; then
     fuzz-all-into-line --type file
   }
   zle -N fuzz-file-into-line # Create the zle widget
-  # TODO find a better keybinding for this
-  bindkey "^F" "fuzz-all-into-line"
+  # bindkey "^F" "fuzz-all-into-line"
 
 fi
 

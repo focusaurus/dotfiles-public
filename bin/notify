@@ -7,7 +7,6 @@
 set -o errexit  # always exit on error
 set -o errtrace # trap errors in functions as well
 set -o pipefail # don't ignore exit codes when piping output
-set -o posix    # more strict failures in subshells
 # set -x          # enable debugging
 
 IFS=$'\n\t'
@@ -15,9 +14,14 @@ IFS=$'\n\t'
 
 if ~/bin/have-exe notify-send; then
   notify-send --expire-time=6000 "$@"
+elif ~/bin/have-exe osascript; then
+  text=$(echo "$@" | tr -d '"')
+  osascript -e "display notification \"${text}\" with title \"bin/notify\""
 elif ~/bin/have-exe hs; then
+  echo "$@" >/tmp/notify
   cat <<EOF | hs >/dev/null
-local text="$@"
-hs.notify.show(text, "", "")
+local notifications = require("notifications")
+notifications.show("/tmp/notify")
 EOF
+  echo >/tmp/notify
 fi

@@ -88,9 +88,9 @@ if [[ -n "${ZSH_VERSION}" ]]; then
     # shellcheck disable=SC2145
     ~/bin/log "$0" "fuzz-all-into-line fd_opts: ${fd_opts[@]}"
     # Find the path; abort if the user doesn't select anything.
-    ~/bin/log "$0" "running skim pipeline"
+    ~/bin/log "$0" "running ${FUZZER} pipeline"
     local chosen_path
-    chosen_path=$(fd "${fd_opts[@]}" | skim --select-1 --exit-0 --query "${query}") || return
+    chosen_path=$(fd "${fd_opts[@]}" | "${FUZZER}" --select-1 --exit-0 --query "${query}") || return
     ~/bin/log "$0" "fuzz-all-into-line chosen_path: ${chosen_path}"
     local new_buffer
     if [[ "${LBUFFER}" =~ "\s$" ]]; then
@@ -108,21 +108,21 @@ if [[ -n "${ZSH_VERSION}" ]]; then
   }
   zle -N fuzz-all-into-line # Create the zle widget
   # TODO find a good keybinding for this
-  bindkey "^F" "fuzz-file-into-line"
+  # bindkey "^fa" "fuzz-all-into-line"
 
   function fuzz-directory-into-line() {
     fuzz-all-into-line --type directory
   }
   zle -N fuzz-directory-into-line # Create the zle widget
   # TODO find a good keybinding for this
-  # bindkey "^F" "fuzz-directory-into-line"
+  # bindkey "^fd" "fuzz-directory-into-line"
 
   function fuzz-file-into-line() {
     fuzz-all-into-line --type file
   }
   zle -N fuzz-file-into-line # Create the zle widget
   # TODO find a good keybinding for this
-  bindkey "^F" "fuzz-file-into-line"
+  bindkey "^f" "fuzz-file-into-line"
 
 fi
 
@@ -178,3 +178,5 @@ edf-fuzzy() {
   fi
   nvim "${HOME}/${file}"
 }
+
+# alias -g ff='$(fd --type f | "${FUZZER}" || return )'

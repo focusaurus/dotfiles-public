@@ -1,13 +1,15 @@
+1password-cli
 acpi
 acpid
 alacritty
+alsa-utils
+arandr
 at
 awesome
 aws-cli
 aws-iam-authenticator-bin
 base
 bat
-bind
 bison
 blueman
 bluez-utils
@@ -46,7 +48,6 @@ hadolint-bin
 htop
 i3tree-git
 icdiff
-insomnia
 intel-ucode
 jo
 keybase-gui
@@ -61,11 +62,12 @@ moreutils
 mpv
 mupdf
 navi-bin
-neovim-git
+neovim
 network-manager-applet
 nordvpn-bin
 nvm
 obs-studio
+openconnect
 openvpn
 patch
 pavucontrol
@@ -75,8 +77,6 @@ pod2man
 ponymix
 prettier
 pulldown-cmark
-pulseaudio-equalizer
-pulseaudio-jack
 pup-bin
 ranger
 ripgrep
@@ -88,6 +88,7 @@ shellcheck
 shfmt
 slack-desktop
 sops
+spacemacs-dev
 sshuttle
 stack
 sxhkd
@@ -110,6 +111,7 @@ ttf-jetbrains-mono
 upower
 urlview-git
 visual-studio-code-bin
+vpn-slice
 wget
 wireless_tools
 wmctrl

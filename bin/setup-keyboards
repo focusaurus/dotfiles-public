@@ -7,7 +7,6 @@
 set -o errexit  # always exit on error
 set -o errtrace # trap errors in functions as well
 set -o pipefail # don't ignore exit codes when piping output
-set -o posix    # more strict failures in subshells
 # set -x          # enable debugging
 
 IFS=$'\n\t'
@@ -58,10 +57,12 @@ main() {
   # left control press & release is the same as Escape (for vim)
   # super press & release is the same as super+space (for fuzzball)
   # left shift press & release is the same as control+comma (for snippets)
-  # if have_exe xcape; then
+  # left alt press & release is F10 leader
+  if have_exe xcape; then
   #   kill_ok xcape
   #   xcape -t 200 -e "Control_L=Escape;Control_R=Escape;Super_L=Control_L|space;Super_R=Control_R|space;Shift_L=Control_L|comma;Shift_R=Control_R|comma"
-  # fi
+    xcape -t 200 -e "Alt_L=F10"
+  fi
 
   # 2018-04-10 plyons set fast keyboard repeat
   # syntax is delay (ms) then repeat rate (cps I think)

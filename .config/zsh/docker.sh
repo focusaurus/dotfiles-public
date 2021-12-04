@@ -96,8 +96,9 @@ alias dcd="docker-compose down &>/dev/null"
 alias dcud="docker-compose up -d |& grep -v Creating &"
 
 docker-prune() {
-  docker images --all --quiet --filter="dangling=true" |
-    xargs --no-run-if-empty docker rmi
+  docker image prune --all
+  ## docker images --all --quiet --filter="dangling=true" |
+  ## xargs --no-run-if-empty docker rmi
 }
 
 dex() {
@@ -210,5 +211,8 @@ dps() {
 }
 
 dps-names() {
-   docker ps --format='{{json .Names}}' | jq -r
+  docker ps --format='{{json .Names}}' | jq -r
 }
+
+# https://github.com/docker/scan-cli-plugin/issues/149#issuecomment-823969364
+export DOCKER_SCAN_SUGGEST=false

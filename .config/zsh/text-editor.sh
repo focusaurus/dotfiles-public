@@ -17,7 +17,7 @@ te-daily() {
 
 if ~/bin/have-exe nvim; then
   alias v="nvim"
-  export EDITOR="nvim"
+  export EDITOR="nvim -c startinsert"
 elif ~/bin/have-exe vim; then
   alias v="vim"
   export EDITOR="vim"
@@ -42,7 +42,9 @@ em() {
   emacsclient -n -e "(if (> (length (frame-list)) 1) ‘t)" 2>/dev/null | grep -q t
   if [ "$?" -eq "1" ]; then
     emacsclient -a '' -nqc "$@" &>/dev/null
-  else
+  els
     emacsclient -nq "$@" &>/dev/null
   fi
 }
+
+alias spacevim="nvim -u ~/.SpaceVim/main.vim"

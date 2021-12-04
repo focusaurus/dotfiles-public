@@ -7,7 +7,6 @@
 set -o errexit  # always exit on error
 set -o errtrace # trap errors in functions as well
 set -o pipefail # don't ignore exit codes when piping output
-set -o posix    # more strict failures in subshells
 # set -x          # enable debugging
 
 IFS=$'\n\t'
@@ -18,4 +17,5 @@ if [[ -z "${tsid}" ]]; then
   echo "Could not find touchscreen's xinput id" 1>&2
   exit 10
 fi
+~/bin/log "$0" xinput "$1" "${tsid}"
 xinput "$1" "${tsid}"

@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 arch-install-package() {
-  yay -S "$@"
+  # yay --nodiffmenu --sync "$@"
+  yup "$@"
   hash -r
 }
 
 arch-search-packages() {
-  yay -Ss "$@" | less
+  # yay -Ss "$@" | less
+  yup "$@"
 }
 # TODO curl -s "https://get.sdkman.io" | bash
 
@@ -16,6 +18,10 @@ arch-save-packages() {
 
 arch-uninstall-package() {
   yay -Rs "$@"
+}
+
+arch-uninstall-orhphans() {
+  pacman -Qtdq | sudo pacman -Rns -
 }
 
 arch-clear-cache() {

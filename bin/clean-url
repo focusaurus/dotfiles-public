@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
+
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -o errexit  # always exit on error
+set -o errtrace # trap errors in functions as well
+set -o pipefail # don't ignore exit codes when piping output
+# set -x # enable debugging
+
+IFS=$'\n\t'
+# ---- End unofficial bash strict mode boilerplate
+
+# Heads up: obscure dependency: https://github.com/sgreben/url
+
+IFS= read -r url || true
+
+# Expand URL shorteners
+case $(url -template '{{.Hostname}}' "${url}") in
+t.co | bit.ly)
+  url=$(curl --silent --location --write-out '%{url_effective}' --output /dev/null "${url}")
+  ;;
+esac
+
+# This omits the query string which is where most tracking is done
+url -template '{{.Scheme}}://{{.Hostname}}{{.Path}}' "${url}"

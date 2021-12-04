@@ -1,49 +1,54 @@
 #!/usr/bin/env bash
 ##### git SCM #####
-alias g='gitui'
+alias g='lazygit'
 alias ga='git add'
 # alias gassume='gitupdate-index --assume-unchanged'
 # alias gassumed='!git ls-files -v | grep ^h | cut -c 3-'
 alias gb='git branch -a'
 alias gri='git rebase -i'
+alias gfom='git fetch origin main'
+alias griom='git rebase -i origin/main'
+alias grium='git rebase -i upstream/main'
+alias gpum='git pull upstream main'
+alias gpom='git pull origin main'
 alias gf='git fetch'
 alias gbd='git branch -d'
 # alias gbl='git branch -a|less'
 alias gc='git commit'
 alias glone='git clone'
+# alias gr='git remote -v'
+# alias gfap='git fetch --all --prune'
 #git current branch
-alias gr='git remote -v'
-alias gfap='git fetch --all --prune'
 alias gcb='git rev-parse --abbrev-ref HEAD'
-alias gco='git checkout'
-alias gcob='git checkout -b'
-alias gcot='git checkout --track'
-alias gcod='git checkout develop'
-alias gcom='git checkout master'
+# alias gco='git checkout'
+# alias gcob='git checkout -b'
+# alias gcot='git checkout --track'
+alias gwmain='git switch main'
+alias gore='git restore'
 alias gd='git diff --ignore-all-space HEAD'
 #conflicts with graphicks-magic., use use full path to graphicsmagick when needed
 alias gm='git merge'
-alias gmnf='git merge --no-ff'
+# alias gmnf='git merge --no-ff'
 # alias gpg='git push github'
-alias gpt='git push && git push --tags'
+# alias gpt='git push && git push --tags'
 alias grpo='git remote prune origin'
-alias gru='git remote update'
+# alias gru='git remote update'
 alias gs='git status --short'
-alias gsnapshot='git stash save "snapshot: $(date)" && git stash apply "stash@{0}"'
-alias gsu='git submodule update'
+# alias gsnapshot='git stash save "snapshot: $(date)" && git stash apply "stash@{0}"'
+# alias gsu='git submodule update'
 alias gull='git pull'
-alias gp='git push'
-alias gpu='git pull upstream'
-# alias gunassume='git update-index --no-assume-unchanged'
 alias gush='git push'
-alias gushup='git push --set-upstream'
-alias gphm='git push heroku master --tags'
+# alias gp='git push'
+# alias gpu='git pull upstream'
+# alias gunassume='git update-index --no-assume-unchanged'
+# alias gushup='git push --set-upstream'
 alias gpr='hub pull-request'
 alias enable-signed-git-commits='git config user.signingkey E205D5C6 && git config commit.gpgsign true'
 alias undo-git-add="git reset"
 alias undo-git-rm='git checkout HEAD'
 alias gbmd="git branch --merged develop"
 alias amend="git commit --amend"
+alias gamend=amend
 alias git-not-pushed="git log --branches --not --remotes"
 alias gls="git ls-files"
 alias gw="git switch"
@@ -107,7 +112,8 @@ github() {
     ~/bin/open "$(_base-url)/issues"
     ;;
   pr-description)
-    git log --reverse '--pretty=format:%s%n%b' "$(git-get-default-branch)..HEAD" | grep -Ev Signed-off-by
+    git log --reverse '--pretty=format:%s%n%b' "$(git-get-default-branch)..HEAD" |
+      grep --extended --invert-match '(Signed-off-by|Merge branch)'
     ;;
   pull-requests)
     ~/bin/open "$(_base-url)/pulls"
@@ -224,14 +230,14 @@ gcbm() {
 # so your working directory stays unchanged
 gash() {
   local name
-  name="trash-$(date +%Y-%m-%dT%H:%M:%S)"
+  name="snapshot-$(date +%Y-%m-%dT%H:%M:%S)"
   git stash save --include-untracked "${name}"
   git stash apply 'stash@{0}'
 }
 
 alias gitlog='git log --pretty=oneline --abbrev-commit --branches=\* --graph --decorate'
 #git release notes for weekly sprints
-alias grn='git log "--since=8 days ago" --reverse'
+# alias grn='git log "--since=8 days ago" --reverse'
 
 gmmd() {
   local BRANCH
@@ -249,6 +255,7 @@ new-git-project() {
   local REPO="${1}"
   local GIT=git.peterlyons.com
   # shellcheck disable=SC2029
+  # ssh "${GIT}" git init --bare --initial-branch=main "projects/${REPO}.git"
   ssh "${GIT}" git init --bare "projects/${REPO}.git"
   cd ~/projects || return 1
   git clone "ssh://${GIT}/home/plyons/projects/${REPO}.git" "${REPO}"
@@ -351,7 +358,15 @@ dotfiles-edit-by-search() {
     cd ~ || return 1
     dotfiles-begin
     # shellcheck disable=SC2145
-    git ls-files | xargs rg -l "$@" | xargs nvim -p -c "/$@"
+    git ls-files | grep --invert-match PrusaSlicer | xargs rg -l "$@" | xargs nvim -p -c "/$@"
+  )
+}
+
+dotfiles-edit-fuzzy() {
+  (
+    cd ~ || return 1
+    dotfiles-begin
+    git ls-files | ~/bin/fuzzy-filter "$@" | xargs nvim -p
   )
 }
 
@@ -366,12 +381,14 @@ gsync() {
   fi
   ~/bin/git-autocommit \
     ~/git.peterlyons.com/journals \
+    ~/git.peterlyons.com/intuit \
     ~/git.peterlyons.com/mailchimp
 
   ~/bin/git-sync \
     ~ \
     ~/git.peterlyons.com/dotfiles \
     ~/git.peterlyons.com/journals \
+    ~/git.peterlyons.com/intuit \
     ~/git.peterlyons.com/mailchimp
   if [[ -d ~/github.com/focusaurus/qmk_firmware ]]; then
     (

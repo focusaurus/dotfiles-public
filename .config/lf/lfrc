@@ -1,2 +1,4 @@
-cmd blame $git blame $f | bat
-map b blame
+map b $git blame "$f" | bat
+map R $(cd $PWD && git rm "$f")
+
+cmd open $bat --paging always $f

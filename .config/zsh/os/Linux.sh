@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 export TERM="xterm-256color"
-if ~/bin/have-exe termite; then
+if ~/bin/have-exe kitty; then
+  export TERM="xterm-kitty"
+elif ~/bin/have-exe termite; then
   export TERM="xterm-termite"
 fi
 alias aoeu="setxkbmap us"

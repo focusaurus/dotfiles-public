@@ -7,7 +7,6 @@
 set -o errexit  # always exit on error
 set -o errtrace # trap errors in functions as well
 set -o pipefail # don't ignore exit codes when piping output
-set -o posix    # more strict failures in subshells
 # set -x          # enable debugging
 
 IFS=$'\n\t'
@@ -15,9 +14,9 @@ IFS=$'\n\t'
 
 # protonvpn status
 echo -n "VPN: "
-if ip route | grep -qE 'tun0'; then
+if ip route | grep -qE 'proton0'; then
   echo on
 else
   echo off
 fi
-
+protonvpn s

@@ -7,15 +7,19 @@
 set -o errexit  # always exit on error
 set -o errtrace # trap errors in functions as well
 set -o pipefail # don't ignore exit codes when piping output
-set -o posix    # more strict failures in subshells
 # set -x          # enable debugging
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-
-(findmnt --list --noheadings --output target --types vfat || true) | {
-  while IFS= read -r file_path
-  do
-    sudo umount "${file_path}"
-  done
-}
+udiskie-umount -a
+# old implementation before I learned about udiskie
+if false; then
+  echo -n "syncing…"
+  sync
+  echo "✓"
+  (findmnt --list --noheadings --output target --types vfat || true) | {
+    while IFS= read -r file_path; do
+      sudo umount "${file_path}"
+    done
+  }
+fi

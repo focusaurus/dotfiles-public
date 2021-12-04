@@ -229,5 +229,10 @@
     "key": "f3",
     "command": "-editor.action.nextMatchFindAction",
     "when": "editorFocus"
-  }
+  },
+  {
+        "command": "vscode-neovim.escape",
+        "key": "Escape",
+        "when": "editorTextFocus && neovim.init"
+    }
 ]

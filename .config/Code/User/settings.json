@@ -1,6 +1,5 @@
 {
-  "telemetry.enableCrashReporter": false,
-  "telemetry.enableTelemetry": false,
+  "telemetry.telemetryLevel": "off",
   "editor.tabSize": 2,
   "editor.minimap.enabled": false,
   "workbench.startupEditor": "newUntitledFile",
@@ -18,11 +17,7 @@
       "bookmarks.expand-selection-to-next"
     ]
   },
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "files.autoSave": "onFocusChange",
-  "window.zoomLevel": 0,
   "breadcrumbs.enabled": true,
   "editor.copyWithSyntaxHighlighting": false,
   "editor.occurrencesHighlight": false,
@@ -31,7 +26,6 @@
   "editor.autoClosingBrackets": "never",
   "editor.autoClosingQuotes": "never",
   "editor.acceptSuggestionOnCommitCharacter": false,
-  "workbench.colorTheme": "Visual Studio Light",
   "window.newWindowDimensions": "maximized",
   "window.openFilesInNewWindow": "on",
   "window.openFoldersInNewWindow": "on",
@@ -43,16 +37,17 @@
   "[rs]": {
     "editor.tabSize": 4
   },
+  "[php]": {
+    "editor.tabSize": 4,
+    "editor.detectIndentation": false
+  },
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
-  "[clojure]": {
-    "editor.defaultFormatter": "pedrorgirardi.vscode-cljfmt"
-  },
   "calva.paredit.defaultKeyMap": "none",
   "explorer.confirmDelete": false,
   "workbench.editor.enablePreview": false,
   "workbench.editor.enablePreviewFromQuickOpen": false,
-  "editor.renderWhitespace": "boundary",
+  "editor.renderWhitespace": "none",
   "editor.acceptSuggestionOnEnter": "off",
   "shellcheck.disableVersionCheck": true,
   "diffEditor.ignoreTrimWhitespace": false,
@@ -85,13 +80,47 @@
       "level": 1,
     }
   ],
-  "[dockerfile]": {
-    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
-  },
   "workbench.editor.showTabs": true,
   "editor.cursorWidth": 2,
   "editor.renderLineHighlight": "all",
   "editor.foldingHighlight": false,
-  "vscode-neovim.neovimInitVimPaths.darwin": "/usr/local/bin/nvim",
-  "vscode-neovim.neovimExecutablePaths.darwin": "/usr/local/bin/nvim"
+  "vscode-neovim.neovimExecutablePaths.darwin": "/usr/local/bin/nvim",
+  "go.formatFlags": [
+    "-local git.rsglab.com"
+  ],
+  "gopls": {
+    "local": "git.rsglab.com"
+  },
+  "protoc": {
+    "options": [
+      "-I",
+      "./proto"
+    ]
+  },
+  "go.toolsManagement.autoUpdate": true,
+  "go.lintTool": "golangci-lint",
+  "intelephense.telemetry.enabled": false,
+  "editor.scrollBeyondLastLine": false,
+  "outline.showArrays": false,
+  "outline.showConstants": false,
+  "outline.showEnums": false,
+  "outline.showNumbers": false,
+  "outline.showPackages": false,
+  "outline.showStrings": false,
+  "outline.showStructs": false,
+  "outline.showVariables": false,
+  "files.exclude": {
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true
+  },
+  "java.imports.gradle.wrapper.checksums": [
+    {
+      "sha256": "20cb91d1f40aa1e56e5e9406328e91fa9e37bd6459a705b96304b57bcd5b32b1",
+      "allowed": false
+    }
+  ],
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
 }

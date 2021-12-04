@@ -26,7 +26,6 @@ syncthing-gui() {
     "${ssh_command[@]}"
   fi
 }
-alias image-view="feh -."
 ap1() {
   awk '{print $1}'
 }
@@ -314,9 +313,13 @@ md-clipboard-to-pdf() {
   open "!$"
 }
 
-change-time-zone() {
-  # zone=$(find /usr/share/zoneinfo-posix/ | cut -d / -f 6- | ~/bin/fuzzy-filter "$@")
-  # [[ -z "${zone}" ]] && return
+change-time-zone-fuzzy() {
+  zone=$(timedatectl list-timezones| ~/bin/fuzzy-filter "$@")
+  [[ -z "${zone}" ]] && return
+  sudo timedatectl set-timezone "${zone}"
+}
+
+change-time-zone-by-ip() {
   sudo timedatectl set-timezone "$(curl --fail https://ipapi.co/timezone)"
 }
 

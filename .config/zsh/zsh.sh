@@ -13,7 +13,9 @@ export INC_APPEND_HISTORY="1"
 export SAVEHIST="10000"
 export SHARE_HISTORY="1"
 
-export TZ="America/Denver"
+setopt autopushd pushdignoredups pushdsilent
+
+export TZ="America/NewYork"
 tt() {
   export TERMINAL_TITLE="$*"
 }
@@ -111,6 +113,12 @@ prompt-aws-profile() {
   fi
 }
 
+prompt-pando-target() {
+  if [[ -n "${PANDO_TARGET}" ]]; then
+    printf "🅿️ %s " "${PANDO_TARGET}"
+  fi
+}
+
 setup-prompt() {
   export PROMPT='╭%4~ %n@%m
 ╰○ '
@@ -124,9 +132,12 @@ setup-prompt() {
   # small white square ▫️ '
   # ❯
   # export RPROMPT='vi:${ZLE_VI_MODE}$(prompt-git)$(prompt-aws-profile)$(prompt-kube-context)$(prompt-kube-namespace)'
-  export RPROMPT='$(prompt-git)$(prompt-aws-profile)$(prompt-kube-context)$(prompt-kube-namespace)'
+  # export RPROMPT='$(prompt-git)$(prompt-pando-target)'
+  export RPROMPT='$(prompt-pando-target)'
 }
-setup-prompt
+
+# Disabling in favor of starship
+# setup-prompt
 
 TRAPUSR1() {
   { echo reloading due to rss USR1 signal; } 1>&2
@@ -149,3 +160,5 @@ bindkey "^S" kill-word
 function watch-zsh() {
   WATCH_COMMAND='zsh -ci' /usr/local/bin/watch "$@"
 }
+
+autoload zmv

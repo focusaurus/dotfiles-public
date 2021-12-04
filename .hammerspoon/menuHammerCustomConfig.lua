@@ -1,11 +1,10 @@
+local appNav = require('app-nav')
 local focus = require('focus')
 local fuzzball = require('fuzzball')
 local journal = require('journal')
 local snippets = require('snippets')
 
-----------------------------------------------------------------------------------------------------
 --------------------------------------- General Config ---------------------------------------------
-----------------------------------------------------------------------------------------------------
 
 -- If enabled, the menus will appear over full screen applications.
 -- However, the Hammerspoon dock icon will also be disabled (required for fullscreen).
@@ -31,40 +30,27 @@ menuTextEditor = '/usr/local/bin/emacsclient -c'
 -- Location of the askpass executable.  Required for running script with admin privs.
 askpassLocation = '/usr/local/bin/ssh-askpass'
 
-----------------------------------------------------------------------------------------------------
 ----------------------------------------- Menu options ---------------------------------------------
-----------------------------------------------------------------------------------------------------
 
 -- The number of columns to display in the menus.  Setting this too high or too low will
 -- probably have odd results.
-menuNumberOfColumns = 5
+menuNumberOfColumns = 7
 
 -- The minimum number of rows to show in menus
 menuMinNumberOfRows = 4
 
 -- The height of menu rows in pixels
-menuRowHeight = 20
+menuRowHeight = 22
 
 -- The padding to apply to each side of the menu
-menuOuterPadding = 50
+menuOuterPadding = 20
 
-----------------------------------------------------------------------------------------------------
 ----------------------------------------- Font options ---------------------------------------------
-----------------------------------------------------------------------------------------------------
-
--- The font to apply to menu items.
-menuItemFont = 'Courier-Bold'
-
--- The font size to apply to menu items.
+menuItemFont = 'JetBrains Mono'
 menuItemFontSize = 16
-
--- The text alignment to apply to menu items.
 menuItemTextAlign = 'left'
 
-----------------------------------------------------------------------------------------------------
 ---------------------------------------- Color options ---------------------------------------------
-----------------------------------------------------------------------------------------------------
-
 menuItemColors = {
     -- The default colors to use.
     default = {
@@ -150,6 +136,7 @@ local helpMenu = 'helpMenu'
 -- Applications Menus
 local applicationMenu = 'applicationMenu'
 local utilitiesMenu = 'utilitiesMenu'
+local journalMenu = 'journalMenu'
 
 -- Browser menus
 local browserMenu = 'browserMenu'
@@ -200,10 +187,9 @@ menuHammerMenuList = {
             {cons.cat.submenu, '', 'a', 'Applications', { {cons.act.menu, applicationMenu} }},
             {cons.cat.action, '', 'b', 'Browser', { {cons.act.func, focus.browser} }},
             {cons.cat.action, '', 'e', 'email', { {cons.act.func, focus.email} }},
-            {cons.cat.action, '', 'j', 'Journal', { {cons.act.func, journal.appendByDialog} }},
-            {cons.cat.action, 'shift', 'j', 'Journal Standup', { {cons.act.func, journal.appendByDialogStandup} }},
+            {cons.cat.submenu, '', 'j', 'Journal', { {cons.act.menu, journalMenu} }},
             {cons.cat.action, '', 'c', 'Calendar', { {cons.act.func, focus.calendar} }},
-            {cons.cat.action, '', 'd', 'DBeaver', { {cons.act.launcher, 'DBeaver'} }},
+            {cons.cat.action, '', 'd', 'IntelliJ IDEA', { {cons.act.launcher, 'IntelliJ IDEA'} }},
             {cons.cat.action, '', 'o', 'Org Mode Emacs', { {cons.act.launcher, 'Emacs'} }},
             {cons.cat.submenu, '', 'h', 'Hammerspoon', { {cons.act.menu, hammerspoonMenu} }},
             -- {cons.cat.submenu, '', 'm', 'Media Controls', { {cons.act.menu, mediaMenu} }},
@@ -211,16 +197,20 @@ menuHammerMenuList = {
             -- {cons.cat.submenu, '', 'x', 'Text', { {cons.act.menu, textMenu} }},
             {cons.cat.submenu, '', '/', 'Scripts', { {cons.act.menu, scriptsMenu} }},
             {cons.cat.action, '', 'space', 'Spotlight', { {cons.act.keycombo, {'cmd', 'shift'}, 'space'} }},
-            {cons.cat.action, '', 'i', 'Firefox', { {cons.act.launcher, 'Firefox'} }},
+            {cons.cat.action, '', 'i', 'Intuit', { {cons.act.func, focus.browserIntuit} }},
+            {cons.cat.action, '', 'x', 'Firefox', { {cons.act.launcher, 'Firefox'} }},
             {cons.cat.action, '', 'f', 'Fuzzball', { {cons.act.func, fuzzball.chooseScript } }},
+            {cons.cat.action, '', 'l', 'Left (App Nav)', { {cons.act.func, appNav.left } }},
+            {cons.cat.action, '', 'r', 'Right (App Nav)', { {cons.act.func, appNav.right } }},
             {cons.cat.action, '', 'm', 'Music', { {cons.act.func, focus.music } }},
             {cons.cat.action, '', 'n', 'Snippet', { {cons.act.func, snippets.chooseByUIAndType } }},
             {cons.cat.action, '', 'p', 'Postman', { {cons.act.launcher, 'Postman'} }},
-            -- {cons.cat.action, '', 't', 'iTerm', { {cons.act.launcher, 'iTerm'} }},
-            {cons.cat.action, '', 't', 'kitty', { {cons.act.launcher, 'kitty'} }},
-            {cons.cat.action, '', 'z', 'Zoom', { {cons.act.launcher, 'Zoom'} }},
+            {cons.cat.action, '', 't', 'kitty', { {cons.act.func, focus.terminal} }},
+            {cons.cat.action, '', 'z', 'Zoom', { {cons.act.launcher, 'zoom.us'} }},
+            {cons.cat.action, '', 'q', 'Terminal Quick', { {cons.act.func, focus.terminalQuick} }},
             {cons.cat.action, '', 'v', 'Visual Studio Code', { {cons.act.launcher, 'Visual Studio Code'} }},
-            {cons.cat.action, '', 's', 'Slack', { {cons.act.func, focus.slackOrZoom} }},
+            {cons.cat.action, '', 'w', 'Windows', { {cons.act.func, focus.showWindowChooser} }},
+            {cons.cat.action, '', 's', 'Slack', { {cons.act.func, focus.slack} }},
         }
     },
 
@@ -253,17 +243,34 @@ menuHammerMenuList = {
         menuItems = {
             {cons.cat.action, '', '1', '1Password', { {cons.act.launcher, '1Password 7'} }},
             {cons.cat.action, '', 'A', 'App Store', { {cons.act.launcher, 'App Store'} }},
-            {cons.cat.action, '', 'C', 'Chrome', { {cons.act.launcher, 'Google Chrome'} }},
+            {cons.cat.action, '', 'C', 'Calculator', { {cons.act.launcher, 'Calculator'} }},
             {cons.cat.action, '', 'D', 'Dash', { {cons.act.launcher, 'Dash'} }},
-            {cons.cat.action, '', 'F', 'Firefox', { {cons.act.launcher, 'Firefox'} }},
+            {cons.cat.action, '', 'F', 'Finder', { {cons.act.launcher, 'Finder'} }},
             {cons.cat.action, '', 'K', 'Karabiner', { {cons.act.launcher, 'Karabiner-Elements'} }},
-            {cons.cat.action, '', 'S', 'Slack', { {cons.act.launcher, 'Slack'} }},
-            {cons.cat.action, '', 'T', 'iTerm', { {cons.act.launcher, 'iTerm'} }},
-            {cons.cat.action, '', 'V', 'Visual Studio Code', { {cons.act.launcher, 'Visual Studio Code'} }},
+            {cons.cat.action, '', 'I', 'Insomnia', { {cons.act.launcher, 'Insomnia'} }},
+            {cons.cat.action, '', 'P', 'Postman', { {cons.act.launcher, 'Postman'} }},
             {cons.cat.submenu, '', 'U', 'Utilities', { {cons.act.menu, utilitiesMenu} }},
-            {cons.cat.action, '', 'Z', 'Zoom', { {cons.act.launcher, 'Zoom'} }},
         }
     },
+    --------------------------------------------------------------------
+    -- Journal Menu
+    ------------------------------------------------------------------------------------------------
+    journalMenu = {
+        parentMenu = mainMenu,
+        meunHotkey = nil,
+        menuItems = {
+            {cons.cat.action, '', 'j', 'Journal', {
+                {cons.act.func, journal.appendByDialog}
+            }},
+            {cons.cat.action, '', 's', 'Standup', {
+                {cons.act.func, journal.appendByDialogStandup}
+            }},
+            {cons.cat.action, '', 'v', 'vim', {
+                {cons.act.func, journal.appendByTerminalWindow}
+            }},
+        }
+    },
+
 
     ------------------------------------------------------------------------------------------------
     -- Utilities Menu

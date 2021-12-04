@@ -5,6 +5,15 @@ local honor = {honor_workarea = true}
 
 local log = require("log")
 
+local all = function(client) return true end
+
+function module.unminimize()
+  for client in awful.client.iterate(all) do
+    client.minimized = false
+    client.maximized = true
+  end
+end
+
 function module.left_half(client)
   client.maximized = false
   awful.placement.scale(client.focus, {
@@ -108,10 +117,15 @@ function module.move_all_clients_to_screen()
   end
 
   log.log("dev9 WTF " .. #screen_from.all_clients)
-  for key, value in pairs(screen_from.all_clients) do
+  for key, client in pairs(screen_from.all_clients) do
     log.log("dev10 WTF")
-    log.log("dev7 moving " .. (value.name or "") .. " from " .. value.screen.index .. " to " .. screen_to.index)
-    value:move_to_screen(screen_to.index)
+    log.log("dev7 moving " .. (client.name or "") .. " from " .. client.screen.index .. " to " .. screen_to.index)
+    client:move_to_screen(screen_to.index)
+    client.minimized = false
+    client.maximized = true
+    awful.placement.top(client, honor)
+    awful.placement.left(client, honor)
+    client:raise()
   end
 end
 

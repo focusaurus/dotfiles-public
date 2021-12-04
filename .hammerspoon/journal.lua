@@ -25,12 +25,17 @@ local fuzzball = os.getenv("HOME") .. "/git.peterlyons.com/dotfiles/fuzzball"
 
 function module.appendByDialog()
   log.d("appendByDialog")
-  os.execute(fuzzball .. "/journal-mailchimp &")
+  os.execute(fuzzball .. "/journal-intuit &")
 end
 
 function module.appendByDialogStandup()
   log.d("appendByDialogStandup")
-  os.execute(fuzzball .. "/journal-mailchimp-standup &")
+  os.execute(fuzzball .. "/journal-intuit-standup &")
+end
+
+function module.appendInTerminalWindow()
+  log.d("appendInTerminalWindow")
+  os.execute(fuzzball .. "/in-journal-vim &")
 end
 
 return module

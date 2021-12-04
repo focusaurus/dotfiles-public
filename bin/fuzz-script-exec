@@ -7,8 +7,7 @@
 set -o errexit  # always exit on error
 set -o errtrace # trap errors in functions as well
 set -o pipefail # don't ignore exit codes when piping output
-set -o posix    # more strict failures in subshells
-set -x          # enable debugging
+# set -x          # enable debugging
 
 IFS="$(printf "\n\t")"
 # ---- End unofficial bash strict mode boilerplate
@@ -76,6 +75,12 @@ main() {
     echo "${args}" | xargs -n 1 xdg-open
     ;;
   Darwin)
+    # Focus the main browser window to avoid
+    # opening links in dedicated windows like
+    # calendar or music just because they
+    # happen to be the most recently focused.
+    #
+    # ~/bin/focus browser
     echo "${args}" | xargs open
     ;;
   esac

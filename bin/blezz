@@ -7,9 +7,17 @@
 set -o errexit  # always exit on error
 set -o errtrace # trap errors in functions as well
 set -o pipefail # don't ignore exit codes when piping output
-set -o posix    # more strict failures in subshells
 # set -x          # enable debugging
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-rofi -theme paper-float -show blezz -modi blezz -auto-select -matching normal -blezz-config ~/.config/rofi/blezz-content
+rofi \
+  -show blezz \
+  -modi blezz \
+  -blezz-config ~/.config/rofi/blezz-content \
+  -auto-select \
+  -matching normal \
+  -normal-window \
+  -no-steal-focus \
+  -pid "/run/user/$(id -u)/blezz.pid" \
+  -theme paper-float

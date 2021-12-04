@@ -50,13 +50,13 @@ modifiers='
 caps @tap-escape-hold-control
 lsft _
 rsft @tap-snippet-hold-shift
-lctl @tap-escape-hold-control
-rctl @tap-escape-hold-control
+lctl lctl
 lalt @tap-leader-hold-alt
+rctl rctl
 lmet @tap-fuzzball-hold-super
 rmet @tap-fuzzball-hold-super
 ssrq @tap-fuzzball-hold-super
-spc @tap-space-hold-navigation XX
+spc @tap-space-hold-navigation
 '
 
 letters_macos='
@@ -68,7 +68,7 @@ letters_linux="
 - [
 = ]
 q '
-w , bspc
+w @comma-snippet bspc
 e . spc
 r p del
 t y
@@ -85,7 +85,7 @@ a @tap-a-hold-hyper
 s o lft
 d e up
 f u rght
-g i
+g i enter
 h d
 j h
 k t
@@ -112,7 +112,8 @@ m m
 #   DEVICE='/dev/input/by-path/platform-i8042-serio-0-event-kbd' \
 #   envsubst < main.kbd.tpl > "${NAME}.kbd"
 
-for name in thinkpad macbook ergodox-linux iris-linux infinity-linux ergodox-macos; do
+# for name in thinkpad macbook ergodox-linux iris-linux infinity-linux ergodox-macos; do
+for name in thinkpad; do
   case "${name}" in
   thinkpad)
     defcfg="${defcfg_thinkpad}"
@@ -153,15 +154,20 @@ for name in thinkpad macbook ergodox-linux iris-linux infinity-linux ergodox-mac
 
 (defalias
   hyper (around lalt lmet)
+  comma-snippet (multi-tap 200 , f12)
   tap-space-hold-shift (tap-hold-next-release 500 spc lsft)
   tap-space-hold-navigation (tap-hold-next-release 500 spc (layer-toggle navigation))
   tap-a-hold-hyper (tap-hold-next-release 500 a @hyper)
   tap-s-hold-hyper (tap-hold-next-release 500 s @hyper)
   tap-semi-hold-hyper (tap-hold-next-release 500 ; @hyper)
   tap-escape-hold-control (tap-hold-next-release 150 esc lctl)
-  tap-leader-hold-alt (tap-hold-next-release 150 M-1 lalt)
-  tap-snippet-hold-shift (tap-hold-next-release 150 M-3 lsft)
-  tap-fuzzball-hold-super (tap-hold-next-release 150 M-spc lmet)
+  tap-leader-hold-alt (tap-hold-next-release 150 f10 lalt)
+  tap-snippet-hold-shift (tap-hold-next-release 150 f12 lsft)
+  tap-fuzzball-hold-super (tap-hold-next-release 150 f11 lmet)
+  tap-p-hold-ctl (tap-hold-next-release 150 p lctl)
+  tap-dot-hold-alt (tap-hold-next-release 150 . lalt)
+  tap-g-hold-ctl (tap-hold-next-release 150 g lctl)
+  tap-c-hold-alt (tap-hold-next-release 150 c lalt)
 
 )
 

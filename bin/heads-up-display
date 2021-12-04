@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
+
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -o errexit  # always exit on error
+set -o errtrace # trap errors in functions as well
+set -o pipefail # don't ignore exit codes when piping output
+# set -x          # enable debugging
+
+IFS=$'\n\t'
+# ---- End unofficial bash strict mode boilerplate
+
+# input_file="${1:-/dev/stdin}"
+# temp=$(mktemp /tmp/heads-up-display-XXX)
+# trap "rm  ${temp}" EXIT
+# declare -a args=(--single-instance --title=HUD)
+# args+=(--session=-)
+# echo launch bat --paging=always "'${temp}'" | kitty --single-instance --title=notify --session=- --hold
+# --config "${HOME}/.config/kitty/kitty.conf" \
+# --debug-config \
+cat >"/tmp/heads-up-display"
+# kitty @ launch --type os-window --title heads-up-display bat --paging=always /tmp/heads-up-display
+
+kitty \
+  --single-instance \
+  --session "${HOME}/.config/kitty/heads-up-display.session" \
+  --config "${HOME}/.config/kitty/heads-up-display.conf"

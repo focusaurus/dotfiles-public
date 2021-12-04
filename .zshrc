@@ -25,6 +25,7 @@ source-if-exists() {
 
 source-if-exists ~/.config/zsh/*.sh
 source-if-exists ~/git.peterlyons.com/mailchimp/mailchimp.sh
+source-if-exists ~/git.peterlyons.com/intuit/intuit.sh
 source-if-exists ~/git.peterlyons.com/reaction-common/reaction-commerce.sh
 source-if-exists ~/.devtool.env
 source-if-exists "${HOME}/.config/zsh/os/$(uname).sh"
@@ -32,3 +33,4 @@ source-if-exists ~/.nvm/nvm.sh
 source-if-exists ~/.config/broot/launcher/bash/br
 source-if-exists /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source-if-exists /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source-if-exists /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
