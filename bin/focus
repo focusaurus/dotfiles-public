@@ -11,5 +11,8 @@ set -o pipefail # do nott ignore exit codes when piping output
 
 IFS="$(printf "\n\t")"
 # ---- End unofficial bash strict mode boilerplate
-
-awesome-client "require('focus').${1}()"
+if [[ "$(uname)" == "Darwin" ]]; then
+  echo "require('focus').previous()" | hs
+else
+  awesome-client "require('focus').${1}()"
+fi
