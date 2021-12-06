@@ -212,14 +212,23 @@ hpost() {
 alias ht="noglob http --timeout 600"
 
 watch-movie() {
-  find ~/Downloads -maxdepth 2 -type "f" -size +100M | sort -n | {
+  find ~/Downloads -maxdepth 3 -type "f" -size +100M | grep -v '\.zip$' | sort -n | {
     while IFS= read -r file_path; do
-      echo -n Watch "$(basename "${file_path}")? y/n"
+      echo -n "Watch $(basename "${file_path}")? y/n"
       read -r -q response
       echo
       if [[ "${response}" == "y" ]]; then
         open "${file_path}"
-        return
+
+        echo -n "Mark $(basename "${file_path}") watched? y/n"
+        read -r -q response
+        echo
+        if [[ "${response}" == "y" ]]; then
+          watched="${HOME}/Downloads/watched"
+          mkdir -p "${watched}"
+          mv "${file_path}" "${watched}"
+          return
+        fi
       fi
     done
   }
@@ -305,7 +314,7 @@ md-clipboard-to-pdf() {
 }
 
 change-time-zone-fuzzy() {
-  zone=$(find /usr/share/zoneinfo-posix/ | cut -d / -f 6- | ~/bin/fuzzy-filter "$@")
+  zone=$(timedatectl list-timezones| ~/bin/fuzzy-filter "$@")
   [[ -z "${zone}" ]] && return
   sudo timedatectl set-timezone "${zone}"
 }

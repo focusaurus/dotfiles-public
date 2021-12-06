@@ -17,4 +17,5 @@ if [[ -z "${tsid}" ]]; then
   echo "Could not find touchscreen's xinput id" 1>&2
   exit 10
 fi
+~/bin/log "$0" xinput "$1" "${tsid}"
 xinput "$1" "${tsid}"
