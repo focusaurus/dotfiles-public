@@ -1,4 +1,5 @@
 map b $git blame "$f" | bat
 map R $(cd $PWD && git rm "$f")
+map D delete
 
 cmd open $bat --paging always $f

@@ -26,7 +26,8 @@ main::panes() {
     fi
     ;;
   down)
-    tmux select-pane -R
+    # tmux select-pane -R
+    tmux select-pane -t +
     #tmux switch-client -n
     # xdotool key --clearmodifiers ctrl+b parenright
     ;;
@@ -54,7 +55,7 @@ main::windows() {
     tmux previous-window
     ;;
   down)
-    tmux select-pane -R
+    tmux select-pane -t +
     ;;
   up)
     tmux select-pane -U
