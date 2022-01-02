@@ -26,6 +26,8 @@ act(z, zeal, focus zeal)
 work:
 act(b, FRC-browser, focus frc)
 act(w, workflowy, focus workflowy)
+act(t, trello, focus trello)
+act(e, Fastmail, focus fastmail)
 
 sound:
 act(0, mute, volume 0)

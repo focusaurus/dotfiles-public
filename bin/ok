@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
+
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -o errexit  # always exit on error
+set -o errtrace # trap errors in functions as well
+set -o pipefail # don't ignore exit codes when piping output
+# set -x          # enable debugging
+
+IFS=$'\n\t'
+# ---- End unofficial bash strict mode boilerplate
+
+# This is a task runner script based on
+# most projects following some conventions
+# around filesystem organization and file
+# naming, and using fuzzy matching to
+# match desired task names.
+
+
+# TODO if a make target is matched, run via make
+declare -a dirs=()
+scripts=''
+if [[ -f Makefile ]]; then
+  to_run=$(make -qp |
+    awk -F':' '/^[a-zA-Z0-9][^$#\/\t=]*:([^=]|$)/ {split($1,A,/ /);for(i in A)print A[i]}' |
+    sort -u | ~/bin/fuzzy-filter "$@"
+  )
+fi
+
+if [[ -n "${to_run}" ]]; then
+  make "${to_run}"
+  exit
+fi
+
+
+for dir in bin script scripts; do
+  if [[ -d "${dir}" ]]; then
+    dirs+=("${dir}")
+  fi
+done
+
+to_run=$(find "${dirs[@]}" -type f -executable | ~/bin/fuzzy-filter "$@")
+if [[ -z "${to_run}" ]]; then
+  echo "No script matching $* found."
+  exit 10
+fi
+"${to_run}"

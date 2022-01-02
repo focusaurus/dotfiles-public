@@ -218,6 +218,19 @@ function module.freecad()
   end
 end
 
+function module.trello()
+  log.log("focus.trello() called")
+  module.frc()
+  browser_tab("2")
+end
+
+function module.fastmail()
+  log.log("focus.fastmail() called")
+  module.frc()
+  browser_tab("1")
+end
+
+
 -- function module.highest()
 --   local s = awful.screen.focused()
 --   local c = awful.client.focus.history.get(s, 0)
