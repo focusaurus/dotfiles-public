@@ -17,7 +17,7 @@ te-daily() {
 
 if ~/bin/have-exe nvim; then
   alias v="nvim"
-  export EDITOR="nvim -c startinsert"
+  export EDITOR="${HOME}/bin/editor"
 elif ~/bin/have-exe vim; then
   alias v="vim"
   export EDITOR="vim"
