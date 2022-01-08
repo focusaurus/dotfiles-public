@@ -36,6 +36,7 @@ Plug 'nicwest/vim-camelsnek'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'projekt0n/github-nvim-theme'
 Plug 'nvim-orgmode/orgmode'
+Plug 'tpope/vim-repeat'
 " Plug 'preservim/nerdcommenter'
 
 " List ends here. Plugins become visible to Vim after this call.
