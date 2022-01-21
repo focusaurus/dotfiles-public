@@ -326,3 +326,5 @@ change-time-zone-by-ip() {
 fz-ranger() {
   ranger "$(fasd -dl "$@")"
 }
+
+alias psg="ps -ef | grep"

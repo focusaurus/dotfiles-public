@@ -18,22 +18,8 @@ IFS=$'\n\t'
 # naming, and using fuzzy matching to
 # match desired task names.
 
-
 # TODO if a make target is matched, run via make
 declare -a dirs=()
-scripts=''
-if [[ -f Makefile ]]; then
-  to_run=$(make -qp |
-    awk -F':' '/^[a-zA-Z0-9][^$#\/\t=]*:([^=]|$)/ {split($1,A,/ /);for(i in A)print A[i]}' |
-    sort -u | ~/bin/fuzzy-filter "$@"
-  )
-fi
-
-if [[ -n "${to_run}" ]]; then
-  make "${to_run}"
-  exit
-fi
-
 
 for dir in bin script scripts; do
   if [[ -d "${dir}" ]]; then
@@ -42,8 +28,22 @@ for dir in bin script scripts; do
 done
 
 to_run=$(find "${dirs[@]}" -type f -executable | ~/bin/fuzzy-filter "$@")
-if [[ -z "${to_run}" ]]; then
-  echo "No script matching $* found."
-  exit 10
+
+if [[ -n "${to_run}" ]]; then
+  exec "${to_run}"
 fi
-"${to_run}"
+
+if [[ -f Makefile ]]; then
+  to_run=$(
+    make -qp |
+      awk -F':' '/^[a-zA-Z0-9][^$#\/\t=]*:([^=]|$)/ {split($1,A,/ /);for(i in A)print A[i]}' |
+      sort -u | ~/bin/fuzzy-filter "$@"
+  )
+fi
+
+if [[ -n "${to_run}" ]]; then
+  exec make "${to_run}"
+fi
+
+echo "No script matching $* found."
+exit 10

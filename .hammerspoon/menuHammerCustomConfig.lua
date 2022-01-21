@@ -250,6 +250,7 @@ menuHammerMenuList = {
             {cons.cat.action, '', 'I', 'Insomnia', { {cons.act.launcher, 'Insomnia'} }},
             {cons.cat.action, '', 'P', 'Postman', { {cons.act.launcher, 'Postman'} }},
             {cons.cat.submenu, '', 'U', 'Utilities', { {cons.act.menu, utilitiesMenu} }},
+            {cons.cat.action, '', 'W', 'Warp', { {cons.act.launcher, 'Warp'} }},
         }
     },
     --------------------------------------------------------------------
