@@ -68,6 +68,15 @@ local windowBrowserMain
 --   end
 -- end
 
+function module.cycleWindows()
+  hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, true):post()
+  hs.eventtap.event.newKeyEvent("`", true):post()
+  hs.timer.doAfter(0.2, function()
+    hs.eventtap.event.newKeyEvent("`", false):post()
+    hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, false):post()
+  end)
+end
+
 function module.browserMainByTitleCache()
   if windowBrowserMain == nil then
     windowBrowserMain = module.findWindowByTitle(browserName, "main")
