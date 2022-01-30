@@ -35,7 +35,8 @@ Plug 'nvim-lua/completion-nvim'
 Plug 'nicwest/vim-camelsnek'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'projekt0n/github-nvim-theme'
-Plug 'kristijanhusak/orgmode.nvim'
+Plug 'nvim-orgmode/orgmode'
+Plug 'tpope/vim-repeat'
 " Plug 'preservim/nerdcommenter'
 
 " List ends here. Plugins become visible to Vim after this call.
@@ -48,7 +49,7 @@ local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 parser_config.org = {
   install_info = {
     url = 'https://github.com/milisims/tree-sitter-org',
-    revision = 'main',
+    revision = 'f110024d539e676f25b72b7c80b0fd43c34264ef',
     files = {'src/parser.c', 'src/scanner.cc'},
   },
   filetype = 'org',
@@ -61,11 +62,25 @@ require'nvim-treesitter.configs'.setup {
     disable = {'org'}, -- Remove this to use TS highlighter for some of the highlights (Experimental)
     additional_vim_regex_highlighting = {'org'}, -- Required since TS highlighter doesn't support all syntax features (conceal)
   },
-  ensure_installed = {'org'}, -- Or run :TSUpdate org
+  ensure_installed = {
+    'bash',
+    'dockerfile',
+    'go',
+    'html',
+    'javascript',
+    'json',
+    'lua',
+    'php',
+    'python',
+    'toml',
+    'yaml',
+    'org',
+  },
 }
 
--- require('orgmode').setup({
---   org_agenda_files = {'~/Dropbox/org/*', '~/my-orgs/**/*'},
---   org_default_notes_file = '~/Dropbox/org/refile.org',
--- })
+require('orgmode').setup({
+  -- org_agenda_files = {'~/Dropbox/org/*', '~/my-orgs/**/*'},
+  org_agenda_files = {},
+  org_default_notes_file = '~/refile.org',
+})
 EOF

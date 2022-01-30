@@ -74,6 +74,7 @@ macchanger
 make
 man-db
 mate-calc
+minicom
 mmv-go
 moreutils
 mpv
@@ -95,6 +96,7 @@ pinta
 pkgconf
 polkit-gnome
 ponymix
+prettier
 protonvpn-cli-ng
 prusa-slicer
 pulldown-cmark

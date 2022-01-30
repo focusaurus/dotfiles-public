@@ -1,0 +1,132 @@
+https://github.com/nvim-orgmode/orgmode/blob/master/DOCS.md#mappings
+
+## Mappings
+
+When possible, instead of `CTRL + C`, prefix `<Leader>o` is used.
+
+
+### Org mappings
+
+Mappings for `org` files.
+#### **org_refile**
+*mapped to*: `<Leader>or`<br />
+Refile current headline to destination
+#### **org_todo**
+*mapped to*: `cit`<br />
+Cycle todo keyword forward on current headline or open fast access to TODO states prompt (see [org_todo_keywords](#org_todo_keywords)) if it's enabled.
+#### **org_todo_prev**
+*mapped to*: `ciT`<br />
+Cycle todo keyword backward on current headline.
+#### **org_toggle_checkbox**
+*mapped to*: `<C-Space>`<br />
+Toggle current line checkbox state
+#### **org_cycle**
+*mapped to*: `<TAB>`<br />
+Cycle folding for current headline
+#### **org_global_cycle**
+*mapped to*: `<S-TAB>`<br />
+Cycle global folding
+#### **org_archive_subtree**
+*mapped to*: `<Leader>o$`<br />
+Archive current headline to archive location
+#### **org_set_tags_command**
+*mapped to*: `<Leader>ot`<br />
+Set tags on current headline
+#### **org_toggle_archive_tag**
+*mapped to*: `<Leader>oA`<br />
+Toggle "ARCHIVE" tag on current headline
+#### **org_do_promote**
+*mapped to*: `<<`<br />
+Promote headline
+#### **org_do_demote**
+*mapped to*: `>>`<br />
+Demote headline
+#### **org_promote_subtree**
+*mapped to*: `<s`<br />
+Promote subtree
+#### **org_demote_subtree**
+*mapped to*: `>s`<br />
+Demote subtree
+#### **org_meta_return**
+*mapped to*: `<Leader><CR>`<br />
+Add headline, list item or checkbox below, depending on current line
+#### **org_insert_heading_respect_content**
+*mapped to*: `<Leader>oih`<br />
+Add headline after current headline + it's content with same level
+#### **org_insert_todo_heading**
+*mapped to*: `<Leader>oiT`<br />
+Add TODO headline right after the current headline
+#### **org_insert_todo_heading_respect_content**
+*mapped to*: `<Leader>oit`<br />
+Add TODO headliner after current headline + it's content
+#### **org_move_subtree_up**
+*mapped to*: `<Leader>oK`<br />
+Move current headline + it's content up by one headline
+#### **org_move_subtree_down**
+*mapped to*: `<Leader>oJ`<br />
+Move current headline + it's content down by one headline
+#### **org_next_visible_heading**
+*mapped to*: `}`<br />
+Go to next heading (any level).<br />
+#### **org_previous_visible_heading**
+*mapped to*: `{`<br />
+Go to previous heading (any level).<br />
+#### **org_forward_heading_same_level**
+*mapped to*: `]]`<br />
+Go to next heading on same level. Doesn't go outside of parent.<br />
+#### **org_backward_heading_same_level**
+*mapped to*: `[[`<br />
+Go to previous heading on same level. Doesn't go outside of parent.<br />
+#### **outline_up_heading**
+*mapped to*: `g{`<br />
+Go to parent heading.<br />
+#### **org_show_help**
+*mapped to*: `g?`<br />
+Show help popup with mappings
+
+
+### Text objects
+
+Operator mappings for `org` files.<br />
+Example: Pressing `vir` select everything from current heading and all child.<br />
+`inner` means that it doesn't select the stars, where `around` selects `inner` + `stars`.<br />
+See [this issue comment](https://github.com/nvim-orgmode/orgmode/issues/48#issuecomment-884528170) for visual preview.<br />
+
+Note: Some mappings can clash with other plugin mappings, like [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) which also has `ih` operator mapping.
+
+#### **inner_heading**
+*mapped to*: `ih`<br />
+Select inner heading with content.
+
+#### **around_heading**
+*mapped to*: `ah`<br />
+Select around heading with content.
+
+#### **inner_subtree**
+*mapped to*: `ir`<br />
+Select whole inner subtree.
+
+#### **around_subtree**
+*mapped to*: `ar`<br />
+Select around whole subtree.
+
+#### **inner_heading_from_root**
+*mapped to*: `Oh` (big letter `o`)<br />
+select everything from first level heading to the current heading.
+
+#### **around_heading_from_root**
+*mapped to*: `OH` (big letter `o`)<br />
+select around everything from first level heading to the current heading.
+
+#### **inner_subtree_from_root**
+*mapped to*: `Or` (big letter `o`)<br />
+select everything from first level subtree to the current subtree.
+
+#### **around_subtree_from_root**
+*mapped to*: `OR` (big letter `o`)<br />
+select around everything from first level subtree to the current subtree.<br />
+
+
+### Dot repeat
+To make all mappings dot repeatable, install [vim-repeat](https://github.com/tpope/vim-repeat) plugin.
+
