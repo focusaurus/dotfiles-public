@@ -16,19 +16,18 @@ if [[ "$(uname)" == "Darwin" ]]; then
   exit
 fi
 # suffix=$(zenity --entry --text suffix)
-suffix=$(yad --entry --title "suffix" --text "suffix" --width 500)
+# suffix=$(yad --entry --title "suffix" --text "suffix" --width 500)
 
 dest="${HOME}/screens"
 mkdir -p "${dest}"
-# Select an area
-declare -a args=(--file="${dest}/screen-$(date +%Y-%m-%d-%H:%M:%S)-${suffix}.png")
 
-
+declare -a args
 if [[ "$1" == "delay" ]]; then
   # Use this branch for getting pointer/hover stuff
-  args+=(--window --remove-border --include-pointer --delay=4)
+  args+=(full -d 4000)
 else
   # Use this branch for specific area, no pointer
-  args+=("--area")
+  args+=(gui)
 fi
-gnome-screenshot "${args[@]}"
+args+=(-p "${dest}")
+flameshot "${args[@]}"
