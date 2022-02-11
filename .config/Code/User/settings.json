@@ -2,6 +2,7 @@
   "telemetry.telemetryLevel": "off",
   "editor.tabSize": 2,
   "editor.minimap.enabled": false,
+  "workbench.tree.indent": 20,
   "workbench.startupEditor": "newUntitledFile",
   "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?",
   "hadolint.hadolintPath": "/usr/local/bin/hadolint",

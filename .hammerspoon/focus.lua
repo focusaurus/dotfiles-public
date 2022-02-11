@@ -236,10 +236,12 @@ function module.clearWindowCache()
 end
 
 function module.enableFocusMode()
+  print("enableFocusMode")
   focusMode = true
 end
 
 function module.disableFocusMode()
+  print("disableFocusMode")
   focusMode = false
 end
 
@@ -286,6 +288,10 @@ end
 function module.previousByHotkey()
   -- hs.eventtap.event.newKeyEvent({"cmd" }, "Tab", true):post()
   -- hs.eventtap.event.newKeyEvent({"shift", "alt"}, "a", false):post()
+  -- Since I trigger this with home row mod on "a" (left pinky),
+  -- the first thing I need to do is send a key up for "a" so
+  -- the command+tab is interpretted correctly by macos
+  hs.eventtap.event.newKeyEvent("a", false):post()
   hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, true):post()
   hs.eventtap.event.newKeyEvent("Tab", true):post()
   hs.timer.doAfter(0.2, function()
@@ -299,6 +305,7 @@ module.previous = module.previousByHotkey
 
 function module.slack()
   log.d("slack")
+  print("slack focus mode ", focusMode)
   if focusMode then return end
   hs.application.launchOrFocus("Slack")
 end
