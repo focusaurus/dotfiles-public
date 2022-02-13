@@ -199,6 +199,7 @@ menuHammerMenuList = {
             {cons.cat.action, '', 'space', 'Spotlight', { {cons.act.keycombo, {'cmd', 'shift'}, 'space'} }},
             {cons.cat.action, '', 'i', 'Intuit', { {cons.act.func, focus.browserIntuit} }},
             {cons.cat.action, '', 'x', 'Firefox', { {cons.act.launcher, 'Firefox'} }},
+            {cons.cat.action, '', 'y', 'Cycle Windows', { {cons.act.func, focus.cycleWindows} }},
             {cons.cat.action, '', 'f', 'Fuzzball', { {cons.act.func, fuzzball.chooseScript } }},
             {cons.cat.action, '', 'l', 'Left (App Nav)', { {cons.act.func, appNav.left } }},
             {cons.cat.action, '', 'r', 'Right (App Nav)', { {cons.act.func, appNav.right } }},
