@@ -26,6 +26,11 @@ syncthing-gui() {
     "${ssh_command[@]}"
   fi
 }
+
+mvoff() {
+  mv "$1" "${1}.OFF"
+}
+
 ap1() {
   awk '{print $1}'
 }
@@ -314,7 +319,7 @@ md-clipboard-to-pdf() {
 }
 
 change-time-zone-fuzzy() {
-  zone=$(timedatectl list-timezones| ~/bin/fuzzy-filter "$@")
+  zone=$(timedatectl list-timezones | ~/bin/fuzzy-filter "$@")
   [[ -z "${zone}" ]] && return
   sudo timedatectl set-timezone "${zone}"
 }
