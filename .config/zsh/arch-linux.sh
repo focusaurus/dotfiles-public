@@ -11,6 +11,10 @@ arch-search-packages() {
 }
 # TODO curl -s "https://get.sdkman.io" | bash
 
+arch-update-keyring() {
+    pacman -Sy archlinux-keyring
+}
+
 arch-save-packages() {
   pacman -Qet | awk '{print $1}' | sort >"${HOME}/.config/arch-linux/pacman-qet-$(uname -n).txt"
   systemctl list-unit-files | grep enabled | awk '{print $1}' | sort >"${HOME}/.config/arch-linux/systemd-services-$(uname -n).txt"
