@@ -1,6 +1,6 @@
 local module = {}
 local log = hs.logger.new("reload", "debug")
-local reloadEnabled = true
+local reloadEnabled = false
 
 ----- hammerspoon config reloading -----
 function module.reloadConfig(files)

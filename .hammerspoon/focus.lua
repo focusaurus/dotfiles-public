@@ -267,6 +267,11 @@ function module.emacs()
   hs.application.launchOrFocus("Emacs")
 end
 
+function module.firefox()
+  log.d("firefox")
+  hs.application.launchOrFocus("firefox")
+end
+
 function module.code()
   log.d("code")
   hs.application.launchOrFocus("Visual Studio Code")

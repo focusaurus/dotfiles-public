@@ -1,5 +1,6 @@
 local module = {}
 local log = hs.logger.new("placement", "debug")
+local focus = require("focus")
 
 local function winScreenFrame()
   local win = hs.window.focusedWindow()
@@ -63,6 +64,22 @@ function module.cycle()
       module.maximize()
     end
   end
+end
+
+function module.tidy()
+  log.d("tidy")
+  focus.emacs()
+  module.right()
+  focus.calendar()
+  module.left()
+  focus.browser()
+  module.maximize()
+  focus.terminal()
+  module.maximize()
+  focus.slack()
+  module.maximize()
+  focus.firefox()
+  module.maximize()
 end
 
 return module
