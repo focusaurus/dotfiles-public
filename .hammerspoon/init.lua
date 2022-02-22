@@ -5,7 +5,7 @@ require("browser-tabs")
 require("hammerspoon")
 require("keys")
 require("screenshots")
-require("reload")
+-- require("reload")
 require("window-tabs")
 hs.alert.show("Hammerspoon config loaded")
 
