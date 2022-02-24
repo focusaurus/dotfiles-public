@@ -213,3 +213,6 @@
 /in
 /.junique
 /bookings
+/.composer
+/.tilt-dev/token
+/.tilt-dev/analytics
