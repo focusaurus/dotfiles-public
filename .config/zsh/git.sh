@@ -318,6 +318,14 @@ git-checkout() {
   git checkout "${name}" 2>/dev/null || git checkout -b "${name}" "${first_origin}/${default_branch}"
 }
 
+git-switch-fuzzy() {
+  local name="$1"
+  name=$(git branch | grep -Ev '\*' | fuzzy-filter "${name}")
+  [[ -z "${name}" ]] && return
+  git switch "${name}"
+}
+
+
 git-repo-path() {
   git rev-parse --show-prefix
 }
