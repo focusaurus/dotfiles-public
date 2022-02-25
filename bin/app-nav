@@ -66,7 +66,7 @@ main() {
   *firefox*|*chrome*)
     nav_browser "${direction}"
     ;;
-  *termite* | *iTerm2* | *kitty*)
+  *termite* | *iTerm2* | *kitty* | *Terminal*)
     ~/bin/nav-tmux "${direction}"
     ;;
   *code*)

@@ -206,7 +206,7 @@ menuHammerMenuList = {
             {cons.cat.action, '', 'm', 'Music', { {cons.act.func, focus.music } }},
             {cons.cat.action, '', 'n', 'Snippet', { {cons.act.func, snippets.chooseByUIAndType } }},
             {cons.cat.action, '', 'p', 'Postman', { {cons.act.launcher, 'Postman'} }},
-            {cons.cat.action, '', 't', 'kitty', { {cons.act.func, focus.terminal} }},
+            {cons.cat.action, '', 't', 'terminal', { {cons.act.func, focus.terminal} }},
             {cons.cat.action, '', 'z', 'Zoom', { {cons.act.launcher, 'zoom.us'} }},
             {cons.cat.action, '', 'q', 'Terminal Quick', { {cons.act.func, focus.terminalQuick} }},
             {cons.cat.action, '', 'v', 'Visual Studio Code', { {cons.act.launcher, 'Visual Studio Code'} }},

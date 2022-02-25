@@ -247,7 +247,7 @@ end
 
 function module.terminal()
   log.d("terminal")
-  hs.application.launchOrFocus("kitty")
+  hs.application.launchOrFocus("Terminal")
 end
 
 function module.terminalQuick()
