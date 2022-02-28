@@ -7,7 +7,7 @@ function useTabNav(appName)
 end
 
 function isTerminal(appName)
-  return appName == "iTerm2" or appName == "kitty"
+  return appName == "iTerm2" or appName == "kitty" or appName == "Terminal"
 end
 
 function module.left()
