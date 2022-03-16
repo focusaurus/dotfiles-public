@@ -29,7 +29,7 @@ awful.rules.rules = {
       class={
         "Arandr", "Blueman-manager", "Gpick", "Kruler", "MessageWin", -- kalarm.
         "Sxiv", "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
-        "Wpa_gui", "veromix", "xtightvncviewer", "Yad", "zenity", "FreeCAD", "zoom"
+        "Wpa_gui", "veromix", "xtightvncviewer", "Yad", "zenity", "FreeCAD", "zoom", "Mate-calc", "Prusa-slicer"
       },
 
       -- Note that the name property shown in xprop might be set slightly after creation of the client
@@ -44,7 +44,7 @@ awful.rules.rules = {
         "Dialog" -- e.g. Firefox
       }
     },
-    properties={floating=true, maximized=false, sticky=false, ontop=false}
+    properties={floating=true, maximized=false, sticky=false, ontop=false, placement=awful.placement.centered}
   },
   -- Add titlebars to normal clients and dialogs
   {
