@@ -13,8 +13,10 @@ ntpd.service
 reboot.target
 remote-cryptsetup.target
 remote-fs.target
+systemd-boot-update.service
 systemd-homed.service
 systemd-networkd.service
+systemd-network-generator.service
 systemd-pstore.service
 systemd-remount-fs.service
 systemd-resolved.service

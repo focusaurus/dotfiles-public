@@ -6,6 +6,7 @@ arandr
 arc-icon-theme-full-git
 arc-x-icons-theme
 arduino
+arp-scan
 at
 autoconf
 automake
@@ -34,7 +35,6 @@ dunst
 entr
 espeak
 eva
-evince
 evtest
 exa
 fakeroot
@@ -42,10 +42,12 @@ fasd
 fd
 feh
 firefox
+flameshot
 foomatic-db-nonfree-ppds
 foomatic-db-ppds
 freecad-appimage-git
 fswatch
+gallery-dl-bin
 gcalcli
 gedit
 geeqie
@@ -53,7 +55,6 @@ gitui-bin
 gnome-screenshot
 google-chrome
 gopls
-goreleaser-bin
 graphviz
 grub
 helix-bin
@@ -81,9 +82,10 @@ mpv
 mupdf
 navi-bin
 ncmpc
-nerd-fonts-hack
 nerd-fonts-source-code-pro
+net-tools
 network-manager-applet
+nmap
 ntp
 nushell
 nvm
@@ -99,7 +101,6 @@ ponymix
 prettier
 protonvpn-cli-ng
 prusa-slicer
-pulldown-cmark
 pup-bin
 qmk
 rclone
@@ -125,9 +126,9 @@ termite
 tig
 tilda
 tlp
-topgrade
 ttf-inconsolata
 ttf-jetbrains-mono
+typeracer-bin
 udiskie
 up
 upower
