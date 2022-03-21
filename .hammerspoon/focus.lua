@@ -1,6 +1,6 @@
 local module = {}
 local log = hs.logger.new("focus", "debug")
-local focusMode = false
+local focusMode = true
 local hbin = os.getenv("HOME") .. "/bin"
 local browserName = "Google Chrome"
 
@@ -296,7 +296,7 @@ function module.previousByHotkey()
   -- Since I trigger this with home row mod on "a" (left pinky),
   -- the first thing I need to do is send a key up for "a" so
   -- the command+tab is interpretted correctly by macos
-  hs.eventtap.event.newKeyEvent("a", false):post()
+  hs.eventtap.event.newKeyEvent("e", false):post()
   hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, true):post()
   hs.eventtap.event.newKeyEvent("Tab", true):post()
   hs.timer.doAfter(0.2, function()
@@ -306,7 +306,7 @@ function module.previousByHotkey()
   end)
 end
 
-module.previous = module.previousByHotkey
+module.previous = module.previousByWindowFilter
 
 function module.slack()
   log.d("slack")
