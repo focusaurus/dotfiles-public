@@ -1,6 +1,6 @@
 local module = {}
 local log = hs.logger.new("focus", "debug")
-local focusMode = true
+local focusMode = false
 local hbin = os.getenv("HOME") .. "/bin"
 local browserName = "Google Chrome"
 
