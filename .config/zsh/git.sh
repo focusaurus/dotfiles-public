@@ -12,6 +12,7 @@ alias grium='git rebase -i upstream/main'
 alias gick='git cherry-pick'
 alias gpum='git pull upstream main'
 alias gpom='git pull origin main'
+alias gpgm='git pull github main'
 alias gf='git fetch -a'
 alias gbd='git branch -d'
 # alias gbl='git branch -a|less'
@@ -407,6 +408,8 @@ gsync() {
     )
   fi
 }
+# typo humane
+alias gysnc=gsync
 
 git-cd-repo-dir-fuzzy() {
   dir=$(git ls-files --full-name | xargs dirname | ~/bin/fuzzy-filter "$@")
