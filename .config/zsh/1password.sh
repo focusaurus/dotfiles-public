@@ -4,6 +4,8 @@ op-add-ssh-key() {
   passwordless
 }
 
+alias oask=op-add-ssh-key
+
 op-copy-password-by-title() {
   local account="$1"
   shift
