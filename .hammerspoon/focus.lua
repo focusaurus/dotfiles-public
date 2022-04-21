@@ -68,7 +68,7 @@ local windowBrowserMain
 --   end
 -- end
 
-function module.cycleWindows()
+function module.cycleByHotkey()
   hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, true):post()
   hs.eventtap.event.newKeyEvent("`", true):post()
   hs.timer.doAfter(0.2, function()
@@ -76,6 +76,16 @@ function module.cycleWindows()
     hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, false):post()
   end)
 end
+
+function module.cycleByFilter()
+  app = hs.window.frontmostWindow():application()
+  print("app name " .. app:name()) 
+  windows = hs.window.filter.new({app:name()}):getWindows(hs.window.filter.sortByFocusedLast)
+  print("windows length: " .. #windows)
+  windows[#windows]:focus()
+end
+
+module.cycleWindows = module.cycleByFilter
 
 function module.browserMainByTitleCache()
   if windowBrowserMain == nil then

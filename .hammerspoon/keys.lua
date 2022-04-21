@@ -9,7 +9,7 @@ local sound = require("sound")
 local hyper_pl = {"option", "command"}
 
 -- dev
--- hs.hotkey.bind({}, "f1", focus.previous)
+hs.hotkey.bind({}, "f1", focus.cycleWindows)
 -- app nav
 hs.hotkey.bind(hyper_pl, "o", appNav.left)
 hs.hotkey.bind(hyper_pl, "u", appNav.right)

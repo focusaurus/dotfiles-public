@@ -112,9 +112,10 @@
   "outline.showVariables": false,
   "files.exclude": {
     "**/.classpath": true,
+    "**/.factorypath": true,
     "**/.project": true,
     "**/.settings": true,
-    "**/.factorypath": true
+    "web/_domains/list-manage/release/__dev__static/**": true
   },
   "java.imports.gradle.wrapper.checksums": [
     {
