@@ -54,6 +54,10 @@ inoremap <C-s> <Esc>:w<CR>a
 " nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 autocmd FileType markdown :nnoremap k gk
 autocmd FileType markdown :nnoremap j gj
+
+nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
+nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
+
 "autocmd FileType org :nmap cc <Plug>OrgCheckBoxToggle
 "autocmd FileType org :nmap cn <Plug>OrgCheckBoxNewBelow
 "autocmd FileType org :nmap cN <Plug>OrgCheckBoxNewAbove
