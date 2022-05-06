@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
+
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -o errexit  # always exit on error
+set -o errtrace # trap errors in functions as well
+set -o pipefail # don't ignore exit codes when piping output
+# set -x          # enable debugging
+
+IFS=$'\n\t'
+# ---- End unofficial bash strict mode boilerplate
+
+#@BUGBUG git fetch --all
+default_branch=$(~/bin/git-get-default-branch)
+delete_from_remote="$1"
+# if [[ -z "${remote_name}" ]]; then
+#   remote_name=$(~/bin/git-get-upstream-remote)
+#   remote_name=$(~/bin/git-get-upstream-remote)
+# fi
+# script_path="$2"
+# if [[ -z "${script_path}" ]]; then
+script_path=$(mktemp /tmp/git-cleanup-merged-XXX)
+# fi
+chmod +x "${script_path}"
+echo "cd ${PWD}" >"${script_path}"
+#TODO filter out the default branch
+git branch --remotes --merged "remotes/$(~/bin/git-get-upstream-remote)/${default_branch}" |
+  grep --extended "^  ${delete_from_remote}/" |
+  grep --invert-match "${default_branch}" |
+  grep --invert-match HEAD | {
+  while IFS= read -r merged_branch; do
+    branch=$(echo "${merged_branch}" | cut -d / -f 2-)
+    # answer=y
+    # echo -n "Remove branch '${branch}' on remote '${remote}'?  (n|y)"
+    # read -r -n 1 answer </dev/tty
+    # if [[ "${answer}" == "y" ]]; then
+    echo git push "${delete_from_remote}" --delete \'"${branch}"\' >>"${script_path}"
+    # else
+    # echo
+    # fi
+  done
+}
+echo "Run ${script_path} to do the deletes"
