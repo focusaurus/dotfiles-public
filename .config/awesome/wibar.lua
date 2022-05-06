@@ -29,6 +29,7 @@ beautiful.menu_width = 300
 mymainmenu = awful.menu({
   items = {
     {"open terminal", terminal},
+    {"awesome: gather clients", placement.move_all_clients_to_screen},
     {"awesome: hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
     {"awesome: restart", awesome.restart},
     {"awesome: unminimize", placement.unminimize},
@@ -36,7 +37,6 @@ mymainmenu = awful.menu({
     {"awesome: dev1", dev.dev1},
     {"awesome: dev2", dev.dev2},
     {"awesome: quit", function() awesome.quit() end},
-    {"awesome: gather clients", placement.move_all_clients_to_screen},
     {"leader", focus.leader}
   }
 })
