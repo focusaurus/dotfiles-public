@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 op-add-ssh-key() {
+  if [[ -n $(ssh-add -L | grep --invert-match "no identities") ]]; then
+    echo ssh key already loaded into ssh-agent. Ready for passwordless ssh.
+    return
+  fi
   op-copy-password-by-title my "ssh focusaurus private keys"
   passwordless
 }
@@ -14,7 +18,8 @@ op-copy-password-by-title() {
   if [[ -z "${session}" ]]; then
     eval "$(op signin --account "${account}")"
   fi
-  local items=$(op item list --format json 2>/dev/null)
+  local items
+  items=$(op item list --format json 2>/dev/null)
   if [[ -z "${items}" ]]; then
     eval "$(op signin --account "${account}")"
     items=$(op item list --format json)

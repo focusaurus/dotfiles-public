@@ -8,7 +8,7 @@ nnoremap <leader>w :w<cr>
 nnoremap <leader>x :xa<cr>
 nnoremap <leader>zb :Buffers<cr>
 " nnoremap <leader>zf :Files<cr>
-nnoremap <leader>zf :call fzf#run({'source': 'fd --type file', 'sink': 'tabedit'})<cr>
+nnoremap <leader>zf :call fzf#run({'source': 'fd --type file', 'sink': 'tabedit'})<cr><cr>
 nmap <silent> <C-space> <Plug>(Fzm)
 vmap <silent> <C-space> <Plug>(FzmVisual)
 

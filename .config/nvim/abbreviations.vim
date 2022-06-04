@@ -13,3 +13,4 @@ iabbrev <silent> qdt "$2"<C-R>=Eatchar('\s')<CR>
 iabbrev <silent> qv "${}"<Left><Left><C-R>=Eatchar('\s')<CR>
 iabbrev <silent> sv ${}<Left><C-R>=Eatchar('\s')<CR>
 iabbrev ecom ecommerce
+iabbrev terab {% block foo -%}{% endblock foo -%}

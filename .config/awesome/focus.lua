@@ -13,7 +13,7 @@ end
 
 function browser_tab(number)
   gears.timer.start_new (0.2, function() 
-    awful.key.execute({"Mod1"}, number)
+    awful.key.execute({"Control"}, number)
   end)
 end
 
@@ -157,9 +157,19 @@ end
 
 function module.zoom()
   log.log("focus.zoom() called")
-  if not by_class("zoom") then
-    awful.spawn.easy_async("zoom", noop)
+  found = false
+  for i, name in pairs({"Zoom Meeting", "Zoom Webinar", "Zoom - Free Account"}) do
+    log.log("finding by name " .. name)
+    if by_rules({name = name}) then
+
+      log.log("zoom window found with name" .. name)
+      break
+    end
   end
+  awful.spawn.easy_async("zoom", noop)
+  -- if not by_class("zoom") then
+  --   awful.spawn.easy_async("zoom", noop)
+  -- end
 end
 
 function module.zulip()
@@ -221,7 +231,7 @@ end
 function module.trello()
   log.log("focus.trello() called")
   module.frc()
-  browser_tab("2")
+  browser_tab("3")
 end
 
 function module.fastmail()

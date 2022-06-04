@@ -15,7 +15,7 @@ export SHARE_HISTORY="1"
 
 setopt autopushd pushdignoredups pushdsilent
 
-export TZ="America/NewYork"
+export TZ="America/New_York"
 tt() {
   export TERMINAL_TITLE="$*"
 }
