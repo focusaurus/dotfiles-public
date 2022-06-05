@@ -23,8 +23,9 @@ editor_cmd = terminal .. " -e " .. editor
 beautiful.hotkeys_font = "Hack 14"
 beautiful.hotkeys_description_font = "Hack 12"
 beautiful.menu_font = "Hack 14"
-beautiful.menu_height = 24
-beautiful.menu_width = 300
+beautiful.menu_height = 28
+beautiful.menu_width = 400
+beautiful.tasklist_plain_task_name = true
 
 mymainmenu = awful.menu({
   items = {
@@ -120,19 +121,20 @@ awful.screen.connect_for_each_screen(function(s)
   }
 
   -- Create a tasklist widget
+  tasklistlayout = wibox.layout.flex.vertical()
+  tasklistlayout.max_widget_size = 30
   s.mytasklist = awful.widget.tasklist {
     screen = s,
     filter = awful.widget.tasklist.filter.currenttags,
     buttons = tasklist_buttons,
-    style = {shape = gears.shape.rounded_rect}
-    -- layout = wibox.layout.flex.horizontal()
+    style = {shape = gears.shape.rectangle},
+    layout = tasklistlayout
   }
+  -- Create the top wibar
+  s.topwibar = awful.wibar({position = "top", screen = s, height = 30})
 
-  -- Create the wibar
-  s.mywibar = awful.wibar({position = "top", screen = s, height = 30})
-
-  -- Add widgets to the wibar
-  s.mywibar:setup{
+  -- Add widgets to the top wibar
+  s.topwibar:setup{
     layout = wibox.layout.align.horizontal,
     { -- Left widgets
       layout = wibox.layout.fixed.horizontal,
@@ -140,7 +142,7 @@ awful.screen.connect_for_each_screen(function(s)
       s.mytaglist,
       s.mypromptbox
     },
-    s.mytasklist, -- Middle widget
+    {layout=wibox.layout.fixed.horizontal}, -- Middle widget
     { -- Right widgets
       layout = wibox.layout.fixed.horizontal,
       volume_widget,
@@ -150,6 +152,22 @@ awful.screen.connect_for_each_screen(function(s)
       wibox.widget.systray(),
       s.mylayoutbox,
       clock_widget
+    }
+  }
+  -- Create the left wibar
+  s.leftwibar = awful.wibar({position = "left", screen = s, width = 175})
+  -- Add widgets to the left wibar
+  s.leftwibar:setup{
+    layout = wibox.layout.align.vertical,
+    { -- Left widgets
+      layout = wibox.layout.fixed.vertical,
+    },
+    { -- Left widgets
+      layout = wibox.layout.fixed.vertical,
+      s.mytasklist, -- Middle widget
+    },
+    { -- Right widgets
+      layout = wibox.layout.fixed.horizontal,
     }
   }
 end)
