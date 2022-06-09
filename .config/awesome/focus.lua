@@ -3,9 +3,15 @@ local module = {}
 local awful = require("awful")
 local gears = require("gears")
 local log = require("log")
+local work_mode = false
 
 local home_bin = os.getenv("HOME") .. "/bin"
 function noop() end
+
+function module.work_mode(value)
+  log.log("work_mode_on called. Current value: " .. tostring(work_mode))
+  work_mode = value
+end
 
 function focus_client(client)
   client:emit_signal("request::activate", "tasklist", {raise = true})
@@ -83,6 +89,10 @@ end
 
 function module.browser()
   log.log("focus.browser() called")
+  if work_mode then
+    module.frc()
+    return
+  end
   local found = by_rules({class = "Google-chrome", name = "main"})
   if not found then
     awful.spawn.easy_async({"google-chrome-stable", "--restore-session"} , noop)

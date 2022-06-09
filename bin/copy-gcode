@@ -12,8 +12,9 @@ set -o pipefail # don't ignore exit codes when piping output
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
-find ~/projects/squeezebox-keyboard ~/projects/3d-prints -name '*.gcode' -mtime -1 |
-  ~/bin/fuzzy-filter "$@" |
-  xargs -I I cp I "/run/media/$(whoami)/"*
+file=$(find ~/projects/squeezebox-keyboard ~/projects/3d-prints -name '*.gcode' -mtime -1 |
+  ~/bin/fuzzy-filter "$@")
+echo "Copying $(basename "${file}") to thumb drive"
+cp "${file}" "/run/media/$(whoami)/"*
 sleep 3
 ~/bin/umountomatic
