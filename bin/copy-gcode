@@ -11,7 +11,10 @@ set -o pipefail # don't ignore exit codes when piping output
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-
+if ! compgen -G "/run/media/$(whoami)/*" >/dev/null; then
+  echo "Error: thumb drive is not present" 1>&2
+  exit 10
+fi
 file=$(find ~/projects/squeezebox-keyboard ~/projects/3d-prints -name '*.gcode' -mtime -1 |
   ~/bin/fuzzy-filter "$@")
 echo "Copying $(basename "${file}") to thumb drive"

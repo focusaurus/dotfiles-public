@@ -7,8 +7,14 @@ nnoremap <leader>q :q!<cr>
 nnoremap <leader>w :w<cr>
 nnoremap <leader>x :xa<cr>
 nnoremap <leader>zb :Buffers<cr>
+nnoremap <leader>zg :Rg<cr>
+nnoremap <leader>zp :call fzf#vim#complete#path('fd')<cr><cr>
+inoremap <expr> <c-x><c-f> fzf#vim#complete#path('fd')
+
 " nnoremap <leader>zf :Files<cr>
 nnoremap <leader>zf :call fzf#run({'source': 'fd --type file', 'sink': 'tabedit'})<cr><cr>
+" nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+
 nmap <silent> <C-space> <Plug>(Fzm)
 vmap <silent> <C-space> <Plug>(FzmVisual)
 

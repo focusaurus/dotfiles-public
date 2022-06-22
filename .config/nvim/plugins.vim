@@ -37,6 +37,11 @@ Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'projekt0n/github-nvim-theme'
 Plug 'nvim-orgmode/orgmode'
 Plug 'tpope/vim-repeat'
+
+" telescope depends on plenary
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
 " Plug 'preservim/nerdcommenter'
 
 " List ends here. Plugins become visible to Vim after this call.
