@@ -4,19 +4,11 @@
 
 # ---- Start unofficial bash strict mode boilerplate
 # http://redsymbol.net/articles/unofficial-bash-strict-mode/
-set -o errexit  # always exit on error
+set -o errexit # always exit on error
 set -o errtrace # trap errors in functions as well
 set -o pipefail # don't ignore exit codes when piping output
-# set -x          # enable debugging
+# set -x # enable debugging
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-
-# protonvpn status
-echo -n "VPN: "
-if ip route | grep -qE 'proton0'; then
-  echo on
-else
-  echo off
-fi
-protonvpn s
+exec bat --paging always --color always "$1"

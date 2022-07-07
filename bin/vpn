@@ -12,4 +12,25 @@ set -o pipefail # don't ignore exit codes when piping output
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
-sudo protonvpn connect -f & 
+case "$1" in
+connect|c)
+  sudo protonvpn connect -f &
+  ;;
+disconnect|d)
+  sudo protonvpn disconnect
+  ;;
+status|s)
+  # protonvpn status
+  echo -n "VPN: "
+  if ip route | grep -qE 'proton0'; then
+    echo on
+  else
+    echo off
+  fi
+  protonvpn status
+  ;;
+*)
+  echo "Usage: $0 {connect|disconnect|status}"
+  exit 1
+  ;;
+esac

@@ -54,8 +54,7 @@ end
 
 function module.dev2()
   log.log("dev.dev2() called")
-  focus.leader()
-
+  focus.work_mode_on()
 end
 
 return module

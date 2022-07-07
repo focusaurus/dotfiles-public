@@ -7,9 +7,17 @@
 set -o errexit  # always exit on error
 set -o errtrace # trap errors in functions as well
 set -o pipefail # don't ignore exit codes when piping output
-# set -x          # enable debugging
+# set -x # enable debugging
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-
-sudo protonvpn disconnect
+if ! compgen -G "/run/media/$(whoami)/*" >/dev/null; then
+  echo "Error: thumb drive is not present" 1>&2
+  exit 10
+fi
+file=$(find ~/projects/squeezebox-keyboard ~/projects/3d-prints -name '*.gcode' -mtime -1 |
+  ~/bin/fuzzy-filter "$@")
+echo "Copying $(basename "${file}") to thumb drive"
+cp "${file}" "/run/media/$(whoami)/"*
+sleep 3
+~/bin/umountomatic

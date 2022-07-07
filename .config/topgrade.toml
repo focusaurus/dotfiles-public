@@ -1,7 +1,7 @@
 # Disable specific steps - same options as the command line flag
 
 # Run specific steps - same options as the command line flag
-only = ["system", "git_repos"]
+only = ["system"]
 
 # Do not ask to retry failed steps (default: false)
 #no_retry = true

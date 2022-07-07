@@ -7,7 +7,14 @@ nnoremap <leader>q :q!<cr>
 nnoremap <leader>w :w<cr>
 nnoremap <leader>x :xa<cr>
 nnoremap <leader>zb :Buffers<cr>
-nnoremap <leader>zf :Files<cr>
+nnoremap <leader>zg :Rg<cr>
+nnoremap <leader>zp :call fzf#vim#complete#path('fd')<cr><cr>
+inoremap <expr> <c-x><c-f> fzf#vim#complete#path('fd')
+
+" nnoremap <leader>zf :Files<cr>
+nnoremap <leader>zf :call fzf#run({'source': 'fd --type file', 'sink': 'tabedit'})<cr><cr>
+" nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+
 nmap <silent> <C-space> <Plug>(Fzm)
 vmap <silent> <C-space> <Plug>(FzmVisual)
 
@@ -53,6 +60,10 @@ inoremap <C-s> <Esc>:w<CR>a
 " nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 autocmd FileType markdown :nnoremap k gk
 autocmd FileType markdown :nnoremap j gj
+
+nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
+nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
+
 "autocmd FileType org :nmap cc <Plug>OrgCheckBoxToggle
 "autocmd FileType org :nmap cn <Plug>OrgCheckBoxNewBelow
 "autocmd FileType org :nmap cN <Plug>OrgCheckBoxNewAbove

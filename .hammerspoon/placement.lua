@@ -80,6 +80,8 @@ function module.tidy()
   module.maximize()
   focus.firefox()
   module.maximize()
+  focus.music()
+  module.left()
 end
 
 return module

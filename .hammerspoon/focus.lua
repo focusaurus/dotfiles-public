@@ -68,7 +68,7 @@ local windowBrowserMain
 --   end
 -- end
 
-function module.cycleWindows()
+function module.cycleByHotkey()
   hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, true):post()
   hs.eventtap.event.newKeyEvent("`", true):post()
   hs.timer.doAfter(0.2, function()
@@ -76,6 +76,16 @@ function module.cycleWindows()
     hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, false):post()
   end)
 end
+
+function module.cycleByFilter()
+  app = hs.window.frontmostWindow():application()
+  print("app name " .. app:name()) 
+  windows = hs.window.filter.new({app:name()}):getWindows(hs.window.filter.sortByFocusedLast)
+  print("windows length: " .. #windows)
+  windows[#windows]:focus()
+end
+
+module.cycleWindows = module.cycleByFilter
 
 function module.browserMainByTitleCache()
   if windowBrowserMain == nil then
@@ -235,6 +245,18 @@ function module.clearWindowCache()
   windowBrowserIntuit = nil
 end
 
+function onAppEvent(appName, eventType, app)
+  -- print("onAppEvent: " .. (appName or "nil") .. ", " .. eventType )
+  if appName == browserName and eventType == hs.application.watcher.terminated then
+    log.d(browserName .. " was quit. Clearing window cache.")
+    module.clearWindowCache()
+  end
+end
+
+function module.initAppWatcher()
+  hs.application.watcher.new(onAppEvent):start()
+end 
+
 function module.enableFocusMode()
   print("enableFocusMode")
   focusMode = true
@@ -296,7 +318,7 @@ function module.previousByHotkey()
   -- Since I trigger this with home row mod on "a" (left pinky),
   -- the first thing I need to do is send a key up for "a" so
   -- the command+tab is interpretted correctly by macos
-  hs.eventtap.event.newKeyEvent("a", false):post()
+  hs.eventtap.event.newKeyEvent("e", false):post()
   hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, true):post()
   hs.eventtap.event.newKeyEvent("Tab", true):post()
   hs.timer.doAfter(0.2, function()
@@ -306,7 +328,7 @@ function module.previousByHotkey()
   end)
 end
 
-module.previous = module.previousByHotkey
+module.previous = module.previousByWindowFilter
 
 function module.slack()
   log.d("slack")

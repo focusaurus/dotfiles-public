@@ -3,9 +3,15 @@ local module = {}
 local awful = require("awful")
 local gears = require("gears")
 local log = require("log")
+local work_mode = false
 
 local home_bin = os.getenv("HOME") .. "/bin"
 function noop() end
+
+function module.work_mode(value)
+  log.log("work_mode_on called. Current value: " .. tostring(work_mode))
+  work_mode = value
+end
 
 function focus_client(client)
   client:emit_signal("request::activate", "tasklist", {raise = true})
@@ -13,7 +19,7 @@ end
 
 function browser_tab(number)
   gears.timer.start_new (0.2, function() 
-    awful.key.execute({"Mod1"}, number)
+    awful.key.execute({"Control"}, number)
   end)
 end
 
@@ -83,6 +89,10 @@ end
 
 function module.browser()
   log.log("focus.browser() called")
+  if work_mode then
+    module.frc()
+    return
+  end
   local found = by_rules({class = "Google-chrome", name = "main"})
   if not found then
     awful.spawn.easy_async({"google-chrome-stable", "--restore-session"} , noop)
@@ -157,9 +167,19 @@ end
 
 function module.zoom()
   log.log("focus.zoom() called")
-  if not by_class("zoom") then
-    awful.spawn.easy_async("zoom", noop)
+  found = false
+  for i, name in pairs({"Zoom Meeting", "Zoom Webinar", "Zoom - Free Account"}) do
+    log.log("finding by name " .. name)
+    if by_rules({name = name}) then
+
+      log.log("zoom window found with name" .. name)
+      break
+    end
   end
+  awful.spawn.easy_async("zoom", noop)
+  -- if not by_class("zoom") then
+  --   awful.spawn.easy_async("zoom", noop)
+  -- end
 end
 
 function module.zulip()
@@ -221,7 +241,7 @@ end
 function module.trello()
   log.log("focus.trello() called")
   module.frc()
-  browser_tab("2")
+  browser_tab("3")
 end
 
 function module.fastmail()

@@ -1,6 +1,14 @@
-#!/usr/bin/env bash
 ##### git SCM #####
-alias g='lazygit'
+function ensure_ssh_agent() {
+  echo ensure_ssh_agent start
+  if ssh-add -L | grep --quiet "no identities"; then
+  echo ensure_ssh_agent add
+    op-add-ssh-key
+    return
+  fi
+  echo ensure_ssh_agent nope
+}
+alias g='gitui'
 alias ga='git add'
 # alias gassume='gitupdate-index --assume-unchanged'
 # alias gassumed='!git ls-files -v | grep ^h | cut -c 3-'
@@ -12,7 +20,8 @@ alias grium='git rebase -i upstream/main'
 alias gick='git cherry-pick'
 alias gpum='git pull upstream main'
 alias gpom='git pull origin main'
-alias gf='git fetch -a'
+alias gpgm='git pull github main'
+alias gf='git fetch --all'
 alias gbd='git branch -d'
 # alias gbl='git branch -a|less'
 alias gc='git commit'
@@ -37,8 +46,8 @@ alias grpo='git remote prune origin'
 alias gs='git status --short'
 # alias gsnapshot='git stash save "snapshot: $(date)" && git stash apply "stash@{0}"'
 # alias gsu='git submodule update'
-alias gull='git pull'
-alias gush='git push'
+alias gull='git pull || ensure_ssh_agent'
+alias gush='git push || ensure_ssh_agent'
 # alias gp='git push'
 # alias gpu='git pull upstream'
 # alias gunassume='git update-index --no-assume-unchanged'
@@ -325,7 +334,6 @@ git-switch-fuzzy() {
   git switch "${name}"
 }
 
-
 git-repo-path() {
   git rev-parse --show-prefix
 }
@@ -407,6 +415,8 @@ gsync() {
     )
   fi
 }
+# typo humane
+alias gysnc=gsync
 
 git-cd-repo-dir-fuzzy() {
   dir=$(git ls-files --full-name | xargs dirname | ~/bin/fuzzy-filter "$@")
