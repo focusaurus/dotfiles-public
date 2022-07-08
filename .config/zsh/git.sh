@@ -396,16 +396,13 @@ gsync() {
     fi
   fi
   ~/bin/git-autocommit \
-    ~/git.peterlyons.com/journals \
-    ~/git.peterlyons.com/intuit \
-    ~/git.peterlyons.com/mailchimp
+    ~/git.peterlyons.com/journals
 
   ~/bin/git-sync \
     ~ \
     ~/git.peterlyons.com/dotfiles \
-    ~/git.peterlyons.com/journals \
-    ~/git.peterlyons.com/intuit \
-    ~/git.peterlyons.com/mailchimp
+    ~/git.peterlyons.com/journals
+
   if [[ -d ~/github.com/focusaurus/qmk_firmware ]]; then
     (
       cd ~/github.com/focusaurus/qmk_firmware || exit

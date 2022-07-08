@@ -93,6 +93,13 @@ main() {
     kill_ok xss-lock
     xss-lock -- ~/bin/lock-screen &
   fi
+  ~/bin/log "$0" trackpoint
+  if xinput list | grep -q TrackPoint; then
+    # Configure a good acceleration
+    # see `xinput list-props 10` for property names
+    xinput set-prop "TPPS/2 IBM TrackPoint" 365 0.8
+  fi
+
   ~/bin/log "$0" "done"
 }
 

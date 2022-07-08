@@ -121,6 +121,7 @@
 ; (gtk_accel_path "<Actions>/MenuActions/Zoom33" "")
 ; (gtk_accel_path "<Actions>/MenuActions/SelectMark0" "<Primary>0")
 ; (gtk_accel_path "<Actions>/MenuActions/HideBars" "grave")
+; (gtk_accel_path "<Actions>/MenuActionsExternal/darktable.desktop" "")
 ; (gtk_accel_path "<Actions>/MenuActions/FileMenu" "")
 ; (gtk_accel_path "<Actions>/MenuActions/SaveMetadata" "<Primary>s")
 ; (gtk_accel_path "<Actions>/MenuActions/ZoomIn" "equal")
