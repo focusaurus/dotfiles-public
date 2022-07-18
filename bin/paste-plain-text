@@ -11,5 +11,6 @@ set -o pipefail   # don't ignore exit codes when piping output
 
 IFS="$(printf "\n\t")"
 # ---- End unofficial bash strict mode boilerplate
-
-xclip -selection clipboard -o  | xclip -selection clipboard
+# This does NOT work
+# xclip -selection clipboard -o  | xclip -selection clipboard
+xclip -selection clipboard -o | cat | xclip -selection clipboard

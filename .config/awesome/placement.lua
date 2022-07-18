@@ -67,7 +67,7 @@ function module.cycle(client)
   if ratio > 0.9 then
     module.left_half(client)
   else
-    if x_pos < 50 then
+    if x_pos < 200 then
       module.right_half(client)
     else
       module.maximize_toggle(client)

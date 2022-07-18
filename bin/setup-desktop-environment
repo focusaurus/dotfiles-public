@@ -94,10 +94,13 @@ main() {
     xss-lock -- ~/bin/lock-screen &
   fi
   ~/bin/log "$0" trackpoint
-  if xinput list | grep -q TrackPoint; then
+  tpid=$(xinput list /g TrackPoint | grep -o id=.. | cut -d = -f 2)
+
+  if [[ -n "${tpid}" ]]; then
+    propid=$(xinput list-props "${tpid}" | grep -oP "Accel Speed \(\K[0-9]+")
     # Configure a good acceleration
     # see `xinput list-props 10` for property names
-    xinput set-prop "TPPS/2 IBM TrackPoint" 365 0.8
+    xinput set-prop "TPPS/2 IBM TrackPoint" "${propid}" 0.9 
   fi
 
   ~/bin/log "$0" "done"
