@@ -22,14 +22,16 @@ act(f, freecad, focus freecad)
 act(g, gedit, focus gedit)
 act(p, prusa-slicer, focus prusa)
 act(u, cura, focus cura)
+act(x, xournalpp, focus xournalpp)
 act(z, zeal, focus zeal)
 
 work:
 act(b, FRC-browser, focus frc)
 act(w, workflowy, focus workflowy)
 act(t, trello, focus trello)
+act(c, calendar, focus fastmail_calendar)
 act(e, Fastmail, focus fastmail)
-act(j, Journal, journal-append-prompt /home/plyons/git.peterlyons.com/focus-retreat-center/journal)
+act(j, Journal, terminal-quick journal-append-vim /home/plyons/git.peterlyons.com/focus-retreat-center/journal)
 
 sound:
 act(0, mute, volume 0)

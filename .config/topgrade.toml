@@ -1,10 +1,9 @@
-# Disable specific steps - same options as the command line flag
-
+assume_yes = true
 # Run specific steps - same options as the command line flag
 only = ["system"]
 
 # Do not ask to retry failed steps (default: false)
-#no_retry = true
+no_retry = true
 
 # Cleanup temporary or old files
 cleanup = true
@@ -16,3 +15,7 @@ repos = [
 #    "~/projects/journals"
 ]
 
+[linux]
+arch_package_manager = "yay"
+yay_arguments = "--answerclean=None --answerdiff=None --answeredit=None"
+# pacman_arguments = "--noconfirm"

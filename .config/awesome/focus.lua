@@ -137,6 +137,13 @@ function module.workflowy()
   end
 end
 
+function module.xournalpp()
+  log.log("focus.xournalpp() called")
+  if not by_class("Xournalpp") then
+    awful.spawn.easy_async({"xournalpp"}, noop)
+  end
+end
+
 function module.terminal()
   log.log("focus.terminal() called")
   if not by_class("kitty") then
@@ -219,7 +226,7 @@ end
 
 function module.prusa()
   log.log("focus.prusa() called")
-  if not by_class("Prusa-slicer") then
+  if not by_class("PrusaSlicer") then
     awful.spawn.easy_async("/bin/prusa-slicer", noop)
   end
 end
@@ -249,6 +256,13 @@ function module.fastmail()
   module.frc()
   browser_tab("1")
 end
+
+function module.fastmail_calendar()
+  log.log("focus.fastmail_calendar() called")
+  module.frc()
+  browser_tab("2")
+end
+
 
 
 -- function module.highest()
