@@ -22,7 +22,7 @@ battery() {
   upower -e |
     grep /devices/battery_ |
     xargs -n 1 upower -i |
-    egrep -i '(native-path:|percentage:|state:)'
+    grep -E -i '(native-path:|percentage:|state:)'
 }
 
 #Many default shells alias these to the "-i" interactive version
