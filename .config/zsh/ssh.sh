@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 ##### ssh #####
 alias s="ssh"
-alias kill-ssh='jobs -l|egrep " ss?h? " | cut -d " " -f 4| xargs kill; fg'
+alias kill-ssh='jobs -l|grep -E " ss?h? " | cut -d " " -f 4| xargs kill; fg'
 alias skr="ssh-keygen -R"
 
 ssh_agent_sock_path="/run/user/$(id -u)/ssh-agent.sock"
