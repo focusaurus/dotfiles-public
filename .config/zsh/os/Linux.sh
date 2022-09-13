@@ -28,7 +28,7 @@ battery() {
 #Many default shells alias these to the "-i" interactive version
 #I don't like that. Undo it.
 for command in rm mv cp; do
-  if alias | egrep -q "^${command}="; then
+  if alias | grep -E -q "^${command}="; then
     unalias ${command}
   fi
 done
