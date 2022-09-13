@@ -247,8 +247,12 @@ end
 
 function module.trello()
   log.log("focus.trello() called")
-  module.frc()
-  browser_tab("3")
+  local found = by_rules({class = "Google-chrome", name = "trello"})
+  if not found then
+    awful.spawn.easy_async({"google-chrome-stable"}, noop)
+  end
+  -- module.frc()
+  -- browser_tab("3")
 end
 
 function module.fastmail()

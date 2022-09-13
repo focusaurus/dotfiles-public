@@ -1,0 +1,13 @@
+!twitter.com##[aria-label="Timeline: Trending now"]
+!twitter.com##[aria-label="Who to follow"]
+!twitter.com##[aria-label="Topics to follow"]
+!twitter.com##[aria-label="Timeline: "]
+
+! 2022-08-23 https://twitter.com
+twitter.com##div.r-1udh08x.r-1ifxtd0.r-rs99b7.r-1phboty.r-1867qdf.r-1d6w8o1.r-x572qd.css-1dbjc4n:nth-of-type(3)
+twitter.com##.r-1udh08x.r-1bro5k0.r-1ifxtd0.r-rs99b7.r-1phboty.r-1867qdf.r-1d6w8o1.r-x572qd.css-1dbjc4n > .css-1dbjc4n
+twitter.com##a.r-13qz1uu.r-oyd9sg.r-1ny4l3l.r-16y2uox.r-eqz5dr.r-6koalj.r-1loqt21.r-1habvwh.css-1dbjc4n.css-18t94o4.css-4rbku5:nth-of-type(2)
+twitter.com##a.r-13qz1uu.r-oyd9sg.r-1ny4l3l.r-16y2uox.r-eqz5dr.r-6koalj.r-1loqt21.r-1habvwh.css-1dbjc4n.css-18t94o4.css-4rbku5:nth-of-type(3)
+twitter.com##.r-1udh08x.r-1bro5k0.r-1ifxtd0.r-rs99b7.r-1phboty.r-1867qdf.r-1d6w8o1.r-x572qd.css-1dbjc4n
+twitter.com##.r-ymttw5.r-1w6e6rj.r-18u37iz.css-1dbjc4n
+
