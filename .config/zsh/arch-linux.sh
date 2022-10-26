@@ -20,6 +20,10 @@ arch-save-packages() {
   systemctl list-unit-files | grep enabled | awk '{print $1}' | sort >"${HOME}/.config/arch-linux/systemd-services-$(uname -n).txt"
 }
 
+arch-list-packages() {
+  pacman -Qet | sort
+}
+
 arch-uninstall-package() {
   yay -Rs "$@"
 }
