@@ -136,6 +136,10 @@ setup-prompt() {
   export RPROMPT='$(prompt-pando-target)'
 }
 
+set-terminal-title() {
+ echo -n -e "\033]0;$@\007"
+}
+
 # Disabling in favor of starship
 # setup-prompt
 
