@@ -155,6 +155,13 @@ end
 
 function module.terminal()
   log.log("focus.terminal() called")
+  if not by_class("org.wezfurlong.wezterm") then
+    awful.spawn.easy_async({"wezterm-gui",}, noop)
+  end
+end
+
+function module.kitty()
+  log.log("focus.kitty() called")
   if not by_class("kitty") then
     awful.spawn.easy_async({"kitty", "--single-instance", "--title", "terminal-kitty"}, noop)
   end

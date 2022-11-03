@@ -46,6 +46,23 @@ nav_vs_code() {
   esac
 }
 
+nav_wezterm() {
+  case "$1" in
+  left)
+    xdotool key --clearmodifiers ctrl+shift+Tab
+    ;;
+  up)
+    xdotool key --clearmodifiers ctrl+shift+Up
+    ;;
+  right)
+    xdotool key --clearmodifiers ctrl+Tab
+    ;;
+  down)
+    xdotool key --clearmodifiers ctrl+shift+Down o
+    ;;
+  esac
+}
+
 main() {
   ~/bin/log "$0" "$@"
   export PATH=/usr/local/bin:$PATH
@@ -65,6 +82,9 @@ main() {
   case "${app}" in
   *firefox*|*chrome*)
     nav_browser "${direction}"
+    ;;
+  *wezterm*)
+    nav_wezterm "${direction}"
     ;;
   *termite* | *iTerm2* | *kitty* | *Terminal*)
     ~/bin/nav-tmux "${direction}"
