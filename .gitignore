@@ -236,3 +236,4 @@
 .config/menus
 .config/kicad
 .config/microsoft-edge-dev
+.config/netlify/config.json
