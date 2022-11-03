@@ -29,8 +29,10 @@ done
 
 to_run=$(find "${dirs[@]}" -type f -executable | ~/bin/fuzzy-filter "$@")
 
+shift
+
 if [[ -n "${to_run}" ]]; then
-  exec "${to_run}"
+  exec "${to_run}" "$@"
 fi
 
 if [[ -f Makefile ]]; then
