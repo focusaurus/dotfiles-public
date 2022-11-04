@@ -21,12 +21,12 @@ local config = {
 
 	-- fonts
 	font = wezterm.font_with_fallback({
-    "Hack Nerd Font",
+		"Hack Nerd Font",
 		"JetBrains Mono",
 		"Fira Code",
 		"Noto Color Emoji",
 	}),
-  font_size = 14,
+	font_size = 14,
 
 	-- ui
 	color_scheme = "Paraiso Dark",
@@ -57,6 +57,7 @@ config.keys = {
 	-- normalize
 	{ mods = "SHIFT", key = " ", action = wezterm.action{ SendString = " " } },
 	{ mods = "SHIFT", key = "Backspace", action = wezterm.action{ SendKey = { key = "Backspace" } } },
+	{ mods = "CTRL", key = "v", action = wezterm.action{ PasteFrom = "Clipboard" } },
 
 	-- modes
 	{ mods = "LEADER", key = "a", action = wezterm.action{ ActivateKeyTable = { name = "app", one_shot = true, replace_current = false } } },
