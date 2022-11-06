@@ -30,10 +30,8 @@ local config = {
 
 	-- ui
 	color_scheme = "Paraiso Dark",
-	color_schemes = {
-		["Paraiso Dark"] = scheme,
-	},
-	window_background_opacity = 0.85,
+	color_schemes = { ["Paraiso Dark"] = scheme, },
+	-- window_background_opacity = 0.85,
 
 	-- cursor
 	force_reverse_video_cursor = true,
@@ -58,6 +56,8 @@ config.keys = {
 	{ mods = "SHIFT", key = " ", action = wezterm.action{ SendString = " " } },
 	{ mods = "SHIFT", key = "Backspace", action = wezterm.action{ SendKey = { key = "Backspace" } } },
 	{ mods = "CTRL", key = "v", action = wezterm.action{ PasteFrom = "Clipboard" } },
+	{ mods = "", key = "PageUp", action = wezterm.action{ ScrollByPage = -1 } },
+	{ mods = "", key = "PageDown", action = wezterm.action{ ScrollByPage = 1 } },
 
 	-- modes
 	{ mods = "LEADER", key = "a", action = wezterm.action{ ActivateKeyTable = { name = "app", one_shot = true, replace_current = false } } },
