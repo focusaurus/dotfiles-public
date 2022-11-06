@@ -80,6 +80,13 @@ local tasklist_buttons = gears.table.join(
 -- end)
 )
 
+client.connect_signal("manage", function (c)
+  -- i.e. put it at the end of others instead of setting it master.
+  if not awesome.startup then
+    awful.client.setslave(c)
+  end
+end)
+
 local clock_widget = wibox.widget.textclock()
 local microphone_script_widget = awful.widget.watch(
                                      os.getenv("HOME") ..

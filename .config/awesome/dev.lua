@@ -23,8 +23,8 @@ log.log("dev loaded")
 
 local toggle = true
 local test_class = 'Rofi'
-function module.dev1()
-  log.log("dev.dev1() called: toggle is: " .. tostring(toggle))
+function module.dev2()
+  log.log("dev.dev2() called: toggle is: " .. tostring(toggle))
   -- local c = client.focus
   -- if not c then return end
   local tag1 = awful.tag.find_by_name(awful.screen.focused(), "1")
@@ -45,16 +45,15 @@ function module.dev1()
       -- c:tags({tag2})
     -- end
   end
-  log.log("dev1 found: " .. tostring(found))
+  log.log("dev2 found: " .. tostring(found))
   toggle = not toggle
   -- c:tags({t})
   -- t:view_only()
   -- print("1: " .. awful.screen.focused().selected_tags[1])
 end
 
-function module.dev2()
-  log.log("dev.dev2() called")
-  focus.work_mode_on()
+function module.dev1()
+  log.log("dev.dev1() called")
 end
 
 return module

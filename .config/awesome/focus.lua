@@ -113,6 +113,15 @@ function module.frc()
   end
 end
 
+function module.onepassword()
+  log.log("focus.onepassword() called")
+  local found = by_class("1Password")
+  if not found then
+    awful.spawn.easy_async({"1password"}, noop)
+  end
+end
+
+
 function module.calendar()
   log.log("focus.calendar() called")
   local found = by_rules({class = "Google-chrome", name = "calendar"})

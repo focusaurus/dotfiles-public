@@ -226,3 +226,13 @@
 /.opam
 /.config/Code - OSS
 /.config/darktable
+.config/1Password
+.config/BraveSoftware
+.config/google-chrome-beta
+.config/google-chrome-unstable
+.gnome
+.config/vivaldi
+.config/vivaldi-snapshot
+.config/menus
+.config/kicad
+.config/microsoft-edge-dev
