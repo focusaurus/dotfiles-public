@@ -77,3 +77,4 @@ cmap qq q!
 nnoremap cop :set invpaste<cr>
 command CopyToClipboard let @+=@0
 command CopyAll :%y+
+command DisableSaveOnFocusLast :autocmd! FocusLost
