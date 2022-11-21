@@ -78,6 +78,7 @@ alias l="ls"
 alias la="ls -a"
 alias x="exa -1 --all --group-directories-first --classify --git"
 alias xl="exa --all --long --group-directories-first --classify --git"
+alias xt="exa --tree"
 alias les="/usr/bin/less --ignore-case"
 alias less="/usr/bin/less --ignore-case --quit-at-eof"
 # This conflicts with lf terminal file navigation program

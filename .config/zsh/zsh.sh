@@ -139,6 +139,7 @@ setup-prompt() {
 set-terminal-title() {
  echo -n -e "\033]0;$@\007"
 }
+alias stt=set-terminal-title
 
 # Disabling in favor of starship
 # setup-prompt

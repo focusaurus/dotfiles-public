@@ -15,4 +15,4 @@ xdotool keydown alt
 xdotool click 3 # right click
 xdotool keyup alt
 sleep 0.2
-xdotool key e
+xdotool key --clearmodifiers e

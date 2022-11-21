@@ -12,6 +12,7 @@ function tablfy(value)
 end
 
 local config = {
+	audible_bell = "Disabled",
 	key_tables = {},
 
 	-- startup
@@ -26,7 +27,7 @@ local config = {
 		"Fira Code",
 		"Noto Color Emoji",
 	}),
-	font_size = 14,
+	font_size = 16,
 
 	-- ui
 	color_scheme = "Paraiso Dark",
@@ -66,6 +67,7 @@ config.keys = {
 	{ mods = "LEADER", key = "r", action = wezterm.action{ ActivateKeyTable = { name = "resize", one_shot = false, replace_current = false } } },
 	{ mods = "LEADER", key = "s", action = wezterm.action{ ActivateKeyTable = { name = "session", one_shot = true, replace_current = false } } },
 	{ mods = "LEADER", key = "t", action = wezterm.action{ ActivateKeyTable = { name = "tabs", one_shot = true, replace_current = false } } },
+	{ mods = "LEADER", key = "l", action = wezterm.action{ ClearScrollback = "ScrollbackAndViewport" } },
 
 	-- navigation
 	{ mods = "LEADER", key = "Tab", action = "ActivateLastTab" },
@@ -207,13 +209,13 @@ for key, value in pairs(config.colors) do
 	scheme[key] = value
 end
 
-wezterm.on("update-right-status", function(win, pane)
-	local process = pane:get_foreground_process_name()
-	local mode = win:active_key_table() or ""
-	local status = process
-	if mode ~= "" then status = "[" .. string.upper(mode) .. "] " .. status end
-	win:set_right_status(" " .. status .. " ")
-end)
+-- wezterm.on("update-right-status", function(win, pane)
+-- 	local process = pane:get_foreground_process_name()
+-- 	local mode = win:active_key_table() or ""
+-- 	local status = process
+-- 	if mode ~= "" then status = "[" .. string.upper(mode) .. "] " .. status end
+-- 	win:set_right_status(" " .. status .. " ")
+-- end)
 
 return config
 -- local wezterm = require('wezterm')

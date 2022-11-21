@@ -51,7 +51,7 @@ root.keys(
     awful.key(hyper_pl, "p", focus.right,
       {description="focus next (right) by index", group="windows" }),
     awful.key(hyper_pl, "1", dev.dev1, {description="dev1", group="dev" }),
-    awful.key(hyper_pl, "3", runner({home_bin .. "/copy-link"}),
+    awful.key(hyper_pl, "k", runner({home_bin .. "/copy-link"}),
       {description="copy-link", group="dev" }),
     awful.key({super}, "space", runner({home_bin .. "/fuzz-script-choose"}),
       {description="fuzz script", group="rofi"}),

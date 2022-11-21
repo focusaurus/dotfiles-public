@@ -68,7 +68,7 @@ letters_linux="
 - [
 = ]
 q '
-w @comma-snippet bspc
+w , bspc
 e . spc
 r p del
 t y
