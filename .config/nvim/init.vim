@@ -1,6 +1,6 @@
 runtime! plugins.vim
 
-:source init_wip.lua
+:lua require 'init_wip'
 " set shiftwidth=2
 " set expandtab
 " set tabstop=2
@@ -28,17 +28,19 @@ runtime! plugins.vim
 " " allow switching to other buffers when the current one is modified
 " set hidden
 
-autocmd Filetype yaml setlocal shiftwidth=2 tabstop=2
-autocmd Filetype yml setlocal shiftwidth=2 tabstop=2
-autocmd Filetype sh setlocal shiftwidth=2 tabstop=2
-autocmd FocusLost * silent! wa
-autocmd Filetype org SoftPencil
+:lua require 'autocmds'
+" autocmd Filetype yaml setlocal shiftwidth=2 tabstop=2
+" autocmd Filetype yml setlocal shiftwidth=2 tabstop=2
+" autocmd Filetype sh setlocal shiftwidth=2 tabstop=2
+" autocmd FocusLost * silent! wa
+" autocmd Filetype org SoftPencil
 
 " pum is pop-up menu
 " set completeopt=menuone,noinsert,noselect
 
-runtime! abbreviations.vim
-:lua require('treesitter')
+" runtime! abbreviations.vim
+:lua require 'abbreviations'
+:lua require 'treesitter'
 runtime! vim-pencil.vim
 runtime! mappings.vim
 
