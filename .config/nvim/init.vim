@@ -37,7 +37,7 @@ autocmd Filetype org SoftPencil
 set completeopt=menuone,noinsert,noselect
 
 runtime! abbreviations.vim
-runtime! treesitter.vim
+:lua require('treesitter')
 runtime! vim-pencil.vim
 runtime! mappings.vim
 
