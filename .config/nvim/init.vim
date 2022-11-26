@@ -29,11 +29,6 @@ runtime! plugins.vim
 " set hidden
 
 :lua require 'autocmds'
-" autocmd Filetype yaml setlocal shiftwidth=2 tabstop=2
-" autocmd Filetype yml setlocal shiftwidth=2 tabstop=2
-" autocmd Filetype sh setlocal shiftwidth=2 tabstop=2
-" autocmd FocusLost * silent! wa
-" autocmd Filetype org SoftPencil
 
 " pum is pop-up menu
 " set completeopt=menuone,noinsert,noselect
@@ -42,7 +37,4 @@ runtime! plugins.vim
 :lua require 'abbreviations'
 :lua require 'treesitter'
 runtime! vim-pencil.vim
-runtime! mappings.vim
-
-" colorscheme slate
-" colorscheme github_*
+:lua require 'mappings'
