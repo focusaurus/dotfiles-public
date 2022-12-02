@@ -237,3 +237,7 @@
 .config/kicad
 .config/microsoft-edge-dev
 .config/netlify/config.json
+.config/toot/config.json
+.config/zoom.conf
+.vscode-oss/argv.json
+.config/netlify/autocompletion.json
