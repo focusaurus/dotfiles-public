@@ -30,10 +30,48 @@ return require('packer').startup(function(use)
   -- use 'liuchengxu/vim-which-key'
 
   -- For markdown with soft line wrapping
-  use 'reedes/vim-pencil'
+  use { 'reedes/vim-pencil',
+    run = function()
+      vim.api.nvim_create_augroup('pencil', { clear = true })
+      vim.api.nvim_create_autocmd('FileType', {
+        group = 'pencil',
+        pattern = { 'markdown', 'md' },
+        command = 'call pencil#init({"wrap":"soft"})',
+      })
+    end
+  }
+
   use 'kana/vim-textobj-user'
   use 'Chun-Yang/vim-textobj-chunk'
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use { 'nvim-treesitter/nvim-treesitter',
+    run = function()
+      require'nvim-treesitter.configs'.setup {
+        -- Modules and its options go here
+        ensure_installed = {
+          'bash',
+          'dockerfile',
+          'go',
+          'html',
+          'javascript',
+          'json',
+          'lua',
+          'org',
+          'php',
+          'python',
+          'rust',
+          'toml',
+          'yaml',
+        },
+        auto_install = true,
+        highlight = { enable = true },
+        incremental_selection = { enable = true },
+        textobjects = { enable = true },
+      }
+      local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+      ts_update()
+    end 
+  }
+
   -- use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end }
   use 'neovim/nvim-lspconfig'
   use 'glepnir/lspsaga.nvim'
@@ -41,7 +79,11 @@ return require('packer').startup(function(use)
   use 'nicwest/vim-camelsnek'
   use 'jeffkreeftmeijer/vim-numbertoggle'
   use 'projekt0n/github-nvim-theme'
-  use 'nvim-orgmode/orgmode'
+  use {'nvim-orgmode/orgmode', config = function()
+    require('orgmode').setup({
+      org_default_notes_file = '~/refile.org',
+    })
+  end }
   use 'tpope/vim-repeat'
 
   -- telescope depends on plenary
