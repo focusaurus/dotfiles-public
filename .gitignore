@@ -241,3 +241,4 @@
 .config/zoom.conf
 .vscode-oss/argv.json
 .config/netlify/autocompletion.json
+.config/nvim/plugin/packer_compiled.lua

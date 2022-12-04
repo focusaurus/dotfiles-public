@@ -1,4 +1,4 @@
-runtime! plugins.vim
+:lua require 'plugins'
 
 :lua require 'init_wip'
 :lua require 'autocmds'
