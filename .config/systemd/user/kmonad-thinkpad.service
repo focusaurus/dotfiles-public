@@ -1,6 +1,8 @@
 [Unit]
 Description=kmonad keyboard fancifier
 ConditionPathExists=/dev/input/by-path/platform-i8042-serio-0-event-kbd
+; Skip this on leop so Aiden can use qwerty on the login screen
+ConditionHost!=leop
 
 [Service]
 ; ExecStartPre="%h/.config/kmonad/render.sh"
