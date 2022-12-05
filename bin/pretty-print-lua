@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-lua-format --indent-width=2
+lua-format --indent-width=2 --double-quote-to-single-quote
