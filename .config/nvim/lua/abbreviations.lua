@@ -3,9 +3,9 @@ vim.cmd [[func Eatchar(pat)
   return (c =~ a:pat) ? '' : c
 endfunc
 ]]
-local eat_space = "<C-R>=Eatchar('\\s')<CR>" 
+local eat_space = '<C-R>=Eatchar(\'\\s\')<CR>'
 local abbrevs = {
-  qda='"$@"',
+  qda = '"$@"',
   qdo = '"$1"',
   qdt = '"$2"',
   qa = '$@',
@@ -16,11 +16,7 @@ local abbrevs = {
 }
 
 for short, long in pairs(abbrevs) do
-    vim.cmd.iabbrev({ '<buffer>', short, long .. eat_space, })
+  vim.cmd.iabbrev({'<buffer>', short, long .. eat_space})
 end
 
-vim.cmd.iabbrev({
-  '<buffer>',
-  'terab',
-  '{% block foo -%}{% endblock foo -%}',
-})
+vim.cmd.iabbrev({'<buffer>', 'terab', '{% block foo -%}{% endblock foo -%}'})
