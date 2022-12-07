@@ -63,7 +63,7 @@ awful.rules.rules = {
   {
     -- rofi for leader key
     rule_any={class={"Rofi"}},
-    properties={tag="2", placement=awful.placement.centered, maximized=false}
+    properties={tag="3", placement=awful.placement.centered, maximized=false}
   }
   -- Set Firefox to always map on the tag named "2" on screen 1.
   -- { rule={ class="Firefox" },

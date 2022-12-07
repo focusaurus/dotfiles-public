@@ -6,8 +6,8 @@ local log = require("log")
 
 local leader_path = os.getenv("HOME") .. "/bin/blezz"
 local prespawned_client = nil
-local tag1 = awful.tag.find_by_name(awful.screen.focused(), "1")
-local tag2 = awful.tag.find_by_name(awful.screen.focused(), "2")
+-- local tag1 = awful.tag.find_by_name(awful.screen.focused(), "1")
+local tag3 = awful.tag.find_by_name(awful.screen.focused(), "3")
 
 function module.log_clients()
   for c in awful.client.iterate(function () return true end) do
@@ -24,14 +24,13 @@ function module.tag_off_by_class(class_name)
 
   for c in awful.client.iterate(match_class) do
    log.log("dev1: c.class: " .. c.class .. " c.hidden: " .. tostring(c.hidden) .. " c.modal: " .. tostring(c.modal))
-   c:tag({tag2})
+   c:tag({tag3})
   end
 end
 
 function module.tag_in()
 
-  local tag1 = awful.tag.find_by_name(awful.screen.focused(), "1")
-  local tag2 = awful.tag.find_by_name(awful.screen.focused(), "2")
+  local focused_tag = awful.screen.focused().selected_tag
   local match_class = function (c)
     return awful.rules.match(c, {class = 'Rofi'})
   end
@@ -39,8 +38,8 @@ function module.tag_in()
   local found = false
   for c in awful.client.iterate(match_class) do
     found = true
-    log.log("tagging 1")
-    c:tags({tag1})
+    log.log("tagging in")
+    c:tags({focused_tag})
     c:emit_signal("request::activate", "tasklist", {raise = true})
   end
   -- if not found then focus.leader() end
@@ -54,7 +53,8 @@ function module.tag_on_by_class(class_name)
 
   for c in awful.client.iterate(match_class) do
    log.log("dev1: c.class: " .. c.class .. " c.hidden: " .. tostring(c.hidden) .. " c.modal: " .. tostring(c.modal))
-   c:tag({tag1})
+   local focused_tag = awful.screen.focused().selected_tag
+   c:tag({focused_tag})
   end
 end
 
@@ -117,7 +117,6 @@ function module.unmanage(c)
   if awful.rules.match(c, {class = "Rofi"}) then
     log.log("leader.unmanage: class matches . spawn fresh below")
     focus.leader()
-    -- awful.spawn.single_instance(leader_path, {properties = {tag = tag2}})
   end
 end
 

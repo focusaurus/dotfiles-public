@@ -54,6 +54,12 @@ end
 
 function module.dev1()
   log.log("dev.dev1() called")
+  local c = client.focus
+  if not c then return end
+  log.log("found focused client with title (name) " .. c.name)
+  local tag1 = awful.tag.find_by_name(awful.screen.focused(), "1")
+  local tag2 = awful.tag.find_by_name(awful.screen.focused(), "2")
+  c:tags({tag2})
 end
 
 return module

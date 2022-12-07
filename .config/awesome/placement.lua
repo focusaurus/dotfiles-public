@@ -129,4 +129,13 @@ function module.move_all_clients_to_screen()
   end
 end
 
+function module.move_to_tag(tag_name)
+  local c = client.focus
+  log.log("placement.move_to_tag called " .. tag_name .. " " .. tostring(c == nil))
+  if not c then return end
+  local tag = awful.tag.find_by_name(awful.screen.focused(), tag_name)
+  log.log("tag: " .. tostring(tag == nil))
+  c:tags({tag})
+end
+
 return module
