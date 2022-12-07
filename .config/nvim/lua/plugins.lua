@@ -15,6 +15,12 @@ end
 
 local packer_bootstrap = ensure_packer()
 
+-- This will probably fail on a new install where orgmode
+-- plugin hasn't yet been installed. Shrug.
+-- The docs don't seem to address this
+require('orgmode').setup_ts_grammar()
+
+
 return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
@@ -58,14 +64,20 @@ return require('packer').startup(function(use)
           'org', 'php', 'python', 'rust', 'toml', 'yaml'
         },
         auto_install = true,
-        highlight = {enable = true},
+        highlight = {
+          enable = true,
+          -- Required for spellcheck, some LaTex highlights and
+          -- code block highlights that do not have ts grammar
+          additional_vim_regex_highlighting = {'org'}
+        },
         incremental_selection = {enable = true},
         textobjects = {enable = true}
       }
       local ts_update = require('nvim-treesitter.install').update(
                             {with_sync = true})
       ts_update()
-    end
+    end,
+    requires = {'nvim-orgmode/orgmode'}
   }
 
   -- use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end }
@@ -77,17 +89,23 @@ return require('packer').startup(function(use)
   use 'projekt0n/github-nvim-theme'
   use {
     'nvim-orgmode/orgmode',
+    requires = {'nvim-treesitter/nvim-treesitter'},
     config = function()
       require('orgmode').setup({org_default_notes_file = '~/refile.org'})
-    end
+    end,
+    run = function() require('orgmode').setup_ts_grammar() end
   }
   use 'tpope/vim-repeat'
 
   -- telescope depends on plenary
   use 'nvim-lua/plenary.nvim'
   use 'nvim-telescope/telescope.nvim'
-
+  use {
+    'johmsalas/text-case.nvim',
+    config = function() require('textcase').setup {} end
+  }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then require('packer').sync() end
 end)
+
