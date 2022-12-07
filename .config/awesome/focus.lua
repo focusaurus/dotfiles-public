@@ -249,7 +249,7 @@ end
 
 function module.calculator()
   log.log("focus.calculator() called")
-  if not by_class("Calculator") then
+  if not by_class("Mate-calc") then
     awful.spawn.easy_async("mate-calc", noop)
   end
 end
