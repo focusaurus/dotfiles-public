@@ -9,6 +9,7 @@ local placement = require("placement")
 local focus = require("focus")
 local wibar = require("wibar")
 local leader = require("leader")
+local tags = require("tags")
 local dev = require("dev")
 
 local alt = "Mod1"
@@ -53,6 +54,10 @@ root.keys(
     awful.key(hyper_pl, "9", dev.dev1, {description="dev1", group="dev" }),
     awful.key(hyper_pl, "1", function() placement.move_to_tag("1") end, {description="move to tag 1", group="tags" }),
     awful.key(hyper_pl, "2", function() placement.move_to_tag("2") end, {description="move to tag 2", group="tags" }),
+    awful.key(hyper_pl, "F1", function() tags.select("1") end, {description="select tag 1", group="tags" }),
+    awful.key(hyper_pl, "F2", function() tags.select("2") end, {description="select tag 2", group="tags" }),
+    awful.key(hyper_pl, "F3", function() tags.select("3") end, {description="select tag 3", group="tags" }),
+    awful.key(hyper_pl, "F4", function() tags.select("4") end, {description="select tag 4", group="tags" }),
     awful.key(hyper_pl, "k", runner({home_bin .. "/copy-link"}),
       {description="copy-link", group="dev" }),
     awful.key({super}, "space", runner({home_bin .. "/fuzz-script-choose"}),
