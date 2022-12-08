@@ -1,6 +1,6 @@
 -- indent with 2 spaces for these file types
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = {'yaml', 'yml', 'sh'},
+  pattern = {'yaml', 'yml', 'sh', 'lua'},
   command = 'setlocal shiftwidth=2 tabstop=2'
 })
 
@@ -10,7 +10,11 @@ vim.api.nvim_create_autocmd('FileType', {
 -- :DisableSaveOnFocusLost
 vim.api.nvim_create_autocmd('FocusLost',
                             {pattern = {'*'}, command = 'silent! wa'})
+-- Temporary hack since the above does not seem to work
+vim.cmd('autocmd FocusLost * silent! wall')
+
 vim.cmd('command DisableSaveOnFocusLost :autocmd! FocusLost')
+
 
 vim.api.nvim_create_autocmd('FileType',
                             {pattern = {'org'}, command = 'SoftPencil'})

@@ -53,6 +53,8 @@ vim.keymap.set('n', '<leader>zf',
                ':call fzf#run({"source": "fd --type file", "sink": "tabedit"})<cr><cr>',
                {noremap = true})
 
+-- change buffer by fuzzy typing name
+vim.keymap.set('n', '<leader>b', ':Buffers<cr>', {noremap = true})
 -- tab and shift+tab for indent/outdent
 vim.keymap.set('n', '<Tab>', '>>', {noremap = true})
 vim.keymap.set('n', '<S-Tab>', '<<', {noremap = true})
