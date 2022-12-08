@@ -24,29 +24,61 @@ function browser_tab(number)
 end
 
 function by_class(class_name)
-  local found = false
-  local match_class = function (client)
-    return awful.rules.match(client, {class = class_name})
-  end
-
-  for client in awful.client.iterate(match_class) do
-    found = true
-    focus_client(client)
-  end
-  return found
+  return by_rules({class= class_name})
+  -- local found = false
+  -- local selected_tag = awful.screen.focused().selected_tag
+  -- local match_class_and_tag = function(client)
+  --   log.log("mcat: " .. client.name .. " client tag: " .. tostring(client.first_tag.name)
+  --   .. " selected tag: " .. tostring(selected_tag.name) ..
+  --   " matches: " .. tostring(client.first_tag == selected_tag))
+  --   return client.first_tag == selected_tag and awful.rules.match(client, {class = class_name})
+  -- end
+  --
+  -- local match_class = function (client)
+  --   return awful.rules.match(client, {class = class_name})
+  -- end
+  --
+  -- for client in awful.client.iterate(match_class_and_tag) do
+  --   log.log("found by class and tag: " .. client.name)
+  --   found = true
+  --   focus_client(client)
+  --   return found
+  -- end
+  --
+  -- for client in awful.client.iterate(match_class) do
+  --   log.log("found by class only: " .. client.name)
+  --   found = true
+  --   focus_client(client)
+  --   if client.first_tag ~= selected_tag then
+  --     client.first_tag:view_only()
+  --   end
+  -- end
+  -- return found
 end
 
 function by_rules(rules)
-  local found = false
+  local selected_tag = awful.screen.focused().selected_tag
+  local match_rules_and_tag = function (client)
+    return selected_tag == client.first_tag and awful.rules.match(client, rules)
+  end
+
+  -- prefer a matching client on the selected tag
+  for client in awful.client.iterate(match_rules_and_tag) do
+    focus_client(client)
+    return true
+  end
+
   local match_rules = function (client)
     return awful.rules.match(client, rules)
   end
 
+  -- fallback to matching clients on any tag
   for client in awful.client.iterate(match_rules) do
-    found = true
+    client.first_tag:view_only()
     focus_client(client)
+    return true
   end
-  return found
+  return false
 end
 
 function module.left()
@@ -93,7 +125,13 @@ function module.browser()
     module.frc()
     return
   end
+  -- try named chrome window specifically first
   local found = by_rules({class = "Google-chrome", name = "main"})
+  if found then return end
+  -- fall back to any chrome window
+  found = by_rules({class = "Google-chrome"})
+  if found then return end
+  -- if none, launch one
   if not found then
     awful.spawn.easy_async({"google-chrome-stable", "--restore-session"} , noop)
   end
