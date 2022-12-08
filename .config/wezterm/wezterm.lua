@@ -81,7 +81,9 @@ config.keys = {
         replace_current = false
       }
     }
-  }, {mods = 'LEADER', key = 'c', action = 'ActivateCopyMode'}, {
+  }, {
+    mods = 'LEADER', key = 'c', action = 'ActivateCopyMode'
+  }, {
     mods = 'LEADER',
     key = 'r',
     action = wezterm.action {
@@ -97,6 +99,16 @@ config.keys = {
     action = wezterm.action {
       ActivateKeyTable = {
         name = 'session',
+        one_shot = true,
+        replace_current = false
+      }
+    }
+  }, {
+    mods = 'LEADER',
+    key = 'w',
+    action = wezterm.action {
+      ActivateKeyTable = {
+        name = 'windows',
         one_shot = true,
         replace_current = false
       }
@@ -169,6 +181,10 @@ config.key_tables.app = {
 
 config.key_tables.session = {
   {key = 'd', action = wezterm.action {DetachDomain = 'CurrentPaneDomain'}}
+}
+
+config.key_tables.windows = {
+  {key = 'n', action = 'SpawnWindow'},
 }
 
 config.key_tables.tabs = {
