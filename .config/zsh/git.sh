@@ -401,7 +401,9 @@ gsync() {
   ~/bin/git-sync \
     ~ \
     ~/git.peterlyons.com/dotfiles \
-    ~/git.peterlyons.com/journals
+    ~/git.peterlyons.com/journals \
+    ~/git.peterlyons.com/exocortex/personal \
+    ~/git.peterlyons.com/exocortex/private
 
   if [[ -d ~/github.com/focusaurus/qmk_firmware ]]; then
     (
