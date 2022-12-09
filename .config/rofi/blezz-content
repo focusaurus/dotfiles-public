@@ -10,10 +10,10 @@ act(o, emacs, focus emacs)
 act(s, slack, focus slack)
 act(t, terminal, focus terminal)
 act(u, zulip, focus zulip)
+dir(v, volume)
 act(x, executables, rofi -show run)
 act(z, zoom, focus zoom)
 dir(w, work)
-dir(1, sound)
 dir(a, applications)
 
 applications:
@@ -34,8 +34,10 @@ act(c, calendar, focus fastmail_calendar)
 act(e, Fastmail, focus fastmail)
 act(j, Journal, terminal-quick journal-append-vim /home/plyons/git.peterlyons.com/focus-retreat-center/journal)
 
-sound:
+volume:
 act(0, mute, volume 0)
+act(u, up, volume +10%)
+act(d, down, volume -10%)
 act(1, 100%, volume 100%)
 act(2, 20%, volume 20%)
 act(3, 30%, volume 30%)
