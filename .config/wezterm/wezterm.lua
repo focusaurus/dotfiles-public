@@ -73,7 +73,7 @@ config.keys = {
     }
   }, {
     mods = 'LEADER',
-    key = 'b',
+    key = 'p',
     action = wezterm.action {
       ActivateKeyTable = {
         name = 'panes',
@@ -81,9 +81,7 @@ config.keys = {
         replace_current = false
       }
     }
-  }, {
-    mods = 'LEADER', key = 'c', action = 'ActivateCopyMode'
-  }, {
+  }, {mods = 'LEADER', key = 'c', action = 'ActivateCopyMode'}, {
     mods = 'LEADER',
     key = 'r',
     action = wezterm.action {
@@ -128,16 +126,17 @@ config.keys = {
     key = 'l',
     action = wezterm.action {ClearScrollback = 'ScrollbackAndViewport'}
   }, -- navigation
-  {mods = 'LEADER', key = 'Tab', action = 'ActivateLastTab'}, {
-    mods = 'LEADER',
-    key = 'p',
-    action = wezterm.action {ActivateTabRelative = -1}
-  },
+  -- {mods = 'LEADER', key = 'Tab', action = 'ActivateLastTab'}, {
+  --   mods = 'LEADER',
+  --   key = 'p',
+  --   action = wezterm.action {ActivateTabRelative = -1}
+  -- },
+  -- {
+  --   mods = 'LEADER',
+  --   key = 'n',
+  --   action = wezterm.action {ActivateTabRelative = 1}
+  -- }, {
   {
-    mods = 'LEADER',
-    key = 'n',
-    action = wezterm.action {ActivateTabRelative = 1}
-  }, {
     mods = 'CTRL',
     key = 'j',
     action = wezterm.action {ActivatePaneDirection = 'Down'}
@@ -165,7 +164,7 @@ config.keys = {
   }, {
     mods = 'CTRL|SHIFT',
     key = 'DownArrow',
-    action = wezterm.action.PaneSelect {mode = 'SwapWithActive'}
+    action = wezterm.action.PaneSelect {mode = 'Activate'}
   }
 }
 
@@ -183,9 +182,7 @@ config.key_tables.session = {
   {key = 'd', action = wezterm.action {DetachDomain = 'CurrentPaneDomain'}}
 }
 
-config.key_tables.windows = {
-  {key = 'n', action = 'SpawnWindow'},
-}
+config.key_tables.windows = {{key = 'n', action = 'SpawnWindow'}}
 
 config.key_tables.tabs = {
   {key = 'Space', action = 'ShowTabNavigator'},
@@ -222,7 +219,7 @@ end
 
 config.key_tables.panes = {
   {key = 'Space', action = wezterm.action {PaneSelect = {}}},
-  {key = 's', action = wezterm.action {PaneSelect = {mode = 'SwapWithActive'}}},
+  {key = 's', action = wezterm.action {PaneSelect = {mode = 'Activate'}}},
 
   {key = 'c', action = wezterm.action {CloseCurrentPane = {confirm = true}}},
   {key = 'C', action = wezterm.action {CloseCurrentPane = {confirm = false}}},

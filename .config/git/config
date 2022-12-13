@@ -48,8 +48,8 @@
   enabled = true
 [diff "sopsdiffer"]
   textconv = sops -d
-[credential]
-	helper = osxkeychain
+# [credential]
+# 	helper = osxkeychain
 [merge]
 	conflictstyle = diff3
 [init]
