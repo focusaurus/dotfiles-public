@@ -3,9 +3,8 @@
 alias s="ssh"
 alias kill-ssh='jobs -l|grep -E " ss?h? " | cut -d " " -f 4| xargs kill; fg'
 alias skr="ssh-keygen -R"
-
 if [[ -z "${SSH_AUTH_SOCK}" ]]; then
-  for sock_path in "${HOME}/.1password/agent.sock" "/run/user/$(id -u)/ssh-agent.sock"; do
+  for sock_path in "${HOME}/.1password/agent.sock" "/run/user/$(id -u)/ssh-agent.socket"; do
     if [[ -e "${sock_path}" ]]; then
       export SSH_AUTH_SOCK="${sock_path}"
     fi
