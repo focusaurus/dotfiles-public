@@ -1,6 +1,7 @@
 Main:
 act(b, browser, focus browser)
 act(c, calendar, focus calendar)
+act(d, todoist, focus todoist)
 act(e, email, focus email)
 act(f, fuzzball, fuzz-script-choose)
 act(i, firefox, focus firefox)

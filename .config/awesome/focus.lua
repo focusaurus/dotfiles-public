@@ -168,6 +168,14 @@ function module.calendar()
   end
 end
 
+function module.todoist()
+  log.log("focus.todoist() called")
+  local found = by_rules({class = "Google-chrome", name = "todoist"})
+  if not found then
+    awful.spawn.easy_async({"google-chrome-stable", "--new-window",  "https://todoist.com/app/"}, noop)
+  end
+end
+
 function module.music()
   log.log("focus.music() called")
   local found = by_rules({class = "Google-chrome", name = "music"})
