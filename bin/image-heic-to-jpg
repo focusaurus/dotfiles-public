@@ -4,11 +4,16 @@
 
 # ---- Start unofficial bash strict mode boilerplate
 # http://redsymbol.net/articles/unofficial-bash-strict-mode/
-set -o errexit # always exit on error
+set -o errexit  # always exit on error
 set -o errtrace # trap errors in functions as well
 set -o pipefail # don't ignore exit codes when piping output
 # set -x # enable debugging
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-heif-convert "$1" "${1%.heic}.jpg"
+jpg_name="${1%.heic}.jpg"
+if [[ "$1" =~ HEIC ]]; then
+  jpg_name="${1%.HEIC}.jpg"
+fi
+
+heif-convert "$1" "${jpg_name}"
