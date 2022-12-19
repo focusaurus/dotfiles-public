@@ -48,14 +48,16 @@ mylauncher = awful.widget.launcher({
 })
 
 menubar.utils.terminal = terminal
-
+alt = "Mod1"
+super = "Mod4" -- super
+control = "Control"
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
                             awful.button({}, 1, function(t) t:view_only() end),
-                            awful.button({modkey}, 1, function(t)
+                            awful.button({control}, 1, function(t)
       if client.focus then client.focus:move_to_tag(t) end
     end), awful.button({}, 3, awful.tag.viewtoggle),
-                            awful.button({modkey}, 3, function(t)
+                            awful.button({control}, 3, function(t)
       if client.focus then client.focus:toggle_tag(t) end
     end)
     -- awful.button({}, 4, function(t) awful.tag.viewnext(t.screen) end),
