@@ -20,7 +20,6 @@ local packer_bootstrap = ensure_packer()
 -- The docs don't seem to address this
 require('orgmode').setup_ts_grammar()
 
-
 return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
@@ -33,7 +32,11 @@ return require('packer').startup(function(use)
   use 'junegunn/fzf.vim'
 
   use 'machakann/vim-sandwich'
-  use 'tomtom/tcomment_vim'
+  -- use 'tomtom/tcomment_vim'
+  use {
+    'numToStr/Comment.nvim',
+    config = function() require('Comment').setup() end
+  }
   use 'laher/fuzzymenu.vim'
   use 'machakann/vim-highlightedyank'
   -- use 'vim-syntastic/syntastic'

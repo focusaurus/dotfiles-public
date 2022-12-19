@@ -20,7 +20,7 @@ vim.keymap.set('n', '<leader>cc', ':CopyToClipboard<cr>', {noremap = true})
 -- easy ref to system clipboard (CLIPBOARD)
 vim.keymap.set('n', '<c-c>', '"+', {noremap = true})
 vim.keymap.set('n', 'K', '"0p', {noremap = true})
-vim.keymap.set('n', 'y', '"+y', {noremap = true})
+-- vim.keymap.set('n', 'y', '"+y', {noremap = true})
 
 -- rerun the most recently-run macro
 vim.keymap.set('n', '<leader>mm', ':@@<cr>', {noremap = true})
@@ -30,8 +30,11 @@ vim.keymap.set('n', '<leader>pp',
                ':w<cr>:silent !pretty-print-files %<cr>:edit!<cr>',
                {noremap = true})
 
--- quit without saving, no confirmation
+-- close buffer without saving, no confirmation
 vim.keymap.set('n', '<leader>q', ':q!<cr>', {noremap = true})
+
+-- quit without saving any buffers, no confirmation
+vim.keymap.set('n', '<leader>Q', ':qa!<cr>', {noremap = true})
 
 -- save current buffer
 vim.keymap.set('n', '<leader>w', ':w<cr>', {noremap = true})
@@ -46,11 +49,13 @@ vim.keymap.set('n', '<leader>zb', ':Buffers<cr>', {noremap = true})
 vim.keymap.set('n', '<leader>zg', ':Rg<cr>', {noremap = true})
 
 -- " nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-vim.keymap.set('n', '<leader>zp', ':call fzf#vim#complete#path("fd")<cr><cr>',
-               {noremap = true})
--- vim.keymap.set('n', '<leader>zf', ':Files<cr>', { noremap = true })
+-- vim.keymap.set('n', '<leader>zp', ':call fzf#vim#complete#path("fd")<cr><cr>',
+--                {noremap = true})
+-- vim.keymap.set('n', '<leader>zP', '<plug>(fzf-complete-path)',
+--                {noremap = true})
+vim.keymap.set('n', '<leader>zF', ':GFiles<cr>', { noremap = true })
 vim.keymap.set('n', '<leader>zf',
-               ':call fzf#run({"source": "fd --type file", "sink": "tabedit"})<cr><cr>',
+               ':call fzf#run({"source": "fd --type file", "sink": "tabedit"})<cr>',
                {noremap = true})
 
 -- change buffer by fuzzy typing name
@@ -100,7 +105,9 @@ vim.keymap.set('i', '<expr> <S-Tab>', [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]],
                {noremap = true})
 
 -- In insert mode, complete a filesystem path with fuzzy matching (fzf plugin)
-vim.keymap.set('i', '<expr> <c-x><c-f>', 'fzf#vim#complete#path("fd")',
+-- vim.keymap.set('i', '<expr> <c-x><c-f>', 'fzf#vim#complete#path("fd")<cr>',
+--                {noremap = true})
+vim.keymap.set('i', '<expr> <c-x><c-f>', '<plug>(fzf-complete-path)',
                {noremap = true})
 
 -- inoremap <C-s> <Esc>:w<CR>a
