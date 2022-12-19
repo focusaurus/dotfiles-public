@@ -15,9 +15,8 @@ vim.cmd('autocmd FocusLost * silent! wall')
 
 vim.cmd('command DisableSaveOnFocusLost :autocmd! FocusLost')
 
-
 vim.api.nvim_create_autocmd('FileType',
-                            {pattern = {'org'}, command = 'SoftPencil'})
+                            {pattern = {'*'}, command = 'SoftPencil'})
 
 -- navigate up/down by soft wrapped lines instead of hard lines in markdown files
 vim.api.nvim_create_autocmd({'FileType'}, {
@@ -28,6 +27,18 @@ vim.api.nvim_create_autocmd({'FileType'}, {
   end
 })
 
+vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
+  pattern = {'*.txt', '*.md'},
+  command = 'setlocal spell'
+})
+
+-- start git commit messages in insert mode
+vim.api.nvim_create_augroup('bufcheck', {clear = true})
+vim.api.nvim_create_autocmd('FileType', {
+  group = 'bufcheck',
+  pattern = {'gitcommit', 'gitrebase'},
+  command = 'startinsert | 1'
+})
 -- If I ever start using nvim-orgmode plugin again
 -- vim.api.nvim_create_autocmd({ 'FileType' }, {pattern = { 'org' }, callback = function()
 --     vim.keymap.set('n', 'cc', '<Plug>OrgCheckBoxToggle', { noremap = true })
