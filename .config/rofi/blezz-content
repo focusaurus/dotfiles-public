@@ -5,7 +5,7 @@ act(d, todoist, focus todoist)
 act(e, email, focus email)
 act(f, fuzzball, fuzz-script-choose)
 act(i, firefox, focus firefox)
-act(j, rofimoji, rofimoji)
+act(q, rofimoji, rofimoji)
 act(m, music, focus music)
 act(o, emacs, focus emacs)
 act(s, slack, focus slack)
@@ -16,6 +16,7 @@ act(x, executables, rofi -show run)
 act(z, zoom, focus zoom)
 dir(w, work)
 dir(a, applications)
+dir(j, journal)
 
 applications:
 act(c, calculator, focus calculator)
@@ -26,6 +27,20 @@ act(u, cura, focus cura)
 act(o, 1password, focus onepassword)
 act(x, xournalpp, focus xournalpp)
 act(z, zeal, focus zeal)
+
+journal:
+dir(f, FRC)
+dir(p, personal)
+
+FRC:
+act(p, prompt, journal-append-prompt /home/plyons/git.peterlyons.com/focus-retreat-center/journal)
+act(r, read, terminal-quick journal-read /home/plyons/git.peterlyons.com/focus-retreat-center/journal)
+act(v, vim, terminal-quick journal-append-vim /home/plyons/git.peterlyons.com/focus-retreat-center/journal)
+
+personal:
+act(p, prompt, journal-append-prompt /home/plyons/git.peterlyons.com/petes-personal-journal)
+act(r, read, terminal-quick journal-read /home/plyons/git.peterlyons.com/petes-personal-journal)
+act(v, vim, terminal-quick journal-append-vim /home/plyons/git.peterlyons.com/petes-personal-journal)
 
 work:
 act(b, FRC-browser, focus frc)
