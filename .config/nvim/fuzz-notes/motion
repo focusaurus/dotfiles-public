@@ -1,0 +1,9 @@
+f( moves forward to the character typed. So fe goes to the next e, inclusive. fZ goes to the next capital Z.
+
+t( moves forward to just prior to the character typed, but not including it.
+o
+
+F( moves backward to the character typed, inclusive.
+T( moves backward to the character typed, exclusive.
+
+Your Cadillac breathes 400 horses over blue lines. You are going to Recida.

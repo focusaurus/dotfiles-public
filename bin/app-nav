@@ -63,6 +63,23 @@ nav_wezterm() {
   esac
 }
 
+nav_kitty() {
+  case "$1" in
+  left)
+    xdotool key --clearmodifiers 'ctrl+shift+Left'
+    ;;
+  up)
+    xdotool key --clearmodifiers 'ctrl+shift+bracketright'
+    ;;
+  right)
+    xdotool key --clearmodifiers 'ctrl+shift+Right'
+    ;;
+  down)
+    xdotool key --clearmodifiers 'ctrl+shift+bracketright'
+    ;;
+  esac
+}
+
 main() {
   ~/bin/log "$0" "$@"
   export PATH=/usr/local/bin:$PATH
@@ -82,6 +99,9 @@ main() {
   case "${app}" in
   *firefox*|*chrome*)
     nav_browser "${direction}"
+    ;;
+  *kitty*)
+    nav_kitty "${direction}"
     ;;
   *wezterm*)
     nav_wezterm "${direction}"
