@@ -23,7 +23,5 @@ IFS=$'\n\t'
 cat >"/tmp/heads-up-display"
 # kitty @ launch --type os-window --title heads-up-display bat --paging=always /tmp/heads-up-display
 
-kitty \
-  --single-instance \
-  --session "${HOME}/.config/kitty/heads-up-display.session" \
-  --config "${HOME}/.config/kitty/heads-up-display.conf"
+kitty --session "${HOME}/.config/kitty/heads-up-display.session"
+# --config "${HOME}/.config/kitty/heads-up-display.conf"

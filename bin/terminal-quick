@@ -12,15 +12,15 @@ set -o pipefail # don't ignore exit codes when piping output
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
-# kitty --single-instance --title=terminal-quick "$@"
-wezterm cli spawn --new-window -- "$@"
+kitty --single-instance --title=terminal-quick "$@"
+# wezterm cli spawn --new-window -- "$@"
 # declare -a args=(--single-instance --title=HUD)
 # if [[ -n "$@" ]]; then
-  # session="/tmp/kitty-quick-session.conf"
-  # echo launch "$@" >"${session}"
-  # args+=(--session=-)
-  # echo "launch zsh -c \"$@\"" | kitty "${args[@]}"
-  # echo "launch zsh -c \"$@\"" | cat
+#   session="/tmp/kitty-quick-session.conf"
+#   echo launch "$@" >"${session}"
+#   args+=(--session=-)
+#   echo "launch zsh -c \"$@\"" | kitty "${args[@]}"
+#   echo "launch zsh -c \"$@\"" | cat
 # else
-  # kitty "${args[@]}"
+#   kitty "${args[@]}"
 # fi

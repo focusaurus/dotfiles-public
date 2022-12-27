@@ -48,7 +48,7 @@ input (iokit-name "Infinity_Ergodox/QMK")
 
 modifiers='
 caps @tap-escape-hold-control
-lsft _
+lsft @sticky-shift
 rsft @tap-snippet-hold-shift
 lctl lctl
 lalt @tap-leader-hold-alt
@@ -60,8 +60,8 @@ spc @tap-space-hold-navigation
 '
 
 letters_macos='
-a @tap-a-hold-hyper
-; @tap-semi-hold-hyper
+a @tap-a-hold-super
+; @tap-semi-hold-super
 '
 
 letters_linux="
@@ -81,7 +81,7 @@ p l
 ] =
 \\ \\
 
-a @tap-a-hold-hyper
+a @tap-a-hold-super
 s o lft
 d e up
 f u rght
@@ -90,7 +90,7 @@ h d
 j h
 k t
 l n
-; @tap-s-hold-hyper
+; @tap-s-hold-super
 ' -
 
 z ;
@@ -113,9 +113,9 @@ m m
 #   envsubst < main.kbd.tpl > "${NAME}.kbd"
 
 # for name in thinkpad macbook ergodox-linux iris-linux infinity-linux ergodox-macos; do
-for name in thinkpad; do
+for name in thinkpad thinkpad-dev; do
   case "${name}" in
-  thinkpad)
+  thinkpad*)
     defcfg="${defcfg_thinkpad}"
     letters="${letters_linux}"
     ;;
@@ -155,10 +155,13 @@ for name in thinkpad; do
 (defalias
   hyper (around lalt lmet)
   comma-snippet (multi-tap 200 , f12)
+  sticky-shift (sticky-key 500 lsft)
   tap-space-hold-shift (tap-hold-next-release 500 spc lsft)
   tap-space-hold-navigation (tap-hold-next-release 500 spc (layer-toggle navigation))
   tap-a-hold-hyper (tap-hold-next-release 500 a @hyper)
+  tap-a-hold-super (tap-hold-next-release 500 a lmet)
   tap-s-hold-hyper (tap-hold-next-release 500 s @hyper)
+  tap-s-hold-super (tap-hold-next-release 500 s lmet)
   tap-semi-hold-hyper (tap-hold-next-release 500 ; @hyper)
   tap-escape-hold-control (tap-hold-next-release 150 esc lctl)
   tap-leader-hold-alt (tap-hold-next-release 150 f10 lalt)
@@ -168,7 +171,6 @@ for name in thinkpad; do
   tap-dot-hold-alt (tap-hold-next-release 150 . lalt)
   tap-g-hold-ctl (tap-hold-next-release 150 g lctl)
   tap-c-hold-alt (tap-hold-next-release 150 c lalt)
-
 )
 
 (defsrc"
