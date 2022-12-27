@@ -146,20 +146,6 @@ dirs() {
   done
 }
 
-# ok() {
-#   local script="$1"
-#   shift
-#   for ext in sh js py; do
-#     local relative="./bin/${script}.${ext}"
-#     if [[ -x "${relative}" ]]; then
-#       "${relative}" "$@"
-#       return
-#     fi
-#   done
-#   echo "no scripts matched ./bin/${script}.*" 1>&2
-#   ls -1 ./bin/*.*
-# }
-
 serve-dir() {
   python -m SimpleHTTPServer "$@"
 }
@@ -334,3 +320,6 @@ fz-ranger() {
 }
 
 alias psg="ps -ef | grep"
+
+# bat
+export BAT_THEME="Monokai Extended"

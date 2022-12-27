@@ -22,6 +22,7 @@ applications:
 act(c, calculator, focus calculator)
 act(f, freecad, focus freecad)
 act(g, gedit, focus gedit)
+act(h, chrysalis, focus chrysalis)
 act(p, prusa-slicer, focus prusa)
 act(u, cura, focus cura)
 act(o, 1password, focus onepassword)
