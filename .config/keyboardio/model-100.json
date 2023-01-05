@@ -1,30 +1,31 @@
 {
   "keymaps": [
     [
-      {
-        "code": 65535,
-        "label": {"base": {"full": "Transparent", "1u": " "}},
-        "categories": ["blanks"]
-      },
+      {"code": 41, "label": {"base": "Esc"}},
       {"code": 58, "label": {"base": "F1"}},
       {"code": 59, "label": {"base": "F2"}},
       {"code": 60, "label": {"base": "F3"}},
       {"code": 61, "label": {"base": "F4"}},
       {"code": 62, "label": {"base": "F5"}},
+      {"code": 69, "label": {"base": "F12"}},
       {
-        "code": 17152,
-        "label": {"hint": {"full": "LEDEffect", "1u": "LED"}, "base": "Next"},
-        "categories": ["ledkeys"]
-      },
-      {"code": 42, "label": {"base": {"full": "Backspace", "1u": "Bksp"}}},
-      {
-        "code": 49157,
+        "code": 51516,
+        "baseCode": 42,
         "label": {
-          "hint": {"full": "OneShot", "1u": "OSM"},
-          "base": {"full": "Right Control", "1u": "RCtrl"}
+          "hint": "Layer #1/",
+          "base": {"full": "Backspace", "1u": "Bksp"}
         },
-        "rangeStart": 49153,
-        "categories": ["oneshot", "modifier"]
+        "target": 1,
+        "rangeStart": 51218,
+        "categories": ["layer", "dualuse"]
+      },
+      {
+        "code": 49236,
+        "baseCode": 67,
+        "label": {"hint": "Control/", "base": "F10"},
+        "modifier": "Control",
+        "rangeStart": 49169,
+        "categories": ["modifier", "dualuse", "ctrl"]
       },
       {
         "code": 18665,
@@ -39,7 +40,7 @@
       {"code": 64, "label": {"base": "F7"}},
       {"code": 65, "label": {"base": "F8"}},
       {"code": 66, "label": {"base": "F9"}},
-      {"code": 39, "label": {"base": "0", "shifted": ")"}},
+      {"code": 67, "label": {"base": "F10"}},
       {
         "code": 17409,
         "label": {"hint": "LockTo", "base": "#1"},
@@ -47,26 +48,29 @@
         "rangeStart": 17408,
         "categories": ["layer", "locktolayer"]
       },
-      {"code": 53, "label": {"base": "`", "shifted": "~"}},
+      {
+        "code": 0,
+        "label": {"base": {"full": "Blocked", "1u": "Blkd"}},
+        "categories": ["blanks"]
+      },
       {"code": 52, "label": {"base": "'", "shifted": "\""}},
       {"code": 54, "label": {"base": ",", "shifted": "<"}},
       {"code": 55, "label": {"base": ".", "shifted": ">"}},
       {"code": 19, "label": {"base": "p", "shifted": "P"}},
       {"code": 28, "label": {"base": "y", "shifted": "Y"}},
-      {"code": 43, "label": {"base": "Tab"}},
+      {"code": 68, "label": {"base": "F11"}},
       {
-        "code": 51541,
-        "baseCode": 67,
-        "label": {"hint": "Layer #1/", "base": "F10"},
-        "target": 1,
-        "rangeStart": 51218,
-        "categories": ["layer", "dualuse"]
+        "code": 49163,
+        "label": {"hint": {"full": "OneShot", "1u": "OSL"}, "base": "#2"},
+        "target": 2,
+        "rangeStart": 49161,
+        "categories": ["layer", "oneshot"]
       },
       {
-        "code": 51774,
+        "code": 51518,
         "baseCode": 44,
-        "label": {"hint": "Layer #2/", "base": "Space"},
-        "target": 2,
+        "label": {"hint": "Layer #1/", "base": "Space"},
+        "target": 1,
         "rangeStart": 51218,
         "categories": ["layer", "dualuse"]
       },
@@ -81,7 +85,11 @@
       {"code": 6, "label": {"base": "c", "shifted": "C"}},
       {"code": 21, "label": {"base": "r", "shifted": "R"}},
       {"code": 15, "label": {"base": "l", "shifted": "L"}},
-      {"code": 47, "label": {"base": "[", "shifted": "{"}},
+      {
+        "code": 0,
+        "label": {"base": {"full": "Blocked", "1u": "Blkd"}},
+        "categories": ["blanks"]
+      },
       {
         "code": 49210,
         "baseCode": 41,
@@ -90,17 +98,24 @@
         "rangeStart": 49169,
         "categories": ["modifier", "dualuse", "ctrl"]
       },
-      {"code": 4, "label": {"base": "a", "shifted": "A"}},
+      {
+        "code": 49941,
+        "baseCode": 4,
+        "label": {"hint": "Super/", "base": "a"},
+        "modifier": "Super",
+        "rangeStart": 49169,
+        "categories": ["modifier", "dualuse", "gui"]
+      },
       {"code": 18, "label": {"base": "o", "shifted": "O"}},
       {"code": 8, "label": {"base": "e", "shifted": "E"}},
       {"code": 24, "label": {"base": "u", "shifted": "U"}},
       {"code": 12, "label": {"base": "i", "shifted": "I"}},
-      {"code": 41, "label": {"base": "Esc"}},
+      {"code": 67, "label": {"base": "F10"}},
       {
-        "code": 49158,
+        "code": 49154,
         "label": {
           "hint": {"full": "OneShot", "1u": "OSM"},
-          "base": {"full": "Right Shift", "1u": "RSft"}
+          "base": {"full": "Left Shift", "1u": "LSft"}
         },
         "rangeStart": 49153,
         "categories": ["oneshot", "modifier"]
@@ -120,29 +135,41 @@
       {"code": 23, "label": {"base": "t", "shifted": "T"}},
       {"code": 17, "label": {"base": "n", "shifted": "N"}},
       {"code": 22, "label": {"base": "s", "shifted": "S"}},
-      {"code": 52, "label": {"base": "'", "shifted": "\""}},
-      {"code": 78, "label": {"base": {"full": "Page Down", "1u": "PgDn"}}},
+      {"code": 69, "label": {"base": "F12"}},
+      {"code": 69, "label": {"base": "F12"}},
       {"code": 51, "label": {"base": ";", "shifted": ":"}},
       {"code": 20, "label": {"base": "q", "shifted": "Q"}},
       {"code": 13, "label": {"base": "j", "shifted": "J"}},
       {"code": 14, "label": {"base": "k", "shifted": "K"}},
-      {"code": 27, "label": {"base": "x", "shifted": "X"}},
+      {
+        "code": 49452,
+        "baseCode": 27,
+        "label": {"hint": "Shift/", "base": "x"},
+        "modifier": "Shift",
+        "rangeStart": 49169,
+        "categories": ["modifier", "dualuse", "shift"]
+      },
       {
         "code": 0,
         "label": {"base": {"full": "Blocked", "1u": "Blkd"}},
         "categories": ["blanks"]
       },
       {
-        "code": 227,
-        "label": {"base": {"full": "Super", "1u": "Sup.", "short": "Su"}},
-        "location": "left",
-        "categories": ["modifier"]
+        "code": 49153,
+        "label": {
+          "hint": {"full": "OneShot", "1u": "OSM"},
+          "base": {"full": "Left Control", "1u": "LCtrl"}
+        },
+        "rangeStart": 49153,
+        "categories": ["oneshot", "modifier"]
       },
       {
-        "code": 226,
-        "label": {"base": "Alt"},
-        "location": "left",
-        "categories": ["modifier"]
+        "code": 49722,
+        "baseCode": 41,
+        "label": {"hint": "Alt/", "base": "Esc"},
+        "modifier": "Alt",
+        "rangeStart": 49169,
+        "categories": ["modifier", "dualuse", "alt"]
       },
       {
         "code": 0,
@@ -154,7 +181,7 @@
       {"code": 26, "label": {"base": "w", "shifted": "W"}},
       {"code": 25, "label": {"base": "v", "shifted": "V"}},
       {"code": 29, "label": {"base": "z", "shifted": "Z"}},
-      {"code": 45, "label": {"base": "-", "shifted": "_"}}
+      {"code": 69, "label": {"base": "F12"}}
     ],
     [
       {
@@ -192,11 +219,7 @@
         "label": {"base": {"full": "Transparent", "1u": " "}},
         "categories": ["blanks"]
       },
-      {
-        "code": 65535,
-        "label": {"base": {"full": "Transparent", "1u": " "}},
-        "categories": ["blanks"]
-      },
+      {"code": 69, "label": {"base": "F12"}},
       {
         "code": 65535,
         "label": {"base": {"full": "Transparent", "1u": " "}},
@@ -258,11 +281,7 @@
         "label": {"base": {"full": "Transparent", "1u": " "}},
         "categories": ["blanks"]
       },
-      {
-        "code": 65535,
-        "label": {"base": {"full": "Transparent", "1u": " "}},
-        "categories": ["blanks"]
-      },
+      {"code": 67, "label": {"base": "F10"}},
       {
         "code": 65535,
         "label": {"base": {"full": "Transparent", "1u": " "}},
@@ -303,11 +322,7 @@
         "label": {"base": {"full": "Transparent", "1u": " "}},
         "categories": ["blanks"]
       },
-      {
-        "code": 65535,
-        "label": {"base": {"full": "Transparent", "1u": " "}},
-        "categories": ["blanks"]
-      },
+      {"code": 68, "label": {"base": "F11"}},
       {
         "code": 65535,
         "label": {"base": {"full": "Transparent", "1u": " "}},
@@ -434,9 +449,16 @@
         "categories": ["blanks"]
       },
       {
-        "code": 65535,
-        "label": {"base": {"full": "Transparent", "1u": " "}},
-        "categories": ["blanks"]
+        "code": 2102,
+        "label": {"hint": null, "base": "<"},
+        "categories": ["with-modifiers", "shift"],
+        "baseCode": 54
+      },
+      {
+        "code": 2103,
+        "label": {"hint": null, "base": ">"},
+        "categories": ["with-modifiers", "shift"],
+        "baseCode": 55
       },
       {
         "code": 65535,
@@ -448,16 +470,19 @@
         "label": {"base": {"full": "Transparent", "1u": " "}},
         "categories": ["blanks"]
       },
-      {"code": 57, "label": {"base": {"full": "Caps Lock", "1u": "Caps"}}},
       {
         "code": 65535,
         "label": {"base": {"full": "Transparent", "1u": " "}},
         "categories": ["blanks"]
       },
       {
-        "code": 65535,
-        "label": {"base": {"full": "Transparent", "1u": " "}},
-        "categories": ["blanks"]
+        "code": 49160,
+        "label": {
+          "hint": {"full": "OneShot", "1u": "OSM"},
+          "base": {"full": "Right Super", "1u": "RSup."}
+        },
+        "rangeStart": 49153,
+        "categories": ["oneshot", "modifier"]
       },
       {
         "code": 18614,
@@ -520,15 +545,12 @@
         "label": {"base": {"full": "Transparent", "1u": " "}},
         "categories": ["blanks"]
       },
+      {"code": 44, "label": {"base": "Space"}},
       {
-        "code": 65535,
-        "label": {"base": {"full": "Transparent", "1u": " "}},
-        "categories": ["blanks"]
-      },
-      {
-        "code": 65535,
-        "label": {"base": {"full": "Transparent", "1u": " "}},
-        "categories": ["blanks"]
+        "code": 49155,
+        "label": {"hint": {"full": "OneShot", "1u": "OSM"}, "base": "Alt"},
+        "rangeStart": 49153,
+        "categories": ["oneshot", "modifier"]
       },
       {
         "code": 65535,
@@ -602,9 +624,13 @@
       },
       {"code": 40, "label": {"base": "Enter"}},
       {
-        "code": 65535,
-        "label": {"base": {"full": "Transparent", "1u": " "}},
-        "categories": ["blanks"]
+        "code": 49157,
+        "label": {
+          "hint": {"full": "OneShot", "1u": "OSM"},
+          "base": {"full": "Right Control", "1u": "RCtrl"}
+        },
+        "rangeStart": 49153,
+        "categories": ["oneshot", "modifier"]
       },
       {
         "code": 65535,
@@ -672,9 +698,13 @@
         "categories": ["blanks"]
       },
       {
-        "code": 65535,
-        "label": {"base": {"full": "Transparent", "1u": " "}},
-        "categories": ["blanks"]
+        "code": 49158,
+        "label": {
+          "hint": {"full": "OneShot", "1u": "OSM"},
+          "base": {"full": "Right Shift", "1u": "RSft"}
+        },
+        "rangeStart": 49153,
+        "categories": ["oneshot", "modifier"]
       },
       {
         "code": 65535,
@@ -855,6 +885,10 @@
         "label": {"base": {"full": "Transparent", "1u": " "}},
         "categories": ["blanks"]
       },
+      {"code": 64, "label": {"base": "F7"}},
+      {"code": 65, "label": {"base": "F8"}},
+      {"code": 66, "label": {"base": "F9"}},
+      {"code": 69, "label": {"base": "F12"}},
       {
         "code": 65535,
         "label": {"base": {"full": "Transparent", "1u": " "}},
@@ -915,10 +949,48 @@
         "label": {"base": {"full": "Transparent", "1u": " "}},
         "categories": ["blanks"]
       },
+      {"code": 61, "label": {"base": "F4"}},
+      {"code": 62, "label": {"base": "F5"}},
+      {"code": 63, "label": {"base": "F6"}},
+      {"code": 68, "label": {"base": "F11"}},
       {
         "code": 65535,
         "label": {"base": {"full": "Transparent", "1u": " "}},
         "categories": ["blanks"]
+      },
+      {
+        "code": 65535,
+        "label": {"base": {"full": "Transparent", "1u": " "}},
+        "categories": ["blanks"]
+      },
+      {
+        "code": 65535,
+        "label": {"base": {"full": "Transparent", "1u": " "}},
+        "categories": ["blanks"]
+      },
+      {
+        "code": 227,
+        "label": {"base": {"full": "Super", "1u": "Sup.", "short": "Su"}},
+        "location": "left",
+        "categories": ["modifier"]
+      },
+      {
+        "code": 226,
+        "label": {"base": "Alt"},
+        "location": "left",
+        "categories": ["modifier"]
+      },
+      {
+        "code": 224,
+        "label": {"base": {"full": "Control", "1u": "Ctrl"}},
+        "location": "left",
+        "categories": ["modifier"]
+      },
+      {
+        "code": 225,
+        "label": {"base": "Shift"},
+        "location": "left",
+        "categories": ["modifier"]
       },
       {
         "code": 65535,
@@ -945,96 +1017,10 @@
         "label": {"base": {"full": "Transparent", "1u": " "}},
         "categories": ["blanks"]
       },
-      {
-        "code": 65535,
-        "label": {"base": {"full": "Transparent", "1u": " "}},
-        "categories": ["blanks"]
-      },
-      {
-        "code": 65535,
-        "label": {"base": {"full": "Transparent", "1u": " "}},
-        "categories": ["blanks"]
-      },
-      {
-        "code": 65535,
-        "label": {"base": {"full": "Transparent", "1u": " "}},
-        "categories": ["blanks"]
-      },
-      {
-        "code": 65535,
-        "label": {"base": {"full": "Transparent", "1u": " "}},
-        "categories": ["blanks"]
-      },
-      {
-        "code": 65535,
-        "label": {"base": {"full": "Transparent", "1u": " "}},
-        "categories": ["blanks"]
-      },
-      {
-        "code": 65535,
-        "label": {"base": {"full": "Transparent", "1u": " "}},
-        "categories": ["blanks"]
-      },
-      {
-        "code": 65535,
-        "label": {"base": {"full": "Transparent", "1u": " "}},
-        "categories": ["blanks"]
-      },
-      {
-        "code": 65535,
-        "label": {"base": {"full": "Transparent", "1u": " "}},
-        "categories": ["blanks"]
-      },
-      {
-        "code": 65535,
-        "label": {"base": {"full": "Transparent", "1u": " "}},
-        "categories": ["blanks"]
-      },
-      {
-        "code": 65535,
-        "label": {"base": {"full": "Transparent", "1u": " "}},
-        "categories": ["blanks"]
-      },
-      {
-        "code": 65535,
-        "label": {"base": {"full": "Transparent", "1u": " "}},
-        "categories": ["blanks"]
-      },
-      {
-        "code": 65535,
-        "label": {"base": {"full": "Transparent", "1u": " "}},
-        "categories": ["blanks"]
-      },
-      {
-        "code": 65535,
-        "label": {"base": {"full": "Transparent", "1u": " "}},
-        "categories": ["blanks"]
-      },
-      {
-        "code": 65535,
-        "label": {"base": {"full": "Transparent", "1u": " "}},
-        "categories": ["blanks"]
-      },
-      {
-        "code": 65535,
-        "label": {"base": {"full": "Transparent", "1u": " "}},
-        "categories": ["blanks"]
-      },
-      {
-        "code": 65535,
-        "label": {"base": {"full": "Transparent", "1u": " "}},
-        "categories": ["blanks"]
-      },
-      {
-        "code": 65535,
-        "label": {"base": {"full": "Transparent", "1u": " "}},
-        "categories": ["blanks"]
-      },
-      {
-        "code": 65535,
-        "label": {"base": {"full": "Transparent", "1u": " "}},
-        "categories": ["blanks"]
-      },
+      {"code": 58, "label": {"base": "F1"}},
+      {"code": 59, "label": {"base": "F2"}},
+      {"code": 60, "label": {"base": "F3"}},
+      {"code": 67, "label": {"base": "F10"}},
       {
         "code": 65535,
         "label": {"base": {"full": "Transparent", "1u": " "}},

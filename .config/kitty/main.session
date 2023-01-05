@@ -1,0 +1,12 @@
+cd ${DIR}
+launch --title=shell zsh
+new_tab
+layout vertical
+cd ${DIR}
+launch --title=editor/run zsh
+launch --title=run zsh
+resize_window shorter 8
+new_tab
+cd ${DIR}
+launch --title=git gitui
+

@@ -41,9 +41,9 @@ root.buttons(
 -- global keys
 root.keys(
   gears.table.join(
-    awful.key(hyper_pl, "r", awesome.restart,
+    awful.key({super}, "r", awesome.restart,
       {description="reload awesome", group="awesome"}),
-    awful.key(hyper_pl, "q", awesome.quit,
+    awful.key({super}, "q", awesome.quit,
       {description="quit awesome", group="awesome"}),
     -- awful.key(hyper_pl, "m", function() menubar.show() end,
     --   {description="show the menubar", group="launcher"}),
@@ -135,7 +135,7 @@ root.keys(
 cyclefocus.default_preset.base_font_size = 14
 
 local clientkeys = gears.table.join(
-  awful.key(hyper_pl, ".", placement.cycle,
+  awful.key({super}, ".", placement.cycle,
     {description = "cycle window placement", group = "windows"}),
   awful.key(hyper_pl, "x", function(c) c:kill() end,
     {description = "close", group = "windows"}),

@@ -29,8 +29,12 @@ vim.keymap.set('n', '<leader>pp',
                ':w<cr>:silent !pretty-print-files %<cr>:edit!<cr>',
                {noremap = true})
 
+-- LSP mappings collide with this, delete them
+-- vim.keymap.del('n', '<leader>wr')
+-- vim.keymap.del('n', '<leader>ws')
 -- save current buffer
 vim.keymap.set('n', '<leader>w', ':w<cr>', {noremap = true})
+vim.keymap.set('n', '<leader><leader>', ':w<cr>', {noremap = true})
 
 -- save all buffers and exit
 vim.keymap.set('n', '<leader>x', ':xa<cr>', {noremap = true})
@@ -44,19 +48,21 @@ vim.keymap.set('n', '<leader>Q', ':qa!<cr>', {noremap = true})
 -- fuzzy navigation with telescope
 -- See `:help telescope.builtin`
 local builtin = require('telescope.builtin')
+local project_files = require('telescope-config').project_files
 local function map_telescope(follow_key, func, desc)
   vim.keymap.set('n', '<leader>' .. follow_key, func, {desc = desc})
 end
-map_telescope('?', builtin.oldfiles, '[?] Find recently opened files')
+map_telescope('so', builtin.oldfiles, '[Search] recently [O]pened files')
 map_telescope('sF', builtin.find_files, '[S]earch All [F]iles')
+
 map_telescope('sb', builtin.buffers, '[S]earch [B]uffers')
+map_telescope('b', builtin.buffers, '[S]earch [B]uffers')
 map_telescope('sd', builtin.diagnostics, '[S]earch [D]iagnostics')
-map_telescope('sf', builtin.git_files, '[S]earch Git [F]iles')
+map_telescope('sf', project_files, '[S]earch Git/Project [F]iles')
 map_telescope('sg', builtin.live_grep, '[S]earch by [G]rep')
 map_telescope('sh', builtin.help_tags, '[S]earch [H]elp')
 map_telescope('sw', builtin.grep_string, '[S]earch current [W]ord')
 map_telescope('sk', builtin.keymaps, '[S]earch [K]eymaps')
-map_telescope('', builtin.oldfiles, '')
 vim.keymap.set('n', '<leader>/', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
   builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
@@ -136,7 +142,8 @@ vim.keymap.set('i', '<expr> <S-Tab>', [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]],
 
 -- inoremap <C-s> <Esc>:w<CR>a
 -- ctrl+s in insert mode saves like modern programs
-vim.keymap.set('i', '<C-s>', '<Esc>:w<CR>a', {noremap = true})
+vim.keymap.set('i', '<C-s>', '<esc>:w<cr>a', {noremap = true})
+vim.keymap.set('i', 'jk', '<esc>', {noremap = true})
 
 -- visual mode keymaps
 vim.keymap.set('v', 'y', '"+y', {noremap = true})
