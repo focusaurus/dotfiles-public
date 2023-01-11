@@ -1,2 +1,12 @@
-lowercase current word: guiw
-uppercase current word: gUiw
+Using https://github.com/johmsalas/text-case.nvim plugin
+
+lowercase current word: gal
+uppercase current word: gau
+titlecase current word: gat
+snake current word: gas
+kebab current word: gak
+
+see telescope prompt of possible case conversions for current word: ga.
+- also works in visual mode on the selection
+
+See mappings.lua for the rest of them

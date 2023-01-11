@@ -54,11 +54,23 @@ require('packer').startup(function(use)
   }
 
   -- Fuzzy Finder (files, lsp, etc)
+  -- local actions = require("telescope.actions")
   use {
     'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
     requires = {'nvim-lua/plenary.nvim'},
-    config = function() require('telescope').setup() end
+    config = function()
+      require('telescope').setup({
+        -- defaults = {
+        --   mappings = {
+        --     i = {
+        --       ['<Up>'] = actions.move_selection_next,
+        --       ['<Down>'] = actions.move_selection_previous
+        --     }
+        --   }
+        -- }
+      })
+    end
   }
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
@@ -98,7 +110,6 @@ require('packer').startup(function(use)
   }
 
   -- use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end }
-  use 'neovim/nvim-lspconfig'
   -- use 'glepnir/lspsaga.nvim'
   use 'nvim-lua/completion-nvim'
   use 'nicwest/vim-camelsnek'
@@ -114,14 +125,30 @@ require('packer').startup(function(use)
   }
   use 'tpope/vim-repeat'
 
-  -- use {
-  --   'kiyoon/telescope-insert-path.nvim',
-  --   requires = {'nvim-telescope/telescope.nvim'}
-  -- }
   use {
     'johmsalas/text-case.nvim',
-    config = function() require('textcase').setup {} end
+    after = 'nvim-treesitter',
+    config = function()
+      require('textcase').setup {}
+      require('telescope').load_extension('textcase')
+      vim.api.nvim_set_keymap('n', 'ga.', '<cmd>TextCaseOpenTelescope<CR>',
+                              {desc = 'Telescope'})
+      vim.api.nvim_set_keymap('v', 'ga.', '<cmd>TextCaseOpenTelescope<CR>',
+                              {desc = 'Telescope'})
+      local textcase = require('textcase')
+      vim.keymap.set('n', 'gat',
+                     function() textcase.current_word('to_title_case') end)
+      vim.keymap.set('n', 'gal',
+                     function() textcase.current_word('to_lower_case') end)
+      vim.keymap.set('n', 'gau',
+                     function() textcase.current_word('to_upper_case') end)
+      vim.keymap.set('n', 'gas',
+                     function() textcase.current_word('to_snake_case') end)
+      vim.keymap.set('n', 'gak',
+                     function() textcase.current_word('to_dash_case') end) -- kebab
+    end
   }
+  use 'ThePrimeagen/vim-be-good'
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then require('packer').sync() end
@@ -218,7 +245,7 @@ local on_attach = function(_, bufnr)
   nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
   nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols,
        '[D]ocument [S]ymbols')
-  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols,
+  nmap('<leader>Ws', require('telescope.builtin').lsp_dynamic_workspace_symbols,
        '[W]orkspace [S]ymbols')
 
   -- See `:help K` for why this keymap
@@ -227,11 +254,11 @@ local on_attach = function(_, bufnr)
 
   -- Lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-  nmap('<leader>wa', vim.lsp.buf.add_workspace_folder,
+  nmap('<leader>Wa', vim.lsp.buf.add_workspace_folder,
        '[W]orkspace [A]dd Folder')
-  nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder,
+  nmap('<leader>Wr', vim.lsp.buf.remove_workspace_folder,
        '[W]orkspace [R]emove Folder')
-  nmap('<leader>wl',
+  nmap('<leader>Wl',
        function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
        '[W]orkspace [L]ist Folders')
 

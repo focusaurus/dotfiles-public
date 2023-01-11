@@ -292,7 +292,7 @@
         "label": {"base": {"full": "Transparent", "1u": " "}},
         "categories": ["blanks"]
       },
-      {"code": 54, "label": {"base": ",", "shifted": "<"}},
+      {"code": 56, "label": {"base": "/", "shifted": "?"}},
       {"code": 36, "label": {"base": "7", "shifted": "&"}},
       {"code": 37, "label": {"base": "8", "shifted": "*"}},
       {"code": 38, "label": {"base": "9", "shifted": "("}},
