@@ -159,6 +159,13 @@ function module.onepassword()
   end
 end
 
+function module.obsidian()
+  log.log("focus.obsidian() called")
+  local found = by_class("obsidian")
+  if not found then
+    awful.spawn.easy_async({"obsidian"}, noop)
+  end
+end
 
 function module.calendar()
   log.log("focus.calendar() called")

@@ -45,6 +45,8 @@ vim.keymap.set('n', '<leader>q', ':q!<cr>', {noremap = true})
 -- quit without saving any buffers, no confirmation
 vim.keymap.set('n', '<leader>Q', ':qa!<cr>', {noremap = true})
 
+vim.keymap.set('n', '<leader>V', '<c-v>', {noremap = true})
+
 -- fuzzy navigation with telescope
 -- See `:help telescope.builtin`
 local builtin = require('telescope.builtin')

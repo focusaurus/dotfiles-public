@@ -517,8 +517,10 @@ before packages are loaded."
   (find-file "~/exocortex/personal/personal.org")
   ;; (find-file "~/exocortex/personal/daily-routine.org")
   ;; (org-show-all)
-  (when (eq system-type 'darwin)
-    (find-file "~/mc/mailchimp.org"))
+  ;; (when (eq system-type 'darwin)
+  ;;   (find-file "~/mc/mailchimp.org"))
+  (eval-after-load "org"
+    '(require 'ox-md nil t))
   (kill-buffer "*spacemacs*")
   ;; (org-todo-list 'T)
   ;; (spacemacs/alternate-window)

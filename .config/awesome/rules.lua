@@ -71,10 +71,21 @@ awful.rules.rules = {
       placement = awful.placement.centered,
       maximized = false
     }
-  }, {
+  }, -- {
+  -- Try harder to make FreeCAD maximized, 
+  -- even though the first match-all rule
+  -- in theory should work
+  -- rule_any = {class = {'FreeCAD'}, type = {'normal'}},
+  -- properties = {maximized = true}
+  -- },
+  {
     -- Put FRC terminal on tags 1 & 2
     rule_any = {name = {'FRC: website'}},
     properties = {tags = {'2'}, maximized = true}
+  }, {
+    -- Put 1Password on tags 1 & 2
+    rule_any = {class = {'1Password'}},
+    properties = {tags = {'1', '2'}, maximized = true}
   }, {
     -- Put slack on tags 1 & 2
     rule_any = {class = {'Slack'}},
