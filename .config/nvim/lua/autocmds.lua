@@ -15,18 +15,6 @@ vim.cmd('autocmd FocusLost * silent! wall')
 
 vim.cmd('command DisableSaveOnFocusLost :autocmd! FocusLost')
 
-vim.api.nvim_create_autocmd('FileType',
-                            {pattern = {'*'}, command = 'SoftPencil'})
-
--- navigate up/down by soft wrapped lines instead of hard lines in markdown files
-vim.api.nvim_create_autocmd({'FileType'}, {
-  pattern = {'markdown'},
-  callback = function()
-    vim.keymap.set('n', 'k', 'gk', {noremap = true})
-    vim.keymap.set('n', 'j', 'gj', {noremap = true})
-  end
-})
-
 vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
   pattern = {'*.txt', '*.md'},
   command = 'setlocal spell'

@@ -15,6 +15,53 @@ end
 
 local packer_bootstrap = ensure_packer()
 
+local telescope = function(use)
+  -- Fuzzy Finder (files, lsp, etc)
+  -- local actions = require("telescope.actions")
+  use {
+    'nvim-telescope/telescope.nvim',
+    branch = '0.1.x',
+    requires = {'nvim-lua/plenary.nvim'}
+  }
+
+  -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
+  use {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    run = 'make',
+    cond = vim.fn.executable 'make' == 1,
+    config = function()
+      -- Enable telescope fzf native, if installed
+      pcall(require('telescope').load_extension, 'fzf')
+    end
+  }
+end
+
+local textcase = function(use)
+  use {
+    'johmsalas/text-case.nvim',
+    after = 'nvim-treesitter',
+    config = function()
+      require('textcase').setup {}
+      require('telescope').load_extension('textcase')
+      vim.api.nvim_set_keymap('n', 'ga.', '<cmd>TextCaseOpenTelescope<CR>',
+                              {desc = 'Telescope'})
+      vim.api.nvim_set_keymap('v', 'ga.', '<cmd>TextCaseOpenTelescope<CR>',
+                              {desc = 'Telescope'})
+      local textcase = require('textcase')
+      vim.keymap.set('n', 'gat',
+                     function() textcase.current_word('to_title_case') end)
+      vim.keymap.set('n', 'gal',
+                     function() textcase.current_word('to_lower_case') end)
+      vim.keymap.set('n', 'gau',
+                     function() textcase.current_word('to_upper_case') end)
+      vim.keymap.set('n', 'gas',
+                     function() textcase.current_word('to_snake_case') end)
+      vim.keymap.set('n', 'gak',
+                     function() textcase.current_word('to_dash_case') end) -- kebab
+    end
+  }
+end
+
 require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
@@ -53,37 +100,6 @@ require('packer').startup(function(use)
     after = 'nvim-treesitter'
   }
 
-  -- Fuzzy Finder (files, lsp, etc)
-  -- local actions = require("telescope.actions")
-  use {
-    'nvim-telescope/telescope.nvim',
-    branch = '0.1.x',
-    requires = {'nvim-lua/plenary.nvim'},
-    config = function()
-      require('telescope').setup({
-        -- defaults = {
-        --   mappings = {
-        --     i = {
-        --       ['<Up>'] = actions.move_selection_next,
-        --       ['<Down>'] = actions.move_selection_previous
-        --     }
-        --   }
-        -- }
-      })
-    end
-  }
-
-  -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
-  use {
-    'nvim-telescope/telescope-fzf-native.nvim',
-    run = 'make',
-    cond = vim.fn.executable 'make' == 1,
-    config = function()
-      -- Enable telescope fzf native, if installed
-      pcall(require('telescope').load_extension, 'fzf')
-    end
-  }
-
   -- auto-detect indent settings
   use 'tpope/vim-sleuth'
 
@@ -96,66 +112,19 @@ require('packer').startup(function(use)
   }
   use 'machakann/vim-highlightedyank'
 
-  -- For markdown with soft line wrapping
-  use {
-    'reedes/vim-pencil',
-    run = function()
-      vim.api.nvim_create_augroup('pencil', {clear = true})
-      vim.api.nvim_create_autocmd('FileType', {
-        group = 'pencil',
-        pattern = {'markdown', 'md'},
-        command = 'call pencil#init({"wrap":"soft"})'
-      })
-    end
-  }
-
-  -- use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end }
-  -- use 'glepnir/lspsaga.nvim'
   use 'nvim-lua/completion-nvim'
   use 'nicwest/vim-camelsnek'
   use 'jeffkreeftmeijer/vim-numbertoggle'
-  -- use 'projekt0n/github-nvim-theme'
-  use {
-    'nvim-orgmode/orgmode',
-    requires = {'nvim-treesitter/nvim-treesitter'},
-    config = function()
-      require('orgmode').setup({org_default_notes_file = '~/refile.org'})
-      require('orgmode').setup_ts_grammar()
-    end
-  }
   use 'tpope/vim-repeat'
-
-  use {
-    'johmsalas/text-case.nvim',
-    after = 'nvim-treesitter',
-    config = function()
-      require('textcase').setup {}
-      require('telescope').load_extension('textcase')
-      vim.api.nvim_set_keymap('n', 'ga.', '<cmd>TextCaseOpenTelescope<CR>',
-                              {desc = 'Telescope'})
-      vim.api.nvim_set_keymap('v', 'ga.', '<cmd>TextCaseOpenTelescope<CR>',
-                              {desc = 'Telescope'})
-      local textcase = require('textcase')
-      vim.keymap.set('n', 'gat',
-                     function() textcase.current_word('to_title_case') end)
-      vim.keymap.set('n', 'gal',
-                     function() textcase.current_word('to_lower_case') end)
-      vim.keymap.set('n', 'gau',
-                     function() textcase.current_word('to_upper_case') end)
-      vim.keymap.set('n', 'gas',
-                     function() textcase.current_word('to_snake_case') end)
-      vim.keymap.set('n', 'gak',
-                     function() textcase.current_word('to_dash_case') end) -- kebab
-    end
-  }
   use 'ThePrimeagen/vim-be-good'
   use 'ixru/nvim-markdown'
+  textcase(use)
+  telescope(use)
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then require('packer').sync() end
 end)
 
-pcall(require('orgmode').setup_ts_grammar)
 -- When we are bootstrapping a configuration, it doesn't
 -- make sense to execute the rest of the init.lua.
 --

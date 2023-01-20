@@ -112,8 +112,10 @@ vim.keymap.set('n', 'w', 'W', {noremap = true})
 vim.keymap.set('n', 'W', 'w', {noremap = true})
 
 -- move up/down by soft wrapped lines by default
-vim.keymap.set('n', '<expr> k', '(v:count == 0 ? "gk" : "k")', {noremap = true})
-vim.keymap.set('n', '<expr> j', '(v:count == 0 ? "gj" : "j")', {noremap = true})
+-- vim.keymap.set('n', '<expr> k', '(v:count == 0 ? "gk" : "k")', {noremap = true})
+-- vim.keymap.set('n', '<expr> j', '(v:count == 0 ? "gj" : "j")', {noremap = true})
+vim.keymap.set('n', 'k', 'gk', {noremap = true})
+vim.keymap.set('n', 'j', 'gj', {noremap = true})
 
 -- paste without comments mucking everything up
 vim.keymap.set('n', 'cop', ':set invpaste<cr>', {noremap = true})
