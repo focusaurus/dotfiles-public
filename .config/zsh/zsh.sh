@@ -136,6 +136,28 @@ setup-prompt() {
   export RPROMPT='$(prompt-pando-target)'
 }
 
+#emacs mode
+bindkey -e
+
+##### completion #####
+fpath=(~/.config/zsh/completions $fpath)
+autoload -Uz compinit && compinit
+#autoload -Uz compinstall && compinstall
+
+# Trigger basic filesystem completion anywhere in
+# any command with ctrl+t
+# https://stackoverflow.com/a/49968871/266795
+zle -C complete-file complete-word _generic
+zstyle ':completion:complete-file::::' completer _files
+bindkey '^t' complete-file
+
+# control-left-arrow goes back a word, right goes forward
+bindkey ";5C" forward-word
+bindkey ";5D" backward-word
+bindkey "^S" kill-word
+# ctrl+backspace: delete word before
+bindkey '^H' backward-kill-word
+
 set-terminal-title() {
  echo -n -e "\033]0;$@\007"
 }
@@ -156,11 +178,6 @@ TRAPUSR1() {
 rss() {
   killall -u "${USER}" -SIGUSR1 'zsh'
 }
-
-# control-left-arrow goes back a word, right goes forward
-bindkey ";5C" forward-word
-bindkey ";5D" backward-word
-bindkey "^S" kill-word
 
 function watch-zsh() {
   WATCH_COMMAND='zsh -ci' /usr/local/bin/watch "$@"

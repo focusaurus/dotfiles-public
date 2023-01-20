@@ -1,19 +1,5 @@
 # zsh setup
 
-#emacs mode
-bindkey -e
-
-##### completion #####
-fpath=(~/.config/zsh/completions $fpath)
-autoload -Uz compinit && compinit
-#autoload -Uz compinstall && compinstall
-
-# Trigger basic filesystem completion anywhere in
-# any command with ctrl+t
-# https://stackoverflow.com/a/49968871/266795
-zle -C complete-file complete-word _generic
-zstyle ':completion:complete-file::::' completer _files
-bindkey '^t' complete-file
 
 source-if-exists() {
   for file in "$@"; do
@@ -24,6 +10,9 @@ source-if-exists() {
 }
 
 source-if-exists ~/.config/zsh/*.sh
+# There's an ordering issue with the glob, so source
+# this manually last
+source-if-exists ~/.config/zsh/fuzzy.sh
 source-if-exists ~/git.peterlyons.com/focus-retreat-center/frc.sh
 source-if-exists ~/.devtool.env
 source-if-exists "${HOME}/.config/zsh/os/$(uname).sh"
@@ -32,6 +21,5 @@ source-if-exists ~/.config/broot/launcher/bash/br
 source-if-exists /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source-if-exists /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source-if-exists /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-
-# opam configuration
-[[ ! -r /home/plyons/.opam/opam-init/init.zsh ]] || source /home/plyons/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+# 1password
+source-if-exists ~/.opam/opam-init/init.zsh

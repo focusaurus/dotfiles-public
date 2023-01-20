@@ -675,7 +675,12 @@
         "label": {"base": {"full": "Transparent", "1u": " "}},
         "categories": ["blanks"]
       },
-      {"code": 51, "label": {"base": ";", "shifted": ":"}},
+      {
+        "code": 2099,
+        "label": {"hint": null, "base": ":"},
+        "categories": ["with-modifiers", "shift"],
+        "baseCode": 51
+      },
       {"code": 53, "label": {"base": "`", "shifted": "~"}},
       {
         "code": 2095,
