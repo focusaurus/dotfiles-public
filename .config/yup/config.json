@@ -2,13 +2,12 @@
   "sort_mode": "closest",
   "ncurses_mode": true,
   "always_update_repos": false,
-  "print_pkgbuild": true,
-  "ask_pkgbuild": true,
-  "ask_redo": true,
+  "print_pkgbuild": false,
+  "ask_pkgbuild": false,
+  "ask_redo": false,
   "version": "1.1.8",
   "silent_update": true,
   "pacman_limit": 200,
   "aur_limit": 200,
-  "vim_keybindings": false
-}e
+  "vim_keybindings": true
 }

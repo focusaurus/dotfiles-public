@@ -204,7 +204,7 @@ hpost() {
 alias ht="noglob http --timeout 600"
 
 watch-movie() {
-  find ~/Downloads -maxdepth 3 -type "f" -size +100M | grep -v '\.zip$' | sort -n | {
+  find ~/Downloads -maxdepth 3 -type "f" -size +100M -not -iname '*.iso' | grep -v '\.zip$' | sort -n | {
     while IFS= read -r file_path; do
       echo -n "Watch $(basename "${file_path}")? y/n"
       read -r -q response
