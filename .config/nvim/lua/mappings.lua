@@ -149,8 +149,9 @@ vim.keymap.set('i', '<expr> <S-Tab>', [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]],
 vim.keymap.set('i', '<C-s>', '<esc>:w<cr>a', {noremap = true})
 vim.keymap.set('i', 'jk', '<esc>', {noremap = true})
 
+vim.keymap.set('i', '<c-bs>', '<c-w>', {noremap = true})
+
 -- visual mode keymaps
-vim.keymap.set('v', 'y', '"+y', {noremap = true})
 -- Paste over selection without overwriting the "0 register
 -- (from The Primeagen on youtube)
 vim.keymap.set('x', '<leader>p', '"_dP', {noremap = true})
