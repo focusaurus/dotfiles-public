@@ -243,3 +243,5 @@
 .config/netlify/autocompletion.json
 .config/nvim/plugin/packer_compiled.lua
 .config/kitty/*.bak
+/.config/cef_user_data
+/.rnd
