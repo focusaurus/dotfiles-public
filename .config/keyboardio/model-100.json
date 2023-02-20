@@ -2,10 +2,38 @@
   "keymaps": [
     [
       {"code": 41, "label": {"base": "Esc"}},
-      {"code": 58, "label": {"base": "F1"}},
-      {"code": 59, "label": {"base": "F2"}},
-      {"code": 60, "label": {"base": "F3"}},
-      {"code": 61, "label": {"base": "F4"}},
+      {
+        "code": 49995,
+        "baseCode": 58,
+        "label": {"hint": "Super/", "base": "F1"},
+        "modifier": "Super",
+        "rangeStart": 49169,
+        "categories": ["modifier", "dualuse", "gui"]
+      },
+      {
+        "code": 49740,
+        "baseCode": 59,
+        "label": {"hint": "Alt/", "base": "F2"},
+        "modifier": "Alt",
+        "rangeStart": 49169,
+        "categories": ["modifier", "dualuse", "alt"]
+      },
+      {
+        "code": 49229,
+        "baseCode": 60,
+        "label": {"hint": "Control/", "base": "F3"},
+        "modifier": "Control",
+        "rangeStart": 49169,
+        "categories": ["modifier", "dualuse", "ctrl"]
+      },
+      {
+        "code": 49486,
+        "baseCode": 61,
+        "label": {"hint": "Shift/", "base": "F4"},
+        "modifier": "Shift",
+        "rangeStart": 49169,
+        "categories": ["modifier", "dualuse", "shift"]
+      },
       {"code": 62, "label": {"base": "F5"}},
       {"code": 69, "label": {"base": "F12"}},
       {
@@ -37,10 +65,38 @@
         "categories": ["consumer"]
       },
       {"code": 63, "label": {"base": "F6"}},
-      {"code": 64, "label": {"base": "F7"}},
-      {"code": 65, "label": {"base": "F8"}},
-      {"code": 66, "label": {"base": "F9"}},
-      {"code": 67, "label": {"base": "F10"}},
+      {
+        "code": 50513,
+        "baseCode": 64,
+        "label": {"hint": "Right Shift/", "base": "F7"},
+        "modifier": "Right Shift",
+        "rangeStart": 49169,
+        "categories": ["modifier", "dualuse", "rshift"]
+      },
+      {
+        "code": 50258,
+        "baseCode": 65,
+        "label": {"hint": "Right Control/", "base": "F8"},
+        "modifier": "Right Control",
+        "rangeStart": 49169,
+        "categories": ["modifier", "dualuse", "rctrl"]
+      },
+      {
+        "code": 50771,
+        "baseCode": 66,
+        "label": {"hint": "AltGr/", "base": "F9"},
+        "modifier": "AltGr",
+        "rangeStart": 49169,
+        "categories": ["modifier", "dualuse", "altgr"]
+      },
+      {
+        "code": 51028,
+        "baseCode": 67,
+        "label": {"hint": "Right Super/", "base": "F10"},
+        "modifier": "Right Super",
+        "rangeStart": 49169,
+        "categories": ["modifier", "dualuse", "rgui"]
+      },
       {
         "code": 17409,
         "label": {"hint": "LockTo", "base": "#1"},
@@ -141,14 +197,7 @@
       {"code": 20, "label": {"base": "q", "shifted": "Q"}},
       {"code": 13, "label": {"base": "j", "shifted": "J"}},
       {"code": 14, "label": {"base": "k", "shifted": "K"}},
-      {
-        "code": 49452,
-        "baseCode": 27,
-        "label": {"hint": "Shift/", "base": "x"},
-        "modifier": "Shift",
-        "rangeStart": 49169,
-        "categories": ["modifier", "dualuse", "shift"]
-      },
+      {"code": 27, "label": {"base": "x", "shifted": "X"}},
       {
         "code": 0,
         "label": {"base": {"full": "Blocked", "1u": "Blkd"}},
@@ -219,7 +268,11 @@
         "label": {"base": {"full": "Transparent", "1u": " "}},
         "categories": ["blanks"]
       },
-      {"code": 69, "label": {"base": "F12"}},
+      {
+        "code": 65535,
+        "label": {"base": {"full": "Transparent", "1u": " "}},
+        "categories": ["blanks"]
+      },
       {
         "code": 65535,
         "label": {"base": {"full": "Transparent", "1u": " "}},
@@ -281,7 +334,11 @@
         "label": {"base": {"full": "Transparent", "1u": " "}},
         "categories": ["blanks"]
       },
-      {"code": 67, "label": {"base": "F10"}},
+      {
+        "code": 65535,
+        "label": {"base": {"full": "Transparent", "1u": " "}},
+        "categories": ["blanks"]
+      },
       {
         "code": 65535,
         "label": {"base": {"full": "Transparent", "1u": " "}},
@@ -322,7 +379,11 @@
         "label": {"base": {"full": "Transparent", "1u": " "}},
         "categories": ["blanks"]
       },
-      {"code": 68, "label": {"base": "F11"}},
+      {
+        "code": 65535,
+        "label": {"base": {"full": "Transparent", "1u": " "}},
+        "categories": ["blanks"]
+      },
       {
         "code": 65535,
         "label": {"base": {"full": "Transparent", "1u": " "}},
@@ -398,38 +459,10 @@
         "categories": ["with-modifiers", "shift"],
         "baseCode": 51
       },
-      {
-        "code": 49455,
-        "baseCode": 30,
-        "label": {"hint": "Shift/", "base": "1"},
-        "modifier": "Shift",
-        "rangeStart": 49169,
-        "categories": ["modifier", "dualuse", "shift"]
-      },
-      {
-        "code": 49200,
-        "baseCode": 31,
-        "label": {"hint": "Control/", "base": "2"},
-        "modifier": "Control",
-        "rangeStart": 49169,
-        "categories": ["modifier", "dualuse", "ctrl"]
-      },
-      {
-        "code": 49713,
-        "baseCode": 32,
-        "label": {"hint": "Alt/", "base": "3"},
-        "modifier": "Alt",
-        "rangeStart": 49169,
-        "categories": ["modifier", "dualuse", "alt"]
-      },
-      {
-        "code": 49982,
-        "baseCode": 45,
-        "label": {"hint": "Super/", "base": "-"},
-        "modifier": "Super",
-        "rangeStart": 49169,
-        "categories": ["modifier", "dualuse", "gui"]
-      },
+      {"code": 30, "label": {"base": "1", "shifted": "!"}},
+      {"code": 31, "label": {"base": "2", "shifted": "@"}},
+      {"code": 32, "label": {"base": "3", "shifted": "#"}},
+      {"code": 45, "label": {"base": "-", "shifted": "_"}},
       {"code": 40, "label": {"base": "Enter"}}
     ],
     [
