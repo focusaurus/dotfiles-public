@@ -245,3 +245,6 @@
 .config/kitty/*.bak
 /.config/cef_user_data
 /.rnd
+/.config/Electron/Crashpad
+/.config/PrusaSlicer/snapshots
+/.config/nushell/history.txt

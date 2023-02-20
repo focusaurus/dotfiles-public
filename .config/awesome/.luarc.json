@@ -1,0 +1,10 @@
+{
+    "diagnostics": {
+        "enable": true,
+        "globals": [
+          "root",
+          "awesome",
+        ]
+    },
+    "telemetry.enable": false
+}
