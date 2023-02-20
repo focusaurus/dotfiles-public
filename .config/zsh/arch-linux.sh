@@ -28,8 +28,8 @@ arch-uninstall-package() {
   yay -Rs "$@"
 }
 
-arch-uninstall-orhphans() {
-  pacman -Qtdq | sudo pacman -Rns -
+arch-uninstall-orphans() {
+  pacman -Qtdq | ifne sudo pacman -Rns -
 }
 
 arch-clear-cache() {

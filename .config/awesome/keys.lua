@@ -1,13 +1,13 @@
 local awful = require("awful")
 local gears = require("gears")
-local menubar = require("menubar")
-local naughty = require("naughty")
+-- local menubar = require("menubar")
+-- local naughty = require("naughty")
 
 local cyclefocus = require("cyclefocus")
 
 local placement = require("placement")
 local focus = require("focus")
-local wibar = require("wibar")
+-- local wibar = require("wibar")
 local leader = require("leader")
 local tags = require("tags")
 local dev = require("dev")
@@ -21,11 +21,11 @@ local app_nav = home_bin .. "/app-nav"
 -- Note I have kmonad mod-taps for hyper_pl on home row pinkies also
 local hyper_pl = {alt, super}
 local function noop() end
-local function runner(cmd_map)
-  return function()
-    awful.spawn.easy_async(cmd_map, noop)
-  end
-end
+-- local function runner(cmd_map)
+--   return function()
+--     awful.spawn.easy_async(cmd_map, noop)
+--   end
+-- end
 
 local function runner(args)
   return function() awful.spawn.easy_async(args, noop) end
@@ -41,7 +41,7 @@ root.buttons(
 -- global keys
 root.keys(
   gears.table.join(
-    awful.key({super}, "r", awesome.restart,
+    awful.key({super, shift}, "r", awesome.restart,
       {description="reload awesome", group="awesome"}),
     awful.key({super}, "q", awesome.quit,
       {description="quit awesome", group="awesome"}),
@@ -75,6 +75,8 @@ root.keys(
     awful.key({}, "F11", focus.fuzz_script,
       {description = "fuzz script", group = "rofi" }),
     awful.key({super}, "3", focus.fuzz_snippet,
+      {description = "fuzz snippet", group = "rofi" }),
+    awful.key({super}, "s", focus.fuzz_snippet,
       {description = "fuzz snippet", group = "rofi" }),
     awful.key({}, "F12", focus.fuzz_snippet,
       {description = "fuzz snippet", group = "rofi" }),

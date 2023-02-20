@@ -5,11 +5,21 @@ $git_commit\
 $git_state\
 $git_status\
 $env_var\
-$custom\
+${custom.ssh_agent}\
 $line_break\
 $jobs\
 $status\
 $character"""
+
+[env_var]
+variable = 'GIT_DIR'
+format = 'GIT_DIR=$env_value'
+
+[custom.ssh_agent]
+command = 'if ssh-add -l >/dev/null; then echo ssh-agent; fi' # shows output of command
+# detect_folders = ['.git'] # can specify filters but wildcards are not supported
+format = ' $output'
+when = 'git rev-parse --is-inside-work-tree'
 
 [package]
 disabled = true
