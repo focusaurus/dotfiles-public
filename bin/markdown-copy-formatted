@@ -13,5 +13,5 @@ IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
 # https://unix.stackexchange.com/a/84952/25728
-~/bin/paste | pandoc -f markdown | xclip -t text/html -selection clipboard
+~/bin/paste | pandoc --from=markdown | xclip -t text/html -selection clipboard
 

@@ -56,6 +56,14 @@ main() {
     copyq &>/dev/null &
   fi
 
+  ~/bin/log "$0" lxsession
+  # needed for 1password CLI
+  if have_exe lxsession; then
+    kill_ok lxsession
+    sleep 0.8
+    lxsession &>/dev/null &
+  fi
+
   ~/bin/log "$0" udiskie
   if have_exe udiskie; then
     kill_ok udiskie

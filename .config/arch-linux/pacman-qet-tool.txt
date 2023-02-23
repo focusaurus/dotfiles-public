@@ -50,7 +50,7 @@ firefox
 flameshot
 foomatic-db-nonfree-ppds
 foomatic-db-ppds
-freecad-weekly-appimage
+freecad-appimage
 fswatch
 gallery-dl-bin
 gcalcli
@@ -79,11 +79,11 @@ lf-bin
 libmp4v2
 lua-format
 luarocks
+lxsession
 macchanger
 make
 man-db
 mate-calc
-mate-polkit
 mmv-go
 moreutils
 mpv
