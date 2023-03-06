@@ -261,8 +261,9 @@ local servers = {
   -- pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
-
-  sumneko_lua = {
+  cssls = {},
+  html ={},
+  lua_ls = {
     Lua = {workspace = {checkThirdParty = false}, telemetry = {enable = false}}
   }
 }

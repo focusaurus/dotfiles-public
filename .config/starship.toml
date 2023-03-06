@@ -11,9 +11,10 @@ $jobs\
 $status\
 $character"""
 
-[env_var]
-variable = 'GIT_DIR'
+[env_var.GIT_DIR]
+# symbol = '🏠'
 format = 'GIT_DIR=$env_value'
+# style = 'fg:grey'
 
 [custom.ssh_agent]
 command = 'if ssh-add -l >/dev/null; then echo ssh-agent; fi' # shows output of command

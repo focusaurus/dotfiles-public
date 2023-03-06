@@ -19,13 +19,23 @@ vim.keymap.set('n', '<leader>cc', ':CopyToClipboard<cr>', {noremap = true})
 
 -- easy ref to system clipboard (CLIPBOARD)
 vim.keymap.set('n', '<c-c>', '"+', {noremap = true})
+
+-- yank selection or lines to system clipboard (theprimeagen)
+-- next greatest remap ever : asbjornHaland
+vim.keymap.set({'n', 'v'}, '<leader>y', [["+y]])
+vim.keymap.set('n', '<leader>Y', [["+Y]])
+
+-- paste the last thing yanked, even if you deleted something since
 vim.keymap.set('n', 'K', '"0p', {noremap = true})
+
+-- delete without the default implicit yank
+vim.keymap.set({'n', 'v'}, '<leader>d', [["_d]])
 
 -- rerun the most recently-run macro
 vim.keymap.set('n', '<leader>mm', ':@@<cr>', {noremap = true})
 
--- pretty print (autoformat) the buffer
-vim.keymap.set('n', '<leader>pp',
+-- autoformat (pretty print, beautify) the current buffer
+vim.keymap.set('n', '<leader>f',
                ':w<cr>:silent !pretty-print-files %<cr>:edit!<cr>',
                {noremap = true})
 
@@ -33,7 +43,8 @@ vim.keymap.set('n', '<leader>pp',
 -- vim.keymap.del('n', '<leader>wr')
 -- vim.keymap.del('n', '<leader>ws')
 -- save current buffer
-vim.keymap.set('n', '<leader>w', ':w<cr>', {noremap = true})
+-- vim.keymap.set('n', '<leader>w', ':w<cr>', {noremap = true})
+-- save the buffer with double tap leader
 vim.keymap.set('n', '<leader><leader>', ':w<cr>', {noremap = true})
 
 -- save all buffers and exit
@@ -45,8 +56,15 @@ vim.keymap.set('n', '<leader>q', ':q!<cr>', {noremap = true})
 -- quit without saving any buffers, no confirmation
 vim.keymap.set('n', '<leader>Q', ':qa!<cr>', {noremap = true})
 
-vim.keymap.set('n', '<leader>V', '<c-v>', {noremap = true})
+vim.keymap.set('n', '<leader>v', '<c-v>', {noremap = true})
 
+-- keep cursor in middle of screen during normal up/down navigation (theprimeagen)
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
+vim.keymap.set('n', '<C-u>', '<C-u>zz')
+
+-- Keep cursor in middle of screen when searching (theprimeagen)
+vim.keymap.set('n', 'n', 'nzzzv')
+vim.keymap.set('n', 'N', 'Nzzzv')
 -- fuzzy navigation with telescope
 -- See `:help telescope.builtin`
 local builtin = require('telescope.builtin')
@@ -153,8 +171,11 @@ vim.keymap.set('i', '<c-bs>', '<c-w>', {noremap = true})
 
 -- visual mode keymaps
 -- Paste over selection without overwriting the "0 register
--- (from The Primeagen on youtube)
+-- (from theprimeagen on youtube)
 vim.keymap.set('x', '<leader>p', '"_dP', {noremap = true})
 
+-- move visual selection up or down while selected
+vim.keymap.set('v', 'J', ':m \'>+1<CR>gv=gv')
+vim.keymap.set('v', 'K', ':m \'<-2<CR>gv=gv')
 -- command mode keymaps
 vim.keymap.set('c', 'qq', 'q!<cr>', {noremap = true})

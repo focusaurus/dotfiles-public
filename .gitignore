@@ -248,3 +248,5 @@
 /.config/Electron/Crashpad
 /.config/PrusaSlicer/snapshots
 /.config/nushell/history.txt
+/.goful
+/.vscode-oss/extensions

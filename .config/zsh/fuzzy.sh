@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 
 # more widely-used program as the default
-export FUZZER='fzf'
+fuzzer='fzf'
 if ~/bin/have-exe sk; then
-  FUZZER='sk'
-elif ~/bin/have-exe skim; then
-  FUZZER='skim'
+  fuzzer='sk'
 fi
 #export FZF_DEFAULT_COMMAND='rg -g ""'
 if ~/bin/have-exe ag; then
@@ -16,13 +14,15 @@ if ~/bin/have-exe fd; then
   #  export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
   export FZF_DEFAULT_COMMAND='fd --type f --hidden --ignore-file .gitignore --ignore-file .ignore'
 fi
-export FZF_COMPLETION_TRIGGER="''"
+# export FZF_COMPLETION_TRIGGER="**"
+export FZF_COMPLETION_DIR_COMMANDS="cd pushd rmdir tree"
 export FZF_DEFAULT_OPTS='--bind=alt-enter:print-query'
 if [[ -n "${ZSH_VERSION}" ]]; then
   if [[ "$(uname)" == "Darwin" ]]; then
     source-if-exists /usr/local/Cellar/fzf/*/shell/key-bindings.zsh
   fi
   source-if-exists /usr/share/fzf/key-bindings.zsh
+  source-if-exists /usr/share/fzf/completion.zsh
 
   # fzf-cd-all-widget() {
   #   setopt localoptions pipefail 2>/dev/null
@@ -88,9 +88,9 @@ if [[ -n "${ZSH_VERSION}" ]]; then
     # shellcheck disable=SC2145
     ~/bin/log "$0" "fuzz-all-into-line fd_opts: ${fd_opts[@]}"
     # Find the path; abort if the user doesn't select anything.
-    ~/bin/log "$0" "running ${FUZZER} pipeline"
+    ~/bin/log "$0" "running ${fuzzer} pipeline"
     local chosen_path
-    chosen_path=$(fd "${fd_opts[@]}" | "${FUZZER}" --select-1 --exit-0 --query "${query}") || return
+    chosen_path=$(fd "${fd_opts[@]}" | "${fuzzer}" --select-1 --exit-0 --query "${query}") || return
     ~/bin/log "$0" "fuzz-all-into-line chosen_path: ${chosen_path}"
     local new_buffer
     if [[ "${LBUFFER}" =~ "\s$" ]]; then
@@ -126,12 +126,6 @@ if [[ -n "${ZSH_VERSION}" ]]; then
 
 fi
 
-fuzzer='fzf'
-if ~/bin/have-exe sk; then
-  fuzzer='sk'
-elif ~/bin/have-exe skim; then
-  fuzzer='skim'
-fi
 c() {
   local dir
   dir=$(fasd -dl | "${fuzzer}" --select-1 --tac --query "$@")
@@ -142,16 +136,16 @@ c() {
   fi
 }
 
-kill-fzf() {
-  pkill --full 'fzf.*select-1.*query'
-}
+# kill-fzf() {
+#   pkill --full 'fzf.*select-1.*query'
+# }
 
-sigusr1-fuzzy() {
-  pid=$(ps -ef | fuzzy-filter "$@" | awk '{print $2}')
-  shift
-  [[ -z "${pid}" ]] && return 1
-  /bin/kill --signal USR1 "${pid}"
-}
+# sigusr1-fuzzy() {
+#   pid=$(ps -ef | fuzzy-filter "$@" | awk '{print $2}')
+#   shift
+#   [[ -z "${pid}" ]] && return 1
+#   /bin/kill --signal USR1 "${pid}"
+# }
 
 xargs-fuzzy() {
   query="$1"
@@ -179,4 +173,4 @@ edf-fuzzy() {
   nvim "${HOME}/${file}"
 }
 
-# alias -g ff='$(fd --type f | "${FUZZER}" || return )'
+# alias -g ff='$(fd --type f | "${fuzzer}" || return )'
