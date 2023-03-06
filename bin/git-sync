@@ -22,16 +22,17 @@ sync_dir() {
     return
   fi
   if ! ~/bin/git-is-work-tree-clean; then
-    echo "${ME}: work tree not clean. Press ENTER to launch gitui."
+    echo "${ME}: work tree not clean. Press ENTER to launch lazygit."
     # shellcheck disable=SC2034
     read -r wait_for_enter
-    if [[ -n "${GIT_DIR}" ]]; then
-      #gitui does not currently support bare repos.
-      # Need tig in this case.
-      tig status
-    else
-      gitui
-    fi
+    lazygit
+    # if [[ -n "${GIT_DIR}" ]]; then
+    #   #gitui does not currently support bare repos.
+    #   # Need tig in this case.
+    #   tig status
+    # else
+    #   gitui
+    # fi
   fi
   # if ! ~/bin/git-is-work-tree-clean; then
   #   echo "Work tree not clean. Not syncing."
