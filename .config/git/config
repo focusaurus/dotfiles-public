@@ -16,7 +16,7 @@
   followTags = true
 [pull]
   default = simple
-	rebase = false
+  rebase = false
 [diff]
   algorithm = histogram
   submodule = log
@@ -49,8 +49,10 @@
 [diff "sopsdiffer"]
   textconv = sops -d
 # [credential]
-# 	helper = osxkeychain
+#   helper = osxkeychain
 [merge]
-	conflictstyle = diff3
+  conflictstyle = diff3
 [init]
-	defaultBranch = main
+  defaultBranch = main
+[includeIf "gitdir:~/github.com/powertoolsdev/"]
+  path = ~/github.com/powertoolsdev/.gitconfig_include
