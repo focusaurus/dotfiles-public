@@ -64,7 +64,7 @@ root.keys(
     awful.key(hyper_pl, "F2", function() tags.select("2") end, {description="select tag 2", group="tags" }),
     awful.key(hyper_pl, "F3", function() tags.select("3") end, {description="select tag 3", group="tags" }),
     awful.key(hyper_pl, "F4", function() tags.select("4") end, {description="select tag 4", group="tags" }),
-    awful.key(hyper_pl, "k", runner({home_bin .. "/copy-link"}),
+    awful.key({super}, "i", runner({home_bin .. "/copy-link"}),
       {description="copy-link", group="dev" }),
     awful.key({super}, "space", runner({home_bin .. "/fuzz-script-choose"}),
       {description="fuzz script", group="rofi"}),

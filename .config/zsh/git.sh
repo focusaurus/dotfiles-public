@@ -2,13 +2,14 @@
 function ensure_ssh_agent() {
   echo ensure_ssh_agent start
   if ssh-add -L | grep --quiet "no identities"; then
-  echo ensure_ssh_agent add
+    echo ensure_ssh_agent add
     op-add-ssh-key
     return
   fi
   echo ensure_ssh_agent nope
 }
-alias g='gitui'
+alias g='lazygit'
+# alias g='gitui'
 alias ga='git add'
 # alias gassume='gitupdate-index --assume-unchanged'
 # alias gassumed='!git ls-files -v | grep ^h | cut -c 3-'
@@ -99,18 +100,27 @@ github() {
     if [[ -z "${repo_any_url}" ]]; then
       repo_any_url=$(~/bin/prompt-or-clipboard "Github Repo URL")
     fi
-    local repo_base_url
-    repo_base_url=$(echo "${repo_any_url}" | cut -d / -f 1-5)
-    ~/bin/log "$0" "${repo_base_url}"
-    if [[ ! "${repo_base_url}" =~ \.git$ ]]; then
-      repo_base_url="${repo_base_url}.git"
-    fi
     local org
     local repo
-    org="$(echo "${repo_base_url}" | cut -d / -f 4)"
-    repo="$(echo "${repo_base_url}" | cut -d / -f 5)"
-    echo "${org}"
-    echo "${repo}"
+    if [[ "${repo_any_url}" =~ ^https: ]]; then
+      # parse https url
+      local repo_base_url
+      repo_base_url=$(echo "${repo_any_url}" | cut -d / -f 1-5)
+      ~/bin/log "$0" "${repo_base_url}"
+      if [[ ! "${repo_base_url}" =~ \.git$ ]]; then
+        repo_base_url="${repo_base_url}.git"
+      fi
+      org="$(echo "${repo_base_url}" | cut -d / -f 4)"
+      repo="$(echo "${repo_base_url}" | cut -d / -f 5)"
+    else
+      # parse ssh url
+      repo_base_url="${repo_any_url}"
+      org="$(echo "${repo_any_url}" | cut -d : -f 2 | cut -d / -f 1)"
+      repo="$(echo "${repo_any_url}" | cut -d : -f 2 | cut -d / -f 2)"
+      # repo="${repo/.git/}"
+    fi
+    echo "org: ${org}"
+    echo "repo: ${repo}"
     mkdir -p "${HOME}/github.com/${org}"
     cd "${HOME}/github.com/${org}" || return 1
     git clone --recursive "${repo_base_url}"

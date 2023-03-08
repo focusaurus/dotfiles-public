@@ -3,13 +3,13 @@ local module = {}
 local awful = require("awful")
 local gears = require("gears")
 local log = require("log")
-local work_mode = false
+local work_mode = ""
 
 local home_bin = os.getenv("HOME") .. "/bin"
 function noop() end
 
 function module.work_mode(value)
-  log.log("work_mode_on called. Current value: " .. tostring(work_mode))
+  log.log("work_mode called. Current value: " .. tostring(work_mode))
   work_mode = value
 end
 
@@ -121,8 +121,12 @@ end
 
 function module.browser()
   log.log("focus.browser() called")
-  if work_mode then
+  if work_mode == "frc" then
     module.frc()
+    return
+  end
+  if work_mode == "nuon" then
+    module.nuon()
     return
   end
   -- try named chrome window specifically first
@@ -146,6 +150,14 @@ end
 function module.frc()
   log.log("focus.frc() called")
   local found = by_rules({class = "Google-chrome", name = "FRC"})
+  if not found then
+    awful.spawn.easy_async({"google-chrome-stable"}, noop)
+  end
+end
+
+function module.nuon()
+  log.log("focus.nuon() called")
+  local found = by_rules({class = "Google-chrome", name = "nuon"})
   if not found then
     awful.spawn.easy_async({"google-chrome-stable"}, noop)
   end

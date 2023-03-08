@@ -77,15 +77,16 @@ local rofi = {
   -- rofi for leader key
   rule_any = {class = {'Rofi'}},
   properties = {
-    tag = '3',
+    tag = '4',
     placement = awful.placement.centered,
     maximized = false
   }
 }
+local all_regular_tags = {'1', '2', '3'}
 local one_password = {
   -- Put 1Password on tags 1 & 2
   rule_any = {class = {'1Password'}},
-  properties = {tags = {'1', '2'}, maximized = true}
+  properties = {tags = all_regular_tags, maximized = true}
 }
 local frc = {
   -- Put FRC terminal on tags 1 & 2
@@ -95,7 +96,12 @@ local frc = {
 local slack = {
   -- Put slack on tags 1 & 2
   rule_any = {class = {'Slack'}},
-  properties = {tags = {'1', '2'}, maximized = true}
+  properties = {tags = all_regular_tags, maximized = true}
+}
+local music = {
+  -- Put music on tags 1 & 2
+  rule_any = {name = {'music'}},
+  properties = {tags = all_regular_tags, maximized = true}
 }
 local freecad = {
   -- Force FreeCAD to maximize the main window properly
@@ -112,6 +118,6 @@ local freecad = {
 }
 awful.rules.rules = {
   all_clients, floating_clients, title_bars, sticky, rofi, one_password, frc,
-  slack, freecad
+  slack, music, freecad
 }
 

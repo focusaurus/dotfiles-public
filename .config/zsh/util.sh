@@ -134,8 +134,6 @@ else
   TAILER="tail -f"
 fi
 
-export BROWSER=firefox
-
 char-count() {
   echo -n "$@" | wc -c
 }

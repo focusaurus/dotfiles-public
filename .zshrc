@@ -14,6 +14,7 @@ source-if-exists ~/.config/zsh/*.sh
 # this manually last
 source-if-exists ~/.config/zsh/fuzzy.sh
 source-if-exists ~/git.peterlyons.com/focus-retreat-center/frc.sh
+source-if-exists ~/git.peterlyons.com/nuon/nuon.sh
 source-if-exists ~/.devtool.env
 source-if-exists "${HOME}/.config/zsh/os/$(uname).sh"
 source-if-exists ~/.nvm/nvm.sh

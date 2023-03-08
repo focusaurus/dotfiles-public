@@ -1,7 +1,12 @@
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
-require("errors")
+
+-- Attempting to disable naughty so dbus is free and
+-- I can run dunst instead
+-- https://github.com/awesomeWM/awesome/issues/1285
+-- require("errors")
+package.loaded["naughty.dbus"] = {}
 
 -- Standard awesome library
 local gears = require("gears")

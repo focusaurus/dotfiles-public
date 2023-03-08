@@ -1,8 +1,14 @@
 [global]
-    font = Inconsolata 12
+    font = Hack 12
     icon_position = left
     allow_markup = yes
-    format = "<b>%s</b>\n%b"
+    #%a  appname
+    #%s  summary
+    #%b  body
+    #%i  iconname (including its path)
+    #%I  iconname (without its path)
+    #%p  progress value if set ([  0%] to [100%]) or nothing
+    format = "<b>%s</b>\n%b\n(dunst) app: %a\nprogress: %p\nicon: %I"
 
     sort = yes
     indicate_hidden = no
@@ -30,7 +36,7 @@
     startup_notification = false
 
     dmenu = /usr/bin/dmenu -p dunst:
-    browser = /usr/bin/firefox -new-tab
+    browser = google-chrome-stable
  
 [frame]
     width = 1

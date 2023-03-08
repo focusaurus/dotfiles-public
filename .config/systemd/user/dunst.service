@@ -1,0 +1,11 @@
+[Unit]
+Description=dunst desktop notification daemon
+
+[Service]
+ExecStart=/bin/dunst
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=graphical.target
+

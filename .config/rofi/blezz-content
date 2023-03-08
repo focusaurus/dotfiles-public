@@ -32,12 +32,18 @@ act(z, zeal, focus zeal)
 
 journal:
 dir(f, FRC)
+dir(n, nuon)
 dir(p, personal)
 
 FRC:
 act(p, prompt, journal-append-prompt /home/plyons/git.peterlyons.com/focus-retreat-center/journal)
 act(r, read, terminal-quick journal-read /home/plyons/git.peterlyons.com/focus-retreat-center/journal)
 act(v, vim, terminal-quick journal-append-vim /home/plyons/git.peterlyons.com/focus-retreat-center/journal)
+
+nuon:
+act(p, prompt, journal-append-prompt /home/plyons/git.peterlyons.com/nuon)
+act(r, read, terminal-quick journal-read /home/plyons/git.peterlyons.com/nuon)
+act(v, vim, terminal-quick journal-append-vim /home/plyons/git.peterlyons.com/nuon)
 
 personal:
 act(p, prompt, journal-append-prompt /home/plyons/git.peterlyons.com/petes-personal-journal)
@@ -68,8 +74,9 @@ act(d, down, volume -10%)
 act(e, 80%, volume 80%)
 act(f, 40%, volume 40%)
 act(m, mute, volume 0)
-act(n, 90%, volume 40%)
+act(n, 90%, volume 90%)
 act(o, 100%, volume 100%)
+act(h, 100%, volume 100%)
 act(s, 60%, volume 60%)
 act(t, toggle mute, volume-toggle-mute)
 act(u, up, volume +10%)
