@@ -1,6 +1,3 @@
-# zsh setup
-
-
 source-if-exists() {
   for file in "$@"; do
     if [[ -e "${file}" ]]; then
@@ -9,6 +6,8 @@ source-if-exists() {
   done
 }
 
+# put this early to make sure compinit is run
+source-if-exists ~/.config/zsh/zsh.sh
 source-if-exists ~/.config/zsh/*.sh
 # There's an ordering issue with the glob, so source
 # this manually last

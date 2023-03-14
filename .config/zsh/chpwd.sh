@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 ##### project specific path #####
 chpwd-path() {
   if [[ -d .git || -d bin || -d node_modules/.bin || -d python/bin ]]; then

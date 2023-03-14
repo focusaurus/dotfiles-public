@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 export TERM=xterm-256color
 # make PATH system wide
 # launchctl setenv PATH $PATH

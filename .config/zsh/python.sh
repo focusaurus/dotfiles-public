@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 ##### python virtualenv #####
 # this is a virtualenvwrapper placeholder for lazy loading
 # first run it sets up virtualenvwrapper which will define the real "workon"

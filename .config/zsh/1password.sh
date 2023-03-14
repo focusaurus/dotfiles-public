@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 op-add-ssh-key() {
   if [[ -n $(ssh-add -L | grep --invert-match "no identities") ]]; then
     echo ssh key already loaded into ssh-agent. Ready for passwordless ssh.

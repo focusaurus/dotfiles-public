@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 if ~/bin/have-exe fasd; then
   eval "$(fasd --init zsh-hook)"
   #alias a='fasd -a'        # any

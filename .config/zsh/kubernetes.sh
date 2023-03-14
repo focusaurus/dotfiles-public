@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 if command -v kubectl >/dev/null && [[ -n "${ZSH_VERSION}" ]]; then
   # shellcheck disable=SC1090
   source <(kubectl completion zsh)

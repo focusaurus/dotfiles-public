@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 alias cabu='clear; cargo build'
 # alias cate='clear; cargo test'
 alias cate='clear;

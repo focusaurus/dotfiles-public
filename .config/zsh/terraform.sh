@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 _tf() {
   command=${1-plan}
   aws-vault exec "${AWS_PROFILE}" -- terraform "${command}" "$@"

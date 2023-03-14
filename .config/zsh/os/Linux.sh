@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 export TERM="xterm-256color"
 if ~/bin/have-exe kitty; then
   export TERM="xterm-kitty"

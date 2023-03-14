@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 # shellcheck disable=SC2148
 ########## node.js ##########
 alias enep='export NODE_ENV=production'

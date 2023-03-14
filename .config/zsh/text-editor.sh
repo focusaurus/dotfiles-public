@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 alias te="text-editor"
 
 te-files-with-matches() {

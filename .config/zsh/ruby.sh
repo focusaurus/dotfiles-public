@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 ##### Ruby Ecosystem #####
 bundle-config() {
   mkdir .bundle

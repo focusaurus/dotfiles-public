@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 ########## General utility stuff ##########
 alias ..="cd .."
 alias cd-="cd -"

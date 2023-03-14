@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 add-path() {
   if [[ -d "${1}" ]]; then
     if [[ -z "${PATH}" ]]; then

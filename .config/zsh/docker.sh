@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 dquick() {
   # default node version
   local version=12.10.0

@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 ##### ssh #####
 alias s="ssh"
 alias kill-ssh='jobs -l|grep -E " ss?h? " | cut -d " " -f 4| xargs kill; fg'

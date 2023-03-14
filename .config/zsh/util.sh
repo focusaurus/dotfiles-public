@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 ########## General utility stuff ##########
 alias @bug="rg @bug"
 alias cx="chmod +x"

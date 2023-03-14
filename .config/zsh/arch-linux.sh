@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 arch-install-package() {
   # yay --nodiffmenu --sync "$@"
   yup "$@"

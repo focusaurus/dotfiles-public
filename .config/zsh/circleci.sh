@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 circleci-get-job() {
   yq -r '.jobs | keys[]' .circleci/config.yml |
     ~/bin/fuzzy-filter "$@"

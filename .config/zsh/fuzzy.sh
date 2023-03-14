@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # more widely-used program as the default
 fuzzer='fzf'
 if ~/bin/have-exe sk; then
