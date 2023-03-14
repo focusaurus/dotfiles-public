@@ -116,8 +116,28 @@ local freecad = {
     end
   end
 }
+
+local openshot_preview = {
+  rule_any = {class = {'openshot'}, name = {'Preview'}},
+  properties = {
+    -- floating = true,
+    titlebars_enabled = true,
+    -- ontop = false,
+    -- sticky = false
+  }
+}
+
+local openshot_tutorial = {
+  rule_any = {class = {'openshot'}, name = {'Tutorial'}},
+  properties = {
+    floating = true,
+    titlebars_enabled = false,
+    ontop = false,
+    sticky = false
+  }
+}
 awful.rules.rules = {
   all_clients, floating_clients, title_bars, sticky, rofi, one_password, frc,
-  slack, music, freecad
+  slack, music, freecad, openshot_preview, openshot_tutorial
 }
 

@@ -147,6 +147,14 @@ function module.email()
   browser_tab("1")
 end
 
+function module.vscode()
+  log.log("focus.vscode() called")
+  local found = by_class("code-oss")
+  if not found then
+    awful.spawn.easy_async({"code"}, noop)
+  end
+end
+
 function module.frc()
   log.log("focus.frc() called")
   local found = by_rules({class = "Google-chrome", name = "FRC"})
