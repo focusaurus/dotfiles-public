@@ -11,4 +11,4 @@ set -o pipefail # don't ignore exit codes when piping output
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-envsubst < ~/.config/kitty/main.session | kitty --session - --title "${TITLE}"
+envsubst < ~/.config/kitty/main.session | kitty --override allow_remote_control=yes --session - --title "${TITLE}"

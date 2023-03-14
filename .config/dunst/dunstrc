@@ -1,117 +1,24 @@
+# See dunst(5) for all configuration options
+# See /etc/dunst/dunstrc for sample with al options
 [global]
-    font = Hack 12
-    icon_position = left
-    allow_markup = yes
-    #%a  appname
-    #%s  summary
-    #%b  body
-    #%i  iconname (including its path)
-    #%I  iconname (without its path)
-    #%p  progress value if set ([  0%] to [100%]) or nothing
-    format = "<b>%s</b>\n%b\n(dunst) app: %a\nprogress: %p\nicon: %I"
+    ### Display ###
 
-    sort = yes
-    indicate_hidden = no
-    alignment = center
-    bounce_freq = 0
-    show_age_threshold = 60
-    word_wrap = yes
-    ignore_newline = no
+    # Set the progress bar height. This includes the frame, so make sure
+    # it's at least twice as big as the frame width.
+    progress_bar_height = 20
 
-    stack_duplicates = true
+    font = Hack 14
 
-    geometry = "300x5-30+20"
-    transparency = 10
-    idle_threshold = 999
-    monitor = 0
- 
-    follow = keyboard
-    #sticky_history = no
+    enable_recursive_icon_lookup = true
+    # Set icon theme (only used for recursive icon lookup)
+    icon_theme = Adwaita
+    # Paths to default icons (only neccesary when not using recursive icon lookup)
+    # icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+    icon_path = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/Adwaita/16x16/devices/:/usr/share/icons/Adwaita/16x16/legacy/
 
-    line_height = 0
-    separator_height = 2
-    padding = 8 
-    horizontal_padding = 8
-    separator_color = "#444444"
-    startup_notification = false
-
-    dmenu = /usr/bin/dmenu -p dunst:
-    browser = google-chrome-stable
- 
-[frame]
-    width = 1
-    color = "#444444"
- 
-[shortcuts]
-    close = ctrl+x
-    close_all = ctrl+shift+x
-    history = ctrl+grave
-    context = ctrl+shift+period
- 
-[urgency_low]
-    background = "#303030"
-    foreground = "#87AF87"
-    timeout = 10
- 
-[urgency_normal]
-    background = "#303030"
-    foreground = "#C6C6C6"
-    timeout = 15 
- 
-[urgency_critical]
-    background = "#d75f5f"
-    foreground = "#303030"
-    timeout = 30
- 
- 
-# Every section that isn't one of the above is interpreted as a rules
-# to override settings for certain messages.
-# Messages can be matched by 'appname', 'summary', 'body' or 'icon'
-# and you can override the 'timeout', 'urgency', 'foreground', 'background'
-# and 'format'.
-# Shell-like globbing will get expanded.
-#
-# SCRIPTING
-# you can specify a script that gets run when the rule matches by setting
-# the 'script' option.
-# The script will be called as follows:
-# script appname summary body icon urgency
-# where urgency can be "LOW", "NORMAL" or "CRITICAL".
-#
-# NOTE: if you don't want a notification to be displayed, set the format to ""
-# NOTE: It might be helpful to run dunst -print in a terminal in order to find
-# fitting options for rules.
- 
-#[espeak]
-    summary = "*"
-    script = dunst_espeak.sh
- 
-#[script-test]
-#    summary = "*script*"
-#    script = dunst_test.sh
- 
-#[ignore]
-## This notification will not be displayed
-#    summary = "foobar"
-#    format = ""
- 
-#[signed_on]
-#    appname = Pidgin
-#    summary = "*signed on*"
-#    urgency = low
-#
-#[signed_off]
-#    appname = Pidgin
-#    summary = *signed off*
-#    urgency = low
-#
-#[says]
-#    appname = Pidgin
-#    summary = *says*
-#    urgency = critical
-#
-#[twitter]
-#    appname = Pidgin
-#    summary = *twitter.com*
-#    urgency = normal
-#
+    # Define the corner radius of the notification window
+    # in pixel size. If the radius is 0, you have no rounded
+    # corners.
+    # The radius will be automatically lowered if it exceeds half of the
+    # notification height to avoid clipping text and/or icons.
+    corner_radius = 6

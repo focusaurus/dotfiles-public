@@ -1,12 +1,12 @@
 Main:
 act(b, browser, focus browser)
-act(c, calendar, focus calendar)
 act(d, todoist, focus todoist)
 act(e, email, focus email)
 act(f, fuzzball, fuzz-script-choose)
 act(i, firefox, focus firefox)
 act(q, rofimoji, rofimoji --skin-tone light)
 act(m, music, focus music)
+act(c, VS Code, focus vscode)
 act(o, obsidian, focus obsidian)
 act(p, 1password, focus onepassword)
 act(s, slack, focus slack)
@@ -20,7 +20,8 @@ dir(a, applications)
 dir(j, journal)
 
 applications:
-act(c, calculator, focus calculator)
+act(a, calculator, focus calculator)
+act(c, calendar, focus calendar)
 act(f, freecad, focus freecad)
 act(g, gedit, focus gedit)
 act(h, chrysalis, focus chrysalis)

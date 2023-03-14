@@ -1,6 +1,7 @@
 1password
 1password-cli
 acpi
+acpi_call
 adobe-source-han-sans-jp-fonts
 alsa-utils
 appimagetool-bin
@@ -14,6 +15,7 @@ autoconf
 automake
 autorandr
 awesome
+aws-cli-v2
 base
 bat
 bind
@@ -23,6 +25,7 @@ bluez-utils
 brightnessctl
 broot
 brother-hl2280dw
+buf
 cheat
 choose-rust-git
 chrysalis-bin
@@ -30,13 +33,13 @@ code
 copyq
 cryptmount
 cups-pdf
-docker
 docker-compose
 dog
 dos2unix
 drawing
 dunst
 dust
+earthly
 entr
 espeak
 eva
@@ -58,9 +61,11 @@ gedit
 geeqie
 gitui-bin
 gnome-screenshot
+go
 google-chrome
 gopls
 gpaint
+grpcurl-bin
 grub
 gthumb
 helix-bin
@@ -71,7 +76,6 @@ imwheel
 intel-ucode
 jless
 jq
-keybase-gui
 kitty
 klavaro
 lazygit
@@ -114,6 +118,7 @@ procs
 protonvpn-cli-ng
 prusa-slicer
 pup-bin
+python-pipx
 python-weasyprint
 qmk
 rclone
@@ -140,6 +145,7 @@ transmission-gtk
 ttf-inconsolata
 ttf-jetbrains-mono
 ttf-mac-fonts
+twingate
 typeracer-bin
 udiskie
 units
@@ -147,6 +153,7 @@ up
 visidata
 warpd-git
 wezterm
+wired
 wireless_tools
 wkhtmltopdf
 wmctrl
@@ -164,6 +171,7 @@ xorg-xinit
 xorg-xinput
 xournalpp
 xplr-bin
+xseticon
 yad
 yay
 yup
