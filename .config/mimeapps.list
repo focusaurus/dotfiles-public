@@ -1,17 +1,5 @@
 [Added Associations]
-application/pdf=com.github.xournalpp.xournalpp.desktop;org.gnome.Evince.desktop;firefox.desktop;
-x-scheme-handler/http=firefox.desktop;
-x-scheme-handler/https=firefox.desktop;
-x-scheme-handler/ftp=firefox.desktop;
-x-scheme-handler/chrome=firefox.desktop;
-text/html=firefox.desktop;
-application/x-extension-htm=firefox.desktop;
-application/x-extension-html=firefox.desktop;
-application/x-extension-shtml=firefox.desktop;
-application/xhtml+xml=firefox.desktop;
-application/x-extension-xhtml=firefox.desktop;
-application/x-extension-xht=firefox.desktop;
-image/jpeg=firefox.desktop;
+application/pdf=com.github.xournalpp.xournalpp.desktop;org.gnome.Evince.desktop;
 model/stl=/usr/share/applications/PrusaSlicer.desktop;
 application/stl=/usr/share/applications/PrusaSlicer.desktop;
 
@@ -24,11 +12,3 @@ x-scheme-handler/about=google-chrome.desktop
 x-scheme-handler/unknown=google-chrome.desktop
 x-scheme-handler/mailto=google-chrome.desktop
 x-scheme-handler/webcal=google-chrome.desktop
-x-scheme-handler/ftp=firefox.desktop
-x-scheme-handler/chrome=firefox.desktop
-application/x-extension-htm=firefox.desktop
-application/x-extension-html=firefox.desktop
-application/x-extension-shtml=firefox.desktop
-application/xhtml+xml=firefox.desktop
-application/x-extension-xhtml=firefox.desktop
-application/x-extension-xht=firefox.desktop

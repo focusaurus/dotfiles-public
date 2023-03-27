@@ -84,22 +84,18 @@ local rofi = {
 }
 local all_regular_tags = {'1', '2', '3'}
 local one_password = {
-  -- Put 1Password on tags 1 & 2
   rule_any = {class = {'1Password'}},
   properties = {tags = all_regular_tags, maximized = true}
 }
 local frc = {
-  -- Put FRC terminal on tags 1 & 2
   rule_any = {name = {'FRC: website'}},
   properties = {tags = {'2'}, maximized = true}
 }
 local slack = {
-  -- Put slack on tags 1 & 2
   rule_any = {class = {'Slack'}},
   properties = {tags = all_regular_tags, maximized = true}
 }
 local music = {
-  -- Put music on tags 1 & 2
   rule_any = {name = {'music'}},
   properties = {tags = all_regular_tags, maximized = true}
 }
@@ -121,7 +117,7 @@ local openshot_preview = {
   rule_any = {class = {'openshot'}, name = {'Preview'}},
   properties = {
     -- floating = true,
-    titlebars_enabled = true,
+    titlebars_enabled = true
     -- ontop = false,
     -- sticky = false
   }

@@ -6,3 +6,8 @@ body {
   margin: 0;
   font-family: sans-serif;
 }
+
+input[type="checkbox"] {
+  font-size: 40%;
+  margin-right: 0.5em;
+}

@@ -251,7 +251,7 @@ gcbm() {
 # so your working directory stays unchanged
 gash() {
   local name
-  name="snapshot-$(date +%Y-%m-%dT%H:%M:%S)"
+  name="snapshot-$(date +%Y-%m-%dT%H:%M:%S)-$1"
   git stash save --include-untracked "${name}"
   git stash apply 'stash@{0}'
 }

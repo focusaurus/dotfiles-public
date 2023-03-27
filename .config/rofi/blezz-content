@@ -35,6 +35,9 @@ journal:
 dir(f, FRC)
 dir(n, nuon)
 dir(p, personal)
+# This is a shortcut for the currently most 
+# frequently used journal command
+act(j, nuon prompt, journal-append-prompt /home/plyons/git.peterlyons.com/nuon)
 
 FRC:
 act(p, prompt, journal-append-prompt /home/plyons/git.peterlyons.com/focus-retreat-center/journal)
@@ -43,6 +46,7 @@ act(v, vim, terminal-quick journal-append-vim /home/plyons/git.peterlyons.com/fo
 
 nuon:
 act(p, prompt, journal-append-prompt /home/plyons/git.peterlyons.com/nuon)
+act(s, standup, /home/plyons/fuzzball/n-journal-standup-prompt)
 act(r, read, terminal-quick journal-read /home/plyons/git.peterlyons.com/nuon)
 act(v, vim, terminal-quick journal-append-vim /home/plyons/git.peterlyons.com/nuon)
 

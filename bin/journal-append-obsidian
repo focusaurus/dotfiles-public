@@ -7,18 +7,10 @@
 set -o errexit  # always exit on error
 set -o errtrace # trap errors in functions as well
 set -o pipefail # don't ignore exit codes when piping output
-# set -x # enable debugging
+# set -x          # enable debugging
 
-IFS=$'\n\t'
+IFS="$(printf "\n\t")"
 # ---- End unofficial bash strict mode boilerplate
-id=$(wmctrl -lx | grep "YouTube Music" | awk '{print $1}')
-if [[ -z "${id}" ]]; then
-  echo not found
-  exit
-fi
-wmctrl -i -a "${id}"
-sleep 0.2
-xdotool mousemove 900 50 click 3
-xdotool key Up Up Up Up Enter
-xdotool type music
-xdotool key Enter
+
+file=$(~/bin/journal-append-stamp "$1")
+~/bin/focus obsidian

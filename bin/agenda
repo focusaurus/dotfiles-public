@@ -11,17 +11,8 @@ set -o pipefail # don't ignore exit codes when piping output
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-shopt -s nocaseglob
-shopt -s nocasematch
-# case-insensitive match on the file extension
-# to dispatch an appropriate preview program
-case "${1##*.}" in
-mov | mp4 | avi)
-  # don't preview movies
-  echo we don't preview movies in the terminal in lf. Hit right arrow to launch a video player.a
-  # exec mpv "$1"
-  ;;
-*)
-  exec bat --paging=always --color=always --style=plain "$1"
-  ;;
-esac
+cd ~/exocortex
+(
+  rg \#task . | grep -v ✅
+
+) | less
