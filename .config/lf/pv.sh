@@ -18,10 +18,14 @@ shopt -s nocasematch
 case "${1##*.}" in
 mov | mp4 | avi)
   # don't preview movies
-  echo we don't preview movies in the terminal in lf. Hit right arrow to launch a video player.a
+  echo "we don't preview movies in the terminal in lf. Hit right arrow to launch a video player."
   # exec mpv "$1"
   ;;
+zip)
+  exec zipinfo "$1"
+  ;;
 *)
+  # ~/bin/log "$0" previewing "$1"
   exec bat --paging=always --color=always --style=plain "$1"
   ;;
 esac

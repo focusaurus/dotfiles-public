@@ -250,3 +250,8 @@
 /.config/nushell/history.txt
 /.goful
 /.vscode-oss/extensions
+/.openshot_qt
+/.netrc
+/.earthly
+/.terraform.d
+.config/dlv/.dbg_history

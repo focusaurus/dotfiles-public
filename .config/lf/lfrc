@@ -5,7 +5,3 @@ map F $feh "$f"
 set previewer ~/.config/lf/pv.sh
 map i $~/.config/lf/pv.sh $f
 map P %echo "$f" | sed 's,^/home/plyons/,~/,' | ~/bin/copy
-
-#cmd copy-path ${{
-#  echo "$f" | sed 's,^/home/plyons/,~/,' | ~/bin/copy
-#}}

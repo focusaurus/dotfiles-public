@@ -40,9 +40,9 @@ dir(p, personal)
 act(j, nuon prompt, journal-append-prompt /home/plyons/git.peterlyons.com/nuon)
 
 FRC:
-act(p, prompt, journal-append-prompt /home/plyons/git.peterlyons.com/focus-retreat-center/journal)
-act(r, read, terminal-quick journal-read /home/plyons/git.peterlyons.com/focus-retreat-center/journal)
-act(v, vim, terminal-quick journal-append-vim /home/plyons/git.peterlyons.com/focus-retreat-center/journal)
+act(p, prompt, journal-append-prompt /home/plyons/git.peterlyons.com/focus-retreat-center)
+act(r, read, terminal-quick journal-read /home/plyons/git.peterlyons.com/focus-retreat-center)
+act(v, vim, terminal-quick journal-append-vim /home/plyons/git.peterlyons.com/focus-retreat-center)
 
 nuon:
 act(p, prompt, journal-append-prompt /home/plyons/git.peterlyons.com/nuon)
@@ -61,7 +61,7 @@ act(w, workflowy, focus workflowy)
 act(t, trello, focus trello)
 act(c, calendar, focus fastmail_calendar)
 act(e, Fastmail, focus fastmail)
-act(j, Journal, terminal-quick journal-append-vim /home/plyons/git.peterlyons.com/focus-retreat-center/journal)
+act(j, Journal, terminal-quick journal-append-vim /home/plyons/git.peterlyons.com/focus-retreat-center)
 
 volume:
 act(0, mute, volume 0)
