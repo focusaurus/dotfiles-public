@@ -309,6 +309,13 @@ function module.firefox()
   end
 end
 
+function module.insomnia()
+  log.log("focus.insomnia() called")
+  if not by_class("Insomnia") then
+    awful.spawn.easy_async("/opt/insomnia/insomnia", noop)
+  end
+end
+
 function module.cura()
   log.log("focus.cura() called")
   if not by_class("cura") then

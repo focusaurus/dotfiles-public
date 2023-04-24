@@ -23,6 +23,10 @@ arch-list-packages() {
   pacman -Qet | sort
 }
 
+arch-list-package-files() {
+  pacman -Fl "$@"
+}
+
 arch-uninstall-package() {
   yay -Rs "$@"
 }

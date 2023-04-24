@@ -7,22 +7,15 @@
 set -o errexit  # always exit on error
 set -o errtrace # trap errors in functions as well
 set -o pipefail # don't ignore exit codes when piping output
-set -o posix    # more strict failures in subshells
-# set -x          # enable debugging
+# set -x # enable debugging
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
-main() {
-  set +o errexit
-  if ponymix is-muted; then
-    echo "🔈off"
-    exit
-  fi
-  set -o errexit
-  echo -n "🔊"
-  ponymix get-volume | tr -d '\n'
-  echo "%"
-}
+cd "$(git rev-parse --show-toplevel)" || exit 1
 
-main "$@"
+git status --porcelain=v1 |
+  grep -E '^\?\?' |
+  cut -d ' ' -f 2- |
+  sk --multi --query "$1" |
+  tee -a .gitignore

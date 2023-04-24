@@ -81,8 +81,11 @@ local clock_widget = wibox.widget.textclock()
 local microphone_script_widget = awful.widget.watch(
                                      os.getenv('HOME') ..
                                          '/bin/widgets/microphone', 2)
-
 small(microphone_script_widget)
+local sound_widget = awful.widget.watch(
+                                     os.getenv('HOME') ..
+                                         '/bin/widgets/sound', 2)
+small(sound_widget)
 local battery_script_widget = awful.widget.watch(
                                   os.getenv('HOME') .. '/bin/widgets/battery',
                                   30)
@@ -152,9 +155,8 @@ awful.screen.connect_for_each_screen(function(s)
       small(wibox.widget.systray()),
       battery_script_widget,
       screen_brightness_script_widget,
-      microphone_script_widget,
-      volume_widget,
-      wibox.widget.textclock('%F\n%B %d\n%A\n%H:%M')
+      sound_widget,
+      wibox.widget.textclock('%F\n%a %B %d\n%H:%M')
     }
   }
 end)

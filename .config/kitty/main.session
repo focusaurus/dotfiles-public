@@ -8,5 +8,5 @@ launch --title=run zsh
 resize_window shorter 8
 new_tab
 cd ${DIR}
-launch --title=git lazygit
+launch --title=git gitui
 
