@@ -1,6 +1,8 @@
 --- global client
 local module = {}
 
+require("awful.autofocus")
+
 local awful = require('awful')
 local gears = require('gears')
 local log = require('log')
@@ -10,7 +12,8 @@ local home_bin = os.getenv('HOME') .. '/bin'
 local function noop() end
 
 local function focus_client(client)
-  client:emit_signal('request::activate', 'mouse_click', {raise = true})
+  -- client:emit_signal('request::activate', 'mouse_click', {raise = true})
+  client:jump_to(false)
 end
 
 local function by_rules(rules)
@@ -40,8 +43,6 @@ function module.work_mode(value)
   log.log('work_mode called. Current value: ' .. tostring(work_mode))
   work_mode = value
 end
-
-
 
 local function browser_tab(number)
   gears.timer.start_new(0.2,

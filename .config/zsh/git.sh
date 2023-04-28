@@ -206,7 +206,7 @@ gdrb() {
 
 #git push same branch
 gpsb() {
-  git push --set-upstream origin "$(gcb)"
+  git push --set-upstream origin HEAD
 }
 
 #git commit all with message
@@ -238,13 +238,13 @@ gcbd() {
 gmmd() {
   local BRANCH
   BRANCH=$(gcb)
-  git checkout master
+  git checkout main
   git merge --no-ff "${BRANCH}"
   git branch -d "${BRANCH}"
 }
 
 gcbm() {
-  git checkout -b "${1}" master
+  git checkout -b "${1}" main
 }
 
 # Save a stash for just-in-case reference, but immediately apply it
@@ -263,7 +263,7 @@ alias gitlog='git log --pretty=oneline --abbrev-commit --branches=\* --graph --d
 gmmd() {
   local BRANCH
   BRANCH="$(gcb)"
-  git checkout master
+  git checkout main
   git merge --no-ff "${BRANCH}"
   git branch -d "${BRANCH}"
 }
