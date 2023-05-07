@@ -11,6 +11,19 @@ $jobs\
 $status\
 $character"""
 
+# format = """
+# $directory\
+# $env_var\
+# $line_break\
+# $jobs\
+# $status\
+# $character"""
+#
+# format = """
+# $directory\
+# $line_break\
+# $character"""
+#
 [env_var.GIT_DIR]
 # symbol = '🏠'
 format = 'GIT_DIR=$env_value'

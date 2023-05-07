@@ -1,4 +1,5 @@
 vim.g.mapleader = ' '
+vim.g.mouse = false
 
 -- normal mode keymaps
 

@@ -1,10 +1,10 @@
-local log = require("log")
-local focus = require("focus")
-local naughty = require("naughty")
-local awful = require("awful")
+local log = require('log')
+local focus = require('focus')
+local naughty = require('naughty')
+local awful = require('awful')
 local module = {}
 
-log.log("dev loaded")
+log.log('dev loaded')
 -- screen.connect_signal("list", function()
 --   log.log("screen list. Screen count: " .. screen:count())
 -- end)
@@ -24,12 +24,12 @@ log.log("dev loaded")
 local toggle = true
 local test_class = 'Rofi'
 function module.dev2()
-  log.log("dev.dev2() called: toggle is: " .. tostring(toggle))
+  log.log('dev.dev2() called: toggle is: ' .. tostring(toggle))
   -- local c = client.focus
   -- if not c then return end
-  local tag1 = awful.tag.find_by_name(awful.screen.focused(), "1")
-  local tag2 = awful.tag.find_by_name(awful.screen.focused(), "2")
-  local match_class = function (c)
+  local tag1 = awful.tag.find_by_name(awful.screen.focused(), '1')
+  local tag2 = awful.tag.find_by_name(awful.screen.focused(), '2')
+  local match_class = function(c)
     return awful.rules.match(c, {class = test_class})
   end
 
@@ -37,15 +37,15 @@ function module.dev2()
   for c in awful.client.iterate(match_class) do
     found = true
     -- if toggle then
-      log.log("tagging 1")
-      c:tags({tag1})
-      c:emit_signal("request::activate", "tasklist", {raise = true})
+    log.log('tagging 1')
+    c:tags({tag1})
+    c:emit_signal('request::activate', 'tasklist', {raise = true})
     -- else
-      -- log.log("tagging 2")
-      -- c:tags({tag2})
+    -- log.log("tagging 2")
+    -- c:tags({tag2})
     -- end
   end
-  log.log("dev2 found: " .. tostring(found))
+  log.log('dev2 found: ' .. tostring(found))
   toggle = not toggle
   -- c:tags({t})
   -- t:view_only()
@@ -53,13 +53,14 @@ function module.dev2()
 end
 
 function module.dev1()
-  log.log("dev.dev1() called")
-  local c = client.focus
-  if not c then return end
-  log.log("found focused client with title (name) " .. c.name)
-  local tag1 = awful.tag.find_by_name(awful.screen.focused(), "1")
-  local tag2 = awful.tag.find_by_name(awful.screen.focused(), "2")
-  c:tags({tag2})
+  local match_class = function(c)
+    return awful.rules.match(c, {class = 'Google-chrome'})
+  end
+
+  for c in awful.client.iterate(match_class) do
+    log.log('matched class, applying rules')
+    awful.rules.apply(c)
+  end
 end
 
 return module

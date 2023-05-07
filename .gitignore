@@ -255,3 +255,7 @@
 /.earthly
 /.terraform.d
 .config/dlv/.dbg_history
+/.config/Meltytech
+/.config/Electron
+.config/caldr/
+.config/flowblade/

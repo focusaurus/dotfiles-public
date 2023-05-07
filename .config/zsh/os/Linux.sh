@@ -19,7 +19,7 @@ open() {
 
 battery() {
   upower -e |
-    grep /devices/battery_ |
+    grep /devices/battery_BAT |
     xargs -n 1 upower -i |
     grep -E -i '(native-path:|percentage:|state:)'
 }

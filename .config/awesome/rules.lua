@@ -1,3 +1,4 @@
+local module = {}
 local awful = require('awful')
 local beautiful = require('beautiful')
 local log = require('log')
@@ -97,7 +98,7 @@ local slack = {
   properties = {tags = all_regular_tags, maximized = true}
 }
 local music = {
-  rule_any = {name = {'music'}},
+  rule_any = {name = {'music', 'YouTube Music'}},
   properties = {tags = all_regular_tags, maximized = true}
 }
 local freecad = {
@@ -138,3 +139,10 @@ awful.rules.rules = {
   slack, music, freecad, openshot_preview, openshot_tutorial
 }
 
+function module.reapply()
+  for c in awful.client.iterate(function() return true end) do
+    log.log('re-applying rules to client: ' .. c.name)
+    awful.rules.apply(c)
+  end
+end
+return module

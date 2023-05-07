@@ -13,16 +13,10 @@ set -o posix    # more strict failures in subshells
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
-main() {
-  set +o errexit
-  if ponymix is-muted; then
-    echo "🔈off"
-    exit
-  fi
-  set -o errexit
-  echo -n "🔊"
-  ponymix get-volume | tr -d '\n'
-  echo "%"
-}
-
-main "$@"
+# This widget puts speaker volume and microphone level
+# on a single line. It builds off separate scripts
+# for volume and mic level.
+cd "$(dirname "${BASH_SOURCE[0]}")"
+./volume | tr -d '\n'
+echo -n " "
+./microphone
