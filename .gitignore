@@ -259,3 +259,5 @@
 /.config/Electron
 .config/caldr/
 .config/flowblade/
+/.pgadmin
+/.psql_history

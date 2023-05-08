@@ -91,8 +91,8 @@ dcip() {
   docker inspect -f "{{ .NetworkSettings.IPAddress }}" "${container}"
 }
 
-alias dcd="docker-compose down &>/dev/null"
-alias dcud="docker-compose up -d |& grep -v Creating &"
+alias dcd="docker compose down &>/dev/null"
+alias dcud="docker compose up -d |& grep -v Creating &"
 
 docker-prune() {
   docker image prune --all
@@ -140,7 +140,7 @@ dcstop() {
   local container
   container=$(dcservices | ~/bin/fuzzy-filter "$@")
   [[ -z "${container}" ]] && return
-  docker-compose stop "${container}"
+  docker compose stop "${container}"
 }
 
 drun() {
@@ -159,7 +159,7 @@ dcrun() {
   if [[ $# -eq 0 ]]; then
     command=(sh -c 'bash || sh')
   fi
-  docker-compose run --rm --volume "${PWD}:/host" "${container}" "${command[@]}"
+  docker compose run --rm --volume "${PWD}:/host" "${container}" "${command[@]}"
 }
 
 dcrunsp() {
@@ -170,7 +170,7 @@ dcrunsp() {
   if [[ $# -eq 0 ]]; then
     command=(sh -c 'bash || sh')
   fi
-  docker-compose run --rm --volume "${PWD}:/host" --service-ports --use-aliases "${container}" "${command[@]}"
+  docker compose run --rm --volume "${PWD}:/host" --service-ports --use-aliases "${container}" "${command[@]}"
 }
 
 dcservices() {
@@ -193,8 +193,8 @@ dcservices() {
 # fi
 alias daws='docker run --rm --interactive --tty cgswong/aws'
 alias dbd="docker build ."
-alias dc="docker-compose"
-alias dcb="docker-compose build"
+alias dc="docker compose"
+alias dcb="docker compose build"
 
 dps() {
   # {{.Ports}}|

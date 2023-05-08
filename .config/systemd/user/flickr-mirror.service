@@ -1,0 +1,8 @@
+[Unit]
+Description=Mirror recent flickr photos to local filesystem
+
+[Service]
+Type=oneshot
+EnvironmentFile=%h/projects/flickr-mirror/.env
+EnvironmentFile=%h/projects/flickr-mirror/.env-systemd
+ExecStart=%h/projects/flickr-mirror/flickr-mirror
