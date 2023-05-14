@@ -1,7 +1,7 @@
 --- global client
 local module = {}
 
-require("awful.autofocus")
+require('awful.autofocus')
 
 local awful = require('awful')
 local gears = require('gears')
@@ -320,6 +320,11 @@ end
 function module.freecad()
   log.log('focus.freecad() called')
   if not by_class('FreeCAD') then awful.spawn.easy_async('freecad', noop) end
+end
+
+function module.vial()
+  log.log('focus.vial() called')
+  if not by_rules({name = 'Vial'}) then awful.spawn.easy_async('Vial', noop) end
 end
 
 function module.trello()

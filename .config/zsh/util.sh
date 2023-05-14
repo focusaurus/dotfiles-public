@@ -165,8 +165,8 @@ whos-listening() {
   if [[ -n "$1" ]]; then
     port=":$1"
   fi
-  lsof -n -P -i "4TCP${port}" -s TCP:LISTEN
-  lsof -n -P -i "4UDP${port}"
+  lsof -n -P -i "TCP${port}" -s TCP:LISTEN
+  lsof -n -P -i "UDP${port}"
 }
 
 kill-listener() {
