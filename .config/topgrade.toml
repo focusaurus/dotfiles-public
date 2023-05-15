@@ -1,4 +1,5 @@
 assume_yes = true
+display_preamble = false
 # Run specific steps - same options as the command line flag
 only = ["system"]
 
