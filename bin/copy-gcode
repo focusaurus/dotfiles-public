@@ -15,7 +15,7 @@ if ! compgen -G "/run/media/$(whoami)/*" >/dev/null; then
   echo "Error: thumb drive is not present" 1>&2
   exit 10
 fi
-file=$(find ~/projects/squeezebox-keyboard ~/projects/3d-prints -name '*.gcode' -mtime -1 |
+file=$(find ~/projects/3d-prints ~/projects/*-keyboard -name '*.gcode' -mtime -1 |
   ~/bin/fuzzy-filter "$@")
 echo "Copying $(basename "${file}") to thumb drive"
 cp "${file}" "/run/media/$(whoami)/"*

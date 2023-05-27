@@ -67,6 +67,7 @@ alias gw="git switch"
 alias gwc="git switch --create"
 alias gorce="git push --force-with-lease"
 alias ts="tig status"
+alias gD="git branch -D"
 
 _base-url() {
   # heads up. Depends on a slightly obscure utility
@@ -415,6 +416,7 @@ gsync() {
     ~/git.peterlyons.com/dotfiles \
     ~/git.peterlyons.com/journals \
     ~/git.peterlyons.com/exocortex \
+    ~/git.peterlyons.com/focus-retreat-center \
     ~/git.peterlyons.com/nuon
 
   if [[ -d ~/github.com/focusaurus/qmk_firmware ]]; then

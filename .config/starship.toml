@@ -5,7 +5,6 @@ $git_commit\
 $git_state\
 $git_status\
 $env_var\
-${custom.ssh_agent}\
 $line_break\
 $jobs\
 $status\

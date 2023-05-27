@@ -29,7 +29,7 @@ done
 
 to_run=$(find "${dirs[@]}" -type f -executable | ~/bin/fuzzy-filter "$@")
 
-shift
+shift || true
 
 if [[ -n "${to_run}" ]]; then
   exec "${to_run}" "$@"

@@ -8,6 +8,7 @@ local placement = require('placement')
 local titles = require('titles')
 local dev = require('dev')
 local focus = require('focus')
+local log = require('log')
 
 local hotkeys_popup = require('awful.hotkeys_popup')
 -- Enable hotkeys help widget for VIM and other apps
@@ -75,6 +76,11 @@ local tasklist_buttons = gears.table.join(
 client.connect_signal('manage', function(c)
   -- i.e. put it at the end of others instead of setting it master.
   if not awesome.startup then awful.client.setslave(c) end
+  log.log('manage window ' .. c.name .. ', urgent: ' .. tostring(c.urgent))
+  client.urgent = false
+
+  awful.spawn.easy_async({os.getenv('HOME') .. '/bin/set-icons'},
+                         function() log.log('ran set-icons.sh') end)
 end)
 
 local clock_widget = wibox.widget.textclock()
@@ -82,9 +88,8 @@ local microphone_script_widget = awful.widget.watch(
                                      os.getenv('HOME') ..
                                          '/bin/widgets/microphone', 2)
 small(microphone_script_widget)
-local sound_widget = awful.widget.watch(
-                                     os.getenv('HOME') ..
-                                         '/bin/widgets/sound', 2)
+local sound_widget = awful.widget.watch(os.getenv('HOME') ..
+                                            '/bin/widgets/sound', 2)
 small(sound_widget)
 local battery_script_widget = awful.widget.watch(
                                   os.getenv('HOME') .. '/bin/widgets/battery',

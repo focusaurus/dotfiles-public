@@ -1,3 +1,4 @@
+--- global client
 local module = {}
 
 function module.dev()
