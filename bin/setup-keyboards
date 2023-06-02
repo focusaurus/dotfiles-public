@@ -25,6 +25,7 @@ have_exe() {
 }
 
 main() {
+  setxkbmap -option compose:ralt
 
   # This section disabled but left for future use maybe
   # for now, all keyboard fanciness is handled with kmonad
@@ -59,8 +60,8 @@ main() {
   # left shift press & release is the same as control+comma (for snippets)
   # left alt press & release is F10 leader
   if have_exe xcape; then
-  #   kill_ok xcape
-  #   xcape -t 200 -e "Control_L=Escape;Control_R=Escape;Super_L=Control_L|space;Super_R=Control_R|space;Shift_L=Control_L|comma;Shift_R=Control_R|comma"
+    #   kill_ok xcape
+    #   xcape -t 200 -e "Control_L=Escape;Control_R=Escape;Super_L=Control_L|space;Super_R=Control_R|space;Shift_L=Control_L|comma;Shift_R=Control_R|comma"
     xcape -t 200 -e "Alt_L=F10"
   fi
 

@@ -21,6 +21,9 @@ mov | mp4 | avi)
   echo "we don't preview movies in the terminal in lf. Hit right arrow to launch a video player."
   # exec mpv "$1"
   ;;
+png | jpg | jpeg | heic)
+  echo "no preview for photos. Hit right arrow to launch a viewer."
+  ;;
 zip)
   exec zipinfo "$1"
   ;;
