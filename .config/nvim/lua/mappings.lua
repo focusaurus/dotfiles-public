@@ -112,8 +112,11 @@ end, {desc = '[/] Fuzzily search in current buffer]'})
 -- vim.keymap.set('n', '<leader>b', ':Buffers<cr>', {noremap = true})
 
 -- tab and shift+tab for indent/outdent
-vim.keymap.set('n', '<Tab>', '>>', {noremap = true})
-vim.keymap.set('n', '<S-Tab>', '<<', {noremap = true})
+-- commenting this now because apparently <Tab> and <C-i>
+-- are like the same in terminal land, and I want to
+-- start using the jumplist and LSP more
+-- vim.keymap.set('n', '<Tab>', '>>', {noremap = true})
+-- vim.keymap.set('n', '<S-Tab>', '<<', {noremap = true})
 
 -- The default mappings for back (b), end (e), and word (w)
 -- navigation treat dashes and some other characters as word

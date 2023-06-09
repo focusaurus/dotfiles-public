@@ -23,7 +23,9 @@ app-to-icon() {
   } || true
 }
 
-app-to-icon "Obsidian" "/usr/share/pixmaps/obsidian.png"
+# plyons 2023-06-09 I think Obsidian's icon works
+# properly without any hacks now.
+# app-to-icon "Obsidian" "/usr/share/pixmaps/obsidian.png"
 app-to-icon "Slack" "/usr/share/icons/Arc-ICONS/apps/48/slack.png"
 app-to-icon "1Password" "/usr/share/icons/hicolor/64x64/apps/1password.png"
 app-to-icon "music" "${HOME}/.config/awesome/youtube-music-logo.png"
