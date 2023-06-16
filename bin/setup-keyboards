@@ -28,7 +28,7 @@ main() {
   setxkbmap -option compose:ralt
 
   # This section disabled but left for future use maybe
-  # for now, all keyboard fanciness is handled with kmonad
+  # for now, all keyboard fanciness is handled with keyd
   # for the built-in keyboard and QMK baked into firmware
   # on external keyboards
   if false; then
@@ -53,16 +53,16 @@ main() {
     if [[ -n "${thinkpad_device}" ]]; then
       setxkbmap -device "${thinkpad_device}" -layout dvorak -option "ctrl:nocaps,altwin:swap_lalt_lwin"
     fi
-  fi
-  # 2020-05-07 plyons press and release a modifier sends key combos
-  # left control press & release is the same as Escape (for vim)
-  # super press & release is the same as super+space (for fuzzball)
-  # left shift press & release is the same as control+comma (for snippets)
-  # left alt press & release is F10 leader
-  if have_exe xcape; then
-    #   kill_ok xcape
-    #   xcape -t 200 -e "Control_L=Escape;Control_R=Escape;Super_L=Control_L|space;Super_R=Control_R|space;Shift_L=Control_L|comma;Shift_R=Control_R|comma"
-    xcape -t 200 -e "Alt_L=F10"
+    # 2020-05-07 plyons press and release a modifier sends key combos
+    # left control press & release is the same as Escape (for vim)
+    # super press & release is the same as super+space (for fuzzball)
+    # left shift press & release is the same as control+comma (for snippets)
+    # left alt press & release is F10 leader
+    if have_exe xcape; then
+      #   kill_ok xcape
+      #   xcape -t 200 -e "Control_L=Escape;Control_R=Escape;Super_L=Control_L|space;Super_R=Control_R|space;Shift_L=Control_L|comma;Shift_R=Control_R|comma"
+      xcape -t 200 -e "Alt_L=F10"
+    fi
   fi
 
   # 2018-04-10 plyons set fast keyboard repeat
