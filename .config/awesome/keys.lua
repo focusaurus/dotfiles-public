@@ -1,31 +1,23 @@
 local awful = require('awful')
 local gears = require('gears')
--- local menubar = require("menubar")
--- local naughty = require("naughty")
 
 local cyclefocus = require('cyclefocus')
 
 local placement = require('placement')
 local focus = require('focus')
--- local wibar = require("wibar")
 local leader = require('leader')
 local tags = require('tags')
 local dev = require('dev')
 
 local alt = 'Mod1'
-local control = 'Control'
+-- local control = 'Control'
 local super = 'Mod4'
 local shift = 'Shift'
 local home_bin = os.getenv('HOME') .. '/bin'
 local app_nav = home_bin .. '/app-nav'
--- Note I have kmonad mod-taps for hyper_pl on home row pinkies also
 local hyper_pl = {alt, super}
+
 local function noop() end
--- local function runner(cmd_map)
---   return function()
---     awful.spawn.easy_async(cmd_map, noop)
---   end
--- end
 
 local function runner(args)
   return function() awful.spawn.easy_async(args, noop) end
@@ -37,108 +29,56 @@ root.buttons(gears.table.join(
   awful.button({}, 4, awful.tag.viewnext),
   awful.button({}, 5, awful.tag.viewprev)))
 
--- global keys
+-- This table will collect all keybindings for awesomewm global scope
+-- (not associated with any particular client window)
 local root_keys = {}
 local function bind_root(group, description, modifiers, keysym, action)
-  table.insert(root_keys, awful.key(
-    modifiers,
-    keysym, action {description=description, group=group}))
+  root_keys = gears.table.join(root_keys, awful.key(modifiers, keysym, action, {description=description, group=group}))
+end
+-- Set up a little function call DSL for concise keybinds.
+-- These are more friendly to autoformatting then gigantic
+-- inline table literals full of complex function definitions
+
+bind_root('window manager', 'restart window manager', {super, shift}, 'r', awesome.restart)
+bind_root('window manager', 'quit window manager', hyper_pl, 'q', awesome.quit)
+
+-- window manager virtual desktops (tags)
+bind_root('tags','view previous (left) tag', hyper_pl, 'Left', awful.tag.viewprev)
+bind_root('tags','view next (right) tag', hyper_pl, 'Right', awful.tag.viewnext)
+bind_root('tags','view next (right) tag', {super}, 'q', awful.tag.viewprev)
+bind_root('tags','view next (right) tag', {super}, 'k', awful.tag.viewnext)
+
+bind_root('screen', 'brightness down', {}, 'XF86MonBrightnessDown', runner({'sudo', 'brightnessctl', 'set', '20%-'}))
+bind_root('screen', 'brightness up', {}, 'XF86MonBrightnessUp', runner({'sudo', 'brightnessctl', 'set', '20%+'}))
+
+bind_root('sound', 'volume up', {}, 'XF86AudioRaiseVolume', runner({home_bin .. '/volume', '+10%'}))
+bind_root('sound', 'volume down', {}, 'XF86AudioLowerVolume', runner({home_bin .. '/volume', '-10%'}))
+bind_root('sound', 'toggle volume mute', {}, 'XF86AudioMute', runner({home_bin .. '/volume-toggle-mute'}))
+bind_root('sound', 'toggle mic mute', {}, 'XF86AudioMicMute', runner({home_bin .. '/microphone-toggle'}))
+
+bind_root('rofi', 'leader', {super}, '1', leader.tag_in)
+bind_root('rofi', 'leader', {}, 'F10', leader.tag_in)
+bind_root('rofi', 'fuzz script', {super}, '2', focus.fuzz_script)
+bind_root('rofi', 'fuzz script', {super}, 'space', runner({home_bin .. '/fuzz-script-choose'}))
+bind_root('rofi', 'fuzz script', {}, 'F11', focus.fuzz_script)
+bind_root('rofi', 'fuzz snippet', {super}, '3', focus.fuzz_snippet)
+bind_root('rofi', 'fuzz snippet', {super}, 's', focus.fuzz_snippet)
+bind_root('rofi', 'fuzz snippet', {}, 'F12', focus.fuzz_snippet)
+bind_root('rofi', 'run', {super, shift}, 'space', runner({'rofi', '-show', 'run'}))
+bind_root('rofi', 'windows', hyper_pl, 'w', runner( { 'rofi', '-show', 'window', '-theme', 'gruvbox-light-soft' }))
+bind_root('rofi', 'windows', {super}, '4', runner({'rofi', '-show', 'window'}))
+
+bind_root('dev', 'dev 1', hyper_pl, '9', dev.dev1)
+
+-- bind function keys to selecting the corresponding tag
+for _, n in pairs({'1', '2', '3', '4'}) do
+  bind_root('tags', 'select tag ' .. n, hyper_pl, 'F' .. n, function() tags.select(n) end)
+  bind_root('tags', 'move to tag ' .. n, hyper_pl, n, function() placement.move_to_tag(n) end)
 end
 
-root.keys(gears.table.join(
-  -- app nav (arrow keys)
-  awful.key({super}, 'Left', runner({app_nav, 'left'}),
-          {description = 'left', group = 'app nav'}),
-  awful.key({super}, 'Down', runner({app_nav, 'down'}),
-          {description = 'down', group = 'app nav'}),
-  awful.key({super}, 'Right', runner({app_nav, 'right'}),
-          {description = 'right', group = 'app nav'}),
-  awful.key({super}, 'Up', focus.previous,
-          {description = 'focus previous', group = 'windows'}),
-  -- app nav (left hand home row)
-  awful.key({super}, 'o', runner({app_nav, 'left'}),
-          {description = 'left', group = 'app nav'}),
-  awful.key({super}, 'j', runner({app_nav, 'down'}),
-          {description = 'down', group = 'app nav'}),
-  awful.key({super}, 'u', runner({app_nav, 'right'}),
-          {description = 'right', group = 'app nav'}), -- windows
-  awful.key(hyper_pl, 'Up', focus.previous_window,
-          {description = 'focus previous (up) window', group = 'windows'}),
-  awful.key(hyper_pl, 'Down', focus.next_window,
-          {description = 'focus next (down) window', group = 'windows'}),
-  awful.key(hyper_pl, ',', focus.previous_window,
-          {description = 'focus previous (up) window', group = 'windows'}),
-  awful.key(hyper_pl, 'p', focus.next_window,
-          {description = 'focus next (down) window', group = 'windows'}),
+-- register the key bindings with awesomewm
+root.keys(root_keys)
 
-  -- window manager virtual desktops (tags)
-  awful.key(hyper_pl, 'Left', awful.tag.viewprev,
-          {description = 'view previous (left) tag', group = 'tags'}),
-  awful.key(hyper_pl, 'Right', awful.tag.viewnext,
-          {description = 'view next (right) tag', group = 'tags'}),
-  awful.key({super}, 'q', awful.tag.viewprev,
-          {description = 'view previous (left) tag', group = 'tags'}),
-  awful.key({super}, 'k', awful.tag.viewnext,
-          {description = 'view next (right) tag', group = 'tags'}),
-
-  awful.key({super, shift}, 'r', awesome.restart,
-          {description = 'reload awesome', group = 'awesome'}),
-  awful.key(hyper_pl, 'q', awesome.quit,
-          {description = 'quit awesome', group = 'awesome'}),
-  -- awful.key(hyper_pl, "m", function() menubar.show() end,
-  --   {description="show the menubar", group="launcher"}),
-
-  awful.key(hyper_pl, '9', dev.dev1, {description = 'dev1', group = 'dev'}),
-  awful.key(hyper_pl, '1', function() placement.move_to_tag('1') end,
-    {description = 'move to tag 1', group = 'tags'}),
-  awful.key(hyper_pl, '2', function() placement.move_to_tag('2') end,
-    {description = 'move to tag 2', group = 'tags'}),
-  awful.key(hyper_pl, '3', function() placement.move_to_tag('3') end,
-    {description = 'move to tag 3', group = 'tags'}),
-  awful.key(hyper_pl, 'F1', function() tags.select('1') end,
-    {description = 'select tag 1', group = 'tags'}),
-  awful.key(hyper_pl, 'F2', function() tags.select('2') end,
-    {description = 'select tag 2', group = 'tags'}),
-  awful.key(hyper_pl, 'F3', function() tags.select('3') end,
-    {description = 'select tag 3', group = 'tags'}),
-  awful.key(hyper_pl, 'F4', function() tags.select('4') end,
-    {description = 'select tag 4', group = 'tags'}),
-
-  awful.key({super}, 'i', runner({home_bin .. '/copy-link'}),
-    {description = 'copy-link', group = 'dev'}),
-  awful.key({super}, 'space', runner({home_bin .. '/fuzz-script-choose'}),
-    {description = 'fuzz script', group = 'rofi'}),
-  awful.key({super}, '1', focus.leader, { description = 'leader', group = 'rofi' }),
-  awful.key({}, 'F10', leader.tag_in, {description = 'leader', group = 'rofi'}),
-  awful.key({super}, '2', focus.fuzz_script,
-    {description = 'fuzz script', group = 'rofi'}),
-  awful.key({}, 'F11', focus.fuzz_script,
-    {description = 'fuzz script', group = 'rofi'}),
-  awful.key({super}, '3', focus.fuzz_snippet,
-    {description = 'fuzz snippet', group = 'rofi'}),
-  awful.key({super}, 's', focus.fuzz_snippet,
-    {description = 'fuzz snippet', group = 'rofi'}),
-  awful.key({}, 'F12', focus.fuzz_snippet,
-    {description = 'fuzz snippet', group = 'rofi'}),
-  awful.key({super, shift}, 'space', runner({'rofi', '-show', 'run'}),
-    {description = 'run', group = 'rofi'}),
-  awful.key(hyper_pl, 'w', runner( { 'rofi', '-show', 'window', '-theme', 'gruvbox-light-soft' }), {description = 'windows', group = 'rofi'}),
-  awful.key({super}, '4', runner({'rofi', '-show', 'window'}),
-    {description = 'windows', group = 'rofi'}),
-
-  awful.key({}, 'XF86MonBrightnessDown', runner({'sudo', 'brightnessctl', 'set', '20%-'}),
-    {description = 'brightness down', group = 'screen'}),
-  awful.key({}, 'XF86MonBrightnessUp',
-    runner({'sudo', 'brightnessctl', 'set', '20%+'}),
-    {description = 'brightness up', group = 'screen'}),
-  awful.key({}, 'XF86AudioRaiseVolume', runner({home_bin .. '/volume', '+10%'}),
-    {description = 'volume up', group = 'sound'}),
-  awful.key({}, 'XF86AudioLowerVolume', runner({home_bin .. '/volume', '-10%'}),
-    {description = 'volume down', group = 'sound'}),
-  awful.key({}, 'XF86AudioMute', runner({home_bin .. '/volume-toggle-mute'}),
-    {description = 'toggle volume mute', group = 'sound'}),
-  awful.key({}, 'XF86AudioMicMute', runner({home_bin .. '/microphone-toggle'}),
-    {description = 'toggle mic mute', group = 'sound'})))
 -- awful.key(hyper_pl, "r",
 --   function() awful.screen.focused().mypromptbox:run() end,
 --   {description = "run prompt", group = "launcher"}),
@@ -153,23 +93,40 @@ root.keys(gears.table.join(
 
 cyclefocus.default_preset.base_font_size = 14
 
-local clientkeys = gears.table.join(
-  awful.key({super}, '.', placement.cycle,
-    { description = 'cycle window placement', group = 'windows' }),
-  awful.key(hyper_pl, 'x', function(c) c:kill() end,
-    {description = 'close', group = 'windows'}),
-  awful.key({super}, 'x', function(c) c:kill() end,
-    { description = 'close', group = 'windows' }),
-  awful.key({super, shift}, 'w', function(c) c:kill() end,
-    {description = 'close', group = 'windows'}),
-  awful.key(hyper_pl, 'e', focus.previous, { description = 'focus previous', group = 'windows' }),
-  awful.key({super}, 'e', focus.previous,
-    {description = 'focus previous', group = 'windows'}),
-  cyclefocus.key({super}, 'Tab', {
+local client_keys = {}
+
+local function bind_client(group, description, modifiers, keysym, action)
+  client_keys = gears.table.join(client_keys, awful.key(modifiers, keysym, action, {description=description, group=group}))
+end
+
+-- app nav arrow keys
+bind_client('app nav', 'left', {super}, 'Left', runner({app_nav, 'left'}))
+bind_client('app nav', 'down', {super}, 'Down', runner({app_nav, 'down'}))
+bind_client('app nav', 'up', {super}, 'Up', runner({app_nav, 'down'}))
+bind_client('app nav', 'right', {super}, 'Right', runner({app_nav, 'right'}))
+-- app nav left pinky mod-tap
+bind_client('app nav', 'left', {super}, 'o', runner({app_nav, 'left'}))
+bind_client('app nav', 'down', {super}, 'j', runner({app_nav, 'down'}))
+bind_client('app nav', 'right', {super}, 'u', runner({app_nav, 'right'}))
+
+bind_client('windows', 'cycle window placement', {super}, '.', placement.cycle)
+bind_client('windows', 'close', {super}, 'x', function(c) c:kill() end)
+bind_client('windows', 'focus previous', {super}, 'Up', focus.previous)
+bind_client('windows', 'focus previous', {super}, 'e', focus.previous)
+bind_client('windows', 'focus previous (up) window', hyper_pl, 'Up', focus.previous_window)
+bind_client('windows', 'focus next (down) window', hyper_pl, 'Down', focus.next_window)
+
+bind_client('tags', 'move to tag 1', hyper_pl, '1', function() placement.move_to_tag('1') end)
+bind_client('tags', 'move to tag 2', hyper_pl, '2', function() placement.move_to_tag('2') end)
+bind_client('tags', 'move to tag 3', hyper_pl, '3', function() placement.move_to_tag('3') end)
+
+bind_client('browser', 'copy-link', {super}, 'i', runner({home_bin .. '/copy-link'}))
+
+-- add binding for cyclefocus manually since it does not follow
+-- the above pattern
+client_keys = gears.table.join(client_keys, cyclefocus.key({super}, 'Tab', {
   cycle_filters = { cyclefocus.filters.same_screen, cyclefocus.filters.common_tag }
-}),
-  cyclefocus.key(hyper_pl, 'Tab', { cycle_filters = { cyclefocus.filters.same_screen, cyclefocus.filters.common_tag }
-}))
+}, {group='windows', description='cycle focus'}))
 
 local clientbuttons = gears.table.join(awful.button({}, 1, function(c)
   c:emit_signal('request::activate', 'mouse_click', {raise = true})
@@ -181,4 +138,4 @@ end), awful.button({super}, 3, function(c)
   awful.mouse.client.resize(c)
 end))
 
-return {clientkeys = clientkeys, clientbuttons = clientbuttons}
+return {clientkeys = client_keys, clientbuttons = clientbuttons}
