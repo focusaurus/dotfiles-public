@@ -24,56 +24,72 @@ local function runner(args)
 end
 
 -- mouse bindings
-root.buttons(gears.table.join(
-  awful.button({}, 3, function() mymainmenu:toggle() end),
-  awful.button({}, 4, awful.tag.viewnext),
-  awful.button({}, 5, awful.tag.viewprev)))
+root.buttons(gears.table.join(awful.button({}, 3,
+                                           function() mymainmenu:toggle() end),
+                              awful.button({}, 4, awful.tag.viewnext),
+                              awful.button({}, 5, awful.tag.viewprev)))
 
 -- This table will collect all keybindings for awesomewm global scope
 -- (not associated with any particular client window)
 local root_keys = {}
 local function bind_root(group, description, modifiers, keysym, action)
-  root_keys = gears.table.join(root_keys, awful.key(modifiers, keysym, action, {description=description, group=group}))
+  root_keys = gears.table.join(root_keys, awful.key(modifiers, keysym, action, {
+    description = description,
+    group = group
+  }))
 end
 -- Set up a little function call DSL for concise keybinds.
 -- These are more friendly to autoformatting then gigantic
 -- inline table literals full of complex function definitions
 
-bind_root('window manager', 'restart window manager', {super, shift}, 'r', awesome.restart)
+bind_root('window manager', 'restart window manager', {super, shift}, 'r',
+          awesome.restart)
 bind_root('window manager', 'quit window manager', hyper_pl, 'q', awesome.quit)
 
 -- window manager virtual desktops (tags)
-bind_root('tags','view previous (left) tag', hyper_pl, 'Left', awful.tag.viewprev)
-bind_root('tags','view next (right) tag', hyper_pl, 'Right', awful.tag.viewnext)
-bind_root('tags','view next (right) tag', {super}, 'q', awful.tag.viewprev)
-bind_root('tags','view next (right) tag', {super}, 'k', awful.tag.viewnext)
+bind_root('tags', 'view previous (left) tag', hyper_pl, 'Left',
+          awful.tag.viewprev)
+bind_root('tags', 'view next (right) tag', hyper_pl, 'Right', awful.tag.viewnext)
+bind_root('tags', 'view next (right) tag', {super}, 'q', awful.tag.viewprev)
+bind_root('tags', 'view next (right) tag', {super}, 'k', awful.tag.viewnext)
 
-bind_root('screen', 'brightness down', {}, 'XF86MonBrightnessDown', runner({'sudo', 'brightnessctl', 'set', '20%-'}))
-bind_root('screen', 'brightness up', {}, 'XF86MonBrightnessUp', runner({'sudo', 'brightnessctl', 'set', '20%+'}))
+bind_root('screen', 'brightness down', {}, 'XF86MonBrightnessDown',
+          runner({'sudo', 'brightnessctl', 'set', '20%-'}))
+bind_root('screen', 'brightness up', {}, 'XF86MonBrightnessUp',
+          runner({'sudo', 'brightnessctl', 'set', '20%+'}))
 
-bind_root('sound', 'volume up', {}, 'XF86AudioRaiseVolume', runner({home_bin .. '/volume', '+10%'}))
-bind_root('sound', 'volume down', {}, 'XF86AudioLowerVolume', runner({home_bin .. '/volume', '-10%'}))
-bind_root('sound', 'toggle volume mute', {}, 'XF86AudioMute', runner({home_bin .. '/volume-toggle-mute'}))
-bind_root('sound', 'toggle mic mute', {}, 'XF86AudioMicMute', runner({home_bin .. '/microphone-toggle'}))
+bind_root('sound', 'volume up', {}, 'XF86AudioRaiseVolume',
+          runner({home_bin .. '/volume', '+10%'}))
+bind_root('sound', 'volume down', {}, 'XF86AudioLowerVolume',
+          runner({home_bin .. '/volume', '-10%'}))
+bind_root('sound', 'toggle volume mute', {}, 'XF86AudioMute',
+          runner({home_bin .. '/volume-toggle-mute'}))
+bind_root('sound', 'toggle mic mute', {}, 'XF86AudioMicMute',
+          runner({home_bin .. '/microphone-toggle'}))
 
 bind_root('rofi', 'leader', {super}, '1', leader.tag_in)
 bind_root('rofi', 'leader', {}, 'F10', leader.tag_in)
 bind_root('rofi', 'fuzz script', {super}, '2', focus.fuzz_script)
-bind_root('rofi', 'fuzz script', {super}, 'space', runner({home_bin .. '/fuzz-script-choose'}))
+bind_root('rofi', 'fuzz script', {super}, 'space',
+          runner({home_bin .. '/fuzz-script-choose'}))
 bind_root('rofi', 'fuzz script', {}, 'F11', focus.fuzz_script)
 bind_root('rofi', 'fuzz snippet', {super}, '3', focus.fuzz_snippet)
 bind_root('rofi', 'fuzz snippet', {super}, 's', focus.fuzz_snippet)
 bind_root('rofi', 'fuzz snippet', {}, 'F12', focus.fuzz_snippet)
-bind_root('rofi', 'run', {super, shift}, 'space', runner({'rofi', '-show', 'run'}))
-bind_root('rofi', 'windows', hyper_pl, 'w', runner( { 'rofi', '-show', 'window', '-theme', 'gruvbox-light-soft' }))
+bind_root('rofi', 'run', {super, shift}, 'space',
+          runner({'rofi', '-show', 'run'}))
+bind_root('rofi', 'windows', hyper_pl, 'w',
+          runner({'rofi', '-show', 'window', '-theme', 'gruvbox-light-soft'}))
 bind_root('rofi', 'windows', {super}, '4', runner({'rofi', '-show', 'window'}))
 
 bind_root('dev', 'dev 1', hyper_pl, '9', dev.dev1)
 
 -- bind function keys to selecting the corresponding tag
 for _, n in pairs({'1', '2', '3', '4'}) do
-  bind_root('tags', 'select tag ' .. n, hyper_pl, 'F' .. n, function() tags.select(n) end)
-  bind_root('tags', 'move to tag ' .. n, hyper_pl, n, function() placement.move_to_tag(n) end)
+  bind_root('tags', 'select tag ' .. n, hyper_pl, 'F' .. n,
+            function() tags.select(n) end)
+  bind_root('tags', 'move to tag ' .. n, hyper_pl, n,
+            function() placement.move_to_tag(n) end)
 end
 
 -- register the key bindings with awesomewm
@@ -96,7 +112,11 @@ cyclefocus.default_preset.base_font_size = 14
 local client_keys = {}
 
 local function bind_client(group, description, modifiers, keysym, action)
-  client_keys = gears.table.join(client_keys, awful.key(modifiers, keysym, action, {description=description, group=group}))
+  client_keys = gears.table.join(client_keys, awful.key(modifiers, keysym,
+                                                        action, {
+    description = description,
+    group = group
+  }))
 end
 
 -- app nav arrow keys
@@ -113,20 +133,21 @@ bind_client('windows', 'cycle window placement', {super}, '.', placement.cycle)
 bind_client('windows', 'close', {super}, 'x', function(c) c:kill() end)
 bind_client('windows', 'focus previous', {super}, 'Up', focus.previous)
 bind_client('windows', 'focus previous', {super}, 'e', focus.previous)
-bind_client('windows', 'focus previous (up) window', hyper_pl, 'Up', focus.previous_window)
-bind_client('windows', 'focus next (down) window', hyper_pl, 'Down', focus.next_window)
+bind_client('windows', 'focus previous (up) window', hyper_pl, 'Up',
+            focus.previous_window)
+bind_client('windows', 'focus next (down) window', hyper_pl, 'Down',
+            focus.next_window)
 
-bind_client('tags', 'move to tag 1', hyper_pl, '1', function() placement.move_to_tag('1') end)
-bind_client('tags', 'move to tag 2', hyper_pl, '2', function() placement.move_to_tag('2') end)
-bind_client('tags', 'move to tag 3', hyper_pl, '3', function() placement.move_to_tag('3') end)
-
-bind_client('browser', 'copy-link', {super}, 'i', runner({home_bin .. '/copy-link'}))
+bind_client('browser', 'copy-link', {super}, 'i',
+            runner({home_bin .. '/copy-link'}))
 
 -- add binding for cyclefocus manually since it does not follow
 -- the above pattern
 client_keys = gears.table.join(client_keys, cyclefocus.key({super}, 'Tab', {
-  cycle_filters = { cyclefocus.filters.same_screen, cyclefocus.filters.common_tag }
-}, {group='windows', description='cycle focus'}))
+  cycle_filters = {
+    cyclefocus.filters.same_screen, cyclefocus.filters.common_tag
+  }
+}, {group = 'windows', description = 'cycle focus'}))
 
 local clientbuttons = gears.table.join(awful.button({}, 1, function(c)
   c:emit_signal('request::activate', 'mouse_click', {raise = true})
