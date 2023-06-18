@@ -82,9 +82,9 @@ local function by_class(class_name)
   -- return found
 end
 
-function module.left() awful.client.focus.byidx(-1) end
+function module.previous_window() awful.client.focus.byidx(-1) end
 
-function module.right() awful.client.focus.byidx(1) end
+function module.next_window() awful.client.focus.byidx(1) end
 
 function module.leader()
   if not by_class('Rofi') then
