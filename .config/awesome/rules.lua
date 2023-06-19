@@ -27,6 +27,7 @@ local all_clients = {
     placement = awful.placement.no_overlap + awful.placement.no_offscreen
   }
 }
+
 local floating_clients = {
   rule_any = {
     instance = {
@@ -45,7 +46,7 @@ local floating_clients = {
     -- and the name shown there might not match defined rules here.
     name = {
       'Event Tester', -- xev
-      'Export File',  -- shotcut
+      'Export File' -- shotcut
     },
     role = {
       'AlarmWindow', -- Thunderbird's calendar.
@@ -62,10 +63,12 @@ local floating_clients = {
     placement = awful.placement.centered
   }
 }
+
 local title_bars = {
   rule_any = {type = {'normal', 'dialog'}},
   properties = {titlebars_enabled = true}
 }
+
 local sticky = {
   rule_any = {class = {'Yad', 'zenity'}, name = {'Chat'}, role = {'Dialog'}},
   properties = {
@@ -75,6 +78,7 @@ local sticky = {
     placement = awful.placement.centered
   }
 }
+
 local rofi = {
   -- rofi for leader key
   rule_any = {class = {'Rofi'}},
@@ -84,23 +88,28 @@ local rofi = {
     maximized = false
   }
 }
+
 local all_regular_tags = {'1', '2', '3'}
 local one_password = {
   rule_any = {class = {'1Password'}},
   properties = {tags = all_regular_tags, maximized = true}
 }
+
 local frc = {
   rule_any = {name = {'FRC: website'}},
   properties = {tags = {'2'}, maximized = true}
 }
+
 local slack = {
   rule_any = {class = {'Slack'}},
   properties = {tags = all_regular_tags, maximized = true}
 }
+
 local music = {
   rule_any = {name = {'music', 'YouTube Music'}},
   properties = {tags = all_regular_tags, maximized = true}
 }
+
 local freecad = {
   -- Force FreeCAD to maximize the main window properly
   rule_any = {class = {'FreeCAD'}},
@@ -134,9 +143,27 @@ local openshot_tutorial = {
     sticky = false
   }
 }
+
+local obsidian = {
+  rule_any = {class = {'obsidian'}},
+  callback = function(client)
+    local tags = {'1'}
+    -- log.log('callback2 for obsidian: ' .. client.name)
+    for tag, name in pairs({'personal', 'focus-retreat-center', 'nuon'}) do
+      if string.find(client.name, ' - ' .. name .. ' - ', 1, true) then
+        -- log.log('callback3 for obsidian: ' .. client.name)
+        -- log.log('callback4 for obsidian: ' .. name)
+        tags = {tostring(tag)}
+        break
+      end
+    end
+    awful.rules.execute(client, {maximized = true, tags = tags})
+  end
+}
+
 awful.rules.rules = {
   all_clients, floating_clients, title_bars, sticky, rofi, one_password, frc,
-  slack, music, freecad, openshot_preview, openshot_tutorial
+  slack, music, freecad, openshot_preview, openshot_tutorial, obsidian
 }
 
 function module.reapply()
