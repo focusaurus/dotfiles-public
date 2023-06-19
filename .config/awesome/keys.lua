@@ -9,25 +9,22 @@ local leader = require('leader')
 local tags = require('tags')
 local dev = require('dev')
 
-local alt = 'Mod1'
+-- local alt = 'Mod1'
 -- local control = 'Control'
 local super = 'Mod4'
 local shift = 'Shift'
 local home_bin = os.getenv('HOME') .. '/bin'
 local app_nav = home_bin .. '/app-nav'
-local hyper_pl = {alt, super}
+-- local hyper_pl = {alt, super}
+-- Would prefer alt+super for this but not easy in vial
+-- and don't want to get back to custom QMK fork code
+local shift_super = {shift, super}
 
 local function noop() end
 
 local function runner(args)
   return function() awful.spawn.easy_async(args, noop) end
 end
-
--- mouse bindings
-root.buttons(gears.table.join(awful.button({}, 3,
-                                           function() mymainmenu:toggle() end),
-                              awful.button({}, 4, awful.tag.viewnext),
-                              awful.button({}, 5, awful.tag.viewprev)))
 
 -- This table will collect all keybindings for awesomewm global scope
 -- (not associated with any particular client window)
@@ -44,12 +41,12 @@ end
 
 bind_root('window manager', 'restart window manager', {super, shift}, 'r',
           awesome.restart)
-bind_root('window manager', 'quit window manager', hyper_pl, 'q', awesome.quit)
+bind_root('window manager', 'quit window manager', shift_super, 'q', awesome.quit)
 
 -- window manager virtual desktops (tags)
-bind_root('tags', 'view previous (left) tag', hyper_pl, 'Left',
+bind_root('tags', 'view previous (left) tag', shift_super, 'Left',
           awful.tag.viewprev)
-bind_root('tags', 'view next (right) tag', hyper_pl, 'Right', awful.tag.viewnext)
+bind_root('tags', 'view next (right) tag', shift_super, 'Right', awful.tag.viewnext)
 bind_root('tags', 'view next (right) tag', {super}, 'q', awful.tag.viewprev)
 bind_root('tags', 'view next (right) tag', {super}, 'k', awful.tag.viewnext)
 
@@ -78,27 +75,27 @@ bind_root('rofi', 'fuzz snippet', {super}, 's', focus.fuzz_snippet)
 bind_root('rofi', 'fuzz snippet', {}, 'F12', focus.fuzz_snippet)
 bind_root('rofi', 'run', {super, shift}, 'space',
           runner({'rofi', '-show', 'run'}))
-bind_root('rofi', 'windows', hyper_pl, 'w',
+bind_root('rofi', 'windows', shift_super, 'w',
           runner({'rofi', '-show', 'window', '-theme', 'gruvbox-light-soft'}))
 bind_root('rofi', 'windows', {super}, '4', runner({'rofi', '-show', 'window'}))
 
-bind_root('dev', 'dev 1', hyper_pl, '9', dev.dev1)
+bind_root('dev', 'dev 1', shift_super, '9', dev.dev1)
 
 -- bind function keys to selecting the corresponding tag
 for _, n in pairs({'1', '2', '3', '4'}) do
-  bind_root('tags', 'select tag ' .. n, hyper_pl, 'F' .. n,
+  bind_root('tags', 'select tag ' .. n, shift_super, 'F' .. n,
             function() tags.select(n) end)
-  bind_root('tags', 'move to tag ' .. n, hyper_pl, n,
+  bind_root('tags', 'move to tag ' .. n, shift_super, n,
             function() placement.move_to_tag(n) end)
 end
 
 -- register the key bindings with awesomewm
 root.keys(root_keys)
 
--- awful.key(hyper_pl, "r",
+-- awful.key(shift_super, "r",
 --   function() awful.screen.focused().mypromptbox:run() end,
 --   {description = "run prompt", group = "launcher"}),
--- awful.key(hyper_pl, "x", function()
+-- awful.key(shift_super, "x", function()
 --   awful.prompt.run {
 --     prompt = "Run Lua code: ",
 --     textbox = awful.screen.focused().mypromptbox.widget,
@@ -107,16 +104,12 @@ root.keys(root_keys)
 --   }
 -- end, {description = "lua execute prompt", group = "awesome"}),
 
-cyclefocus.default_preset.base_font_size = 14
 
 local client_keys = {}
 
-local function bind_client(group, description, modifiers, keysym, action)
-  client_keys = gears.table.join(client_keys, awful.key(modifiers, keysym,
-                                                        action, {
-    description = description,
-    group = group
-  }))
+local function bind_client(g, d, modifiers, keysym, action)
+  local key = awful.key(modifiers, keysym, action, {description = d, group = g})
+  client_keys = gears.table.join(client_keys, key)
 end
 
 -- app nav arrow keys
@@ -133,9 +126,9 @@ bind_client('windows', 'cycle window placement', {super}, '.', placement.cycle)
 bind_client('windows', 'close', {super}, 'x', function(c) c:kill() end)
 bind_client('windows', 'focus previous', {super}, 'Up', focus.previous)
 bind_client('windows', 'focus previous', {super}, 'e', focus.previous)
-bind_client('windows', 'focus previous (up) window', hyper_pl, 'Up',
+bind_client('windows', 'focus previous (up) window', shift_super, 'Up',
             focus.previous_window)
-bind_client('windows', 'focus next (down) window', hyper_pl, 'Down',
+bind_client('windows', 'focus next (down) window', shift_super, 'Down',
             focus.next_window)
 
 bind_client('browser', 'copy-link', {super}, 'i',
@@ -143,6 +136,7 @@ bind_client('browser', 'copy-link', {super}, 'i',
 
 -- add binding for cyclefocus manually since it does not follow
 -- the above pattern
+cyclefocus.default_preset.base_font_size = 14
 client_keys = gears.table.join(client_keys, cyclefocus.key({super}, 'Tab', {
   cycle_filters = {
     cyclefocus.filters.same_screen, cyclefocus.filters.common_tag
