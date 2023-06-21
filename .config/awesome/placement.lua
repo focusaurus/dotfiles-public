@@ -1,9 +1,9 @@
 local module = {}
 
-local awful = require("awful")
+local awful = require('awful')
 local honor = {honor_workarea = true}
 
-local log = require("log")
+local log2 = require('log2')
 
 local all = function(client) return true end
 
@@ -18,12 +18,12 @@ function module.left_half(client)
   client.maximized = false
   awful.placement.scale(client.focus, {
     to_percent = 0.5,
-    direction = "left",
+    direction = 'left',
     honor_workarea = true
   })
   awful.placement.scale(client.focus, {
     to_percent = 1,
-    direction = "up",
+    direction = 'up',
     honor_workarea = true
   })
   awful.placement.top(client.focus, honor)
@@ -35,12 +35,12 @@ function module.right_half(client)
   client.maximized = false
   awful.placement.scale(client.focus, {
     to_percent = 0.5,
-    direction = "right",
+    direction = 'right',
     honor_workarea = true
   })
   awful.placement.scale(client.focus, {
     to_percent = 1,
-    direction = "up",
+    direction = 'up',
     honor_workarea = true
   })
   awful.placement.top(client.focus, honor)
@@ -61,9 +61,8 @@ end
 function module.cycle(client)
   local ratio = client.width / client.screen.geometry.width
   local x_pos = client.x - client.screen.geometry.x
-  -- local debug = require("gears.debug")
-  -- debug.print_warning("client.x " .. client.x)
-  -- debug.print_warning("screen.geometry.x " .. client.screen.geometry.x)
+  -- log2("client.x ", client.x)
+  -- log2("screen.geometry.x ", client.screen.geometry.x)
   if ratio > 0.9 then
     module.left_half(client)
   else
@@ -83,12 +82,12 @@ function module.move_all_clients_to_screen()
   local screen_from = screen[1]
   local screen_to = screen[1]
   for s in screen do
-    log.log("dev8: s.index: " .. s.index .. " clients: " .. #s.all_clients)
+    log2('dev8: s.index:', s.index, 'clients:', #s.all_clients)
     if #s.all_clients == 0 then
-      log.log(s.index .. " is screen_to since has zero clients")
+      log2(s.index, 'is screen_to since has zero clients')
       screen_to = s
     else
-      log.log(s.index .. " is screen_from since has some clients")
+      log2(s.index, 'is screen_from since has some clients')
       screen_from = s
     end
 
@@ -96,30 +95,31 @@ function module.move_all_clients_to_screen()
     --   screen_to = s
     -- end
     -- if #s.all_clients >= #screen_from.all_clients then
-    --   log.log(s.index .. " is screen_from since has most clients")
+    --   log2(s.index, " is screen_from since has most clients")
     --   screen_from = s
     -- end
     -- if screen_from == nil then
-    --   log.log("screen_from default is " .. s.index)
+    --   log2("screen_from default is ", s.index)
     --   screen_from = s
     -- end
     -- if screen_to == nil then
-    --   log.log("screen_to default is " .. s.index)
+    --   log2("screen_to default is ", s.index)
     --   screen_to = s
     -- end
     -- if #s.all_clients == 0 then
-    --   log.log("Screen " .. s.index .. " has no clients, is screen_to")
+    --   log2("Screen ", s.index, " has no clients, is screen_to")
     --   screen_to = s
     -- else
-    --   log.log("Screen " .. s.index .. " has some clients, is screen_from")
+    --   log2("Screen ", s.index, " has some clients, is screen_from")
     --   screen_from = s
     -- end
   end
 
-  log.log("dev9 WTF " .. #screen_from.all_clients)
+  log2('dev9 WTF', #screen_from.all_clients)
   for key, client in pairs(screen_from.all_clients) do
-    log.log("dev10 WTF")
-    log.log("dev7 moving " .. (client.name or "") .. " from " .. client.screen.index .. " to " .. screen_to.index)
+    log2('dev10 WTF')
+    log2('dev7 moving', (client.name or ''), 'from', client.screen.index,
+         'to', screen_to.index)
     client:move_to_screen(screen_to.index)
     client.minimized = false
     client.maximized = true
@@ -131,10 +131,10 @@ end
 
 function module.move_to_tag(tag_name)
   local c = client.focus
-  log.log("placement.move_to_tag called " .. tag_name .. " " .. tostring(c == nil))
+  log2('placement.move_to_tag called ', tag_name, c == nil)
   if not c then return end
   local tag = awful.tag.find_by_name(awful.screen.focused(), tag_name)
-  log.log("tag: " .. tostring(tag == nil))
+  log2('tag:', tag == nil)
   c:tags({tag})
 end
 

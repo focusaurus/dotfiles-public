@@ -8,7 +8,7 @@ local placement = require('placement')
 local titles = require('titles')
 local dev = require('dev')
 local focus = require('focus')
-local log = require('log')
+local log2 = require('log2')
 
 local hotkeys_popup = require('awful.hotkeys_popup')
 
@@ -71,11 +71,10 @@ local tasklist_buttons = gears.table.join(
 client.connect_signal('manage', function(c)
   -- i.e. put it at the end of others instead of setting it master.
   if not awesome.startup then awful.client.setslave(c) end
-  log.log('manage window ' .. c.name .. ', urgent: ' .. tostring(c.urgent))
-  client.urgent = false
-
+  log2('manage window', c.name, 'urgent:', c.urgent)
+  c.urgent = false
   awful.spawn.easy_async({os.getenv('HOME') .. '/bin/set-icons'},
-                         function() log.log('ran set-icons.sh') end)
+                         function() log2('ran set-icons.sh') end)
 end)
 
 local clock_widget = wibox.widget.textclock()
@@ -183,9 +182,4 @@ awful.spawn.easy_async({
   awful.spawn.with_line_callback(volume_script, {stdout = module.set_volume})
 end)
 
--- Use this for development as follows on the command line
--- awesome-client "require('wibar').dev()"
-function module.dev()
-  -- log.log("")
-end
 return module

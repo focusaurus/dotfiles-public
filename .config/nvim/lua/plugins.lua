@@ -62,6 +62,17 @@ local textcase = function(use)
   }
 end
 
+local function go(use)
+  use {'ray-x/go.nvim', config = function() require('go').setup() end}
+  -- Run gofmt + goimport on save
+  local format_sync_grp = vim.api.nvim_create_augroup('GoImport', {})
+  vim.api.nvim_create_autocmd('BufWritePre', {
+    pattern = '*.go',
+    callback = function() require('go.format').goimport() end,
+    group = format_sync_grp
+  })
+end
+
 require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
@@ -117,6 +128,7 @@ require('packer').startup(function(use)
   use 'tpope/vim-repeat'
   use 'ThePrimeagen/vim-be-good'
   use 'ixru/nvim-markdown'
+  use 'ray-x/guihua.lua' -- recommended if need floating window support
   use {
     'folke/which-key.nvim',
     config = function()
@@ -129,8 +141,16 @@ require('packer').startup(function(use)
       }
     end
   }
+  use({
+    'ray-x/navigator.lua',
+    requires = {
+        { 'ray-x/guihua.lua', run = 'cd lua/fzy && make' },
+        { 'neovim/nvim-lspconfig' },
+    },
+})
   textcase(use)
   telescope(use)
+  go(use)
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then require('packer').sync() end
@@ -262,7 +282,7 @@ local servers = {
   -- rust_analyzer = {},
   -- tsserver = {},
   cssls = {},
-  html ={},
+  html = {},
   lua_ls = {
     Lua = {workspace = {checkThirdParty = false}, telemetry = {enable = false}}
   }

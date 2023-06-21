@@ -10,8 +10,6 @@ vim.api.nvim_create_autocmd('FileType', {
 -- :DisableSaveOnFocusLost
 vim.api.nvim_create_autocmd('FocusLost',
                             {pattern = {'*'}, command = 'silent! wa'})
--- Temporary hack since the above does not seem to work
-vim.cmd('autocmd FocusLost * silent! wall')
 
 vim.cmd('command DisableSaveOnFocusLost :autocmd! FocusLost')
 
