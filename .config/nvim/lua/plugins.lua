@@ -77,6 +77,7 @@ require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
+  use {'j-hui/fidget.nvim', tag='legacy'}
   -- https://github.com/nvim-lua/kickstart.nvim
   use { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',

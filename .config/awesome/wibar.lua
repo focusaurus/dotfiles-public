@@ -71,10 +71,10 @@ local tasklist_buttons = gears.table.join(
 client.connect_signal('manage', function(c)
   -- i.e. put it at the end of others instead of setting it master.
   if not awesome.startup then awful.client.setslave(c) end
-  log2('manage window', c.name, 'urgent:', c.urgent)
+  -- log2('manage window', c.name, 'urgent:', c.urgent)
   c.urgent = false
-  awful.spawn.easy_async({os.getenv('HOME') .. '/bin/set-icons'},
-                         function() log2('ran set-icons.sh') end)
+  awful.spawn
+      .easy_async({os.getenv('HOME') .. '/bin/set-icons'}, function() end)
 end)
 
 local clock_widget = wibox.widget.textclock()

@@ -12,24 +12,46 @@ set -o pipefail # don't ignore exit codes when piping output
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
-app-to-icon() {
-  # we || true at the end of this pipeline to
-  # proceed even when grep doesn't find anything
-  # and exits nonzero
-  wmctrl -l | grep "$1" | awk '{print $1}' | {
-    while IFS= read -r id_hex; do
-      xseticon -id $((id_hex)) "$2"
-    done
-  } || true
+wmctrl -l | {
+  while IFS= read -r wmline; do
+    id_hex=$(echo "${wmline}" | awk '{print $1}')
+    title=$(echo "${wmline}" | cut -d " " -f 5-)
+    echo "${id_hex} ${title}"
+    case "${title}" in
+    *Obsidian*)
+      icon="/usr/share/pixmaps/obsidian.png"
+      ;;
+    *Slack*)
+      icon="/usr/share/icons/Arc-ICONS/apps/48/slack.png"
+      ;;
+    *1Password*)
+      icon="/usr/share/icons/hicolor/64x64/apps/1password.png"
+      ;;
+    music)
+      icon="${HOME}/.config/awesome/youtube-music-logo.png"
+      ;;
+    todoist)
+      icon="${HOME}/.config/awesome/todoist-logo.png"
+      ;;
+    workflowy)
+      icon="${HOME}/.config/awesome/workflowy-logo.png"
+      ;;
+    *Discord*)
+      icon="${HOME}/.config/awesome/discord-logo.png"
+      ;;
+    calendar)
+      icon="${HOME}/.config/awesome/google-calendar-logo.png"
+      ;;
+    trello)
+      icon="${HOME}/.config/awesome/trello-logo.png"
+      ;;
+    "FRC: main")
+      icon="${HOME}/github.com/focusretreatcenter/website/static/apple-touch-icon.png"
+      ;;
+    *)
+      continue
+      ;;
+    esac
+    xseticon -id $((id_hex)) "${icon}"
+  done
 }
-
-app-to-icon "Obsidian" "/usr/share/pixmaps/obsidian.png"
-app-to-icon "Slack" "/usr/share/icons/Arc-ICONS/apps/48/slack.png"
-app-to-icon "1Password" "/usr/share/icons/hicolor/64x64/apps/1password.png"
-app-to-icon "music" "${HOME}/.config/awesome/youtube-music-logo.png"
-app-to-icon "todoist" "${HOME}/.config/awesome/todoist-logo.png"
-app-to-icon "workflowy" "${HOME}/.config/awesome/workflowy-logo.png"
-app-to-icon "Discord" "${HOME}/.config/awesome/discord-logo.png"
-app-to-icon "calendar" "${HOME}/.config/awesome/google-calendar-logo.png"
-app-to-icon "trello" "${HOME}/.config/awesome/trello-logo.png"
-app-to-icon "FRC: main" "${HOME}/github.com/focusretreatcenter/website/static/apple-touch-icon.png"

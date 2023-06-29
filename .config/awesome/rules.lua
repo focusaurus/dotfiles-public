@@ -161,9 +161,20 @@ local obsidian = {
   end
 }
 
+local xournalpp_export = {
+  rule = {class = 'Xournalpp', name = 'Export'},
+  properties = {floating = true, maximized = false}
+}
+
+local xournalpp_export_pdf = {
+  rule = {class = 'Xournalpp', name = 'Export PDF'},
+  properties = {floating = true, maximized = false}
+}
+
 awful.rules.rules = {
   all_clients, floating_clients, title_bars, sticky, rofi, one_password, frc,
-  slack, music, freecad, openshot_preview, openshot_tutorial, obsidian
+  slack, music, freecad, openshot_preview, openshot_tutorial, obsidian,
+  xournalpp_export, xournalpp_export_pdf
 }
 
 function module.reapply()

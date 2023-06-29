@@ -112,7 +112,7 @@ local function bind_client(g, d, modifiers, keysym, action)
   client_keys = gears.table.join(client_keys, key)
 end
 
--- app nav arrow keys
+-- app nav arrow keys (also rownav keyd layer)
 bind_client('app nav', 'left', {super}, 'Left', runner({app_nav, 'left'}))
 bind_client('app nav', 'down', {super}, 'Down', runner({app_nav, 'down'}))
 bind_client('app nav', 'up', {super}, 'Up', runner({app_nav, 'down'}))
@@ -124,7 +124,7 @@ bind_client('app nav', 'right', {super}, 'u', runner({app_nav, 'right'}))
 
 bind_client('windows', 'cycle window placement', {super}, '.', placement.cycle)
 bind_client('windows', 'close', {super}, 'x', function(c) c:kill() end)
-bind_client('windows', 'focus previous', {super}, 'Up', focus.previous)
+-- bind_client('windows', 'focus previous', {super}, 'Up', focus.previous)
 bind_client('windows', 'focus previous', {super}, 'e', focus.previous)
 bind_client('windows', 'focus previous (up) window', shift_super, 'Up',
             focus.previous_window)

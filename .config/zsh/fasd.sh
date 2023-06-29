@@ -10,3 +10,5 @@ if ~/bin/have-exe fasd; then
   alias zz='fasd_cd -d -i' # cd with interactive selection
   # bindkey ^D fasd-complete-d
 fi
+
+alias fasd-delete-db="echo -n > \"${HOME}/.cache/fasd\""

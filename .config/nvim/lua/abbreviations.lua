@@ -12,7 +12,10 @@ local abbrevs = {
   qo = '$1',
   qt = '$2',
   qv = '"${}"<Left><Left>' .. eat_space,
-  sv = '${}<Left>' .. eat_space
+  sv = '${}<Left>' .. eat_space,
+  iferr = [[if err != nil {
+\treturn err
+\t}]]
 }
 
 for short, long in pairs(abbrevs) do
@@ -20,3 +23,4 @@ for short, long in pairs(abbrevs) do
 end
 
 vim.cmd.iabbrev({'<buffer>', 'terab', '{% block foo -%}{% endblock foo -%}'})
+vim.cmd.iabbrev({'<buffer>', 'functest', 'func TestFoo(t *testing.T) {\n\tassert.NoError(t, err)\n}<Up><Left>' .. eat_space})

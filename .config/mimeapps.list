@@ -1,6 +1,4 @@
 [Added Associations]
-model/stl=/usr/share/applications/PrusaSlicer.desktop;
-application/stl=/usr/share/applications/PrusaSlicer.desktop;
 
 [Default Applications]
 x-scheme-handler/postman=Postman.desktop
@@ -12,3 +10,4 @@ x-scheme-handler/unknown=google-chrome.desktop
 x-scheme-handler/mailto=google-chrome.desktop
 x-scheme-handler/webcal=google-chrome.desktop
 x-scheme-handler/discord=google-chrome.desktop
+model/stl=PrusaSlicer.desktop

@@ -262,3 +262,4 @@
 .config/flowblade/
 /.pgadmin
 /.psql_history
+/.config/aichat

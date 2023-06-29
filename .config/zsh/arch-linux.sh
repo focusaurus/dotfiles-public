@@ -10,6 +10,10 @@ arch-search-packages() {
 }
 # TODO curl -s "https://get.sdkman.io" | bash
 
+arch-update-packages() {
+  topgrade
+}
+
 arch-update-keyring() {
   sudo pacman -Sy archlinux-keyring
 }
