@@ -12,4 +12,35 @@ set -o pipefail # don't ignore exit codes when piping output
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
-pandoc --from=markdown --to=html
+usage() {
+  cat <<EOF
+Converts markdown text into HTML.
+
+Pass filenames on the command line. Position doesn't matter, just filename extensions.
+
+The .md is the template and .html is the output.
+
+One or both filename arguments can be omitted and stdio will be used instead.
+
+EOF
+}
+
+input="/dev/stdin"
+output="/dev/stdout"
+
+for arg in "$@"; do
+  case "${arg}" in
+  *.md)
+    input="${arg}"
+    ;;
+  *.html)
+    output="${arg}"
+    ;;
+  *)
+    echo "Expecting arguments in any order but with extensions: .md or .html. Not ${arg}" 1>&2
+    usage 1>&2
+    exit 10
+    ;;
+  esac
+done
+pandoc --from=markdown --to=html -o "${output}" "${input}"

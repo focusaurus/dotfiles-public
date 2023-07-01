@@ -14,33 +14,39 @@ IFS=$'\n\t'
 
 usage() {
   cat <<EOF
-Converts markdown text into a PDF file.
+Renders data into a tera template then processes the markdown to HTML then PDF.
 
 Pass filenames on the command line. Position doesn't matter, just filename extensions.
 
-The .md is the template and .pdf is the output.
-
-One or both filename arguments can be omitted and stdio will be used instead.
-
+The .md is the template, .json is the data, and .pdf is the output.
 EOF
 }
 
-input="/dev/stdin"
+template="/dev/stdin"
+data="/dev/stdin"
 output="/dev/stdout"
-
+ok="n"
 for arg in "$@"; do
   case "${arg}" in
   *.md)
-    input="${arg}"
+    template="${arg}"
+    ok="y"
+    ;;
+  *.json)
+    data="${arg}"
+    ok="y"
     ;;
   *.pdf)
     output="${arg}"
     ;;
   *)
-    echo "Expecting arguments in any order but with extensions: .md or .pdf. Not ${arg}" 1>&2
-    usage 1>&2
+    echo "Expecting arguments in any order but with extensions: .md, .json, or .pdf. Not ${arg}" 1>&2
     exit 10
     ;;
   esac
 done
-~/bin/md-to-html <"${input}" | ~/bin/html-to-pdf >"${output}"
+if [[ "${ok}" == "n" ]]; then
+  echo "you must provide one of --template or --data on the command line" 1>&2
+  exit 11
+fi
+tera --template "${template}" --stdin <"${data}" | ~/bin/md-to-pdf >"${output}"

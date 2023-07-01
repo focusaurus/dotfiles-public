@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
+
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -o errexit  # always exit on error
+set -o errtrace # trap errors in functions as well
+set -o pipefail # don't ignore exit codes when piping output
+# set -x # enable debugging
+
+IFS=$'\n\t'
+# ---- End unofficial bash strict mode boilerplate
+
+usage() {
+  cat <<EOF
+Renders documents from tera templates to markdown to HTML to PDF
+OR just plain markdown to HTML to PDF.
+
+With no argument markdown from stdin will become PDF to stdout.
+
+Pass filenames on the command line. Position doesn't matter, just filename extensions.
+
+If you pass a *.json filename, the first step will be to render the input
+markdown file as a tera template using that .json file as context data.
+
+Then markdown is rendered to HTML and finally to PDF using a custom stylesheet.
+
+The program name tmhl derives from Tera, Markdown, HTML, and ?? PDF ??,
+and it's an anagram of html.
+EOF
+}
+
+input="/dev/stdin"
+data=""
+output="/dev/stdout"
+for arg in "$@"; do
+  case "${arg}" in
+  -h | --help)
+    usage
+    exit 0
+    ;;
+  *.md)
+    input="${arg}"
+    ;;
+  *.json)
+    data="${arg}"
+    ;;
+  *.pdf)
+    output="${arg}"
+    ;;
+  *.html)
+    output="${arg}"
+    ;;
+  *)
+    echo "Expecting arguments in any order but with extensions: .md, .json, .html, or .pdf. Not ${arg}" 1>&2
+    exit 10
+    ;;
+  esac
+done
+(if [[ -n "${data}" ]]; then
+  tera --template "${input}" --stdin <"${data}"
+else
+  cat "${input}"
+fi) | ~/bin/md-to-pdf >"${output}"

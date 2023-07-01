@@ -2,7 +2,9 @@
   margin: 1cm;
   size: Letter;
 }
+
 body {
+  counter-reset: section2 section3;
   margin: 0;
   font-family: sans-serif;
 }
@@ -10,4 +12,27 @@ body {
 input[type="checkbox"] {
   font-size: 40%;
   margin-right: 0.5em;
+}
+
+.signatures table {
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.signatures td,
+.signatures tr,
+.signatures th {
+  font-weight: normal;
+  border-bottom: 1px solid black;
+  padding-top: 2em;
+}
+
+h2::before {
+  counter-increment: section2;
+  content: counter(section2) ". ";
+}
+
+h3::before {
+  counter-increment: section3;
+  content: counter(section2) "." counter(section3) ". ";
 }
