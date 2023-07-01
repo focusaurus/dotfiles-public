@@ -5,7 +5,6 @@ local wibox = require('wibox')
 
 local menubar = require('menubar')
 local placement = require('placement')
-local titles = require('titles')
 local dev = require('dev')
 local focus = require('focus')
 local log2 = require('log2')
@@ -35,8 +34,7 @@ local mymainmenu = awful.menu({
       function() hotkeys_popup.show_help(nil, awful.screen.focused()) end
     }, {'awesome: restart', awesome.restart},
     {'awesome: unminimize', placement.unminimize},
-    {'awesome: titles', titles.dev}, {'awesome: dev1', dev.dev1},
-    {'awesome: dev2', dev.dev2},
+    {'awesome: dev1', dev.dev1},
     {'awesome: quit', function() awesome.quit() end}, {'leader', focus.leader}
   }
 })

@@ -53,10 +53,23 @@ function module.dev2()
 end
 
 function module.dev1()
-  for c in awful.client.iterate(function() return true end) do
-    log2('client name:', c.name, ' urgent:', c.urgent)
-    c.urgent = false
+  local selected_tag = awful.screen.focused().selected_tag.name
+  local rules = {name = 'music'}
+  local function tag_and_rules(c)
+    log2('tag_and_rules testing client', c.name, selected_tag)
+    for _, tag in pairs(c:tags()) do
+      local tag_matches = selected_tag == tag.name
+      local rule_matches = awful.rules.match(c, rules)
+      log2('client', c.name, 'has tag', tag.name, 'tag_matches', tag_matches,
+           'rule_matches', rule_matches)
+      if tag_matches and rule_matches then
+        log2('client', c.name, 'matched tag and rules', tag)
+        return true
+      end
+    end
+    return false
   end
+  for c in awful.client.iterate(tag_and_rules) do log2('blah', c.name) end
 end
 
 return module

@@ -17,28 +17,41 @@ local function focus_client(client)
 end
 
 local function by_rules(rules)
-  local selected_tag = awful.screen.focused().selected_tag
-  local match_rules_and_tag = function(client)
-    return selected_tag == client.first_tag and awful.rules.match(client, rules)
+  local selected_tag = awful.screen.focused().selected_tag.name
+  local function tag_and_rules(c)
+    log2('tag_and_rules testing client', c.name, selected_tag)
+    for _, tag in pairs(c:tags()) do
+      local tag_matches = selected_tag == tag.name
+      local rule_matches = awful.rules.match(c, rules)
+      log2('client', c.name, 'has tag', tag.name, 'tag_matches', tag_matches,
+           'rule_matches', rule_matches)
+      if tag_matches and rule_matches then
+        -- log2('client', c.name, 'matched tag and rules', tag)
+        return true
+      end
+    end
+    return false
   end
 
   -- prefer a matching client on the selected tag
-  for client in awful.client.iterate(match_rules_and_tag) do
-    focus_client(client)
+  for c in awful.client.iterate(tag_and_rules) do
+    focus_client(c)
     return true
   end
 
   local match_rules =
-      function(client) return awful.rules.match(client, rules) end
+      function(c) return awful.rules.match(c, rules) end
 
   -- fallback to matching clients on any tag
-  for client in awful.client.iterate(match_rules) do
-    client.first_tag:view_only()
-    focus_client(client)
+  for c in awful.client.iterate(match_rules) do
+    log2('matched client by rules on different tag', c.name)
+    c.first_tag:view_only()
+    focus_client(c)
     return true
   end
   return false
 end
+
 function module.work_mode(value)
   log2('work_mode called. Current value: ', work_mode)
   work_mode = value
