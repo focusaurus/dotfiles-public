@@ -263,3 +263,4 @@
 /.pgadmin
 /.psql_history
 /.config/aichat
+/.config/temporalio/tctl.yaml
