@@ -4,16 +4,12 @@
 
 # ---- Start unofficial bash strict mode boilerplate
 # http://redsymbol.net/articles/unofficial-bash-strict-mode/
-set -o errexit  # always exit on error
+set -o errexit # always exit on error
 set -o errtrace # trap errors in functions as well
 set -o pipefail # don't ignore exit codes when piping output
-# set -x          # enable debugging
+# set -x # enable debugging
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-# The udev rule will pass %N which the device node
-# We check for this so we only run the script once
-# each time the ergodox is connected
-if [[ -n "$1" ]]; then
-  touch /home/plyons/.ergodox-udev
-fi
+
+cat | pandoc --from markdown | pup img

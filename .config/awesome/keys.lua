@@ -124,7 +124,7 @@ bind_client('app nav', 'right', {super}, 'u', runner({app_nav, 'right'}))
 
 bind_client('windows', 'cycle window placement', {super}, '.', placement.cycle)
 bind_client('windows', 'close', {super}, 'x', function(c) c:kill() end)
--- bind_client('windows', 'focus previous', {super}, 'Up', focus.previous)
+bind_client('windows', 'focus previous', shift_super, 'p', focus.previous)
 bind_client('windows', 'focus previous', {super}, 'e', focus.previous)
 bind_client('windows', 'focus previous (up) window', shift_super, 'Up',
             focus.previous_window)

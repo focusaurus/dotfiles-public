@@ -1,0 +1,6 @@
+#compdef touchscreen
+
+_touchscreen() {
+  completions=("enable" "disable")
+  _describe "completions" completions
+}

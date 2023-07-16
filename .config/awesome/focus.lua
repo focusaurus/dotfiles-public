@@ -13,8 +13,10 @@ local function noop() end
 
 local function focus_client(client)
   -- client:emit_signal('request::activate', 'mouse_click', {raise = true})
-  client:jump_to(false)
+  client:jump_to(true)
 end
+
+awful.keygrabber:connect_signal('awful.keygrabber.started', function() log2("keygrabber started") end)
 
 local function by_rules(rules)
   local selected_tag = awful.screen.focused().selected_tag.name
@@ -45,8 +47,21 @@ local function by_rules(rules)
   -- fallback to matching clients on any tag
   for c in awful.client.iterate(match_rules) do
     log2('matched client by rules on different tag', c.name)
-    c.first_tag:view_only()
     focus_client(c)
+    c.first_tag:view_only()
+    -- work around awesomewm bug where if you change tags,
+    -- keyboard focus is totally disconnected and the keyboard
+    -- doesn't work until you click with the mouse for some reason
+    log2("hacking keyboard focus", c.first_tag.activated, c.first_tag.selected)
+    -- awful.screen.focus()
+    -- c:raise()
+
+    -- awful.tag.viewidx(1)
+    -- awful.tag.viewidx(-1)
+    -- awful.spawn.easy_async(home_bin .. '/awesomewm-click-workaround', noop)
+    -- focus_client(c)
+    -- module.previous()
+    -- module.next()
     return true
   end
   return false

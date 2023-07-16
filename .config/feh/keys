@@ -1,3 +1,3 @@
-next_img n Right u
-prev_img h Left o
+next_img Right u s
+prev_img Left a h
 quit q v

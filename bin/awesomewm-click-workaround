@@ -7,15 +7,11 @@
 set -o errexit  # always exit on error
 set -o errtrace # trap errors in functions as well
 set -o pipefail # don't ignore exit codes when piping output
-# set -x          # enable debugging
+# set -x # enable debugging
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
-curl -s "https://get.sdkman.io" | bash
-source "${HOME}/.sdkman/bin/sdkman-init.sh"
-version="8.0.232-amzn"
-sdk install java "${version}"
-sudo pacman -S java8-openjfx
-find /usr/lib/jvm -type f -name libjfxwebkit.so |
-  xargs -I % cp % "${HOME}/.sdkman/candidates/java/${version}/jre/lib/amd64"
+# xdotool mousemove 900 0 click 1
+~/bin/blezz &
+xdotool key --delay 90 F10 Escape
