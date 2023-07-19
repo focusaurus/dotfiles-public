@@ -1,0 +1,15 @@
+{
+    "files.autoSave": "afterDelay",
+    "files.trimTrailingWhitespace": true,
+    "workbench.tree.indent": 16,
+    "window.titleBarStyle": "custom",
+    "cody.codebase": "sgp_c0ee8de8271ac39e2bc427941ff51653dd6dd855",
+    "cody.serverEndpoint": "https://sourcegraph.com",
+    "files.insertFinalNewline": true,
+    "redhat.telemetry.enabled": false,
+    "go.toolsManagement.autoUpdate": true,
+    "explorer.confirmDelete": false,
+    "editor.minimap.enabled": false,
+    "git.suggestSmartCommit": false,
+    "git.confirmSync": false
+}

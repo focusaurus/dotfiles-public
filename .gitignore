@@ -1,6 +1,7 @@
-/.config/Code/*
-!.config/Code/User
-.config/Code/User/*Storage
+/.config/Code*
+!.config/Code*/User
+/.config/Code*/User/History
+/.config/Code*/User/*Storage
 /.config/obsidian
 /*.auth
 /.3T
@@ -225,7 +226,6 @@
 /f22
 /f23
 /.opam
-/.config/Code - OSS
 /.config/darktable
 .config/1Password
 .config/BraveSoftware
@@ -264,3 +264,5 @@
 /.psql_history
 /.config/aichat
 /.config/temporalio/tctl.yaml
+_default.hcl
+login_1689539373.hcl

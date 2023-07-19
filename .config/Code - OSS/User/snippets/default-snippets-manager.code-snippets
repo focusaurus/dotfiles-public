@@ -1,0 +1,27 @@
+{
+	"table-driven test": {
+		"prefix": "tdt",
+		"description": "map[string]struct{} and testify/assert",
+		"scope": "go",
+		"body": [
+			"func TestSomeFunc(t *testing.T) {",
+			"\ttests := map[string]struct {",
+			"\t\tinput    interface{}",
+			"\t\texpected interface{}",
+			"\t}{",
+			"\t\t\"testname\": {",
+			"\t\t\tinput:    42,",
+			"\t\t\texpected: 42,",
+			"\t\t},",
+			"\t}",
+			"\tfor name, test := range tests {",
+			"\t\tt.Run(name, func(t *testing.T) {",
+			"\t\t\tactual, err := functionUnderTest(test.input)",
+			"\t\t\tassert.NoError(t, err)",
+			"\t\t\tassert.EqualValues(t, test.expected, actual)",
+			"\t\t})",
+			"\t}",
+			"}"
+		]
+	}
+}

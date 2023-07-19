@@ -22,10 +22,10 @@ sync_dir() {
     return
   fi
   if ! ~/bin/git-is-work-tree-clean; then
-    echo "${ME}: work tree not clean. Press ENTER to launch lazygit."
+    echo "${ME}: work tree not clean. Press ENTER to launch ${GIT_CLIENT}."
     # shellcheck disable=SC2034
     read -r wait_for_enter
-    lazygit
+    "${GIT_CLIENT}"
     # if [[ -n "${GIT_DIR}" ]]; then
     #   #gitui does not currently support bare repos.
     #   # Need tig in this case.
@@ -53,9 +53,11 @@ main() {
     cd "${dir}"
     # Special handling for home directory dotfiles
     if [[ "${PWD}" == "${HOME}" ]]; then
-      export GIT_DIR="${HOME}/.home.git" GIT_WORK_TREE="${HOME}"
+      # sigh. gitui does not support separate git dirs.
+      export GIT_DIR="${HOME}/.home.git" GIT_WORK_TREE="${HOME}" GIT_CLIENT="lazygit"
     else
       unset GIT_DIR GIT_WORK_TREE
+      export GIT_CLIENT="gitui"
     fi
     sync_dir
     cd - >/dev/null
