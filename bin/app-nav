@@ -97,7 +97,7 @@ main() {
   # so we wait for the keys to be released
   sleep 0.1
   case "${app}" in
-  *firefox*|*chrome*)
+  *firefox*|*chrome*|*obsidian*)
     nav_browser "${direction}"
     ;;
   *kitty*)

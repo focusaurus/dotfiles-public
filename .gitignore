@@ -266,3 +266,4 @@
 /.config/temporalio/tctl.yaml
 _default.hcl
 login_1689539373.hcl
+/.google-service-cli
