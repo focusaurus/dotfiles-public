@@ -125,13 +125,16 @@ end, {desc = '[/] Fuzzily search in current buffer]'})
 -- I want the bigger, whitespace-only flavors to be the
 -- more ergonomic unshifted versions. The following
 -- mappings swap b, e, w and B, E, W
-vim.keymap.set('n', 'b', 'B', {noremap = true})
-vim.keymap.set('n', 'B', 'b', {noremap = true})
-vim.keymap.set('n', 'e', 'E', {noremap = true})
-vim.keymap.set('n', 'E', 'e', {noremap = true})
-vim.keymap.set('n', 'b', 'B', {noremap = true})
-vim.keymap.set('n', 'w', 'W', {noremap = true})
-vim.keymap.set('n', 'W', 'w', {noremap = true})
+-- Updated 2023-07-23 I'm going to try the defaults instead
+if false then
+  vim.keymap.set('n', 'b', 'B', {noremap = true})
+  vim.keymap.set('n', 'B', 'b', {noremap = true})
+  vim.keymap.set('n', 'e', 'E', {noremap = true})
+  vim.keymap.set('n', 'E', 'e', {noremap = true})
+  vim.keymap.set('n', 'b', 'B', {noremap = true})
+  vim.keymap.set('n', 'w', 'W', {noremap = true})
+  vim.keymap.set('n', 'W', 'w', {noremap = true})
+end
 
 -- move up/down by soft wrapped lines by default
 -- vim.keymap.set('n', '<expr> k', '(v:count == 0 ? "gk" : "k")', {noremap = true})

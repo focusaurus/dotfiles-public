@@ -16,12 +16,18 @@
 			"\t}",
 			"\tfor name, test := range tests {",
 			"\t\tt.Run(name, func(t *testing.T) {",
+			"\t\t\t// Use this to isolate a single test case",
+			"\t\t\t// by putting an @ in its name",
+			"\t\t\t// if !strings.Contains(name, \"@\") {",
+			"\t\t\t// \treturn",
+			"\t\t\t// }",
 			"\t\t\tactual, err := functionUnderTest(test.input)",
 			"\t\t\tassert.NoError(t, err)",
 			"\t\t\tassert.EqualValues(t, test.expected, actual)",
 			"\t\t})",
 			"\t}",
-			"}"
+			"}",
+			""
 		]
 	}
 }

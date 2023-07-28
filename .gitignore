@@ -1,7 +1,7 @@
 /.config/Code*
-!.config/Code*/User
 /.config/Code*/User/History
 /.config/Code*/User/*Storage
+!.config/Code*/User
 /.config/obsidian
 /*.auth
 /.3T

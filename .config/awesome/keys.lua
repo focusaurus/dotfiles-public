@@ -127,7 +127,7 @@ bind_client('windows', 'close', {super}, 'x', function(c) c:kill() end)
 bind_client('windows', 'focus previous', shift_super, 'p', focus.previous)
 bind_client('windows', 'focus previous', {super}, 'e', focus.previous)
 bind_client('windows', 'focus previous (up) window', shift_super, 'Up',
-            focus.previous_window)
+            focus.previous)
 bind_client('windows', 'focus next (down) window', shift_super, 'Down',
             focus.next_window)
 
