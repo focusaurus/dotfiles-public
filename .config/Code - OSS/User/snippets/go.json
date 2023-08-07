@@ -14,9 +14,12 @@
 	// }
 	"iferrreturnerr":{
 		"prefix": "iferr",
-		"body":["if err != nil {",
-		"$1return nil, fmt.Errorf(\"${1:message}: %w\", err)",
-		"}"],
+		"body":[
+			"if err != nil {",
+			"\\treturn nil, fmt.Errorf(\"${1:message}: %w\", err)",
+			"}",
+			""
+		],
 		"description": "go error handling boilerplate"
 	},
 	"tdt":{

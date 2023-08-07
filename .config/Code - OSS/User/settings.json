@@ -17,5 +17,8 @@
     },
     "[markdown]": {
         "editor.autoClosingBrackets": "never"
+    },
+    "editor.unicodeHighlight.allowedCharacters": {
+        "️": true
     }
 }
