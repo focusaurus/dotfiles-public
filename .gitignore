@@ -191,7 +191,6 @@
 /github
 /github.com
 /go
-/go
 /keybase
 /local
 /mailchimp
@@ -267,3 +266,4 @@
 _default.hcl
 login_1689539373.hcl
 /.google-service-cli
+/.config/todoist
