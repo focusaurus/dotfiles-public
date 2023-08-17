@@ -1,23 +1,23 @@
 Main:
+dir(a, applications)
 act(b, browser, focus browser)
+act(c, VS Code, focus vscode)
 act(d, todoist, focus todoist)
 act(e, email, focus email)
 act(f, fuzzball, fuzz-script-choose)
 act(i, insomnia, focus insomnia)
-act(q, rofimoji, rofimoji --skin-tone light)
+dir(j, journal)
 act(m, music, focus music)
-act(c, VS Code, focus vscode)
 act(o, obsidian, focus obsidian)
 act(p, 1password, focus onepassword)
+act(q, rofimoji, rofimoji --skin-tone light)
 act(s, slack, focus slack)
 act(t, terminal, focus terminal)
 act(u, zulip, focus zulip)
 dir(v, volume)
+dir(w, work)
 act(x, executables, rofi -show run)
 act(z, zoom, focus zoom)
-dir(w, work)
-dir(a, applications)
-dir(j, journal)
 
 applications:
 act(a, calculator, focus calculator)
@@ -37,7 +37,7 @@ journal:
 dir(f, FRC)
 dir(n, nuon)
 dir(p, personal)
-# This is a shortcut for the currently most 
+# This is a shortcut for the currently most
 # frequently used journal command
 act(j, nuon prompt, journal-append-prompt /home/plyons/git.peterlyons.com/nuon)
 

@@ -267,3 +267,6 @@ _default.hcl
 login_1689539373.hcl
 /.google-service-cli
 /.config/todoist
+.tap_repl_history
+.terraformrc
+.ts_node_repl_history
