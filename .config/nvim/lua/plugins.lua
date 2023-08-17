@@ -1,4 +1,4 @@
-local ensure_packer = function()
+local function ensure_packer()
   local fn = vim.fn
   local install_path = fn.stdpath('data') ..
                            '/site/pack/packer/start/packer.nvim'
@@ -15,7 +15,7 @@ end
 
 local packer_bootstrap = ensure_packer()
 
-local telescope = function(use)
+local function telescope(use)
   -- Fuzzy Finder (files, lsp, etc)
   -- local actions = require("telescope.actions")
   use {
@@ -34,9 +34,14 @@ local telescope = function(use)
       pcall(require('telescope').load_extension, 'fzf')
     end
   }
+
+  use {
+    'LukasPietzschmann/telescope-tabs',
+    requires = {'nvim-telescope/telescope.nvim'}
+  }
 end
 
-local textcase = function(use)
+local function textcase(use)
   use {
     'johmsalas/text-case.nvim',
     after = 'nvim-treesitter',
@@ -73,11 +78,28 @@ local function go(use)
   })
 end
 
+local function ufo(use)
+  use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
+  vim.o.foldlevel = 99
+  vim.o.foldenabled = false
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities.textDocument.foldingRange =
+      {dynamicRegistration = false, lineFoldingOnly = true}
+  local language_servers = require('lspconfig').util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
+  for _, ls in ipairs(language_servers) do
+    require('lspconfig')[ls].setup({
+      capabilities = capabilities
+      -- you can add other fields for setting up lsp server in this table
+    })
+  end
+  require('ufo').setup()
+end
+
 require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
-  use {'j-hui/fidget.nvim', tag='legacy'}
+  use {'j-hui/fidget.nvim', tag = 'legacy'}
   -- https://github.com/nvim-lua/kickstart.nvim
   use { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
@@ -145,13 +167,14 @@ require('packer').startup(function(use)
   use({
     'ray-x/navigator.lua',
     requires = {
-        { 'ray-x/guihua.lua', run = 'cd lua/fzy && make' },
-        { 'neovim/nvim-lspconfig' },
-    },
-})
+      {'ray-x/guihua.lua', run = 'cd lua/fzy && make'},
+      {'neovim/nvim-lspconfig'}
+    }
+  })
   textcase(use)
   telescope(use)
   go(use)
+  ufo(use)
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then require('packer').sync() end
@@ -176,7 +199,7 @@ require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
   ensure_installed = {
     'bash', 'dockerfile', 'go', 'html', 'javascript', 'json', 'lua', 'org',
-    'php', 'python', 'rust', 'toml', 'yaml'
+    'php', 'python', 'rust', 'toml', 'typescript', 'yaml'
   },
 
   highlight = {enable = true},
@@ -225,14 +248,14 @@ require('nvim-treesitter.configs').setup {
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
-local on_attach = function(_, bufnr)
+local function on_attach(_, bufnr)
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
   -- many times.
   --
   -- In this case, we create a function that lets us more easily define mappings specific
   -- for LSP related items. It sets the mode, buffer and description for us each time.
-  local nmap = function(keys, func, desc)
+  local function nmap(keys, func, desc)
     if desc then desc = 'LSP: ' .. desc end
 
     vim.keymap.set('n', keys, func, {buffer = bufnr, desc = desc})
@@ -327,19 +350,20 @@ cmp.setup {
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
-    ['<CR>'] = cmp.mapping.confirm {
+    ['<Tab>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true
     },
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end, {'i', 's'}),
+    -- JUST LET ME TYPE A NORMAL RETURN AND GTFO OF THE WAY
+    -- ['<CR>'] = cmp.mapping(function(fallback)
+    --   if cmp.visible() then
+    --     cmp.select_next_item()
+    --   elseif luasnip.expand_or_jumpable() then
+    --     luasnip.expand_or_jump()
+    --   else
+    --     fallback()
+    --   end
+    -- end, {'i', 's'}),
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()

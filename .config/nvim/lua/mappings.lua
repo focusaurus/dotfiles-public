@@ -69,13 +69,14 @@ vim.keymap.set('n', 'N', 'Nzzzv')
 -- fuzzy navigation with telescope
 -- See `:help telescope.builtin`
 local builtin = require('telescope.builtin')
+local tabs = require('telescope-tabs').list_tabs
 local project_files = require('telescope-config').project_files
 local function map_telescope(follow_key, func, desc)
   vim.keymap.set('n', '<leader>' .. follow_key, func, {desc = desc})
 end
 map_telescope('so', builtin.oldfiles, '[Search] recently [O]pened files')
 map_telescope('sf', builtin.find_files, '[S]earch All [F]iles')
-
+map_telescope('st', tabs, '[Search] [T]tabs')
 map_telescope('sb', builtin.buffers, '[S]earch [B]uffers')
 map_telescope('b', builtin.buffers, '[S]earch [B]uffers')
 map_telescope('sd', builtin.diagnostics, '[S]earch [D]iagnostics')
@@ -155,13 +156,18 @@ vim.keymap.set('n', 'cop', ':set invpaste<cr>', {noremap = true})
 -- "vmap <C-Up> [egv
 -- "vmap <C-Down> ]egv
 
+vim.keymap.set('n', '<leader>tf', [[:GoTestFunc<cr>]])
 -- insert mode keymaps
 
+-- vim.keymap.set('i', '<expr> <TAB>', [[pumvisible() ? "<C-y>" : "<TAB>"]],
+               -- {noremap = true})
+-- vim.keymap.set('i', '<expr> <CR>', [[pumvisible() ? "<C-e>" : "<CR>"]],
+               -- {noremap = true})
 -- Use Tab and Shift+Tab to navigate through popup menu
-vim.keymap.set('i', '<expr> <Tab>', [[pumvisible() ? "\<C-n>" : "\<Tab>"]],
-               {noremap = true})
-vim.keymap.set('i', '<expr> <S-Tab>', [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]],
-               {noremap = true})
+-- vim.keymap.set('i', '<expr> <Tab>', [[pumvisible() ? "\<C-n>" : "\<Tab>"]],
+--                {noremap = true})
+-- vim.keymap.set('i', '<expr> <S-Tab>', [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]],
+               -- {noremap = true})
 
 -- In insert mode, complete a filesystem path with fuzzy matching (fzf plugin)
 -- vim.keymap.set('i', '<expr> <c-x><c-f>', 'fzf#vim#complete#path("fd")<cr>',
