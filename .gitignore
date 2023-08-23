@@ -171,6 +171,8 @@
 /.mpd
 /.n
 /.netrc
+/.newsboat/cache.db
+/.newsboat/history*
 /.nmcli-history
 /.node-gyp
 /.node_repl_history
