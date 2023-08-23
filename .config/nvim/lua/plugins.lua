@@ -341,9 +341,10 @@ mason_lspconfig.setup_handlers {
 require('fidget').setup()
 
 -- nvim-cmp setup
-local cmp = require 'cmp'
 local luasnip = require 'luasnip'
+require('luasnip.loaders.from_vscode').lazy_load({ paths = { os.getenv("HOME") .. "/.config/Code - OSS/User" } })
 
+local cmp = require 'cmp'
 cmp.setup {
   snippet = {expand = function(args) luasnip.lsp_expand(args.body) end},
   mapping = cmp.mapping.preset.insert {
