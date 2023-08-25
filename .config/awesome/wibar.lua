@@ -33,9 +33,10 @@ local mymainmenu = awful.menu({
       'awesome: hotkeys',
       function() hotkeys_popup.show_help(nil, awful.screen.focused()) end
     }, {'awesome: restart', awesome.restart},
-    {'awesome: unminimize', placement.unminimize},
-    {'awesome: dev1', dev.dev1},
-    {'awesome: quit', function() awesome.quit() end}, {'leader', focus.leader}
+    {'awesome: unminimize', placement.unminimize}, {'awesome: dev1', dev.dev1},
+    {'awesome: quit', function() awesome.quit() end},
+    {'leader-rofi', focus.rofi}, {'leader-nofi', focus.nofi},
+    {'executables: rofi -run', focus.executables}
   }
 })
 
@@ -44,9 +45,9 @@ local mylauncher = awful.widget.launcher(
 small(mylauncher)
 
 menubar.utils.terminal = terminal
-alt = 'Mod1'
-super = 'Mod4' -- super
-control = 'Control'
+local alt = 'Mod1'
+local super = 'Mod4' -- super
+local control = 'Control'
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
                             awful.button({}, 1, function(t) t:view_only() end),

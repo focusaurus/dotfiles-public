@@ -5,7 +5,8 @@ local cyclefocus = require('cyclefocus')
 
 local placement = require('placement')
 local focus = require('focus')
-local leader = require('leader')
+local leader = require('leader-rofi')
+local leader_nofi = require('leader-nofi')
 local tags = require('tags')
 local dev = require('dev')
 
@@ -64,9 +65,11 @@ bind_root('sound', 'toggle volume mute', {}, 'XF86AudioMute',
 bind_root('sound', 'toggle mic mute', {}, 'XF86AudioMicMute',
           runner({home_bin .. '/microphone-toggle'}))
 
+-- bind_root('nofi', 'leader', {super}, '8', leader_nofi.tag_in)
+bind_root('nofi', 'run nofi', {super}, '9', focus.nofi)
 bind_root('rofi', 'leader', {super}, '1', leader.tag_in)
--- bind_root('rofi', 'leader', {}, 'F10', leader.tag_in)
-bind_root('rofi', 'leader', {}, 'F10', focus.leader)
+bind_root('rofi', 'leader', {}, 'F10', leader_nofi.tag_in)
+-- bind_root('rofi', 'leader', {}, 'F10', focus.leader)
 bind_root('rofi', 'fuzz script', {super}, '2', focus.fuzz_script)
 bind_root('rofi', 'fuzz script', {super}, 'space',
           runner({home_bin .. '/fuzz-script-choose'}))
@@ -80,7 +83,7 @@ bind_root('rofi', 'windows', shift_super, 'w',
           runner({'rofi', '-show', 'window', '-theme', 'gruvbox-light-soft'}))
 bind_root('rofi', 'windows', {super}, '4', runner({'rofi', '-show', 'window'}))
 
-bind_root('dev', 'dev 1', shift_super, '9', dev.dev1)
+bind_root('dev', 'dev 1', shift_super, '8', dev.dev1)
 
 -- bind function keys to selecting the corresponding tag
 for _, n in pairs({'1', '2', '3', '4'}) do

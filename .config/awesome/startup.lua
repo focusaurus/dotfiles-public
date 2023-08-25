@@ -1,4 +1,4 @@
-local awful = require("awful")
+-- local awful = require("awful")
 
-awful.spawn.once(os.getenv("HOME") .. "/bin/blezz", {})
+-- awful.spawn.once(os.getenv("HOME") .. "/bin/nofi", {})
 -- awful.spawn.once("kitty", {})

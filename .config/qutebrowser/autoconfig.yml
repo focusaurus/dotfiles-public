@@ -8,3 +8,5 @@ config_version: 2
 settings:
   tabs.width:
     global: 10%
+  window.title_format:
+    global: QB {perc}{current_title}{title_sep}

@@ -16,7 +16,7 @@ local function focus_client(client)
   client:jump_to(true)
 end
 
-awful.keygrabber:connect_signal('awful.keygrabber.started', function() log2("keygrabber started") end)
+-- awful.keygrabber:connect_signal('awful.keygrabber.started', function() log2("keygrabber started") end)
 
 local function by_rules(rules)
   local selected_tag = awful.screen.focused().selected_tag.name
@@ -41,8 +41,7 @@ local function by_rules(rules)
     return true
   end
 
-  local match_rules =
-      function(c) return awful.rules.match(c, rules) end
+  local match_rules = function(c) return awful.rules.match(c, rules) end
 
   -- fallback to matching clients on any tag
   for c in awful.client.iterate(match_rules) do
@@ -52,7 +51,7 @@ local function by_rules(rules)
     -- work around awesomewm bug where if you change tags,
     -- keyboard focus is totally disconnected and the keyboard
     -- doesn't work until you click with the mouse for some reason
-    log2("hacking keyboard focus", c.first_tag.activated, c.first_tag.selected)
+    log2('hacking keyboard focus', c.first_tag.activated, c.first_tag.selected)
     -- awful.screen.focus()
     -- c:raise()
 
@@ -114,10 +113,20 @@ function module.previous_window() awful.client.focus.byidx(-1) end
 
 function module.next_window() awful.client.focus.byidx(1) end
 
-function module.leader()
+function module.rofi()
   if not by_class('Rofi') then
     awful.spawn.easy_async(home_bin .. '/blezz', noop)
   end
+end
+
+function module.nofi()
+  if not by_rules({class = 'kitty', name = 'nofi'}) then
+    awful.spawn.easy_async(home_bin .. '/nofi', noop)
+  end
+end
+
+function module.executables()
+  awful.spawn.easy_async({'rofi', '-show', 'run', '-normal-window', '-no-steal-focus'}, noop)
 end
 
 function module.fuzz_script()
@@ -178,7 +187,7 @@ end
 
 function module.frc()
   log2('focus.frc() called')
-  local found = by_rules({class = 'Google-chrome', name = 'FRC'})
+  local found = by_rules({class = 'Google-chrome', name = 'FRC: main'})
   if not found then awful.spawn.easy_async({'google-chrome-stable'}, noop) end
 end
 
@@ -373,6 +382,13 @@ function module.fastmail_calendar()
   log2('focus.fastmail_calendar() called')
   module.frc()
   browser_tab('2')
+end
+
+function module.qutebrowser()
+  log2('focus.qutebrowser() called')
+  if not by_class('qutebrowser') then
+    awful.spawn.easy_async('qutebrowser', noop)
+  end
 end
 
 -- function module.highest()

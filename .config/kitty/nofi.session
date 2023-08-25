@@ -1,0 +1,3 @@
+title nofi
+cd ~/projects/nofi
+launch zsh -c './main.js ~/.config/nofi/menu.json'

@@ -85,8 +85,19 @@ local rofi = {
   properties = {
     -- tag = '4',
     placement = awful.placement.centered,
+    maximized = false
+    -- focus = false
+  }
+}
+
+local nofi = {
+  rule_any = {class = {'nofi'}},
+  properties = {
+    tag = '4',
+    placement = awful.placement.centered,
     maximized = false,
-    --focus = false
+    focus = false,
+    urgent = false
   }
 }
 
@@ -173,9 +184,9 @@ local xournalpp_export_pdf = {
 }
 
 awful.rules.rules = {
-  all_clients, floating_clients, title_bars, sticky, one_password, frc,
-  slack, music, freecad, openshot_preview, openshot_tutorial, obsidian,
-  xournalpp_export, xournalpp_export_pdf, rofi
+  all_clients, floating_clients, title_bars, sticky, one_password, frc, slack,
+  music, freecad, openshot_preview, openshot_tutorial, obsidian,
+  xournalpp_export, xournalpp_export_pdf, rofi, nofi
 }
 
 function module.reapply()
