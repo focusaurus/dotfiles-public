@@ -413,12 +413,14 @@ gsync() {
     fi
   fi
   ~/bin/git-autocommit \
+    ~/git.peterlyons.com/petes-personal-journal \
     ~/git.peterlyons.com/journals
 
   ~/bin/git-sync \
     ~ \
     ~/git.peterlyons.com/dotfiles \
     ~/git.peterlyons.com/journals \
+    ~/git.peterlyons.com/petes-personal-journal \
     ~/git.peterlyons.com/exocortex \
     ~/git.peterlyons.com/focus-retreat-center \
     ~/git.peterlyons.com/nuon
