@@ -96,12 +96,18 @@ main() {
   ~/bin/log "$0" microphone-write-status
   echo ~/bin/microphone-write-status | at now +1 minute
 
-  ~/bin/log "$0" imwheel
-  systemctl --user start imwheel
+  # ~/bin/log "$0" imwheel
+  # systemctl --user start imwheel
   if have_exe xss-lock; then
     kill_ok xss-lock
     xss-lock -- ~/bin/lock-screen &
   fi
+
+  if have_exe picom; then
+    kill_ok picom
+    picom --daemon --write-pid-path "/run/user/$(id -u)/picom.pid"
+  fi
+
   ~/bin/log "$0" trackpoint
   tpid=$(xinput list /g TrackPoint | grep -o id=.. | cut -d = -f 2)
 
