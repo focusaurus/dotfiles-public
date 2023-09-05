@@ -44,7 +44,7 @@ function module.tag_in()
     c:tags({focused_tag})
     c:emit_signal('request::activate', 'tasklist', {raise = true})
   end
-  -- if not found then focus.leader() end
+  -- if not found then focus.rofi() end
 end
 
 function module.tag_on_by_class(class_name)
@@ -117,7 +117,7 @@ function module.unmanage(c)
 
   if awful.rules.match(c, {class = 'Rofi'}) then
     log2('leader.unmanage: class matches . spawn fresh below')
-    focus.leader()
+    focus.rofi()
   end
 end
 

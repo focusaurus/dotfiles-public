@@ -154,7 +154,7 @@ awful.screen.connect_for_each_screen(function(s)
       battery_script_widget,
       screen_brightness_script_widget,
       sound_widget,
-      wibox.widget.textclock('🟨%F\n🟪%a %B %d\n⌚%H:%M')
+      wibox.widget.textclock('🟨%F\n🟪%a %b %d\n⌚%H:%M')
     }
   }
 end)

@@ -65,11 +65,11 @@ bind_root('sound', 'toggle volume mute', {}, 'XF86AudioMute',
 bind_root('sound', 'toggle mic mute', {}, 'XF86AudioMicMute',
           runner({home_bin .. '/microphone-toggle'}))
 
--- bind_root('nofi', 'leader', {super}, '8', leader_nofi.tag_in)
+bind_root('rofi', 'run rofi', {super}, '8', focus.rofi)
 bind_root('nofi', 'run nofi', {super}, '9', focus.nofi)
 bind_root('rofi', 'leader', {super}, '1', leader.tag_in)
 bind_root('rofi', 'leader', {}, 'F10', leader_nofi.tag_in)
--- bind_root('rofi', 'leader', {}, 'F10', focus.leader)
+-- bind_root('rofi', 'leader', {}, 'F10', focus.rofi)
 bind_root('rofi', 'fuzz script', {super}, '2', focus.fuzz_script)
 bind_root('rofi', 'fuzz script', {super}, 'space',
           runner({home_bin .. '/fuzz-script-choose'}))

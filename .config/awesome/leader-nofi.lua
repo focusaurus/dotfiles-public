@@ -1,7 +1,7 @@
 local module = {}
 
 local awful = require('awful')
--- local focus = require('focus')
+local focus = require('focus')
 local log2 = require('log2')
 
 local leader_path = 'mate-calc'
@@ -37,14 +37,14 @@ function module.tag_in()
   local focused_tag = awful.screen.focused().selected_tag
   local match_class = function(c) return awful.rules.match(c, leader_rules) end
 
-  -- local found = false
+  local found = false
   for c in awful.client.iterate(match_class) do
-    -- found = true
+    found = true
     log2('tagging in')
     c:tags({focused_tag})
     c:emit_signal('request::activate', 'tasklist', {raise = true})
   end
-  -- if not found then focus.leader() end
+  if not found then focus.nofi() end
 end
 
 function module.tag_on_by_class(class_name)

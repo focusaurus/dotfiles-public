@@ -120,13 +120,15 @@ function module.rofi()
 end
 
 function module.nofi()
-  if not by_rules({class = 'kitty', name = 'nofi'}) then
+  if not by_rules({class = 'nofi'}) then
     awful.spawn.easy_async(home_bin .. '/nofi', noop)
   end
 end
 
 function module.executables()
-  awful.spawn.easy_async({'rofi', '-show', 'run', '-normal-window', '-no-steal-focus'}, noop)
+  awful.spawn.easy_async({
+    'rofi', '-show', 'run', '-normal-window', '-no-steal-focus'
+  }, noop)
 end
 
 function module.fuzz_script()
