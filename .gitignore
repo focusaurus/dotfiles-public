@@ -1,3 +1,4 @@
+/.config/com.sourcegraph.cody/logs
 .config/1Password
 .config/BraveSoftware
 .config/Logseq
@@ -272,3 +273,6 @@
 20220527T181303Z
 _default.hcl
 login_1689539373.hcl
+.sourcegraph-psql
+.config/glib-2.0/settings/keyfile
+.newsboat/cache.db.lock
