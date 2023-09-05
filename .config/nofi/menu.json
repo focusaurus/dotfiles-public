@@ -1,4 +1,11 @@
 {
+  "C": {
+    "command": [
+      "focus",
+      "calendar"
+    ],
+    "label": "calendar"
+  },
   "Z": {
     "command": [
       "focus",
@@ -15,13 +22,6 @@
           "calculator"
         ],
         "label": "calculator"
-      },
-      "c": {
-        "command": [
-          "focus",
-          "calendar"
-        ],
-        "label": "calendar"
       },
       "f": {
         "command": [
@@ -40,9 +40,9 @@
       "i": {
         "command": [
           "focus",
-          "firefox"
+          "insomnia"
         ],
-        "label": "firefox"
+        "label": "insomnia"
       },
       "o": {
         "command": [
@@ -126,9 +126,9 @@
   "i": {
     "command": [
       "focus",
-      "insomnia"
+      "firefox"
     ],
-    "label": "insomnia"
+    "label": "firefox"
   },
   "j": {
     "label": "journal",
