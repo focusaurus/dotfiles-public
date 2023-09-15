@@ -3,7 +3,7 @@ local module = {}
 local awful = require('awful')
 local honor = {honor_workarea = true}
 
-local log2 = require('log2')
+local log = require('log')
 
 local all = function(client) return true end
 
@@ -61,8 +61,8 @@ end
 function module.cycle(client)
   local ratio = client.width / client.screen.geometry.width
   local x_pos = client.x - client.screen.geometry.x
-  -- log2("client.x ", client.x)
-  -- log2("screen.geometry.x ", client.screen.geometry.x)
+  -- log("client.x ", client.x)
+  -- log("screen.geometry.x ", client.screen.geometry.x)
   if ratio > 0.9 then
     module.left_half(client)
   else
@@ -82,12 +82,12 @@ function module.move_all_clients_to_screen()
   local screen_from = screen[1]
   local screen_to = screen[1]
   for s in screen do
-    log2('dev8: s.index:', s.index, 'clients:', #s.all_clients)
+    log('dev8: s.index:', s.index, 'clients:', #s.all_clients)
     if #s.all_clients == 0 then
-      log2(s.index, 'is screen_to since has zero clients')
+      log(s.index, 'is screen_to since has zero clients')
       screen_to = s
     else
-      log2(s.index, 'is screen_from since has some clients')
+      log(s.index, 'is screen_from since has some clients')
       screen_from = s
     end
 
@@ -95,30 +95,30 @@ function module.move_all_clients_to_screen()
     --   screen_to = s
     -- end
     -- if #s.all_clients >= #screen_from.all_clients then
-    --   log2(s.index, " is screen_from since has most clients")
+    --   log(s.index, " is screen_from since has most clients")
     --   screen_from = s
     -- end
     -- if screen_from == nil then
-    --   log2("screen_from default is ", s.index)
+    --   log("screen_from default is ", s.index)
     --   screen_from = s
     -- end
     -- if screen_to == nil then
-    --   log2("screen_to default is ", s.index)
+    --   log("screen_to default is ", s.index)
     --   screen_to = s
     -- end
     -- if #s.all_clients == 0 then
-    --   log2("Screen ", s.index, " has no clients, is screen_to")
+    --   log("Screen ", s.index, " has no clients, is screen_to")
     --   screen_to = s
     -- else
-    --   log2("Screen ", s.index, " has some clients, is screen_from")
+    --   log("Screen ", s.index, " has some clients, is screen_from")
     --   screen_from = s
     -- end
   end
 
-  log2('dev9 WTF', #screen_from.all_clients)
+  log('dev9 WTF', #screen_from.all_clients)
   for key, client in pairs(screen_from.all_clients) do
-    log2('dev10 WTF')
-    log2('dev7 moving', (client.name or ''), 'from', client.screen.index,
+    log('dev10 WTF')
+    log('dev7 moving', (client.name or ''), 'from', client.screen.index,
          'to', screen_to.index)
     client:move_to_screen(screen_to.index)
     client.minimized = false
@@ -131,10 +131,10 @@ end
 
 function module.move_to_tag(tag_name)
   local c = client.focus
-  log2('placement.move_to_tag called ', tag_name, c == nil)
+  log('placement.move_to_tag called ', tag_name, c == nil)
   if not c then return end
   local tag = awful.tag.find_by_name(awful.screen.focused(), tag_name)
-  log2('tag:', tag == nil)
+  log('tag:', tag == nil)
   c:tags({tag})
 end
 

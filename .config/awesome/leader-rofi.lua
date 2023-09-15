@@ -2,7 +2,7 @@ local module = {}
 
 local awful = require('awful')
 local focus = require('focus')
-local log2 = require('log2')
+local log = require('log')
 
 local leader_path = os.getenv('HOME') .. '/bin/blezz'
 local prespawned_client = nil
@@ -12,7 +12,7 @@ local function noop() end
 
 function module.log_clients()
   for c in awful.client.iterate(function() return true end) do
-    log2('dev1: c.class: ' .. c.class .. ' c.hidden: ' .. tostring(c.hidden) ..
+    log('dev1: c.class: ' .. c.class .. ' c.hidden: ' .. tostring(c.hidden) ..
              ' c.modal: ' .. tostring(c.modal))
     -- c.hidden = not c.hidden
   end
@@ -25,7 +25,7 @@ function module.tag_off_by_class(class_name)
   end
 
   for c in awful.client.iterate(match_class) do
-    log2('dev1: c.class: ' .. c.class .. ' c.hidden: ' .. tostring(c.hidden) ..
+    log('dev1: c.class: ' .. c.class .. ' c.hidden: ' .. tostring(c.hidden) ..
              ' c.modal: ' .. tostring(c.modal))
     c:tag({tag3})
   end
@@ -40,7 +40,7 @@ function module.tag_in()
   -- local found = false
   for c in awful.client.iterate(match_class) do
     -- found = true
-    log2('tagging in')
+    log('tagging in')
     c:tags({focused_tag})
     c:emit_signal('request::activate', 'tasklist', {raise = true})
   end
@@ -54,7 +54,7 @@ function module.tag_on_by_class(class_name)
   end
 
   for c in awful.client.iterate(match_class) do
-    log2('dev1: c.class: ' .. c.class .. ' c.hidden: ' .. tostring(c.hidden) ..
+    log('dev1: c.class: ' .. c.class .. ' c.hidden: ' .. tostring(c.hidden) ..
              ' c.modal: ' .. tostring(c.modal))
     local focused_tag = awful.screen.focused().selected_tag
     c:tag({focused_tag})
@@ -68,7 +68,7 @@ function module.hide_by_class(class_name)
   end
 
   for c in awful.client.iterate(match_class) do
-    log2('dev1: c.class: ' .. c.class .. ' c.hidden: ' .. tostring(c.hidden) ..
+    log('dev1: c.class: ' .. c.class .. ' c.hidden: ' .. tostring(c.hidden) ..
              ' c.modal: ' .. tostring(c.modal))
     c.hidden = not c.hidden
   end
@@ -76,7 +76,7 @@ end
 
 function module.dev2()
   if prespawned_client ~= nil then
-    log2('dev5 found prespawn. Showing.')
+    log('dev5 found prespawn. Showing.')
     prespawned_client.hidden = false
     prespawned_client.below = false
     prespawned_client.focusable = true
@@ -85,7 +85,7 @@ function module.dev2()
     return
   end
 
-  log2('dev5: not found. Spawning visible.')
+  log('dev5: not found. Spawning visible.')
   awful.spawn.easy_async(leader_path, noop)
 end
 
@@ -96,7 +96,7 @@ function module.dev()
       function(c) return awful.rules.match(c, {class = 'Rofi'}) end
 
   for c in awful.client.iterate(match_class) do
-    log2('dev: found. activating c.class: ' .. c.class .. ' c.hidden: ' ..
+    log('dev: found. activating c.class: ' .. c.class .. ' c.hidden: ' ..
              tostring(c.hidden) .. ' c.modal: ' .. tostring(c.modal))
     found = true
     -- c.hidden = false
@@ -106,25 +106,25 @@ function module.dev()
   end
 
   if found then return end
-  log2('Did not find a prespawn. Spawning above')
+  log('Did not find a prespawn. Spawning above')
   awful.spawn.easy_async(leader_path, noop)
 end
 
 function module.show() module.hide_by_class('Rofi') end
 
 function module.unmanage(c)
-  log2('leader.unmanage called ')
+  log('leader.unmanage called ')
 
   if awful.rules.match(c, {class = 'Rofi'}) then
-    log2('leader.unmanage: class matches . spawn fresh below')
+    log('leader.unmanage: class matches . spawn fresh below')
     focus.rofi()
   end
 end
 
 function module.manage(c)
-  log2('leader.manage called ' .. c.name)
+  log('leader.manage called ' .. c.name)
   if awful.rules.match(c, {class = 'Rofi'}) then
-    log2('grabbing prespawned hidden client')
+    log('grabbing prespawned hidden client')
     prespawned_client = c
   end
 end

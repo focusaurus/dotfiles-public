@@ -5,7 +5,7 @@ local out = gears_debug.print_warning
 -- variadic log function. Pass as many things to it as you want,
 -- of any type, and it will print them out
 -- separated by spaces
-local function log2(...)
+local function log(...)
   local message = ''
   for i = 1, select('#', ...) do
     local arg = select(i, ...)
@@ -25,4 +25,4 @@ local function log2(...)
   out(message)
 end
 
-return log2
+return log

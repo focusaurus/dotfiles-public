@@ -1,7 +1,7 @@
 local module = {}
 local awful = require('awful')
 local beautiful = require('beautiful')
-local log2 = require('log2')
+local log = require('log')
 
 local keys = require('keys')
 local all_clients = {
@@ -9,10 +9,10 @@ local all_clients = {
   -- Rename this table property to "callback" to enable logging
   -- for debugging and development purposes
   callbackOFF = function(client)
-    log2('rule callback function called')
-    log2('name:', client.name)
-    log2('class:', client.class)
-    log2('maximized:', client.maximized)
+    log('rule callback function called')
+    log('name:', client.name)
+    log('class:', client.class)
+    log('maximized:', client.maximized)
     return true
   end,
   properties = {
@@ -131,11 +131,11 @@ local freecad = {
   -- Force FreeCAD to maximize the main window properly
   rule_any = {class = {'FreeCAD'}},
   callback = function(client)
-    -- log2('callback2 for FreeCAD:', client.name)
+    -- log('callback2 for FreeCAD:', client.name)
     -- This is very hacky, but the main FreeCAD window title
     -- includes the version number, so we check for a digit
     if string.match(client.name, '%d') then
-      -- log2('callback3 for FreeCAD:', client.name)
+      -- log('callback3 for FreeCAD:', client.name)
       awful.rules.execute(client, {maximized = true})
     end
   end
@@ -165,11 +165,11 @@ local obsidian = {
   rule_any = {class = {'obsidian'}},
   callback = function(client)
     local tags = {'1'}
-    -- log2('callback2 for obsidian: ', client.name)
+    -- log('callback2 for obsidian: ', client.name)
     for tag, name in pairs({'personal', 'focus-retreat-center', 'nuon'}) do
       if string.find(client.name, ' - ' .. name .. ' - ', 1, true) then
-        -- log2('callback3 for obsidian: ', client.name)
-        -- log2('callback4 for obsidian: ', name)
+        -- log('callback3 for obsidian: ', client.name)
+        -- log('callback4 for obsidian: ', name)
         tags = {tostring(tag)}
         break
       end
@@ -196,7 +196,7 @@ awful.rules.rules = {
 
 function module.reapply()
   for c in awful.client.iterate(function() return true end) do
-    log2('re-applying rules to client: ', c.name)
+    log('re-applying rules to client: ', c.name)
     awful.rules.apply(c)
     c.urgent = false
   end

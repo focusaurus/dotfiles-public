@@ -5,7 +5,7 @@ require('awful.autofocus')
 
 local awful = require('awful')
 local gears = require('gears')
-local log2 = require('log2')
+local log = require('log')
 local work_mode = ''
 
 local home_bin = os.getenv('HOME') .. '/bin'
@@ -16,19 +16,19 @@ local function focus_client(client)
   client:jump_to(true)
 end
 
--- awful.keygrabber:connect_signal('awful.keygrabber.started', function() log2("keygrabber started") end)
+-- awful.keygrabber:connect_signal('awful.keygrabber.started', function() log("keygrabber started") end)
 
 local function by_rules(rules)
   local selected_tag = awful.screen.focused().selected_tag.name
   local function tag_and_rules(c)
-    log2('tag_and_rules testing client', c.name, selected_tag)
+    log('tag_and_rules testing client', c.name, selected_tag)
     for _, tag in pairs(c:tags()) do
       local tag_matches = selected_tag == tag.name
       local rule_matches = awful.rules.match(c, rules)
-      log2('client', c.name, 'has tag', tag.name, 'tag_matches', tag_matches,
+      log('client', c.name, 'has tag', tag.name, 'tag_matches', tag_matches,
            'rule_matches', rule_matches)
       if tag_matches and rule_matches then
-        -- log2('client', c.name, 'matched tag and rules', tag)
+        -- log('client', c.name, 'matched tag and rules', tag)
         return true
       end
     end
@@ -45,13 +45,13 @@ local function by_rules(rules)
 
   -- fallback to matching clients on any tag
   for c in awful.client.iterate(match_rules) do
-    log2('matched client by rules on different tag', c.name)
+    log('matched client by rules on different tag', c.name)
     focus_client(c)
     c.first_tag:view_only()
     -- work around awesomewm bug where if you change tags,
     -- keyboard focus is totally disconnected and the keyboard
     -- doesn't work until you click with the mouse for some reason
-    log2('hacking keyboard focus', c.first_tag.activated, c.first_tag.selected)
+    log('hacking keyboard focus', c.first_tag.activated, c.first_tag.selected)
     -- awful.screen.focus()
     -- c:raise()
 
@@ -67,7 +67,7 @@ local function by_rules(rules)
 end
 
 function module.work_mode(value)
-  log2('work_mode called. Current value: ', work_mode)
+  log('work_mode called. Current value: ', work_mode)
   work_mode = value
 end
 
@@ -81,7 +81,7 @@ local function by_class(class_name)
   -- local found = false
   -- local selected_tag = awful.screen.focused().selected_tag
   -- local match_class_and_tag = function(client)
-  --   log2("mcat: ", client.name, " client tag: ", client.first_tag.name
+  --   log("mcat: ", client.name, " client tag: ", client.first_tag.name
   --  , " selected tag: ", selected_tag.name,
   --   "matches:", client.first_tag == selected_tag)
   --   return client.first_tag == selected_tag and awful.rules.match(client, {class = class_name})
@@ -92,14 +92,14 @@ local function by_class(class_name)
   -- end
   --
   -- for client in awful.client.iterate(match_class_and_tag) do
-  --   log2("found by class and tag: ", client.name)
+  --   log("found by class and tag: ", client.name)
   --   found = true
   --   focus_client(client)
   --   return found
   -- end
   --
   -- for client in awful.client.iterate(match_class) do
-  --   log2("found by class only: ", client.name)
+  --   log("found by class only: ", client.name)
   --   found = true
   --   focus_client(client)
   --   if client.first_tag ~= selected_tag then
@@ -132,12 +132,12 @@ function module.executables()
 end
 
 function module.fuzz_script()
-  log2('focus.fuzz_script() called')
+  log('focus.fuzz_script() called')
   awful.spawn.easy_async(home_bin .. '/fuzz-script-choose', noop)
 end
 
 function module.fuzz_snippet()
-  log2('focus.fuzz_snippet() called')
+  log('focus.fuzz_snippet() called')
   awful.spawn.easy_async(home_bin .. '/fuzz-snippet', noop)
 end
 
@@ -154,7 +154,7 @@ function module.highest()
 end
 
 function module.browser()
-  log2('focus.browser() called')
+  log('focus.browser() called')
   if work_mode == 'frc' then
     module.frc()
     return
@@ -176,43 +176,43 @@ function module.browser()
 end
 
 function module.email()
-  log2('focus.email() called')
+  log('focus.email() called')
   module.browser()
   browser_tab('1')
 end
 
 function module.vscode()
-  log2('focus.vscode() called')
+  log('focus.vscode() called')
   local found = by_class('code-oss')
   if not found then awful.spawn.easy_async({'code'}, noop) end
 end
 
 function module.frc()
-  log2('focus.frc() called')
+  log('focus.frc() called')
   local found = by_rules({class = 'Google-chrome', name = 'FRC: main'})
   if not found then awful.spawn.easy_async({'google-chrome-stable'}, noop) end
 end
 
 function module.nuon()
-  log2('focus.nuon() called')
+  log('focus.nuon() called')
   local found = by_rules({class = 'Google-chrome', name = 'nuon'})
   if not found then awful.spawn.easy_async({'google-chrome-stable'}, noop) end
 end
 
 function module.onepassword()
-  log2('focus.onepassword() called')
+  log('focus.onepassword() called')
   local found = by_class('1Password')
   if not found then awful.spawn.easy_async({'1password'}, noop) end
 end
 
 function module.obsidian()
-  log2('focus.obsidian() called')
+  log('focus.obsidian() called')
   local found = by_class('obsidian')
   if not found then awful.spawn.easy_async({'obsidian'}, noop) end
 end
 
 function module.calendar()
-  log2('focus.calendar() called')
+  log('focus.calendar() called')
   local found = by_rules({class = 'Google-chrome', name = 'calendar'})
   if not found then
     awful.spawn.easy_async({
@@ -223,7 +223,7 @@ function module.calendar()
 end
 
 function module.todoist()
-  log2('focus.todoist() called')
+  log('focus.todoist() called')
   local found = by_rules({class = 'Google-chrome', name = 'todoist'})
   if not found then
     awful.spawn.easy_async({
@@ -233,7 +233,7 @@ function module.todoist()
 end
 
 function module.music()
-  log2('focus.music() called')
+  log('focus.music() called')
   local found = by_rules({class = 'Google-chrome', name = 'music'})
   if not found then
     awful.spawn.easy_async({
@@ -243,7 +243,7 @@ function module.music()
 end
 
 function module.discord()
-  log2('focus.discord() called')
+  log('focus.discord() called')
   local found = by_rules({class = 'Google-chrome', name = 'discord'})
   if not found then
     awful.spawn.easy_async({
@@ -253,7 +253,7 @@ function module.discord()
 end
 
 function module.workflowy()
-  log2('focus.workflowy() called')
+  log('focus.workflowy() called')
   local found = by_rules({class = 'Google-chrome', name = 'workflowy'})
   if not found then
     awful.spawn.easy_async({
@@ -263,24 +263,24 @@ function module.workflowy()
 end
 
 function module.chrysalis()
-  log2('focus.chrysalis() called')
+  log('focus.chrysalis() called')
   if not by_class('chrysalis') then awful.spawn.easy_async({'chrysalis'}, noop) end
 end
 
 function module.xournalpp()
-  log2('focus.xournalpp() called')
+  log('focus.xournalpp() called')
   if not by_class('Xournalpp') then awful.spawn.easy_async({'xournalpp'}, noop) end
 end
 
 function module.wezterm()
-  log2('focus.wezterm() called')
+  log('focus.wezterm() called')
   if not by_class('org.wezfurlong.wezterm') then
     awful.spawn.easy_async({'wezterm-gui'}, noop)
   end
 end
 
 function module.kitty()
-  log2('focus.kitty() called')
+  log('focus.kitty() called')
   if not by_class('kitty') then
     -- awful.spawn.easy_async({"kitty", "--single-instance", "--title", "terminal-kitty"}, noop)
     awful.spawn.easy_async({'kitty', '--title', 'terminal-kitty'}, noop)
@@ -290,27 +290,27 @@ end
 module.terminal = module.kitty -- alias for preferred terminal app
 
 function module.slack()
-  log2('focus.slack() called')
+  log('focus.slack() called')
   if not by_class('slack') then awful.spawn.easy_async('slack', noop) end
 end
 
 function module.gedit()
-  log2('focus.gedit() called')
+  log('focus.gedit() called')
   if not by_class('gedit') then awful.spawn.easy_async('gedit', noop) end
 end
 
 function module.zeal()
-  log2('focus.zeal() called')
+  log('focus.zeal() called')
   if not by_class('zeal') then awful.spawn.easy_async('zeal', noop) end
 end
 
 function module.zoom()
-  log2('focus.zoom() called')
+  log('focus.zoom() called')
   for _, name in pairs({'Zoom Meeting', 'Zoom Webinar', 'Zoom - Free Account'}) do
-    log2('finding by name', name)
+    log('finding by name', name)
     if by_rules({name = name}) then
 
-      log2('zoom window found with name', name)
+      log('zoom window found with name', name)
       break
     end
   end
@@ -321,63 +321,63 @@ function module.zoom()
 end
 
 function module.zulip()
-  log2('focus.zulip() called')
+  log('focus.zulip() called')
   if not by_class('Zulip') then awful.spawn.easy_async('zulip', noop) end
 end
 
 function module.code()
-  log2('focus.code() called')
+  log('focus.code() called')
   if not by_class('Visual Studio Code') then
     awful.spawn.easy_async('code', noop)
   end
 end
 
 function module.firefox()
-  log2('focus.firefox() called')
+  log('focus.firefox() called')
   if not by_class('firefox') then awful.spawn.easy_async('firefox', noop) end
 end
 
 function module.insomnia()
-  log2('focus.insomnia() called')
+  log('focus.insomnia() called')
   if not by_class('Insomnia') then
     awful.spawn.easy_async('/opt/insomnia/insomnia', noop)
   end
 end
 
 function module.cura()
-  log2('focus.cura() called')
+  log('focus.cura() called')
   if not by_class('cura') then awful.spawn.easy_async('cura', noop) end
 end
 
 function module.emacs()
-  log2('focus.emacs() called')
+  log('focus.emacs() called')
   if not by_class('Emacs') then awful.spawn.easy_async('emacs', noop) end
 end
 
 function module.prusa()
-  log2('focus.prusa() called')
+  log('focus.prusa() called')
   if not by_class('PrusaSlicer') then
     awful.spawn.easy_async('/bin/prusa-slicer', noop)
   end
 end
 
 function module.calculator()
-  log2('focus.calculator() called')
+  log('focus.calculator() called')
   if not by_class('Mate-calc') then awful.spawn.easy_async('mate-calc', noop) end
 end
 
 function module.freecad()
-  log2('focus.freecad() called')
+  log('focus.freecad() called')
   if not by_class('FreeCAD') then awful.spawn.easy_async('freecad', noop) end
 end
 
 function module.vial()
-  log2('focus.vial() called')
+  log('focus.vial() called')
   if not by_rules({name = 'Vial'}) then awful.spawn.easy_async('Vial', noop) end
 end
 
 function module.trello()
-  log2('focus.trello() called')
+  log('focus.trello() called')
   local found = by_rules({class = 'Google-chrome', name = 'trello'})
   if not found then awful.spawn.easy_async({'google-chrome-stable'}, noop) end
   -- module.frc()
@@ -385,19 +385,19 @@ function module.trello()
 end
 
 function module.fastmail()
-  log2('focus.fastmail() called')
+  log('focus.fastmail() called')
   module.frc()
   browser_tab('1')
 end
 
 function module.fastmail_calendar()
-  log2('focus.fastmail_calendar() called')
+  log('focus.fastmail_calendar() called')
   module.frc()
   browser_tab('2')
 end
 
 function module.qutebrowser()
-  log2('focus.qutebrowser() called')
+  log('focus.qutebrowser() called')
   if not by_class('qutebrowser') then
     awful.spawn.easy_async('qutebrowser', noop)
   end
@@ -410,11 +410,11 @@ end
 --   -- c:raise()
 --   awful.client.focus.byidx(0, c)
 --   -- awful.client.focus.previous()
---   -- log2(c.name)
+--   -- log(c.name)
 --   -- c.focus = true
 --   -- c:focus()
 --   -- for _, c in ipairs(s.clients) do
---   --   log2(c.name)
+--   --   log(c.name)
 --   --   if c.minimized == false then
 --   --     c:raise()
 --   --   end
