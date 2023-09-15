@@ -19,11 +19,11 @@ applications key="a" {
   calculator key="a" "focus" "calculator"
   freecad key="f" "focus" "freecad"
   gedit key="g" "focus" "gedit"
+  discord key="d" "focus" "discord"
   insomnia key="i" "focus" "insomnia"
   prusa key="p" "focus" "prusa"
   vial key="v" "focus" "vial"
   xournalpp key="x" "focus" "xournalpp"
-  zeal key="z" "focus" "zeal"
 }
 journal key="j" {
   FRC key="f" {

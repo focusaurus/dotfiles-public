@@ -422,17 +422,16 @@ gsync() {
     ~/git.peterlyons.com/journals \
     ~/git.peterlyons.com/petes-personal-journal \
     ~/git.peterlyons.com/exocortex \
-    ~/git.peterlyons.com/focus-retreat-center \
-    ~/git.peterlyons.com/nuon
+    ~/git.peterlyons.com/focus-retreat-center
 
-  if [[ -d ~/github.com/focusaurus/qmk_firmware ]]; then
-    (
-      cd ~/github.com/focusaurus/qmk_firmware || exit
-      git commit -a -m "autocommit"
-      git pull origin focusaurus
-      git push origin focusaurus
-    )
-  fi
+  # if [[ -d ~/github.com/focusaurus/qmk_firmware ]]; then
+  #   (
+  #     cd ~/github.com/focusaurus/qmk_firmware || exit
+  #     git commit -a -m "autocommit"
+  #     git pull origin focusaurus
+  #     git push origin focusaurus
+  #   )
+  # fi
 }
 # typo humane
 alias gysnc=gsync

@@ -58,3 +58,6 @@
   path = ~/github.com/powertoolsdev/.gitconfig_include
 [url "ssh://git@github.com/powertoolsdev/"]
   insteadOf = https://github.com/powertoolsdev/
+[diff "lockb"]
+	textconv = bun
+	binary = true

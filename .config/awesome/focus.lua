@@ -242,6 +242,16 @@ function module.music()
   end
 end
 
+function module.discord()
+  log2('focus.discord() called')
+  local found = by_rules({class = 'Google-chrome', name = 'discord'})
+  if not found then
+    awful.spawn.easy_async({
+      'google-chrome-stable', '--new-window', 'https://discord.com'
+    }, noop)
+  end
+end
+
 function module.workflowy()
   log2('focus.workflowy() called')
   local found = by_rules({class = 'Google-chrome', name = 'workflowy'})

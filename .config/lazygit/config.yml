@@ -8,8 +8,8 @@ gui:
     inactiveBorderColor:
       - white
     selectedLineBgColor:
-      - reverse
-      - blue
+      # - reverse
+      - '#222222'
     # selectedLineBgColor:
     #   - reverse
     # selectedRangeBgColor:

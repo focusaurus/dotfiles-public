@@ -108,12 +108,11 @@ local one_password = {
 }
 
 local frc_terminal = {
-  rule_any = {name = {'FRC: website'}},
+  rule_any = {name = {'FRC: misc'}},
   properties = {tags = {'2'}, maximized = true}
 }
 
 local frc_browser = {
-
   rule_any = {name = {'FRC: main'}},
   properties = {tags = {'2'}, maximized = true}
 }
@@ -190,9 +189,9 @@ local xournalpp_export_pdf = {
 }
 
 awful.rules.rules = {
-  all_clients, floating_clients, title_bars, sticky, one_password, frc_terminal, frc_browser, slack,
-  music, freecad, openshot_preview, openshot_tutorial, obsidian,
-  xournalpp_export, xournalpp_export_pdf, rofi, nofi
+  all_clients, floating_clients, title_bars, sticky, one_password, frc_terminal,
+  frc_browser, slack, music, freecad, openshot_preview, openshot_tutorial,
+  obsidian, xournalpp_export, xournalpp_export_pdf, rofi, nofi
 }
 
 function module.reapply()
