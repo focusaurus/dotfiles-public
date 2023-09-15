@@ -137,7 +137,9 @@ setup-prompt() {
 }
 
 #emacs mode
-bindkey -e
+# bindkey -e
+# let's try vi mode
+set -o vi
 
 ##### completion #####
 fpath=(~/.config/zsh/completions $fpath)

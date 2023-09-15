@@ -11,5 +11,14 @@
     "explorer.confirmDelete": false,
     "editor.minimap.enabled": false,
     "git.suggestSmartCommit": false,
-    "git.confirmSync": false
+    "git.confirmSync": false,
+    "[go]": {
+        "editor.autoClosingBrackets": "never"
+    },
+    "[markdown]": {
+        "editor.autoClosingBrackets": "never"
+    },
+    "editor.unicodeHighlight.allowedCharacters": {
+        "️": true
+    }
 }

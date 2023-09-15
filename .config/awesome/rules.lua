@@ -83,9 +83,10 @@ local rofi = {
   -- rofi for leader key
   rule_any = {class = {'Rofi'}},
   properties = {
-    tag = '4',
+    -- tag = '4',
     placement = awful.placement.centered,
-    maximized = false
+    maximized = false,
+    --focus = false
   }
 }
 
@@ -172,9 +173,9 @@ local xournalpp_export_pdf = {
 }
 
 awful.rules.rules = {
-  all_clients, floating_clients, title_bars, sticky, rofi, one_password, frc,
+  all_clients, floating_clients, title_bars, sticky, one_password, frc,
   slack, music, freecad, openshot_preview, openshot_tutorial, obsidian,
-  xournalpp_export, xournalpp_export_pdf
+  xournalpp_export, xournalpp_export_pdf, rofi
 }
 
 function module.reapply()

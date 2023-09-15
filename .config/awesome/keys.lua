@@ -65,7 +65,8 @@ bind_root('sound', 'toggle mic mute', {}, 'XF86AudioMicMute',
           runner({home_bin .. '/microphone-toggle'}))
 
 bind_root('rofi', 'leader', {super}, '1', leader.tag_in)
-bind_root('rofi', 'leader', {}, 'F10', leader.tag_in)
+-- bind_root('rofi', 'leader', {}, 'F10', leader.tag_in)
+bind_root('rofi', 'leader', {}, 'F10', focus.leader)
 bind_root('rofi', 'fuzz script', {super}, '2', focus.fuzz_script)
 bind_root('rofi', 'fuzz script', {super}, 'space',
           runner({home_bin .. '/fuzz-script-choose'}))
@@ -127,7 +128,7 @@ bind_client('windows', 'close', {super}, 'x', function(c) c:kill() end)
 bind_client('windows', 'focus previous', shift_super, 'p', focus.previous)
 bind_client('windows', 'focus previous', {super}, 'e', focus.previous)
 bind_client('windows', 'focus previous (up) window', shift_super, 'Up',
-            focus.previous_window)
+            focus.previous)
 bind_client('windows', 'focus next (down) window', shift_super, 'Down',
             focus.next_window)
 

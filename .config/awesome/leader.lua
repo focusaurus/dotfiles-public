@@ -128,7 +128,7 @@ function module.manage(c)
   end
 end
 
-client.connect_signal("unmanage", module.unmanage)
+-- client.connect_signal("unmanage", module.unmanage)
 -- client.connect_signal("manage", module.manage)
 
 return module

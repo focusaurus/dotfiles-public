@@ -144,7 +144,8 @@ dirs() {
 }
 
 serve-dir() {
-  python -m SimpleHTTPServer "$@"
+  devd --open .
+  # python2 -m SimpleHTTPServer "$@"
 }
 
 tstmp() {

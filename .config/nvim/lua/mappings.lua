@@ -1,5 +1,6 @@
 vim.g.mapleader = ' '
 vim.g.mouse = false
+vim.g.conceallevel = 0
 
 -- normal mode keymaps
 
@@ -69,13 +70,14 @@ vim.keymap.set('n', 'N', 'Nzzzv')
 -- fuzzy navigation with telescope
 -- See `:help telescope.builtin`
 local builtin = require('telescope.builtin')
+local tabs = require('telescope-tabs').list_tabs
 local project_files = require('telescope-config').project_files
 local function map_telescope(follow_key, func, desc)
   vim.keymap.set('n', '<leader>' .. follow_key, func, {desc = desc})
 end
 map_telescope('so', builtin.oldfiles, '[Search] recently [O]pened files')
 map_telescope('sf', builtin.find_files, '[S]earch All [F]iles')
-
+map_telescope('st', tabs, '[Search] [T]tabs')
 map_telescope('sb', builtin.buffers, '[S]earch [B]uffers')
 map_telescope('b', builtin.buffers, '[S]earch [B]uffers')
 map_telescope('sd', builtin.diagnostics, '[S]earch [D]iagnostics')
@@ -125,13 +127,16 @@ end, {desc = '[/] Fuzzily search in current buffer]'})
 -- I want the bigger, whitespace-only flavors to be the
 -- more ergonomic unshifted versions. The following
 -- mappings swap b, e, w and B, E, W
-vim.keymap.set('n', 'b', 'B', {noremap = true})
-vim.keymap.set('n', 'B', 'b', {noremap = true})
-vim.keymap.set('n', 'e', 'E', {noremap = true})
-vim.keymap.set('n', 'E', 'e', {noremap = true})
-vim.keymap.set('n', 'b', 'B', {noremap = true})
-vim.keymap.set('n', 'w', 'W', {noremap = true})
-vim.keymap.set('n', 'W', 'w', {noremap = true})
+-- Updated 2023-07-23 I'm going to try the defaults instead
+if false then
+  vim.keymap.set('n', 'b', 'B', {noremap = true})
+  vim.keymap.set('n', 'B', 'b', {noremap = true})
+  vim.keymap.set('n', 'e', 'E', {noremap = true})
+  vim.keymap.set('n', 'E', 'e', {noremap = true})
+  vim.keymap.set('n', 'b', 'B', {noremap = true})
+  vim.keymap.set('n', 'w', 'W', {noremap = true})
+  vim.keymap.set('n', 'W', 'w', {noremap = true})
+end
 
 -- move up/down by soft wrapped lines by default
 -- vim.keymap.set('n', '<expr> k', '(v:count == 0 ? "gk" : "k")', {noremap = true})
@@ -152,13 +157,18 @@ vim.keymap.set('n', 'cop', ':set invpaste<cr>', {noremap = true})
 -- "vmap <C-Up> [egv
 -- "vmap <C-Down> ]egv
 
+vim.keymap.set('n', '<leader>tf', [[:GoTestFunc<cr>]])
 -- insert mode keymaps
 
+-- vim.keymap.set('i', '<expr> <TAB>', [[pumvisible() ? "<C-y>" : "<TAB>"]],
+               -- {noremap = true})
+-- vim.keymap.set('i', '<expr> <CR>', [[pumvisible() ? "<C-e>" : "<CR>"]],
+               -- {noremap = true})
 -- Use Tab and Shift+Tab to navigate through popup menu
-vim.keymap.set('i', '<expr> <Tab>', [[pumvisible() ? "\<C-n>" : "\<Tab>"]],
-               {noremap = true})
-vim.keymap.set('i', '<expr> <S-Tab>', [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]],
-               {noremap = true})
+-- vim.keymap.set('i', '<expr> <Tab>', [[pumvisible() ? "\<C-n>" : "\<Tab>"]],
+--                {noremap = true})
+-- vim.keymap.set('i', '<expr> <S-Tab>', [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]],
+               -- {noremap = true})
 
 -- In insert mode, complete a filesystem path with fuzzy matching (fzf plugin)
 -- vim.keymap.set('i', '<expr> <c-x><c-f>', 'fzf#vim#complete#path("fd")<cr>',

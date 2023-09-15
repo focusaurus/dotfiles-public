@@ -1,0 +1,1 @@
+c.tabs.position = "left"

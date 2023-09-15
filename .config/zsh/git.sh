@@ -64,7 +64,7 @@ alias gamend="git commit --amend --no-edit"
 alias git-not-pushed="git log --branches --not --remotes"
 alias gls="git ls-files"
 alias gw="git switch"
-alias gwc="git switch --create --no-track"
+alias gwc="git switch --create"
 alias gorce="git push --force-with-lease"
 alias ts="tig status"
 alias gD="git branch -D"
@@ -387,7 +387,11 @@ dotfiles-edit-by-search() {
     cd ~ || return 1
     dotfiles-begin
     # shellcheck disable=SC2145
-    git ls-files | grep --invert-match PrusaSlicer | xargs rg -l "$@" | xargs nvim -p -c "/$@"
+    git ls-files |
+      grep --extended-regexp --invert-match '(PrusaSlicer|/Spoons/)' |
+      tr '\n' '\0' |
+      xargs -0 rg -l "$@" |
+      xargs nvim -p -c "/$@"
   )
 }
 
