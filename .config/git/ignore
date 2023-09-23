@@ -13,4 +13,4 @@ elm-stuff
 node_modules
 nohup.out
 npm-debug.log
-__debug_bin
+__debug_bin*

@@ -146,6 +146,11 @@ client_keys = gears.table.join(client_keys, cyclefocus.key({super}, 'e', {
     cyclefocus.filters.same_screen, cyclefocus.filters.common_tag
   }
 }, {group = 'windows', description = 'cycle focus'}))
+client_keys = gears.table.join(client_keys, cyclefocus.key({super}, 'Tab', {
+  cycle_filters = {
+    cyclefocus.filters.same_screen, cyclefocus.filters.common_tag
+  }
+}, {group = 'windows', description = 'cycle focus'}))
 
 local clientbuttons = gears.table.join(awful.button({}, 1, function(c)
   c:emit_signal('request::activate', 'mouse_click', {raise = true})
