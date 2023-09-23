@@ -158,7 +158,9 @@ vim.keymap.set('n', 'cop', ':set invpaste<cr>', { noremap = true })
 -- "vmap <C-Up> [egv
 -- "vmap <C-Down> ]egv
 
-vim.keymap.set('n', '<leader>tf', [[:GoTestFunc<cr>]])
+vim.keymap.set('n', '<leader>tu', [[:GoTestFunc<cr>]])
+vim.keymap.set('n', '<leader>th', [[:tabmove -1<cr>]])
+vim.keymap.set('n', '<leader>tl', [[:tabmove +1<cr>]])
 -- insert mode keymaps
 
 -- vim.keymap.set('i', '<expr> <TAB>', [[pumvisible() ? "<C-y>" : "<TAB>"]],
