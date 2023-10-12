@@ -34,60 +34,54 @@ end
 
 -- awful.keygrabber:connect_signal('awful.keygrabber.started', function() log("keygrabber started") end)
 local function by_functions(...)
-  -- local fns = arg
   local selected_tag = awful.screen.focused().selected_tag.name
 
   local fns = {...} ---@class table
-  -- fns.n = select('#', ...)
 
   local function with_tag(c)
     for _, fn in pairs(fns) do
-      -- for i = 1, select("#",...) do
-      -- local fn = select(i, ...)
-      log('with_tags checking fn match')
-      if fn(c) == false then
-        log('no match')
-        return false
-      end
+      local matched = fn(c)
+      -- log('with_tags checked fn match', c.name, matched)
+      if matched == false then return false end
     end
     for _, tag in pairs(c:tags()) do
       if selected_tag == tag.name then
-        log('tag match', selected_tag, tag.name)
+        -- log('tag match', selected_tag, tag.name)
         return true
       else
-        log('tag mismatch', selected_tag, tag.name)
+        -- log('tag mismatch', selected_tag, tag.name)
       end
     end
-    log('with_tag returning false', c.name)
+    -- log('with_tag returning false', c.name)
     return false
   end
 
   local function just_fns(c)
     for _, fn in pairs(fns) do
-      log('just_fns testing', c.name)
+      -- log('just_fns testing', c.name)
       if fn(c) == false then
-        log('just_fns was false', c.name)
+        -- log('just_fns was false', c.name)
         return false
       end
     end
-    log('just_fns returning true', c.name)
+    -- log('just_fns returning true', c.name)
     return true
   end
 
   -- prefer a matching client on the selected tag
-  -- for c in awful.client.iterate(with_tag) do
-  --   log('matched', c.name, 'on selected tag')
-  --   focus_client(c)
-  --   return true
-  -- end
-
-  -- fallback to matching clients on any tag
-  for c in awful.client.iterate(just_fns) do
-    log('matched with just_fns', c.name)
+  for c in awful.client.iterate(with_tag) do
+    -- log('matched', c.name, 'on selected tag')
     focus_client(c)
     return true
   end
-  log('by_functions: no match')
+
+  -- fallback to matching clients on any tag
+  for c in awful.client.iterate(just_fns) do
+    -- log('matched with just_fns', c.name)
+    focus_client(c)
+    return true
+  end
+  -- log('by_functions: no match')
   return false
 end
 
@@ -284,14 +278,22 @@ function module.obsidian()
   if not found then awful.spawn.easy_async({'obsidian'}, noop) end
 end
 
-function module.calendar()
-  log('focus.calendar() called')
+function module.calendar_chrome()
+  log('focus.calendar_chrome() called')
   local found = by_rules({class = 'Google-chrome', name = 'calendar'})
   if not found then
     awful.spawn.easy_async({
       'google-chrome-stable', '--new-window',
       'https://calendar.google.com/calendar/r'
     }, noop)
+  end
+end
+
+function module.calendar()
+  log('focus.calendar() called')
+  if not by_functions(rules_fn({class = 'firefox'}),
+                      name_prefix_fn('[calendar]')) then
+    awful.spawn.easy_async('firefox', noop)
   end
 end
 
