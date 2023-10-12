@@ -188,10 +188,15 @@ local xournalpp_export_pdf = {
   properties = {floating = true, maximized = false}
 }
 
+local solvespace = {
+  rule = {name='Property Browser — SolveSpace'},
+  properties = {floating=true, maximized=false, title_bars=true}
+}
+
 awful.rules.rules = {
   all_clients, floating_clients, title_bars, sticky, one_password, frc_terminal,
   frc_browser, slack, music, freecad, openshot_preview, openshot_tutorial,
-  obsidian, xournalpp_export, xournalpp_export_pdf, rofi, nofi
+  obsidian, xournalpp_export, xournalpp_export_pdf, rofi, nofi, solvespace
 }
 
 function module.reapply()
