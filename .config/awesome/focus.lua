@@ -16,7 +16,80 @@ local function focus_client(client)
   client:jump_to(true)
 end
 
+local function name_prefix_fn(prefix)
+  return function(c)
+    local found = gears.string.startswith(c.name, prefix)
+    log('checked', c.name, 'for prefix', prefix, found)
+    return found
+  end
+end
+
+local function rules_fn(rules)
+  return function(c)
+    local matched = awful.rules.match(c, rules)
+    log('checked rules', matched, c.name)
+    return matched
+  end
+end
+
 -- awful.keygrabber:connect_signal('awful.keygrabber.started', function() log("keygrabber started") end)
+local function by_functions(...)
+  -- local fns = arg
+  local selected_tag = awful.screen.focused().selected_tag.name
+
+  local fns = {...} ---@class table
+  -- fns.n = select('#', ...)
+
+  local function with_tag(c)
+    for _, fn in pairs(fns) do
+      -- for i = 1, select("#",...) do
+      -- local fn = select(i, ...)
+      log('with_tags checking fn match')
+      if fn(c) == false then
+        log('no match')
+        return false
+      end
+    end
+    for _, tag in pairs(c:tags()) do
+      if selected_tag == tag.name then
+        log('tag match', selected_tag, tag.name)
+        return true
+      else
+        log('tag mismatch', selected_tag, tag.name)
+      end
+    end
+    log('with_tag returning false', c.name)
+    return false
+  end
+
+  local function just_fns(c)
+    for _, fn in pairs(fns) do
+      log('just_fns testing', c.name)
+      if fn(c) == false then
+        log('just_fns was false', c.name)
+        return false
+      end
+    end
+    log('just_fns returning true', c.name)
+    return true
+  end
+
+  -- prefer a matching client on the selected tag
+  -- for c in awful.client.iterate(with_tag) do
+  --   log('matched', c.name, 'on selected tag')
+  --   focus_client(c)
+  --   return true
+  -- end
+
+  -- fallback to matching clients on any tag
+  for c in awful.client.iterate(just_fns) do
+    log('matched with just_fns', c.name)
+    focus_client(c)
+    return true
+  end
+  log('by_functions: no match')
+  return false
+end
 
 local function by_rules(rules)
   local selected_tag = awful.screen.focused().selected_tag.name
@@ -26,7 +99,7 @@ local function by_rules(rules)
       local tag_matches = selected_tag == tag.name
       local rule_matches = awful.rules.match(c, rules)
       log('client', c.name, 'has tag', tag.name, 'tag_matches', tag_matches,
-           'rule_matches', rule_matches)
+          'rule_matches', rule_matches)
       if tag_matches and rule_matches then
         -- log('client', c.name, 'matched tag and rules', tag)
         return true
@@ -332,9 +405,17 @@ function module.code()
   end
 end
 
+function module.firefox_old()
+  log('focus.firefox_old() called')
+  if not by_class('firefox') then awful.spawn.easy_async('firefox', noop) end
+end
+
 function module.firefox()
   log('focus.firefox() called')
-  if not by_class('firefox') then awful.spawn.easy_async('firefox', noop) end
+  if not by_functions(rules_fn({class = 'firefox'}), name_prefix_fn('[main]')) then
+    -- if not by_rules({name = awful.rules.match('[main]'), class='firefox'}) then
+    awful.spawn.easy_async('firefox', noop)
+  end
 end
 
 function module.insomnia()
@@ -401,6 +482,11 @@ function module.qutebrowser()
   if not by_class('qutebrowser') then
     awful.spawn.easy_async('qutebrowser', noop)
   end
+end
+
+function module.kicad()
+  log('focus.kicad() called')
+  if not by_class('KiCAD') then awful.spawn.easy_async('kicad', noop) end
 end
 
 -- function module.highest()
