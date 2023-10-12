@@ -20,5 +20,6 @@
     },
     "editor.unicodeHighlight.allowedCharacters": {
         "️": true
-    }
+    },
+    "editor.inlineSuggest.suppressSuggestions": true
 }

@@ -358,8 +358,18 @@ dotfiles-begin() {
 dotfiles-end() {
   unset GIT_DIR GIT_WORK_TREE
 }
+
+dotfiles-git() {
+  dotfiles-begin
+  cd
+  lazygit
+  dotfiles-end
+  cd -
+}
+
 alias dfb="dotfiles-begin"
 alias dfe="dotfiles-end"
+alias dfg="dotfiles-git"
 
 dotfiles-ignore() {
   (

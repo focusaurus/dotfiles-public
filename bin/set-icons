@@ -36,7 +36,7 @@ wmctrl -l | {
     workflowy)
       icon="${HOME}/.config/awesome/workflowy-logo.png"
       ;;
-    *Discord*)
+    *discord*)
       icon="${HOME}/.config/awesome/discord-logo.png"
       ;;
     calendar)

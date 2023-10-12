@@ -50,6 +50,7 @@ fd
 feh
 firefox
 flameshot
+foomatic-db-engine
 foomatic-db-nonfree-ppds
 foomatic-db-ppds
 freecad-appimage
@@ -65,7 +66,6 @@ google-chrome
 goose
 gopls
 gpaint
-grpcurl-bin
 grub
 gthumb
 helix-bin
