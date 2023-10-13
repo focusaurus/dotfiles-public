@@ -27,10 +27,10 @@ wmctrl -l | {
     *1Password*)
       icon="/usr/share/icons/hicolor/64x64/apps/1password.png"
       ;;
-    music)
+    music:*)
       icon="${HOME}/.config/awesome/youtube-music-logo.png"
       ;;
-    todoist)
+    todoist:*)
       icon="${HOME}/.config/awesome/todoist-logo.png"
       ;;
     workflowy)
@@ -39,13 +39,13 @@ wmctrl -l | {
     *discord*)
       icon="${HOME}/.config/awesome/discord-logo.png"
       ;;
-    calendar)
+    calendar:*)
       icon="${HOME}/.config/awesome/google-calendar-logo.png"
       ;;
-    trello)
+    trello:*)
       icon="${HOME}/.config/awesome/trello-logo.png"
       ;;
-    "FRC: main")
+    FRC:*)
       icon="${HOME}/github.com/focusretreatcenter/website/static/apple-touch-icon.png"
       ;;
     *)

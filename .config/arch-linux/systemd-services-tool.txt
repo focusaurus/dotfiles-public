@@ -2,6 +2,9 @@ atd.service
 avahi-daemon.service
 avahi-daemon.socket
 bluetooth.service
+cups.path
+cups.service
+cups.socket
 docker.service
 getty@.service
 keyd.service
