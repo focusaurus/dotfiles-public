@@ -5,7 +5,7 @@ local honor = {honor_workarea = true}
 
 local log = require('log')
 
-local all = function(client) return true end
+local all = function(_) return true end
 
 function module.unminimize()
   for client in awful.client.iterate(all) do
@@ -78,7 +78,6 @@ function module.move_all_clients_to_screen()
   -- Default to assuming only 1 screen.
   -- We still want to move all clients to it because
   -- awesomewm doesn't do this for us automatically
-
   local screen_from = screen[1]
   local screen_to = screen[1]
   for s in screen do
@@ -90,33 +89,10 @@ function module.move_all_clients_to_screen()
       log(s.index, 'is screen_from since has some clients')
       screen_from = s
     end
-
-    -- if #s.all_clients < #screen_to.all_clients then
-    --   screen_to = s
-    -- end
-    -- if #s.all_clients >= #screen_from.all_clients then
-    --   log(s.index, " is screen_from since has most clients")
-    --   screen_from = s
-    -- end
-    -- if screen_from == nil then
-    --   log("screen_from default is ", s.index)
-    --   screen_from = s
-    -- end
-    -- if screen_to == nil then
-    --   log("screen_to default is ", s.index)
-    --   screen_to = s
-    -- end
-    -- if #s.all_clients == 0 then
-    --   log("Screen ", s.index, " has no clients, is screen_to")
-    --   screen_to = s
-    -- else
-    --   log("Screen ", s.index, " has some clients, is screen_from")
-    --   screen_from = s
-    -- end
   end
 
   log('dev9 WTF', #screen_from.all_clients)
-  for key, client in pairs(screen_from.all_clients) do
+  for _, client in pairs(screen_from.all_clients) do
     log('dev10 WTF')
     log('dev7 moving', (client.name or ''), 'from', client.screen.index,
          'to', screen_to.index)

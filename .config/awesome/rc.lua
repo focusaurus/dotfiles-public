@@ -15,7 +15,6 @@ local awful = require("awful")
 -- Theme handling library
 local beautiful = require("beautiful")
 
--- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 beautiful.get().font = "Hack 14"
