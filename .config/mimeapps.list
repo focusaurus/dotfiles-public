@@ -2,13 +2,13 @@
 
 [Default Applications]
 x-scheme-handler/postman=Postman.desktop
-text/html=google-chrome.desktop
-x-scheme-handler/http=google-chrome.desktop
-x-scheme-handler/https=google-chrome.desktop
-x-scheme-handler/about=google-chrome.desktop
-x-scheme-handler/unknown=google-chrome.desktop
-x-scheme-handler/mailto=google-chrome.desktop
-x-scheme-handler/webcal=google-chrome.desktop
-x-scheme-handler/discord=google-chrome.desktop
+text/html=firefox.desktop
+x-scheme-handler/http=firefox.desktop
+x-scheme-handler/https=firefox.desktop
+x-scheme-handler/about=firefox.desktop
+x-scheme-handler/unknown=firefox.desktop
+x-scheme-handler/mailto=firefox.desktop
+x-scheme-handler/webcal=firefox.desktop
+x-scheme-handler/discord=firefox.desktop
 model/stl=PrusaSlicer.desktop
 sourcegraph=cody-handler.desktop

@@ -45,7 +45,7 @@ sync_dir() {
 }
 
 main() {
-  export GIT_CLIENT="gitui"
+  export GIT_CLIENT="lazygit"
   for dir in "$@"; do
     if [[ ! -d "${dir}" ]]; then
       echo "${ME}: skip: not directory: ${dir}"
