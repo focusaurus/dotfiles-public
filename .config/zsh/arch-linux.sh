@@ -15,7 +15,7 @@ arch-update-packages() {
 }
 
 arch-update-keyring() {
-  sudo pacman -Sy archlinux-keyring
+  sudo pacman -Sy --noconfirm archlinux-keyring
 }
 
 arch-save-packages() {

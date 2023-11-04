@@ -4,15 +4,25 @@
 
 # ---- Start unofficial bash strict mode boilerplate
 # http://redsymbol.net/articles/unofficial-bash-strict-mode/
-set -o errexit # always exit on error
+set -o errexit  # always exit on error
 set -o errtrace # trap errors in functions as well
 set -o pipefail # don't ignore exit codes when piping output
 # set -x # enable debugging
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-xdotool keydown alt
-xdotool click 3 # right click
-xdotool keyup alt
-sleep 0.2
-xdotool key --clearmodifiers e
+
+chrome() {
+  xdotool keydown alt
+  xdotool click 3 # right click
+  xdotool keyup alt
+  sleep 0.2
+  xdotool key --clearmodifiers e
+}
+
+firefox() {
+  xdotool click 3 # right click
+  xdotool key alt+l
+}
+
+firefox

@@ -107,15 +107,35 @@ local one_password = {
   properties = {tags = all_regular_tags, maximized = true}
 }
 
-local frc_terminal = {
-  rule_any = {name = {'FRC: misc'}},
-  properties = {tags = {'2'}, maximized = true}
-}
+-- local frc_terminal = {
+--   rule_any = {name = {'FRC: misc'}},
+--   callback = function(client)
+--     if string.match(client.name, 'FRC: misc') then
+--       awful.rules.execute(client,
+--                           {properties = {tags = {'2'}, maximized = true}})
+--     end
+--   end
+-- }
+--
+-- local frc_browser = {
+--   callback = function(client)
+--     if string.match(client.name, 'FRC: main') then
+--       awful.rules.execute(client,
+--                           {properties = {tags = {'2'}, maximized = true}})
+--     end
+--   end
+-- }
 
-local frc_browser = {
-  rule_any = {name = {'FRC: main'}},
-  properties = {tags = {'2'}, maximized = true}
-}
+-- local trello = {
+--   callback = function(client)
+--     log('trello rules callback', client.name,
+--         string.match(client.name, 'trello: '))
+--     if string.match(client.name, 'trello: ') then
+--       awful.rules.execute(client,
+--                           {properties = {tags = {'2'}, maximized = true}})
+--     end
+--   end
+-- }
 
 local slack = {
   rule_any = {class = {'Slack'}},
@@ -189,14 +209,21 @@ local xournalpp_export_pdf = {
 }
 
 local solvespace = {
-  rule = {name='Property Browser — SolveSpace'},
-  properties = {floating=true, maximized=false, title_bars=true}
+  rule = {name = 'Property Browser — SolveSpace'},
+  properties = {floating = true, maximized = false, title_bars = true}
 }
 
+awful.rules.add_rule_source('focusaurus', function(c, properties)
+  -- log('focusaurus rule source', c.name)
+  if string.match(c.name, 'trello: ') then properties.tags = {'2'} end
+  if string.match(c.name, 'FRC main: ') then properties.tags = {'2'} end
+  if string.match(c.name, 'FRC misc: ') then properties.tags = {'2'} end
+end)
+
 awful.rules.rules = {
-  all_clients, floating_clients, title_bars, sticky, one_password, frc_terminal,
-  frc_browser, slack, music, freecad, openshot_preview, openshot_tutorial,
-  obsidian, xournalpp_export, xournalpp_export_pdf, rofi, nofi, solvespace
+  all_clients, floating_clients, title_bars, sticky, one_password, slack, music,
+  freecad, openshot_preview, openshot_tutorial, obsidian, xournalpp_export,
+  xournalpp_export_pdf, rofi, nofi, solvespace
 }
 
 function module.reapply()

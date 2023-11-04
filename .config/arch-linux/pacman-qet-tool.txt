@@ -76,7 +76,6 @@ intel-ucode
 jless
 keyd
 kicad
-kitty
 klavaro
 lazygit
 lf-bin
@@ -94,6 +93,7 @@ mupdf
 navi-bin
 net-tools
 network-manager-applet
+newsboat
 ntp
 nushell
 nvm
@@ -114,7 +114,6 @@ protonvpn-cli-community
 prusa-slicer
 pup-bin
 python-imagesize
-python-weasyprint
 qmk
 qutebrowser
 rclone
@@ -133,6 +132,7 @@ starship
 syncthing
 system-config-printer
 tealdeer
+texlive-basic
 thinkfan
 tifig-bin
 tig
@@ -172,6 +172,7 @@ xournalpp
 xplr-bin
 xseticon
 yad
+yarn
 yay
 yup
 zenity

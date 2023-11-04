@@ -1,5 +1,5 @@
 calendar key="C" "focus" "calendar"
-emoji key="E" "rofimoji" "--skin-tone" "light"
+emoji key="E" "rofimoji" "--skin-tone" "light" "--action" "copy"
 browser key="b" "focus" "browser"
 "VS Code" key="c" "focus" "vscode"
 todoist key="d" "focus" "todoist"
