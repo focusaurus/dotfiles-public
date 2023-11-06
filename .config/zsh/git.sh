@@ -358,8 +358,18 @@ dotfiles-begin() {
 dotfiles-end() {
   unset GIT_DIR GIT_WORK_TREE
 }
+
+dotfiles-git() {
+  dotfiles-begin
+  cd
+  lazygit
+  dotfiles-end
+  cd -
+}
+
 alias dfb="dotfiles-begin"
 alias dfe="dotfiles-end"
+alias dfg="dotfiles-git"
 
 dotfiles-ignore() {
   (
@@ -413,24 +423,25 @@ gsync() {
     fi
   fi
   ~/bin/git-autocommit \
+    ~/git.peterlyons.com/petes-personal-journal \
     ~/git.peterlyons.com/journals
 
   ~/bin/git-sync \
     ~ \
     ~/git.peterlyons.com/dotfiles \
     ~/git.peterlyons.com/journals \
+    ~/git.peterlyons.com/petes-personal-journal \
     ~/git.peterlyons.com/exocortex \
-    ~/git.peterlyons.com/focus-retreat-center \
-    ~/git.peterlyons.com/nuon
+    ~/git.peterlyons.com/focus-retreat-center
 
-  if [[ -d ~/github.com/focusaurus/qmk_firmware ]]; then
-    (
-      cd ~/github.com/focusaurus/qmk_firmware || exit
-      git commit -a -m "autocommit"
-      git pull origin focusaurus
-      git push origin focusaurus
-    )
-  fi
+  # if [[ -d ~/github.com/focusaurus/qmk_firmware ]]; then
+  #   (
+  #     cd ~/github.com/focusaurus/qmk_firmware || exit
+  #     git commit -a -m "autocommit"
+  #     git pull origin focusaurus
+  #     git push origin focusaurus
+  #   )
+  # fi
 }
 # typo humane
 alias gysnc=gsync

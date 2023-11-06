@@ -1,0 +1,434 @@
+{
+  "C": {
+    "command": [
+      "focus",
+      "calendar"
+    ],
+    "label": "calendar"
+  },
+  "Z": {
+    "command": [
+      "focus",
+      "zulip"
+    ],
+    "label": "zulip"
+  },
+  "a": {
+    "label": "applications",
+    "menu": {
+      "a": {
+        "command": [
+          "focus",
+          "calculator"
+        ],
+        "label": "calculator"
+      },
+      "f": {
+        "command": [
+          "focus",
+          "freecad"
+        ],
+        "label": "freecad"
+      },
+      "g": {
+        "command": [
+          "focus",
+          "gedit"
+        ],
+        "label": "gedit"
+      },
+      "i": {
+        "command": [
+          "focus",
+          "insomnia"
+        ],
+        "label": "insomnia"
+      },
+      "o": {
+        "command": [
+          "focus",
+          "onepassword"
+        ],
+        "label": "onepassword"
+      },
+      "p": {
+        "command": [
+          "focus",
+          "prusa"
+        ],
+        "label": "prusa"
+      },
+      "q": {
+        "command": [
+          "rofimoji",
+          "--skin-tone",
+          "light"
+        ],
+        "label": "emoji"
+      },
+      "v": {
+        "command": [
+          "focus",
+          "vial"
+        ],
+        "label": "vial"
+      },
+      "x": {
+        "command": [
+          "focus",
+          "xournalpp"
+        ],
+        "label": "xournalpp"
+      },
+      "z": {
+        "command": [
+          "focus",
+          "zeal"
+        ],
+        "label": "zeal"
+      }
+    }
+  },
+  "b": {
+    "command": [
+      "focus",
+      "browser"
+    ],
+    "label": "browser"
+  },
+  "c": {
+    "command": [
+      "focus",
+      "vscode"
+    ],
+    "label": "VS Code"
+  },
+  "d": {
+    "command": [
+      "focus",
+      "todoist"
+    ],
+    "label": "todoist"
+  },
+  "e": {
+    "command": [
+      "focus",
+      "email"
+    ],
+    "label": "email"
+  },
+  "f": {
+    "command": [
+      "fuzzball-script-choose"
+    ],
+    "label": "fuzzball"
+  },
+  "i": {
+    "command": [
+      "focus",
+      "firefox"
+    ],
+    "label": "firefox"
+  },
+  "j": {
+    "label": "journal",
+    "menu": {
+      "f": {
+        "label": "FRC",
+        "menu": {
+          "p": {
+            "command": [
+              "journal-append-prompt",
+              "/home/plyons/git.peterlyons.com/focus-retreat-center"
+            ],
+            "label": "prompt"
+          },
+          "r": {
+            "command": [
+              "terminal-quick",
+              "journal-read",
+              "/home/plyons/git.peterlyons.com/focus-retreat-center"
+            ],
+            "label": "read"
+          },
+          "v": {
+            "command": [
+              "terminal-quick",
+              "journal-append-vim",
+              "/home/plyons/git.peterlyons.com/focus-retreat-center"
+            ],
+            "label": "vim"
+          }
+        }
+      },
+      "p": {
+        "label": "personal",
+        "menu": {
+          "p": {
+            "command": [
+              "journal-append-prompt",
+              "/home/plyons/git.peterlyons.com/petes-personal-journal"
+            ],
+            "label": "prompt"
+          },
+          "r": {
+            "command": [
+              "terminal-quick",
+              "journal-read",
+              "/home/plyons/git.peterlyons.com/petes-personal-journal"
+            ],
+            "label": "read"
+          },
+          "v": {
+            "command": [
+              "terminal-quick",
+              "journal-append-vim",
+              "/home/plyons/git.peterlyons.com/petes-personal-journal"
+            ],
+            "label": "vim"
+          }
+        }
+      }
+    }
+  },
+  "m": {
+    "command": [
+      "focus",
+      "music"
+    ],
+    "label": "music"
+  },
+  "o": {
+    "command": [
+      "focus",
+      "obsidian"
+    ],
+    "label": "obsidian"
+  },
+  "p": {
+    "command": [
+      "focus",
+      "1password"
+    ],
+    "label": "1password"
+  },
+  "q": {
+    "command": [
+      "focus",
+      "qutebrowser"
+    ],
+    "label": "qutebrowser"
+  },
+  "s": {
+    "command": [
+      "focus",
+      "slack"
+    ],
+    "label": "slack"
+  },
+  "t": {
+    "command": [
+      "focus",
+      "terminal"
+    ],
+    "label": "terminal"
+  },
+  "v": {
+    "label": "volume",
+    "menu": {
+      "0": {
+        "command": [
+          "volume",
+          "0"
+        ],
+        "label": "zero"
+      },
+      "1": {
+        "command": [
+          "volume",
+          "100%"
+        ],
+        "label": "100%"
+      },
+      "3": {
+        "command": [
+          "volume",
+          "30%"
+        ],
+        "label": "30%"
+      },
+      "4": {
+        "command": [
+          "volume",
+          "40%"
+        ],
+        "label": "40%"
+      },
+      "5": {
+        "command": [
+          "volume",
+          "50%"
+        ],
+        "label": "50%"
+      },
+      "6": {
+        "command": [
+          "volume",
+          "60%"
+        ],
+        "label": "60%"
+      },
+      "7": {
+        "command": [
+          "volume",
+          "70%"
+        ],
+        "label": "70%"
+      },
+      "8": {
+        "command": [
+          "volume",
+          "80%"
+        ],
+        "label": "80%"
+      },
+      "9": {
+        "command": [
+          "volume",
+          "9"
+        ],
+        "label": "90%"
+      },
+      "a": {
+        "command": [
+          "/home/plyons/fuzzball/volume-adjust"
+        ],
+        "label": "adjust"
+      },
+      "d": {
+        "command": [
+          "volume",
+          "-10%"
+        ],
+        "label": "down"
+      },
+      "e": {
+        "command": [
+          "volume",
+          "80%"
+        ],
+        "label": "80%"
+      },
+      "f": {
+        "command": [
+          "volume",
+          "40%"
+        ],
+        "label": "40%"
+      },
+      "h": {
+        "command": [
+          "volume",
+          "100%"
+        ],
+        "label": "100%"
+      },
+      "m": {
+        "command": [
+          "volume",
+          "0"
+        ],
+        "label": "mute"
+      },
+      "n": {
+        "command": [
+          "volume",
+          "90%"
+        ],
+        "label": "90%"
+      },
+      "o": {
+        "command": [
+          "volume",
+          "100%"
+        ],
+        "label": "100%"
+      },
+      "s": {
+        "command": [
+          "volume",
+          "60%"
+        ],
+        "label": "60%"
+      },
+      "t": {
+        "command": [
+          "volume-toggle-mute"
+        ],
+        "label": "toggle mute"
+      },
+      "u": {
+        "command": [
+          "volume",
+          "+10%"
+        ],
+        "label": "up"
+      }
+    }
+  },
+  "w": {
+    "label": "work",
+    "menu": {
+      "b": {
+        "command": [
+          "focus",
+          "frc"
+        ],
+        "label": "FRC-browser"
+      },
+      "c": {
+        "command": [
+          "focus",
+          "fastmail_calendar"
+        ],
+        "label": "calendar"
+      },
+      "e": {
+        "command": [
+          "focus",
+          "fastmail"
+        ],
+        "label": "fastmail"
+      },
+      "t": {
+        "command": [
+          "focus",
+          "trello"
+        ],
+        "label": "trello"
+      },
+      "w": {
+        "command": [
+          "focus",
+          "workflowy"
+        ],
+        "label": "workflowy"
+      }
+    }
+  },
+  "x": {
+    "command": [
+      "rofi",
+      "-show",
+      "run"
+    ],
+    "label": "executables"
+  },
+  "z": {
+    "command": [
+      "focus",
+      "zoom"
+    ],
+    "label": "zoom"
+  }
+}

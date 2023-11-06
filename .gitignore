@@ -1,3 +1,4 @@
+/.config/com.sourcegraph.cody/logs
 .config/1Password
 .config/BraveSoftware
 .config/Logseq
@@ -273,3 +274,9 @@
 _default.hcl
 login_1689539373.hcl
 .cinnamon/configs
+.sourcegraph-psql
+.config/glib-2.0/settings/keyfile
+.newsboat/cache.db.lock
+.bun/install/cache
+.bun_repl_history
+.yarnrc

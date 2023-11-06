@@ -1,4 +1,14 @@
 {
+	"Test Dev": {
+		"prefix": "testdev",
+		"description": "ad hoc code execution",
+		"scope": "",
+		"body": [
+			"func TestDev(t *testing.T){",
+			"\tassert.Equal(t, expected, bar)",
+			"}"
+		]
+	},
   "iferrreturnerr": {
     "body": [
       "if err != nil {",
@@ -18,13 +28,18 @@
 		"\t}{",
 		"\t\t\"base case\": 42,",
 		"\t}",
-		"\tfor desc, test := range tests {",
+		"",
+		"\t// To debug a particular test case first, add ! as a prefix to it's description.",
+		"\t// It will sort to the beginning and run first",
+		"\tkeys := make([]string, 0)",
+		"\tfor k := range tests {",
+		"\t\tkeys = append(keys, k)",
+		"\t}",
+		"\tsort.Strings(keys)",
+		"",
+		"\tfor _, desc := range keys {",
 		"\t\tt.Run(desc, func(t *testing.T) {",
-		"\t\t\t// Use this to isolate a single test case",
-		"\t\t\t// by putting an @ in its desc",
-		"\t\t\t// if !strings.Contains(desc, \"!\") {",
-		"\t\t\t// \treturn",
-		"\t\t\t// }",
+		"\t\t\ttest, _  := tests[desc]",
 		"\t\t\tactual := SomeFunc(test.input)",
 		"\t\t\tassert.EqualValues(t, test.expected, actual)",
 		"\t\t})",

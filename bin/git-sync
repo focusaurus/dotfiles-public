@@ -45,6 +45,7 @@ sync_dir() {
 }
 
 main() {
+  export GIT_CLIENT="lazygit"
   for dir in "$@"; do
     if [[ ! -d "${dir}" ]]; then
       echo "${ME}: skip: not directory: ${dir}"
@@ -54,10 +55,11 @@ main() {
     # Special handling for home directory dotfiles
     if [[ "${PWD}" == "${HOME}" ]]; then
       # sigh. gitui does not support separate git dirs.
-      export GIT_DIR="${HOME}/.home.git" GIT_WORK_TREE="${HOME}" GIT_CLIENT="lazygit"
+      export GIT_DIR="${HOME}/.home.git" GIT_WORK_TREE="${HOME}"
+      # GIT_CLIENT="lazygit"
     else
       unset GIT_DIR GIT_WORK_TREE
-      export GIT_CLIENT="gitui"
+      # export GIT_CLIENT="gitui"
     fi
     sync_dir
     cd - >/dev/null

@@ -126,7 +126,7 @@ fi
 
 c() {
   local dir
-  dir=$(fasd -dl | "${fuzzer}" --select-1 --tac --query "$@")
+  dir=$(fasd -dl | "${fuzzer}" --select-1 --query "$@")
   if [[ -n "${dir}" ]]; then
     cd "${dir}" || return
   else

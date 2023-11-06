@@ -5,9 +5,9 @@ local wibox = require('wibox')
 
 local menubar = require('menubar')
 local placement = require('placement')
+local modifiers = require('modifiers')
 local dev = require('dev')
 local focus = require('focus')
-local log2 = require('log2')
 
 local hotkeys_popup = require('awful.hotkeys_popup')
 
@@ -33,9 +33,10 @@ local mymainmenu = awful.menu({
       'awesome: hotkeys',
       function() hotkeys_popup.show_help(nil, awful.screen.focused()) end
     }, {'awesome: restart', awesome.restart},
-    {'awesome: unminimize', placement.unminimize},
-    {'awesome: dev1', dev.dev1},
-    {'awesome: quit', function() awesome.quit() end}, {'leader', focus.leader}
+    {'awesome: unminimize', placement.unminimize}, {'awesome: dev1', dev.dev1},
+    {'awesome: quit', function() awesome.quit() end},
+    {'leader-rofi', focus.rofi}, {'leader-nofi', focus.nofi},
+    {'executables: rofi -run', focus.executables}
   }
 })
 
@@ -44,16 +45,13 @@ local mylauncher = awful.widget.launcher(
 small(mylauncher)
 
 menubar.utils.terminal = terminal
-alt = 'Mod1'
-super = 'Mod4' -- super
-control = 'Control'
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
                             awful.button({}, 1, function(t) t:view_only() end),
-                            awful.button({control}, 1, function(t)
+                            awful.button({modifiers.control}, 1, function(t)
       if client.focus then client.focus:move_to_tag(t) end
     end), awful.button({}, 3, awful.tag.viewtoggle),
-                            awful.button({control}, 3, function(t)
+                            awful.button({modifiers.control}, 3, function(t)
       if client.focus then client.focus:toggle_tag(t) end
     end))
 
@@ -69,13 +67,11 @@ local tasklist_buttons = gears.table.join(
 client.connect_signal('manage', function(c)
   -- i.e. put it at the end of others instead of setting it master.
   if not awesome.startup then awful.client.setslave(c) end
-  -- log2('manage window', c.name, 'urgent:', c.urgent)
   c.urgent = false
   awful.spawn
       .easy_async({os.getenv('HOME') .. '/bin/set-icons'}, function() end)
 end)
 
-local clock_widget = wibox.widget.textclock()
 local microphone_script_widget = awful.widget.watch(
                                      os.getenv('HOME') ..
                                          '/bin/widgets/microphone', 2)
@@ -123,7 +119,7 @@ awful.screen.connect_for_each_screen(function(s)
   }
 
   -- Create a tasklist widget
-  tasklistlayout = wibox.layout.flex.vertical()
+  local tasklistlayout = wibox.layout.flex.vertical()
   tasklistlayout.max_widget_size = 30
   s.mytasklist = awful.widget.tasklist {
     screen = s,
@@ -153,7 +149,7 @@ awful.screen.connect_for_each_screen(function(s)
       battery_script_widget,
       screen_brightness_script_widget,
       sound_widget,
-      wibox.widget.textclock('🟨%F\n🟪%a %B %d\n⌚%H:%M')
+      wibox.widget.textclock('🟨%F\n🟪%a %b %d\n⌚%H:%M')
     }
   }
 end)

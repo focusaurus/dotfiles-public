@@ -7,7 +7,7 @@
 set -o errexit  # always exit on error
 set -o errtrace # trap errors in functions as well
 set -o pipefail # don't ignore exit codes when piping output
-# set -x          # enable debugging
+set -x          # enable debugging
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
@@ -42,7 +42,7 @@ main() {
   local artifact_path
   artifact_path=$(curl --silent --location --fail --show-error "${latest_url}" |
     pup 'a attr{href}' |
-    grep -Ei 'linux|darwin|deb|tar|gz|bz2' |
+    grep -Ei 'linux|darwin|deb|tar|gz|bz2|zip' |
     ~/bin/fuzzy-filter)
   if [[ -z "${artifact_path}" ]]; then
     exit

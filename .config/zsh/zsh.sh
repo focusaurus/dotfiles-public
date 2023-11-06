@@ -152,7 +152,7 @@ autoload -Uz compinit && compinit
 zle -C complete-file complete-word _generic
 zstyle ':completion:complete-file::::' completer _files
 # https://unix.stackexchange.com/questions/12288/zsh-insert-completion-on-first-tab-even-if-ambiguous
-setopt menucomplete
+# setopt menucomplete
 bindkey '^t' complete-file
 
 # control-left-arrow goes back a word, right goes forward

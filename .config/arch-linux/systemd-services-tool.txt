@@ -2,8 +2,12 @@ atd.service
 avahi-daemon.service
 avahi-daemon.socket
 bluetooth.service
+cups.path
+cups.service
+cups.socket
 docker.service
 getty@.service
+keyd.service
 lightdm.service
 machines.target
 NetworkManager-dispatcher.service
@@ -17,6 +21,7 @@ systemd-boot-update.service
 systemd-homed.service
 systemd-journald-audit.socket
 systemd-networkd.service
+systemd-networkd-wait-online.service
 systemd-network-generator.service
 systemd-pstore.service
 systemd-remount-fs.service
