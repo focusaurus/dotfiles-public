@@ -266,11 +266,6 @@
 /tmp
 /voice-memos
 /work-*
-20210124T230501Z
-20210917T000616Z
-20211118T043719Z
-20220411T001921Z
-20220527T181303Z
 _default.hcl
 login_1689539373.hcl
 .sourcegraph-psql
@@ -280,3 +275,4 @@ login_1689539373.hcl
 .bun_repl_history
 .yarnrc
 .config/three-dots-labs/.trainings-config
+.cinnamon/configs

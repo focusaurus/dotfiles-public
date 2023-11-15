@@ -30,6 +30,9 @@ png | jpg | jpeg | heic)
 zip)
   exec zipinfo "$1"
   ;;
+gz | bz2)
+  exec tar tf "$1"
+  ;;
 *)
   # ~/bin/log "$0" previewing "$1"
   exec bat --paging=always --color=always --style=plain "$1"
