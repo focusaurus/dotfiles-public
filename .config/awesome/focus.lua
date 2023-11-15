@@ -156,6 +156,7 @@ function module.next_window() awful.client.focus.byidx(1) end
 function module.rofi() if not by_class('Rofi') then run(home_bin .. '/blezz') end end
 
 function module.nofi() if not by_class('nofi') then run(home_bin .. '/nofi') end end
+function module.gofi() if not by_class('gofi') then run(home_bin .. '/gofi') end end
 
 function module.executables()
   run({'rofi', '-show', 'run', '-normal-window', '-no-steal-focus'})

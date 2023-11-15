@@ -5,8 +5,9 @@ local cyclefocus = require('cyclefocus')
 
 local placement = require('placement')
 local focus = require('focus')
-local leader = require('leader-rofi')
+local leader_rofi = require('leader-rofi')
 local leader_nofi = require('leader-nofi')
+local leader_gofi = require('leader-gofi')
 local tags = require('tags')
 local modifiers = require('modifiers')
 local dev = require('dev')
@@ -66,10 +67,12 @@ bind_root('sound', 'toggle volume mute', {}, 'XF86AudioMute',
 bind_root('sound', 'toggle mic mute', {}, 'XF86AudioMicMute',
           runner({home_bin .. '/microphone-toggle'}))
 
-bind_root('rofi', 'run rofi', {modifiers.super}, '8', focus.rofi)
-bind_root('nofi', 'run nofi', {modifiers.super}, '9', focus.nofi)
-bind_root('rofi', 'leader', {modifiers.super}, '1', leader.tag_in)
-bind_root('rofi', 'leader', {}, 'F10', leader_nofi.tag_in)
+bind_root('nofi', 'run gofi', {modifiers.super}, '7', leader_gofi.tag_in)
+bind_root('rofi', 'run rofi', {modifiers.super}, '8', leader_nofi.tag_in)
+bind_root('nofi', 'run nofi', {modifiers.super}, '9', leader_rofi.tag_in)
+bind_root('rofi', 'leader', {modifiers.super}, '1', leader_gofi.tag_in)
+bind_root('rofi', 'leader', {}, 'F10', leader_gofi.tag_in)
+-- bind_root('rofi', 'leader', {}, 'F10', leader_nofi.tag_in)
 -- bind_root('rofi', 'leader', {}, 'F10', focus.rofi)
 bind_root('rofi', 'fuzz script', {modifiers.super}, '2', focus.fuzz_script)
 bind_root('rofi', 'fuzz script', {modifiers.super}, 'space',

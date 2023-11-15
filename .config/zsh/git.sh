@@ -51,7 +51,7 @@ alias gs='git status --short'
 # alias gsu='git submodule update'
 alias gull='git pull || ensure_ssh_agent'
 alias gush='git push || ensure_ssh_agent'
-# alias gp='git push'
+# alias gP='git push'
 # alias gpu='git pull upstream'
 # alias gunassume='git update-index --no-assume-unchanged'
 # alias gushup='git push --set-upstream'
@@ -206,7 +206,7 @@ gdrb() {
 }
 
 #git push same branch
-gpsb() {
+gPsb() {
   git push --set-upstream origin HEAD
 }
 
