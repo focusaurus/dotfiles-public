@@ -1,2 +1,2 @@
 title gofi
-launch zsh -c '~/go/bin/gofi -hook gofi-out ~/.config/nofi/menu.kdl'
+launch zsh -c '~/go/bin/gofi -hook gofi-out ~/.config/gofi/menu.kdl'

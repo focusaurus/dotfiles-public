@@ -22,5 +22,6 @@
         "️": true
     },
     "editor.inlineSuggest.suppressSuggestions": true,
-    "cody.autocomplete.enabled": false
+    "cody.autocomplete.enabled": false,
+    "workbench.sideBar.location": "right"
 }

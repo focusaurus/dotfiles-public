@@ -226,8 +226,8 @@ local solvespace = {
 awful.rules.add_rule_source('focusaurus', function(c, properties)
   -- log('focusaurus rule source', c.name)
   if string.match(c.name, 'trello: ') then properties.tags = {'2'} end
-  if string.match(c.name, 'FRC main: ') then properties.tags = {'2'} end
-  if string.match(c.name, 'FRC misc: ') then properties.tags = {'2'} end
+  if string.match(c.name, 'FRC: ') then properties.tags = {'2'} end
+  if string.match(c.name, 'FRC misc:') then properties.tags = {'2'} end
 end)
 
 awful.rules.rules = {

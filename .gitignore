@@ -276,3 +276,5 @@ login_1689539373.hcl
 .yarnrc
 .config/three-dots-labs/.trainings-config
 .cinnamon/configs
+/.cody-symf
+/.config/go/telemetry
