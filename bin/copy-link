@@ -22,7 +22,7 @@ chrome() {
 
 firefox() {
   xdotool click 3 # right click
-  xdotool key alt+l
+  xdotool key l
 }
 
 firefox
