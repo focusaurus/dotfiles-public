@@ -101,6 +101,16 @@ local nofi = {
   }
 }
 
+local gofi = {
+  rule_any = {class = {'gofi'}},
+  properties = {
+    tag = '4',
+    placement = awful.placement.centered,
+    maximized = false,
+    focus = false,
+    urgent = false
+  }
+}
 local all_regular_tags = {'1', '2', '3'}
 local one_password = {
   rule_any = {class = {'1Password'}},
@@ -216,14 +226,14 @@ local solvespace = {
 awful.rules.add_rule_source('focusaurus', function(c, properties)
   -- log('focusaurus rule source', c.name)
   if string.match(c.name, 'trello: ') then properties.tags = {'2'} end
-  if string.match(c.name, 'FRC main: ') then properties.tags = {'2'} end
-  if string.match(c.name, 'FRC misc: ') then properties.tags = {'2'} end
+  if string.match(c.name, 'FRC: ') then properties.tags = {'2'} end
+  if string.match(c.name, 'FRC misc:') then properties.tags = {'2'} end
 end)
 
 awful.rules.rules = {
   all_clients, floating_clients, title_bars, sticky, one_password, slack, music,
   freecad, openshot_preview, openshot_tutorial, obsidian, xournalpp_export,
-  xournalpp_export_pdf, rofi, nofi, solvespace
+  xournalpp_export_pdf, rofi, nofi, gofi, solvespace
 }
 
 function module.reapply()

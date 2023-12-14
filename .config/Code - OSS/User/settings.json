@@ -21,5 +21,7 @@
     "editor.unicodeHighlight.allowedCharacters": {
         "️": true
     },
-    "editor.inlineSuggest.suppressSuggestions": true
+    "editor.inlineSuggest.suppressSuggestions": true,
+    "cody.autocomplete.enabled": false,
+    "workbench.sideBar.location": "right"
 }

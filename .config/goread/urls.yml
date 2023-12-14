@@ -1,0 +1,25 @@
+categories:
+    - name: A List
+      desc: Very High Quality Authors
+      subscriptions:
+        - name: Julia Evans
+          desc: ""
+          url: http://jvns.ca/atom.xml
+        - name: Will Larson
+          desc: ""
+          url: https://lethain.com/feeds.xml
+        - name: Lab Notes
+          desc: Assaf Arkin
+          url: https://labnotes.org/rss/
+        - name: Chelsea Troy
+          desc: ""
+          url: https://chelseatroy.com/feed/
+    - name: News
+      desc: News from around the world
+      subscriptions:
+        - name: Wired
+          desc: News from the wired team
+          url: https://www.wired.com/feed/rss
+        - name: BBC
+          desc: News from the BBC
+          url: http://feeds.bbci.co.uk/news/rss.xml
