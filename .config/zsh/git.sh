@@ -404,6 +404,7 @@ dotfiles-edit-by-search() {
       xargs nvim -p -c "/$@"
   )
 }
+alias dfebs="dotfiles-edit-by-search"
 
 dotfiles-edit-fuzzy() {
   (
@@ -412,6 +413,7 @@ dotfiles-edit-fuzzy() {
     git ls-files | ~/bin/fuzzy-filter "$@" | xargs nvim -p
   )
 }
+alias dfef="dotfiles-edit-fuzzy"
 
 gsync() {
   dotfiles-end
@@ -431,6 +433,7 @@ gsync() {
     ~/git.peterlyons.com/dotfiles \
     ~/git.peterlyons.com/journals \
     ~/git.peterlyons.com/petes-personal-journal \
+    ~/git.peterlyons.com/3d-prints \
     ~/git.peterlyons.com/exocortex \
     ~/git.peterlyons.com/focus-retreat-center
 

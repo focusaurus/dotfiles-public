@@ -24,6 +24,7 @@ applications key="a" {
   insomnia key="i" "focus" "insomnia"
   kicad key="k" "focus" "kicad"
   prusa key="p" "focus" "prusa"
+  arandr key="r" "arandr"
   vial key="v" "focus" "vial"
   xournalpp key="x" "focus" "xournalpp"
 }
@@ -69,5 +70,6 @@ work key="w" {
   calendar key="c" "focus" "fastmail_calendar"
   fastmail key="e" "focus" "fastmail"
   trello key="t" "focus" "trello"
+  obsidian key="o" "open" "obsidian://open?vault=focus-retreat-center"
   workflowy key="w" "focus" "workflowy"
 }
