@@ -12,15 +12,18 @@ set -o pipefail # don't ignore exit codes when piping output
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 declare -a opts=(
-  --class gofi
   --start-as normal
   --config ~/.config/kitty/kitty.conf
   --config ~/.config/kitty/gofi.conf
   --session ~/.config/kitty/gofi.session
 )
 
-if pgrep --exact picom >/dev/null; then
-  opts=("${opts[@]}" --override 'background_opacity=0.4')
+if [[ $(uname) == "Linux" ]] && pgrep --exact picom >/dev/null; then
+  opts=(
+    "${opts[@]}"
+    --override 'background_opacity=0.4'
+    --class gofi
+  )
 fi
 
 kitty "${opts[@]}"

@@ -112,12 +112,22 @@ function module.browserIntuitByTitleCache()
   end
 end
 
+function module.firefox()
+  log.d("firefox")
+  hs.application.launchOrFocus("Firefox")
+end
+
+function module.obsidian()
+  log.d("obsidian")
+  hs.application.launchOrFocus("Obsidian")
+end
+
 -- I have had many implementations of this.
 -- So I keep the function names in the module describing
 -- the specific implementation approach, but in the module's
 -- external API, alias it as just the intent.
 module.browserIntuit = module.browserIntuitByTitleCache
-module.browser = module.browserMainByTitleCache
+module.browser = module.firefox
 
 local windowCalendar
 -- filterCalendar = hs.window.filter.new():setAppFilter(browserName, {allowTitles="- Calendar -"})
@@ -289,10 +299,6 @@ function module.emacs()
   hs.application.launchOrFocus("Emacs")
 end
 
-function module.firefox()
-  log.d("firefox")
-  hs.application.launchOrFocus("firefox")
-end
 
 function module.code()
   log.d("code")

@@ -46,7 +46,7 @@ menuRowHeight = 22
 menuOuterPadding = 20
 
 ----------------------------------------- Font options ---------------------------------------------
-menuItemFont = 'JetBrains Mono'
+--menuItemFont = 'JetBrains Mono'
 menuItemFontSize = 16
 menuItemTextAlign = 'left'
 
@@ -190,7 +190,7 @@ menuHammerMenuList = {
             {cons.cat.submenu, '', 'j', 'Journal', { {cons.act.menu, journalMenu} }},
             {cons.cat.action, '', 'c', 'Calendar', { {cons.act.func, focus.calendar} }},
             {cons.cat.action, '', 'd', 'IntelliJ IDEA', { {cons.act.launcher, 'IntelliJ IDEA'} }},
-            {cons.cat.action, '', 'o', 'Org Mode Emacs', { {cons.act.launcher, 'Emacs'} }},
+            {cons.cat.action, '', 'o', 'Obsidian', { {cons.act.launcher, 'Obsidian'} }},
             {cons.cat.submenu, '', 'h', 'Hammerspoon', { {cons.act.menu, hammerspoonMenu} }},
             -- {cons.cat.submenu, '', 'm', 'Media Controls', { {cons.act.menu, mediaMenu} }},
             -- {cons.cat.submenu, '', 'g', 'Toggles', { {cons.act.menu, toggleMenu} }},

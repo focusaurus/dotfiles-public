@@ -6,7 +6,7 @@ local placement = require("placement")
 local snippets = require("snippets")
 local sound = require("sound")
 
-local hyper_pl = {"option", "command"}
+local hyper_pl = {"command", "shift"}
 
 -- dev
 hs.hotkey.bind({}, "f1", focus.cycleWindows)

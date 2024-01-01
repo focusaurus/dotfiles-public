@@ -17,7 +17,7 @@ snippet_dir=~/git.peterlyons.com/dotfiles/snippets
 chooser=(rofi -dmenu -p snippet -theme sidebar)
 if [[ $(uname) == "Darwin" ]]; then
   # Sigh. Can't control environment PATH in alfred
-  chooser=(/usr/local/bin/choose -c highlight=111111)
+  chooser=(/opt/homebrew/bin/choose -c highlight=111111)
 fi
 # show a dmenu of possible snippets, prints the selected snippet abbreviation
 abbreviation="${snippet_dir}/"$(
