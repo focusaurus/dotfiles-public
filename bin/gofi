@@ -18,12 +18,11 @@ declare -a opts=(
   --session ~/.config/kitty/gofi.session
 )
 
-if [[ $(uname) == "Linux" ]] && pgrep --exact picom >/dev/null; then
-  opts=(
-    "${opts[@]}"
-    --override 'background_opacity=0.4'
-    --class gofi
-  )
+if [[ $(uname) == "Linux" ]]; then
+  opts=("${opts[@]}"  --class gofi)
+  if pgrep --exact picom >/dev/null; then
+    opts=("${opts[@]}" --override 'background_opacity=0.4')
+  fi
 fi
 
 kitty "${opts[@]}"

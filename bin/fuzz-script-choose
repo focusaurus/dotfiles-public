@@ -27,7 +27,7 @@ task_dir="${1:-${HOME}/git.peterlyons.com/dotfiles/fuzzball}"
 chooser=(rofi -dmenu -p task -theme /usr/share/rofi/themes/fancy.rasi -pid "/run/user/$(id -u)/fuzz-script-choose.pid")
 if [[ $(uname) == "Darwin" ]]; then
   # macos: choose
-  chooser=(/usr/local/bin/choose -c highlight=111111)
+  chooser=(/opt/homebrew/bin/choose -c highlight=111111)
 fi
 if [[ -t 1  && -z "${GUI}" ]]; then
   # terminal/tty mode. Use fzf directly
