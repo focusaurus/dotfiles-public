@@ -1,2 +1,6 @@
 #!/usr/bin/env bash
+if ~/bin/have-exe lua-format; then
 lua-format --indent-width=2 --double-quote-to-single-quote
+elif ~/bin/have-exe stylua; then
+  stylua  --indent-width 2 --indent-type Spaces "$@"
+fi
