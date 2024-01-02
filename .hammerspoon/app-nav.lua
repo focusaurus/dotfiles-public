@@ -1,4 +1,4 @@
-local module= {}
+local module = {}
 local log = hs.logger.new("app-nav", "debug")
 local hbin = os.getenv("HOME") .. "/bin"
 
@@ -13,15 +13,19 @@ end
 function module.left()
   log.d("app-nav left")
   local name = hs.application.frontmostApplication():name()
-  if isTerminal(name) then
+  log.d("app name: " .. name)
+  if name == "kitty" then
+    hs.eventtap.keyStroke({ "command" }, "left")
+  elseif isTerminal(name) then
     os.execute(hbin .. "/nav-tmux left")
   elseif name == "Code" then
-    -- vim style tab navigation
-    hs.eventtap.keyStroke({}, "Escape")
-    hs.eventtap.keyStroke({}, "g")
-    hs.eventtap.keyStroke({"shift"}, "T")
+    hs.eventtap.keyStroke({ "control", "shift" }, "tab")
+  -- vim style tab navigation
+  -- hs.eventtap.keyStroke({}, "Escape")
+  -- hs.eventtap.keyStroke({}, "g")
+  -- hs.eventtap.keyStroke({"shift"}, "T")
   elseif useTabNav(name) then
-    hs.eventtap.keyStroke({"control", "shift"}, "Tab")
+    hs.eventtap.keyStroke({ "control", "shift" }, "Tab")
   end
 end
 
@@ -48,7 +52,9 @@ end
 function module.right()
   log.d("app-nav right")
   local name = hs.application.frontmostApplication():name()
-  if isTerminal(name) then
+  if name == "kitty" then
+    hs.eventtap.keyStroke({ "command" }, "right")
+  elseif isTerminal(name) then
     os.execute(hbin .. "/nav-tmux right")
   elseif name == "Code" then
     -- vim style tab navigation
@@ -56,7 +62,7 @@ function module.right()
     hs.eventtap.keyStroke({}, "g")
     hs.eventtap.keyStroke({}, "t")
   elseif useTabNav(name) then
-    hs.eventtap.keyStroke({"control"}, "Tab")
+    hs.eventtap.keyStroke({ "control" }, "Tab")
   end
 end
 

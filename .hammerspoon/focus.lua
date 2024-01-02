@@ -122,6 +122,23 @@ function module.obsidian()
   hs.application.launchOrFocus("Obsidian")
 end
 
+local filterGofi = hs.window.filter.new(true)--:allowApp("gofi")
+function module.gofiByTitle()
+  log.d("gofiByTitle 2")
+  for _, window in pairs(filterGofi:getWindows()) do
+    log.d(window:application():name() .. ": " .. window:title())
+    if window:application():name() == "kitty" then
+      window:focus()
+      -- break
+    end
+  end
+  -- if we get here, we didn't find any windows, launch the app
+  -- TODO
+end
+
+module.gofi = module.gofiByTitle
+module.leader = module.gofi
+
 -- I have had many implementations of this.
 -- So I keep the function names in the module describing
 -- the specific implementation approach, but in the module's

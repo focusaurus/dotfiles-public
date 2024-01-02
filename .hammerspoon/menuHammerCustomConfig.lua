@@ -205,7 +205,7 @@ menuHammerMenuList = {
             {cons.cat.action, '', 'r', 'Right (App Nav)', { {cons.act.func, appNav.right } }},
             {cons.cat.action, '', 'm', 'Music', { {cons.act.func, focus.music } }},
             {cons.cat.action, '', 'n', 'Snippet', { {cons.act.func, snippets.chooseByUIAndType } }},
-            {cons.cat.action, '', 'p', 'Postman', { {cons.act.launcher, 'Postman'} }},
+            {cons.cat.action, '', 'p', '1Password', { {cons.act.launcher, '1Password'} }},
             {cons.cat.action, '', 't', 'terminal', { {cons.act.func, focus.terminal} }},
             {cons.cat.action, '', 'z', 'Zoom', { {cons.act.launcher, 'zoom.us'} }},
             {cons.cat.action, '', 'q', 'Terminal Quick', { {cons.act.func, focus.terminalQuick} }},
@@ -262,13 +262,13 @@ menuHammerMenuList = {
         meunHotkey = nil,
         menuItems = {
             {cons.cat.action, '', 'j', 'Journal', {
-                {cons.act.func, journal.appendByDialog}
+                {cons.act.func, journal.appendPrompt}
             }},
             {cons.cat.action, '', 's', 'Standup', {
-                {cons.act.func, journal.appendByDialogStandup}
+                {cons.act.func, journal.appendPromptStandup}
             }},
             {cons.cat.action, '', 'v', 'vim', {
-                {cons.act.func, journal.appendByTerminalWindow}
+                {cons.act.func, journal.appendVim}
             }},
         }
     },
