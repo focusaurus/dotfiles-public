@@ -17,7 +17,7 @@ export FZF_COMPLETION_DIR_COMMANDS="cd pushd rmdir tree"
 export FZF_DEFAULT_OPTS='--bind=alt-enter:print-query'
 if [[ -n "${ZSH_VERSION}" ]]; then
   if [[ "$(uname)" == "Darwin" ]]; then
-    source-if-exists /usr/local/Cellar/fzf/*/shell/key-bindings.zsh
+    source-if-exists /opt/homebrew/Cellar/fzf/*/shell/key-bindings.zsh
   fi
   source-if-exists /usr/share/fzf/key-bindings.zsh
   source-if-exists /usr/share/fzf/completion.zsh

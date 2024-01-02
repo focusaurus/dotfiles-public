@@ -40,6 +40,9 @@ vim.keymap.set('n', '<leader>mm', ':@@<cr>', { noremap = true })
 vim.keymap.set('n', '<leader>f',
   ':w<cr>:silent !pretty-print-files %<cr>:edit!<cr>',
   { noremap = true })
+vim.keymap.set('n', '<leader>F',
+  ':lua vim.lsp.buf.format()<cr>',
+  { noremap = true })
 
 -- LSP mappings collide with this, delete them
 -- vim.keymap.del('n', '<leader>wr')
