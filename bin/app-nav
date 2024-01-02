@@ -46,23 +46,6 @@ nav_vs_code() {
   esac
 }
 
-nav_wezterm() {
-  case "$1" in
-  left)
-    xdotool key --clearmodifiers ctrl+shift+Tab
-    ;;
-  up)
-    xdotool key --clearmodifiers ctrl+shift+Up
-    ;;
-  right)
-    xdotool key --clearmodifiers ctrl+Tab
-    ;;
-  down)
-    xdotool key --clearmodifiers ctrl+shift+Down o
-    ;;
-  esac
-}
-
 nav_kitty() {
   case "$1" in
   left)
@@ -97,14 +80,11 @@ main() {
   # so we wait for the keys to be released
   sleep 0.1
   case "${app}" in
-  *firefox*|*chrome*|*obsidian*)
+  *firefox* | *chrome* | *obsidian*)
     nav_browser "${direction}"
     ;;
   *kitty*)
     nav_kitty "${direction}"
-    ;;
-  *wezterm*)
-    nav_wezterm "${direction}"
     ;;
   *termite* | *iTerm2* | *kitty* | *Terminal*)
     ~/bin/nav-tmux "${direction}"
