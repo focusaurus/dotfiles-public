@@ -13,10 +13,10 @@ vim.api.nvim_create_autocmd('FocusLost',
 
 vim.cmd('command DisableSaveOnFocusLost :autocmd! FocusLost')
 
-vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
-  pattern = {'*.txt', '*.md'},
-  command = 'setlocal spell'
-})
+-- vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
+--   pattern = {'*.txt', '*.md'},
+--   command = 'setlocal spell'
+-- })
 
 -- start git commit messages in insert mode
 vim.api.nvim_create_augroup('bufcheck', {clear = true})
