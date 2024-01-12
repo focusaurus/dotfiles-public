@@ -284,3 +284,4 @@ login_1689539373.hcl
 .zsh_sessions
 .config/op/config
 .1password/agent.sock
+.mysql_history
