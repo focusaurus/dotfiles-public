@@ -6,7 +6,10 @@ source-if-exists() {
   done
 }
 
-export BREW_PREFIX=/opt/homebrew
+export BREW_PREFIX="/opt/homebrew"
+if [[ ! -e "${BREW_PREFIX}" -a -e "/usr/local" ]];
+  export BREW_PREFIX="/usr/local"
+fi
 # put this early to make sure compinit is run
 source-if-exists ~/.config/zsh/zsh.sh
 source-if-exists ~/.config/zsh/*.sh

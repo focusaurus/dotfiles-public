@@ -308,6 +308,7 @@ local servers = {
   eslint = {},
   cssls = {},
   html = {},
+  bashls = {},
   lua_ls = {
     Lua = {workspace = {checkThirdParty = false}, telemetry = {enable = false}}
   }

@@ -4,7 +4,6 @@
     "workbench.tree.indent": 16,
     "window.titleBarStyle": "custom",
     "cody.codebase": "sgp_c0ee8de8271ac39e2bc427941ff51653dd6dd855",
-    "cody.serverEndpoint": "https://sourcegraph.com",
     "files.insertFinalNewline": true,
     "redhat.telemetry.enabled": false,
     "go.toolsManagement.autoUpdate": true,
@@ -13,6 +12,7 @@
     "git.suggestSmartCommit": false,
     "git.confirmSync": false,
     "[go]": {
+
         "editor.autoClosingBrackets": "never"
     },
     "[markdown]": {
@@ -23,5 +23,12 @@
     },
     "editor.inlineSuggest.suppressSuggestions": true,
     "cody.autocomplete.enabled": false,
-    "workbench.sideBar.location": "right"
+    "editor.scrollbar.vertical": "visible",
+    "editor.renderLineHighlight": "all",
+    "editor.copyWithSyntaxHighlighting": false,
+    "workbench.colorCustomizations": {
+        "editor.lineHighlightBackground": "#aad7f5"
+    },
+    "workbench.colorTheme": "Default Light Modern",
+    "diffEditor.ignoreTrimWhitespace": false
 }

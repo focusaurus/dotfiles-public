@@ -21,7 +21,7 @@ hs.hotkey.bind(me1, "right", appNav.right)
 
 -- window manager nav
 hs.hotkey.bind(me2, "up", focus.previous)
-hs.hotkey.bind(me2, "down", focus.previous)
+hs.hotkey.bind(me2, "down", placement.cycle)
 
 -- placement
 hs.hotkey.bind(hyper_pl, ".", placement.cycle)

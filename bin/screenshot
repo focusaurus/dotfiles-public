@@ -12,7 +12,7 @@ set -o pipefail # don't ignore exit codes when piping output
 IFS="$(printf "\n\t")"
 # ---- End unofficial bash strict mode boilerplate
 if [[ "$(uname)" == "Darwin" ]]; then
-  cliclick kd:cmd,shift  t:4 ku:cmd,shift
+  cliclick kd:cmd,shift  t:5 ku:cmd,shift
   exit
 fi
 # suffix=$(zenity --entry --text suffix)

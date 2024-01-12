@@ -189,7 +189,7 @@ menuHammerMenuList = {
             {cons.cat.action, '', 'e', 'email', { {cons.act.func, focus.email} }},
             {cons.cat.submenu, '', 'j', 'Journal', { {cons.act.menu, journalMenu} }},
             {cons.cat.action, '', 'c', 'Calendar', { {cons.act.func, focus.calendar} }},
-            {cons.cat.action, '', 'd', 'IntelliJ IDEA', { {cons.act.launcher, 'IntelliJ IDEA'} }},
+            {cons.cat.action, '', 'd', 'Sequel Ace', { {cons.act.launcher, 'Sequel Ace'} }},
             {cons.cat.action, '', 'o', 'Obsidian', { {cons.act.launcher, 'Obsidian'} }},
             {cons.cat.submenu, '', 'h', 'Hammerspoon', { {cons.act.menu, hammerspoonMenu} }},
             -- {cons.cat.submenu, '', 'm', 'Media Controls', { {cons.act.menu, mediaMenu} }},
@@ -266,6 +266,9 @@ menuHammerMenuList = {
             }},
             {cons.cat.action, '', 's', 'Standup', {
                 {cons.act.func, journal.appendPromptStandup}
+            }},
+            {cons.cat.action, '', 't', 'Task', {
+                {cons.act.func, journal.appendPromptTask}
             }},
             {cons.cat.action, '', 'v', 'vim', {
                 {cons.act.func, journal.appendVim}

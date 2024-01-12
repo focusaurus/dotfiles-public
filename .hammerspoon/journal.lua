@@ -29,14 +29,19 @@ function module.appendPrompt()
 end
 
 function module.appendPromptStandup()
-  log.d("appendByDialogStandup")
+  log.d("appendPromptStandup")
   os.execute(fuzzball .. "/fh-journal-standup &")
+end
+
+function module.appendPromptTask()
+  log.d("appendPromptTask")
+  os.execute(fuzzball .. "/fh-journal-task &")
 end
 
 function module.appendVim()
   log.d("appendVim")
   local ok, _, _ = os.execute(fuzzball .. "/fh-journal-vim &")
-  log.d("appendVim ok: ")
+  log.d("appendVim ok: " .. ok)
 end
 
 return module
