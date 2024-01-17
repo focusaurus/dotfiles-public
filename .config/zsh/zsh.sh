@@ -180,7 +180,7 @@ TRAPUSR1() {
 # their config on next command
 # Helpful when I add new functions and aliases
 rss() {
-  killall -u "${USER}" -SIGUSR1 'zsh'
+  killall -u "${USER}" -SIGUSR1 -m 'zsh'
 }
 
 function watch-zsh() {

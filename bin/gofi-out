@@ -11,4 +11,8 @@ set -o pipefail # don't ignore exit codes when piping output
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-echo 'require("leader-gofi").tag_out()' | awesome-client
+if [[ $(uname) == "Darwin" ]]; then
+  echo 'require("focus").previous()' | hs
+else
+  echo 'require("leader-gofi").tag_out()' | awesome-client
+fi

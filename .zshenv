@@ -28,6 +28,7 @@ setup-path() {
   add-path /usr/local/opt/gawk/libexec/gnubin
   add-path /usr/local/opt/findutils/libexec/gnubin
 
+  add-path /opt/homebrew/bin
   add-path "${HOME}/.n/bin"
   add-path "${HOME}/.cargo/bin"
   add-path "${HOME}/.luarocks/bin"

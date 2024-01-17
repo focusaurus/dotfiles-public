@@ -32,6 +32,7 @@ rawurlencode() {
 }
 
 main() {
+  ~/bin/log "$0" "starting with args $@"
   task_dir="$1"
   cd "${task_dir}"
   task="$2"
@@ -43,15 +44,18 @@ main() {
     return
   fi
   # clean up old symlinks to previous task
+  ~/bin/log "$0" "cleaning old symlinks"
   find . -name '00-*' -delete
   # symlink the most recently executed task with 00 prefix
   # so it's easy to run something several times in a row.
   # Strip 00- in the task name to avoid 00-00-00-task-name recursion
   ln -nsf "${task/00-/}" "./00-${task/00-/}"
   if [[ -x "./${task}" ]]; then
+    ~/bin/log "$0" "Executing task script: ${task}"
     "./${task}"
     return
   fi
+  ~/bin/log "$0" "checking script for template placeholder syntax"
   if grep -q '%s' "${task}"; then
     # Task has placeholders we'll replace with a prompt
     query=$(~/bin/prompt-or-clipboard)
@@ -72,6 +76,7 @@ main() {
   fi
   case $(uname) in
   Linux)
+    ~/bin/log "$0" "Running with xdg-open: ${args}"
     echo "${args}" | xargs -n 1 xdg-open
     ;;
   Darwin)
@@ -81,6 +86,7 @@ main() {
     # happen to be the most recently focused.
     #
     # ~/bin/focus browser
+    ~/bin/log "$0" "Running with open: ${args}"
     echo "${args}" | xargs open
     ;;
   esac

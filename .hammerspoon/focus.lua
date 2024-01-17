@@ -79,8 +79,8 @@ end
 
 function module.cycleByFilter()
   app = hs.window.frontmostWindow():application()
-  print("app name " .. app:name()) 
-  windows = hs.window.filter.new({app:name()}):getWindows(hs.window.filter.sortByFocusedLast)
+  print("app name " .. app:name())
+  windows = hs.window.filter.new({ app:name() }):getWindows(hs.window.filter.sortByFocusedLast)
   print("windows length: " .. #windows)
   windows[#windows]:focus()
 end
@@ -112,12 +112,39 @@ function module.browserIntuitByTitleCache()
   end
 end
 
+function module.firefox()
+  log.d("firefox")
+  hs.application.launchOrFocus("Firefox")
+end
+
+function module.obsidian()
+  log.d("obsidian")
+  hs.application.launchOrFocus("Obsidian")
+end
+
+local filterGofi = hs.window.filter.new(true) --:allowApp("gofi")
+function module.gofiByTitle()
+  log.d("gofiByTitle 2")
+  for _, window in pairs(filterGofi:getWindows()) do
+    log.d(window:application():name() .. ": " .. window:title())
+    if window:application():name() == "kitty" then
+      window:focus()
+      -- break
+    end
+  end
+  -- if we get here, we didn't find any windows, launch the app
+  -- TODO
+end
+
+module.gofi = module.gofiByTitle
+module.leader = module.gofi
+
 -- I have had many implementations of this.
 -- So I keep the function names in the module describing
 -- the specific implementation approach, but in the module's
 -- external API, alias it as just the intent.
 module.browserIntuit = module.browserIntuitByTitleCache
-module.browser = module.browserMainByTitleCache
+module.browser = module.firefox
 
 local windowCalendar
 -- filterCalendar = hs.window.filter.new():setAppFilter(browserName, {allowTitles="- Calendar -"})
@@ -255,7 +282,7 @@ end
 
 function module.initAppWatcher()
   hs.application.watcher.new(onAppEvent):start()
-end 
+end
 
 function module.enableFocusMode()
   print("enableFocusMode")
@@ -279,19 +306,34 @@ end
 
 function module.email()
   log.d("email")
-  if focusMode then return end
+  if focusMode then
+    return
+  end
   module.browser()
-  hs.eventtap.keyStroke({"command"}, "1")
+  hs.eventtap.keyStroke({ "command" }, "1")
 end
+
+function module.calendarTab()
+  log.d("calendarTab")
+  if focusMode then
+    return
+  end
+  module.browser()
+  hs.eventtap.keyStroke({ "command" }, "2")
+end
+
+-- For Safari "Add to Dock" site specific browser macos 14 feature
+function module.calendarDock()
+  log.d("calendarDock")
+  if focusMode then return end
+  hs.application.launchOrFocus("Google Calendar")
+end
+
+module.calendar = module.calendarDock
 
 function module.emacs()
   log.d("emacs")
   hs.application.launchOrFocus("Emacs")
-end
-
-function module.firefox()
-  log.d("firefox")
-  hs.application.launchOrFocus("firefox")
 end
 
 function module.code()
@@ -307,7 +349,9 @@ end
 function module.previousByWindowFilter()
   log.d("previous")
   lastWindow = hs.window.filter.default:getWindows()[2]
-  if lastWindow == nil then return end
+  if lastWindow == nil then
+    return
+  end
   log.d("Previous: " .. lastWindow:title())
   lastWindow:focus()
 end
@@ -333,7 +377,9 @@ module.previous = module.previousByWindowFilter
 function module.slack()
   log.d("slack")
   print("slack focus mode ", focusMode)
-  if focusMode then return end
+  if focusMode then
+    return
+  end
   hs.application.launchOrFocus("Slack")
 end
 
@@ -360,19 +406,18 @@ end
 --   end
 -- end
 
-
 -- Begin Window List Cache
 
 -------------------------------
 -- select window by title
 windowsByFocus = hs.window.filter.new()
-windowsByFocus:setDefaultFilter{}
+windowsByFocus:setDefaultFilter({})
 windowsByFocus:setSortOrder(hs.window.filter.sortByFocusedLast)
 local currentWindows = {}
 
 function module.refreshWindowCache()
   currentWindows = {}
-  for i,v in ipairs(windowsByFocus:getWindows()) do
+  for i, v in ipairs(windowsByFocus:getWindows()) do
     table.insert(currentWindows, v)
   end
 end
@@ -380,13 +425,13 @@ end
 module.refreshWindowCache()
 
 function module.findWindowByTitle(appName, windowTitle)
-   for i,window in ipairs(currentWindows) do
-     print('findWindowByTitle: query: ' .. windowTitle .. ' window: ' .. window:title())
-      if string.find(window:application():name(), appName) and string.find(window:title(), windowTitle) then
-         return window
-      end
-   end
-   return nil
+  for i, window in ipairs(currentWindows) do
+    print("findWindowByTitle: query: " .. windowTitle .. " window: " .. window:title())
+    if string.find(window:application():name(), appName) and string.find(window:title(), windowTitle) then
+      return window
+    end
+  end
+  return nil
 end
 
 -- function module.focusByTitle(t)
@@ -411,62 +456,63 @@ end
 -- end
 --
 
-
 local function callbackWindowCreated(w, appName, event)
-
-   if event == "windowDestroyed" then
---      print("deleting from windows-----------------", w)
-      for i,v in ipairs(currentWindows) do
-         if v == w then
-            table.remove(currentWindows, i)
-            return
-         end
+  if event == "windowDestroyed" then
+    --      print("deleting from windows-----------------", w)
+    for i, v in ipairs(currentWindows) do
+      if v == w then
+        table.remove(currentWindows, i)
+        return
       end
---      print("Not found .................. ", w)
---      print("Not found ............ :()", w)
-      return
-   end
-   if event == "windowCreated" then
---      print("inserting into windows.........", w)
-      table.insert(currentWindows, 1, w)
-      return
-   end
-   if event == "windowFocused" then
-      --otherwise is equivalent to delete and then create
-      callbackWindowCreated(w, appName, "windowDestroyed")
-      callbackWindowCreated(w, appName, "windowCreated")
-   end
+    end
+    --      print("Not found .................. ", w)
+    --      print("Not found ............ :()", w)
+    return
+  end
+  if event == "windowCreated" then
+    --      print("inserting into windows.........", w)
+    table.insert(currentWindows, 1, w)
+    return
+  end
+  if event == "windowFocused" then
+    --otherwise is equivalent to delete and then create
+    callbackWindowCreated(w, appName, "windowDestroyed")
+    callbackWindowCreated(w, appName, "windowCreated")
+  end
 end
 windowsByFocus:subscribe(hs.window.filter.windowCreated, callbackWindowCreated)
 windowsByFocus:subscribe(hs.window.filter.windowDestroyed, callbackWindowCreated)
 windowsByFocus:subscribe(hs.window.filter.windowFocused, callbackWindowCreated)
 
 local function listWindowChoices()
-   local windowChoices = {}
---   for i,v in ipairs(windowsByFocus:getWindows()) do
-   for i,w in ipairs(currentWindows) do
-      if w ~= hs.window.focusedWindow() then
-         table.insert(windowChoices, {
-                         text = w:title() .. "--" .. w:application():name(),
-                         subText = w:application():name(),
-                         uuid = i,
-                         image = hs.image.imageFromAppBundle(w:application():bundleID()),
-                         win=w})
-      end
-   end
-   return windowChoices;
+  local windowChoices = {}
+  --   for i,v in ipairs(windowsByFocus:getWindows()) do
+  for i, w in ipairs(currentWindows) do
+    if w ~= hs.window.focusedWindow() then
+      table.insert(windowChoices, {
+        text = w:title() .. "--" .. w:application():name(),
+        subText = w:application():name(),
+        uuid = i,
+        image = hs.image.imageFromAppBundle(w:application():bundleID()),
+        win = w,
+      })
+    end
+  end
+  return windowChoices
 end
 
 local windowChooser = hs.chooser.new(function(choice)
-      if not choice then hs.alert.show("Nothing to focus"); return end
-      local v = choice["win"]
-      if v then
-         v:focus()
-      else
-         hs.alert.show("unable fo focus " .. name)
-      end
+  if not choice then
+    hs.alert.show("Nothing to focus")
+    return
+  end
+  local v = choice["win"]
+  if v then
+    v:focus()
+  else
+    hs.alert.show("unable fo focus " .. name)
+  end
 end)
-
 
 function module.showWindowChooser()
   local windowChoices = listWindowChoices()

@@ -11,4 +11,5 @@ set -o pipefail # don't ignore exit codes when piping output
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
+export PATH="${PATH}:/opt/homebrew/bin"
 date --rfc-3339=seconds 2>/dev/null || gdate --rfc-3339=seconds

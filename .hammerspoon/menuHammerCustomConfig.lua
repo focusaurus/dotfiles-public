@@ -46,7 +46,7 @@ menuRowHeight = 22
 menuOuterPadding = 20
 
 ----------------------------------------- Font options ---------------------------------------------
-menuItemFont = 'JetBrains Mono'
+--menuItemFont = 'JetBrains Mono'
 menuItemFontSize = 16
 menuItemTextAlign = 'left'
 
@@ -189,8 +189,8 @@ menuHammerMenuList = {
             {cons.cat.action, '', 'e', 'email', { {cons.act.func, focus.email} }},
             {cons.cat.submenu, '', 'j', 'Journal', { {cons.act.menu, journalMenu} }},
             {cons.cat.action, '', 'c', 'Calendar', { {cons.act.func, focus.calendar} }},
-            {cons.cat.action, '', 'd', 'IntelliJ IDEA', { {cons.act.launcher, 'IntelliJ IDEA'} }},
-            {cons.cat.action, '', 'o', 'Org Mode Emacs', { {cons.act.launcher, 'Emacs'} }},
+            {cons.cat.action, '', 'd', 'Sequel Ace', { {cons.act.launcher, 'Sequel Ace'} }},
+            {cons.cat.action, '', 'o', 'Obsidian', { {cons.act.launcher, 'Obsidian'} }},
             {cons.cat.submenu, '', 'h', 'Hammerspoon', { {cons.act.menu, hammerspoonMenu} }},
             -- {cons.cat.submenu, '', 'm', 'Media Controls', { {cons.act.menu, mediaMenu} }},
             -- {cons.cat.submenu, '', 'g', 'Toggles', { {cons.act.menu, toggleMenu} }},
@@ -205,7 +205,7 @@ menuHammerMenuList = {
             {cons.cat.action, '', 'r', 'Right (App Nav)', { {cons.act.func, appNav.right } }},
             {cons.cat.action, '', 'm', 'Music', { {cons.act.func, focus.music } }},
             {cons.cat.action, '', 'n', 'Snippet', { {cons.act.func, snippets.chooseByUIAndType } }},
-            {cons.cat.action, '', 'p', 'Postman', { {cons.act.launcher, 'Postman'} }},
+            {cons.cat.action, '', 'p', '1Password', { {cons.act.launcher, '1Password'} }},
             {cons.cat.action, '', 't', 'terminal', { {cons.act.func, focus.terminal} }},
             {cons.cat.action, '', 'z', 'Zoom', { {cons.act.launcher, 'zoom.us'} }},
             {cons.cat.action, '', 'q', 'Terminal Quick', { {cons.act.func, focus.terminalQuick} }},
@@ -262,13 +262,16 @@ menuHammerMenuList = {
         meunHotkey = nil,
         menuItems = {
             {cons.cat.action, '', 'j', 'Journal', {
-                {cons.act.func, journal.appendByDialog}
+                {cons.act.func, journal.appendPrompt}
             }},
             {cons.cat.action, '', 's', 'Standup', {
-                {cons.act.func, journal.appendByDialogStandup}
+                {cons.act.func, journal.appendPromptStandup}
+            }},
+            {cons.cat.action, '', 't', 'Task', {
+                {cons.act.func, journal.appendPromptTask}
             }},
             {cons.cat.action, '', 'v', 'vim', {
-                {cons.act.func, journal.appendByTerminalWindow}
+                {cons.act.func, journal.appendVim}
             }},
         }
     },

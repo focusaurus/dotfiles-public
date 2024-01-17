@@ -24,4 +24,4 @@ t.co | bit.ly)
 esac
 
 # This omits the query string which is where most tracking is done
-url -template '{{.Scheme}}://{{.Hostname}}{{.Path}}' "${url}"
+url -template '{{.Scheme}}://{{.Hostname}}{{.Path}}' "${url}" | tr -d "\n"
