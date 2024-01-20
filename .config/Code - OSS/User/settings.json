@@ -11,8 +11,11 @@
     "editor.minimap.enabled": false,
     "git.suggestSmartCommit": false,
     "git.confirmSync": false,
+    "go.lintTool": "golangci-lint",
+    "gopls": {
+        "formatting.gofumpt": true
+    },
     "[go]": {
-
         "editor.autoClosingBrackets": "never"
     },
     "[markdown]": {
@@ -30,5 +33,11 @@
         "editor.lineHighlightBackground": "#aad7f5"
     },
     "workbench.colorTheme": "Default Light Modern",
-    "diffEditor.ignoreTrimWhitespace": false
+    "diffEditor.ignoreTrimWhitespace": false,
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    }
 }

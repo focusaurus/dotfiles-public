@@ -7,7 +7,7 @@ source-if-exists() {
 }
 
 export BREW_PREFIX="/opt/homebrew"
-if [[ ! -e "${BREW_PREFIX}" -a -e "/usr/local" ]];
+if [[ ! -e "${BREW_PREFIX}" && -e "/usr/local" ]]; then
   export BREW_PREFIX="/usr/local"
 fi
 # put this early to make sure compinit is run
