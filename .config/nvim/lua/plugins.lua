@@ -310,7 +310,8 @@ local servers = {
   html = {},
   bashls = {},
   lua_ls = {
-    Lua = {workspace = {checkThirdParty = false}, telemetry = {enable = false}}
+    Lua = {workspace = {checkThirdParty = false}, telemetry = {enable = false},
+    diagnostics = {globals = {"hs"}}}
   }
 }
 
