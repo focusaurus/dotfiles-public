@@ -307,6 +307,8 @@ change-time-zone-fuzzy() {
   zone=$(timedatectl list-timezones | ~/bin/fuzzy-filter "$@")
   [[ -z "${zone}" ]] && return
   sudo timedatectl set-timezone "${zone}"
+  echo Run this in interactive shells to update without exiting:
+  echo export TZ="${zone}"
 }
 
 change-time-zone-by-ip() {

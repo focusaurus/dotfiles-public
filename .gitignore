@@ -281,6 +281,7 @@
 /work-*
 _default.hcl
 login_1689539373.hcl
+.thunderbird
 .zsh_sessions
 .config/op/config
 .1password/agent.sock
