@@ -100,4 +100,13 @@ function module.tidy()
   module.left()
 end
 
+function module.googleMeet()
+  local meet = focus.byTitlePrefix("google meet:")
+  if meet == nil then
+    return
+  end
+  module.left()
+  focus.obsidian()
+end
+
 return module

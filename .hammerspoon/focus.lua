@@ -325,7 +325,9 @@ end
 -- For Safari "Add to Dock" site specific browser macos 14 feature
 function module.calendarDock()
   log.d("calendarDock")
-  if focusMode then return end
+  if focusMode then
+    return
+  end
   hs.application.launchOrFocus("Google Calendar")
 end
 
@@ -341,9 +343,22 @@ function module.code()
   hs.application.launchOrFocus("Visual Studio Code")
 end
 
-function module.workflowy()
-  log.d("workflowy")
-  hs.application.launchOrFocus("WorkFlowy")
+local function startsWith(str, prefix)
+  return string.sub(str, 1, string.len(prefix)) == prefix
+end
+
+local function hasTitlePrefix(prefix)
+  return function(window)
+    return startsWith(window:title(), prefix)
+  end
+end
+
+function module.byTitlePrefix(prefix)
+  local match = hs.window.filter.new(hasTitlePrefix(prefix)):getWindows(hs.window.filter.sortByFocusedLast)[1]
+  if match ~= nil then
+    match:focus()
+  end
+  return match
 end
 
 function module.previousByWindowFilter()

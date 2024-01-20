@@ -2,7 +2,9 @@ local appNav = require('app-nav')
 local focus = require('focus')
 local fuzzball = require('fuzzball')
 local journal = require('journal')
+local placement = require('placement')
 local snippets = require('snippets')
+local dev = require('dev')
 
 --------------------------------------- General Config ---------------------------------------------
 
@@ -130,19 +132,10 @@ menuKeyItemSeparator = ': '
 -- Menus
 local mainMenu = 'mainMenu'
 
--- Help menu
-local helpMenu = 'helpMenu'
-
 -- Applications Menus
 local applicationMenu = 'applicationMenu'
 local utilitiesMenu = 'utilitiesMenu'
 local journalMenu = 'journalMenu'
-
--- Browser menus
-local browserMenu = 'browserMenu'
-
--- Documents menu
-local documentsMenu = 'documentsMenu'
 
 -- Hammerspoon menu
 local hammerspoonMenu = 'hammerspoonMenu'
@@ -156,8 +149,6 @@ local layoutMenu = 'layoutMenu'
 -- Media menu
 local mediaMenu = 'mediaMenu'
 
--- Resolution menu
-local resolutionMenu = 'resolutionMenu'
 
 -- Scripts menu
 local scriptsMenu = 'scriptsMenu'
@@ -197,8 +188,7 @@ menuHammerMenuList = {
             -- {cons.cat.submenu, '', 'x', 'Text', { {cons.act.menu, textMenu} }},
             {cons.cat.submenu, '', '/', 'Scripts', { {cons.act.menu, scriptsMenu} }},
             {cons.cat.action, '', 'space', 'Spotlight', { {cons.act.keycombo, {'cmd', 'shift'}, 'space'} }},
-            {cons.cat.action, '', 'i', 'Intuit', { {cons.act.func, focus.browserIntuit} }},
-            {cons.cat.action, '', 'x', 'Firefox', { {cons.act.launcher, 'Firefox'} }},
+            -- {cons.cat.action, '', 'x', 'Firefox', { {cons.act.launcher, 'Firefox'} }},
             {cons.cat.action, '', 'y', 'Cycle Windows', { {cons.act.func, focus.cycleWindows} }},
             {cons.cat.action, '', 'f', 'Fuzzball', { {cons.act.func, fuzzball.chooseScript } }},
             {cons.cat.action, '', 'l', 'Left (App Nav)', { {cons.act.func, appNav.left } }},
@@ -207,9 +197,10 @@ menuHammerMenuList = {
             {cons.cat.action, '', 'n', 'Snippet', { {cons.act.func, snippets.chooseByUIAndType } }},
             {cons.cat.action, '', 'p', '1Password', { {cons.act.launcher, '1Password'} }},
             {cons.cat.action, '', 't', 'terminal', { {cons.act.func, focus.terminal} }},
+            {cons.cat.action, '', 'g', 'Google Meet & Notes', { {cons.act.func, placement.googleMeet} }},
             {cons.cat.action, '', 'z', 'Zoom', { {cons.act.launcher, 'zoom.us'} }},
             {cons.cat.action, '', 'q', 'Terminal Quick', { {cons.act.func, focus.terminalQuick} }},
-            {cons.cat.action, '', 'v', 'Visual Studio Code', { {cons.act.launcher, 'Visual Studio Code'} }},
+            {cons.cat.action, '', 'i', 'IDE  (VS Code)', { {cons.act.launcher, 'Visual Studio Code'} }},
             {cons.cat.action, '', 'w', 'Windows', { {cons.act.func, focus.showWindowChooser} }},
             {cons.cat.action, '', 's', 'Slack', { {cons.act.func, focus.slack} }},
         }
@@ -268,7 +259,7 @@ menuHammerMenuList = {
                 {cons.act.func, journal.appendPromptStandup}
             }},
             {cons.cat.action, '', 't', 'Task', {
-                {cons.act.func, journal.appendPromptTask}
+
             }},
             {cons.cat.action, '', 'v', 'vim', {
                 {cons.act.func, journal.appendVim}
@@ -292,22 +283,6 @@ menuHammerMenuList = {
             }},
             {cons.cat.action, '', 'S', 'System Information', {
                 {cons.act.launcher, 'System Information'}
-            }},
-        }
-    },
-
-    ------------------------------------------------------------------------------------------------
-    -- Browser Menu
-    ------------------------------------------------------------------------------------------------
-    browserMenu = {
-        parentMenu = mainMenu,
-        meunHotkey = nil,
-        menuItems = {
-            {cons.cat.action, '', 'C', 'Chrome', {
-                {cons.act.launcher, 'Google Chrome'}
-            }},
-            {cons.cat.action, '', 'F', 'Firefox', {
-                {cons.act.launcher, 'Firefox'}
             }},
         }
     },
@@ -393,25 +368,6 @@ menuHammerMenuList = {
                 {cons.act.mediakey, 'brightness', 10}
             }},
         }
-    },
-
-    ------------------------------------------------------------------------------------------------
-    -- Open Files Menu
-    ------------------------------------------------------------------------------------------------
-    openFilesMenu = {
-        parentMenu = mainMenu,
-        menuHotkey = nil,
-        menuItems = {
-        }
-    },
-
-    ------------------------------------------------------------------------------------------------
-    -- Resolution Menu
-    ------------------------------------------------------------------------------------------------
-    resolutionMenu = {
-        parentMenu = mainMenu,
-        menuHotkey = nil,
-        menuItems = resolutionMenuItems
     },
 
     ------------------------------------------------------------------------------------------------

@@ -428,6 +428,9 @@ gsync() {
     ~/git.peterlyons.com/petes-personal-journal \
     ~/git.peterlyons.com/journals
 
+  # List here all repos that should be synced
+  # It's fine if these are not checked out
+  # on any given machine. They will be skipped.
   ~/bin/git-sync \
     ~ \
     ~/git.peterlyons.com/dotfiles \
@@ -435,6 +438,7 @@ gsync() {
     ~/git.peterlyons.com/petes-personal-journal \
     ~/git.peterlyons.com/3d-prints \
     ~/git.peterlyons.com/exocortex \
+    ~/git.peterlyons.com/float-health \
     ~/git.peterlyons.com/focus-retreat-center
 
   # if [[ -d ~/github.com/focusaurus/qmk_firmware ]]; then

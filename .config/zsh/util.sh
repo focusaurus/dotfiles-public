@@ -64,7 +64,7 @@ copy-recent-command() {
   fi
   command=$(fc -l -10 -1 | awk '{$1=""; print $0}' | fzf "${fzf_args[@]}")
   if [[ -n "${command}" ]]; then
-    echo "${command}" | copy
+    echo "${command}" | tr -d "\n" | ~/bin/copy
     echo "copied!"
   fi
 }
