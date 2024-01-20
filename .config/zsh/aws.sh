@@ -19,9 +19,12 @@ ave() {
 # }
 # alias awsinfo='docker run -it -v ~/.aws:/root/.aws -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e AWS_SESSION_TOKEN -e AWS_DEFAULT_REGION -e AWS_PROFILE -e AWS_CONFIG_FILE -e AWSINFO_DEBUG theserverlessway/awsinfo'
 
-# TODO this fails at zsh load time with command not found for `complete`
-# but I'm not sure why. It should be a zsh function defined during compinit
 setup-aws() {
-  autoload -Uz compinit && compinit
-  complete -C 'aws_completer' aws
+  autoload -U bashcompinit && bashcompinit
+  # autoload -Uz compinit && compinit
+  # complete -C 'aws_completer' aws
+  cpath="${BREW_PREFIX}/bin/aws_completer"
+  if [[ -e "${cpath}" ]]; then
+    complete -C "${cpath}" aws
+  fi
 }
