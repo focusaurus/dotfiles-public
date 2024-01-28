@@ -19,5 +19,5 @@ repos = [
 
 [linux]
 arch_package_manager = "yay"
-yay_arguments = "--answerclean=None --answerdiff=None --answeredit=None --nodiffmenu"
+yay_arguments = "--answerclean=None --answerdiff=None --answeredit=None --diffmenu=false"
 # pacman_arguments = "--noconfirm"

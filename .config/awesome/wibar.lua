@@ -36,6 +36,7 @@ local mymainmenu = awful.menu({
     {'awesome: unminimize', placement.unminimize}, {'awesome: dev1', dev.dev1},
     {'awesome: quit', function() awesome.quit() end},
     {'leader-rofi', focus.rofi}, {'leader-nofi', focus.nofi},
+    {'leader-gofi', focus.gofi},
     {'executables: rofi -run', focus.executables}
   }
 })

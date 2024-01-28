@@ -87,7 +87,8 @@ bind_root('rofi', 'windows', shift_super, 'w',
 bind_root('rofi', 'windows', {modifiers.super}, '4',
           runner({'rofi', '-show', 'window'}))
 
-bind_root('dev', 'dev 1', shift_super, '8', dev.dev1)
+bind_root('dev', 'dev 1', shift_super, '1', dev.dev1)
+bind_root('dev', 'dev 2', shift_super, '2', dev.dev2)
 
 -- bind function keys to selecting the corresponding tag
 for _, n in pairs({'1', '2', '3', '4'}) do
