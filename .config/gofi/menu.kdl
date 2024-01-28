@@ -1,7 +1,7 @@
-calendar key="C" "focus" "calendar"
+calendar key="c" "focus" "calendar"
 emoji key="E" "rofimoji" "--skin-tone" "light" "--action" "copy"
 browser key="b" "focus" "browser"
-"VS Code" key="c" "focus" "vscode"
+"IDE (VS Code)" key="i" "focus" "vscode"
 todoist key="d" "focus" "todoist"
 email key="e" "focus" "email"
 fuzzball key="F" "fuzzball-script-choose"
@@ -73,3 +73,4 @@ work key="w" {
   obsidian key="o" "open" "obsidian://open?vault=focus-retreat-center"
   workflowy key="w" "focus" "workflowy"
 }
+windows key="W" "rofi" "-show" "window" "-theme" "gruvbox-light-soft"

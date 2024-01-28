@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
+
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -o errexit  # always exit on error
+set -o errtrace # trap errors in functions as well
+set -o pipefail # don't ignore exit codes when piping output
+# set -x # enable debugging
+
+IFS=$'\n\t'
+# ---- End unofficial bash strict mode boilerplate
+
+add_with_curl() {
+  url="https://api.todoist.com/rest/v2/tasks"
+  token=$(jq -r .token ~/.config/todoist/config.json)
+  content=$(~/bin/prompt-or-clipboard "Task content")
+  # Here's our default arguments we intend
+  # to pass to curl
+  declare -a opts=(
+    --silent --fail
+    --header "Content-Type: application/json"
+    --header "Authorization: Bearer ${token}"
+    --data "{\"content\":\"${content}\"}"
+  )
+
+  # Use this for debugging
+  # opts=(--fail)
+
+  id=$(curl "${opts[@]}" "${url}" | jq -r ".id")
+  echo "Task "${id}" created"
+}
+
+add() {
+  inbox=$(todoist projects | grep "Inbox" | awk '{print $1}')
+  todoist add --project-id="${inbox}" "$@"
+  ~/bin/notify "task added to todoist"
+}
+
+add "$@"

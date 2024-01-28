@@ -16,6 +16,7 @@ local function run(args) awful.spawn.easy_async(args, noop) end
 local function focus_client(client)
   -- client:emit_signal('request::activate', 'mouse_click', {raise = true})
   client:jump_to(true)
+  client.first_tag:view_only()
 end
 
 local function name_prefix_fn(prefix)
