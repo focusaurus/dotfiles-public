@@ -1,5 +1,4 @@
 {
-    "files.autoSave": "afterDelay",
     "files.trimTrailingWhitespace": true,
     "workbench.tree.indent": 16,
     "window.titleBarStyle": "custom",
@@ -35,9 +34,13 @@
     "workbench.colorTheme": "Default Light Modern",
     "diffEditor.ignoreTrimWhitespace": false,
     "github.copilot.enable": {
-        "*": false,
+        "*": true,
         "plaintext": false,
         "markdown": false,
         "scminput": false
-    }
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "files.autoSave": "onFocusChange"
 }

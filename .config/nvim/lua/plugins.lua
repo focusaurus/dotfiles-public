@@ -311,7 +311,7 @@ local servers = {
   bashls = {},
   lua_ls = {
     Lua = {workspace = {checkThirdParty = false}, telemetry = {enable = false},
-    diagnostics = {globals = {"hs"}}}
+    diagnostics = {globals = {"hs", "cons"}}}
   }
 }
 
