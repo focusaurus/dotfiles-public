@@ -2,7 +2,6 @@
     "files.trimTrailingWhitespace": true,
     "workbench.tree.indent": 16,
     "window.titleBarStyle": "custom",
-    "cody.codebase": "sgp_c0ee8de8271ac39e2bc427941ff51653dd6dd855",
     "files.insertFinalNewline": true,
     "redhat.telemetry.enabled": false,
     "go.toolsManagement.autoUpdate": true,
