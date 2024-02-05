@@ -349,6 +349,7 @@ end
 
 local function hasTitlePrefix(prefix)
   return function(window)
+    -- log.d("window title prefix check " .. prefix .. ": " .. window:title())
     return startsWith(window:title(), prefix)
   end
 end
@@ -361,9 +362,9 @@ function module.byTitlePrefix(prefix)
   return match
 end
 
-function module.previousByWindowFilter()
-  log.d("previous")
-  lastWindow = hs.window.filter.default:getWindows()[2]
+function module.previousWindowByFilter()
+  log.d("previousWindowByFilter")
+  local lastWindow = hs.window.filter.default:getWindows()[2]
   if lastWindow == nil then
     return
   end
@@ -371,23 +372,43 @@ function module.previousByWindowFilter()
   lastWindow:focus()
 end
 
-function module.previousByHotkey()
-  -- hs.eventtap.event.newKeyEvent({"cmd" }, "Tab", true):post()
+module.previousWindow = module.previousWindowByFilter
+
+function module.previousAppByFilter()
+  log.d("previousAppByFilter")
+  local currentAppName = ""
+  local win = hs.window.focusedWindow()
+  if win ~= nil then
+    currentAppName = win:application():name()
+  end
+  for _, window in ipairs(hs.window.filter.default:getWindows()) do
+    if window ~= nil and currentAppName ~= window:application():name() then
+      log.d("previousAppByFilter: " .. window:title())
+      window:focus()
+      return
+    end
+  end
+end
+
+function module.previousAppByHotkey()
+  -- hs.eventtap.event.newKeyEvent({ "cmd" }, "Tab", true):post()
   -- hs.eventtap.event.newKeyEvent({"shift", "alt"}, "a", false):post()
   -- Since I trigger this with home row mod on "a" (left pinky),
   -- the first thing I need to do is send a key up for "a" so
   -- the command+tab is interpretted correctly by macos
-  hs.eventtap.event.newKeyEvent("e", false):post()
-  hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, true):post()
-  hs.eventtap.event.newKeyEvent("Tab", true):post()
-  hs.timer.doAfter(0.2, function()
-    -- hs.eventtap.event.newKeyEvent({"cmd" }, "Tab", false):post()
-    hs.eventtap.event.newKeyEvent("Tab", false):post()
-    hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, false):post()
-  end)
+  -- hs.eventtap.event.newKeyEvent("e", false):post()
+  if true then
+    hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, true):post()
+    hs.eventtap.event.newKeyEvent("Tab", true):post()
+    hs.timer.doAfter(0.2, function()
+      -- hs.eventtap.event.newKeyEvent({"cmd" }, "Tab", false):post()
+      hs.eventtap.event.newKeyEvent("Tab", false):post()
+      hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, false):post()
+    end)
+  end
 end
 
-module.previous = module.previousByWindowFilter
+module.previousApp = module.previousAppByFilter
 
 function module.slack()
   log.d("slack")
@@ -432,7 +453,7 @@ local currentWindows = {}
 
 function module.refreshWindowCache()
   currentWindows = {}
-  for i, v in ipairs(windowsByFocus:getWindows()) do
+  for _, v in ipairs(windowsByFocus:getWindows()) do
     table.insert(currentWindows, v)
   end
 end
@@ -440,7 +461,7 @@ end
 module.refreshWindowCache()
 
 function module.findWindowByTitle(appName, windowTitle)
-  for i, window in ipairs(currentWindows) do
+  for _, window in ipairs(currentWindows) do
     print("findWindowByTitle: query: " .. windowTitle .. " window: " .. window:title())
     if string.find(window:application():name(), appName) and string.find(window:title(), windowTitle) then
       return window
@@ -459,7 +480,7 @@ end
 
 -- function module.focusByApp(appName)
 --    print(' [' .. appName ..']')
---    for i,v in ipairs(currentWindows) do
+--    for _,v in ipairs(currentWindows) do
 --       print('           [' .. v:application():name() .. ']')
 --       if string.find(v:application():name(), appName) then
 --          print("Focusing window" .. v:title())

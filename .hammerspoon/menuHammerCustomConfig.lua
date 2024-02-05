@@ -4,6 +4,7 @@ local fuzzball = require('fuzzball')
 local journal = require('journal')
 local placement = require('placement')
 local snippets = require('snippets')
+local sound = require('sound')
 local dev = require('dev')
 
 --------------------------------------- General Config ---------------------------------------------
@@ -164,6 +165,7 @@ local toggleMenu = 'toggleMenu'
 
 -- Window menu
 local resizeMenu = 'resizeMenu'
+local volumeMenu = 'volumeMenu'
 
 menuHammerMenuList = {
 
@@ -185,7 +187,6 @@ menuHammerMenuList = {
             {cons.cat.submenu, '', 'h', 'Hammerspoon', { {cons.act.menu, hammerspoonMenu} }},
             -- {cons.cat.submenu, '', 'm', 'Media Controls', { {cons.act.menu, mediaMenu} }},
             -- {cons.cat.submenu, '', 'g', 'Toggles', { {cons.act.menu, toggleMenu} }},
-            -- {cons.cat.submenu, '', 'x', 'Text', { {cons.act.menu, textMenu} }},
             {cons.cat.submenu, '', '/', 'Scripts', { {cons.act.menu, scriptsMenu} }},
             {cons.cat.action, '', 'space', 'Spotlight', { {cons.act.keycombo, {'cmd', 'shift'}, 'space'} }},
             -- {cons.cat.action, '', 'x', 'Firefox', { {cons.act.launcher, 'Firefox'} }},
@@ -201,6 +202,7 @@ menuHammerMenuList = {
             {cons.cat.action, '', 'z', 'Zoom', { {cons.act.launcher, 'zoom.us'} }},
             {cons.cat.action, '', 'q', 'Terminal Quick', { {cons.act.func, focus.terminalQuick} }},
             {cons.cat.action, '', 'i', 'IDE  (VS Code)', { {cons.act.launcher, 'Visual Studio Code'} }},
+            {cons.cat.submenu, '', 'v', 'Volume', { {cons.act.menu, volumeMenu} }},
             {cons.cat.action, '', 'w', 'Windows', { {cons.act.func, focus.showWindowChooser} }},
             {cons.cat.action, '', 's', 'Slack', { {cons.act.func, focus.slack} }},
         }
@@ -259,7 +261,7 @@ menuHammerMenuList = {
                 {cons.act.func, journal.appendPromptStandup}
             }},
             {cons.cat.action, '', 't', 'Task', {
-
+                {cons.act.func, journal.appendPromptTask}
             }},
             {cons.cat.action, '', 'v', 'vim', {
                 {cons.act.func, journal.appendVim}
@@ -366,6 +368,58 @@ menuHammerMenuList = {
             }},
             {cons.cat.action, '', 'O', 'Brightness Up', {
                 {cons.act.mediakey, 'brightness', 10}
+            }},
+        }
+    },
+
+    volumeMenu = {
+        parentMenu = mainMenu,
+        menuHotkey = nil,
+        menuItems = {
+            {cons.cat.action, '', '1', '10%', {
+                {cons.act.func, function() sound.setVolume(10) end}
+            }},
+            {cons.cat.action, '', '2', '20%', {
+                {cons.act.func, function() sound.setVolume(20) end}
+            }},
+            {cons.cat.action, '', '3', '30%', {
+                {cons.act.func, function() sound.setVolume(30) end}
+            }},
+            {cons.cat.action, '', 't', '30%', {
+                {cons.act.func, function() sound.setVolume(30) end}
+            }},
+            {cons.cat.action, '', '4', '50%', {
+                {cons.act.func, function() sound.setVolume(40) end}
+            }},
+            {cons.cat.action, '', '5', '50%', {
+                {cons.act.func, function() sound.setVolume(50) end}
+            }},
+            {cons.cat.action, '', 'f', '50%', {
+                {cons.act.func, function() sound.setVolume(50) end}
+            }},
+            {cons.cat.action, '', '6', '60%', {
+                {cons.act.func, function() sound.setVolume(60) end}
+            }},
+            {cons.cat.action, '', '7', '70%', {
+                {cons.act.func, function() sound.setVolume(70) end}
+            }},
+            {cons.cat.action, '', 's', '70%', {
+                {cons.act.func, function() sound.setVolume(70) end}
+            }},
+            {cons.cat.action, '', '8', '80%', {
+                {cons.act.func, function() sound.setVolume(80) end}
+            }},
+            {cons.cat.action, '', 'e', '80%', {
+                {cons.act.func, function() sound.setVolume(80) end}
+            }},
+            {cons.cat.action, '', '9', '90%', {
+                {cons.act.func, function() sound.setVolume(90) end}
+            }},
+            {cons.cat.action, '', 'n', '90%', {
+                {cons.act.func, function() sound.setVolume(90) end}
+            }},
+            {cons.cat.action, '', 'h', '100%', {
+                {cons.act.func, function() sound.setVolume(100) end}
             }},
         }
     },

@@ -27,4 +27,8 @@ function module.volumeUp()
   device:setVolume(level)
 end
 
+function module.setVolume(value)
+  hs.audiodevice.current().device:setVolume(value)
+end
+
 return module

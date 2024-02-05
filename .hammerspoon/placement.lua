@@ -101,7 +101,7 @@ function module.tidy()
 end
 
 function module.googleMeet()
-  local meet = focus.byTitlePrefix("google meet:")
+  local meet = focus.byTitlePrefix("Meet - ")
   if meet == nil then
     return
   end

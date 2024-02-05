@@ -20,7 +20,7 @@ hs.hotkey.bind(me1, "up", appNav.up)
 hs.hotkey.bind(me1, "right", appNav.right)
 
 -- window manager nav
-hs.hotkey.bind(me2, "up", focus.previous)
+hs.hotkey.bind(me2, "up", focus.previousApp)
 hs.hotkey.bind(me2, "down", placement.cycle)
 
 -- placement
@@ -48,9 +48,9 @@ hs.hotkey.bind({}, "F12", snippets.chooseByUIAndType)
 -- hs.hotkey.bind({}, "f4", focus.emacs)
 -- hs.hotkey.bind({}, "f5", focus.slackOrZoom)
 -- local switcher = hs.window.switcher.new() -- default windowfilter: only visible windows, all Spaces
--- hs.hotkey.bind(hyper_pl, "e", focus.previous)
+-- hs.hotkey.bind(hyper_pl, "e", focus.previousWindow)
 -- for compat until kmonad on mac is fully working
--- hs.hotkey.bind({"option"}, "e", focus.previous)
+-- hs.hotkey.bind({"option"}, "e", focus.previousWindow)
 -- hs.hotkey.bind(hyper_pl, "e", switcher.nextWindow)
 -- for compat until kmonad on mac is fully working
 -- hs.hotkey.bind({"option"}, "e", switcher.nextWindow)
