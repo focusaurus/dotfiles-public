@@ -36,6 +36,7 @@ main() {
   task_dir="$1"
   cd "${task_dir}"
   task="$2"
+  PATH="$PATH:/opt/homebrew/bin"
 
   if [[ "${task}" == "quit" ]]; then
     return
@@ -53,6 +54,7 @@ main() {
   if [[ -x "./${task}" ]]; then
     ~/bin/log "$0" "Executing task script: ${task}"
     "./${task}"
+    ~/bin/log "$0" "task done with exit $?"
     return
   fi
   ~/bin/log "$0" "checking script for template placeholder syntax"
