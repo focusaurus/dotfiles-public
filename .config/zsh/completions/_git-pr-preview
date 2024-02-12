@@ -1,0 +1,7 @@
+#compdef git-pr-preview
+
+ _git-pr-preview() {
+   _arguments "1:branch name:($(git branch))"
+ }
+
+ _git-pr-preview

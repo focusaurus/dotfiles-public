@@ -89,7 +89,7 @@ main() {
     #
     # ~/bin/focus browser
     ~/bin/log "$0" "Running with open: ${args}"
-    echo "${args}" | xargs open
+    echo "${args}" | nohup xargs open &
     ;;
   esac
 }
