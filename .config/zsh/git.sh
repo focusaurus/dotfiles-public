@@ -360,11 +360,11 @@ dotfiles-end() {
 }
 
 dotfiles-git() {
-  dotfiles-begin
-  cd
-  lazygit
-  dotfiles-end
-  cd -
+  # dotfiles-begin
+  cd || exit
+  lazygit --git-dir ~/.home.git --work-tree ~
+  # dotfiles-end
+  cd - || exit
 }
 
 alias dfb="dotfiles-begin"
