@@ -1,0 +1,5 @@
+device_config:
+  - device_file: /dev/loop0
+    ignore:  true
+  - device_file: /dev/loop1
+    ignore:  true
