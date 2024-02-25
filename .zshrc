@@ -22,5 +22,6 @@ source-if-exists ~/.devtool.env
 source-if-exists "${HOME}/.config/zsh/os/$(uname).sh"
 source-if-exists ~/.nvm/nvm.sh
 source-if-exists "${BREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source-if-exists "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 # 1password
 source-if-exists ~/.opam/opam-init/init.zsh
