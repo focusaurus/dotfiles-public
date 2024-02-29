@@ -62,7 +62,7 @@ copy-recent-command() {
   if [[ -n "$*" ]]; then
     fzf_args+=(--query "$@")
   fi
-  command=$(fc -l -10 -1 | awk '{$1=""; print $0}' | fzf "${fzf_args[@]}")
+  command=$(fc -l -50 -1 | awk '{$1=""; print $0}' | fzf "${fzf_args[@]}")
   if [[ -n "${command}" ]]; then
     echo "${command}" | tr -d "\n" | ~/bin/copy
     echo "copied!"
