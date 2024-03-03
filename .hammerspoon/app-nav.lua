@@ -28,14 +28,17 @@ function module.down()
   log.d("app-nav down")
   local name = hs.application.frontmostApplication():name()
   if name == "kitty" then
-    hs.eventtap.keyStroke({ "shift", "control" }, "]")
+    -- hs.eventtap.keyStroke({ "shift", "control" }, "]")
+    hs.eventtap.keyStroke({ "command", "shift" }, "w")
   elseif name == "Firefox" then
-    hs.eventtap.event.newKeyEvent(hs.keycodes.map.ctrl, true):post()
-    hs.eventtap.event.newKeyEvent("Tab", true):post()
-    hs.timer.doAfter(0.3, function()
-      hs.eventtap.event.newKeyEvent("Tab", false):post()
-      hs.eventtap.event.newKeyEvent(hs.keycodes.map.ctrl, false):post()
-    end)
+    -- focus previous window
+    hs.eventtap.keyStroke({ "command" }, "`")
+    -- hs.eventtap.event.newKeyEvent(hs.keycodes.map.ctrl, true):post()
+    -- hs.eventtap.event.newKeyEvent("Tab", true):post()
+    -- hs.timer.doAfter(0.3, function()
+    --   hs.eventtap.event.newKeyEvent("Tab", false):post()
+    --   hs.eventtap.event.newKeyEvent(hs.keycodes.map.ctrl, false):post()
+    -- end)
     -- hs.eventtap.keyStroke({ "control" }, "Tab")
   elseif isTerminal(name) then
     os.execute(hbin .. "/nav-tmux down")
@@ -48,6 +51,7 @@ function module.up()
   log.d("app-nav up")
   local name = hs.application.frontmostApplication():name()
   if name == "kitty" then
+    -- focus.previousWindow()
     hs.eventtap.keyStroke({ "shift", "control" }, "[")
   elseif name == "Firefox" then
     -- focus previous window

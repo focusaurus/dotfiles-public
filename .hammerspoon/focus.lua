@@ -272,17 +272,17 @@ function module.clearWindowCache()
   windowBrowserIntuit = nil
 end
 
-function onAppEvent(appName, eventType, app)
-  -- print("onAppEvent: " .. (appName or "nil") .. ", " .. eventType )
-  if appName == browserName and eventType == hs.application.watcher.terminated then
-    log.d(browserName .. " was quit. Clearing window cache.")
-    module.clearWindowCache()
-  end
-end
+-- function onAppEvent(appName, eventType, app)
+--   -- print("onAppEvent: " .. (appName or "nil") .. ", " .. eventType )
+--   if appName == browserName and eventType == hs.application.watcher.terminated then
+--     log.d(browserName .. " was quit. Clearing window cache.")
+--     module.clearWindowCache()
+--   end
+-- end
 
-function module.initAppWatcher()
-  hs.application.watcher.new(onAppEvent):start()
-end
+-- function module.initAppWatcher()
+--   hs.application.watcher.new(onAppEvent):start()
+-- end
 
 function module.enableFocusMode()
   print("enableFocusMode")

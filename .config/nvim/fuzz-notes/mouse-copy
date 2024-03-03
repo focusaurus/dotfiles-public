@@ -1,0 +1,5 @@
+# hide the relative line numbers:
+:set norelativenumber
+
+To select text for regular OS copy to clipboard and not do nvim visual mode,
+hold shift while selecting with the mouse
