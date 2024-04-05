@@ -1,4 +1,5 @@
 !/.config/Code/User
+/.paste-queue
 .bun/install/cache
 .bun_repl_history
 .cinnamon/configs
