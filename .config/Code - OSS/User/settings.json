@@ -33,7 +33,7 @@
     "workbench.colorTheme": "Default Light Modern",
     "diffEditor.ignoreTrimWhitespace": false,
     "github.copilot.enable": {
-        "*": false,
+        "*": true,
         "plaintext": false,
         "markdown": false,
         "scminput": false
@@ -50,4 +50,5 @@
     },
     "diffEditor.renderSideBySide": false,
     "editor.occurrencesHighlight": "off",
+    "editor.autoClosingQuotes": "never",
 }
