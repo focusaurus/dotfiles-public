@@ -309,7 +309,12 @@ function module.email()
   if focusMode then
     return
   end
-  module.browser()
+  local workWindow = module.byTitlePrefix("work-float")
+  if workWindow ~= nil then
+    workWindow.focus()
+  else
+    module.browser()
+  end
   hs.eventtap.keyStroke({ "command" }, "1")
 end
 

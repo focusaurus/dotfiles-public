@@ -17,6 +17,7 @@ function module.left()
   if name == "kitty" then
     hs.eventtap.keyStroke({ "shift" }, "space")
     hs.eventtap.keyStroke({}, "p")
+    log.d("kitty app nav left keystroke")
   elseif name == "Code" then
     hs.eventtap.keyStroke({ "command", "shift" }, "[")
   elseif useTabNav(name) then
@@ -30,7 +31,7 @@ function module.down()
   if name == "kitty" then
     -- hs.eventtap.keyStroke({ "shift", "control" }, "]")
     hs.eventtap.keyStroke({ "command", "shift" }, "w")
-  elseif name == "Firefox" then
+  elseif name == "Firefox" or name == "Code" then
     -- focus previous window
     hs.eventtap.keyStroke({ "command" }, "`")
     -- hs.eventtap.event.newKeyEvent(hs.keycodes.map.ctrl, true):post()

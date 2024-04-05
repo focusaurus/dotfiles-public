@@ -182,7 +182,8 @@ menuHammerMenuList = {
             {cons.cat.action, '', 'e', 'email', { {cons.act.func, focus.email} }},
             {cons.cat.submenu, '', 'j', 'Journal', { {cons.act.menu, journalMenu} }},
             {cons.cat.action, '', 'c', 'Calendar', { {cons.act.func, focus.calendar} }},
-            {cons.cat.action, '', 'd', 'Sequel Ace', { {cons.act.launcher, 'Sequel Ace'} }},
+            -- {cons.cat.action, '', 'd', 'Sequel Ace', { {cons.act.launcher, 'Sequel Ace'} }},
+            {cons.cat.action, '', 'd', 'TablePlus', { {cons.act.launcher, 'TablePlus'} }},
             {cons.cat.action, '', 'o', 'Obsidian', { {cons.act.launcher, 'Obsidian'} }},
             {cons.cat.submenu, '', 'h', 'Hammerspoon', { {cons.act.menu, hammerspoonMenu} }},
             -- {cons.cat.submenu, '', 'm', 'Media Controls', { {cons.act.menu, mediaMenu} }},
@@ -258,8 +259,8 @@ menuHammerMenuList = {
             {cons.cat.action, '', 'j', 'Journal', {
                 {cons.act.func, journal.appendPrompt}
             }},
-            {cons.cat.action, '', 's', 'Standup', {
-                {cons.act.func, journal.appendPromptStandup}
+            {cons.cat.action, '', 'c', 'Check In', {
+                {cons.act.func, journal.appendPromptCheckIn}
             }},
             {cons.cat.action, '', 't', 'Task', {
                 {cons.act.func, journal.appendPromptTask}
