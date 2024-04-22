@@ -310,12 +310,12 @@ function module.email()
     return
   end
   local workWindow = module.byTitlePrefix("work-float")
-  if workWindow ~= nil then
-    workWindow.focus()
-  else
+  if workWindow == nil then
     module.browser()
   end
-  hs.eventtap.keyStroke({ "command" }, "1")
+  hs.timer.doAfter(0.5, function()
+    hs.eventtap.keyStroke({ "command" }, "1")
+  end)
 end
 
 function module.calendarTab()

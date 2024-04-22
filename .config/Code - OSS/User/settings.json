@@ -17,7 +17,8 @@
         "editor.autoClosingBrackets": "never"
     },
     "[markdown]": {
-        "editor.autoClosingBrackets": "never"
+        "editor.autoClosingBrackets": "never",
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "editor.unicodeHighlight.allowedCharacters": {
         "️": true
@@ -33,7 +34,7 @@
     "workbench.colorTheme": "Default Light Modern",
     "diffEditor.ignoreTrimWhitespace": false,
     "github.copilot.enable": {
-        "*": true,
+        "*": false,
         "plaintext": false,
         "markdown": false,
         "scminput": false

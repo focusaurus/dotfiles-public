@@ -38,6 +38,7 @@ brew "shellcheck"
 brew "shfmt"
 brew "starship"
 brew "stylua"
+brew "tokei"
 brew "up"
 brew "wget"
 brew "zsh-autosuggestions"
@@ -71,6 +72,7 @@ mas "Keynote", id: 409183694
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 vscode "akamud.vscode-theme-onelight"
+vscode "alefragnani.bookmarks"
 vscode "andrewmarkle.primer-light"
 vscode "anoff.theme-monokai-light"
 vscode "dbaeumer.vscode-eslint"
