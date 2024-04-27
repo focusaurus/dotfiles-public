@@ -150,7 +150,7 @@ require('packer').startup(function(use)
   use 'jeffkreeftmeijer/vim-numbertoggle'
   use 'tpope/vim-repeat'
   use 'ThePrimeagen/vim-be-good'
-  use 'ixru/nvim-markdown'
+  -- use 'ixru/nvim-markdown'
   use 'ray-x/guihua.lua' -- recommended if need floating window support
   use {
     'folke/which-key.nvim',
@@ -174,7 +174,7 @@ require('packer').startup(function(use)
   textcase(use)
   telescope(use)
   go(use)
-  ufo(use)
+  -- ufo(use)
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then require('packer').sync() end

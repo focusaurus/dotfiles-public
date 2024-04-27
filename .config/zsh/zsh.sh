@@ -4,16 +4,16 @@
 export APPEND_HIST
 export HISTFILE=~/.zsh-history
 export HISTSIZE="10000"
-export HIST_EXPIRE_DUPS_FIRST
-export HIST_FIND_NO_DUPS
-export HIST_IGNORE_DUPS
-export HIST_NO_DUPS
+# export HIST_EXPIRE_DUPS_FIRST
+# export HIST_FIND_NO_DUPS
+# export HIST_IGNORE_DUPS
+# export HIST_NO_DUPS
 export HIST_REDUCE_BLANKS
 export INC_APPEND_HISTORY="1"
 export SAVEHIST="10000"
 export SHARE_HISTORY="1"
 
-setopt autopushd pushdignoredups pushdsilent
+setopt autopushd pushdignoredups pushdsilent histignorealldups
 
 export TZ="America/New_York"
 tt() {
@@ -180,7 +180,8 @@ TRAPUSR1() {
 # their config on next command
 # Helpful when I add new functions and aliases
 rss() {
-  killall -u "${USER}" -SIGUSR1 -m 'zsh'
+  # killall -u "${USER}" -SIGUSR1 -m 'zsh'
+  killall --user "${USER}" --signal SIGUSR1 zsh
 }
 
 function watch-zsh() {

@@ -1,6 +1,7 @@
 arch-install-package() {
   # yay --nodiffmenu --sync "$@"
-  yup "$@"
+  yay --sync "$@"
+  # yup "$@"
   hash -r
 }
 
