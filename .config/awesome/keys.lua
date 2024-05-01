@@ -17,6 +17,7 @@ local app_nav = home_bin .. '/app-nav'
 -- Would prefer alt+super for this but not easy in vial
 -- and don't want to get back to custom QMK fork code
 local shift_super = {modifiers.shift, modifiers.super}
+local control_super = {modifiers.control, modifiers.super}
 
 local function noop() end
 
@@ -39,15 +40,15 @@ local function bind_root(group, description, mods, keysym, action)
 end
 
 bind_root('window manager', 'restart window manager',
-  shift_super, 'r', awesome.restart)
+  control_super, 'r', awesome.restart)
 bind_root('window manager', 'quit window manager',
-  shift_super, 'q', awesome.quit)
+  control_super, 'q', awesome.quit)
 
 -- window manager virtual desktops (tags)
 bind_root('tags', 'view previous (left) tag',
-  shift_super, 'Left', awful.tag.viewprev)
+  control_super, 'Left', awful.tag.viewprev)
 bind_root('tags', 'view next (right) tag',
-  shift_super, 'Right', awful.tag.viewnext)
+  control_super, 'Right', awful.tag.viewnext)
 bind_root('tags', 'view next (right) tag',
   {modifiers.super}, 'q', awful.tag.viewprev)
 bind_root('tags', 'view next (right) tag',
@@ -55,7 +56,7 @@ bind_root('tags', 'view next (right) tag',
 
 -- row nav bottom row window manager
 bind_root('windows', 'focus previous',
-  shift_super, 'Up', focus.previous)
+  control_super, 'Up', focus.previous)
 
 bind_root('screen', 'brightness down',
   {}, 'XF86MonBrightnessDown', runner({'sudo', 'brightnessctl', 'set', '20%-'}))
@@ -82,20 +83,20 @@ bind_root('fuzzball', 'fuzz script', {}, 'F11', focus.fuzz_script)
 bind_root('fuzzball', 'fuzz snippet', {modifiers.super}, '3', focus.fuzz_snippet)
 bind_root('fuzzball', 'fuzz snippet', {modifiers.super}, 's', focus.fuzz_snippet)
 bind_root('fuzzball', 'fuzz snippet', {}, 'F12', focus.fuzz_snippet)
-bind_root('rofi', 'run', shift_super, 'space', runner({'rofi', '-show', 'run'}))
-bind_root('rofi', 'windows', shift_super, 'w',
+bind_root('rofi', 'run', control_super, 'space', runner({'rofi', '-show', 'run'}))
+bind_root('rofi', 'windows', control_super, 'w',
   runner({'rofi', '-show', 'window', '-theme', 'gruvbox-light-soft'}))
 bind_root('rofi', 'windows', {modifiers.super}, '4',
   runner({'rofi', '-show', 'window'}))
 
-bind_root('dev', 'dev 1', shift_super, '1', dev.dev1)
-bind_root('dev', 'dev 2', shift_super, '2', dev.dev2)
+bind_root('dev', 'dev 1', control_super, '1', dev.dev1)
+bind_root('dev', 'dev 2', control_super, '2', dev.dev2)
 
 -- bind function keys to selecting the corresponding tag
 for _, n in pairs({'1', '2', '3', '4'}) do
-  bind_root('tags', 'select tag ' .. n, shift_super, 'F' .. n,
+  bind_root('tags', 'select tag ' .. n, control_super, 'F' .. n,
             function() tags.select(n) end)
-  bind_root('tags', 'move to tag ' .. n, shift_super, n,
+  bind_root('tags', 'move to tag ' .. n, control_super, n,
             function() placement.move_to_tag(n) end)
 end
 
@@ -114,23 +115,23 @@ bind_client('windows', 'close',
 bind_client('windows', 'focus previous',
   {modifiers.super}, 'p', focus.previous)
 bind_client('windows', 'cycle window placement',
-    shift_super, 'Down', placement.cycle)
+    control_super, 'Down', placement.cycle)
 -- app nav arrow keys (also rownav keyd layer)
 bind_client('app nav', 'left',
-  {modifiers.super}, 'Left', runner({app_nav, 'left'}))
+  shift_super, 'Left', runner({app_nav, 'left'}))
 bind_client('app nav', 'down',
-  {modifiers.super}, 'Down', runner({app_nav, 'down'}))
+  shift_super, 'Down', runner({app_nav, 'down'}))
 bind_client('app nav', 'up',
-  {modifiers.super}, 'Up', runner({app_nav, 'up'}))
+  shift_super, 'Up', runner({app_nav, 'up'}))
 bind_client('app nav', 'right',
-  {modifiers.super}, 'Right', runner({app_nav, 'right'}))
+  shift_super, 'Right', runner({app_nav, 'right'}))
 -- app nav left pinky mod-tap
 bind_client('app nav', 'left',
-  {modifiers.super}, 'o', runner({app_nav, 'left'}))
+  shift_super, 'o', runner({app_nav, 'left'}))
 bind_client('app nav', 'down',
-  {modifiers.super}, 'j', runner({app_nav, 'down'}))
+  shift_super, 'j', runner({app_nav, 'down'}))
 bind_client('app nav', 'right',
-  {modifiers.super}, 'u', runner({app_nav, 'right'}))
+  shift_super, 'u', runner({app_nav, 'right'}))
 
 
 bind_client('browser', 'copy-link', {modifiers.super}, 'i',
