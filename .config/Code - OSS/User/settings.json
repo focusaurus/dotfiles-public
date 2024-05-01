@@ -17,7 +17,8 @@
         "editor.autoClosingBrackets": "never"
     },
     "[markdown]": {
-        "editor.autoClosingBrackets": "never"
+        "editor.autoClosingBrackets": "never",
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "editor.unicodeHighlight.allowedCharacters": {
         "️": true
@@ -28,12 +29,12 @@
     "editor.renderLineHighlight": "all",
     "editor.copyWithSyntaxHighlighting": false,
     "workbench.colorCustomizations": {
-        "editor.lineHighlightBackground": "#aad7f5"
+        "editor.lineHighlightBackground": "#e3ffd7"
     },
     "workbench.colorTheme": "Default Light Modern",
     "diffEditor.ignoreTrimWhitespace": false,
     "github.copilot.enable": {
-        "*": true,
+        "*": false,
         "plaintext": false,
         "markdown": false,
         "scminput": false
@@ -49,4 +50,6 @@
         "editor.defaultFormatter": "vscode.json-language-features"
     },
     "diffEditor.renderSideBySide": false,
+    "editor.occurrencesHighlight": "off",
+    "editor.autoClosingQuotes": "never",
 }

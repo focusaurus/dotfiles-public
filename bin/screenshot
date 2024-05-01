@@ -11,13 +11,19 @@ set -o pipefail # don't ignore exit codes when piping output
 
 IFS="$(printf "\n\t")"
 # ---- End unofficial bash strict mode boilerplate
-if [[ "$(uname)" == "Darwin" ]]; then
-  cliclick kd:cmd,shift  t:5 ku:cmd,shift
-  exit
-fi
+# if [[ "$(uname)" == "Darwin" ]]; then
+#   cliclick kd:cmd,shift  t:x ku:cmd,shift
+#   exit
+# fi
 # suffix=$(zenity --entry --text suffix)
 # suffix=$(yad --entry --title "suffix" --text "suffix" --width 500)
-
+macos_dir="/Applications/flameshot.app/Contents/MacOS"
+if [[ -e "${macos_dir}/flameshot" ]]; then
+  export PATH="${macos_dir}:${PATH}"
+elif [[ "$(uname)" == "Darwin" ]]; then
+  cliclick kd:cmd,shift t:5 ku:cmd,shift
+  exit
+fi
 dest="${HOME}/screens"
 mkdir -p "${dest}"
 
@@ -29,5 +35,5 @@ else
   # Use this branch for specific area, no pointer
   args+=(gui)
 fi
-args+=(-p "${dest}")
+# args+=(-p "${dest}")
 flameshot "${args[@]}"

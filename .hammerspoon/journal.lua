@@ -28,8 +28,8 @@ function module.appendPrompt()
   os.execute(fuzzball .. "/fh-journal-prompt &")
 end
 
-function module.appendPromptStandup()
-  log.d("appendPromptStandup")
+function module.appendPromptCheckIn()
+  log.d("appendPromptCheckIn")
   os.execute(fuzzball .. "/fh-journal-standup &")
 end
 

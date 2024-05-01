@@ -114,17 +114,6 @@ alias rd="rmdir"
 alias timestamp='date +%Y%m%d-%H%M%S'
 alias ucdrom="umount /dev/cdrom"
 alias veh="sudoedit  /etc/hosts"
-whatismyipaddress() {
-  local ip
-  ip=$(curl --silent --fail https://myip.dnsomatic.com/)
-  echo -n "${ip}" | ~/bin/copy
-  echo "${ip} (copied to clipboard)"
-  if [[ "$(uname)" == "Darwin" ]]; then
-    ifconfig -a | grep inet
-  else
-    ip -o -4 -br address | grep -v '^br-'
-  fi
-}
 alias myip="curl http://myip.dnsomatic.com;echo"
 TAILER="/usr/bin/less"
 if [[ -x "${TAILER}" ]]; then

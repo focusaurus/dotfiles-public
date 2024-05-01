@@ -309,8 +309,13 @@ function module.email()
   if focusMode then
     return
   end
-  module.browser()
-  hs.eventtap.keyStroke({ "command" }, "1")
+  local workWindow = module.byTitlePrefix("work-float")
+  if workWindow == nil then
+    module.browser()
+  end
+  hs.timer.doAfter(0.5, function()
+    hs.eventtap.keyStroke({ "command" }, "1")
+  end)
 end
 
 function module.calendarTab()
