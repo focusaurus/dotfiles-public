@@ -2,7 +2,7 @@ local module = {}
 local log = hs.logger.new("focus", "debug")
 local focusMode = false
 local hbin = os.getenv("HOME") .. "/bin"
-local browserName = "Google Chrome"
+local browserName = "Firefox"
 
 -- function findWindow(appName, filter)
 --   log.d('findWindow')
@@ -115,6 +115,14 @@ end
 function module.firefox()
   log.d("firefox")
   hs.application.launchOrFocus("Firefox")
+end
+
+function module.chrome()
+  log.d("chrome")
+  local yup = hs.application.launchOrFocus("Google Chrome")
+  if yup then
+    return hs.window.frontmostWindow()
+  end
 end
 
 function module.obsidian()
