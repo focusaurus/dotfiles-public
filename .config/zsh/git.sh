@@ -348,7 +348,7 @@ git-switch-fuzzy() {
     sed 's/^[ 	]*//' |
     fuzzy-filter "${name}")
   [[ -z "${name}" ]] && return
-  echo Bgit switch "${name}"E
+  # echo Bgit switch "${name}"E
   git switch "${name}"
 }
 
