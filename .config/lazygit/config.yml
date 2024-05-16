@@ -17,3 +17,5 @@ gui:
 git:
   autoFetch: false
   autoRefresh: false
+update:
+  method: never
