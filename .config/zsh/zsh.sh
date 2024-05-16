@@ -181,7 +181,11 @@ TRAPUSR1() {
 # Helpful when I add new functions and aliases
 rss() {
   # killall -u "${USER}" -SIGUSR1 -m 'zsh'
-  killall --user "${USER}" --signal SIGUSR1 zsh
+  if [[ "$(uname)" == "Darwin" ]]; then
+    killall -u "${USER}" -m zsh -USR1
+  else
+    killall --user "${USER}" --signal SIGUSR1 zsh
+  fi
 }
 
 function watch-zsh() {

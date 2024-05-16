@@ -14,7 +14,8 @@
         "formatting.gofumpt": true
     },
     "[go]": {
-        "editor.autoClosingBrackets": "never"
+        "editor.autoClosingBrackets": "never",
+        "editor.acceptSuggestionOnEnter": "off"
     },
     "[markdown]": {
         "editor.autoClosingBrackets": "never",
@@ -34,7 +35,7 @@
     "workbench.colorTheme": "Default Light Modern",
     "diffEditor.ignoreTrimWhitespace": false,
     "github.copilot.enable": {
-        "*": false,
+        "*": true,
         "plaintext": false,
         "markdown": false,
         "scminput": false
