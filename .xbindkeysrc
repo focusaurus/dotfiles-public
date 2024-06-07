@@ -1,5 +1,7 @@
-"xte 'key Page_Down'"
+# "xte 'key Page_Down'"
+"xdotool key ctrl+c"
 b:8 + Release
 
-"xte 'key Home'"
+# "xte 'key Home'"
+"xdotool key ctrl+v"
 b:9 + Release
