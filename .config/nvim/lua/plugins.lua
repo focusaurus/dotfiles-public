@@ -99,7 +99,7 @@ require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
-  use {'j-hui/fidget.nvim', tag = 'legacy'}
+  -- use {'j-hui/fidget.nvim', tag = 'legacy'}
   -- https://github.com/nvim-lua/kickstart.nvim
   use { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
@@ -198,8 +198,20 @@ end
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
   ensure_installed = {
-    'bash', 'dockerfile', 'go', 'html', 'javascript', 'json', 'lua', 'org',
-    'php', 'python', 'rust', 'toml', 'typescript', 'yaml'
+    'bash',
+    -- 'dockerfile',
+    'go',
+    'html',
+    'javascript',
+    'json',
+    'lua',
+    -- 'org',
+    -- 'php',
+    -- 'python',
+    -- 'rust',
+    -- 'toml',
+    'typescript',
+    'yaml'
   },
 
   highlight = {enable = true},

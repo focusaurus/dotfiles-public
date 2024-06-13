@@ -86,7 +86,7 @@ main() {
   *kitty*)
     nav_kitty "${direction}"
     ;;
-  *termite* | *iTerm2* | *kitty* | *Terminal*)
+  *termite* | *iTerm2* |  *Terminal*)
     ~/bin/nav-tmux "${direction}"
     ;;
   *code*)

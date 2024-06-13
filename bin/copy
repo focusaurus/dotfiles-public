@@ -12,11 +12,12 @@ set -o pipefail # don't ignore exit codes when piping output
 IFS="$(printf "\n\t")"
 # ---- End unofficial bash strict mode boilerplate
 
+file="${1:-/dev/stdin}"
 case $(uname) in
 Linux)
-  xsel --clipboard --input
+  xsel --clipboard --input <"${file}"
   ;;
 Darwin)
-  pbcopy
+  pbcopy <"${file}"
   ;;
 esac
