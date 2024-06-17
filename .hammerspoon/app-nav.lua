@@ -27,8 +27,11 @@ function module.left()
   end
 end
 
+-- app nav "down" should switch window in the same application,
+-- or something analogous that feels mentally similar
 function module.down()
   log.d("app-nav down")
+  -- This should switch windows in the same app, or something analogous
   local name = hs.application.frontmostApplication():name()
   if name == "kitty" then
     -- hs.eventtap.keyStroke({ "shift", "control" }, "]")
@@ -50,15 +53,17 @@ function module.down()
   end
 end
 
+-- app nav "up" should cycle through splits or tabs within the same window
+-- or something that feels mentally similar
 function module.up()
   log.d("app-nav up")
   local name = hs.application.frontmostApplication():name()
   if name == "kitty" then
     -- focus.previousWindow()
     hs.eventtap.keyStroke({ "shift", "control" }, "[")
-  elseif name == "Firefox" or name == "TablePlus" then
-    -- focus previous window
-    hs.eventtap.keyStroke({ "command" }, "`")
+  elseif name == "Firefox" then
+    -- focus previous tab
+    hs.eventtap.keyStroke({ "control" }, "Tab")
     -- elseif isTerminal(name) then
     -- os.execute(hbin .. "/nav-tmux up")
     -- elseif useTabNav(name) then
