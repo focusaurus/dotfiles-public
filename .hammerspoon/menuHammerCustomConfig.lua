@@ -244,6 +244,7 @@ menuHammerMenuList = {
             {cons.cat.action, '', 'K', 'Karabiner', { {cons.act.launcher, 'Karabiner-Elements'} }},
             {cons.cat.action, '', 'H', 'Chromium', { {cons.act.launcher, 'Chromium'} }},
             {cons.cat.action, '', 'I', 'Insomnia', { {cons.act.launcher, 'Insomnia'} }},
+            {cons.cat.action, '', 'B', 'Bruno', { {cons.act.launcher, 'Bruno'} }},
             {cons.cat.action, '', 'P', 'Postman', { {cons.act.launcher, 'Postman'} }},
             {cons.cat.action, '', 'V', 'Vial', { {cons.act.launcher, 'Vial'} }},
             {cons.cat.submenu, '', 'U', 'Utilities', { {cons.act.menu, utilitiesMenu} }},

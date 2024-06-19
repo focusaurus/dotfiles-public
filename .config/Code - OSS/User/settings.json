@@ -3,7 +3,6 @@
     "workbench.tree.indent": 16,
     "window.titleBarStyle": "custom",
     "files.insertFinalNewline": true,
-    "redhat.telemetry.enabled": false,
     "go.toolsManagement.autoUpdate": true,
     "explorer.confirmDelete": false,
     "editor.minimap.enabled": false,
@@ -53,4 +52,5 @@
     "diffEditor.renderSideBySide": false,
     "editor.occurrencesHighlight": "off",
     "editor.autoClosingQuotes": "never",
+    "github.copilot.editor.enableAutoCompletions": true,
 }
