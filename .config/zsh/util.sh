@@ -155,8 +155,7 @@ whos-listening() {
   if [[ -n "$1" ]]; then
     port=":$1"
   fi
-  lsof -n -P -i "TCP${port}" -s TCP:LISTEN
-  lsof -n -P -i "UDP${port}"
+  lsof -n -P -i "TCP${port}" -i "UDP${port}" -s TCP:LISTEN
 }
 
 kill-listener() {
@@ -309,6 +308,3 @@ fz-ranger() {
 }
 
 alias psg="ps -ef | grep"
-
-# bat
-export BAT_THEME="Monokai Extended"

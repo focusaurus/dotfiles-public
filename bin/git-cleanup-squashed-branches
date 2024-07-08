@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
+
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -o errexit  # always exit on error
+set -o errtrace # trap errors in functions as well
+set -o pipefail # don't ignore exit codes when piping output
+set -u          # error on reference to unknown variable
+# set -x # enable debugging
+
+IFS=$'\n\t'
+# ---- End unofficial bash strict mode boilerplate
+defaultBranch="main"
+echo "default branch: ${defaultBranch}"
+# defaultBranch=$(~/bin/git-get-default-branch)
+# git checkout -q "${defaultBranch}"
+git for-each-ref refs/heads/ "--format=%(refname:short)" | {
+  while IFS= read -r branch; do
+    if [[ "${branch}" == "${defaultBranch}" ]]; then
+      continue
+    fi
+    # echo "checking ${branch} against ${defaultBranch}"
+    mergeBase=$(git merge-base "${defaultBranch}" "$branch")
+    # echo -e "\tmerge base: ${mergeBase}"
+    rev=$(git rev-parse "${branch}^{tree}")
+    # echo -e "\trev: ${rev}"
+    treeHash=$(git commit-tree "${rev}" -p "${mergeBase}" -m "$0:temp commit for ${branch}")
+    # echo -e "\ttreeHash: ${treeHash}"
+    cherry=$(git cherry "${defaultBranch}" "${treeHash}")
+    # echo -e "\tcherry: ${cherry}"
+    if [[ "${cherry}" == "-"* ]]; then
+      echo -e "DELETE:\t${branch}"
+    else
+      echo -e "keep:\t${branch}"
+    fi
+    # echo "cherry is ${cherry}"
+    # if [[ $(git cherry "${defaultBranch}" $(git commit-tree $(git rev-parse "$branch^{tree}") -p "$mergeBase" -m _)) == "-"* ]]; then
+    # echo "$branch is merged into ${defaultBranch} and can be deleted"
+    # else
+    # echo "$branch has unmerged commits"
+    # fi
+  done
+}
+cat <<'EOF' >/dev/null
+git config --global alias.delete-squashed '!f() {
+
+local targetBranch=${1:-master} 
+git checkout -q $targetBranch 
+&& git branch --merged | grep -v "\*" | xargs -n 1 git branch -d 
+&& git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do mergeBase=$(git merge-base $targetBranch $branch) 
+&& [[ $(git cherry $targetBranch $(git commit-tree $(git rev-parse $branch^{tree}) -p $mergeBase -m _)) == "-"* ]] 
+&& git branch -D $branch; done; 
+
+}; f'
+
+
+git checkout -q master && git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do mergeBase=$(git merge-base master $branch) 
+&& [[ $(git cherry master $(git commit-tree $(git rev-parse "$branch^{tree}") -p $mergeBase -m _)) == "-"* ]] && echo "$branch is merged into master and can be deleted"; done
+EOF

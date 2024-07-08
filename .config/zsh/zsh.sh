@@ -182,7 +182,9 @@ TRAPUSR1() {
 rss() {
   # killall -u "${USER}" -SIGUSR1 -m 'zsh'
   if [[ "$(uname)" == "Darwin" ]]; then
-    killall -u "${USER}" -m zsh -USR1
+    # First print the pids we will signal, then do it
+    killall -u "${USER}" -c zsh -usr1 -d
+    killall -u "${USER}" -c zsh -usr1
   else
     killall --user "${USER}" --signal SIGUSR1 zsh
   fi

@@ -1,15 +1,19 @@
 gui:
   mouseEvents: false
   theme:
-    lightTheme: false
-    activeBorderColor:
-      - white
-      - bold
-    inactiveBorderColor:
-      - white
+    lightTheme: true
+    # activeBorderColor:
+    #   - white
+    #   - bold
+    # inactiveBorderColor:
+    #   - white
     selectedLineBgColor:
+      - default
+      # - green
+      # - "#eee"
+      # - underline
       # - reverse
-      - '#222222'
+      # - '#222222'
     # selectedLineBgColor:
     #   - reverse
     # selectedRangeBgColor:

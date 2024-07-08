@@ -537,7 +537,7 @@ local function listWindowChoices()
   local windowChoices = {}
   --   for i,v in ipairs(windowsByFocus:getWindows()) do
   for i, w in ipairs(currentWindows) do
-    if w ~= hs.window.focusedWindow() then
+    if w ~= nil and w ~= hs.window.focusedWindow() then
       table.insert(windowChoices, {
         text = w:title() .. "--" .. w:application():name(),
         subText = w:application():name(),
