@@ -153,6 +153,10 @@ require('packer').startup(function(use)
   -- use 'ixru/nvim-markdown'
   use 'ray-x/guihua.lua' -- recommended if need floating window support
   use {
+    'uloco/bluloco.nvim',
+    requires = { 'rktjmp/lush.nvim' }
+  }
+  use {
     'folke/which-key.nvim',
     config = function()
       vim.o.timeout = true
