@@ -193,7 +193,8 @@ menuHammerMenuList = {
             -- {cons.cat.action, '', 'x', 'Firefox', { {cons.act.launcher, 'Firefox'} }},
             {cons.cat.action, '', 'y', 'Cycle Windows', { {cons.act.func, focus.cycleWindows} }},
             {cons.cat.action, '', 'f', 'Fuzzball', { {cons.act.func, fuzzball.chooseScript } }},
-            {cons.cat.action, '', 'l', 'Left (App Nav)', { {cons.act.func, appNav.left } }},
+            -- {cons.cat.action, '', 'l', 'Left (App Nav)', { {cons.act.func, appNav.left } }},
+            {cons.cat.action, '', 'l', 'Layout (placement)', { {cons.act.menu, layoutMenu } }},
             {cons.cat.action, '', 'r', 'Right (App Nav)', { {cons.act.func, appNav.right } }},
             {cons.cat.action, '', 'm', 'Music', { {cons.act.func, focus.music } }},
             {cons.cat.action, '', 'n', 'Snippet', { {cons.act.func, snippets.chooseByUIAndType } }},
@@ -273,6 +274,24 @@ menuHammerMenuList = {
         }
     },
 
+    --------------------------------------------------------------------
+    -- Layout (Placement) Menu
+    ------------------------------------------------------------------------------------------------
+    layoutMenu = {
+        parentMenu = mainMenu,
+        meunHotkey = nil,
+        menuItems = {
+            {cons.cat.action, '', 'l', 'Left', {
+                {cons.act.func, placement.left}
+            }},
+            {cons.cat.action, '', 'r', 'Right', {
+                {cons.act.func, placement.right}
+            }},
+            {cons.cat.action, '', 'm', 'Max', {
+                {cons.act.func, placement.maximize}
+            }},
+        }
+    },
 
     ------------------------------------------------------------------------------------------------
     -- Utilities Menu
@@ -322,22 +341,22 @@ menuHammerMenuList = {
     ------------------------------------------------------------------------------------------------
     -- Layout Menu
     ------------------------------------------------------------------------------------------------
-    [layoutMenu] = {
-        parentMenu = mainMenu,
-        menuHotkey = nil,
-        menuItems = {
-            {cons.cat.action, '', 'E', 'Split Safari/iTunes', {
-                 {cons.act.func, function()
-                      -- See Hammerspoon layout documentation for more info on this
-                      local mainScreen = hs.screen{x=0,y=0}
-                      hs.layout.apply({
-                              {'Safari', nil, mainScreen, hs.layout.left50, nil, nil},
-                              {'iTunes', nil, mainScreen, hs.layout.right50, nil, nil},
-                      })
-                 end }
-            }},
-        }
-    },
+    -- [layoutMenu] = {
+    --     parentMenu = mainMenu,
+    --     menuHotkey = nil,
+    --     menuItems = {
+    --         {cons.cat.action, '', 'E', 'Split Safari/iTunes', {
+    --              {cons.act.func, function()
+    --                   -- See Hammerspoon layout documentation for more info on this
+    --                   local mainScreen = hs.screen{x=0,y=0}
+    --                   hs.layout.apply({
+    --                           {'Safari', nil, mainScreen, hs.layout.left50, nil, nil},
+    --                           {'iTunes', nil, mainScreen, hs.layout.right50, nil, nil},
+    --                   })
+    --              end }
+    --         }},
+    --     }
+    -- },
 
     ------------------------------------------------------------------------------------------------
     -- Media Menu
