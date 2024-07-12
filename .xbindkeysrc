@@ -2,6 +2,6 @@
 "xdotool key ctrl+c"
 b:8 + Release
 
-# "xte 'key Home'"
-"xdotool key ctrl+v"
+# "xdotool key ctrl+v"
+"xte 'key Home'"
 b:9 + Release
