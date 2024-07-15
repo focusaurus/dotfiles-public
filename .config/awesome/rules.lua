@@ -46,7 +46,8 @@ local floating_clients = {
     -- and the name shown there might not match defined rules here.
     name = {
       'Event Tester', -- xev
-      'Export File' -- shotcut
+      'Export File', -- shotcut
+      'Design Rules Checker', -- kicad
     },
     role = {
       'AlarmWindow', -- Thunderbird's calendar.

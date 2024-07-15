@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
+
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -o errexit  # always exit on error
+set -o errtrace # trap errors in functions as well
+set -o pipefail # don't ignore exit codes when piping output
+set -u          # error on reference to unknown variable
+# set -x # enable debugging
+
+IFS=$'\n\t'
+# ---- End unofficial bash strict mode boilerplate
+
+ip=$(curl --silent --fail https://myip.dnsomatic.com/)
+echo -n "${ip}" | ~/bin/copy
+echo "${ip} (copied to clipboard)"
+if [[ "$(uname)" == "Darwin" ]]; then
+  ifconfig -a | grep -E '(^\S|inet\s)' | sed 's/:.*//' | sed 's/netmask.*//'
+else
+  ip -o -4 -br address | grep -v '^br-'
+fi

@@ -2,7 +2,7 @@ local module = {}
 local log = hs.logger.new("focus", "debug")
 local focusMode = false
 local hbin = os.getenv("HOME") .. "/bin"
-local browserName = "Google Chrome"
+local browserName = "Firefox"
 
 -- function findWindow(appName, filter)
 --   log.d('findWindow')
@@ -115,6 +115,14 @@ end
 function module.firefox()
   log.d("firefox")
   hs.application.launchOrFocus("Firefox")
+end
+
+function module.chrome()
+  log.d("chrome")
+  local yup = hs.application.launchOrFocus("Google Chrome")
+  if yup then
+    return hs.window.frontmostWindow()
+  end
 end
 
 function module.obsidian()
@@ -272,17 +280,17 @@ function module.clearWindowCache()
   windowBrowserIntuit = nil
 end
 
-function onAppEvent(appName, eventType, app)
-  -- print("onAppEvent: " .. (appName or "nil") .. ", " .. eventType )
-  if appName == browserName and eventType == hs.application.watcher.terminated then
-    log.d(browserName .. " was quit. Clearing window cache.")
-    module.clearWindowCache()
-  end
-end
+-- function onAppEvent(appName, eventType, app)
+--   -- print("onAppEvent: " .. (appName or "nil") .. ", " .. eventType )
+--   if appName == browserName and eventType == hs.application.watcher.terminated then
+--     log.d(browserName .. " was quit. Clearing window cache.")
+--     module.clearWindowCache()
+--   end
+-- end
 
-function module.initAppWatcher()
-  hs.application.watcher.new(onAppEvent):start()
-end
+-- function module.initAppWatcher()
+--   hs.application.watcher.new(onAppEvent):start()
+-- end
 
 function module.enableFocusMode()
   print("enableFocusMode")
@@ -309,8 +317,13 @@ function module.email()
   if focusMode then
     return
   end
-  module.browser()
-  hs.eventtap.keyStroke({ "command" }, "1")
+  local workWindow = module.byTitlePrefix("work-float")
+  if workWindow == nil then
+    module.browser()
+  end
+  hs.timer.doAfter(0.5, function()
+    hs.eventtap.keyStroke({ "command" }, "1")
+  end)
 end
 
 function module.calendarTab()
@@ -349,6 +362,7 @@ end
 
 local function hasTitlePrefix(prefix)
   return function(window)
+    -- log.d("window title prefix check " .. prefix .. ": " .. window:title())
     return startsWith(window:title(), prefix)
   end
 end
@@ -361,9 +375,9 @@ function module.byTitlePrefix(prefix)
   return match
 end
 
-function module.previousByWindowFilter()
-  log.d("previous")
-  lastWindow = hs.window.filter.default:getWindows()[2]
+function module.previousWindowByFilter()
+  log.d("previousWindowByFilter")
+  local lastWindow = hs.window.filter.default:getWindows()[2]
   if lastWindow == nil then
     return
   end
@@ -371,23 +385,43 @@ function module.previousByWindowFilter()
   lastWindow:focus()
 end
 
-function module.previousByHotkey()
-  -- hs.eventtap.event.newKeyEvent({"cmd" }, "Tab", true):post()
+module.previousWindow = module.previousWindowByFilter
+
+function module.previousAppByFilter()
+  log.d("previousAppByFilter")
+  local currentAppName = ""
+  local win = hs.window.focusedWindow()
+  if win ~= nil then
+    currentAppName = win:application():name()
+  end
+  for _, window in ipairs(hs.window.filter.default:getWindows()) do
+    if window ~= nil and currentAppName ~= window:application():name() then
+      log.d("previousAppByFilter: " .. window:title())
+      window:focus()
+      return
+    end
+  end
+end
+
+function module.previousAppByHotkey()
+  -- hs.eventtap.event.newKeyEvent({ "cmd" }, "Tab", true):post()
   -- hs.eventtap.event.newKeyEvent({"shift", "alt"}, "a", false):post()
   -- Since I trigger this with home row mod on "a" (left pinky),
   -- the first thing I need to do is send a key up for "a" so
   -- the command+tab is interpretted correctly by macos
-  hs.eventtap.event.newKeyEvent("e", false):post()
-  hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, true):post()
-  hs.eventtap.event.newKeyEvent("Tab", true):post()
-  hs.timer.doAfter(0.2, function()
-    -- hs.eventtap.event.newKeyEvent({"cmd" }, "Tab", false):post()
-    hs.eventtap.event.newKeyEvent("Tab", false):post()
-    hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, false):post()
-  end)
+  -- hs.eventtap.event.newKeyEvent("e", false):post()
+  if true then
+    hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, true):post()
+    hs.eventtap.event.newKeyEvent("Tab", true):post()
+    hs.timer.doAfter(0.2, function()
+      -- hs.eventtap.event.newKeyEvent({"cmd" }, "Tab", false):post()
+      hs.eventtap.event.newKeyEvent("Tab", false):post()
+      hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, false):post()
+    end)
+  end
 end
 
-module.previous = module.previousByWindowFilter
+module.previousApp = module.previousAppByFilter
 
 function module.slack()
   log.d("slack")
@@ -432,7 +466,7 @@ local currentWindows = {}
 
 function module.refreshWindowCache()
   currentWindows = {}
-  for i, v in ipairs(windowsByFocus:getWindows()) do
+  for _, v in ipairs(windowsByFocus:getWindows()) do
     table.insert(currentWindows, v)
   end
 end
@@ -440,7 +474,7 @@ end
 module.refreshWindowCache()
 
 function module.findWindowByTitle(appName, windowTitle)
-  for i, window in ipairs(currentWindows) do
+  for _, window in ipairs(currentWindows) do
     print("findWindowByTitle: query: " .. windowTitle .. " window: " .. window:title())
     if string.find(window:application():name(), appName) and string.find(window:title(), windowTitle) then
       return window
@@ -459,7 +493,7 @@ end
 
 -- function module.focusByApp(appName)
 --    print(' [' .. appName ..']')
---    for i,v in ipairs(currentWindows) do
+--    for _,v in ipairs(currentWindows) do
 --       print('           [' .. v:application():name() .. ']')
 --       if string.find(v:application():name(), appName) then
 --          print("Focusing window" .. v:title())
@@ -503,7 +537,7 @@ local function listWindowChoices()
   local windowChoices = {}
   --   for i,v in ipairs(windowsByFocus:getWindows()) do
   for i, w in ipairs(currentWindows) do
-    if w ~= hs.window.focusedWindow() then
+    if w ~= nil and w ~= hs.window.focusedWindow() then
       table.insert(windowChoices, {
         text = w:title() .. "--" .. w:application():name(),
         subText = w:application():name(),

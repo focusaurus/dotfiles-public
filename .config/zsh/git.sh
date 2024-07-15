@@ -13,7 +13,8 @@ alias g='lazygit'
 alias ga='git add'
 # alias gassume='gitupdate-index --assume-unchanged'
 # alias gassumed='!git ls-files -v | grep ^h | cut -c 3-'
-alias gb='git branch -a'
+alias gb='git branch'
+alias gba='git branch -a'
 alias gri='git rebase -i'
 alias gfom='git fetch origin main'
 alias griom='git rebase -i origin/main'
@@ -26,6 +27,7 @@ alias gPom='git push origin main'
 alias gPgm='git push github main'
 alias gf='git fetch --all'
 alias gbd='git branch -d'
+alias gsf='git-switch-fuzzy'
 # alias gbl='git branch -a|less'
 alias gc='git commit'
 alias glone='git clone'
@@ -342,8 +344,12 @@ git-checkout() {
 
 git-switch-fuzzy() {
   local name="$1"
-  name=$(git branch | grep -Ev '\*' | fuzzy-filter "${name}")
+  name=$(git branch |
+    grep -Ev '\*' |
+    sed 's/^[ 	]*//' |
+    fuzzy-filter "${name}")
   [[ -z "${name}" ]] && return
+  # echo Bgit switch "${name}"E
   git switch "${name}"
 }
 
@@ -360,11 +366,11 @@ dotfiles-end() {
 }
 
 dotfiles-git() {
-  dotfiles-begin
-  cd
-  lazygit
-  dotfiles-end
-  cd -
+  # dotfiles-begin
+  cd || exit
+  lazygit --git-dir ~/.home.git --work-tree ~
+  # dotfiles-end
+  cd - || exit
 }
 
 alias dfb="dotfiles-begin"

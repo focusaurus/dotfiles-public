@@ -12,6 +12,8 @@ set -o pipefail # don't ignore exit codes when piping output
 IFS="$(printf "\n\t")"
 # ---- End unofficial bash strict mode boilerplate
 
+# Sigh macos
+PATH="$PATH:/opt/homebrew/bin"
 log() {
   echo "$@" >>/tmp/fuzz.log
 }
@@ -29,7 +31,7 @@ if [[ $(uname) == "Darwin" ]]; then
   # macos: choose
   chooser=(/opt/homebrew/bin/choose -c highlight=111111)
 fi
-if [[ -t 1  && -z "${GUI}" ]]; then
+if [[ -t 1 && -z "${GUI}" ]]; then
   # terminal/tty mode. Use fzf directly
   chooser=(fzf --color=bw --layout=reverse)
 fi

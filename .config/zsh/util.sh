@@ -62,7 +62,7 @@ copy-recent-command() {
   if [[ -n "$*" ]]; then
     fzf_args+=(--query "$@")
   fi
-  command=$(fc -l -10 -1 | awk '{$1=""; print $0}' | fzf "${fzf_args[@]}")
+  command=$(fc -l -50 -1 | awk '{$1=""; print $0}' | fzf "${fzf_args[@]}")
   if [[ -n "${command}" ]]; then
     echo "${command}" | tr -d "\n" | ~/bin/copy
     echo "copied!"
@@ -114,17 +114,6 @@ alias rd="rmdir"
 alias timestamp='date +%Y%m%d-%H%M%S'
 alias ucdrom="umount /dev/cdrom"
 alias veh="sudoedit  /etc/hosts"
-whatismyipaddress() {
-  local ip
-  ip=$(curl --silent --fail https://myip.dnsomatic.com/)
-  echo -n "${ip}" | ~/bin/copy
-  echo "${ip} (copied to clipboard)"
-  if [[ "$(uname)" == "Darwin" ]]; then
-    ifconfig -a | grep inet
-  else
-    ip -o -4 -br address | grep -v '^br-'
-  fi
-}
 alias myip="curl http://myip.dnsomatic.com;echo"
 TAILER="/usr/bin/less"
 if [[ -x "${TAILER}" ]]; then
@@ -166,8 +155,7 @@ whos-listening() {
   if [[ -n "$1" ]]; then
     port=":$1"
   fi
-  lsof -n -P -i "TCP${port}" -s TCP:LISTEN
-  lsof -n -P -i "UDP${port}"
+  lsof -n -P -i "TCP${port}" -i "UDP${port}" -s TCP:LISTEN
 }
 
 kill-listener() {
@@ -320,6 +308,3 @@ fz-ranger() {
 }
 
 alias psg="ps -ef | grep"
-
-# bat
-export BAT_THEME="Monokai Extended"

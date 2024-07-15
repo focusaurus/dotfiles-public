@@ -14,6 +14,8 @@ setup-path() {
   # Normal system stuff comes early for security
   # So npm packages can't override basic commands like ls
   add-path "${HOME}/bin"
+  # best to have go tools from projects before homebrew
+  add-path "${HOME}/go/bin"
 
   # Allow GNU binaries to take precedent on macos
   # See https://apple.stackexchange.com/questions/69223/how-to-replace-mac-os-x-utilities-with-gnu-core-utilities#69332
@@ -32,7 +34,6 @@ setup-path() {
   add-path "${HOME}/.n/bin"
   add-path "${HOME}/.cargo/bin"
   add-path "${HOME}/.luarocks/bin"
-  add-path "${HOME}/go/bin"
   add-path "/usr/local/bin"
   add-path "/bin"
   add-path "/usr/bin"

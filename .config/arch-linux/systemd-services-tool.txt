@@ -18,6 +18,7 @@ reboot.target
 remote-cryptsetup.target
 remote-fs.target
 systemd-boot-update.service
+systemd-confext.service
 systemd-homed.service
 systemd-journald-audit.socket
 systemd-networkd.service
@@ -26,6 +27,7 @@ systemd-network-generator.service
 systemd-pstore.service
 systemd-remount-fs.service
 systemd-resolved.service
+systemd-sysext.service
 systemd-timesyncd.service
 systemd-userdbd.socket
 tlp.service

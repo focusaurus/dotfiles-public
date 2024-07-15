@@ -11,13 +11,14 @@ set -o pipefail # don't ignore exit codes when piping output
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-
-git fetch --quiet --all
-git remote | {
-  while IFS= read -r remote; do
-    git remote prune "${remote}"
-  done
-}
+if [[ -n $(git remote) ]]; then
+  git fetch --quiet --all
+  git remote | {
+    while IFS= read -r remote; do
+      git remote prune "${remote}"
+    done
+  }
+fi
 working_branch=$(git rev-parse --abbrev-ref HEAD)
 
 # macos/linux compatibility
@@ -27,6 +28,6 @@ if [[ -x "${gxargs_path}" ]]; then
 fi
 
 git branch --format '%(refname:short)' --merged |
-  grep -Ev "$(~/bin/git-get-default-branch)" |
+  grep -Ev "^$(~/bin/git-get-default-branch)\$" |
   grep -Ev "^${working_branch}\$" |
   xargs --no-run-if-empty git branch --delete

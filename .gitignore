@@ -1,4 +1,5 @@
 !/.config/Code/User
+/.paste-queue
 .bun/install/cache
 .bun_repl_history
 .cinnamon/configs
@@ -256,6 +257,7 @@
 /exocortex
 /f22
 /f23
+/float-health
 /git.peterlyons.com
 /github
 /github.com
@@ -288,3 +290,5 @@ login_1689539373.hcl
 .mysql_history
 .zsh_history
 f24
+.config/copyq/copyq-monitor.ini
+.gervill

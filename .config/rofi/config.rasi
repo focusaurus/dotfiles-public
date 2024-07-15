@@ -1,5 +1,5 @@
 configuration {
-	font: "JetBrains Mono 16";
+	font: "Hack 14";
 	sort: true;
 	matching: "fuzzy";
 }

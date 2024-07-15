@@ -30,6 +30,7 @@ vim.opt.confirm = true
 vim.opt.hidden = true
 
 vim.opt.completeopt = {'menuone', 'noinsert', 'noselect'}
-vim.cmd 'colorscheme monokai'
--- vim.cmd 'colorscheme github_*'
+-- vim.cmd 'colorscheme monokai'
+-- vim.cmd 'colorscheme delek'
 -- vim.cmd 'colorscheme slate'
+vim.cmd 'colorscheme bluloco-light'
