@@ -12,10 +12,12 @@ set -u          # error on reference to unknown variable
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
+
 defaultBranch="main"
-echo "default branch: ${defaultBranch}"
+# echo "default branch: ${defaultBranch}"
 # defaultBranch=$(~/bin/git-get-default-branch)
 # git checkout -q "${defaultBranch}"
+out=$(mktemp "/tmp/git-cleanup-squashed-XXX")
 git for-each-ref refs/heads/ "--format=%(refname:short)" | {
   while IFS= read -r branch; do
     if [[ "${branch}" == "${defaultBranch}" ]]; then
@@ -31,7 +33,7 @@ git for-each-ref refs/heads/ "--format=%(refname:short)" | {
     cherry=$(git cherry "${defaultBranch}" "${treeHash}")
     # echo -e "\tcherry: ${cherry}"
     if [[ "${cherry}" == "-"* ]]; then
-      echo -e "DELETE:\t${branch}"
+      echo "git branch --delete --force ${branch}" >>"${out}"
     else
       echo -e "keep:\t${branch}"
     fi
@@ -43,19 +45,22 @@ git for-each-ref refs/heads/ "--format=%(refname:short)" | {
     # fi
   done
 }
+echo "Script to delete squashed branches is: ${out}"
+cat "${out}"
+echo "source ${out}"
 cat <<'EOF' >/dev/null
 git config --global alias.delete-squashed '!f() {
 
-local targetBranch=${1:-master} 
-git checkout -q $targetBranch 
-&& git branch --merged | grep -v "\*" | xargs -n 1 git branch -d 
-&& git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do mergeBase=$(git merge-base $targetBranch $branch) 
-&& [[ $(git cherry $targetBranch $(git commit-tree $(git rev-parse $branch^{tree}) -p $mergeBase -m _)) == "-"* ]] 
-&& git branch -D $branch; done; 
+local targetBranch=${1:-master}
+git checkout -q $targetBranch
+&& git branch --merged | grep -v "\*" | xargs -n 1 git branch -d
+&& git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do mergeBase=$(git merge-base $targetBranch $branch)
+&& [[ $(git cherry $targetBranch $(git commit-tree $(git rev-parse $branch^{tree}) -p $mergeBase -m _)) == "-"* ]]
+&& git branch -D $branch; done;
 
 }; f'
 
 
-git checkout -q master && git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do mergeBase=$(git merge-base master $branch) 
+git checkout -q master && git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do mergeBase=$(git merge-base master $branch)
 && [[ $(git cherry master $(git commit-tree $(git rev-parse "$branch^{tree}") -p $mergeBase -m _)) == "-"* ]] && echo "$branch is merged into master and can be deleted"; done
 EOF

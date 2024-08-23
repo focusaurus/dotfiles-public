@@ -12,6 +12,9 @@ export HIST_REDUCE_BLANKS
 export INC_APPEND_HISTORY="1"
 export SAVEHIST="10000"
 export SHARE_HISTORY="1"
+# https://unix.stackexchange.com/questions/174630/keep-the-space-after-completion-for-some-characters-in-zsh
+export ZLE_SPACE_SUFFIX_CHARS=$'|&'
+
 
 setopt autopushd pushdignoredups pushdsilent histignorealldups
 
