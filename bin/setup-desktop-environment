@@ -89,7 +89,10 @@ main() {
   ~/bin/log "$0" xset
   # screen lock
   hour=3600
-  xset s $((hour / 2)) $((hour / 2))
+  # half hour
+  # xset s $((hour / 2)) $((hour / 2))
+  # four hours
+  xset s $((hour * 4)) $((hour ))
   # screen standby, suspend, power off
   xset dpms $((1 * hour)) $((2 * hour)) $((3 * hour))
 
