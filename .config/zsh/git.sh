@@ -28,6 +28,7 @@ alias gPgm='git push github main'
 alias gf='git fetch --all'
 alias gbd='git branch -d'
 alias gsf='git-switch-fuzzy'
+alias gsprf="git-switch-pull-request-fuzzy"
 # alias gbl='git branch -a|less'
 alias gc='git commit'
 alias glone='git clone'
@@ -200,7 +201,7 @@ gmdown() {
 gdrb() {
   local branch=$1
   local remote
-  remote=$(git remote -v | grep push | awk '{print $1}' | fuzzy-filter "$2")
+  remote=$(git remote -v | grep push | awk '{print $1}' | ~/bin/fuzzy-filter "$2")
   echo -n "Deleting ${branch} from ${remote}. ENTER to do it. CTRL-c to abort."
   # shellcheck disable=SC2034
   read -r confirm
@@ -304,14 +305,14 @@ git-ztrash() {
   # "z" prefix pushes it to the bottom of sorted listings
   local name
   name="$1"
-  name=$(git branch | awk '{print $NF}' | grep -v 'ztrash' | fuzzy-filter "$@")
+  name=$(git branch | awk '{print $NF}' | grep -v 'ztrash' | ~/bin/fuzzy-filter "$@")
   [[ -z "${name}" ]] && return
   git branch -m "${name}" "ztrash-${name}"
 }
 
 git-diff-side-by-side() {
   local file
-  file=$(git ls-files -m | fuzzy-filter "$@")
+  file=$(git ls-files -m | ~/bin/fuzzy-filter "$@")
   [[ -z "${file}" ]] && return
   git show "HEAD:${file}" | icdiff /dev/stdin "${file}" | less -R
 }
@@ -334,7 +335,7 @@ git-get-repos() {
 git-checkout() {
   git fetch --quiet --all
   local name="$1"
-  name=$(git branch -a | grep -Ev '\*' | sed 's,remotes/.*/,,' | tr -d " " | fuzzy-filter "${name}")
+  name=$(git branch -a | grep -Ev '\*' | sed 's,remotes/.*/,,' | tr -d " " | ~/bin/fuzzy-filter "${name}")
   [[ -z "${name}" ]] && return
   local first_origin
   first_origin=$(git remote | head -1)
@@ -347,10 +348,23 @@ git-switch-fuzzy() {
   name=$(git branch |
     grep -Ev '\*' |
     sed 's/^[ 	]*//' |
-    fuzzy-filter "${name}")
+    ~/bin/fuzzy-filter "${name}")
   [[ -z "${name}" ]] && return
   # echo Bgit switch "${name}"E
   git switch "${name}"
+}
+
+git-switch-pull-request-fuzzy() {
+  local name="$1"
+  git fetch
+  local rbranch
+  rbranch=$(git branch --list --all |
+    ~/bin/fuzzy-filter "${name}")
+  [[ -z "${rbranch}" ]] && return
+  rbranch=$(echo "${rbranch}" | cut -d / -f 2-)
+  local lbranch
+  lbranch=$(echo "${rbranch}" | cut -d / -f 3-)
+  git switch --create "${lbranch}" "${rbranch}"
 }
 
 git-repo-path() {
