@@ -145,7 +145,8 @@ setup-prompt() {
 set -o vi
 
 ##### completion #####
-fpath=(~/.config/zsh/completions $fpath)
+fpath=(~/.config/zsh/completions "${BREW_PREFIX}/share/zsh-completions" $fpath)
+
 autoload -Uz compinit && compinit
 #autoload -Uz compinstall && compinstall
 
@@ -164,6 +165,8 @@ bindkey ";5D" backward-word
 bindkey "^S" kill-word
 # ctrl+backspace: delete word before
 bindkey '^H' backward-kill-word
+
+bindkey '^Y' vi-put-before
 
 set-terminal-title() {
  echo -n -e "\033]0;$@\007"
