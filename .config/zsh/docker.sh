@@ -148,7 +148,7 @@ drun() {
   if [[ $# -eq 0 ]]; then
     command=(sh -c 'bash || sh')
   fi
-  docker run --rm --interactive --tty --volume "${PWD}:/host" --workdir=/host "${command[@]}"
+  docker run --platform=linux/amd64 --rm --interactive --tty --volume "${PWD}:/host" --workdir=/host "${command[@]}"
 }
 
 dcrun() {
