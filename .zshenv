@@ -61,6 +61,7 @@ if ~/bin/have-exe luarocks; then
 fi
 
 export PAGER=less
+export BREW_PREFIX="/opt/homebrew"
 # if ~/bin/have-exe bat; then
 #   export PAGER="bat --paging=always"
 # fi
