@@ -34,17 +34,18 @@
     "workbench.colorTheme": "Default Light Modern",
     "diffEditor.ignoreTrimWhitespace": false,
     "github.copilot.enable": {
-        "*": true,
+        "*": false,
         "plaintext": false,
         "markdown": false,
-        "scminput": false
+        "scminput": false,
+        "go": true
     },
     "[typescript]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"
     },
     "files.autoSave": "onFocusChange",
     "[javascript]": {
-        "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[json]": {
         "editor.defaultFormatter": "vscode.json-language-features"
@@ -52,5 +53,17 @@
     "diffEditor.renderSideBySide": false,
     "editor.occurrencesHighlight": "off",
     "editor.autoClosingQuotes": "never",
-    "github.copilot.editor.enableAutoCompletions": true,
+    "[vue]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "editor.tabSize": 2,
+    "Prettier-SQL.ignoreTabSettings": true,
+    "eslint.workingDirectories": [
+        "./scripts",
+        "./web"
+    ],
+    "workbench.editor.enablePreview": false,
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
 }
