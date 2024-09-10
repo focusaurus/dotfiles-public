@@ -20,9 +20,19 @@ log() {
 
 ~/bin/log "$0" PATH "$PATH"
 ~/bin/log "$0" "$(which choose)"
+
+list_tasks() {
+  if [[ -e "${hist_path}" ]]; then
+    tail -100 "${hist_path}" | uniq | tail -5 | tac
+    echo -----
+  fi
+  ls "${task_dir}"
+}
+
 cd "$(dirname "${BASH_SOURCE[0]}")"
 PATH="/usr/local/bin:${PATH}"
 task_dir="${1:-${HOME}/git.peterlyons.com/dotfiles/fuzzball}"
+hist_path="${task_dir}/.history"
 
 # Presume running from desktop environment hotkey, use GUI
 # linux: rofi
@@ -36,6 +46,7 @@ if [[ -t 1 && -z "${GUI}" ]]; then
   chooser=(fzf --color=bw --layout=reverse)
 fi
 # shellcheck disable=SC2012
-task=$(ls "${task_dir}" | "${chooser[@]}")
+task=$(list_tasks | "${chooser[@]}")
 ~/bin/log "$0" "selected ${task} from" "${chooser[@]}"
+echo "${task}" >> "${hist_path}"
 exec ./fuzz-script-exec "${task_dir}" "${task}"
