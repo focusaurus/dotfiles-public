@@ -27,7 +27,7 @@ status|s)
   else
     echo off
   fi
-  protonvpn status
+  # protonvpn status
   ;;
 *)
   echo "Usage: $0 {connect|disconnect|status}"
