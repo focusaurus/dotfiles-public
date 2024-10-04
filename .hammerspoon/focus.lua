@@ -304,7 +304,8 @@ end
 
 function module.terminal()
   log.d("terminal")
-  hs.application.launchOrFocus("kitty")
+  -- hs.application.launchOrFocus("kitty")
+  hs.application.launchOrFocus("Terminal")
 end
 
 function module.terminalQuick()
@@ -542,7 +543,7 @@ local function listWindowChoices()
         text = w:title() .. "--" .. w:application():name(),
         subText = w:application():name(),
         uuid = i,
-        image = hs.image.imageFromAppBundle(w:application():bundleID()),
+        image = hs.image.imageFromAppBundle(w:application():bundleID() or ""),
         win = w,
       })
     end
