@@ -16,7 +16,7 @@ local cliToApp = {
     postman = "Postman",
     meet = "Google Meet",
     obsidian = "Obsidian",
-    terminal = "Alacritty",
+    terminal = "Kitty",
     vial = "Vial",
     vscode = "Visual Studio Code",
     activitymonitor = "Activity Monitor",
@@ -173,7 +173,10 @@ function module.gofiByTitle()
     -- TODO
 end
 
-module.gofi = module.gofiByTitle
+function module.gofiInTerminal()
+    hs.application.launchOrFocus("Terminal")
+end
+module.gofi = module.gofiInTerminal
 module.leader = module.gofi
 
 -- I have had many implementations of this.
@@ -240,7 +243,7 @@ end
 -- So I keep the function names in the module describing
 -- the specific implementation approach, but in the module's
 -- external API, alias it as just the intent.
-module.calendar = module.calendarByTitleCache
+-- module.calendar = module.calendarByTitleCache
 
 -- filterMusic = hs.window.filter.new():setAppFilter(browserName,{allowTitles="YouTube Music"})
 local windowMusic

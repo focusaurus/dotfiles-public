@@ -14,6 +14,7 @@ onepassword key="p" "focus" "onepassword"
 slack key="s" "focus" "slack"
 terminal key="t" "focus" "terminal"
 // executables key="x" "rofi" "-show" "run"
+windows key="w" "focus" "showWindowChooser"
 zoom key="z" "focus" "zoom"
 // zulip key="Z" "focus" "zulip"
 applications key="a" {

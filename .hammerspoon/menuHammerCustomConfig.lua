@@ -174,7 +174,7 @@ menuHammerMenuList = {
     ------------------------------------------------------------------------------------------------
     [mainMenu] = {
         parentMenu = nil,
-        menuHotkey = {{}, 'F10'},
+        -- menuHotkey = {{}, 'F10'},
         menuItems = {
             {cons.cat.submenu, 'shift', '/', 'Help', { {cons.act.menu, helpMenu} }},
             {cons.cat.submenu, '', 'a', 'Applications', { {cons.act.menu, applicationMenu} }},
