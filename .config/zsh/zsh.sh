@@ -31,6 +31,10 @@ alias -g /x='| xargs'
 alias -g /bd='!$'
 alias -g /g='| grep'
 alias -g /gv='| grep -v'
+if ~/bin/have-exe rg; then
+  alias -g /g='| rg'
+  alias -g /gv='| rg -v'
+fi
 alias -g /w='| wc -l'
 
 # alias -g devlog='json -g -a -0 -e "delete this.v; delete this.hostname;delete this.level; delete this.pid; delete this.name"'
