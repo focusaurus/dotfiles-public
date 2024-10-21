@@ -1,0 +1,11 @@
+live_config_reload = true
+
+[keyboard]
+bindings = [
+  { key = "Tab", mods = "Control", action = "SelectNextTab" },
+  { key = "Tab", mods = "Control|Shift", action = "SelectPreviousTab" },
+]
+
+[font]
+normal = { family = "Hack Nerd Font" }
+size = 14
