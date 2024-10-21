@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+PATH="${HOME}/.config/prettier/node_modules/.bin:${PATH}"
+prettier --plugin=prettier-plugin-toml "$@"
