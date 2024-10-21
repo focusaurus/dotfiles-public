@@ -11,5 +11,8 @@ set -o pipefail # don't ignore exit codes when piping output
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-
-pactl set-sink-volume @DEFAULT_SINK@ "$@"
+if [[ "$(uname)" == "Darwin" ]]; then
+  echo "require('sound').setVolume($*)" | hs
+else
+  pactl set-sink-volume @DEFAULT_SINK@ "$@"
+fi
