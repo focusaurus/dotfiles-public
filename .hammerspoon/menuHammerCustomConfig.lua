@@ -174,7 +174,7 @@ menuHammerMenuList = {
     ------------------------------------------------------------------------------------------------
     [mainMenu] = {
         parentMenu = nil,
-        menuHotkey = {{}, 'F10'},
+        -- menuHotkey = {{}, 'F10'},
         menuItems = {
             {cons.cat.submenu, 'shift', '/', 'Help', { {cons.act.menu, helpMenu} }},
             {cons.cat.submenu, '', 'a', 'Applications', { {cons.act.menu, applicationMenu} }},
@@ -182,19 +182,13 @@ menuHammerMenuList = {
             {cons.cat.action, '', 'e', 'email', { {cons.act.func, focus.email} }},
             {cons.cat.submenu, '', 'j', 'Journal', { {cons.act.menu, journalMenu} }},
             {cons.cat.action, '', 'c', 'Calendar', { {cons.act.func, focus.calendar} }},
-            -- {cons.cat.action, '', 'd', 'Sequel Ace', { {cons.act.launcher, 'Sequel Ace'} }},
             {cons.cat.action, '', 'd', 'TablePlus', { {cons.act.launcher, 'TablePlus'} }},
-            -- {cons.cat.action, '', 'd', 'DBeaver', { {cons.act.launcher, 'DBeaver'} }},
             {cons.cat.action, '', 'o', 'Obsidian', { {cons.act.launcher, 'Obsidian'} }},
             {cons.cat.submenu, '', 'h', 'Hammerspoon', { {cons.act.menu, hammerspoonMenu} }},
-            -- {cons.cat.submenu, '', 'm', 'Media Controls', { {cons.act.menu, mediaMenu} }},
-            -- {cons.cat.submenu, '', 'g', 'Toggles', { {cons.act.menu, toggleMenu} }},
             {cons.cat.submenu, '', '/', 'Scripts', { {cons.act.menu, scriptsMenu} }},
             {cons.cat.action, '', 'space', 'Spotlight', { {cons.act.keycombo, {'cmd', 'shift'}, 'space'} }},
-            -- {cons.cat.action, '', 'x', 'Firefox', { {cons.act.launcher, 'Firefox'} }},
             {cons.cat.action, '', 'y', 'Cycle Windows', { {cons.act.func, focus.cycleWindows} }},
             {cons.cat.action, '', 'f', 'Fuzzball', { {cons.act.func, fuzzball.chooseScript } }},
-            -- {cons.cat.action, '', 'l', 'Left (App Nav)', { {cons.act.func, appNav.left } }},
             {cons.cat.action, '', 'l', 'Layout (placement)', { {cons.act.menu, layoutMenu } }},
             {cons.cat.action, '', 'r', 'Right (App Nav)', { {cons.act.func, appNav.right } }},
             {cons.cat.action, '', 'm', 'Music', { {cons.act.func, focus.music } }},

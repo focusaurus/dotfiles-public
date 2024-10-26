@@ -1,0 +1,15 @@
+{
+  "name": "prettier-focusaurus",
+  "version": "1.0.0",
+  "description": "General prettier config for CLI usage on arbitrary files not necessarily part of a project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Peter Lyons <pete@peterlyons.com> (https://peterlyons.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "prettier": "3.3.3",
+    "prettier-plugin-toml": "2.0.1"
+  }
+}

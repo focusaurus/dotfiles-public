@@ -3,7 +3,7 @@ local log = hs.logger.new("app-nav", "debug")
 local hbin = os.getenv("HOME") .. "/bin"
 
 local function useTabNav(appName)
-  return appName == "Google Chrome" or appName == "Firefox" or appName == "Obsidian"
+  return appName == "Google Chrome" or appName == "Firefox" or appName == "Obsidian" or appName == "Alacritty"
 end
 
 local function isTerminal(appName)
@@ -11,9 +11,8 @@ local function isTerminal(appName)
 end
 
 function module.left()
-  log.d("app-nav left")
   local name = hs.application.frontmostApplication():name()
-  log.d("app name: " .. name)
+  log.d("app nav left. app name: " .. name)
   if name == "kitty" then
     hs.eventtap.keyStroke({ "command" }, "t")
     hs.eventtap.keyStroke({}, "p")
@@ -30,9 +29,9 @@ end
 -- app nav "down" should switch window in the same application,
 -- or something analogous that feels mentally similar
 function module.down()
-  log.d("app-nav down")
   -- This should switch windows in the same app, or something analogous
   local name = hs.application.frontmostApplication():name()
+  log.d("app-nav down. app name: " .. name)
   if name == "kitty" then
     -- hs.eventtap.keyStroke({ "shift", "control" }, "]")
     hs.eventtap.keyStroke({ "command", "shift" }, "w")
@@ -56,8 +55,8 @@ end
 -- app nav "up" should cycle through splits or tabs within the same window
 -- or something that feels mentally similar
 function module.up()
-  log.d("app-nav up")
   local name = hs.application.frontmostApplication():name()
+  log.d("app-nav up. app name: " .. name)
   if name == "kitty" then
     -- focus.previousWindow()
     hs.eventtap.keyStroke({ "shift", "control" }, "[")
@@ -72,8 +71,8 @@ function module.up()
 end
 
 function module.right()
-  log.d("app-nav right")
   local name = hs.application.frontmostApplication():name()
+  log.d("app-nav right. app name: " .. name)
   if name == "kitty" then
     hs.eventtap.keyStroke({ "command" }, "t")
     hs.eventtap.keyStroke({}, "n")

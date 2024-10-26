@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+sqlfluff format --dialect mysql -
