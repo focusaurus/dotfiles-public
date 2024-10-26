@@ -18,6 +18,7 @@ zoom key="z" "focus" "zoom"
 zulip key="Z" "focus" "zulip"
 applications key="a" {
   calculator key="a" "focus" "calculator"
+  bambu-studio key="b" "focus" "bambustudio"
   freecad key="f" "focus" "freecad"
   gedit key="g" "focus" "gedit"
   discord key="d" "focus" "discord"

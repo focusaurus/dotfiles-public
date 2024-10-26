@@ -284,9 +284,13 @@ function module.kitty()
   if not by_class('kitty') then run({'kitty', '--title', 'terminal-kitty'}) end
 end
 
-module.terminal = module.kitty -- alias for preferred terminal app
+function module.alacritty()
+  if not by_class('Alacritty') then run({'alacritty'}) end
+end
 
-function module.slack() if not by_class('slack') then run('slack') end end
+module.terminal = module.alacritty -- alias for preferred terminal app
+
+function module.slack() if not by_class('Slack') then run('slack') end end
 
 function module.gedit() if not by_class('gedit') then run('gedit') end end
 
@@ -325,6 +329,10 @@ end
 
 function module.prusa()
   if not by_class('PrusaSlicer') then run('/bin/prusa-slicer') end
+end
+
+function module.bambustudio()
+  if not by_class('BambuStudio') then run('/bin/bambu-studio') end
 end
 
 function module.calculator()

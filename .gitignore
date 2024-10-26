@@ -292,3 +292,7 @@ login_1689539373.hcl
 f24
 .config/copyq/copyq-monitor.ini
 .gervill
+.config/BambuStudio/log
+.config/BambuStudio/ota/BBL
+.config/BambuStudio/ota
+.config/BambuStudio
