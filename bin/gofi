@@ -11,18 +11,22 @@ set -o pipefail # don't ignore exit codes when piping output
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-declare -a opts=(
-  --start-as normal
-  --config ~/.config/kitty/kitty.conf
-  --config ~/.config/kitty/gofi.conf
-  --session ~/.config/kitty/gofi.session
-)
+if [[ "$(uname)" == "Darwin" ]]; then
+  ~/git.peterlyons.com/gofi/gofi -hook "${HOME}/bin/hide-application Terminal" ~/.config/gofi/darwin.kdl
+else
+  declare -a opts=(
+    --start-as normal
+    --config ~/.config/kitty/kitty.conf
+    --config ~/.config/kitty/gofi.conf
+    --session ~/.config/kitty/gofi.session
+  )
 
-if [[ $(uname) == "Linux" ]]; then
-  opts=("${opts[@]}"  --class gofi)
-  if pgrep --exact picom >/dev/null; then
-    opts=("${opts[@]}" --override 'background_opacity=0.4')
+  if [[ $(uname) == "Linux" ]]; then
+    opts=("${opts[@]}" --class gofi)
+    if pgrep --exact picom >/dev/null; then
+      opts=("${opts[@]}" --override 'background_opacity=0.4')
+    fi
   fi
-fi
 
-kitty "${opts[@]}"
+  kitty "${opts[@]}"
+fi

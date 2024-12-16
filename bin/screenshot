@@ -26,14 +26,18 @@ elif [[ "$(uname)" == "Darwin" ]]; then
 fi
 dest="${HOME}/screens"
 mkdir -p "${dest}"
-
 declare -a args
 if [[ "$1" == "delay" ]]; then
   # Use this branch for getting pointer/hover stuff
   args+=(full -d 4000)
+  shift
 else
   # Use this branch for specific area, no pointer
   args+=(gui)
 fi
-# args+=(-p "${dest}")
+suffix="$1"
+timestamp=$(date '+%Y-%m-%d-%H%M%S')
+out="${dest}/screen-${timestamp}-${suffix}.png"
+args+=(--path "${out}")
 flameshot "${args[@]}"
+echo "${out}"

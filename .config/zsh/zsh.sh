@@ -16,7 +16,7 @@ export SHARE_HISTORY="1"
 export ZLE_SPACE_SUFFIX_CHARS=$'|&'
 
 
-setopt autopushd pushdignoredups pushdsilent histignorealldups
+setopt autopushd pushdignoredups pushdsilent histignorealldups histignorespace
 
 export TZ="America/New_York"
 tt() {

@@ -11,7 +11,8 @@ set -o pipefail # don't ignore exit codes when piping output
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 if [[ "$(uname)" == "Darwin" ]]; then
-  "/System/Library/CoreServices/Menu Extras/User.menu/Contents/Resources/CGSession" -suspend
+  osascript -e 'tell application "System Events" to keystroke "q" using {command down,control down}'
+  # "/System/Library/CoreServices/Menu Extras/User.menu/Contents/Resources/CGSession" -suspend
   exit
 fi
 

@@ -15,6 +15,7 @@ alias ga='git add'
 # alias gassumed='!git ls-files -v | grep ^h | cut -c 3-'
 alias gb='git branch'
 alias gba='git branch -a'
+alias gbD='git branch -D'
 alias gri='git rebase -i'
 alias gfom='git fetch origin main'
 alias griom='git rebase -i origin/main'
@@ -28,7 +29,7 @@ alias gPgm='git push github main'
 alias gf='git fetch --all'
 alias gbd='git branch -d'
 alias gsf='git-switch-fuzzy'
-alias gsprf="git-switch-pull-request-fuzzy"
+alias gcprf="git-checkout-pull-request-fuzzy"
 # alias gbl='git branch -a|less'
 alias gc='git commit'
 alias glone='git clone'
@@ -354,7 +355,7 @@ git-switch-fuzzy() {
   git switch "${name}"
 }
 
-git-switch-pull-request-fuzzy() {
+git-checkout-pull-request-fuzzy() {
   local name="$1"
   git fetch
   local rbranch
@@ -362,9 +363,8 @@ git-switch-pull-request-fuzzy() {
     ~/bin/fuzzy-filter "${name}")
   [[ -z "${rbranch}" ]] && return
   rbranch=$(echo "${rbranch}" | cut -d / -f 2-)
-  local lbranch
-  lbranch=$(echo "${rbranch}" | cut -d / -f 3-)
-  git switch --create "${lbranch}" "${rbranch}"
+  echo git checkout "${rbranch}"
+  git checkout "${rbranch}"
 }
 
 git-repo-path() {

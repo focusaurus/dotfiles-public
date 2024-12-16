@@ -92,7 +92,7 @@ npm-updates() {
 # shell function with the real one
 nvm() {
   export NVM_DIR="${HOME}/.nvm"
-  for nvmsh in "/usr/share/nvm/nvm.sh" "/usr/local/opt/nvm/nvm.sh"; do
+  for nvmsh in "/opt/homebrew/opt/nvm/nvm.sh" "/usr/share/nvm/nvm.sh"; do
     if [[ -f "${nvmsh}" ]]; then
       # shellcheck disable=SC1090
       source "${nvmsh}"
