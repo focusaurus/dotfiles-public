@@ -1,11 +1,14 @@
+[general]
 live_config_reload = true
 
 [keyboard]
 bindings = [
   { key = "Tab", mods = "Control", action = "SelectNextTab" },
   { key = "Tab", mods = "Control|Shift", action = "SelectPreviousTab" },
+  { key = "v", mods = "Control", action = "Paste" },
+  { key = "t", mods = "Control", action = "CreateNewTab" },
 ]
 
 [font]
 normal = { family = "Hack Nerd Font" }
-size = 14
+size = 12
