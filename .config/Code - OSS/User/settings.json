@@ -66,4 +66,11 @@
     "extensions.experimental.affinity": {
         "asvetliakov.vscode-neovim": 1
     },
+    "chat.editing.alwaysSaveWithGeneratedChanges": true,
+    "files.associations": {
+        "Caddyfile": "caddyfile"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
 }

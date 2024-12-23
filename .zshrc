@@ -25,3 +25,5 @@ source-if-exists "${BREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.z
 source-if-exists "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 # 1password
 source-if-exists ~/.opam/opam-init/init.zsh
+
+[[ -s "/Users/plyons/.gvm/scripts/gvm" ]] && source "/Users/plyons/.gvm/scripts/gvm"

@@ -1,0 +1,59 @@
+[global]
+
+[player]
+initial_volume = 50
+dbus = true
+volume_slider = true
+shuffle = false
+
+[player.gauge_paused_style]
+fg = "Yellow"
+bg = "Black"
+add_modifier = ""
+sub_modifier = ""
+
+[player.gauge_playing_style]
+fg = "Green"
+bg = "Black"
+add_modifier = ""
+sub_modifier = ""
+
+[player.gauge_nomusic_style]
+fg = "White"
+bg = "Black"
+add_modifier = ""
+sub_modifier = ""
+
+[player.text_paused_style]
+fg = "Yellow"
+bg = "Black"
+add_modifier = ""
+sub_modifier = ""
+
+[player.text_playing_style]
+fg = "Green"
+bg = "Black"
+add_modifier = ""
+sub_modifier = ""
+
+[player.text_next_style]
+fg = "White"
+bg = "Black"
+add_modifier = ""
+sub_modifier = ""
+
+[player.text_previous_style]
+fg = "White"
+bg = "Black"
+add_modifier = ""
+sub_modifier = ""
+
+[player.text_downloading_style]
+fg = "Blue"
+bg = "Black"
+add_modifier = ""
+sub_modifier = ""
+
+[playlist]
+
+[search]

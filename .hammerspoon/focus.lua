@@ -6,22 +6,22 @@ local browserName = "Firefox"
 
 -- this handles all the straightforward launchOrFocus apps
 local cliToApp = {
+    activitymonitor = "Activity Monitor",
     calculator = "Calculator",
     calendar = "Google Calendar",
     chrome = "Google Chrome",
     chromium = "Chromium",
-    tableplus = "TablePlus",
+    console = "Console",
     firefox = "Firefox",
-    insomnia = "Insomnia",
-    postman = "Postman",
     meet = "Google Meet",
     obsidian = "Obsidian",
-    terminal = "Kitty",
+    onepassword = "1Password",
+    postman = "Postman",
+    systeminformation = "System Information",
+    tableplus = "TablePlus",
+    terminal = "Alacritty",
     vial = "Vial",
     vscode = "Visual Studio Code",
-    activitymonitor = "Activity Monitor",
-    console = "Console",
-    systeminformation = "System Information",
 }
 
 for cli, app in pairs(cliToApp) do

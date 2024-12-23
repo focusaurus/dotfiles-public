@@ -25,6 +25,8 @@
 .config/toot/config.json
 .config/vivaldi
 .config/vivaldi-snapshot
+.config/zed/embeddings
+.config/zed/prompts
 .config/zoom.conf
 .gnome
 .newsboat/cache.db.lock
@@ -293,3 +295,4 @@ f24
 .config/copyq/copyq-monitor.ini
 .gervill
 .config/BambuStudio
+.config/raycast/extensions

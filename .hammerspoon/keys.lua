@@ -27,7 +27,7 @@ hs.hotkey.bind(me2, "down", placement.cycle)
 hs.hotkey.bind(hyper_pl, ".", placement.cycle)
 
 -- fuzzy prompts
-hs.hotkey.bind({}, "F10", focus.leader)
+-- hs.hotkey.bind({}, "F10", focus.leader)
 hs.hotkey.bind({}, "F11", fuzzball.chooseScript)
 hs.hotkey.bind({ "command" }, "space", fuzzball.chooseScript)
 hs.hotkey.bind({ "control" }, "2", fuzzball.chooseScript)

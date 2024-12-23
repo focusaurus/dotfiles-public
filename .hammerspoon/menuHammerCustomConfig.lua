@@ -174,7 +174,7 @@ menuHammerMenuList = {
     ------------------------------------------------------------------------------------------------
     [mainMenu] = {
         parentMenu = nil,
-        -- menuHotkey = {{}, 'F10'},
+        menuHotkey = {{}, 'F10'},
         menuItems = {
             {cons.cat.submenu, 'shift', '/', 'Help', { {cons.act.menu, helpMenu} }},
             {cons.cat.submenu, '', 'a', 'Applications', { {cons.act.menu, applicationMenu} }},
@@ -196,7 +196,8 @@ menuHammerMenuList = {
             {cons.cat.action, '', 'p', '1Password', { {cons.act.launcher, '1Password'} }},
             {cons.cat.action, '', 't', 'terminal', { {cons.act.func, focus.terminal} }},
             {cons.cat.action, '', 'g', 'Google Meet & Notes', { {cons.act.func, placement.googleMeet} }},
-            {cons.cat.action, '', 'z', 'Zoom', { {cons.act.launcher, 'zoom.us'} }},
+            -- {cons.cat.action, '', 'z', 'Zoom', { {cons.act.launcher, 'zoom.us'} }},
+            {cons.cat.action, '', 'z', 'zed', { {cons.act.launcher, 'Zed'} }},
             {cons.cat.action, '', 'q', 'Terminal Quick', { {cons.act.func, focus.terminalQuick} }},
             {cons.cat.action, '', 'i', 'IDE  (VS Code)', { {cons.act.launcher, 'Visual Studio Code'} }},
             {cons.cat.submenu, '', 'v', 'Volume', { {cons.act.menu, volumeMenu} }},
