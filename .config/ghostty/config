@@ -19,3 +19,12 @@ keybind = command+t>8=goto_tab:8
 keybind = command+t>9=goto_tab:9
 keybind = command+t>t>h=move_tab:-1
 keybind = command+t>t>l=move_tab:1
+keybind = command+t>s>n=new_split:auto
+keybind = command+t>s>h=new_split:left
+keybind = command+t>s>j=new_split:down
+keybind = command+t>s>k=new_split:up
+keybind = command+t>s>l=new_split:right
+# keybind = command+t>g>h=goto_split:left
+# keybind = command+t>g>j=goto_split:down
+# keybind = command+t>g>k=goto_split:up
+keybind = command+t>g>l=goto_split:right
