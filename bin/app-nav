@@ -46,6 +46,23 @@ nav_vs_code() {
   esac
 }
 
+nav_ghostty() {
+  case "$1" in
+  left)
+    xdotool key --clearmodifiers 'ctrl+t' 'p'
+    ;;
+  up)
+    xdotool key --clearmodifiers 'ctrl+t'
+    ;;
+  right)
+    xdotool key --clearmodifiers 'ctrl+t' 'n'
+    ;;
+  down)
+    xdotool key --clearmodifiers 'ctrl+t'
+    ;;
+  esac
+}
+
 nav_kitty() {
   case "$1" in
   left)
@@ -85,6 +102,9 @@ main() {
     ;;
   *kitty*)
     nav_kitty "${direction}"
+    ;;
+  *ghostty*)
+    nav_ghostty "${direction}"
     ;;
   *termite* | *iTerm2* |  *Terminal*)
     ~/bin/nav-tmux "${direction}"

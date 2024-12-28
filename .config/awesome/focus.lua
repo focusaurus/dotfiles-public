@@ -284,11 +284,15 @@ function module.kitty()
   if not by_class('kitty') then run({'kitty', '--title', 'terminal-kitty'}) end
 end
 
+function module.ghostty()
+  if not by_class('ghostty') then run({'ghostty'}) end
+end
+
 function module.alacritty()
   if not by_class('Alacritty') then run({'alacritty'}) end
 end
 
-module.terminal = module.kitty -- alias for preferred terminal app
+module.terminal = module.ghostty -- alias for preferred terminal app
 
 function module.slack() if not by_class('Slack') then run('slack') end end
 
