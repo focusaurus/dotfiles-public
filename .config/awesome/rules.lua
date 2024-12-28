@@ -103,7 +103,7 @@ local nofi = {
 }
 
 local gofi = {
-  rule_any = {class = {'gofi'}},
+  rule_any = {name = {'gofi'}},
   properties = {
     tag = '4',
     placement = awful.placement.centered,

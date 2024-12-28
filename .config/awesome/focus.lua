@@ -157,7 +157,7 @@ function module.next_window() awful.client.focus.byidx(1) end
 function module.rofi() if not by_class('Rofi') then run(home_bin .. '/blezz') end end
 
 function module.nofi() if not by_class('nofi') then run(home_bin .. '/nofi') end end
-function module.gofi() if not by_class('gofi') then run(home_bin .. '/gofi') end end
+function module.gofi() if not by_class('org.wezfurlong.wezterm') then run(home_bin .. '/gofi-wezterm') end end
 
 function module.executables()
   run({'rofi', '-show', 'run', '-normal-window', '-no-steal-focus'})
@@ -284,9 +284,17 @@ function module.kitty()
   if not by_class('kitty') then run({'kitty', '--title', 'terminal-kitty'}) end
 end
 
-module.terminal = module.kitty -- alias for preferred terminal app
+function module.ghostty()
+  if not by_class('ghostty') then run({'ghostty'}) end
+end
 
-function module.slack() if not by_class('slack') then run('slack') end end
+function module.alacritty()
+  if not by_class('Alacritty') then run({'alacritty'}) end
+end
+
+module.terminal = module.ghostty -- alias for preferred terminal app
+
+function module.slack() if not by_class('Slack') then run('slack') end end
 
 function module.gedit() if not by_class('gedit') then run('gedit') end end
 
@@ -325,6 +333,10 @@ end
 
 function module.prusa()
   if not by_class('PrusaSlicer') then run('/bin/prusa-slicer') end
+end
+
+function module.bambustudio()
+  if not by_class('BambuStudio') then run('/bin/bambu-studio') end
 end
 
 function module.calculator()

@@ -18,9 +18,9 @@ export FZF_DEFAULT_OPTS='--bind=alt-enter:print-query'
 if [[ -n "${ZSH_VERSION}" ]]; then
   if [[ "$(uname)" == "Darwin" ]]; then
     source-if-exists "${BREW_PREFIX}/Cellar/fzf/*/shell/key-bindings.zsh"
-    source-if-exists "${BREW_PREFIX}/opt/fzf/shell/key-bindings.zsh"
+    # source-if-exists "${BREW_PREFIX}/opt/fzf/shell/key-bindings.zsh"
   fi
-  source-if-exists /usr/share/fzf/key-bindings.zsh
+  # source-if-exists /usr/share/fzf/key-bindings.zsh
   source-if-exists /usr/share/fzf/completion.zsh
 
   # fzf-cd-all-widget() {

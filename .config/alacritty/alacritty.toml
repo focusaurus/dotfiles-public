@@ -10,10 +10,15 @@ size = 14
 bindings = [
   { key = "Tab", mods = "Control", action = "SelectNextTab" },
   { key = "Tab", mods = "Control|Shift", action = "SelectPreviousTab" },
+  { key = "v", mods = "Control", action = "Paste" },
+  { key = "t", mods = "Control", action = "CreateNewTab" },
   # { key = "h", mods = "Control|Shift", action = "Hint" },
   #{ key = "Space", mods = "Shift", actian = "Leader" },
 ]
 
+[font]
+normal = { family = "Hack Nerd Font" }
+size = 14
 # [[hints.enabled]]
 # binding = { key = "u", mods = "Control|Shift"}
 # hyperlinks=true

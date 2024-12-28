@@ -6,10 +6,9 @@ arch-install-package() {
 }
 
 arch-search-packages() {
-  # yay -Ss "$@" | less
-  yup "$@"
+  yay "$@"
+  # yup "$@"
 }
-# TODO curl -s "https://get.sdkman.io" | bash
 
 arch-update-packages() {
   topgrade
