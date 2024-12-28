@@ -13,7 +13,11 @@ end
 function module.left()
   local name = hs.application.frontmostApplication():name()
   log.d("app nav left. app name: " .. name)
-  if name == "kitty" then
+  if name == "Ghostty" then
+    hs.eventtap.keyStroke({ "shift" }, "space")
+    hs.eventtap.keyStroke({}, "p")
+    log.d("ghostty app nav left keystroke")
+  elseif name == "kitty"  or name == "Ghostty" then
     hs.eventtap.keyStroke({ "command" }, "t")
     hs.eventtap.keyStroke({}, "p")
     log.d("kitty app nav left keystroke")
@@ -73,7 +77,11 @@ end
 function module.right()
   local name = hs.application.frontmostApplication():name()
   log.d("app-nav right. app name: " .. name)
-  if name == "kitty" then
+  if name == "Ghostty" then
+    hs.eventtap.keyStroke({ "shift" }, "space")
+    hs.eventtap.keyStroke({}, "n")
+    log.d("ghostty app nav right keystroke")
+  elseif name == "kitty" then
     hs.eventtap.keyStroke({ "command" }, "t")
     hs.eventtap.keyStroke({}, "n")
   elseif name == "Code" then

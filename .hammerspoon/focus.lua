@@ -19,7 +19,7 @@ local cliToApp = {
     postman = "Postman",
     systeminformation = "System Information",
     tableplus = "TablePlus",
-    terminal = "Alacritty",
+    terminal = "Ghostty",
     vial = "Vial",
     vscode = "Visual Studio Code",
 }

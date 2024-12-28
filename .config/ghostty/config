@@ -2,29 +2,30 @@ theme = Spring
 copy-on-select = clipboard
 # keybind = command+c=copy_to_clipboard
 keybind = command+v=paste_from_clipboard
-keybind = command+t>s>c=clear_screen
-keybind = command+t>w>n=new_window
-keybind = command+t>t>n=new_tab
-keybind = command+t>c>r=reload_config
-keybind = command+t>p=previous_tab
-keybind = command+t>n=next_tab
-keybind = command+t>1=goto_tab:1
-keybind = command+t>2=goto_tab:2
-keybind = command+t>3=goto_tab:3
-keybind = command+t>4=goto_tab:4
-keybind = command+t>5=goto_tab:5
-keybind = command+t>6=goto_tab:6
-keybind = command+t>7=goto_tab:7
-keybind = command+t>8=goto_tab:8
-keybind = command+t>9=goto_tab:9
-keybind = command+t>t>h=move_tab:-1
-keybind = command+t>t>l=move_tab:1
-keybind = command+t>s>n=new_split:auto
-keybind = command+t>s>h=new_split:left
-keybind = command+t>s>j=new_split:down
-keybind = command+t>s>k=new_split:up
-keybind = command+t>s>l=new_split:right
-# keybind = command+t>g>h=goto_split:left
-# keybind = command+t>g>j=goto_split:down
-# keybind = command+t>g>k=goto_split:up
-keybind = command+t>g>l=goto_split:right
+keybind = shift+space>s>c=clear_screen
+keybind = shift+space>w>n=new_window
+keybind = shift+space>t>n=new_tab
+keybind = shift+space>c>r=reload_config
+keybind = shift+space>p=previous_tab
+keybind = shift+space>n=next_tab
+keybind = shift+space>1=goto_tab:1
+keybind = shift+space>2=goto_tab:2
+keybind = shift+space>3=goto_tab:3
+keybind = shift+space>4=goto_tab:4
+keybind = shift+space>5=goto_tab:5
+keybind = shift+space>6=goto_tab:6
+keybind = shift+space>7=goto_tab:7
+keybind = shift+space>8=goto_tab:8
+keybind = shift+space>9=goto_tab:9
+keybind = shift+space>t>h=move_tab:-1
+keybind = shift+space>t>l=move_tab:1
+keybind = shift+space>s>n=new_split:auto
+keybind = shift+space>s>h=new_split:left
+keybind = shift+space>s>j=new_split:down
+keybind = shift+space>s>k=new_split:up
+keybind = shift+space>s>l=new_split:right
+keybind = shift+space>g>h=goto_split:left
+keybind = shift+space>g>j=goto_split:bottom
+keybind = shift+space>g>k=goto_split:top
+keybind = shift+space>g>l=goto_split:right
+keybind = shift+space>g>n=goto_split:next
