@@ -16,9 +16,6 @@ bindings = [
   #{ key = "Space", mods = "Shift", actian = "Leader" },
 ]
 
-[font]
-normal = { family = "Hack Nerd Font" }
-size = 14
 # [[hints.enabled]]
 # binding = { key = "u", mods = "Control|Shift"}
 # hyperlinks=true
