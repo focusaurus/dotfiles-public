@@ -14,6 +14,7 @@
 .config/glib-2.0/settings/keyfile
 .config/google-chrome-beta
 .config/google-chrome-unstable
+.config/ghostty/config
 .config/kicad
 .config/kitty/*.bak
 .config/menus

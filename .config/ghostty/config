@@ -1,7 +1,7 @@
 theme = Spring 
 copy-on-select = clipboard
-# keybind = command+c=copy_to_clipboard
-keybind = command+v=paste_from_clipboard
+# keybind = control+c=copy_to_clipboard
+keybind = control+v=paste_from_clipboard
 keybind = shift+space>s>c=clear_screen
 keybind = shift+space>w>n=new_window
 keybind = shift+space>t>n=new_tab
