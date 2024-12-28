@@ -1,0 +1,78 @@
+{
+  "config": {
+    "configuration": {
+      "proxy": "",
+      "codebase": "",
+      "serverEndpoint": "",
+      "customHeaders": {},
+      "debugVerbose": false,
+      "debugFilter": null,
+      "telemetryLevel": "all",
+      "autocomplete": false,
+      "autocompleteLanguages": {
+        "*": true
+      },
+      "chatPreInstruction": "",
+      "editPreInstruction": "",
+      "commandCodeLenses": false,
+      "autocompleteAdvancedProvider": "default",
+      "autocompleteCompleteSuggestWidgetSelection": true,
+      "autocompleteFormatOnAccept": false,
+      "autocompleteDisableInsideComments": false,
+      "codeActions": true,
+      "commandHints": true,
+      "internalUnstable": false,
+      "internalDebugContext": false,
+      "internalDebugState": false,
+      "autocompleteAdvancedModel": null,
+      "autocompleteExperimentalGraphContext": null,
+      "experimentalCommitMessage": true,
+      "experimentalNoodle": false,
+      "experimentalTracing": false,
+      "experimentalSupercompletions": false,
+      "autocompleteExperimentalOllamaOptions": {
+        "url": "http://localhost:11434",
+        "model": "codellama:7b-code"
+      },
+      "autocompleteExperimentalPreloadDebounceInterval": 0,
+      "isRunningInsideAgent": false,
+      "hasNativeWebview": true,
+      "agentHasPersistentStorage": false,
+      "autocompleteFirstCompletionTimeout": 3500
+    },
+    "clientState": {
+      "lastUsedEndpoint": "https://sourcegraph.com/",
+      "anonymousUserID": "e34a07ce-05b7-4d9a-8402-ddec290fbd3a",
+      "lastUsedChatModality": "sidebar",
+      "modelPreferences": {
+        "https://sourcegraph.com/": {
+          "defaults": {
+            "chat": "anthropic::2023-06-01::claude-3.5-sonnet",
+            "edit": "anthropic::2023-06-01::claude-3.5-sonnet",
+            "autocomplete": "fireworks::v1::deepseek-coder-v2-lite-base"
+          },
+          "selected": {}
+        }
+      },
+      "waitlist_o1": null
+    },
+    "auth": {
+      "accessToken": "sgp_636f79ad2075640f_6f5e49af3fd58233b641119e8ff071a92478d390",
+      "serverEndpoint": "https://sourcegraph.com/"
+    }
+  },
+  "authStatus": {
+    "id": "VXNlcjo2MzY3Mg==",
+    "hasVerifiedEmail": false,
+    "displayName": "Peter Lyons",
+    "username": "focusaurus",
+    "avatarURL": "https://avatars.githubusercontent.com/u/482377?v=4",
+    "primaryEmail": "pete@peterlyons.com",
+    "organizations": [],
+    "endpoint": "https://sourcegraph.com/",
+    "authenticated": true,
+    "requiresVerifiedEmail": true,
+    "pendingValidation": false,
+    "isFireworksTracingEnabled": false
+  }
+}

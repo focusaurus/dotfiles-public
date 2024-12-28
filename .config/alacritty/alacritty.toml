@@ -1,5 +1,6 @@
 [general]
 live_config_reload = true
+import = ["~/github.com/alacritty/alacritty-theme/themes/enfocado_light.toml"]
 
 [font]
 normal = { family = "Hack Nerd Font" }

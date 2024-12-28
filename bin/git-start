@@ -16,8 +16,15 @@ git fetch --all
 remote_name=$(~/bin/git-get-upstream-remote)
 default_branch=$(~/bin/git-get-default-branch)
 git switch --create "${branch_name}" "${remote_name}/${default_branch}"
+
+# Note that I have autoSetupRemote configured, but I still
+# prefer to associate the local & remote branches explicitly like this.
+# The shell prompt is less confusing that way and alleviates
+# anxiety about accidentally pushing to main in a repo without
+# branch protection configured.
 git config "branch.${branch_name}.merge" "refs/heads/${branch_name}"
 git config "branch.${branch_name}.remote" "${remote_name}"
+
 # remote_name=$( git remote | grep --extended '^(github|origin|upstream)$' | sort | tail -1)
 # git switch --create "${branch_name}" "${remote_name}" "$(~/bin/git-get-default-branch)"
 # branch_name_fuzzy_query="$1"

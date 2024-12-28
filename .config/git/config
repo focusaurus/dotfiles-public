@@ -12,9 +12,9 @@
   status = auto
   ui = true
 [push]
-  default = simple
+  default = current
   followTags = true
-	autoSetupRemote = true
+  autoSetupRemote = true
 [pull]
   default = simple
   rebase = false

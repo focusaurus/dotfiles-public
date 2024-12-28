@@ -90,6 +90,7 @@ npm-updates() {
 # placeholder nvm shell function
 # On first use, it will set nvm up properly which will replace the `nvm`
 # shell function with the real one
+# See also for reference/inspiration: https://gist.github.com/QinMing/364774610afc0e06cc223b467abe83c0
 nvm() {
   export NVM_DIR="${HOME}/.nvm"
   for nvmsh in "/opt/homebrew/opt/nvm/nvm.sh" "/usr/share/nvm/nvm.sh"; do

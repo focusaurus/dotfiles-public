@@ -27,7 +27,9 @@ for dir in bin script scripts; do
   fi
 done
 
-to_run=$(find "${dirs[@]}" -type f -executable | ~/bin/fuzzy-filter "$@")
+# for gnu find, we'd pass -executable but BSD find on macos doesn't support
+# that
+to_run=$(find "${dirs[@]}" -type f -perm +111 | ~/bin/fuzzy-filter "$@")
 
 shift || true
 
