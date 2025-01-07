@@ -1,0 +1,11 @@
+*~
+go
+gos/
+pkgsets/
+archive/
+environments/
+tmp/
+*.log
+scripts/gvm
+Gemfile.lock
+.vagrant/
