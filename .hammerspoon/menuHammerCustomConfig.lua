@@ -54,52 +54,18 @@ menuItemFontSize = 16
 menuItemTextAlign = 'left'
 
 ---------------------------------------- Color options ---------------------------------------------
+defaultColors = { background = '#000000', text = '#f9f268' }
 menuItemColors = {
-    -- The default colors to use.
-    default = {
-        background = '#000000',
-        text = '#aaaaaa'
-    },
-    -- The colors to use for the Exit menu item
-    exit = {
-        background = '#000000',
-        text = '#C1666B'
-    },
-    -- The colors to use for the Back menu items
-    back = {
-        background = '#000000',
-        text = '#E76F51'
-    },
-    -- The colors to use for menu menu items
-    submenu = {
-    },
-    -- The colors to use for navigation menu items
-    navigation = {
-        background = '#000000',
-        text = '#4281A4'
-    },
-    -- The colors to use for empty menu items
-    empty = {
-        background = '#000000',
-        text = '#aaaaaa'
-    },
-    -- The colors to use for action menu items
-    action = {
-        background = '#000000',
-        text = '#7A3B69'
-    },
-    menuBarActive = {
-        background = '#ff0000',
-        text = '#000000'
-    },
-    menuBarIdle = {
-        background = '#00ff00',
-        text = '#000000'
-    },
-    display = {
-        background = '#000000',
-        text = '#48A9A6'
-    }
+    default = defaultColors,
+    exit = defaultColors,
+    back = defaultColors,
+    submenu = defaultColors,
+    navigation = defaultColors,
+    empty = defaultColors,
+    action = defaultColors,
+    menuBarActive = defaultColors,
+    menuBarIdle = defaultColors,
+    display = defaultColors,
 }
 
 ----------------------------------------------------------------------------------------------------
@@ -179,30 +145,30 @@ menuHammerMenuList = {
             {cons.cat.submenu, 'shift', '/', 'Help', { {cons.act.menu, helpMenu} }},
             {cons.cat.submenu, '', 'a', 'Applications', { {cons.act.menu, applicationMenu} }},
             {cons.cat.action, '', 'b', 'Browser', { {cons.act.func, focus.browser} }},
-            {cons.cat.action, '', 'e', 'email', { {cons.act.func, focus.email} }},
-            {cons.cat.submenu, '', 'j', 'Journal', { {cons.act.menu, journalMenu} }},
             {cons.cat.action, '', 'c', 'Calendar', { {cons.act.func, focus.calendar} }},
             {cons.cat.action, '', 'd', 'TablePlus', { {cons.act.launcher, 'TablePlus'} }},
-            {cons.cat.action, '', 'o', 'Obsidian', { {cons.act.launcher, 'Obsidian'} }},
+            {cons.cat.action, '', 'e', 'email', { {cons.act.func, focus.email} }},
+            {cons.cat.action, '', 'f', 'Fuzzball', { {cons.act.func, fuzzball.chooseScript } }},
+            {cons.cat.action, '', 'g', 'Google Meet & Notes', { {cons.act.func, placement.googleMeet} }},
             {cons.cat.submenu, '', 'h', 'Hammerspoon', { {cons.act.menu, hammerspoonMenu} }},
+            {cons.cat.action, '', 'i', 'IDE  (VS Code)', { {cons.act.launcher, 'Visual Studio Code'} }},
+            {cons.cat.submenu, '', 'j', 'Journal', { {cons.act.menu, journalMenu} }},
+            {cons.cat.action, '', 'l', 'Layout (placement)', { {cons.act.menu, layoutMenu } }},
+            {cons.cat.action, '', 'm', 'Music', { {cons.act.func, focus.music } }},
+            {cons.cat.action, '', 'n', 'Snippet', { {cons.act.func, snippets.chooseByUIAndType } }},
+            {cons.cat.action, '', 'o', 'Obsidian', { {cons.act.launcher, 'Obsidian'} }},
+            {cons.cat.action, '', 'p', '1Password', { {cons.act.launcher, '1Password'} }},
+            {cons.cat.action, '', 'q', 'Terminal Quick', { {cons.act.func, focus.terminalQuick} }},
+            {cons.cat.action, '', 'r', 'Right (App Nav)', { {cons.act.func, appNav.right } }},
+            {cons.cat.action, '', 's', 'Slack', { {cons.act.func, focus.slack} }},
+            {cons.cat.action, '', 't', 'terminal', { {cons.act.func, focus.terminal} }},
+            {cons.cat.submenu, '', 'v', 'Volume', { {cons.act.menu, volumeMenu} }},
+            {cons.cat.action, '', 'w', 'Windows', { {cons.act.func, focus.showWindowChooser} }},
             {cons.cat.submenu, '', '/', 'Scripts', { {cons.act.menu, scriptsMenu} }},
             {cons.cat.action, '', 'space', 'Spotlight', { {cons.act.keycombo, {'cmd', 'shift'}, 'space'} }},
             {cons.cat.action, '', 'y', 'Cycle Windows', { {cons.act.func, focus.cycleWindows} }},
-            {cons.cat.action, '', 'f', 'Fuzzball', { {cons.act.func, fuzzball.chooseScript } }},
-            {cons.cat.action, '', 'l', 'Layout (placement)', { {cons.act.menu, layoutMenu } }},
-            {cons.cat.action, '', 'r', 'Right (App Nav)', { {cons.act.func, appNav.right } }},
-            {cons.cat.action, '', 'm', 'Music', { {cons.act.func, focus.music } }},
-            {cons.cat.action, '', 'n', 'Snippet', { {cons.act.func, snippets.chooseByUIAndType } }},
-            {cons.cat.action, '', 'p', '1Password', { {cons.act.launcher, '1Password'} }},
-            {cons.cat.action, '', 't', 'terminal', { {cons.act.func, focus.terminal} }},
-            {cons.cat.action, '', 'g', 'Google Meet & Notes', { {cons.act.func, placement.googleMeet} }},
             -- {cons.cat.action, '', 'z', 'Zoom', { {cons.act.launcher, 'zoom.us'} }},
             {cons.cat.action, '', 'z', 'zed', { {cons.act.launcher, 'Zed'} }},
-            {cons.cat.action, '', 'q', 'Terminal Quick', { {cons.act.func, focus.terminalQuick} }},
-            {cons.cat.action, '', 'i', 'IDE  (VS Code)', { {cons.act.launcher, 'Visual Studio Code'} }},
-            {cons.cat.submenu, '', 'v', 'Volume', { {cons.act.menu, volumeMenu} }},
-            {cons.cat.action, '', 'w', 'Windows', { {cons.act.func, focus.showWindowChooser} }},
-            {cons.cat.action, '', 's', 'Slack', { {cons.act.func, focus.slack} }},
         }
     },
 
@@ -237,7 +203,7 @@ menuHammerMenuList = {
             {cons.cat.action, '', 'A', 'App Store', { {cons.act.launcher, 'App Store'} }},
             {cons.cat.action, '', 'C', 'Calculator', { {cons.act.launcher, 'Calculator'} }},
             {cons.cat.action, '', 'D', 'Dash', { {cons.act.launcher, 'Dash'} }},
-            {cons.cat.action, '', 'F', 'Finder', { {cons.act.launcher, 'Finder'} }},
+            {cons.cat.action, '', 'F', 'Fusion', { {cons.act.launcher, 'Autodesk Fusion 360'} }},
             {cons.cat.action, '', 'K', 'Karabiner', { {cons.act.launcher, 'Karabiner-Elements'} }},
             {cons.cat.action, '', 'H', 'Chromium', { {cons.act.launcher, 'Chromium'} }},
             {cons.cat.action, '', 'I', 'Insomnia', { {cons.act.launcher, 'Insomnia'} }},
