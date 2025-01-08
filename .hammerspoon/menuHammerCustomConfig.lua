@@ -54,7 +54,7 @@ menuItemFontSize = 16
 menuItemTextAlign = "left"
 
 ---------------------------------------- Color options ---------------------------------------------
-defaultColors = { background = "#000000", text = "#f9f268" }
+local defaultColors = { background = "#222222", text = "#f9f268" }
 menuItemColors = {
   default = defaultColors,
   exit = defaultColors,
@@ -142,6 +142,8 @@ menuHammerMenuList = {
     menuHotkey = { {}, "F10" },
     menuItems = {
       { cons.cat.submenu, "shift", "/", "Help", { { cons.act.menu, helpMenu } } },
+      { cons.cat.action, "", ".", "Previous", { { cons.act.func, focus.previousApp } } },
+      { cons.cat.action, "", ",", "Window A", { { cons.act.func, focus.windowA } } },
       { cons.cat.submenu, "", "a", "Applications", { { cons.act.menu, applicationMenu } } },
       { cons.cat.action, "", "b", "Browser", { { cons.act.func, focus.browser } } },
       { cons.cat.action, "", "c", "Calendar", { { cons.act.func, focus.calendar } } },
