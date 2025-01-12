@@ -14,5 +14,6 @@ IFS=$'\n\t'
 if [[ $(uname) == "Darwin" ]]; then
   echo 'require("focus").previous()' | hs
 else
-  echo 'require("leader-gofi").tag_out()' | awesome-client
+  # echo 'require("leader-gofi").tag_out()' | awesome-client
+  xdotool key --clearmodifiers F10
 fi
