@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+. "$GVM_ROOT/scripts/functions"
+
+[[ $gvm_go_name != "" ]] ||
+	display_fatal "No Go version selected"
+
+[[ $1 != "" ]] ||
+	display_fatal "Please specify the name"
+
+target_top=$GVM_ROOT
+target_set_name=$1
+if [[ $1 == "--local" ]]; then
+	target_top=$(find_local_pkgset)/.gvm_local
+	target_set_name="local"
+fi
+
+[[ -d $target_top/pkgsets/$gvm_go_name/$target_set_name ]] ||
+    display_fatal "Packageset doesn't exist!"
+
+rm -rf "$target_top/pkgsets/$gvm_go_name/$target_set_name" ||
+    display_fatal "Could not delete package set"
+
+rm -rf "$target_top/environments/$gvm_go_name@$target_set_name" ||
+    display_fatal "Could not delete package set"
+

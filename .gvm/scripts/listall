@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+. "$GVM_ROOT/scripts/functions"
+
+function show_usage() {
+	echo "Usage: gvm listall [options]"
+	echo "    -a, --all                 List all tags."
+	echo "    -h, --help                Display this message."
+}
+
+function read_command_line() {
+	tag_filter="release"
+	for i in "$@"; do
+		case $i in
+			-a|--all)
+				tag_filter=""
+			;;
+			-h|--help*)
+				show_usage
+				exit 0
+			;;
+			*)
+				echo "Invalid option $i"
+				show_usage
+				exit 65 # Bad arguments
+			;;
+		esac
+	done
+}
+
+read_command_line "$@"
+
+echo
+display_message "gvm gos (available)"
+echo
+versions=$(git ls-remote -t https://github.com/golang/go | awk -F/ '{ print $NF }' | $SORT_PATH)
+if [[ $? -ne 0 ]]; then
+	display_fatal "Failed to get version list from Google"
+fi
+for version in $versions; do
+	if [[ "$tag_filter" == "release" ]]; then
+		if [[ "${version:0:7}" == "release" ]]; then
+			echo "   $version"
+		elif [[ "${version:0:3}" == "go1" ]]; then
+			echo "   $version"
+		fi
+	else
+		echo "   $version"
+	fi
+done | sort -V
+echo
+
