@@ -75,7 +75,7 @@ bind_root('sound', 'toggle mic mute',
 bind_root('leader', 'gofi', {modifiers.super}, '7', leader_gofi.tag_in)
 bind_root('leader', 'rofi', {modifiers.super}, '9', leader_rofi.tag_in)
 bind_root('leader', 'gofi', {modifiers.super}, '1', leader_gofi.tag_in)
-bind_root('leader', 'gofi', {}, 'F10', leader_gofi.tag_in)
+-- bind_root('leader', 'gofi', {}, 'F10', leader_gofi.tag_in)
 bind_root('fuzzball', 'fuzz script', {modifiers.super}, '2', focus.fuzz_script)
 bind_root('fuzzball', 'fuzz script', {modifiers.super}, 'space',
  runner({home_bin .. '/fuzz-script-choose'}))

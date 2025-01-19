@@ -1,5 +1,6 @@
 theme = Spring 
 copy-on-select = clipboard
+quick-terminal-position = center
 # keybind = control+c=copy_to_clipboard
 keybind = control+v=paste_from_clipboard
 keybind = shift+space>s>c=clear_screen
@@ -30,3 +31,4 @@ keybind = shift+space>g>k=goto_split:top
 keybind = shift+space>g>l=goto_split:right
 keybind = shift+space>g>n=goto_split:next
 keybind = shift+space>s>e=write_screen_file:paste
+keybind = global:control+shift+x=toggle_quick_terminal

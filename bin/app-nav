@@ -49,16 +49,16 @@ nav_vs_code() {
 nav_ghostty() {
   case "$1" in
   left)
-    xdotool key --clearmodifiers 'ctrl+t' 'p'
-    ;;
-  up)
-    xdotool key --clearmodifiers 'ctrl+t'
-    ;;
-  right)
-    xdotool key --clearmodifiers 'ctrl+t' 'n'
+    xdotool key --clearmodifiers 'shift+space' 'p'
     ;;
   down)
-    xdotool key --clearmodifiers 'ctrl+t'
+    xdotool key --clearmodifiers 'shift+space' 'g' 'j'
+    ;;
+  up)
+    xdotool key --clearmodifiers 'shift+space' 'g' 'n'
+    ;;
+  right)
+    xdotool key --clearmodifiers 'shift+space' 'n'
     ;;
   esac
 }
