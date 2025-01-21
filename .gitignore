@@ -298,3 +298,5 @@ f24
 .config/BambuStudio
 .config/raycast/extensions
 .config/PrusaSlicer/UserAccount.dat
+.config/temporalio/version-info.yaml
+.matplotlib

@@ -364,7 +364,7 @@ git-checkout-pull-request-fuzzy() {
   [[ -z "${rbranch}" ]] && return
   rbranch=$(echo "${rbranch}" | cut -d / -f 2-)
   echo git checkout "${rbranch}"
-  git checkout "${rbranch}"
+  git checkout "${rbranch}" || echo "NOPE BRANCH NOT CHECKED OUT" 1>&2
 }
 
 git-repo-path() {

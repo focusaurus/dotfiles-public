@@ -614,4 +614,8 @@ function module.windowA()
   hs.alert.show("Window A = " .. windowARef:title())
 end
 
+function module.windowAClear()
+  windowARef = nil
+end
+
 return module

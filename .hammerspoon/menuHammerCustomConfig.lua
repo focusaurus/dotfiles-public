@@ -1,5 +1,6 @@
 local appNav = require("app-nav")
 local focus = require("focus")
+local mpd = require("mpd")
 local fuzzball = require("fuzzball")
 local journal = require("journal")
 local placement = require("placement")
@@ -54,7 +55,7 @@ menuItemFontSize = 16
 menuItemTextAlign = "left"
 
 ---------------------------------------- Color options ---------------------------------------------
-local defaultColors = { background = "#222222", text = "#f9f268" }
+local defaultColors = { background = "#3d95d6", text = "#0a1122" }
 menuItemColors = {
   default = defaultColors,
   exit = defaultColors,
@@ -113,14 +114,8 @@ local helpMenu = "helpMenu"
 -- Layout menu
 local layoutMenu = "layoutMenu"
 
--- Media menu
-local mediaMenu = "mediaMenu"
-
 -- Scripts menu
 local scriptsMenu = "scriptsMenu"
-
--- System menus
-local systemMenu = "systemMenu"
 
 -- Text menu
 local textMenu = "textMenu"
@@ -131,6 +126,7 @@ local toggleMenu = "toggleMenu"
 -- Window menu
 local resizeMenu = "resizeMenu"
 local volumeMenu = "volumeMenu"
+local musicMenu = "musicMenu"
 
 menuHammerMenuList = {
 
@@ -144,6 +140,7 @@ menuHammerMenuList = {
       { cons.cat.submenu, "shift", "/", "Help", { { cons.act.menu, helpMenu } } },
       { cons.cat.action, "", ".", "Previous", { { cons.act.func, focus.previousApp } } },
       { cons.cat.action, "", ",", "Window A", { { cons.act.func, focus.windowA } } },
+      { cons.cat.action, "", "x", "Window A Clear", { { cons.act.func, focus.windowAClear } } },
       { cons.cat.submenu, "", "a", "Applications", { { cons.act.menu, applicationMenu } } },
       { cons.cat.action, "", "b", "Browser", { { cons.act.func, focus.browser } } },
       { cons.cat.action, "", "c", "Calendar", { { cons.act.func, focus.calendar } } },
@@ -163,6 +160,7 @@ menuHammerMenuList = {
       { cons.cat.action, "", "r", "Right (App Nav)", { { cons.act.func, appNav.right } } },
       { cons.cat.action, "", "s", "Slack", { { cons.act.func, focus.slack } } },
       { cons.cat.action, "", "t", "terminal", { { cons.act.func, focus.terminal } } },
+      { cons.cat.action, "", "u", "mUsic", { { cons.act.menu, musicMenu } } },
       { cons.cat.submenu, "", "v", "Volume", { { cons.act.menu, volumeMenu } } },
       { cons.cat.action, "", "w", "Windows", { { cons.act.func, focus.showWindowChooser } } },
       { cons.cat.action, "", "y", "Cycle Windows", { { cons.act.func, focus.cycleWindows } } },
@@ -217,14 +215,15 @@ menuHammerMenuList = {
     menuItems = {
       { cons.cat.action, "", "1", "1Password", { { cons.act.launcher, "1Password 7" } } },
       { cons.cat.action, "", "A", "App Store", { { cons.act.launcher, "App Store" } } },
+      { cons.cat.action, "", "B", "Bambu Studio", { { cons.act.launcher, "BambuStudio" } } },
       { cons.cat.action, "", "C", "Calculator", { { cons.act.launcher, "Calculator" } } },
       { cons.cat.action, "", "D", "Dash", { { cons.act.launcher, "Dash" } } },
       { cons.cat.action, "", "F", "Fusion", { { cons.act.launcher, "Autodesk Fusion 360" } } },
       { cons.cat.action, "", "K", "Karabiner", { { cons.act.launcher, "Karabiner-Elements" } } },
       { cons.cat.action, "", "H", "Chromium", { { cons.act.launcher, "Chromium" } } },
       { cons.cat.action, "", "I", "Insomnia", { { cons.act.launcher, "Insomnia" } } },
-      { cons.cat.action, "", "B", "Bruno", { { cons.act.launcher, "Bruno" } } },
       { cons.cat.action, "", "P", "Postman", { { cons.act.launcher, "Postman" } } },
+      { cons.cat.action, "", "R", "PrusaSlicer", { { cons.act.launcher, "PrusaSlicer" } } },
       { cons.cat.action, "", "V", "Vial", { { cons.act.launcher, "Vial" } } },
       { cons.cat.submenu, "", "U", "Utilities", { { cons.act.menu, utilitiesMenu } } },
       { cons.cat.action, "", "W", "Warp", { { cons.act.launcher, "Warp" } } },
@@ -277,6 +276,16 @@ menuHammerMenuList = {
     },
   },
 
+  musicMenu = {
+    parentMenu = mainMenu,
+    menuHotkey = nil,
+    menuItems = {
+      { cons.cat.action, "", "space", "Toggle", { { cons.act.func, mpd.toggle  } } },
+      { cons.cat.action, "", "t", "Toggle", { { cons.act.func, mpd.toggle  } } },
+      { cons.cat.action, "", "p", "Play", { { cons.act.func, mpd.play  } } },
+      { cons.cat.action, "", "u", "Pause", { { cons.act.func, mpd.pause  } } },
+    },
+  },
   ------------------------------------------------------------------------------------------------
   -- Utilities Menu
   ------------------------------------------------------------------------------------------------
