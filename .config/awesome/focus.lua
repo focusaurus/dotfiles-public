@@ -158,6 +158,7 @@ function module.rofi() if not by_class('Rofi') then run(home_bin .. '/blezz') en
 
 function module.nofi() if not by_class('nofi') then run(home_bin .. '/nofi') end end
 function module.gofi() if not by_class('org.wezfurlong.wezterm') then run(home_bin .. '/gofi-wezterm') end end
+function module.ario() if not by_class('Ario') then run('ario') end end
 
 function module.executables()
   run({'rofi', '-show', 'run', '-normal-window', '-no-steal-focus'})
