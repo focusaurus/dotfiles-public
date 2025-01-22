@@ -44,6 +44,7 @@ setup-path() {
   add-path "${HOME}/projects/md-to-pdf/bin"
   add-path "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin"
   add-path "/Applications/Hammerspoon.app/Contents/Frameworks/hs"
+  add-path "/Applications/Ghostty.app/Contents/MacOS"
 
   if [[ -e ~/.nvm/alias/default ]]; then
     add-path ~/".nvm/versions/node/$(cat ~/.nvm/alias/default)/bin"

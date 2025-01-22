@@ -299,3 +299,5 @@ f24
 .config/raycast/extensions
 .config/PrusaSlicer/UserAccount.dat
 .config/ncmpcpp/error.log
+.config/temporalio/version-info.yaml
+.matplotlib
