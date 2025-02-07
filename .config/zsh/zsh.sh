@@ -171,6 +171,7 @@ bindkey "^S" kill-word
 bindkey '^H' backward-kill-word
 
 bindkey '^Y' vi-put-before
+bindkey '^r' history-incremental-search-backward
 
 set-terminal-title() {
  echo -n -e "\033]0;$@\007"

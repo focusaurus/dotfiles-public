@@ -1,4 +1,4 @@
-theme = Spring 
+theme = /usr/share/ghostty/themes/Spring 
 copy-on-select = clipboard
 quick-terminal-position = center
 # keybind = control+c=copy_to_clipboard
