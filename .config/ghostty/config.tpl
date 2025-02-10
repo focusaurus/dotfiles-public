@@ -1,4 +1,4 @@
-theme = /usr/share/ghostty/themes/Spring 
+theme = /usr/share/ghostty/themes/catppuccin-latte
 copy-on-select = clipboard
 quick-terminal-position = center
 # keybind = control+c=copy_to_clipboard

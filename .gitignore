@@ -301,3 +301,12 @@ f24
 .config/ncmpcpp/error.log
 .config/temporalio/version-info.yaml
 .matplotlib
+.config/flutter/tool_state
+.arduinoIDE
+.config/arduino-ide
+.config/ario/radios/radios.xml
+.config/copyq/copyq_geometry.ini.lock
+.dart-tool
+.pub-cache
+Arduino
+.flutter
