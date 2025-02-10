@@ -175,6 +175,7 @@ require('packer').startup(function(use)
       {'neovim/nvim-lspconfig'}
     }
   })
+  use({ 'catppuccin/nvim' })
   textcase(use)
   telescope(use)
   go(use)
@@ -217,7 +218,7 @@ require('nvim-treesitter.configs').setup {
     'typescript',
     'yaml'
   },
-
+  matchup = {enable = false},
   highlight = {enable = true},
   indent = {enable = true, disable = {'python'}},
   incremental_selection = {
