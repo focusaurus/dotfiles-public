@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
+
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -o errexit  # always exit on error
+set -o errtrace # trap errors in functions as well
+set -o pipefail # don't ignore exit codes when piping output
+# set -x          # enable debugging
+
+IFS=$'\n\t'
+# ---- End unofficial bash strict mode boilerplate
+
+op signin --account my.1password.com
+omnivore_1password_id=$(op item list --format json | jq -r '.[] | select(.title=="AWS main focusaurus") | .id')
+AWS_ACCESS_KEY_ID=$(op item get --format json "${omnivore_1password_id}" | jq -r '.fields[] | select(.label=="AWS_ACCESS_KEY_ID")| .value')
+export AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY=$(op item get --format json "${omnivore_1password_id}" | jq -r '.fields[] | select(.label=="AWS_SECRET_ACCESS_KEY")| .value')
+export AWS_SECRET_ACCESS_KEY
+export AWS_REGION='us-west-2'
+year="$1"
+if [[ -z "${year}" ]]; then
+  year=$(date +%Y)
+fi
+cd "${HOME}/archive/${year}"
+dest="s3://focusaurus-archive/${year}"
+aws s3 sync . "${dest}"
+~/bin/notify "synced to ${dest}"

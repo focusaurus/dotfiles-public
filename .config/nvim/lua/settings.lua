@@ -33,4 +33,4 @@ vim.opt.completeopt = {'menuone', 'noinsert', 'noselect'}
 -- vim.cmd 'colorscheme monokai'
 -- vim.cmd 'colorscheme delek'
 -- vim.cmd 'colorscheme slate'
-vim.cmd 'colorscheme bluloco-light'
+vim.cmd 'colorscheme catppuccin-latte'
