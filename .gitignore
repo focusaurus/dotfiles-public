@@ -300,3 +300,5 @@ f24
 .config/PrusaSlicer/UserAccount.dat
 .config/temporalio/version-info.yaml
 .matplotlib
+.config/Autodesk
+.config/lla/themes

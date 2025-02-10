@@ -37,11 +37,12 @@ function module.down()
   local name = hs.application.frontmostApplication():name()
   log.d("app-nav down. app name: " .. name)
   if name == "kitty" then
-    -- hs.eventtap.keyStroke({ "shift", "control" }, "]")
     hs.eventtap.keyStroke({ "command", "shift" }, "w")
+  elseif name == "Ghostty" then
+    hs.eventtap.keyStroke({ "command" }, "`") -- backtick means tilde for this binding
   elseif name == "Firefox" or name == "Code" or name == "TablePlus" then
     -- focus previous window
-    hs.eventtap.keyStroke({ "command" }, "`")
+    hs.eventtap.keyStroke({ "command" }, "`") -- backtick means tilde for this binding
     -- hs.eventtap.event.newKeyEvent(hs.keycodes.map.ctrl, true):post()
     -- hs.eventtap.event.newKeyEvent("Tab", true):post()
     -- hs.timer.doAfter(0.3, function()

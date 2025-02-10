@@ -1,6 +1,7 @@
 theme = /usr/share/ghostty/themes/Spring 
 copy-on-select = clipboard
 quick-terminal-position = center
+shell-integration = none
 # keybind = control+c=copy_to_clipboard
 keybind = control+v=paste_from_clipboard
 keybind = shift+space>s>c=clear_screen
