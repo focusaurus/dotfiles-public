@@ -65,6 +65,11 @@ function module.up()
   if name == "kitty" then
     -- focus.previousWindow()
     hs.eventtap.keyStroke({ "shift", "control" }, "[")
+  elseif name == "Ghostty" then
+    -- for ghostty app-nav up means next split
+    hs.eventtap.keyStroke({ "shift" },  "space" )
+    hs.eventtap.keyStroke({}, "g")
+    hs.eventtap.keyStroke({}, "n")
   elseif name == "Firefox" then
     -- focus previous tab
     hs.eventtap.keyStroke({ "control" }, "Tab")
