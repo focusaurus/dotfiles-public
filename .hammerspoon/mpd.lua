@@ -1,22 +1,23 @@
 local module = {}
 local log = hs.logger.new("mpd", "debug")
-local hostArg = "--host=tool.home.peterlyons.org"
+
+local function mpc(action)
+  hs.execute("mpc --host=tool.home.peterlyons.org " .. action, true)
+end
 
 function module.toggle()
   log.d("toggle")
-  hs.execute([["mpc" "--host=tool.home.peterlyons.org" "toggle"]], true)
+  mpc("toggle")
 end
 
 function module.play()
   log.d("play")
-  hs.execute([["mpc" "--host=home.peterlyons.org" "play"]], true)
+  mpc("play")
 end
 
 function module.pause()
   log.d("pause")
-  hs.execute([["mpc" "--host=tool.home.peterlyons.org" "pause"]], true)
+  mpc("pause")
 end
-
-
 
 return module

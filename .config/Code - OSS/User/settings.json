@@ -31,7 +31,7 @@
     "workbench.colorCustomizations": {
         "editor.lineHighlightBackground": "#e3ffd7"
     },
-    "workbench.colorTheme": "Default Light Modern",
+    "workbench.colorTheme": "Catppuccin Latte",
     "diffEditor.ignoreTrimWhitespace": false,
     "github.copilot.enable": {
         "*": false,
@@ -73,4 +73,11 @@
     "[typescriptreact]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
+    "editor.renderWhitespace": "all",
+    "makefile.configureOnOpen": false,
+    "telemetry.telemetryLevel": "off",
+    "editor.inlineSuggest.edits.renderSideBySide": "never",
+    "github.copilot.editor.enableAutoCompletions": false,
+    "editor.inlineSuggest.enabled": false,
+    "githubPullRequests.pullBranch": "never"
 }

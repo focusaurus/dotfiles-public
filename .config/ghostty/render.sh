@@ -16,7 +16,7 @@ IFS=$'\n\t'
 cd "$(dirname "${BASH_SOURCE[0]}")"
 
 if [[ "$(uname)" == "Darwin" ]]; then
-  sed -E 's/(control|ctrl)/command/g' -E 's,/usr/share/ghostty/themes/,,g' <config.tpl >config
+  sed -E -e 's/(control|ctrl)/command/g' -e 's,/usr/share/ghostty/themes/,,g' <config.tpl >config
 else
   cp config.tpl config
 fi

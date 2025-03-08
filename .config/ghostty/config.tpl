@@ -3,6 +3,8 @@ theme = /usr/share/ghostty/themes/catppuccin-latte
 quick-terminal-position = center
 keybind = ctrl+shift+c=copy_to_clipboard
 # keybind = performable:ctrl+c=copy_to_clipboard
+shell-integration = none
+confirm-close-surface = false
 # keybind = control+c=copy_to_clipboard
 keybind = control+v=paste_from_clipboard
 keybind = shift+space>s>c=clear_screen

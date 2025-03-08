@@ -12,7 +12,11 @@ set -o pipefail # don't ignore exit codes when piping output
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
+PATH="${HOME}/go/bin:${PATH}"
 # Heads up: obscure dependency: https://github.com/sgreben/url
+if ! ~/bin/have-exe url; then
+  (cd /tmp && go get -u github.com/sgreben/url/cmd/url@latest)
+fi
 
 IFS= read -r url || true
 

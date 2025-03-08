@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+mpc --host=tool.home.peterlyons.org "$@" 2>&1 | grep -qi "resolve host" && ~/bin/notify "Cannot adjust music. Is VPN on?"
