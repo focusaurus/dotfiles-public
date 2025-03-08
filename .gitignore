@@ -311,3 +311,5 @@ f24
 Arduino
 .flutter
 .dart-cli-completion
+.config/ibus/bus
+.config/fcitx5
