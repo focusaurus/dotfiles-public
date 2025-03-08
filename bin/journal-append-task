@@ -7,16 +7,10 @@
 set -o errexit  # always exit on error
 set -o errtrace # trap errors in functions as well
 set -o pipefail # don't ignore exit codes when piping output
-set -u          # error on reference to unknown variable
-# set -x # enable debugging
+set -o posix    # more strict failures in subshells
+# set -x          # enable debugging
 
-IFS=$'\n\t'
+IFS="$(printf "\n\t")"
 # ---- End unofficial bash strict mode boilerplate
-
-cd "$(dirname "${BASH_SOURCE[0]}")"
-
-if [[ "$(uname)" == "Darwin" ]]; then
-  sed -E -e 's/(control|ctrl)/command/g' -e 's,/usr/share/ghostty/themes/,,g' <config.tpl >config
-else
-  cp config.tpl config
-fi
+entry="$(~/bin/prompt-or-clipboard "TASK entry")"
+~/bin/journal-append-cli "$1" "- [ ] #task ${entry}"

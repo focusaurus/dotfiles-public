@@ -33,6 +33,9 @@ wmctrl -l | {
     todoist:*)
       icon="${HOME}/.config/awesome/todoist-logo.png"
       ;;
+    main:*)
+      icon="/usr/share/icons/hicolor/scalable/apps/firefox.svg"
+      ;;
     workflowy)
       icon="${HOME}/.config/awesome/workflowy-logo.png"
       ;;

@@ -28,11 +28,6 @@ hs.hints.showTitleThresh = 0
 -- Disable animations
 hs.window.animationDuration = 0
 
--- Editor path
-menuTextEditor = "/usr/local/bin/emacsclient -c"
-
--- Location of the askpass executable.  Required for running script with admin privs.
-askpassLocation = "/usr/local/bin/ssh-askpass"
 
 ----------------------------------------- Menu options ---------------------------------------------
 
@@ -50,7 +45,7 @@ menuRowHeight = 22
 menuOuterPadding = 20
 
 ----------------------------------------- Font options ---------------------------------------------
---menuItemFont = 'JetBrains Mono'
+menuItemFont = 'Hack Nerd Font'
 menuItemFontSize = 16
 menuItemTextAlign = "left"
 
@@ -104,25 +99,16 @@ local mainMenu = "mainMenu"
 local applicationMenu = "applicationMenu"
 local utilitiesMenu = "utilitiesMenu"
 local journalMenu = "journalMenu"
+local floatHealthMenu = "floatHealthMenu"
 
 -- Hammerspoon menu
 local hammerspoonMenu = "hammerspoonMenu"
 
--- Help menu
 local helpMenu = "helpMenu"
-
--- Layout menu
 local layoutMenu = "layoutMenu"
-
--- Scripts menu
 local scriptsMenu = "scriptsMenu"
-
--- Text menu
 local textMenu = "textMenu"
-
--- Toggles menu
 local toggleMenu = "toggleMenu"
-
 -- Window menu
 local resizeMenu = "resizeMenu"
 local volumeMenu = "volumeMenu"
@@ -130,6 +116,7 @@ local musicMenu = "musicMenu"
 
 menuHammerMenuList = {
 
+-- Item Definitions. Keep the syntax noise here and let the structure be easier to maintain below.
   ------------------------------------------------------------------------------------------------
   -- Main Menu
   ------------------------------------------------------------------------------------------------
@@ -146,14 +133,14 @@ menuHammerMenuList = {
       { cons.cat.action, "", "c", "Calendar", { { cons.act.func, focus.calendar } } },
       { cons.cat.action, "", "d", "TablePlus", { { cons.act.launcher, "TablePlus" } } },
       { cons.cat.action, "", "e", "email", { { cons.act.func, focus.email } } },
-      { cons.cat.action, "", "f", "Fuzzball", { { cons.act.func, fuzzball.chooseScript } } },
+      { cons.cat.action, "", "f", "Float Health", { { cons.act.menu, floatHealthMenu } } },
       { cons.cat.action, "", "g", "Google Meet & Notes", { { cons.act.func, placement.googleMeet } } },
       { cons.cat.submenu, "", "h", "Hammerspoon", { { cons.act.menu, hammerspoonMenu } } },
       { cons.cat.action, "", "i", "IDE  (VS Code)", { { cons.act.launcher, "Visual Studio Code" } } },
       { cons.cat.submenu, "", "j", "Journal", { { cons.act.menu, journalMenu } } },
       { cons.cat.action, "", "l", "Layout (placement)", { { cons.act.menu, layoutMenu } } },
       { cons.cat.action, "", "m", "Music", { { cons.act.func, focus.music } } },
-      { cons.cat.action, "", "n", "Snippet", { { cons.act.func, snippets.chooseByUIAndType } } },
+      { cons.cat.action, "", "n", "Snippets", { { cons.act.func, snippets.chooseByUIAndType } } },
       { cons.cat.action, "", "o", "Obsidian", { { cons.act.launcher, "Obsidian" } } },
       { cons.cat.action, "", "p", "1Password", { { cons.act.launcher, "1Password" } } },
       { cons.cat.action, "", "q", "Terminal Quick", { { cons.act.func, focus.terminalQuick } } },
@@ -165,7 +152,7 @@ menuHammerMenuList = {
       { cons.cat.action, "", "w", "Windows", { { cons.act.func, focus.showWindowChooser } } },
       { cons.cat.action, "", "y", "Cycle Windows", { { cons.act.func, focus.cycleWindows } } },
       -- {cons.cat.action, '', 'z', 'Zoom', { {cons.act.launcher, 'zoom.us'} }},
-      { cons.cat.action, "", "z", "zed", { { cons.act.launcher, "Zed" } } },
+      -- { cons.cat.action, "", "z", "zed", { { cons.act.launcher, "Zed" } } },
       { cons.cat.submenu, "", "/", "Scripts", { { cons.act.menu, scriptsMenu } } },
       { cons.cat.action, "", "space", "Spotlight", { { cons.act.keycombo, { "cmd", "shift" }, "space" } } },
     },
@@ -211,7 +198,7 @@ menuHammerMenuList = {
   ------------------------------------------------------------------------------------------------
   applicationMenu = {
     parentMenu = mainMenu,
-    menuHotkey = { { "cmd", "alt", "ctrl" }, "a" },
+    menuHotkey = nil,
     menuItems = {
       { cons.cat.action, "", "1", "1Password", { { cons.act.launcher, "1Password 7" } } },
       { cons.cat.action, "", "A", "App Store", { { cons.act.launcher, "App Store" } } },
@@ -226,7 +213,7 @@ menuHammerMenuList = {
       { cons.cat.action, "", "R", "PrusaSlicer", { { cons.act.launcher, "PrusaSlicer" } } },
       { cons.cat.action, "", "V", "Vial", { { cons.act.launcher, "Vial" } } },
       { cons.cat.submenu, "", "U", "Utilities", { { cons.act.menu, utilitiesMenu } } },
-      { cons.cat.action, "", "W", "Warp", { { cons.act.launcher, "Warp" } } },
+      -- { cons.cat.action, "", "W", "Warp", { { cons.act.launcher, "Warp" } } },
     },
   },
   --------------------------------------------------------------------
@@ -276,6 +263,15 @@ menuHammerMenuList = {
     },
   },
 
+  floatHealthMenu = {
+    parentMenu = mainMenu,
+    menuHotkey = nil,
+    menuItems = {
+      { cons.cat.action, "", "P", "Postman", { { cons.act.launcher, "Postman" } } },
+      { cons.cat.action, "", "Y", "Playwright (Chromium)", { { cons.act.launcher, "Chromium" } } },
+      { cons.cat.action, "", "z", "zed", { { cons.act.launcher, "Zed" } } },
+    },
+  },
   musicMenu = {
     parentMenu = mainMenu,
     menuHotkey = nil,
