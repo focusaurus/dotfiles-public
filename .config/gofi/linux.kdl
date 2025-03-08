@@ -38,16 +38,10 @@ applications key="a" {
   xournalpp key="x" "focus" "xournalpp"
 }
 journal key="j" {
-  FRC key="f" {
-    prompt key="p" "journal-append-prompt" "/home/plyons/git.peterlyons.com/focus-retreat-center"
-    read key="r" "terminal-quick" "journal-read" "/home/plyons/git.peterlyons.com/focus-retreat-center"
-    vim key="v" "terminal-quick" "journal-append-vim" "/home/plyons/git.peterlyons.com/focus-retreat-center"
-  }
-  personal key="p" {
-    prompt key="p" "journal-append-prompt" "/home/plyons/git.peterlyons.com/petes-personal-journal"
-    read key="r" "terminal-quick" "journal-read" "/home/plyons/git.peterlyons.com/petes-personal-journal"
-    vim key="v" "terminal-quick" "journal-append-vim" "/home/plyons/git.peterlyons.com/petes-personal-journal"
-  }
+  prompt key="j" "journal-append-prompt" "/home/plyons/git.peterlyons.com/exocortex/personal"
+  task key="t" "journal-append-task" "/home/plyons/git.peterlyons.com/exocortex/personal"
+  read key="r" "terminal-quick" "journal-read" "/home/plyons/git.peterlyons.com/exocortex/personal"
+  vim key="v" "terminal-quick" "journal-append-vim" "/home/plyons/git.peterlyons.com/exocortex/personal"
 }
 volume key="v" {
   zero key="0" "volume" "0"

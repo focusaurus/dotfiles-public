@@ -1,6 +1,8 @@
 theme = /usr/share/ghostty/themes/catppuccin-latte
-copy-on-select = clipboard
+#copy-on-select = clipboard
 quick-terminal-position = center
+keybind = ctrl+shift+c=copy_to_clipboard
+# keybind = performable:ctrl+c=copy_to_clipboard
 # keybind = control+c=copy_to_clipboard
 keybind = control+v=paste_from_clipboard
 keybind = shift+space>s>c=clear_screen
@@ -32,3 +34,5 @@ keybind = shift+space>g>l=goto_split:right
 keybind = shift+space>g>n=goto_split:next
 keybind = shift+space>s>e=write_screen_file:paste
 keybind = global:control+shift+x=toggle_quick_terminal
+#app-notifications is documented but currently causes an error so disable until it starts working
+#app-notifications = no-clipboard-copy
