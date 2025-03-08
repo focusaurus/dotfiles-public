@@ -13,7 +13,7 @@ local hotkeys_popup = require('awful.hotkeys_popup')
 
 local module = {}
 --- This is used later as the default terminal and editor to run.
-local terminal = 'kitty'
+local terminal = 'ghostty'
 beautiful.hotkeys_font = 'Hack 14'
 beautiful.hotkeys_description_font = 'Hack 12'
 beautiful.menu_font = 'Hack 14'
