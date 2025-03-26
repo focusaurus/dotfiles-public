@@ -14,9 +14,10 @@ IFS=$'\n\t'
 
 wmctrl -l | {
   while IFS= read -r wmline; do
-    id_hex=$(echo "${wmline}" | awk '{print $1}')
+    id_hex=$(echo "${wmline}" | awk '{print $1}' | cut -d x -f 2-)
     title=$(echo "${wmline}" | cut -d " " -f 5-)
-    echo "${id_hex} ${title}"
+    id_dec=$((16#$id_hex))
+    echo "${id_hex} ${id_dec} ${title}"
     case "${title}" in
     *Obsidian*)
       icon="/usr/share/pixmaps/obsidian.png"
@@ -34,7 +35,7 @@ wmctrl -l | {
       icon="${HOME}/.config/awesome/todoist-logo.png"
       ;;
     main:*)
-      icon="/usr/share/icons/hicolor/scalable/apps/firefox.svg"
+      icon="/usr/share/icons/hicolor/256x256/apps/firefox.png"
       ;;
     workflowy)
       icon="${HOME}/.config/awesome/workflowy-logo.png"
@@ -55,6 +56,6 @@ wmctrl -l | {
       continue
       ;;
     esac
-    xseticon -id $((id_hex)) "${icon}"
+    xseticon -id "${id_dec}" "${icon}"
   done
 }
