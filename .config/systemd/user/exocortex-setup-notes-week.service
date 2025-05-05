@@ -1,5 +1,5 @@
 [Unit]
-Description=Prepare daily routine notes for the upcoming week
+Description=Set up exocortex notes for the upcoming week
 
 [Service]
 Type=oneshot

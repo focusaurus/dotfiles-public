@@ -3,4 +3,4 @@ Description=Generate a monthly routine org file and symlink it
 
 [Service]
 Type=oneshot
-ExecStart=/bin/sh -c '~/projects/exocortex/personal/bin/monthly-routine.sh'
+ExecStart=/bin/sh -c '~/projects/exocortex/personal/bin/monthly-routine'

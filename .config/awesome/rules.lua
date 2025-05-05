@@ -158,6 +158,11 @@ local music = {
   properties = {tags = all_regular_tags, maximized = true}
 }
 
+local ario = {
+  rule_any = {name = {'Save playlist'}},
+  properties = {tags = all_regular_tags, maximized = false}
+}
+
 local freecad = {
   -- Force FreeCAD to maximize the main window properly
   rule_any = {class = {'FreeCAD'}},
@@ -251,7 +256,7 @@ end)
 
 awful.rules.rules = {
   all_clients, floating_clients, title_bars, sticky, one_password, slack, music,
-  freecad, openshot_preview, openshot_tutorial, obsidian, xournalpp_export,
+  freecad, openshot_preview, openshot_tutorial, obsidian, xournalpp_export, ario,
   xournalpp_export_pdf, rofi, nofi, gofi, solvespace, ario
 }
 

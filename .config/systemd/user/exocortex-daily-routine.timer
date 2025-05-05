@@ -1,9 +1,8 @@
 [Unit]
-Description=Generate new daily routine and symlink it into place
+Description=Setup daily routine notes for the coming week
 
 [Timer]
-# This is in UTC
-OnCalendar=*-*-* 8:00:00
+OnCalendar=*-*-* 8:00:00 America/Denver
 
 [Install]
 WantedBy=timers.target
