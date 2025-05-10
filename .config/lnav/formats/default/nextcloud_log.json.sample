@@ -1,0 +1,124 @@
+{
+    "$schema": "https://lnav.org/schemas/format-v1.schema.json",
+    "nextcloud": {
+        "title": "Nextcloud server logs",
+        "description": "Nextcloud JSON server logs audit.log, flow.log, and nextcloud.log",
+        "url": "https://docs.nextcloud.com/server/stable/admin_manual/configuration_server/logging_configuration.html?highlight=logging#log-field-breakdown",
+        "json": true,
+        "opid-field": "reqId",
+        "level-field": "level",
+        "body-field": "message",
+        "hide-extra": true,
+        "level": {
+            "debug": 0,
+            "info": 1,
+            "warning": 2,
+            "error": 3,
+            "fatal": 4
+        },
+        "timestamp-field": "time",
+        "convert-to-local-time": true,
+        "multiline": false,
+        "value": {
+            "exception": {
+                "kind": "json",
+                "hidden": true
+            },
+            "exception/Exception": {
+                "kind": "string",
+                "identifier": true
+            },
+            "exception/Message": {
+                "kind": "string"
+            },
+            "app": {
+                "kind": "string",
+                "identifier": true
+            },
+            "reqId": {
+                "kind": "string",
+                "identifier": true
+            },
+            "remoteAddr": {
+                "kind": "string",
+                "identifier": true
+            },
+            "url": {
+                "kind": "string",
+                "hidden": true
+            },
+            "method": {
+                "kind": "string",
+                "hidden": true
+            },
+            "user": {
+                "kind": "string",
+                "identifier": true,
+                "hidden": true
+            },
+            "userAgent": {
+                "kind": "string",
+                "hidden": true
+            },
+            "version": {
+                "kind": "string",
+                "hidden": true
+            },
+            "data": {
+                "kind": "json",
+                "hidden": true
+            }
+        },
+        "line-format": [
+            "[",
+            {
+                "field": "__level__",
+                "text-transform": "uppercase"
+            },
+            "] ",
+            {
+                "field": "__timestamp__"
+            },
+            " ",
+            {
+                "field": "reqId",
+                "max-width": 3,
+                "overflow": "truncate"
+            },
+            " ",
+            {
+                "field": "remoteAddr",
+                "min-width": 9,
+                "max-width": 9,
+                "overflow": "dot-dot"
+            },
+            " ",
+            {
+                "field": "app",
+                "min-width": 12,
+                "max-width": 12,
+                "overflow": "truncate"
+            },
+            " ",
+            {
+                "field": "message"
+            },
+            {
+                "field": "exception/Exception",
+                "prefix": "\t\t",
+                "suffix": "",
+                "default-value": ""
+            },
+            {
+                "field": "exception/Message",
+                "prefix": ": \u201c",
+                "suffix": "\u201d",
+                "default-value": ""
+            },
+            {
+                "field": "data",
+                "default-value": ""
+            }
+        ]
+    }
+}

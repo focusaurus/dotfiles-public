@@ -1,0 +1,96 @@
+{
+    "$schema": "https://lnav.org/schemas/format-v1.schema.json",
+    "vmw_vc_svc_log": {
+        "title": "VMware Go Log",
+        "description": "Log files for go-based logs",
+        "url": "https://docs.vmware.com/en/VMware-vSphere/7.0/vmware-vsphere-with-tanzu/GUID-2A989D79-463C-4EC8-A5F2-CDC3A2C827FB.html",
+        "regex": {
+            "std": {
+                "pattern": "^(?<timestamp>\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{1,3}Z)\\s+(?<level>\\w+)\\s+(?<module>\\w+)\\s\\[(?<srcfile>[^:]+):(?<srcline>\\d+)\\](\\s+\\[opID=(?<opid>[^\\]]+)\\])?\\s+(?<body>.*)"
+            }
+        },
+        "opid-field": "opid",
+        "opid": {
+            "description": {
+                "get-changes": {
+                    "format": [
+                        {
+                            "field": "body",
+                            "extractor": "(GetChanges for sequence token: \\d+)"
+                        }
+                    ]
+                },
+                "resource-model-query": {
+                    "format": [
+                        {
+                            "field": "body",
+                            "extractor": "ResourceModel query"
+                        }
+                    ]
+                },
+                "create-session": {
+                    "format": [
+                        {
+                            "field": "body",
+                            "extractor": "(Created session for .*)"
+                        }
+                    ]
+                },
+                "delete-session": {
+                    "format": [
+                        {
+                            "field": "body",
+                            "extractor": "Deleting session for .*"
+                        }
+                    ]
+                },
+                "vlcm-download": {
+                    "format": [
+                        {
+                            "field": "body",
+                            "extractor": "Validating the URL: .*(/[^/]+)"
+                        }
+                    ]
+                }
+            }
+        },
+        "value": {
+            "body": {
+                "kind": "string"
+            },
+            "opid": {
+                "kind": "string"
+            },
+            "srcfile": {
+                "kind": "string",
+                "identifier": true
+            },
+            "srcline": {
+                "kind": "string",
+                "identifier": true
+            },
+            "module": {
+                "kind": "string",
+                "identifier": true
+            }
+        },
+        "sample": [
+            {
+                "line": "2022-06-02T12:25:11.537Z info wcp [eamagency/util.go:148] [opID=vCLS] Going to read service config",
+                "level": "info"
+            },
+            {
+                "line": "2022-06-02T10:54:45.001Z debug wcp [auth/session.go:156] Removing expired sessions",
+                "level": "debug"
+            },
+            {
+                "line": "2022-06-02T08:35:17.031Z info vlcm [logger/teelogger.go:47] [opID=vapi] Loading Introspection Services",
+                "level": "info"
+            },
+            {
+                "line": "2023-07-19T03:05:15.97Z info vlcm [serviceconfig/config.go:377] Getting timeout properties for deployment type: tiny",
+                "level": "info"
+            }
+        ]
+    }
+}

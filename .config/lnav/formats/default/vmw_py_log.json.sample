@@ -1,0 +1,48 @@
+{
+    "$schema": "https://lnav.org/schemas/format-v1.schema.json",
+    "vmw_py_log": {
+        "title": "VMware vSphere log format",
+        "description": "The log format for some VMware vSphere services",
+        "url": "http://kb.vmware.com/kb/2000988",
+        "regex": {
+            "std": {
+                "pattern": "^(?<timestamp>\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,3})?(?: (?:AM|PM) UTC)?) \\[(?<pid>\\d+)\\](?<level>ERROR|WARNING|INFO|DEBUG):(?<module>[\\w\\-\\.]+):(?<body>.*$)"
+            }
+        },
+        "level-field": "level",
+        "timestamp-field": "timestamp",
+        "level": {
+            "error": "ERROR",
+            "debug": "DEBUG",
+            "info": "INFO",
+            "warning": "WARNING"
+        },
+        "value": {
+            "pid": {
+                "kind": "integer",
+                "identifier": true,
+                "foreign-key": true,
+                "description": "The ID of the process that generated the message"
+            },
+            "module": {
+                "kind": "string",
+                "identifier": true,
+                "description": "The name of the module that generated the message"
+            }
+        },
+        "sample": [
+            {
+                "line": "2015-04-24T21:09:29.296 [25376]INFO:somemodule:Something very INFOrmative."
+            },
+            {
+                "line": "2022-06-01T13:23:25.515 [2376]DEBUG:vmware.vherd.base.detwist:method = com.vmware.appliance.version1.networking.interfaces.list, args = ()"
+            },
+            {
+                "line": "2022-06-01T13:23:25.310 [2376]DEBUG:com.vmware.vherd.base.detwist:method = com.vmware.appliance.version1.system.version.get, args = ()"
+            },
+            {
+                "line": "2023-07-19T02:47:11 AM UTC [1670]DEBUG:firewall-reload:Processing system service 'sshd' firewall rules."
+            }
+        ]
+    }
+}
