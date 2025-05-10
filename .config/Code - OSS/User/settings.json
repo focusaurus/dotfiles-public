@@ -76,8 +76,10 @@
     "editor.renderWhitespace": "all",
     "makefile.configureOnOpen": false,
     "telemetry.telemetryLevel": "off",
-    "editor.inlineSuggest.edits.renderSideBySide": "never",
-    "github.copilot.editor.enableAutoCompletions": false,
-    "editor.inlineSuggest.enabled": false,
-    "githubPullRequests.pullBranch": "never"
+    "githubPullRequests.pullBranch": "never",
+    "editor.acceptSuggestionOnEnter": "off",
+    "go.delveConfig": {
+
+    },
+    "workbench.startupEditor": "none"
 }
