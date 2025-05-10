@@ -43,4 +43,4 @@ for arg in "$@"; do
     ;;
   esac
 done
-pandoc --from=markdown --to=html -o "${output}" "${input}"
+pandoc --from=markdown --to=html --ascii -o "${output}" "${input}"

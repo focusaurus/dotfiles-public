@@ -75,15 +75,19 @@ alias cls="clear;ls"
 alias l1="ls -1"
 alias l="ls"
 alias la="ls -a"
-alias x="eza -1 --all --group-directories-first --classify --git"
-alias xl="eza --all --long --group-directories-first --classify --git"
-alias xt="eza --tree"
+# alias x="eza -1 --all --group-directories-first --classify --git"
+# alias xl="eza --all --long --group-directories-first --classify --git"
+# alias xt="eza --tree --color=always | less --RAW-CONTROL-CHARS"
+# alias xt="lla --tree"
+xt() {
+  eza --tree --color=always "$@" | less --RAW-CONTROL-CHARS
+}
 alias les="/usr/bin/less --ignore-case"
 alias less="/usr/bin/less --ignore-case --quit-at-eof"
 # This conflicts with lf terminal file navigation program
 # alias lf="/usr/bin/less --ignore-case +F"
 alias ll="ls -lh"
-alias lla="ls -alh"
+# alias lla="ls -alh"
 alias lsl="ls|less"
 alias md="mkdir -p"
 alias ppf="pretty-print-files"

@@ -154,6 +154,9 @@ fpath=(~/.config/zsh/completions "${BREW_PREFIX}/share/zsh-completions" $fpath)
 autoload -Uz compinit && compinit
 #autoload -Uz compinstall && compinstall
 
+# Configure tab completion to always fall back to filesystem completion
+zstyle ':completion:*' completer _complete _ignored _files
+
 # Trigger basic filesystem completion anywhere in
 # any command with ctrl+t
 # https://stackoverflow.com/a/49968871/266795
