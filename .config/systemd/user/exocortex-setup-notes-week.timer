@@ -1,0 +1,8 @@
+[Unit]
+Description=Setup exocortex notes for the coming week
+
+[Timer]
+OnCalendar=*-*-* 6:00:00 America/Denver
+
+[Install]
+WantedBy=timers.target

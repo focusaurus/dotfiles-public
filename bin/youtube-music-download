@@ -17,7 +17,12 @@ IFS=$'\n\t'
 declare -a opts=(
   --quiet
   --no-progress
-  --format bestaudio
+  # --format bestaudio
+  --audio-format mp3
+  --extract-audio
+  --audio-quality 0
+  --add-metadata
+  --embed-metadata
   --cookies-from-browser "firefox::Music"
   --restrict-filenames
   --output "%(playlist_index)s-%(title)s.%(ext)s"

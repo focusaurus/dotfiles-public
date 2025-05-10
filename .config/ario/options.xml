@@ -27,7 +27,7 @@
   <option key="playlist-mode">normal</option>
   <option key="playlists_hpaned_position">250</option>
   <option key="show_tabs">1</option>
-  <option key="source">4</option>
+  <option key="source">3</option>
   <option key="sources-order">library,search,radios,storedplaylists,filesystem</option>
   <option key="title_column_order">3</option>
   <option key="title_column_size">200</option>
@@ -36,8 +36,8 @@
   <option key="track_column_size">50</option>
   <option key="track_column_visible">1</option>
   <option key="use_proxy">0</option>
-  <option key="vpaned_position">314</option>
-  <option key="window_height">657</option>
+  <option key="vpaned_position">171</option>
+  <option key="window_height">120</option>
   <option key="window_maximized">1</option>
-  <option key="window_width">1195</option>
+  <option key="window_width">601</option>
 </ario-options>

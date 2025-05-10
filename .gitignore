@@ -311,9 +311,15 @@
 /voice-memos
 /work-*
 Arduino
+.dart-cli-completion
+.config/ibus/bus
+.config/fcitx5
+.dart-cli-completion
 _default.hcl
 f24
 login_1689539373.hcl
 .claude/statsig
 .claude/__store.db
 .config/lnav/configs/default
+.config/ario/covers
+.1password/agent.sock

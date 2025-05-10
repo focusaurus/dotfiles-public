@@ -158,6 +158,11 @@ local music = {
   properties = {tags = all_regular_tags, maximized = true}
 }
 
+local ario = {
+  rule_any = {name = {'Save playlist'}},
+  properties = {tags = all_regular_tags, maximized = false}
+}
+
 local freecad = {
   -- Force FreeCAD to maximize the main window properly
   rule_any = {class = {'FreeCAD'}},
@@ -208,6 +213,21 @@ local obsidian = {
     awful.rules.execute(client, {maximized = true, tags = tags})
   end
 }
+local ario = {
+  rule_any = {class = {'Ario'}},
+  callback = function(client)
+    log('callback2 for ario: ', client.name)
+    -- for tag, name in pairs({'personal', 'focus-retreat-center', 'nuon'}) do
+    --   if string.find(client.name, ' - ' .. name .. ' - ', 1, true) then
+    --     -- log('callback3 for obsidian: ', client.name)
+    --     -- log('callback4 for obsidian: ', name)
+    --     tags = {tostring(tag)}
+    --     break
+    --   end
+    -- end
+    awful.rules.execute(client, {placement = awful.placement.centered })
+  end
+}
 
 local xournalpp_export = {
   rule = {class = 'Xournalpp', name = 'Export'},
@@ -225,7 +245,10 @@ local solvespace = {
 }
 
 awful.rules.add_rule_source('focusaurus', function(c, properties)
-  -- log('focusaurus rule source', c.name)
+  log('focusaurus rule source', c.name, c.class)
+  if c.name == nil then
+    return
+  end
   if string.match(c.name, 'trello: ') then properties.tags = {'2'} end
   if string.match(c.name, 'FRC: ') then properties.tags = {'2'} end
   if string.match(c.name, 'FRC misc:') then properties.tags = {'2'} end
@@ -233,8 +256,8 @@ end)
 
 awful.rules.rules = {
   all_clients, floating_clients, title_bars, sticky, one_password, slack, music,
-  freecad, openshot_preview, openshot_tutorial, obsidian, xournalpp_export,
-  xournalpp_export_pdf, rofi, nofi, gofi, solvespace
+  freecad, openshot_preview, openshot_tutorial, obsidian, xournalpp_export, ario,
+  xournalpp_export_pdf, rofi, nofi, gofi, solvespace, ario
 }
 
 function module.reapply()

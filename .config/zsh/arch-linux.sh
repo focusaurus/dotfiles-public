@@ -1,3 +1,7 @@
+arch-refresh-package-db() {
+  sudo pacman --sync --refresh
+}
+
 arch-install-package() {
   # yay --nodiffmenu --sync "$@"
   yay --sync "$@"
