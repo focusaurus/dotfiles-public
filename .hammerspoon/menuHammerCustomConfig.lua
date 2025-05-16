@@ -149,6 +149,99 @@ a(i, { cons.cat.action, noMod, "r", "Right", { { cons.act.func, placement.right 
 a(i, { cons.cat.action, noMod, "m", "Max", { { cons.act.func, placement.maximize } } })
 local menuLayout = { menuItems = i, parentMenu = mainMenu }
 
+local menuNameVolume = "Volume"
+a(i, { cons.cat.action, "", "1", "10%", { {
+	cons.act.func,
+	function()
+		sound.setVolume(10)
+	end,
+} } })
+a(i, { cons.cat.action, "", "2", "20%", { {
+	cons.act.func,
+	function()
+		sound.setVolume(20)
+	end,
+} } })
+a(i, { cons.cat.action, "", "3", "30%", { {
+	cons.act.func,
+	function()
+		sound.setVolume(30)
+	end,
+} } })
+a(i, { cons.cat.action, "", "t", "30%", { {
+	cons.act.func,
+	function()
+		sound.setVolume(30)
+	end,
+} } })
+a(i, { cons.cat.action, "", "4", "50%", { {
+	cons.act.func,
+	function()
+		sound.setVolume(40)
+	end,
+} } })
+a(i, { cons.cat.action, "", "5", "50%", { {
+	cons.act.func,
+	function()
+		sound.setVolume(50)
+	end,
+} } })
+a(i, { cons.cat.action, "", "f", "50%", { {
+	cons.act.func,
+	function()
+		sound.setVolume(50)
+	end,
+} } })
+a(i, { cons.cat.action, "", "6", "60%", { {
+	cons.act.func,
+	function()
+		sound.setVolume(60)
+	end,
+} } })
+a(i, { cons.cat.action, "", "7", "70%", { {
+	cons.act.func,
+	function()
+		sound.setVolume(70)
+	end,
+} } })
+a(i, { cons.cat.action, "", "s", "70%", { {
+	cons.act.func,
+	function()
+		sound.setVolume(70)
+	end,
+} } })
+a(i, { cons.cat.action, "", "8", "80%", { {
+	cons.act.func,
+	function()
+		sound.setVolume(80)
+	end,
+} } })
+a(i, { cons.cat.action, "", "e", "80%", { {
+	cons.act.func,
+	function()
+		sound.setVolume(80)
+	end,
+} } })
+a(i, { cons.cat.action, "", "9", "90%", { {
+	cons.act.func,
+	function()
+		sound.setVolume(90)
+	end,
+} } })
+a(i, { cons.cat.action, "", "n", "90%", { {
+	cons.act.func,
+	function()
+		sound.setVolume(90)
+	end,
+} } })
+a(i, { cons.cat.action, "", "h", "100%", { {
+	cons.act.func,
+	function()
+		sound.setVolume(100)
+	end,
+} } })
+local menuVolume = { menuItems = i, parentMenu = mainMenu }
+
 -- Applications Menus
 local personalMenu = "personalMenu"
 local utilitiesMenu = "utilitiesMenu"
@@ -199,7 +292,7 @@ menuHammerMenuList = {
 			{ cons.cat.action, noMod, "s", "Slack", { { cons.act.func, focus.slack } } },
 			{ cons.cat.action, noMod, "t", "terminal", { { cons.act.func, focus.terminal } } },
 			{ cons.cat.action, noMod, "u", "mUsic", { { cons.act.menu, musicMenu } } },
-			{ cons.cat.submenu, noMod, "v", "Volume", { { cons.act.menu, volumeMenu } } },
+			{ cons.cat.submenu, noMod, "v", menuNameVolume, { { cons.act.menu, menuNameVolume } } },
 			{ cons.cat.action, noMod, "w", "Windows", { { cons.act.func, focus.showWindowChooser } } },
 			-- { cons.cat.action, noMod, "y", "Cycle Windows", { { cons.act.func, focus.cycleWindows } } },
 			-- {cons.cat.action, '', 'z', 'Zoom', { {cons.act.launcher, 'zoom.us'} }},
@@ -218,6 +311,7 @@ menuHammerMenuList = {
 	[menuNameJournal] = menuJournal,
 	[menuNamePersonal] = menuPersonal,
 	[menuNameLayout] = menuLayout,
+	[menuNameVolume] = menuVolume,
 
 	------------------------------------------------------------------------------------------------
 	-- Help Menu
@@ -385,223 +479,6 @@ menuHammerMenuList = {
 				"Brightness Up",
 				{
 					{ cons.act.mediakey, "brightness", 10 },
-				},
-			},
-		},
-	},
-
-	volumeMenu = {
-		parentMenu = mainMenu,
-		menuHotkey = nil,
-		menuItems = {
-			{
-				cons.cat.action,
-				"",
-				"1",
-				"10%",
-				{
-					{
-						cons.act.func,
-						function()
-							sound.setVolume(10)
-						end,
-					},
-				},
-			},
-			{
-				cons.cat.action,
-				"",
-				"2",
-				"20%",
-				{
-					{
-						cons.act.func,
-						function()
-							sound.setVolume(20)
-						end,
-					},
-				},
-			},
-			{
-				cons.cat.action,
-				"",
-				"3",
-				"30%",
-				{
-					{
-						cons.act.func,
-						function()
-							sound.setVolume(30)
-						end,
-					},
-				},
-			},
-			{
-				cons.cat.action,
-				"",
-				"t",
-				"30%",
-				{
-					{
-						cons.act.func,
-						function()
-							sound.setVolume(30)
-						end,
-					},
-				},
-			},
-			{
-				cons.cat.action,
-				"",
-				"4",
-				"50%",
-				{
-					{
-						cons.act.func,
-						function()
-							sound.setVolume(40)
-						end,
-					},
-				},
-			},
-			{
-				cons.cat.action,
-				"",
-				"5",
-				"50%",
-				{
-					{
-						cons.act.func,
-						function()
-							sound.setVolume(50)
-						end,
-					},
-				},
-			},
-			{
-				cons.cat.action,
-				"",
-				"f",
-				"50%",
-				{
-					{
-						cons.act.func,
-						function()
-							sound.setVolume(50)
-						end,
-					},
-				},
-			},
-			{
-				cons.cat.action,
-				"",
-				"6",
-				"60%",
-				{
-					{
-						cons.act.func,
-						function()
-							sound.setVolume(60)
-						end,
-					},
-				},
-			},
-			{
-				cons.cat.action,
-				"",
-				"7",
-				"70%",
-				{
-					{
-						cons.act.func,
-						function()
-							sound.setVolume(70)
-						end,
-					},
-				},
-			},
-			{
-				cons.cat.action,
-				"",
-				"s",
-				"70%",
-				{
-					{
-						cons.act.func,
-						function()
-							sound.setVolume(70)
-						end,
-					},
-				},
-			},
-			{
-				cons.cat.action,
-				"",
-				"8",
-				"80%",
-				{
-					{
-						cons.act.func,
-						function()
-							sound.setVolume(80)
-						end,
-					},
-				},
-			},
-			{
-				cons.cat.action,
-				"",
-				"e",
-				"80%",
-				{
-					{
-						cons.act.func,
-						function()
-							sound.setVolume(80)
-						end,
-					},
-				},
-			},
-			{
-				cons.cat.action,
-				"",
-				"9",
-				"90%",
-				{
-					{
-						cons.act.func,
-						function()
-							sound.setVolume(90)
-						end,
-					},
-				},
-			},
-			{
-				cons.cat.action,
-				"",
-				"n",
-				"90%",
-				{
-					{
-						cons.act.func,
-						function()
-							sound.setVolume(90)
-						end,
-					},
-				},
-			},
-			{
-				cons.cat.action,
-				"",
-				"h",
-				"100%",
-				{
-					{
-						cons.act.func,
-						function()
-							sound.setVolume(100)
-						end,
-					},
 				},
 			},
 		},
