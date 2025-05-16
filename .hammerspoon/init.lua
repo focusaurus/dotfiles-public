@@ -2,10 +2,10 @@
 
 -- require("autotype")
 -- require("browser-tabs")
-require("hammerspoon")
+-- require("hammerspoon")
 require("keys")
-require("screenshots")
-require("reload")
+-- require("screenshots")
+-- require("reload")
 -- require("window-tabs")
 
 local menuHammer = hs.loadSpoon("MenuHammer")

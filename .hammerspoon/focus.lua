@@ -4,43 +4,47 @@ local focusMode = false
 local hbin = os.getenv("HOME") .. "/bin"
 local browserName = "Firefox"
 
+-- IMPORTANT NOTE ABOUT hs.window.filter: it's slow.
+-- Running it at startup will increase hammerspoon start time from ~1s to ~10s
+-- avoid it at all possible
+
 -- this handles all the straightforward launchOrFocus apps
 local cliToApp = {
-  activitymonitor = "Activity Monitor",
-  calculator = "Calculator",
-  calendar = "Google Calendar",
-  chrome = "Google Chrome",
-  chromium = "Chromium",
-  console = "Console",
-  firefox = "Firefox",
-  meet = "Google Meet",
-  obsidian = "Obsidian",
-  onepassword = "1Password",
-  postman = "Postman",
-  systeminformation = "System Information",
-  tableplus = "TablePlus",
-  terminal = "Ghostty",
-  vial = "Vial",
-  vscode = "Visual Studio Code",
+	activitymonitor = "Activity Monitor",
+	calculator = "Calculator",
+	calendar = "Google Calendar",
+	chrome = "Google Chrome",
+	chromium = "Chromium",
+	console = "Console",
+	firefox = "Firefox",
+	meet = "Google Meet",
+	obsidian = "Obsidian",
+	onepassword = "1Password",
+	postman = "Postman",
+	systeminformation = "System Information",
+	tableplus = "TablePlus",
+	terminal = "Ghostty",
+	vial = "Vial",
+	vscode = "Visual Studio Code",
 }
 
 for cli, app in pairs(cliToApp) do
-  module[cli] = function()
-    log.d(cli)
-    hs.application.launchOrFocus(app)
-  end
+	module[cli] = function()
+		log.d(cli)
+		hs.application.launchOrFocus(app)
+	end
 end
 
 local cliToFunc = {
-  hammerspoonconsole = hs.toggleConsole,
-  hammerspoonreload = hs.reload,
+	hammerspoonconsole = hs.toggleConsole,
+	hammerspoonreload = hs.reload,
 }
 
 for cli, func in pairs(cliToFunc) do
-  module[cli] = function()
-    log.d(cli)
-    func()
-  end
+	module[cli] = function()
+		log.d(cli)
+		func()
+	end
 end
 
 -- function findWindow(appName, filter)
@@ -108,73 +112,73 @@ local windowBrowserMain
 -- end
 
 function module.cycleByHotkey()
-  hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, true):post()
-  hs.eventtap.event.newKeyEvent("`", true):post()
-  hs.timer.doAfter(0.2, function()
-    hs.eventtap.event.newKeyEvent("`", false):post()
-    hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, false):post()
-  end)
+	hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, true):post()
+	hs.eventtap.event.newKeyEvent("`", true):post()
+	hs.timer.doAfter(0.2, function()
+		hs.eventtap.event.newKeyEvent("`", false):post()
+		hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, false):post()
+	end)
 end
 
 function module.cycleByFilter()
-  app = hs.window.frontmostWindow():application()
-  print("app name " .. app:name())
-  windows = hs.window.filter.new({ app:name() }):getWindows(hs.window.filter.sortByFocusedLast)
-  print("windows length: " .. #windows)
-  windows[#windows]:focus()
+	app = hs.window.frontmostWindow():application()
+	print("app name " .. app:name())
+	windows = hs.window.filter.new({ app:name() }):getWindows(hs.window.filter.sortByFocusedLast)
+	print("windows length: " .. #windows)
+	windows[#windows]:focus()
 end
 
 module.cycleWindows = module.cycleByFilter
 
 function module.browserMainByTitleCache()
-  if windowBrowserMain == nil then
-    windowBrowserMain = module.findWindowByTitle(browserName, "main")
-  end
-  if windowBrowserMain == nil then
-    -- if we get here, we didn't find any windows, launch the app
-    hs.application.launchOrFocus(browserName)
-  else
-    windowBrowserMain:focus()
-  end
+	if windowBrowserMain == nil then
+		windowBrowserMain = module.findWindowByTitle(browserName, "main")
+	end
+	if windowBrowserMain == nil then
+		-- if we get here, we didn't find any windows, launch the app
+		hs.application.launchOrFocus(browserName)
+	else
+		windowBrowserMain:focus()
+	end
 end
 
 local windowBrowserFloat
 function module.browserFloatByTitleCache()
-  if windowBrowserFloat == nil then
-    windowBrowserFloat = module.findWindowByTitle(browserName, "float")
-  end
-  if windowBrowserFloat == nil then
-    -- if we get here, we didn't find any windows, launch the app
-    hs.application.launchOrFocus(browserName)
-  else
-    windowBrowserFloat:focus()
-  end
+	if windowBrowserFloat == nil then
+		windowBrowserFloat = module.findWindowByTitle(browserName, "float")
+	end
+	if windowBrowserFloat == nil then
+		-- if we get here, we didn't find any windows, launch the app
+		hs.application.launchOrFocus(browserName)
+	else
+		windowBrowserFloat:focus()
+	end
 end
 
 function module.chrome()
-  log.d("chrome")
-  local yup = hs.application.launchOrFocus("Google Chrome")
-  if yup then
-    return hs.window.frontmostWindow()
-  end
+	log.d("chrome")
+	local yup = hs.application.launchOrFocus("Google Chrome")
+	if yup then
+		return hs.window.frontmostWindow()
+	end
 end
 
-local filterGofi = hs.window.filter.new(true) -- :allowApp("gofi")
-function module.gofiByTitle()
-  log.d("gofiByTitle 2")
-  for _, window in pairs(filterGofi:getWindows()) do
-    log.d(window:application():name() .. ": " .. window:title())
-    if window:application():name() == "kitty" then
-      window:focus()
-      -- break
-    end
-  end
-  -- if we get here, we didn't find any windows, launch the app
-  -- TODO
-end
+-- local filterGofi = hs.window.filter.new(true) -- :allowApp("gofi")
+-- function module.gofiByTitle()
+--   log.d("gofiByTitle 2")
+--   for _, window in pairs(filterGofi:getWindows()) do
+--     log.d(window:application():name() .. ": " .. window:title())
+--     if window:application():name() == "kitty" then
+--       window:focus()
+--       -- break
+--     end
+--   end
+--   -- if we get here, we didn't find any windows, launch the app
+--   -- TODO
+-- end
 
 function module.gofiInTerminal()
-  hs.application.launchOrFocus("Terminal")
+	hs.application.launchOrFocus("Terminal")
 end
 module.gofi = module.gofiInTerminal
 module.leader = module.gofi
@@ -228,15 +232,15 @@ local windowCalendar
 -- end
 
 function module.calendarByTitleCache()
-  if windowCalendar == nil then
-    windowCalendar = module.findWindowByTitle(browserName, "calendar")
-  end
-  if windowCalendar == nil then
-    -- if we get here, we didn't find any windows, launch the app
-    hs.application.launchOrFocus(browserName)
-  else
-    windowCalendar:focus()
-  end
+	if windowCalendar == nil then
+		windowCalendar = module.findWindowByTitle(browserName, "calendar")
+	end
+	if windowCalendar == nil then
+		-- if we get here, we didn't find any windows, launch the app
+		hs.application.launchOrFocus(browserName)
+	else
+		windowCalendar:focus()
+	end
 end
 
 -- I have had many implementations of this.
@@ -288,15 +292,15 @@ local windowMusic
 --
 
 function module.musicByTitleCache()
-  if windowMusic == nil then
-    windowMusic = module.findWindowByTitle(browserName, "music")
-  end
-  if windowMusic == nil then
-    -- if we get here, we didn't find any windows, launch the app
-    hs.application.launchOrFocus(browserName)
-  else
-    windowMusic:focus()
-  end
+	if windowMusic == nil then
+		windowMusic = module.findWindowByTitle(browserName, "music")
+	end
+	if windowMusic == nil then
+		-- if we get here, we didn't find any windows, launch the app
+		hs.application.launchOrFocus(browserName)
+	else
+		windowMusic:focus()
+	end
 end
 
 -- I have had many implementations of this.
@@ -306,10 +310,10 @@ end
 module.music = module.musicByTitleCache
 
 function module.clearWindowCache()
-  windowCalendar = nil
-  windowMusic = nil
-  windowBrowserMain = nil
-  windowBrowserFloat = nil
+	windowCalendar = nil
+	windowMusic = nil
+	windowBrowserMain = nil
+	windowBrowserFloat = nil
 end
 
 -- function onAppEvent(appName, eventType, app)
@@ -325,32 +329,32 @@ end
 -- end
 
 function module.enableFocusMode()
-  print("enableFocusMode")
-  focusMode = true
+	print("enableFocusMode")
+	focusMode = true
 end
 
 function module.disableFocusMode()
-  print("disableFocusMode")
-  focusMode = false
+	print("disableFocusMode")
+	focusMode = false
 end
 
 function module.terminalQuick()
-  log.d("terminalQuick")
-  hs.execute(hbin .. "/terminal-quick", true)
+	log.d("terminalQuick")
+	hs.execute(hbin .. "/terminal-quick", true)
 end
 
 function module.email()
-  log.d("email")
-  if focusMode then
-    return
-  end
-  local workWindow = module.byTitlePrefix("work-float")
-  if workWindow == nil then
-    module.browser()
-  end
-  hs.timer.doAfter(0.5, function()
-    hs.eventtap.keyStroke({ "command" }, "1")
-  end)
+	log.d("email")
+	if focusMode then
+		return
+	end
+	local workWindow = module.byTitlePrefix("work-float")
+	if workWindow == nil then
+		module.browser()
+	end
+	hs.timer.doAfter(0.5, function()
+		hs.eventtap.keyStroke({ "command" }, "1")
+	end)
 end
 
 -- function module.calendarTab()
@@ -374,89 +378,89 @@ end
 -- module.calendar = module.calendarDock
 
 local function startsWith(str, prefix)
-  return string.sub(str, 1, string.len(prefix)) == prefix
+	return string.sub(str, 1, string.len(prefix)) == prefix
 end
 
 local function hasTitlePrefix(prefix)
-  return function(window)
-    -- log.d("window title prefix check " .. prefix .. ": " .. window:title())
-    return startsWith(window:title(), prefix)
-  end
+	return function(window)
+		-- log.d("window title prefix check " .. prefix .. ": " .. window:title())
+		return startsWith(window:title(), prefix)
+	end
 end
 
 function module.byTitlePrefix(prefix)
-  local match = hs.window.filter.new(hasTitlePrefix(prefix)):getWindows(hs.window.filter.sortByFocusedLast)[1]
-  if match ~= nil then
-    match:focus()
-  end
-  return match
+	local match = hs.window.filter.new(hasTitlePrefix(prefix)):getWindows(hs.window.filter.sortByFocusedLast)[1]
+	if match ~= nil then
+		match:focus()
+	end
+	return match
 end
 
 function module.previousWindowByFilter()
-  log.d("previousWindowByFilter")
-  local lastWindow = hs.window.filter.default:getWindows()[2]
-  if lastWindow == nil then
-    return
-  end
-  log.d("Previous: " .. lastWindow:title())
-  lastWindow:focus()
+	log.d("previousWindowByFilter")
+	local lastWindow = hs.window.filter.default:getWindows()[2]
+	if lastWindow == nil then
+		return
+	end
+	log.d("Previous: " .. lastWindow:title())
+	lastWindow:focus()
 end
 
 module.previousWindow = module.previousWindowByFilter
 
 function module.previousAppByFilter()
-  log.d("previousAppByFilter")
-  local currentAppName = ""
-  local win = hs.window.focusedWindow()
-  if win ~= nil then
-    currentAppName = win:application():name()
-  end
-  for _, window in ipairs(hs.window.filter.default:getWindows()) do
-    if window ~= nil and currentAppName ~= window:application():name() then
-      log.d("previousAppByFilter: " .. window:title())
-      window:focus()
-      return
-    end
-  end
+	log.d("previousAppByFilter")
+	local currentAppName = ""
+	local win = hs.window.focusedWindow()
+	if win ~= nil then
+		currentAppName = win:application():name()
+	end
+	for _, window in ipairs(hs.window.filter.default:getWindows()) do
+		if window ~= nil and currentAppName ~= window:application():name() then
+			log.d("previousAppByFilter: " .. window:title())
+			window:focus()
+			return
+		end
+	end
 end
 
 function module.previousAppByHotkey()
-  -- hs.eventtap.event.newKeyEvent({ "cmd" }, "Tab", true):post()
-  -- hs.eventtap.event.newKeyEvent({"shift", "alt"}, "a", false):post()
-  -- Since I trigger this with home row mod on "a" (left pinky),
-  -- the first thing I need to do is send a key up for "a" so
-  -- the command+tab is interpretted correctly by macos
-  -- hs.eventtap.event.newKeyEvent("e", false):post()
-  if true then
-    hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, true):post()
-    hs.eventtap.event.newKeyEvent("Tab", true):post()
-    hs.timer.doAfter(0.2, function()
-      -- hs.eventtap.event.newKeyEvent({"cmd" }, "Tab", false):post()
-      hs.eventtap.event.newKeyEvent("Tab", false):post()
-      hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, false):post()
-    end)
-  end
+	-- hs.eventtap.event.newKeyEvent({ "cmd" }, "Tab", true):post()
+	-- hs.eventtap.event.newKeyEvent({"shift", "alt"}, "a", false):post()
+	-- Since I trigger this with home row mod on "a" (left pinky),
+	-- the first thing I need to do is send a key up for "a" so
+	-- the command+tab is interpretted correctly by macos
+	-- hs.eventtap.event.newKeyEvent("e", false):post()
+	if true then
+		hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, true):post()
+		hs.eventtap.event.newKeyEvent("Tab", true):post()
+		hs.timer.doAfter(0.2, function()
+			-- hs.eventtap.event.newKeyEvent({"cmd" }, "Tab", false):post()
+			hs.eventtap.event.newKeyEvent("Tab", false):post()
+			hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, false):post()
+		end)
+	end
 end
 
 module.previousApp = module.previousAppByFilter
 
 function module.slack()
-  log.d("slack")
-  print("slack focus mode ", focusMode)
-  if focusMode then
-    return
-  end
-  hs.application.launchOrFocus("Slack")
+	log.d("slack")
+	print("slack focus mode ", focusMode)
+	if focusMode then
+		return
+	end
+	hs.application.launchOrFocus("Slack")
 end
 
 function module.hammerspoonconsole()
-  log.d("hammerspoonconsole")
-  hs.toggleConsole()
+	log.d("hammerspoonconsole")
+	hs.toggleConsole()
 end
 
 function module.hammerspoonreload()
-  log.d("hammerspoonreload")
-  hs.reload()
+	log.d("hammerspoonreload")
+	hs.reload()
 end
 
 -- function module.slackOrZoom()
@@ -486,28 +490,28 @@ end
 
 -------------------------------
 -- select window by title
-windowsByFocus = hs.window.filter.new()
-windowsByFocus:setDefaultFilter({})
-windowsByFocus:setSortOrder(hs.window.filter.sortByFocusedLast)
+-- windowsByFocus = hs.window.filter.new()
+-- windowsByFocus:setDefaultFilter({})
+-- windowsByFocus:setSortOrder(hs.window.filter.sortByFocusedLast)
 local currentWindows = {}
 
-function module.refreshWindowCache()
-  currentWindows = {}
-  for _, v in ipairs(windowsByFocus:getWindows()) do
-    table.insert(currentWindows, v)
-  end
-end
-
-module.refreshWindowCache()
+-- function module.refreshWindowCache()
+--   currentWindows = {}
+--   for _, v in ipairs(windowsByFocus:getWindows()) do
+--     table.insert(currentWindows, v)
+--   end
+-- end
+--
+-- module.refreshWindowCache()
 
 function module.findWindowByTitle(appName, windowTitle)
-  for _, window in ipairs(currentWindows) do
-    print("findWindowByTitle: query: " .. windowTitle .. " window: " .. window:title())
-    if string.find(window:application():name(), appName) and string.find(window:title(), windowTitle) then
-      return window
-    end
-  end
-  return nil
+	for _, window in ipairs(currentWindows) do
+		print("findWindowByTitle: query: " .. windowTitle .. " window: " .. window:title())
+		if string.find(window:application():name(), appName) and string.find(window:title(), windowTitle) then
+			return window
+		end
+	end
+	return nil
 end
 
 -- function module.focusByTitle(t)
@@ -533,70 +537,88 @@ end
 --
 
 local function callbackWindowCreated(w, appName, event)
-  if event == "windowDestroyed" then
-    --      print("deleting from windows-----------------", w)
-    for i, v in ipairs(currentWindows) do
-      if v == w then
-        table.remove(currentWindows, i)
-        return
-      end
-    end
-    --      print("Not found .................. ", w)
-    --      print("Not found ............ :()", w)
-    return
-  end
-  if event == "windowCreated" then
-    --      print("inserting into windows.........", w)
-    table.insert(currentWindows, 1, w)
-    return
-  end
-  if event == "windowFocused" then
-    -- otherwise is equivalent to delete and then create
-    callbackWindowCreated(w, appName, "windowDestroyed")
-    callbackWindowCreated(w, appName, "windowCreated")
-  end
+	if event == "windowDestroyed" then
+		--      print("deleting from windows-----------------", w)
+		for i, v in ipairs(currentWindows) do
+			if v == w then
+				table.remove(currentWindows, i)
+				return
+			end
+		end
+		--      print("Not found .................. ", w)
+		--      print("Not found ............ :()", w)
+		return
+	end
+	if event == "windowCreated" then
+		--      print("inserting into windows.........", w)
+		table.insert(currentWindows, 1, w)
+		return
+	end
+	if event == "windowFocused" then
+		-- otherwise is equivalent to delete and then create
+		callbackWindowCreated(w, appName, "windowDestroyed")
+		callbackWindowCreated(w, appName, "windowCreated")
+	end
 end
-windowsByFocus:subscribe(hs.window.filter.windowCreated, callbackWindowCreated)
-windowsByFocus:subscribe(hs.window.filter.windowDestroyed, callbackWindowCreated)
-windowsByFocus:subscribe(hs.window.filter.windowFocused, callbackWindowCreated)
+-- windowsByFocus:subscribe(hs.window.filter.windowCreated, callbackWindowCreated)
+-- windowsByFocus:subscribe(hs.window.filter.windowDestroyed, callbackWindowCreated)
+-- windowsByFocus:subscribe(hs.window.filter.windowFocused, callbackWindowCreated)
+--
+local function listWindowChoices1()
+	local windowChoices = {}
+	--   for i,v in ipairs(windowsByFocus:getWindows()) do
+	for i, w in ipairs(currentWindows) do
+		if w ~= nil and w ~= hs.window.focusedWindow() then
+			table.insert(windowChoices, {
+				text = w:title() .. "--" .. w:application():name(),
+				subText = w:application():name(),
+				uuid = i,
+				image = hs.image.imageFromAppBundle(w:application():bundleID() or ""),
+				win = w,
+			})
+		end
+	end
+	return windowChoices
+end
 
 local function listWindowChoices()
-  local windowChoices = {}
-  --   for i,v in ipairs(windowsByFocus:getWindows()) do
-  for i, w in ipairs(currentWindows) do
-    if w ~= nil and w ~= hs.window.focusedWindow() then
-      table.insert(windowChoices, {
-        text = w:title() .. "--" .. w:application():name(),
-        subText = w:application():name(),
-        uuid = i,
-        image = hs.image.imageFromAppBundle(w:application():bundleID() or ""),
-        win = w,
-      })
-    end
-  end
-  return windowChoices
+	local windowChoices = {}
+	-- log.d("listWindowChoices")
+	for i, w in ipairs(hs.window.allWindows()) do
+		-- log.d(w:title())
+		if w ~= nil and w ~= hs.window.focusedWindow() then
+			table.insert(windowChoices, {
+				text = w:title() .. "--" .. w:application():name(),
+				subText = w:application():name(),
+				uuid = i,
+				image = hs.image.imageFromAppBundle(w:application():bundleID() or ""),
+				win = w,
+			})
+		end
+	end
+	return windowChoices
 end
 
 local windowChooser = hs.chooser.new(function(choice)
-  if not choice then
-    hs.alert.show("Nothing to focus")
-    return
-  end
-  local v = choice["win"]
-  if v then
-    v:focus()
-  else
-    hs.alert.show("unable fo focus " .. name)
-  end
+	if not choice then
+		hs.alert.show("Nothing to focus")
+		return
+	end
+	local v = choice["win"]
+	if v then
+		v:focus()
+	else
+		hs.alert.show("unable fo focus " .. name)
+	end
 end)
 
 function module.showWindowChooser()
-  local windowChoices = listWindowChoices()
-  windowChooser:choices(windowChoices)
-  -- windowChooser:placeholderText('')
-  windowChooser:rows(12)
-  windowChooser:query(nil)
-  windowChooser:show()
+	local windowChoices = listWindowChoices()
+	windowChooser:choices(windowChoices)
+	windowChooser:placeholderText("")
+	windowChooser:rows(12)
+	windowChooser:query(nil)
+	windowChooser:show()
 end
 
 -- End Window List Cache
@@ -606,16 +628,16 @@ local windowARef = nil
 -- The currently focused window becomes referencable as "Window A"
 -- and can be focused with a hot key.
 function module.windowA()
-  if windowARef ~= nil then
-    windowARef:focus()
-    return
-  end
-  windowARef = hs.window.frontmostWindow()
-  hs.alert.show("Window A = " .. windowARef:title())
+	if windowARef ~= nil then
+		windowARef:focus()
+		return
+	end
+	windowARef = hs.window.frontmostWindow()
+	hs.alert.show("Window A = " .. windowARef:title())
 end
 
 function module.windowAClear()
-  windowARef = nil
+	windowARef = nil
 end
 
 return module
