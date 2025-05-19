@@ -1,5 +1,5 @@
 {
-  "numStartups": 7,
+  "numStartups": 8,
   "theme": "light-daltonized",
   "customApiKeyResponses": {
     "approved": [
@@ -13,6 +13,7 @@
     "prompt-queue": 4,
     "new-user-warmup": 5
   },
+  "promptQueueUseCount": 1,
   "userID": "a1685271c8e5ee552b815cd1b8d76b103ff74af45b25275864c4dc2409eb8691",
   "oauthAccount": {
     "accountUuid": "3894798b-aefb-435b-98b2-1a9132ee2079",
@@ -136,6 +137,70 @@
       "allowedTools": [],
       "history": [
         {
+          "display": "OK let's remove the debug code ",
+          "pastedContents": {}
+        },
+        {
+          "display": "I don't think the sorting is fully working. I'm looking at LabsType in protos/shared/enums.proto as an example. the first few values should be QUEST, LAB_CORP, and LAB_IN_A_BOX based on their having options specified for share.sort 1, 2, and 3.",
+          "pastedContents": {}
+        },
+        {
+          "display": "Great. Next let's make the order of the array of values driven by the shared.sort option if present. This will allow specifying a custom user-friendly order if that makes the options clearer for the end user.",
+          "pastedContents": {}
+        },
+        {
+          "display": "I tested for you and it's working well now. Thanks. Next thing is many of the values share a common prefix that we don't need in the label. For example EVENT_TYPE_UPDATE, EVENT_TYPE_DOWNLOAD_INVOICE, EVENT_TYPE_REJECT_CHART all share the same common prefix of EVENT_TYPE_ which we really don't need in the label. Could we add code to check for a prefix across all values and exclude that from the labels?",
+          "pastedContents": {}
+        },
+        {
+          "display": "You're on the right track, but let's use the package github.com/ettle/strcase for the actual title case implementation",
+          "pastedContents": {}
+        },
+        {
+          "display": "Next for the default fallback label, if no value is provided in the source .proto file, use the enum value name, but replace all underscores with spaces and transform the text case to Title Case.",
+          "pastedContents": {}
+        },
+        {
+          "display": "The output json structure can be simplified. Let's remove the inner \"name\": layer. It should just be a top level object containing one property named after the fully-qualified package & enum name, then that value is directly the enum values. Here's an example {\"aftervisitreports.EventType\": [\n        {\n          \"name\": \"EVENT_TYPE_UNSPECIFIED\",\n          \"value\": 0,\n          \"label\": \"EVENT_TYPE_UNSPECIFIED\"\n        }\n      ]}",
+          "pastedContents": {}
+        },
+        {
+          "display": "This isn't getting the label data from where I intend. Looking at line 61 of protos/shared/enums.proto, I have the line   QUEST = 4 [(shared.label) = \"Quest Diagnostics\", (shared.sort) = 2];\nI want those extra options to be parsed and the correct label should be \"Quest Diagnostics\". The correct sort integer should be 2 for this example case.",
+          "pastedContents": {}
+        },
+        {
+          "display": "make gen-proto\n🧹 Generated files removed\nnurses/nurse.proto: is a proto3 file that contains optional fields, but code generator protoc-gen-label hasn't been updated to support optional fields in proto3. Please ask the owner of this code generator to support proto3 optional.\n--label_out:\nmake[1]: *** [gen-proto] Error 1\nmake: *** [install-go-deps] Error 2",
+          "pastedContents": {}
+        },
+        {
+          "display": "OK now when I run `make gen-proto` I still see an error about compatibility",
+          "pastedContents": {}
+        },
+        {
+          "display": "I still think there are compiler errors with the types for protogen.Options",
+          "pastedContents": {}
+        },
+        {
+          "display": "nurses/nurse.proto: is a proto3 file that contains optional fields, but code generator protoc-gen-label hasn't been updated to support optional fields in proto3. Please ask the owner of this code generator to support proto3 optional.",
+          "pastedContents": {}
+        },
+        {
+          "display": "let's now integrate into our main protoc command line in Makefile in the gen-proto target. Add our plugin there.",
+          "pastedContents": {}
+        },
+        {
+          "display": "Defaulting to the enum value is OK, but I don't want comment parsing. I only want a single canonical way for us to encode this information. Also the code at the moment is not compiling.",
+          "pastedContents": {}
+        },
+        {
+          "display": "today we are implementing a protoc plugin to handle additional data we want to bundle into our enums. In addition to the basic name and assigned number, we'd like to add a label field (string) we can use for our UI labels and a sort order int for when we want a bespoke sort order in UI drop-down menus.\n\nWe want to share this data across our typescript, go, and javascript client codebases. So we need a concise way to look up these values in each programming environment. A JSON file they can all share would be fine.\n\nSo let's write the protoc plugin in go in `cmd/protoc-gen-label`. It should parse the extension/option syntax we are using in `protos/shared/enums.proto` and output a .json file with the data. Let's get that part working first.\n",
+          "pastedContents": {}
+        },
+        {
+          "display": "load local/claude.md",
+          "pastedContents": {}
+        },
+        {
           "display": "In the output json, we are duplicating named parameters across both query parameters and path parameters. An example is pharmacy_id in the GetPharmacy endpoint. Fix the code to only define query parameters in the postman json if the proto definition really gets them through the query string.",
           "pastedContents": {}
         },
@@ -178,20 +243,24 @@
         "internal/services/aftervisitreports/update.go",
         "internal/db/assignment_data_select.go",
         "internal/float/assignments.go",
-        "internal/services/visits/mappers.go"
+        "internal/services/aftervisitreports/store.go"
       ],
-      "exampleFilesGeneratedAt": 1746459648911,
-      "lastCost": 1.0740954999999999,
-      "lastAPIDuration": 328539,
-      "lastDuration": 1914493,
-      "lastLinesAdded": 59,
-      "lastLinesRemoved": 10,
-      "lastSessionId": "33cdb894-ac55-4f8d-babf-3726c6a9a83b"
+      "exampleFilesGeneratedAt": 1747066027071,
+      "lastCost": 10.634578899999994,
+      "lastAPIDuration": 2299041,
+      "lastDuration": 13698208,
+      "lastLinesAdded": 1117,
+      "lastLinesRemoved": 666,
+      "lastTotalInputTokens": 157774,
+      "lastTotalOutputTokens": 110690,
+      "lastTotalCacheCreationInputTokens": 1219348,
+      "lastTotalCacheReadInputTokens": 14413751,
+      "lastSessionId": "4c3bd8f9-bd35-4cba-af3e-754293315d2f"
     }
   },
-  "cachedChangelog": "# Changelog\n\n## 0.2.102\n\n- Improved thinking triggering reliability\n- Improved @mention reliability for images and folders\n- You can now paste multiple large chunks into one prompt\n\n## 0.2.100\n\n- Fixed a crash caused by a stack overflow error\n- Made db storage optional; missing db support disables --continue and --resume\n\n## 0.2.98\n\n- Fixed an issue where auto-compact was running twice\n\n## 0.2.96\n\n- Claude Code can now also be used with a Claude Max subscription (https://claude.ai/upgrade)\n\n## 0.2.93\n\n- Resume conversations from where you left off from with \"claude --continue\" and \"claude --resume\"\n- Claude now has access to a Todo list that helps it stay on track and be more organized\n\n## 0.2.82\n\n- Added support for --disallowedTools\n- Renamed tools for consistency: LSTool -> LS, View -> Read, etc.\n\n## 0.2.75\n\n- Hit Enter to queue up additional messages while Claude is working\n- Drag in or copy/paste image files directly into the prompt\n- @-mention files to directly add them to context\n- Run one-off MCP servers with `claude --mcp-config <path-to-file>`\n- Improved performance for filename auto-complete\n\n## 0.2.74\n\n- Added support for refreshing dynamically generated API keys (via apiKeyHelper), with a 5 minute TTL\n- Task tool can now perform writes and run bash commands\n\n## 0.2.72\n\n- Updated spinner to indicate tokens loaded and tool usage\n\n## 0.2.70\n\n- Network commands like curl are now available for Claude to use\n- Claude can now run multiple web queries in parallel\n- Pressing ESC once immediately interrupts Claude in Auto-accept mode\n\n## 0.2.69\n\n- Fixed UI glitches with improved Select component behavior\n- Enhanced terminal output display with better text truncation logic\n\n## 0.2.67\n\n- Shared project permission rules can be saved in .claude/settings.json\n\n## 0.2.66\n\n- Print mode (-p) now supports streaming output via --output-format=stream-json\n- Fixed issue where pasting could trigger memory or bash mode unexpectedly\n\n## 0.2.63\n\n- Fixed an issue where MCP tools were loaded twice, which caused tool call errors\n\n## 0.2.61\n\n- Navigate menus with vim-style keys (j/k) or bash/emacs shortcuts (Ctrl+n/p) for faster interaction\n- Enhanced image detection for more reliable clipboard paste functionality\n- Fixed an issue where ESC key could crash the conversation history selector\n\n## 0.2.59\n\n- Copy+paste images directly into your prompt\n- Improved progress indicators for bash and fetch tools\n- Bugfixes for non-interactive mode (-p)\n\n## 0.2.54\n\n- Quickly add to Memory by starting your message with '#'\n- Press ctrl+r to see full output for long tool results\n- Added support for MCP SSE transport\n\n## 0.2.53\n\n- New web fetch tool lets Claude view URLs that you paste in\n- Fixed a bug with JPEG detection\n\n## 0.2.50\n\n- New MCP \"project\" scope now allows you to add MCP servers to .mcp.json files and commit them to your repository\n\n## 0.2.49\n\n- Previous MCP server scopes have been renamed: previous \"project\" scope is now \"local\" and \"global\" scope is now \"user\"\n\n## 0.2.47\n\n- Press Tab to auto-complete file and folder names\n- Press Shift + Tab to toggle auto-accept for file edits\n- Automatic conversation compaction for infinite conversation length (toggle with /config)\n\n## 0.2.44\n\n- Ask Claude to make a plan with thinking mode: just say 'think' or 'think harder' or even 'ultrathink'\n\n## 0.2.41\n\n- MCP server startup timeout can now be configured via MCP_TIMEOUT environment variable\n- MCP server startup no longer blocks the app from starting up\n\n## 0.2.37\n\n- New /release-notes command lets you view release notes at any time\n- `claude config add/remove` commands now accept multiple values separated by commas or spaces\n\n## 0.2.36\n\n- Import MCP servers from Claude Desktop with `claude mcp add-from-claude-desktop`\n- Add MCP servers as JSON strings with `claude mcp add-json <n> <json>`\n\n## 0.2.34\n\n- Vim bindings for text input - enable with /vim or /config\n\n## 0.2.32\n\n- Interactive MCP setup wizard: Run \"claude mcp add\" to add MCP servers with a step-by-step interface\n- Fix for some PersistentShell issues\n\n## 0.2.31\n\n- Custom slash commands: Markdown files in .claude/commands/ directories now appear as custom slash commands to insert prompts into your conversation\n- MCP debug mode: Run with --mcp-debug flag to get more information about MCP server errors\n\n## 0.2.30\n\n- Added ANSI color theme for better terminal compatibility\n- Fixed issue where slash command arguments weren't being sent properly\n- (Mac-only) API keys are now stored in macOS Keychain\n\n## 0.2.26\n\n- New /approved-tools command for managing tool permissions\n- Word-level diff display for improved code readability\n- Fuzzy matching for slash commands\n\n## 0.2.21\n\n- Fuzzy matching for /commands\n",
-  "changelogLastFetched": 1746648720178,
-  "lastReleaseNotesSeen": "0.2.78",
+  "cachedChangelog": "# Changelog\n\n## 0.2.107\n\n- CLAUDE.md files can now import other files. Add @path/to/file.md to ./CLAUDE.md to load additional files on launch\n\n## 0.2.106\n\n- MCP SSE server configs can now specify custom headers\n- Fixed a bug where MCP permission prompt didn't always show correctly\n\n## 0.2.105\n\n- Claude can now search the web\n- Moved system & account status to /status\n- Added word movement keybindings for Vim\n- Improved latency for startup, todo tool, and file edits\n\n## 0.2.102\n\n- Improved thinking triggering reliability\n- Improved @mention reliability for images and folders\n- You can now paste multiple large chunks into one prompt\n\n## 0.2.100\n\n- Fixed a crash caused by a stack overflow error\n- Made db storage optional; missing db support disables --continue and --resume\n\n## 0.2.98\n\n- Fixed an issue where auto-compact was running twice\n\n## 0.2.96\n\n- Claude Code can now also be used with a Claude Max subscription (https://claude.ai/upgrade)\n\n## 0.2.93\n\n- Resume conversations from where you left off from with \"claude --continue\" and \"claude --resume\"\n- Claude now has access to a Todo list that helps it stay on track and be more organized\n\n## 0.2.82\n\n- Added support for --disallowedTools\n- Renamed tools for consistency: LSTool -> LS, View -> Read, etc.\n\n## 0.2.75\n\n- Hit Enter to queue up additional messages while Claude is working\n- Drag in or copy/paste image files directly into the prompt\n- @-mention files to directly add them to context\n- Run one-off MCP servers with `claude --mcp-config <path-to-file>`\n- Improved performance for filename auto-complete\n\n## 0.2.74\n\n- Added support for refreshing dynamically generated API keys (via apiKeyHelper), with a 5 minute TTL\n- Task tool can now perform writes and run bash commands\n\n## 0.2.72\n\n- Updated spinner to indicate tokens loaded and tool usage\n\n## 0.2.70\n\n- Network commands like curl are now available for Claude to use\n- Claude can now run multiple web queries in parallel\n- Pressing ESC once immediately interrupts Claude in Auto-accept mode\n\n## 0.2.69\n\n- Fixed UI glitches with improved Select component behavior\n- Enhanced terminal output display with better text truncation logic\n\n## 0.2.67\n\n- Shared project permission rules can be saved in .claude/settings.json\n\n## 0.2.66\n\n- Print mode (-p) now supports streaming output via --output-format=stream-json\n- Fixed issue where pasting could trigger memory or bash mode unexpectedly\n\n## 0.2.63\n\n- Fixed an issue where MCP tools were loaded twice, which caused tool call errors\n\n## 0.2.61\n\n- Navigate menus with vim-style keys (j/k) or bash/emacs shortcuts (Ctrl+n/p) for faster interaction\n- Enhanced image detection for more reliable clipboard paste functionality\n- Fixed an issue where ESC key could crash the conversation history selector\n\n## 0.2.59\n\n- Copy+paste images directly into your prompt\n- Improved progress indicators for bash and fetch tools\n- Bugfixes for non-interactive mode (-p)\n\n## 0.2.54\n\n- Quickly add to Memory by starting your message with '#'\n- Press ctrl+r to see full output for long tool results\n- Added support for MCP SSE transport\n\n## 0.2.53\n\n- New web fetch tool lets Claude view URLs that you paste in\n- Fixed a bug with JPEG detection\n\n## 0.2.50\n\n- New MCP \"project\" scope now allows you to add MCP servers to .mcp.json files and commit them to your repository\n\n## 0.2.49\n\n- Previous MCP server scopes have been renamed: previous \"project\" scope is now \"local\" and \"global\" scope is now \"user\"\n\n## 0.2.47\n\n- Press Tab to auto-complete file and folder names\n- Press Shift + Tab to toggle auto-accept for file edits\n- Automatic conversation compaction for infinite conversation length (toggle with /config)\n\n## 0.2.44\n\n- Ask Claude to make a plan with thinking mode: just say 'think' or 'think harder' or even 'ultrathink'\n\n## 0.2.41\n\n- MCP server startup timeout can now be configured via MCP_TIMEOUT environment variable\n- MCP server startup no longer blocks the app from starting up\n\n## 0.2.37\n\n- New /release-notes command lets you view release notes at any time\n- `claude config add/remove` commands now accept multiple values separated by commas or spaces\n\n## 0.2.36\n\n- Import MCP servers from Claude Desktop with `claude mcp add-from-claude-desktop`\n- Add MCP servers as JSON strings with `claude mcp add-json <n> <json>`\n\n## 0.2.34\n\n- Vim bindings for text input - enable with /vim or /config\n\n## 0.2.32\n\n- Interactive MCP setup wizard: Run \"claude mcp add\" to add MCP servers with a step-by-step interface\n- Fix for some PersistentShell issues\n\n## 0.2.31\n\n- Custom slash commands: Markdown files in .claude/commands/ directories now appear as custom slash commands to insert prompts into your conversation\n- MCP debug mode: Run with --mcp-debug flag to get more information about MCP server errors\n\n## 0.2.30\n\n- Added ANSI color theme for better terminal compatibility\n- Fixed issue where slash command arguments weren't being sent properly\n- (Mac-only) API keys are now stored in macOS Keychain\n\n## 0.2.26\n\n- New /approved-tools command for managing tool permissions\n- Word-level diff display for improved code readability\n- Fuzzy matching for slash commands\n\n## 0.2.21\n\n- Fuzzy matching for /commands\n",
+  "changelogLastFetched": 1747066025452,
+  "lastReleaseNotesSeen": "0.2.104",
   "isQualifiedForDataSharing": false,
   "statsigModel": {
     "bedrock": "us.anthropic.claude-3-7-sonnet-20250219-v1:0",
@@ -199,5 +268,6 @@
     "firstParty": "claude-3-7-sonnet-20250219"
   },
   "maxSubscriptionNoticeCount": 0,
-  "hasAvailableMaxSubscription": false
+  "hasAvailableMaxSubscription": false,
+  "hasAcknowledgedCostThreshold": true
 }
