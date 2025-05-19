@@ -67,6 +67,36 @@ menuItemColors = {
 	display = defaultColors,
 }
 
+local function v10()
+	sound.setVolume(10)
+end
+local function v20()
+	sound.setVolume(20)
+end
+local function v30()
+	sound.setVolume(30)
+end
+local function v40()
+	sound.setVolume(40)
+end
+local function v50()
+	sound.setVolume(50)
+end
+local function v60()
+	sound.setVolume(60)
+end
+local function v70()
+	sound.setVolume(70)
+end
+local function v80()
+	sound.setVolume(80)
+end
+local function v90()
+	sound.setVolume(90)
+end
+local function v100()
+	sound.setVolume(100)
+end
 ----------------------------------------------------------------------------------------------------
 -------------------------------------- Menu bar options --------------------------------------------
 ----------------------------------------------------------------------------------------------------
@@ -169,96 +199,24 @@ a(i, { cons.cat.action, noMod, "P", "PrusaSlicer", { { cons.act.launcher, "Prusa
 local menuPersonal = { menuItems = i, parentMenu = menuNameMain }
 
 local menuNameVolume = "Volume"
-a(i, { cons.cat.action, noMod, "1", "10%", { {
-	cons.act.func,
-	function()
-		sound.setVolume(10)
-	end,
-} } })
-a(i, { cons.cat.action, noMod, "2", "20%", { {
-	cons.act.func,
-	function()
-		sound.setVolume(20)
-	end,
-} } })
-a(i, { cons.cat.action, noMod, "3", "30%", { {
-	cons.act.func,
-	function()
-		sound.setVolume(30)
-	end,
-} } })
-a(i, { cons.cat.action, noMod, "t", "30%", { {
-	cons.act.func,
-	function()
-		sound.setVolume(30)
-	end,
-} } })
-a(i, { cons.cat.action, noMod, "4", "50%", { {
-	cons.act.func,
-	function()
-		sound.setVolume(40)
-	end,
-} } })
-a(i, { cons.cat.action, noMod, "5", "50%", { {
-	cons.act.func,
-	function()
-		sound.setVolume(50)
-	end,
-} } })
-a(i, { cons.cat.action, noMod, "f", "50%", { {
-	cons.act.func,
-	function()
-		sound.setVolume(50)
-	end,
-} } })
-a(i, { cons.cat.action, noMod, "6", "60%", { {
-	cons.act.func,
-	function()
-		sound.setVolume(60)
-	end,
-} } })
-a(i, { cons.cat.action, noMod, "7", "70%", { {
-	cons.act.func,
-	function()
-		sound.setVolume(70)
-	end,
-} } })
-a(i, { cons.cat.action, noMod, "s", "70%", { {
-	cons.act.func,
-	function()
-		sound.setVolume(70)
-	end,
-} } })
-a(i, { cons.cat.action, noMod, "8", "80%", { {
-	cons.act.func,
-	function()
-		sound.setVolume(80)
-	end,
-} } })
-a(i, { cons.cat.action, noMod, "e", "80%", { {
-	cons.act.func,
-	function()
-		sound.setVolume(80)
-	end,
-} } })
-a(i, { cons.cat.action, noMod, "9", "90%", { {
-	cons.act.func,
-	function()
-		sound.setVolume(90)
-	end,
-} } })
-a(i, { cons.cat.action, noMod, "n", "90%", { {
-	cons.act.func,
-	function()
-		sound.setVolume(90)
-	end,
-} } })
-a(i, { cons.cat.action, noMod, "h", "100%", { {
-	cons.act.func,
-	function()
-		sound.setVolume(100)
-	end,
-} } })
+
+a(i, { cons.cat.action, noMod, "1", "10%", { { cons.act.func, v10 } } })
+a(i, { cons.cat.action, noMod, "2", "20%", { { cons.act.func, v20 } } })
+a(i, { cons.cat.action, noMod, "3", "30%", { { cons.act.func, v30 } } })
+a(i, { cons.cat.action, noMod, "4", "40%", { { cons.act.func, v40 } } })
+a(i, { cons.cat.action, noMod, "5", "50%", { { cons.act.func, v50 } } })
+a(i, { cons.cat.action, noMod, "6", "60%", { { cons.act.func, v60 } } })
+a(i, { cons.cat.action, noMod, "7", "70%", { { cons.act.func, v70 } } })
+a(i, { cons.cat.action, noMod, "8", "80%", { { cons.act.func, v80 } } })
+a(i, { cons.cat.action, noMod, "9", "90%", { { cons.act.func, v90 } } })
+a(i, { cons.cat.action, noMod, "0", "100%", { { cons.act.func, v100 } } })
+a(i, { cons.cat.action, noMod, "t", "30%", { { cons.act.func, v30 } } })
+a(i, { cons.cat.action, noMod, "f", "50%", { { cons.act.func, v50 } } })
+a(i, { cons.cat.action, noMod, "s", "70%", { { cons.act.func, v70 } } })
+a(i, { cons.cat.action, noMod, "e", "80%", { { cons.act.func, v80 } } })
+a(i, { cons.cat.action, noMod, "n", "90%", { { cons.act.func, v90 } } })
+a(i, { cons.cat.action, noMod, "h", "100%", { { cons.act.func, v100 } } })
+
 local menuVolume = { menuItems = i, parentMenu = menuNameMain }
 
 local i = {}
@@ -278,7 +236,6 @@ a(i, { cons.cat.action, noMod, "n", "Snippets", { { cons.act.func, snippets.choo
 a(i, { cons.cat.action, noMod, "o", "Obsidian", { { cons.act.launcher, "Obsidian" } } })
 a(i, { cons.cat.action, noMod, "p", "1Password", { { cons.act.launcher, "1Password" } } })
 a(i, { cons.cat.action, noMod, "q", "Terminal Quick", { { cons.act.func, focus.terminalQuick } } })
-a(i, { cons.cat.action, noMod, "r", "Right (App Nav)", { { cons.act.func, appNav.right } } })
 a(i, { cons.cat.action, noMod, "s", "Slack", { { cons.act.func, focus.slack } } })
 a(i, { cons.cat.action, noMod, "t", "terminal", { { cons.act.func, focus.terminal } } })
 a(i, { cons.cat.submenu, noMod, "u", menuNameMusic, { { cons.act.menu, menuNameMusic } } })
