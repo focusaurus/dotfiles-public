@@ -67,39 +67,11 @@ menuItemColors = {
 	display = defaultColors,
 }
 
-local function v10()
-	sound.setVolume(10)
+local function setVol(level)
+	return function()
+		sound.setVolume(level)
+	end
 end
-local function v20()
-	sound.setVolume(20)
-end
-local function v30()
-	sound.setVolume(30)
-end
-local function v40()
-	sound.setVolume(40)
-end
-local function v50()
-	sound.setVolume(50)
-end
-local function v60()
-	sound.setVolume(60)
-end
-local function v70()
-	sound.setVolume(70)
-end
-local function v80()
-	sound.setVolume(80)
-end
-local function v90()
-	sound.setVolume(90)
-end
-local function v100()
-	sound.setVolume(100)
-end
-----------------------------------------------------------------------------------------------------
--------------------------------------- Menu bar options --------------------------------------------
-----------------------------------------------------------------------------------------------------
 
 -- Key bindings
 
@@ -132,7 +104,8 @@ local menuNameMain = "Main"
 
 local menuNameFloatHealth = "Float Health"
 local i = {}
-a(i, { cons.cat.action, noMod, "Y", "Playwright (Chromium)", { { cons.act.launcher, "Chromium" } } })
+a(i, { cons.cat.action, noMod, "l", "Leapp", { { cons.act.launcher, "Leapp" } } })
+a(i, { cons.cat.action, noMod, "y", "Playwright (Chromium)", { { cons.act.launcher, "Chromium" } } })
 a(i, { cons.cat.action, noMod, "z", "zed", { { cons.act.launcher, "Zed" } } })
 local menuFloatHealth = { menuItems = i, parentMenu = menuNameMain }
 
@@ -200,22 +173,25 @@ local menuPersonal = { menuItems = i, parentMenu = menuNameMain }
 
 local menuNameVolume = "Volume"
 
-a(i, { cons.cat.action, noMod, "1", "10%", { { cons.act.func, v10 } } })
-a(i, { cons.cat.action, noMod, "2", "20%", { { cons.act.func, v20 } } })
-a(i, { cons.cat.action, noMod, "3", "30%", { { cons.act.func, v30 } } })
-a(i, { cons.cat.action, noMod, "4", "40%", { { cons.act.func, v40 } } })
-a(i, { cons.cat.action, noMod, "5", "50%", { { cons.act.func, v50 } } })
-a(i, { cons.cat.action, noMod, "6", "60%", { { cons.act.func, v60 } } })
-a(i, { cons.cat.action, noMod, "7", "70%", { { cons.act.func, v70 } } })
-a(i, { cons.cat.action, noMod, "8", "80%", { { cons.act.func, v80 } } })
-a(i, { cons.cat.action, noMod, "9", "90%", { { cons.act.func, v90 } } })
-a(i, { cons.cat.action, noMod, "0", "100%", { { cons.act.func, v100 } } })
-a(i, { cons.cat.action, noMod, "t", "30%", { { cons.act.func, v30 } } })
-a(i, { cons.cat.action, noMod, "f", "50%", { { cons.act.func, v50 } } })
-a(i, { cons.cat.action, noMod, "s", "70%", { { cons.act.func, v70 } } })
-a(i, { cons.cat.action, noMod, "e", "80%", { { cons.act.func, v80 } } })
-a(i, { cons.cat.action, noMod, "n", "90%", { { cons.act.func, v90 } } })
-a(i, { cons.cat.action, noMod, "h", "100%", { { cons.act.func, v100 } } })
+a(i, { cons.cat.action, noMod, "0", "0%", { { cons.act.func, setVol(0) } } })
+-- a(i, { cons.cat.action, noMod, "1", "10%", { { cons.act.func, setVol(10) } } })
+a(i, { cons.cat.action, noMod, "2", "20%", { { cons.act.func, setVol(20) } } })
+a(i, { cons.cat.action, noMod, "3", "30%", { { cons.act.func, setVol(30) } } })
+a(i, { cons.cat.action, noMod, "4", "40%", { { cons.act.func, setVol(40) } } })
+a(i, { cons.cat.action, noMod, "5", "50%", { { cons.act.func, setVol(50) } } })
+a(i, { cons.cat.action, noMod, "6", "60%", { { cons.act.func, setVol(60) } } })
+a(i, { cons.cat.action, noMod, "7", "70%", { { cons.act.func, setVol(70) } } })
+a(i, { cons.cat.action, noMod, "8", "80%", { { cons.act.func, setVol(80) } } })
+a(i, { cons.cat.action, noMod, "9", "90%", { { cons.act.func, setVol(90) } } })
+a(i, { cons.cat.action, noMod, "1", "100%", { { cons.act.func, setVol(100) } } })
+a(i, { cons.cat.action, noMod, "t", "30%", { { cons.act.func, setVol(30) } } })
+a(i, { cons.cat.action, noMod, "f", "50%", { { cons.act.func, setVol(50) } } })
+a(i, { cons.cat.action, noMod, "s", "70%", { { cons.act.func, setVol(70) } } })
+a(i, { cons.cat.action, noMod, "e", "80%", { { cons.act.func, setVol(80) } } })
+a(i, { cons.cat.action, noMod, "n", "90%", { { cons.act.func, setVol(90) } } })
+a(i, { cons.cat.action, noMod, "h", "100%", { { cons.act.func, setVol(100) } } })
+a(i, { cons.cat.action, noMod, "m", "mute", { { cons.act.func, sound.mute } } })
+a(i, { cons.cat.action, noMod, "u", "unmute", { { cons.act.func, sound.unmute } } })
 
 local menuVolume = { menuItems = i, parentMenu = menuNameMain }
 

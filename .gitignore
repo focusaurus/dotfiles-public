@@ -323,3 +323,9 @@ login_1689539373.hcl
 .config/lnav/configs/default
 .config/ario/covers
 .1password/agent.sock
+.claude
+.Leapp
+.config/lnav/filter-regex.history
+.config/lnav/log_metadata.db
+.config/lnav/search.history
+.claude.json
