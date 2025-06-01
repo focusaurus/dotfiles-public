@@ -1,3 +1,4 @@
+-- necessary for CLI scripting. IPC means interprocess communication.
 require("hs.ipc")
 require("keys")
 local menuHammer = hs.loadSpoon("MenuHammer")

@@ -1,4 +1,5 @@
 local module = {}
+
 local log = hs.logger.new("focus", "debug")
 local focusMode = false
 local hbin = os.getenv("HOME") .. "/bin"
@@ -33,6 +34,14 @@ for cli, app in pairs(cliToApp) do
 		log.d(cli)
 		hs.application.launchOrFocus(app)
 	end
+end
+
+function module.dev1()
+	local appList = ""
+	for _, app in pairs(hs.application.runningApplications()) do
+		appList = appList .. app:title() .. "\n"
+	end
+	log.d(appList)
 end
 
 local cliToFunc = {
@@ -121,9 +130,9 @@ function module.cycleByHotkey()
 end
 
 function module.cycleByFilter()
-	app = hs.window.frontmostWindow():application()
+	local app = hs.window.frontmostWindow():application()
 	print("app name " .. app:name())
-	windows = hs.window.filter.new({ app:name() }):getWindows(hs.window.filter.sortByFocusedLast)
+	local windows = hs.window.filter.new({ app:name() }):getWindows(hs.window.filter.sortByFocusedLast)
 	print("windows length: " .. #windows)
 	windows[#windows]:focus()
 end
@@ -442,7 +451,7 @@ function module.previousAppByHotkey()
 	end
 end
 
-module.previousApp = module.previousAppByFilter
+module.previousApp = module.previousAppByHotkey
 
 function module.slack()
 	log.d("slack")
@@ -608,7 +617,7 @@ local windowChooser = hs.chooser.new(function(choice)
 	if v then
 		v:focus()
 	else
-		hs.alert.show("unable fo focus " .. name)
+		hs.alert.show("unable fo focus " .. v:name())
 	end
 end)
 
