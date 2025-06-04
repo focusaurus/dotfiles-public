@@ -1,6 +1,7 @@
 local module = {}
 
 local log = hs.logger.new("focus", "debug")
+local log2 = require("log")
 local focusMode = false
 local hbin = os.getenv("HOME") .. "/bin"
 local browserName = "Firefox"
@@ -374,8 +375,34 @@ local function emailByAppWindowTitle()
 		log.d("emailByAppMenu: browserApp is nil")
 		return
 	end
-	-- browserApp:activate()
-	browserApp:selectMenuItem("work%-float", true)
+	browserApp:activate()
+	browserApp:setFrontmost()
+	browserApp:getMenuItems(function(mi)
+		for _, q in ipairs(mi) do
+			log2("emailByAppWindowTitle", "getMenuItems", q["AXTitle"])
+			if q["AXTitle"] == "Window" then
+				for _, item in ipairs(q["AXChildren"][1]) do
+					log2("submenu", item["AXTitle"])
+					if string.find(item["AXTitle"], "work-float:", 1, true) == 1 then
+						log2("selecting", item["AXTitle"])
+						browserApp:selectMenuItem(item["AXTitle"])
+					end
+				end
+			end
+		end
+	end)
+	-- local mi = browserApp:findMenuItem("^work-float", true)
+	-- if mi == nil then
+	-- 	log.d("emailByAppMenu: mi is nil")
+	-- end
+	-- mi = browserApp:findMenuItem("work%-float")
+	-- if mi == nil then
+	-- 	log.d("emailByAppMenu: mi is nil")
+	-- end
+	-- browserApp:selectMenuItem("^work-float", true)
+	hs.timer.doAfter(0.5, function()
+		hs.eventtap.keyStroke({ "command" }, "1")
+	end)
 	-- for _, win in ipairs(browserApp:visibleWindows()) do
 	-- 	log.d("emailByAppMenu win: " .. win:title())
 	-- 	local i, _ = string.find(win:title(), "work%-float:")
@@ -394,9 +421,6 @@ local function emailByAppWindowTitle()
 	-- 	return
 	-- end
 	-- win:focus()
-	-- hs.timer.doAfter(0.5, function()
-	-- 	hs.eventtap.keyStroke({ "command" }, "1")
-	-- end)
 end
 module.email = emailByAppWindowTitle
 
