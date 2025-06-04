@@ -1,5 +1,5 @@
 local log = hs.logger.new("browser-tabs", "debug")
-local hbin = hs.fs.pathToAbsolute("~/bin")
+local hbin = os.getenv("HOME") .. "/bin"
 -- os.getenv("HOME") .. "/bin"
 
 function browserTabs()
