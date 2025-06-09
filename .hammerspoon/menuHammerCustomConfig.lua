@@ -115,7 +115,7 @@ local function hsManual()
 	hs.doc.hsdocs.moduleEntitiesInSidebar(true)
 	hs.doc.hsdocs.help()
 end
-local i = {}
+i = {}
 a(i, { cons.cat.action, noMod, "C", "Hammerspoon Console", { { cons.act.func, hs.toggleConsole } } })
 a(i, { cons.cat.action, noMod, "H", "Hammerspoon Manual", { { cons.act.func, hsManual } } })
 a(i, { cons.cat.action, noMod, "R", "Reload Hammerspoon", { { cons.act.func, hs.reload } } })
@@ -123,7 +123,7 @@ a(i, { cons.cat.action, noMod, "Q", "Quit Hammerspoon", { { cons.act.func, os.ex
 local menuHammerspoon = { menuItems = i, parentMenu = menuNameMain }
 
 local menuNameHelp = "Help"
-local i = {}
+i = {}
 a(i, { cons.cat.action, noMod, "H", "Hammerspoon Manual", { { cons.act.func, hsManual } } })
 a(i, {
 	cons.cat.action,
@@ -135,7 +135,7 @@ a(i, {
 local menuHelp = { menuItems = i, parentMenu = menuNameMain }
 
 local menuNameJournal = "Journal"
-local i = {}
+i = {}
 a(i, { cons.cat.action, noMod, "j", "Journal", { { cons.act.func, journal.appendPrompt } } })
 a(i, { cons.cat.action, noMod, "c", "Check In", { { cons.act.func, journal.appendPromptCheckIn } } })
 a(i, { cons.cat.action, noMod, "t", "Task", { { cons.act.func, journal.appendPromptTask } } })
@@ -143,20 +143,20 @@ a(i, { cons.cat.action, noMod, "v", "vim", { { cons.act.func, journal.appendVim 
 local menuJournal = { menuItems = i, parentMenu = menuNameMain }
 
 local menuNameLayout = "Layout (Placement)"
-local i = {}
+i = {}
 a(i, { cons.cat.action, noMod, "l", "Left", { { cons.act.func, placement.left } } })
 a(i, { cons.cat.action, noMod, "r", "Right", { { cons.act.func, placement.right } } })
 a(i, { cons.cat.action, noMod, "m", "Max", { { cons.act.func, placement.maximize } } })
 local menuLayout = { menuItems = i, parentMenu = menuNameMain }
 
 local menuNameLearnLua = "Learn Lua"
-local i = {}
+i = {}
 a(i, { cons.cat.action, noMod, "a", "Aggregate", { { cons.act.func, journal.appendPrompt } } })
 a(i, { cons.cat.action, noMod, "b", "Burn", { { cons.act.func, journal.appendPrompt } } })
 local menuLearnLua = { menuItems = i, parentMenu = menuNameMain }
 
 local menuNameMusic = "mUsic"
-local i = {}
+i = {}
 a(i, { cons.cat.action, noMod, "space", "Toggle", { { cons.act.func, mpd.toggle } } })
 a(i, { cons.cat.action, noMod, "t", "Toggle", { { cons.act.func, mpd.toggle } } })
 a(i, { cons.cat.action, noMod, "p", "Play", { { cons.act.func, mpd.play } } })
@@ -165,14 +165,14 @@ local menuMusic = { menuItems = i, parentMenu = menuNameMain }
 
 -- Menu: Personal
 local menuNamePersonal = "Personal"
-local i = {}
+i = {}
 a(i, { cons.cat.action, noMod, "B", "Bambu Studio", { { cons.act.launcher, "BambuStudio" } } })
 a(i, { cons.cat.action, noMod, "F", "Fusion", { { cons.act.launcher, "Fusion" } } })
 a(i, { cons.cat.action, noMod, "P", "PrusaSlicer", { { cons.act.launcher, "PrusaSlicer" } } })
 local menuPersonal = { menuItems = i, parentMenu = menuNameMain }
 
 local menuNameVolume = "Volume"
-
+i = {}
 a(i, { cons.cat.action, noMod, "0", "0%", { { cons.act.func, setVol(0) } } })
 -- a(i, { cons.cat.action, noMod, "1", "10%", { { cons.act.func, setVol(10) } } })
 a(i, { cons.cat.action, noMod, "2", "20%", { { cons.act.func, setVol(20) } } })
@@ -195,7 +195,7 @@ a(i, { cons.cat.action, noMod, "u", "unmute", { { cons.act.func, sound.unmute } 
 
 local menuVolume = { menuItems = i, parentMenu = menuNameMain }
 
-local i = {}
+i = {}
 a(i, { cons.cat.action, noMod, "a", "API (Postman)", { { cons.act.launcher, "Postman" } } })
 a(i, { cons.cat.action, noMod, "b", "Browser", { { cons.act.func, focus.browser } } })
 a(i, { cons.cat.action, noMod, "c", "Calendar", { { cons.act.func, focus.calendar } } })

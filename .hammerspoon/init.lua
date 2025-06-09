@@ -1,13 +1,5 @@
--- local log = hs.logger.new("init", "debug")
-
--- require("autotype")
--- require("browser-tabs")
--- require("hammerspoon")
 require("keys")
--- require("screenshots")
--- require("reload")
--- require("window-tabs")
-
+require("hammerspoon")
 local menuHammer = hs.loadSpoon("MenuHammer")
 menuHammer:enter()
 -- local emojis = hs.loadSpoon("Emojis")

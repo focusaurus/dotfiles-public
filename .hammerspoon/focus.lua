@@ -1,4 +1,5 @@
 local module = {}
+
 local log = hs.logger.new("focus", "debug")
 local focusMode = false
 local hbin = os.getenv("HOME") .. "/bin"
@@ -33,6 +34,14 @@ for cli, app in pairs(cliToApp) do
 		log.d(cli)
 		hs.application.launchOrFocus(app)
 	end
+end
+
+function module.dev1()
+	local appList = ""
+	for _, app in pairs(hs.application.runningApplications()) do
+		appList = appList .. app:title() .. "\n"
+	end
+	log.d(appList)
 end
 
 local cliToFunc = {
@@ -121,9 +130,9 @@ function module.cycleByHotkey()
 end
 
 function module.cycleByFilter()
-	app = hs.window.frontmostWindow():application()
+	local app = hs.window.frontmostWindow():application()
 	print("app name " .. app:name())
-	windows = hs.window.filter.new({ app:name() }):getWindows(hs.window.filter.sortByFocusedLast)
+	local windows = hs.window.filter.new({ app:name() }):getWindows(hs.window.filter.sortByFocusedLast)
 	print("windows length: " .. #windows)
 	windows[#windows]:focus()
 end
@@ -145,7 +154,7 @@ end
 local windowBrowserFloat
 function module.browserFloatByTitleCache()
 	if windowBrowserFloat == nil then
-		windowBrowserFloat = module.findWindowByTitle(browserName, "float")
+		windowBrowserFloat = module.findWindowByTitle(browserName, "work-float")
 	end
 	if windowBrowserFloat == nil then
 		-- if we get here, we didn't find any windows, launch the app
@@ -343,8 +352,9 @@ function module.terminalQuick()
 	hs.execute(hbin .. "/terminal-quick", true)
 end
 
-function module.email()
-	log.d("email")
+---@diagnostic disable-next-line: unused-local, unused-function
+local function emailByTitleFilter()
+	log.d("emailByTitleFilter")
 	if focusMode then
 		return
 	end
@@ -356,6 +366,39 @@ function module.email()
 		hs.eventtap.keyStroke({ "command" }, "1")
 	end)
 end
+
+local function emailByAppWindowTitle()
+	log.d("emailByAppMenu")
+	local browserApp = hs.appfinder.appFromName(browserName)
+	if browserApp == nil then
+		log.d("emailByAppMenu: browserApp is nil")
+		return
+	end
+	-- browserApp:activate()
+	browserApp:selectMenuItem("work%-float", true)
+	-- for _, win in ipairs(browserApp:visibleWindows()) do
+	-- 	log.d("emailByAppMenu win: " .. win:title())
+	-- 	local i, _ = string.find(win:title(), "work%-float:")
+	-- 	if i ~= nil and i >= 0 then
+	-- 		win:raise()
+	-- 		win:focus()
+	-- 		return
+	-- 	else
+	-- 		log.d("emailByAppMenu: visibleWindows: i j ", i)
+	-- 	end
+	-- end
+	--
+	-- local win = browserApp:findWindow("work-float")
+	-- if win == nil then
+	-- 	log.d("emailByAppMenu: win not found by name")
+	-- 	return
+	-- end
+	-- win:focus()
+	-- hs.timer.doAfter(0.5, function()
+	-- 	hs.eventtap.keyStroke({ "command" }, "1")
+	-- end)
+end
+module.email = emailByAppWindowTitle
 
 -- function module.calendarTab()
 --     log.d("calendarTab")
@@ -442,7 +485,7 @@ function module.previousAppByHotkey()
 	end
 end
 
-module.previousApp = module.previousAppByFilter
+module.previousApp = module.previousAppByHotkey
 
 function module.slack()
 	log.d("slack")
@@ -608,7 +651,7 @@ local windowChooser = hs.chooser.new(function(choice)
 	if v then
 		v:focus()
 	else
-		hs.alert.show("unable fo focus " .. name)
+		hs.alert.show("unable fo focus " .. v:name())
 	end
 end)
 
