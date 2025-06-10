@@ -1,0 +1,54 @@
+#!/bin/bash
+
+find_window() {
+  filter="$1"
+  id=$(niri msg --json windows |
+    jq --raw-output "[.[] | select(${filter})][0] .id")
+  if [[ -n "${id}" ]]; then
+    niri msg action focus-window --id "${id}"
+    exit
+  fi
+}
+if [ $# -eq 0 ]; then
+  echo "Usage: $0 <app_name>"
+  echo "Available apps: gofi"
+  exit 1
+fi
+
+APP_NAME="$1"
+
+case "$APP_NAME" in
+gofi)
+  find_window '.title == "gofi"'
+  ;;
+browser | firefox)
+  find_window '.app_id == "firefox" and (.title | startswith("main:"))'
+  # WINDOW_ID=$(niri msg --json windows | jq -r '.[] | select(.app_id == "firefox" and (.title | startswith("main:"))) .id' | head -1)
+  ;;
+terminal | ghostty)
+  # WINDOW_ID=$(niri msg --json windows | jq -r '.[] | select(.app_id == "com.mitchellh.ghostty" and .title != "gofi") .id' | head -1)
+  find_window '.app_id == "com.mitchellh.ghostty" and .title != "gofi"'
+  ;;
+music)
+  # WINDOW_ID=$(niri msg --json windows | jq -r '.[] | select(.title|startswith("music:")) .id' | head -1)
+  find_window '.title|startswith("music:")'
+  ;;
+obsidian)
+  # WINDOW_ID=$(niri msg --json windows | jq -r '.[] | select(.app_id =="obsidian") .id' | head -1)
+  find_window '.app_id == "obsidian"'
+  obsidian --enable-features=UseOzonePlatform --ozone-platform=wayland
+  exit
+  ;;
+previous)
+  niri msg action focus-window-previous
+  exit
+  ;;
+*)
+  echo "Unknown app: $APP_NAME"
+  echo "Available apps: gofi"
+  exit 1
+  ;;
+esac
+
+echo "Window not found for: $APP_NAME"
+exit 1
