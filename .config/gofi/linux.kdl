@@ -28,6 +28,7 @@ zulip key="Z" "focus" "zulip"
 applications key="a" {
   calculator key="c" "focus" "calculator"
   bambu-studio key="b" "focus" "bambustudio"
+  creality-print key="e" "focus" "crealityprint"
   freecad key="f" "focus" "freecad"
   gedit key="g" "focus" "gedit"
   discord key="d" "focus" "discord"

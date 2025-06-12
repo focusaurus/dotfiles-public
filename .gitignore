@@ -333,3 +333,4 @@ login_1689539373.hcl
 .cocoapods/repos
 .expo
 .swiftpm
+.var/app/com.bambulab.BambuStudio
