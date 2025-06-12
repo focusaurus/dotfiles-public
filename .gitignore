@@ -330,3 +330,6 @@ login_1689539373.hcl
 .config/lnav/search.history
 .claude.json
 .config/lnav
+.cocoapods/repos
+.expo
+.swiftpm
