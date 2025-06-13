@@ -104,6 +104,7 @@ local menuNameMain = "Main"
 
 local menuNameFloatHealth = "Float Health"
 local i = {}
+a(i, { cons.cat.action, noMod, "i", "iOS Simulator", { { cons.act.launcher, "Simulator" } } })
 a(i, { cons.cat.action, noMod, "l", "Leapp", { { cons.act.launcher, "Leapp" } } })
 a(i, { cons.cat.action, noMod, "y", "Playwright (Chromium)", { { cons.act.launcher, "Chromium" } } })
 a(i, { cons.cat.action, noMod, "z", "zed", { { cons.act.launcher, "Zed" } } })

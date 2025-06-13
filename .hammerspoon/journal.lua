@@ -1,7 +1,7 @@
 local module = {}
 local log = hs.logger.new("journal", "debug")
 -- local windowManagement = require("window-management")
-local fuzzball = hs.fs.pathToAbsolute("~/git.peterlyons.com/dotfiles/fuzzball")
+local fuzzball = os.getenv("HOME") .. "/git.peterlyons.com/dotfiles/fuzzball"
 
 -- local function journalVim()
 --   log.d("journalVim")

@@ -1,5 +1,5 @@
 local log = hs.logger.new("screenshots", "debug")
-local ssr = hs.fs.pathToAbsolute("~/bin/screenshot-rename")
+local ssr = os.getenv("HOME") .. "/bin/screenshot-rename"
 
 ----- hammerspoon config reloading -----
 local function renameScreenshot(files, opts)
@@ -11,4 +11,4 @@ local function renameScreenshot(files, opts)
 		end
 	end
 end
-hs.pathwatcher.new(hs.fs.pathToAbsolute("~/Desktop/"), renameScreenshot):start()
+hs.pathwatcher.new(os.getenv("HOME") .. "/Desktop/", renameScreenshot):start()
