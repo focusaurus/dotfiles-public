@@ -14,7 +14,11 @@ IFS="$(printf "\n\t")"
 
 case $(uname) in
 Linux)
-  xclip -selection clipboard -o 2>/dev/null || true
+  if [[ "${XDG_SESSION_TYPE}" == "wayland" ]]; then
+    wl-paste
+  else
+    xclip -selection clipboard -o 2>/dev/null || true
+  fi
   ;;
 Darwin)
   pbpaste

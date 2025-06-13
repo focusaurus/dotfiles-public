@@ -64,6 +64,9 @@ fi
 
 export PAGER=less
 export BREW_PREFIX="/opt/homebrew"
+if [[ "${XDG_SESSION_TYPE}" == "wayland" ]]; then
+  export ELECTRON_OZONE_PLATFORM_HINT=wayland
+fi
 # if ~/bin/have-exe bat; then
 #   export PAGER="bat --paging=always"
 # fi

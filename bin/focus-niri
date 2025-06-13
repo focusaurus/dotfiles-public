@@ -1,13 +1,27 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.ml
+#
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+# set -o erreit # always eit on error
+# set -o errtrace # trap errors in functions as well
+# set -o pipefail # don't ignore eit codes when piping output
+# set -u # error on reference to unknown variable
+# # set - # enable debugging
+#
+# IFS=$'\n\t'
+# ---- End unofficial bash strict mode boilerplate
+#
 find_window() {
   filter="$1"
   id=$(niri msg --json windows |
-    jq --raw-output "[.[] | select(${filter})][0] .id")
+    jq --raw-output "[.[] | select(${filter})][0] .id // \"\"")
   if [[ -n "${id}" ]]; then
     niri msg action focus-window --id "${id}"
-    exit
+    return 0
   fi
+  return 1
 }
 if [ $# -eq 0 ]; then
   echo "Usage: $0 <app_name>"
@@ -15,33 +29,53 @@ if [ $# -eq 0 ]; then
   exit 1
 fi
 
+focus_browser() {
+  filter='.app_id == "firefox" and (.title | startswith("main:"))'
+  if ! find_window "${filter}"; then
+    nohup firefox &>/dev/null &
+  fi
+  find_window "${filter}"
+}
+
+hotkey_alt() {
+  wtype -d 10 -M alt -k "$1" -m alt
+}
+
 APP_NAME="$1"
 
 case "$APP_NAME" in
+1password)
+  find_window '.app_id == "1Password"' || nohup 1password &>/dev/null &
+  ;;
 gofi)
-  find_window '.title == "gofi"'
+  find_window '.title == "gofi"' || nohup ghostty --title="gofi" -e gofi ~/.config/gofi/niri.kdl &>/dev/null &
   ;;
 browser | firefox)
-  find_window '.app_id == "firefox" and (.title | startswith("main:"))'
-  # WINDOW_ID=$(niri msg --json windows | jq -r '.[] | select(.app_id == "firefox" and (.title | startswith("main:"))) .id' | head -1)
+  focus_browser
+  ;;
+calendar)
+  filter='.app_id == "firefox" and (.title | startswith("calendar:"))'
+  find_window "${filter}" || focus_browser
+  ;;
+email)
+  focus_browser
+  hotkey_alt 1
   ;;
 terminal | ghostty)
-  # WINDOW_ID=$(niri msg --json windows | jq -r '.[] | select(.app_id == "com.mitchellh.ghostty" and .title != "gofi") .id' | head -1)
-  find_window '.app_id == "com.mitchellh.ghostty" and .title != "gofi"'
+  find_window '.app_id == "com.mitchellh.ghostty" and .title != "gofi"' || nohup ghostty &>/dev/null &
   ;;
 music)
-  # WINDOW_ID=$(niri msg --json windows | jq -r '.[] | select(.title|startswith("music:")) .id' | head -1)
-  find_window '.title|startswith("music:")'
+  filter='.app_id == "firefox" and (.title | startswith("music:"))'
+  find_window "${filter}" || focus_browser
   ;;
 obsidian)
-  # WINDOW_ID=$(niri msg --json windows | jq -r '.[] | select(.app_id =="obsidian") .id' | head -1)
-  find_window '.app_id == "obsidian"'
-  obsidian --enable-features=UseOzonePlatform --ozone-platform=wayland
-  exit
+  find_window '.app_id == "obsidian"' || obsidian --enable-features=UseOzonePlatform --ozone-platform=wayland
   ;;
 previous)
   niri msg action focus-window-previous
-  exit
+  ;;
+slack)
+  find_window '.app_id == "Slack"' || nohup slack &>/dev/null &
   ;;
 *)
   echo "Unknown app: $APP_NAME"
@@ -49,6 +83,3 @@ previous)
   exit 1
   ;;
 esac
-
-echo "Window not found for: $APP_NAME"
-exit 1
