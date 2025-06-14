@@ -1,0 +1,102 @@
+#!/usr/bin/env bash
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.ml
+#
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+# set -o erreit # always eit on error
+# set -o errtrace # trap errors in functions as well
+# set -o pipefail # don't ignore eit codes when piping output
+# set -u # error on reference to unknown variable
+# # set - # enable debugging
+#
+# IFS=$'\n\t'
+# ---- End unofficial bash strict mode boilerplate
+#
+find_window() {
+  filter="$1"
+  id=$(niri msg --json windows |
+    jq --raw-output "[.[] | select(${filter})][0] .id // \"\"")
+  if [[ -n "${id}" ]]; then
+    niri msg action focus-window --id "${id}"
+    return 0
+  fi
+  return 1
+}
+if [ $# -eq 0 ]; then
+  echo "Usage: $0 <app_name>"
+  echo "Available apps: gofi"
+  exit 1
+fi
+
+focus_browser() {
+  filter='.app_id == "firefox" and (.title | startswith("main:"))'
+  if ! find_window "${filter}"; then
+    launch firefox
+  fi
+  find_window "${filter}"
+}
+
+hotkey_alt() {
+  wtype -d 10 -M alt -k "$1" -m alt
+}
+
+launch() {
+  cd /tmp || exit
+  nohup "$@" &>/dev/null &
+}
+
+APP_NAME="$1"
+
+case "$APP_NAME" in
+ario)
+  find_window '.app_id == "ario"' || launch ario
+  ;;
+1password)
+  find_window '.app_id == "1Password"' || launch 1password
+  ;;
+gofi)
+  find_window '.title == "gofi"' || launch ghostty --title="gofi" -e gofi ~/.config/gofi/niri.kdl
+  ;;
+# crealityprint)
+#   find_window '.title == "crealityprint"' || launch /opt/creality-print/CrealityPrint
+#   ;;
+freecad)
+  find_window '.app_id == "org.freecad.FreeCAD"' || launch freecad
+  ;;
+browser | firefox)
+  focus_browser
+  ;;
+calendar)
+  filter='.app_id == "firefox" and (.title | startswith("calendar:"))'
+  find_window "${filter}" || focus_browser
+  ;;
+email)
+  focus_browser
+  hotkey_alt 1
+  ;;
+terminal | ghostty)
+  find_window '.app_id == "com.mitchellh.ghostty" and .title != "gofi"' || launch ghostty
+  ;;
+music)
+  filter='.app_id == "firefox" and (.title | startswith("music:"))'
+  find_window "${filter}" || focus_browser
+  ;;
+obsidian)
+  find_window '.app_id == "obsidian"' || obsidian --enable-features=UseOzonePlatform --ozone-platform=wayland
+  ;;
+gedit)
+  find_window '.app_id == "gedit"' || gedit
+  ;;
+previous)
+  niri msg action focus-window-previous
+  ;;
+slack)
+  find_window '.app_id == "Slack"' || launch slack
+  ;;
+*)
+  echo "Unknown app: $APP_NAME"
+  echo "Available apps: gofi"
+  exit 1
+  ;;
+esac

@@ -1,0 +1,162 @@
+// Niri config file
+environment {
+  ELECTRON_OZONE_PLATFORM_HINT "wayland"
+   MOZ_ENABLE_WAYLAND "1"
+}
+input {
+    keyboard {
+        xkb {
+            layout "us"
+        }
+    }
+ 
+    touchpad {
+        tap
+        natural-scroll
+        dwt
+    }
+}
+
+// output "DP-1" {
+//     scale 1.0
+// }
+// layer-rule {
+//     match namespace="waybar"
+// }
+
+layout {
+    gaps 4
+    center-focused-column "never"
+ 
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+        proportion 1.0
+    }
+ 
+    default-column-width { proportion 1.0; }
+ 
+    // focus-ring {
+    //     width 4
+    //     active-color "#7fc8ff"
+    //     inactive-color "#505050"
+    // }
+ 
+    border {
+        width 2
+        // active-color "#ffc87f"
+        // inactive-color "#505050"
+    }
+
+    // struts {
+    //    left 20
+    // }
+}
+
+spawn-at-startup "waybar"
+spawn-at-startup "copyq" "--start-server"
+
+binds {
+    Mod+Shift+X { quit; }
+    Mod+Shift+Slash { show-hotkey-overlay; }
+    Mod+Question /*help*/ { show-hotkey-overlay; }
+ 
+    Mod+T repeat=false { spawn "ghostty"; }
+    Mod+D repeat=false { spawn "wofi" "--show" "run,drun"; }
+    Alt+Tab repeat=false { spawn "gdbus" "call" "--session" "--dest" "io.github.isaksamsten.Niriswitcher" "--object-path" "/io/github/isaksamsten/Niriswitcher" "--method" "io.github.isaksamsten.Niriswitcher.application" ; }
+    Alt+Shift+Tab repeat=false { spawn "gdbus" "call" "--session" "--dest" "io.github.isaksamsten.Niriswitcher" "--object-path" "/io/github/isaksamsten/Niriswitcher" "--method" "io.github.isaksamsten.Niriswitcher.application" ; }
+ 
+    Mod+X { close-window; }
+    Ctrl+Shift+v repeat=false { spawn "copyq" "toggle"; }
+
+    // moving windows around: vim directions
+    Mod+H { move-column-left; }
+    Mod+J { move-window-to-workspace-down; }
+    Mod+K { move-window-to-workspace-up; }
+    Mod+L { move-column-right; }
+
+    // kipra nav layer: home row: app nav
+    Mod+Shift+Left { spawn "app-nav-niri" "left"; }
+    Mod+Shift+Down { spawn "app-nav-niri" "down"; }
+    Mod+Shift+Up { spawn "app-nav-niri" "up"; }
+    Mod+Shift+Right { spawn "app-nav-niri" "right"; }
+
+    // kipra nav layer: bottom row: window nav
+    Mod+Control+Left { focus-column-left; }
+    Mod+Control+Down { focus-workspace-down; }
+    Mod+Control+Up { focus-workspace-up; }
+    Mod+Control+Right { focus-column-right; }
+    // Mod+Shift+H { move-column-left; }
+    // Mod+Shift+J { move-window-down; }
+    // Mod+Shift+K { move-window-up; }
+    // Mod+Shift+L { move-column-right; }
+    // dvorak home row vim direction keys for moving (add shift)
+ 
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+ 
+    Mod+Shift+1 { move-column-to-workspace 1; }
+    Mod+Shift+2 { move-column-to-workspace 2; }
+    Mod+Shift+3 { move-column-to-workspace 3; }
+    Mod+Shift+4 { move-column-to-workspace 4; }
+    Mod+Shift+5 { move-column-to-workspace 5; }
+ 
+ 
+    Mod+F { maximize-column; }
+    Mod+Shift+F { fullscreen-window; }
+ 
+    Mod+R { switch-preset-column-width; }
+
+    // Mod+Comma { consume-window-into-column; }
+    // Mod+Period { expel-window-from-column; }
+    Mod+Period { focus-window-previous ; }
+ 
+    Mod+WheelScrollDown cooldown-ms=150 { focus-column-right; }
+    Mod+WheelScrollUp cooldown-ms=150 { focus-column-left; }
+ 
+    Mod+Shift+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
+    Mod+Shift+WheelScrollUp cooldown-ms=150 { move-column-to-workspace-up; }
+ 
+    F10 repeat=false { spawn "~/bin/focus-niri" "gofi"; }
+    F11 repeat=false { spawn "~/bin/fuzz-script-choose"; }
+    F12 repeat=false { spawn "~/bin/fuzz-snippet"; }
+ 
+    MouseForward { spawn "wtype" "-k" "home"; }
+    MouseBack { spawn "wtype" "-k" "page_down"; }
+}
+
+// workspace "reference"
+// workspace "bench"
+window-rule {
+    match app-id="firefox"
+    // default-column-width { proportion 1.0; }
+}
+
+// window-rule {
+//     match app-id="com.mitchellh.ghostty"
+//     match app-id="obsidian"
+//     // open-on-workspace "bench"
+// }
+
+window-rule {
+  match title="gofi"
+  default-column-width { proportion 0.33; }
+}
+
+// window-rule {
+//     match app-id="com.mitchellh.ghostty" title="gofi"
+// }
+
+prefer-no-csd
+
+animations {
+  off
+}
+
+overview {
+  zoom 0.25
+}
