@@ -14,17 +14,16 @@ IFS="$(printf "\n\t")"
 nav_browser() {
   case "$1" in
   left)
-    xdotool key --clearmodifiers ctrl+shift+Tab
+    wtype -M ctrl -M shift -k tab -m shift -m ctrl
     ;;
   up)
-    xdotool key --clearmodifiers Home
+    wtype -k home
     ;;
   right)
-    xdotool key --clearmodifiers ctrl+Tab
+    wtype -M ctrl -k tab -m ctrl
     ;;
   down)
-    # "Next" maps to Page Down
-    xdotool key --clearmodifiers Next
+    wtype -k page_down
     ;;
   esac
 }
@@ -32,13 +31,13 @@ nav_browser() {
 nav_vs_code() {
   case "$1" in
   left)
-    xdotool key --clearmodifiers ctrl+Prior
+    wtype -M ctrl -k prior -m ctrl
     ;;
   up)
-    xdotool key --clearmodifiers ctrl+shift+Prior
+    # xdotool key --clearmodifiers ctrl+shift+Prior
     ;;
   right)
-    xdotool key --clearmodifiers ctrl+Next
+    wtype -M ctrl -k next -m ctrl
     ;;
   down)
     # xdotool key --clearmodifiers ctrl+shift+Next
@@ -46,19 +45,24 @@ nav_vs_code() {
   esac
 }
 
+shift_space() {
+  wtype -M shift -k space -m shift "$@"
+}
+
 nav_ghostty() {
   case "$1" in
   left)
-    xdotool key --clearmodifiers 'shift+space' 'p'
+    shift_space -k p
     ;;
   down)
-    xdotool key --clearmodifiers 'shift+space' 'g' 'j'
+    shift_space -k g -k j
     ;;
   up)
-    xdotool key --clearmodifiers 'shift+space' 'g' 'n'
+    shift_space -k g -k n
     ;;
   right)
-    xdotool key --clearmodifiers 'shift+space' 'n'
+    wtype -M shift -k space -k n
+    shift_space -k n
     ;;
   esac
 }
@@ -83,19 +87,8 @@ nav_kitty() {
 main() {
   ~/bin/log "$0" "$@"
   export PATH=/usr/local/bin:$PATH
-  # macos/hammerspoon mode. Active app is passed in on the command line
-  app="$1"
-  direction="$2"
-  if [[ $# -lt 2 ]]; then
-    # linux mode, get active window/app name from cmdline
-    direction="$1"
-    app=$(cat "/proc/$(xdotool getactivewindow getwindowpid)/cmdline")
-  fi
-  # It seems if we issue the synthetic keystrokes before the physical keys are lifted,
-  # presumably especially the modifier key(s),
-  # the app doesn't get the right keystrokes,
-  # so we wait for the keys to be released
-  sleep 0.1
+  direction="$1"
+  app=$(niri msg --json focused-window | jq --raw-output '.app_id')
   case "${app}" in
   *firefox* | *chrome* | *obsidian*)
     nav_browser "${direction}"
@@ -103,13 +96,13 @@ main() {
   *kitty*)
     nav_kitty "${direction}"
     ;;
-  *ghostty*)
+  com.mitchellh.ghostty)
     nav_ghostty "${direction}"
     ;;
   *termite* | *iTerm2* | *Terminal*)
     ~/bin/nav-tmux "${direction}"
     ;;
-  *code*)
+  code-oss)
     nav_vs_code "${direction}"
     ;;
   esac

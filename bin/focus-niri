@@ -32,7 +32,7 @@ fi
 focus_browser() {
   filter='.app_id == "firefox" and (.title | startswith("main:"))'
   if ! find_window "${filter}"; then
-    nohup firefox &>/dev/null &
+    launch firefox
   fi
   find_window "${filter}"
 }
@@ -41,14 +41,28 @@ hotkey_alt() {
   wtype -d 10 -M alt -k "$1" -m alt
 }
 
+launch() {
+  cd /tmp || exit
+  nohup "$@" &>/dev/null &
+}
+
 APP_NAME="$1"
 
 case "$APP_NAME" in
+ario)
+  find_window '.app_id == "ario"' || launch ario
+  ;;
 1password)
-  find_window '.app_id == "1Password"' || nohup 1password &>/dev/null &
+  find_window '.app_id == "1Password"' || launch 1password
   ;;
 gofi)
-  find_window '.title == "gofi"' || nohup ghostty --title="gofi" -e gofi ~/.config/gofi/niri.kdl &>/dev/null &
+  find_window '.title == "gofi"' || launch ghostty --title="gofi" -e gofi ~/.config/gofi/niri.kdl
+  ;;
+# crealityprint)
+#   find_window '.title == "crealityprint"' || launch /opt/creality-print/CrealityPrint
+#   ;;
+freecad)
+  find_window '.app_id == "org.freecad.FreeCAD"' || launch freecad
   ;;
 browser | firefox)
   focus_browser
@@ -62,7 +76,7 @@ email)
   hotkey_alt 1
   ;;
 terminal | ghostty)
-  find_window '.app_id == "com.mitchellh.ghostty" and .title != "gofi"' || nohup ghostty &>/dev/null &
+  find_window '.app_id == "com.mitchellh.ghostty" and .title != "gofi"' || launch ghostty
   ;;
 music)
   filter='.app_id == "firefox" and (.title | startswith("music:"))'
@@ -71,11 +85,14 @@ music)
 obsidian)
   find_window '.app_id == "obsidian"' || obsidian --enable-features=UseOzonePlatform --ozone-platform=wayland
   ;;
+gedit)
+  find_window '.app_id == "gedit"' || gedit
+  ;;
 previous)
   niri msg action focus-window-previous
   ;;
 slack)
-  find_window '.app_id == "Slack"' || nohup slack &>/dev/null &
+  find_window '.app_id == "Slack"' || launch slack
   ;;
 *)
   echo "Unknown app: $APP_NAME"
