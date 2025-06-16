@@ -11,9 +11,9 @@ yeet key="y" "cat" "--no-such-option" "/no/such/file"
 music key="m" "focus" "music"
 umusic key="u" {
   ario key="a" "focus" "ario"
-  pause key="p" "mpc" "play"
-  pause key=" " "mpc" "toggle"
-  play key="u" "mpc" "pause"
+  pause key="u" "mpc" "pause"
+  play key="p" "mpc" "play"
+  toggle key=" " "mpc" "toggle"
 }
 obsidian key="o" "focus" "obsidian"
 onepassword key="p" "focus" "onepassword"
