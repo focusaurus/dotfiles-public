@@ -6,3 +6,6 @@ image-resize-in-place() {
 }
 
 alias image-view="feh --fullscreen --auto-zoom -."
+if [[ "${XDG_SESSION_TYPE}" == "wayland" ]]; then
+  alias image-view="imv -s full -w image-view"
+fi

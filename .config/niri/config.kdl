@@ -1,7 +1,8 @@
 // Niri config file
 environment {
   ELECTRON_OZONE_PLATFORM_HINT "wayland"
-   MOZ_ENABLE_WAYLAND "1"
+  MOZ_ENABLE_WAYLAND "1"
+  GDK_BACKEND "wayland"
 }
 input {
     keyboard {
@@ -55,12 +56,15 @@ layout {
 }
 
 spawn-at-startup "waybar"
-spawn-at-startup "copyq" "--start-server"
+spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
+spawn-at-startup "udiskie"
+spawn-at-startup "iwgtk" "-i"
 
 binds {
     Mod+Shift+X { quit; }
     Mod+Shift+Slash { show-hotkey-overlay; }
     Mod+Question /*help*/ { show-hotkey-overlay; }
+    Mod+O { toggle-overview; }
  
     Mod+T repeat=false { spawn "ghostty"; }
     Mod+D repeat=false { spawn "wofi" "--show" "run,drun"; }
@@ -68,7 +72,7 @@ binds {
     Alt+Shift+Tab repeat=false { spawn "gdbus" "call" "--session" "--dest" "io.github.isaksamsten.Niriswitcher" "--object-path" "/io/github/isaksamsten/Niriswitcher" "--method" "io.github.isaksamsten.Niriswitcher.application" ; }
  
     Mod+X { close-window; }
-    Ctrl+Shift+v repeat=false { spawn "copyq" "toggle"; }
+    Ctrl+Shift+v repeat=false { spawn "cliphist-choose"; }
 
     // moving windows around: vim directions
     Mod+H { move-column-left; }
@@ -129,27 +133,15 @@ binds {
     MouseBack { spawn "wtype" "-k" "page_down"; }
 }
 
-// workspace "reference"
-// workspace "bench"
-window-rule {
-    match app-id="firefox"
-    // default-column-width { proportion 1.0; }
-}
-
-// window-rule {
-//     match app-id="com.mitchellh.ghostty"
-//     match app-id="obsidian"
-//     // open-on-workspace "bench"
-// }
-
 window-rule {
   match title="gofi"
   default-column-width { proportion 0.33; }
 }
 
-// window-rule {
-//     match app-id="com.mitchellh.ghostty" title="gofi"
-// }
+window-rule {
+  match app-id="yad"
+  open-floating true
+}
 
 prefer-no-csd
 
@@ -158,5 +150,5 @@ animations {
 }
 
 overview {
-  zoom 0.25
+  zoom 0.4
 }
