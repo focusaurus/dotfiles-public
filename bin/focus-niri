@@ -64,11 +64,18 @@ gofi)
 freecad)
   find_window '.app_id == "org.freecad.FreeCAD"' || launch freecad
   ;;
+bambustudio)
+  find_window '.app_id == "bambustudio"' || launch bambu-studio
+  ;;
 browser | firefox)
   focus_browser
   ;;
 calendar)
   filter='.app_id == "firefox" and (.title | startswith("calendar:"))'
+  find_window "${filter}" || focus_browser
+  ;;
+trello)
+  filter='.app_id == "firefox" and (.title | startswith("trello:"))'
   find_window "${filter}" || focus_browser
   ;;
 email)
@@ -86,7 +93,7 @@ obsidian)
   find_window '.app_id == "obsidian"' || obsidian --enable-features=UseOzonePlatform --ozone-platform=wayland
   ;;
 gedit)
-  find_window '.app_id == "gedit"' || gedit
+  find_window '.app_id == "org.gnome.gedit"' || gedit
   ;;
 previous)
   niri msg action focus-window-previous
