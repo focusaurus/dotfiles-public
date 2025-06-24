@@ -14,7 +14,7 @@ IFS=$'\n\t'
 
 value=
 label="${1:-value}"
-clipboard_preview=$(~/bin/paste | head -c 12 | tr -d -c '[:alnum:] !@#$%^*(){}[].?_/:-')
+clipboard_preview=$(~/bin/paste 2>/dev/null | head -c 12 | tr -d -c '[:alnum:] !@#$%^*(){}[].?_/:-' || true)
 # clipboard_preview=$(~/bin/paste | head -c 12 | tr -d -c '[:alnum:] !@#$%^*(){}[].?-_/:')
 text=$(
   cat <<EOF
