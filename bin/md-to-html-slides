@@ -12,17 +12,22 @@ set -o pipefail # don't ignore exit codes when piping output
 IFS="$(printf "\n\t")"
 # ---- End unofficial bash strict mode boilerplate
 
-install_marp() {
-  if [[ -x ./node_modules/.bin/marp ]]; then
-    return
-  fi
-  npm --silent install @marp-team/marp-cli
-}
+input="/dev/stdin"
+output="/dev/stdout"
 
-main() {
-  base="${PWD}"
-  (cd /tmp && install_marp)
-  /tmp/node_modules/.bin/marp "${@}"
-}
-
-main "$@"
+for arg in "$@"; do
+  case "${arg}" in
+  *.md)
+    input="${arg}"
+    ;;
+  *.html)
+    output="${arg}"
+    ;;
+  *)
+    echo "Expecting arguments in any order but with extensions: .md or .pdf. Not ${arg}" 1>&2
+    usage 1>&2
+    exit 10
+    ;;
+  esac
+done
+npx @marp-team/marp-cli "${input}" -o "${output}"
