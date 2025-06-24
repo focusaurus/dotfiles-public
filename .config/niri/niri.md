@@ -12,9 +12,11 @@ Can you guide me through this process with checkpoints along the way?
 - gofi: needed a dedicated niri config
     - needed a new ~/bin/focus-niri script that uses `niri msg -j windows`
 - fuzz-script-choose: uses `wofi --dmenu` under wayland
-- fuzz-snippet: uses wtype to simulate ctrl+v
+- fuzz-snippet: uses woype to simulate ctrl+v
 - wifi: iwd and iwgtk. Had to disable NetworkManager and enable iwd in systemctl
-
+- bambustudio-bin mesa error get archive from https://archive.archlinux.org/packages/m/mesa/
+    -  sudo pacman -U ~/downloads/mesa-1_25.0.5-1-x86_64.pkg.tar.zst
+ 
 # To do
 
 - [x] figure out how to run Obsidian under wayland
@@ -28,9 +30,9 @@ Can you guide me through this process with checkpoints along the way?
 - [x] scripted typed snippets with some alternative to xdotool
 - [x] flameshot screenshots
 - [x] add-snippet something like zenity or yad dialogs
-- [ ] bambu studio
 - [x] fuzz-snippet round 2
 - [x] get mouse extra buttons working
 - [x] screen lock
-- [ ] window switcher fuzzy popup thing
-
+- [-] window switcher fuzzy popup thing
+- [ ] bambu studio
+- [ ] prusa-slicer
