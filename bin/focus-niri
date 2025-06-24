@@ -64,6 +64,9 @@ gofi)
 freecad)
   find_window '.app_id == "org.freecad.FreeCAD"' || launch freecad
   ;;
+prusa)
+  find_window '.app_id == "org.prusa.PrusaSlicer"' || launch prusa-slicer
+  ;;
 bambustudio)
   find_window '.app_id == "bambustudio"' || launch bambu-studio
   ;;
