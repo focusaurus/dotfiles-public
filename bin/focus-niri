@@ -46,6 +46,12 @@ launch() {
   nohup "$@" &>/dev/null &
 }
 
+launchx() {
+  cd /tmp || exit
+  nohup Xwayland -geometry "$(wlr-randr | grep preferred | awk '{print $1}')" :1 &
+  DISPLAY=:1 nohup "$@" &>/dev/null &
+}
+
 APP_NAME="$1"
 
 case "$APP_NAME" in
@@ -64,11 +70,11 @@ gofi)
 freecad)
   find_window '.app_id == "org.freecad.FreeCAD"' || launch freecad
   ;;
-prusa)
-  find_window '.app_id == "org.prusa.PrusaSlicer"' || launch prusa-slicer
+prusaslicer)
+  find_window '.app_id == "org.freedesktop.Xwayland"' || launchx prusa-slicer
   ;;
 bambustudio)
-  find_window '.app_id == "bambustudio"' || launch bambu-studio
+  find_window '.app_id == "org.freedesktop.Xwayland"' || launchx bambu-studio
   ;;
 browser | firefox)
   focus_browser
