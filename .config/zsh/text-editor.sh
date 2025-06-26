@@ -5,9 +5,8 @@ te-files-with-matches() {
 }
 
 te-clipboard() {
-  ~/bin/paste | v -n -c startinsert -
+  ~/bin/paste | ~/bin/text-editor -n -c startinsert -
 }
-alias paste-to-vim="te-clipboard"
 
 te-daily() {
   org="${HOME}/projects/exocortex/personal"
@@ -15,9 +14,7 @@ te-daily() {
 }
 
 if ~/bin/have-exe nvim; then
-  alias v="nvim -p"
-  # export EDITOR="${HOME}/bin/editor"
-  export EDITOR="nvim"
+  export EDITOR="${HOME}/bin/text-editor"
 elif ~/bin/have-exe vim; then
   alias v="vim"
   export EDITOR="vim"
@@ -25,28 +22,3 @@ else
   alias v="vi"
   export EDITOR="vi"
 fi
-
-te-vimrc() {
-  fd .vim ~/.config/nvim | xargs nvim -p
-}
-
-te-git-changed() {
-  git status --short | awk '{print $2}' | xargs "${EDITOR}" -p
-}
-
-#Note to self, use sudoedit to edit files with my nvim config as root
-
-# https://medium.com/@bobbypriambodo/blazingly-fast-spacemacs-with-persistent-server-92260f2118b7
-em() {
-  # Checks if there's a frame open
-  emacsclient -n -e "(if (> (length (frame-list)) 1) ‘t)" 2>/dev/null | grep -q t
-  if [ "$?" -eq "1" ]; then
-    emacsclient -a '' -nqc "$@" &>/dev/null
-  els
-    emacsclient -nq "$@" &>/dev/null
-  fi
-}
-
-alias spacevim="nvim -u ~/.SpaceVim/main.vim"
-alias nvim-plugin-update="nvim -c PackerSync"
-alias nvim-plugin-install="nvim -c PackerInstall"

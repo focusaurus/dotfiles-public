@@ -12,7 +12,9 @@ set -o pipefail # don't ignore exit codes when piping output
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
+cd /tmp
 nohup kitty --single-instance --start-as=maximized --title="${TITLE:-terminal-quick}" "$@" &
+# ghostty --title="${TITLE:-terminal-quick}" "$@" &
 # wezterm cli spawn --new-window -- "$@"
 # declare -a args=(--single-instance --title=HUD)
 # if [[ -n "$@" ]]; then

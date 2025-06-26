@@ -11,4 +11,4 @@ set -o pipefail # don't ignore exit codes when piping output
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-code --new-window "$@"
+nvim -u ~/.config/nvim/unplugged-init.lua -p "$@"

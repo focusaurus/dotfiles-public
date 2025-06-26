@@ -436,6 +436,10 @@ dotfiles-edit-fuzzy() {
 }
 alias dfef="dotfiles-edit-fuzzy"
 
+te-git-changed() {
+  git status --short | awk '{print $2}' | xargs "${EDITOR}"
+}
+
 gsync() {
   dotfiles-end
   if ! ssh-add -l &>/dev/null; then
