@@ -9,6 +9,8 @@ niri key="n" {
   "move down" key="j" "niri-move-previous" "move-window-to-workspace-down"
   "move up" key="k" "niri-move-previous" "move-window-to-workspace-up"
   "move right" key="l" "niri-move-previous" "move-column-right"
+  "monitor right" key="m" "niri" "msg" "action" "move-window-to-monitor-right"
+  "monitor left" key="M" "niri" "msg" "action" "move-window-to-monitor-left"
   quit key="q" "niri" "msg" "action" "quit"
 }
 // "IDE (VS Code)" key="i" "focus" "vscode"
