@@ -61,7 +61,6 @@ nav_ghostty() {
     shift_space -k g -k n
     ;;
   right)
-    wtype -M shift -k space -k n
     shift_space -k n
     ;;
   esac
