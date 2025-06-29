@@ -24,10 +24,3 @@ vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "gitcommit", "gitrebase" },
 	command = "startinsert | 1",
 })
--- If I ever start using nvim-orgmode plugin again
--- vim.api.nvim_create_autocmd({ 'FileType' }, {pattern = { 'org' }, callback = function()
---     vim.keymap.set('n', 'cc', '<Plug>OrgCheckBoxToggle', { noremap = true })
---     vim.keymap.set('n', 'cn', '<Plug>OrgCheckBoxNewBelow', { noremap = true })
---     vim.keymap.set('n', 'cN', '<Plug>OrgCheckBoxNewAbove', { noremap = true })
---     vim.keymap.set('n', 'ct', '<Plug>OrgTodoToggleNonInteractive', { noremap = true })
--- end})
