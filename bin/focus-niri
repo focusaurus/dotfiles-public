@@ -42,14 +42,22 @@ hotkey_alt() {
 }
 
 launch() {
-  cd /tmp || exit
   nohup "$@" &>/dev/null &
 }
 
 launchx() {
   cd /tmp || exit
-  nohup Xwayland -geometry "$(wlr-randr | grep preferred | awk '{print $1}')" :1 &
-  DISPLAY=:1 nohup "$@" &>/dev/null &
+  display=$(niri msg -j windows |
+    jq --raw-output '[.[] | select(.app_id == "org.freedesktop.Xwayland")] | .[].title' |
+    sort |
+    tail -1 |
+    cut -d : -f 2)
+  if [[ -z "${display}" ]]; then
+    display=0
+  fi
+  display=$((display + 1))
+  nohup Xwayland -geometry "$(wlr-randr | grep preferred | awk '{print $1}')" ":${display}" &
+  DISPLAY=":${display}" nohup "$@" &>/dev/null &
 }
 
 APP_NAME="$1"
@@ -71,10 +79,18 @@ freecad)
   find_window '.app_id == "org.freecad.FreeCAD"' || launch freecad
   ;;
 prusaslicer)
-  find_window '.app_id == "org.freedesktop.Xwayland"' || launchx prusa-slicer
+  if pidof prusa-slicer >/dev/null; then
+    find_window '.app_id == "org.freedesktop.Xwayland"'
+  else
+    launchx prusa-slicer
+  fi
   ;;
 bambustudio)
-  find_window '.app_id == "org.freedesktop.Xwayland"' || launchx bambu-studio
+  if pidof bambu-studio >/dev/null; then
+    find_window '.app_id == "org.freedesktop.Xwayland"'
+  else
+    launchx bambu-studio
+  fi
   ;;
 browser | firefox)
   focus_browser
