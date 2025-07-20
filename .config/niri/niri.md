@@ -34,5 +34,8 @@ Can you guide me through this process with checkpoints along the way?
 - [x] get mouse extra buttons working
 - [x] screen lock
 - [-] window switcher fuzzy popup thing
-- [ ] bambu studio
-- [ ] prusa-slicer
+- [x] bambu studio
+- [x] prusa-slicer
+- [ ] gofi x for executable
+- [ ] ulauncher setup
+- [ ] obsidian rule to workspace 2 maybe

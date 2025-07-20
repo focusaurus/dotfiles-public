@@ -146,6 +146,12 @@ window-rule {
   open-floating true
 }
 
+window-rule {
+  match app-id="ulauncher"
+  min-height 400
+  open-floating true
+}
+
 prefer-no-csd
 
 animations {

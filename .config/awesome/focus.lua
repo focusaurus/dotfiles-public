@@ -181,6 +181,11 @@ function module.gofi()
 		run(home_bin .. "/gofi-wezterm")
 	end
 end
+function module.iwgtk()
+	if not by_class("iwgtk") then
+		run("iwgtk")
+	end
+end
 function module.ario()
 	if not by_class("Ario") then
 		run("ario")

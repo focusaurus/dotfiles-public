@@ -25,12 +25,14 @@ umusic key="u" {
 }
 terminal key="t" "focus-niri" "terminal"
 trello key="T" "focus-niri" "trello"
+ulauncher key="x" "ulauncher-toggle"
 applications key="a" {
   // calculator key="c" "focus" "calculator"
   bambu-studio key="b" "focus-niri" "bambustudio"
   // creality-print key="e" "focus-niri" "crealityprint"
   freecad key="f" "focus-niri" "freecad"
   gedit key="g" "focus-niri" "gedit"
+  iwgtk key="i" "iwgtk"
   // discord key="d" "focus" "discord"
   // insomnia key="i" "focus" "insomnia"
   // kicad key="k" "focus" "kicad"

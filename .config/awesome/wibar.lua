@@ -102,6 +102,8 @@ local battery_script_widget = awful.widget.watch(os.getenv("HOME") .. "/bin/widg
 small(battery_script_widget)
 local screen_brightness_script_widget = awful.widget.watch(os.getenv("HOME") .. "/bin/widgets/screen-brightness", 4)
 small(screen_brightness_script_widget)
+local wifi_script_widget = awful.widget.watch(os.getenv("HOME") .. "/bin/widgets/wifi", 5)
+small(wifi_script_widget)
 local volume_widget = wibox.widget.textbox("")
 small(volume_widget)
 
@@ -164,6 +166,7 @@ awful.screen.connect_for_each_screen(function(s)
 		{ -- bottom widgets
 			layout = wibox.layout.fixed.vertical,
 			small(wibox.widget.systray()),
+			wifi_script_widget,
 			battery_script_widget,
 			screen_brightness_script_widget,
 			sound_widget,
