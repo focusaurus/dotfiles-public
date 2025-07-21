@@ -14,7 +14,7 @@
   "modules-right": [
     "mpd",
     "pulseaudio",
-    "battery",
+    "custom/batteries",
     "clock",
     "tray",
     "custom/power"
@@ -145,5 +145,8 @@
       "suspend": "systemctl suspend",
       "hibernate": "systemctl hibernate"
     }
-  }
+  },
+"custom/batteries": {
+"exec": "$HOME/bin/widgets/battery"
+}
 }
