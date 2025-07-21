@@ -4,6 +4,7 @@ emoji key="E" "rofimoji" "--skin-tone" "light" "--action" "copy" "--selector" "w
 browser key="b" "focus-niri" "browser"
 email key="e" "focus-niri" "email"
 fuzzball key="F" "fuzz-script-choose"
+windows key="w" "niri-focus-window-fuzzy"
 niri key="n" {
   "move left" key="h" "niri-move-previous" "move-column-left"
   "move down" key="j" "niri-move-previous" "move-window-to-workspace-down"
