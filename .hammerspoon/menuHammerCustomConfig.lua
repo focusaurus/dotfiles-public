@@ -150,12 +150,6 @@ a(i, { cons.cat.action, noMod, "r", "Right", { { cons.act.func, placement.right 
 a(i, { cons.cat.action, noMod, "m", "Max", { { cons.act.func, placement.maximize } } })
 local menuLayout = { menuItems = i, parentMenu = menuNameMain }
 
-local menuNameLearnLua = "Learn Lua"
-i = {}
-a(i, { cons.cat.action, noMod, "a", "Aggregate", { { cons.act.func, journal.appendPrompt } } })
-a(i, { cons.cat.action, noMod, "b", "Burn", { { cons.act.func, journal.appendPrompt } } })
-local menuLearnLua = { menuItems = i, parentMenu = menuNameMain }
-
 local menuNameMusic = "mUsic"
 i = {}
 a(i, { cons.cat.action, noMod, "space", "Toggle", { { cons.act.func, mpd.toggle } } })
@@ -207,7 +201,6 @@ a(i, { cons.cat.action, noMod, "g", "Google Meet & Notes", { { cons.act.func, pl
 a(i, { cons.cat.submenu, noMod, "h", menuNameHammerspoon, { { cons.act.menu, menuNameHammerspoon } } })
 a(i, { cons.cat.action, noMod, "i", "IDE  (VS Code)", { { cons.act.launcher, "Visual Studio Code" } } })
 a(i, { cons.cat.submenu, noMod, "j", menuNameJournal, { { cons.act.menu, menuNameJournal } } })
-a(i, { cons.cat.submenu, noMod, "k", menuNameLearnLua, { { cons.act.menu, menuNameLearnLua } } })
 a(i, { cons.cat.action, noMod, "l", menuNameLayout, { { cons.act.menu, menuNameLayout } } })
 a(i, { cons.cat.action, noMod, "n", "Snippets", { { cons.act.func, snippets.chooseByUIAndType } } })
 a(i, { cons.cat.action, noMod, "o", "Obsidian", { { cons.act.launcher, "Obsidian" } } })
@@ -228,7 +221,6 @@ local menuMain = { menuItems = i, parentMenu = nil, menuHotkey = { noMod, "F10" 
 
 menuHammerMenuList = {
 	[menuNameMain] = menuMain,
-	[menuNameLearnLua] = menuLearnLua,
 	[menuNameJournal] = menuJournal,
 	[menuNamePersonal] = menuPersonal,
 	[menuNameLayout] = menuLayout,

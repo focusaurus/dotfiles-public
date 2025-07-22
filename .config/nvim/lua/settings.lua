@@ -31,3 +31,4 @@ vim.opt.hidden = true
 
 vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
 -- vim.cmd("colorscheme catppuccin-latte")
+vim.cmd("colorscheme morning")

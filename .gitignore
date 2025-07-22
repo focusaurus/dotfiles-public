@@ -337,3 +337,6 @@ login_1689539373.hcl
 f25
 .config/Creality/Creality Print.conf
 .var/app/im.riot.Riot
+.app-store/auth
+.app-store/itunes_service_key.txt
+.claude.json.backup

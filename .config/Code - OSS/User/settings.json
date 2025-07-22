@@ -38,7 +38,7 @@
         "plaintext": false,
         "markdown": false,
         "scminput": false,
-        "go": true
+        "go": false
     },
     "[typescript]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"
