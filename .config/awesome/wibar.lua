@@ -31,6 +31,7 @@ local mymainmenu = awful.menu({
     {'open terminal', terminal},
     {'transmission', 'transmission-gtk'},
     {'tor', 'tor-browser'},
+    {'protonvpn', 'protonvpn-app'},
     {'awesome: gather clients', placement.move_all_clients_to_screen}, {
       'awesome: hotkeys',
       function() hotkeys_popup.show_help(nil, awful.screen.focused()) end
