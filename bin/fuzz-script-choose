@@ -37,6 +37,9 @@ hist_path="${task_dir}/.history"
 # Presume running from desktop environment hotkey, use GUI
 # linux: rofi
 chooser=(rofi -dmenu -p task -theme /usr/share/rofi/themes/fancy.rasi -pid "/run/user/$(id -u)/fuzz-script-choose.pid")
+if [[ "${XDG_SESSION_TYPE}" == "wayland" ]]; then
+  chooser=(wofi --dmenu)
+fi
 if [[ $(uname) == "Darwin" ]]; then
   # macos: choose
   chooser=(/opt/homebrew/bin/choose -c highlight=111111)
@@ -48,5 +51,5 @@ fi
 # shellcheck disable=SC2012
 task=$(list_tasks | "${chooser[@]}")
 ~/bin/log "$0" "selected ${task} from" "${chooser[@]}"
-echo "${task}" >> "${hist_path}"
+echo "${task}" >>"${hist_path}"
 exec ./fuzz-script-exec "${task_dir}" "${task}"

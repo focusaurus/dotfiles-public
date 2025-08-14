@@ -24,24 +24,24 @@ local fuzzball = os.getenv("HOME") .. "/git.peterlyons.com/dotfiles/fuzzball"
 -- end
 
 function module.appendPrompt()
-  log.d("appendByDialog")
-  os.execute(fuzzball .. "/fh-journal-prompt &")
+	log.d("appendByDialog")
+	os.execute(fuzzball .. "/fh-journal-prompt &")
 end
 
 function module.appendPromptCheckIn()
-  log.d("appendPromptCheckIn")
-  os.execute(fuzzball .. "/fh-journal-standup &")
+	log.d("appendPromptCheckIn")
+	os.execute(fuzzball .. "/fh-journal-standup &")
 end
 
 function module.appendPromptTask()
-  log.d("appendPromptTask")
-  os.execute(fuzzball .. "/fh-journal-task &")
+	log.d("appendPromptTask")
+	os.execute(fuzzball .. "/fh-journal-task &")
 end
 
 function module.appendVim()
-  log.d("appendVim")
-  local ok, _, _ = os.execute(fuzzball .. "/fh-journal-vim &")
-  log.d("appendVim ok: " .. ok)
+	log.d("appendVim")
+	local ok, _, _ = os.execute(fuzzball .. "/fh-journal-vim &")
+	log.d("appendVim ok: " .. ok)
 end
 
 return module

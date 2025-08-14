@@ -103,9 +103,9 @@ require('packer').startup(function(use)
   -- https://github.com/nvim-lua/kickstart.nvim
   use { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
-    requires = {
+    dependencies = {
       -- Automatically install LSPs to stdpath for neovim
-      'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim',
+      'mason-org/mason.nvim', 'mason-org/mason-lspconfig.nvim',
 
       -- Useful status updates for LSP
       'j-hui/fidget.nvim',
@@ -207,7 +207,7 @@ require('nvim-treesitter.configs').setup {
     -- 'dockerfile',
     'go',
     'html',
-    'javascript',
+   'javascript',
     'json',
     'lua',
     -- 'org',
@@ -347,16 +347,6 @@ require('mason').setup()
 local mason_lspconfig = require 'mason-lspconfig'
 
 mason_lspconfig.setup {ensure_installed = vim.tbl_keys(servers)}
-
-mason_lspconfig.setup_handlers {
-  function(server_name)
-    require('lspconfig')[server_name].setup {
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = servers[server_name]
-    }
-  end
-}
 
 -- Turn on lsp status information
 require('fidget').setup()

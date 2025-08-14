@@ -26,7 +26,22 @@ elif [[ "$(uname)" == "Darwin" ]]; then
 fi
 dest="${HOME}/screens"
 mkdir -p "${dest}"
+suffix="$1"
+timestamp=$(date '+%Y-%m-%d-%H%M%S')
+out="${dest}/screen-${timestamp}-${suffix}.png"
 declare -a args
+if [[ "${XDG_SESSION_TYPE}" == "wayland" ]]; then
+  # grim screenshot.png
+
+  # Select area with annotation
+  grim -g "$(slurp)" - | swappy --file - --output-file "${out}"
+
+  # Select area, save directly
+  # grim -g "$(slurp)" screenshot.png
+  echo "${out}"
+  exit
+fi
+
 if [[ "$1" == "delay" ]]; then
   # Use this branch for getting pointer/hover stuff
   args+=(full -d 4000)
@@ -35,9 +50,6 @@ else
   # Use this branch for specific area, no pointer
   args+=(gui)
 fi
-suffix="$1"
-timestamp=$(date '+%Y-%m-%d-%H%M%S')
-out="${dest}/screen-${timestamp}-${suffix}.png"
 args+=(--path "${out}")
 flameshot "${args[@]}"
 echo "${out}"

@@ -1,0 +1,110 @@
+#!/usr/bin/env bash
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
+
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -o errexit  # always exit on error
+set -o errtrace # trap errors in functions as well
+set -o pipefail # do nott ignore exit codes when piping output
+# set -x          # enable debugging
+
+IFS="$(printf "\n\t")"
+# ---- End unofficial bash strict mode boilerplate
+nav_browser() {
+  case "$1" in
+  left)
+    wtype -M ctrl -M shift -k tab -m shift -m ctrl
+    ;;
+  up)
+    wtype -k home
+    ;;
+  right)
+    wtype -M ctrl -k tab -m ctrl
+    ;;
+  down)
+    wtype -k page_down
+    ;;
+  esac
+}
+
+nav_vs_code() {
+  case "$1" in
+  left)
+    wtype -M ctrl -k prior -m ctrl
+    ;;
+  up)
+    # xdotool key --clearmodifiers ctrl+shift+Prior
+    ;;
+  right)
+    wtype -M ctrl -k next -m ctrl
+    ;;
+  down)
+    # xdotool key --clearmodifiers ctrl+shift+Next
+    ;;
+  esac
+}
+
+shift_space() {
+  wtype -M shift -k space -m shift "$@"
+}
+
+nav_ghostty() {
+  case "$1" in
+  left)
+    shift_space -k p
+    ;;
+  down)
+    shift_space -k g -k j
+    ;;
+  up)
+    shift_space -k g -k n
+    ;;
+  right)
+    shift_space -k n
+    ;;
+  esac
+}
+
+nav_kitty() {
+  case "$1" in
+  left)
+    xdotool key --clearmodifiers 'ctrl+shift+Left'
+    ;;
+  up)
+    xdotool key --clearmodifiers 'ctrl+shift+bracketright'
+    ;;
+  right)
+    xdotool key --clearmodifiers 'ctrl+shift+Right'
+    ;;
+  down)
+    xdotool key --clearmodifiers 'ctrl+shift+bracketright'
+    ;;
+  esac
+}
+
+main() {
+  ~/bin/log "$0" "$@"
+  export PATH=/usr/local/bin:$PATH
+  direction="$1"
+  app=$(niri msg --json focused-window | jq --raw-output '.app_id')
+  case "${app}" in
+  *firefox* | *chrome* | *obsidian*)
+    nav_browser "${direction}"
+    ;;
+  *kitty*)
+    nav_kitty "${direction}"
+    ;;
+  com.mitchellh.ghostty)
+    nav_ghostty "${direction}"
+    ;;
+  *termite* | *iTerm2* | *Terminal*)
+    ~/bin/nav-tmux "${direction}"
+    ;;
+  code-oss)
+    nav_vs_code "${direction}"
+    ;;
+  esac
+}
+
+main "$@"

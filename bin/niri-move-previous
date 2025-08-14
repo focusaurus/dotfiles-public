@@ -7,13 +7,10 @@
 set -o errexit  # always exit on error
 set -o errtrace # trap errors in functions as well
 set -o pipefail # don't ignore exit codes when piping output
+set -u          # error on reference to unknown variable
 # set -x # enable debugging
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-declare -a opts=(
-  start
-  ~/go/bin/gofi ~/.config/gofi/linux.kdl
-)
-
-wezterm "${opts[@]}"
+niri msg action focus-window-previous
+niri msg action "$@"

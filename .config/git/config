@@ -6,6 +6,8 @@
   autocrlf = false
   precomposeunicode = true
 #  pager = delta --dark
+[branch]
+  sort = -committerdate
 [color]
   branch = auto
   diff = auto

@@ -1,0 +1,6 @@
+[Unit]
+Description=Set up exocortex notes for the upcoming week
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c '~/projects/exocortex/personal/bin/setup-notes-week'

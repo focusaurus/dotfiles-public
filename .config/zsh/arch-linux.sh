@@ -47,6 +47,8 @@ arch-clear-cache() {
   sudo pacman -Sc
 }
 
+alias arch-wifi-tui="impala"
+
 sample-rofi-themes() {
   find /usr/share/rofi/themes -type f -name '*.rasi' | {
     while IFS= read -r file_path; do

@@ -1,0 +1,88 @@
+{
+    "$schema": "https://lnav.org/schemas/format-v1.schema.json",
+    "pcap_log": {
+        "json": true,
+        "title": "Packet Capture",
+        "description": "Internal format for pcap files",
+        "convert-to-local-time": true,
+        "converter": {
+            "header": {
+                "expr": {
+                    "pcapng": ":header REGEXP '^0a0d0d0a.{8}(?:1a2b3c4d|4d3c2b1a).*'",
+                    "pcap": ":header REGEXP '^(?:a1b2c3d4|d4c3b2a1|a1b23c4d|4d3cb2a1).*'"
+                },
+                "size": 24
+            },
+            "command": "pcap_log-converter.sh"
+        },
+        "line-format": [
+            {
+                "field": "time"
+            },
+            " ",
+            {
+                "field": "source",
+                "auto-width": true,
+                "align": "right"
+            },
+            " → ",
+            {
+                "field": "destination",
+                "auto-width": true,
+                "align": "left"
+            },
+            " ",
+            {
+                "field": "protocol",
+                "auto-width": true,
+                "align": "left"
+            },
+            " ",
+            {
+                "field": "length",
+                "auto-width": true,
+                "align": "right"
+            },
+            " ",
+            {
+                "field": "info"
+            }
+        ],
+        "level": {
+            "warning": "^6291456$",
+            "error": "^8388608$"
+        },
+        "timestamp-field": "time",
+        "level-pointer": "/_ws_expert__ws_expert_severity$",
+        "body-field": "info",
+        "hide-extra": true,
+        "value": {
+            "source": {
+                "kind": "string",
+                "foreign-key": true,
+                "collate": "ipaddress",
+                "identifier": true
+            },
+            "destination": {
+                "kind": "string",
+                "foreign-key": true,
+                "collate": "ipaddress",
+                "identifier": true
+            },
+            "protocol": {
+                "kind": "string",
+                "identifier": true
+            },
+            "length": {
+                "kind": "integer"
+            },
+            "info": {
+                "kind": "string"
+            },
+            "layers": {
+                "kind": "json",
+                "hidden": true
+            }
+        }
+    }
+}

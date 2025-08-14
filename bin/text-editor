@@ -11,4 +11,5 @@ set -o pipefail # don't ignore exit codes when piping output
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-code --new-window "$@"
+# -p means open each file from the command line in a tab
+nvim -p "$@"

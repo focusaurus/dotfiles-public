@@ -16,6 +16,14 @@ if [[ "$(uname)" == "Darwin" ]]; then
   exit
 fi
 
+if [[ "${XDG_SESSION_TYPE}" == "wayland" ]]; then
+  # these come from my web site current color theme
+  curious_blue='3d95d6'
+  lighter='bbdaf1'
+  black_pearl='0a1122'
+  swaylock -f -c "${curious_blue}" --inside-color "${black_pearl}" --ring-color "${lighter}" --text-color "${black_pearl}"
+  exit
+fi
 # if [[ -n "$(command -v loginctl)" ]]; then
 #   loginctl lock-session
 if [[ -n "$(command -v light-locker-command)" ]]; then

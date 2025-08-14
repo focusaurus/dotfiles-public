@@ -318,3 +318,25 @@ Arduino
 _default.hcl
 f24
 login_1689539373.hcl
+.claude/statsig
+.claude/__store.db
+.config/lnav/configs/default
+.config/ario/covers
+.1password/agent.sock
+.claude
+.Leapp
+.config/lnav/filter-regex.history
+.config/lnav/log_metadata.db
+.config/lnav/search.history
+.claude.json
+.config/lnav
+.cocoapods/repos
+.expo
+.swiftpm
+.var/app/com.bambulab.BambuStudio
+f25
+.config/Creality/Creality Print.conf
+.var/app/im.riot.Riot
+.app-store/auth
+.app-store/itunes_service_key.txt
+.claude.json.backup

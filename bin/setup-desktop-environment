@@ -29,12 +29,12 @@ main() {
   ~/bin/log "$0" calling setup keyboards
   ~/bin/setup-keyboards
 
-  ~/bin/log "$0" nm-applet
+  # ~/bin/log "$0" nm-applet
   # Network Manager
-  if have_exe nm-applet; then
-    kill_ok nm-applet
-    nm-applet &>/dev/null &
-  fi
+  # if have_exe nm-applet; then
+    # kill_ok nm-applet
+    # nm-applet &>/dev/null &
+  # fi
 
   ~/bin/log "$0" synclient
   # 2018-04-17 plyons natural scrolling everywhere in X11

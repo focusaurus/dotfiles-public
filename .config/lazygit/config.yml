@@ -8,11 +8,11 @@ gui:
     # inactiveBorderColor:
     #   - white
     selectedLineBgColor:
-      - default
+      # - default
       # - green
       # - "#eee"
       # - underline
-      # - reverse
+      - reverse
       # - '#222222'
     # selectedLineBgColor:
     #   - reverse

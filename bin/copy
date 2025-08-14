@@ -15,7 +15,11 @@ IFS="$(printf "\n\t")"
 file="${1:-/dev/stdin}"
 case $(uname) in
 Linux)
-  xsel --clipboard --input <"${file}"
+  if [[ "${XDG_SESSION_TYPE}" == "wayland" ]]; then
+    wl-copy <"${file}"
+  else
+    xsel --clipboard --input <"${file}"
+  fi
   ;;
 Darwin)
   pbcopy <"${file}"

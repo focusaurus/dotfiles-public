@@ -6,7 +6,8 @@ function ensure_ssh_agent() {
     op-add-ssh-key
     return
   fi
-  echo ensure_ssh_agent nope
+  ssh-add -L
+  # echo ensure_ssh_agent nope
 }
 alias g='lazygit'
 # alias g='gitui'
@@ -435,14 +436,14 @@ dotfiles-edit-fuzzy() {
 }
 alias dfef="dotfiles-edit-fuzzy"
 
+te-git-changed() {
+  git status --short | awk '{print $2}' | xargs "${EDITOR}"
+}
+
 gsync() {
   dotfiles-end
   if ! ssh-add -l &>/dev/null; then
-    if [[ "$(uname -n)" =~ RSG ]]; then
-      mc-add-ssh-key
-    else
-      op-add-ssh-key
-    fi
+    op-add-ssh-key
   fi
   ~/bin/git-autocommit \
     ~/git.peterlyons.com/petes-personal-journal \

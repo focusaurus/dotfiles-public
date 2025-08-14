@@ -1,23 +1,32 @@
-alias te="text-editor"
+alias te="~/bin/text-editor"
 
 te-files-with-matches() {
-  rg --ignore-case --files-with-matches watch "${@}" | xargs ~/bin/text-editor
+  rg --ignore-case --files-with-matches "${@}" | xargs ~/bin/text-editor
 }
 
 te-clipboard() {
-  ~/bin/paste | v -n -c startinsert -
+  # this is admittedly unclean in that in theory
+  # the intention behind ~/bin/text-editor is an integration
+  # point where I could change which program I use as my primary
+  # editor (nvim vs helix vs emacs vs nano or whatever)
+  # and most of my simple scripts would just work once I
+  # adjust ~/bin/text-editor to maintain its external interface
+  #
+  # In this case there are some nvim-specific args here
+  if grep -q -E '^nvim ' ~/bin/text-editor; then
+    ~/bin/paste | ~/bin/text-editor -n -c startinsert -
+  else
+    ~/bin/paste | ~/bin/text-editor
+  fi
 }
-alias paste-to-vim="te-clipboard"
 
 te-daily() {
-  org="${HOME}/projects/exocortex/personal"
-  "${EDITOR}" "${org}/$("${org}/bin/file-name-for" 0)"
+  local exo="${HOME}/projects/exocortex/personal"
+  "${EDITOR}" "${exo}/$("${exo}/bin/file-name-for" 0)"
 }
 
 if ~/bin/have-exe nvim; then
-  alias v="nvim -p"
-  # export EDITOR="${HOME}/bin/editor"
-  export EDITOR="nvim"
+  export EDITOR="${HOME}/bin/text-editor"
 elif ~/bin/have-exe vim; then
   alias v="vim"
   export EDITOR="vim"
@@ -25,28 +34,3 @@ else
   alias v="vi"
   export EDITOR="vi"
 fi
-
-te-vimrc() {
-  fd .vim ~/.config/nvim | xargs nvim -p
-}
-
-te-git-changed() {
-  git status --short | awk '{print $2}' | xargs "${EDITOR}" -p
-}
-
-#Note to self, use sudoedit to edit files with my nvim config as root
-
-# https://medium.com/@bobbypriambodo/blazingly-fast-spacemacs-with-persistent-server-92260f2118b7
-em() {
-  # Checks if there's a frame open
-  emacsclient -n -e "(if (> (length (frame-list)) 1) ‘t)" 2>/dev/null | grep -q t
-  if [ "$?" -eq "1" ]; then
-    emacsclient -a '' -nqc "$@" &>/dev/null
-  els
-    emacsclient -nq "$@" &>/dev/null
-  fi
-}
-
-alias spacevim="nvim -u ~/.SpaceVim/main.vim"
-alias nvim-plugin-update="nvim -c PackerSync"
-alias nvim-plugin-install="nvim -c PackerInstall"

@@ -14,3 +14,5 @@ node_modules
 nohup.out
 npm-debug.log
 __debug_bin*
+
+**/.claude/settings.local.json

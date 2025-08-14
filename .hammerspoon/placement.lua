@@ -101,12 +101,12 @@ function module.tidy()
 end
 
 function module.googleMeet()
-  focus.obsidian()
+  -- focus.obsidian()
   local meet = focus.chrome()
   if meet == nil then
     return
   end
-  module.left()
+  -- module.left()
 end
 
 return module

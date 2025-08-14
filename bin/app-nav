@@ -106,7 +106,7 @@ main() {
   *ghostty*)
     nav_ghostty "${direction}"
     ;;
-  *termite* | *iTerm2* |  *Terminal*)
+  *termite* | *iTerm2* | *Terminal*)
     ~/bin/nav-tmux "${direction}"
     ;;
   *code*)

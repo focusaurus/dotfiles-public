@@ -7,23 +7,22 @@
 set -o errexit  # always exit on error
 set -o errtrace # trap errors in functions as well
 set -o pipefail # don't ignore exit codes when piping output
+set -u          # error on reference to unknown variable
 # set -x          # enable debugging
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
-# Here's our default arguments we intend
-# to pass to yt-dlp
-declare -a opts=(
-  --quiet
-  --no-progress
-  --format bestaudio
-  --cookies-from-browser "firefox::Music"
-  --restrict-filenames
-  --output "%(playlist_index)s-%(title)s.%(ext)s"
-  --concurrent-fragments 3
-  "$1"
-)
+# Get wifi status using iwd
+station=$(iwctl station list | sed -e '1,4d' | awk '{print $2}' | head -1)
+if [ -z "$station" ]; then
+  echo "📶❌"
+  exit
+fi
 
-yt-dlp "${opts[@]}"
-~/bin/notify "music downloaded"
+if iwctl station "${station}" show | grep -qE "State\s+connected"; then
+  network=$(iwctl station "$station" show | grep "Connected network" | awk '{print $3}')
+  echo "📶✅ $network"
+else
+  echo "📶❌"
+fi

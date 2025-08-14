@@ -2,13 +2,13 @@
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.tabstop = 2
-vim.opt.indentkeys:remove{':'}
+vim.opt.indentkeys:remove({ ":" })
 
 vim.opt.number = true
 vim.opt.ignorecase = false
 vim.opt.list = true
 
-vim.opt.statusline = '%F'
+vim.opt.statusline = "%F"
 
 vim.opt.timeout = false
 vim.opt.ttimeout = true
@@ -29,8 +29,6 @@ vim.opt.confirm = true
 -- allow switching to other buffers when the current one is modified
 vim.opt.hidden = true
 
-vim.opt.completeopt = {'menuone', 'noinsert', 'noselect'}
--- vim.cmd 'colorscheme monokai'
--- vim.cmd 'colorscheme delek'
--- vim.cmd 'colorscheme slate'
-vim.cmd 'colorscheme catppuccin-latte'
+vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
+-- vim.cmd("colorscheme catppuccin-latte")
+vim.cmd("colorscheme morning")

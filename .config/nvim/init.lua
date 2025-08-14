@@ -1,5 +1,4 @@
-require 'plugins'
-require 'settings'
-require 'autocmds'
-require 'abbreviations'
-require 'mappings'
+require("settings")
+require("autocmds")
+require("abbreviations")
+require("mappings")
