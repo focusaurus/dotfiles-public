@@ -20,6 +20,8 @@ beautiful.menu_font = 'Hack 14'
 beautiful.menu_height = 28
 beautiful.menu_width = 400
 beautiful.tasklist_plain_task_name = true
+beautiful.wibar_bg = "#3d95d6"
+beautiful.wibar_fg = "#0a1122"
 awful.titlebar.enable_tooltip = false
 local function small(widget)
   widget.forced_height = 25

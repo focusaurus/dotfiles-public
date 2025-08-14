@@ -11,6 +11,7 @@ package.loaded["naughty.dbus"] = {}
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
+gears.wallpaper.set("#3d95d6")
 
 -- Theme handling library
 local beautiful = require("beautiful")
