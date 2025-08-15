@@ -26,9 +26,9 @@ umusic key="u" {
 }
 terminal key="t" "focus-niri" "terminal"
 trello key="T" "focus-niri" "trello"
-ulauncher key="x" "ulauncher-toggle"
+sirula key="x" "sirula"
 applications key="a" {
-  // calculator key="c" "focus" "calculator"
+  calculator key="c" "focus" "calculator"
   bambu-studio key="b" "focus-niri" "bambustudio"
   // creality-print key="e" "focus-niri" "crealityprint"
   freecad key="f" "focus-niri" "freecad"
