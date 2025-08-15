@@ -174,6 +174,9 @@ To list all packages explicitly installed and not required as dependencies:
 $ pacman -Qet
 
 
+To install a specific version of a package (pin)
+pacman -S package_name=version_number
+
 
 
 See Pacman/Tips and tricks for more examples.
