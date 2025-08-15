@@ -340,3 +340,9 @@ f25
 .app-store/auth
 .app-store/itunes_service_key.txt
 .claude.json.backup
+.config/gtk-3.0/assets
+.config/libaccounts-glib
+.config/KDE/UserFeedback.conf
+.config/KDE/UserFeedback.org.kde.plasma-welcome.conf
+.config/PlasmaDiscoverUpdates
+.config/plasma-welcomerc
