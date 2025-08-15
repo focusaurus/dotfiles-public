@@ -7,24 +7,26 @@
 set -o errexit  # always exit on error
 set -o errtrace # trap errors in functions as well
 set -o pipefail # don't ignore exit codes when piping output
-set -o posix    # more strict failures in subshells
 # set -x          # enable debugging
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
-acpi --battery |
-  grep --invert-match unavailable |
-  grep --extended --only-matching '[0-9]+%' | {
-  while IFS= read -r level; do
-    battery_level=$(echo "${level}" | tr -d %)
-    
-    if [[ ${battery_level} -ge 25 ]]; then
-      battery_icon="🔋"
-    else
-      battery_icon="🪫"
-    fi
-    
-    echo -n "${battery_icon}${battery_level}"
-  done
-}
+# Here's our default arguments we intend
+# to pass to yt-dlp
+  # --audio-format mp3
+  # --quiet
+declare -a opts=(
+  --no-progress
+  --extract-audio
+  --audio-quality 0
+  --format bestaudio
+  --add-metadata
+  --embed-metadata
+  --cookies-from-browser "firefox::Music"
+  --restrict-filenames
+  --output "%(artist)s/%(album)s/%(track_number)d-%(title)s.%(ext)s"
+)
+
+yt-dlp "${opts[@]}" "$@"
+~/bin/notify "music downloaded"

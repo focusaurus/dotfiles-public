@@ -1,5 +1,5 @@
 #!/bin/bash
-selected=$(niri msg --json windows | jq -r '.[] | pick(.workspace_id, .id, .title, .app_id) | "\(.workspace_id):\(.id):\(.title):\(.app_id)"' | wofi --dmenu)
+selected=$(niri msg --json windows | jq -r '.[] | pick(.workspace_id, .id, .title, .app_id) | "\(.workspace_id):\(.id):\(.title):\(.app_id)"' | wofi --dmenu --matching=fuzzy)
 if [ -n "$selected" ]; then
     window_id=$(echo "$selected" | cut -d: -f2)
     niri msg action focus-window --id "$window_id"

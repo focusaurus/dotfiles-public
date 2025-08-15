@@ -69,6 +69,9 @@ ario)
 1password)
   find_window '.app_id == "1Password"' || launch 1password
   ;;
+calculator)
+  find_window '.app_id == "mate-calc"' || launch mate-calc
+  ;;
 gofi)
   find_window '.title == "gofi"' || launch ghostty --title="gofi" -e gofi ~/.config/gofi/niri.kdl
   ;;

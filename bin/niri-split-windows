@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
+
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -o errexit # always exit on error
+set -o errtrace # trap errors in functions as well
+set -o pipefail # don't ignore exit codes when piping output
+set -u # error on reference to unknown variable
+set -x # enable debugging
+
+IFS=$'\n\t'
+# ---- End unofficial bash strict mode boilerplate
+
+# Function to select a window using wofi
+select_window() {
+    local prompt="$1"
+    niri msg --json windows | jq -r '.[] | select(.workspace_id != null) | "\(.workspace_id):\(.id):\(.title):\(.app_id)"' | wofi --dmenu --matching=fuzzy --prompt="$prompt"
+}
+
+# Get current workspace info to determine next available workspace
+get_next_workspace() {
+    local current_workspaces=$(niri msg --json workspaces | jq -r '.[].id' | sort -n)
+    local max_workspace=$(echo "$current_workspaces" | tail -1)
+    echo $((max_workspace + 1))
+}
+
+# Prompt for left window
+echo "Select LEFT window:"
+left_selection=$(select_window "Left Window")
+if [ -z "$left_selection" ]; then
+    echo "No left window selected. Exiting."
+    exit 1
+fi
+left_window_id=$(echo "$left_selection" | cut -d: -f2)
+
+# Prompt for right window
+echo "Select RIGHT window:"
+right_selection=$(select_window "Right Window")
+if [ -z "$right_selection" ]; then
+    echo "No right window selected. Exiting."
+    exit 1
+fi
+right_window_id=$(echo "$right_selection" | cut -d: -f2)
+
+# Check if same window was selected twice
+if [ "$left_window_id" = "$right_window_id" ]; then
+    echo "Same window selected for both left and right. Exiting."
+    exit 1
+fi
+
+# Get next available workspace
+next_workspace=$(get_next_workspace)
+echo "Creating workspace $next_workspace..."
+
+# Move both windows to the new workspace
+niri msg action move-window-to-workspace --window-id "$left_window_id" "$next_workspace"
+niri msg action move-window-to-workspace --window-id "$right_window_id" "$next_workspace"
+
+# Position windows side by side (50% width each)
+# Focus left window first and resize
+niri msg action focus-window --id "$left_window_id"
+niri msg action set-window-width 50%
+
+# Focus right window and resize
+niri msg action focus-window --id "$right_window_id"
+niri msg action set-window-width 50%
+
+echo "Windows arranged in workspace $next_workspace"
