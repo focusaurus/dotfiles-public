@@ -346,3 +346,4 @@ f25
 .config/KDE/UserFeedback.org.kde.plasma-welcome.conf
 .config/PlasmaDiscoverUpdates
 .config/plasma-welcomerc
+.var/app
