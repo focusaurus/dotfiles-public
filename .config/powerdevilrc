@@ -1,0 +1,5 @@
+[AC][Display]
+TurnOffDisplayIdleTimeoutSec=1800
+
+[AC][SuspendAndShutdown]
+AutoSuspendAction=0
