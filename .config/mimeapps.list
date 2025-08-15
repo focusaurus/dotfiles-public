@@ -1,14 +1,16 @@
 [Added Associations]
+inode/directory=yazi.desktop;
 
 [Default Applications]
-x-scheme-handler/postman=Postman.desktop
-text/html=firefox.desktop
-x-scheme-handler/http=firefox.desktop
-x-scheme-handler/https=firefox.desktop
-x-scheme-handler/about=firefox.desktop
-x-scheme-handler/unknown=firefox.desktop
-x-scheme-handler/mailto=firefox.desktop
-x-scheme-handler/webcal=firefox.desktop
-x-scheme-handler/discord=firefox.desktop
+inode/directory=yazi.desktop;
 model/stl=PrusaSlicer.desktop
 sourcegraph=cody-handler.desktop
+text/html=firefox.desktop
+x-scheme-handler/about=firefox.desktop
+x-scheme-handler/discord=firefox.desktop
+x-scheme-handler/http=firefox.desktop
+x-scheme-handler/https=firefox.desktop
+x-scheme-handler/mailto=firefox.desktop
+x-scheme-handler/postman=Postman.desktop
+x-scheme-handler/unknown=firefox.desktop
+x-scheme-handler/webcal=firefox.desktop

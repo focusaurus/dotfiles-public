@@ -146,7 +146,8 @@
       "hibernate": "systemctl hibernate"
     }
   },
-"custom/batteries": {
-"exec": "$HOME/bin/widgets/battery"
-}
+  "custom/batteries": {
+    "exec": "$HOME/bin/widgets/battery",
+    "interval": 60
+  }
 }
