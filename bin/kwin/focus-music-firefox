@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Focus Firefox window with title starting with "music:"
+# Usage: focus-music-firefox
+
+script_content='
+var windows = workspace.windowList();
+print("Found " + windows.length + " windows");
+for (var i = 0; i < windows.length; i++) {
+    var window = windows[i];
+    print("Window " + i + ": " + window.resourceClass + " - " + window.caption);
+    if (window.resourceClass.toString().toLowerCase().includes("firefox") && 
+        window.caption.toString().startsWith("music:")) {
+        print("Focusing window: " + window.caption);
+        workspace.activeWindow = window;
+        break;
+    }
+}
+'
+
+# Create temporary script file
+script_file="/tmp/focus_music_firefox_$(date +%s).js"
+echo "$script_content" > "$script_file"
+
+# Load and run the script
+script_id=$(qdbus org.kde.KWin /Scripting org.kde.kwin.Scripting.loadScript "$script_file")
+if [ $? -eq 0 ]; then
+    qdbus org.kde.KWin /Scripting org.kde.kwin.Scripting.start
+    # Clean up
+    qdbus org.kde.KWin /Scripting org.kde.kwin.Scripting.unloadScript "$script_id" 2>/dev/null
+fi
+
+rm -f "$script_file"
