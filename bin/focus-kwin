@@ -1,0 +1,132 @@
+#!/bin/bash
+
+# Focus window by name using KWin scripting
+# Usage: focus-kwin <name>
+
+if [ $# -eq 0 ]; then
+  echo "Usage: $0 <name>"
+  echo "Available names: music, gofi"
+  exit 1
+fi
+
+focus_by_class_then_caption() {
+  local app="$1"
+  local prefix="$2"
+
+  script_content="
+var windows = workspace.windowList();
+for (var i = 0; i < windows.length; i++) {
+    var window = windows[i];
+    if (window.resourceClass.toString().toLowerCase().includes('$app') && 
+        window.caption.toString().startsWith('$prefix')) {
+        workspace.activeWindow = window;
+        break;
+    }
+}
+"
+
+  # Create temporary script file
+  script_file="/tmp/focus_kwin_$(date +%s).js"
+  echo "$script_content" >"$script_file"
+
+  # Load and run the script
+  script_id=$(qdbus org.kde.KWin /Scripting org.kde.kwin.Scripting.loadScript "$script_file")
+  if [ $? -eq 0 ]; then
+    qdbus org.kde.KWin /Scripting org.kde.kwin.Scripting.start
+    qdbus org.kde.KWin /Scripting org.kde.kwin.Scripting.unloadScript "$script_id" 2>/dev/null
+  fi
+
+  rm -f "$script_file"
+}
+
+focus_by_class() {
+  local app="$1"
+
+  script_content="
+var windows = workspace.windowList();
+for (var i = 0; i < windows.length; i++) {
+    var window = windows[i];
+    print('window loop: ' + window.resourceClass.toString())
+    if (window.resourceClass.toString().startsWith('$app')) {
+        workspace.activeWindow = window;
+        break;
+    }
+}
+"
+
+  # Create temporary script file
+  script_file="/tmp/focus_kwin_$(date +%s).js"
+  echo "$script_content" >"$script_file"
+
+  # Load and run the script
+  script_id=$(qdbus org.kde.KWin /Scripting org.kde.kwin.Scripting.loadScript "$script_file")
+  if [ $? -eq 0 ]; then
+    qdbus org.kde.KWin /Scripting org.kde.kwin.Scripting.start
+    qdbus org.kde.KWin /Scripting org.kde.kwin.Scripting.unloadScript "$script_id" 2>/dev/null
+  fi
+
+  rm -f "$script_file"
+}
+
+focus_exact_caption() {
+  local caption="$1"
+
+  script_content="
+var windows = workspace.windowList();
+for (var i = 0; i < windows.length; i++) {
+    var window = windows[i];
+    if (window.caption.toString() === '$caption') {
+        workspace.activeWindow = window;
+        break;
+    }
+}
+"
+
+  # Create temporary script file
+  script_file="/tmp/focus_kwin_$(date +%s).js"
+  echo "$script_content" >"$script_file"
+
+  # Load and run the script
+  script_id=$(qdbus org.kde.KWin /Scripting org.kde.kwin.Scripting.loadScript "$script_file")
+  if [ $? -eq 0 ]; then
+    qdbus org.kde.KWin /Scripting org.kde.kwin.Scripting.start
+    qdbus org.kde.KWin /Scripting org.kde.kwin.Scripting.unloadScript "$script_id" 2>/dev/null
+  fi
+
+  rm -f "$script_file"
+}
+
+APP_NAME="$1"
+
+case "$APP_NAME" in
+music)
+  focus_by_class_then_caption "firefox" "music:"
+  ;;
+browser)
+  focus_by_class_then_caption "firefox" "main:"
+  ;;
+1password)
+  focus_by_class "1Password"
+  ;;
+email)
+  focus_by_class_then_caption "firefox" "main:"
+  # TODO script to send ctrl+1 to focus first tab
+  ;;
+calendar)
+  focus_by_class_then_caption "firefox" "calendar:"
+  ;;
+trello)
+  focus_by_class_then_caption "firefox" "trello:"
+  ;;
+gofi)
+  focus_exact_caption "gofi"
+  ;;
+terminal)
+  focus_by_class_then_caption "ghostty"
+  ;;
+*)
+  echo "Unknown app: $APP_NAME"
+  echo "Available apps: music, gofi"
+  exit 1
+  ;;
+esac

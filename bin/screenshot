@@ -31,13 +31,13 @@ timestamp=$(date '+%Y-%m-%d-%H%M%S')
 out="${dest}/screen-${timestamp}-${suffix}.png"
 declare -a args
 if [[ "${XDG_SESSION_TYPE}" == "wayland" ]]; then
-  # grim screenshot.png
-
-  # Select area with annotation
-  grim -g "$(slurp)" - | swappy --file - --output-file "${out}"
-
-  # Select area, save directly
-  # grim -g "$(slurp)" screenshot.png
+  if command -v shutter >/dev/null 2>&1; then
+    # Use shutter for screenshot with selection
+    shutter -s -o "${out}"
+  else
+    # Fallback to grim with swappy for annotation
+    grim -g "$(slurp)" - | swappy --file - --output-file "${out}"
+  fi
   echo "${out}"
   exit
 fi
