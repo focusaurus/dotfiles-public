@@ -137,4 +137,26 @@ if [ $? -eq 0 ]; then
   qdbus org.kde.KWin /Scripting org.kde.kwin.Scripting.unloadScript "$script_id" 2>/dev/null
 fi
 
+# Check journal output for result
+sleep 0.2
+result=$(journalctl --user -n 50 -u plasma-kwin_wayland.service --no-pager | grep "RESULT:" | tail -1)
+
+# Launch application if no window was found
+if echo "$result" | grep -q "RESULT:NOT_FOUND"; then
+  case "$1" in
+    browser) firefox & ;;
+    music) firefox & ;;
+    calendar) firefox & ;;
+    trello) firefox & ;;
+    obsidianpersonal) obsidian & ;;
+    obsidianfrc) obsidian & ;;
+    1password) 1password & ;;
+    gofi) ghostty & ;;
+    terminal) ghostty & ;;
+    bambustudio) bambu-studio & ;;
+    gedit) gedit & ;;
+    *) echo "No launch command configured for: $1" ;;
+  esac
+fi
+
 rm -f "$script_file"

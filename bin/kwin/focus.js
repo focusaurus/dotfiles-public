@@ -46,12 +46,13 @@ const matchers = {
   gofi: matchClassCaption("com.mitchellh.ghostty", "gofi"),
   terminal: matchClass("com.mitchellh.ghostty"),
   bambustudio: matchClass("BambuStudio"),
+  gedit: matchClass("org.gnome.gedit"),
 };
 
 const main = function (keyword, deps) {
   const matcher = matchers[keyword];
   if (!matcher) {
-    print("unrecognized matcher: " + keyword);
+    print("RESULT:ERROR:unrecognized matcher: " + keyword);
     return;
   }
   print("deps.windows.length: " + deps.windows.length);
@@ -60,8 +61,11 @@ const main = function (keyword, deps) {
     if (matcher(windowProps(window))) {
       print("matched: " + window.caption);
       deps.workspace.activeWindow = window;
-      break;
+      print("RESULT:FOUND");
+      return;
     }
     print("window not matched: " + window.caption + " pid: " + i)
-  };
+  }
+
+  print("RESULT:NOT_FOUND:" + keyword);
 };
