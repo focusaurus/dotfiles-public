@@ -7,12 +7,9 @@ cups.service
 cups.socket
 docker.service
 getty@.service
+iwd.service
 keyd.service
-lightdm.service
 machines.target
-NetworkManager-dispatcher.service
-NetworkManager.service
-NetworkManager-wait-online.service
 ntpd.service
 nvidia-hibernate.service
 nvidia-resume.service
@@ -20,6 +17,7 @@ nvidia-suspend.service
 reboot.target
 remote-cryptsetup.target
 remote-fs.target
+sddm.service
 systemd-boot-update.service
 systemd-confext.service
 systemd-homed-activate.service
@@ -27,6 +25,7 @@ systemd-homed.service
 systemd-journald-audit.socket
 systemd-mountfsd.socket
 systemd-networkd.service
+systemd-networkd.socket
 systemd-networkd-wait-online.service
 systemd-network-generator.service
 systemd-nsresourced.socket
