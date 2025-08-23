@@ -1,7 +1,16 @@
+[Activities][LastVirtualDesktop]
+1b9260ec-d2ca-4119-9189-a0ab0cfe00b5=802ab8c0-e08d-45de-8aa9-5bb1324d58ec
+
 [Desktops]
 Id_1=802ab8c0-e08d-45de-8aa9-5bb1324d58ec
-Number=1
+Id_2=f950df54-65fc-4b64-bc29-ea9668d7afc3
+Name_1=Personal
+Name_2=FRC
+Number=2
 Rows=1
+
+[Plugins]
+slideEnabled=false
 
 [TabBox]
 ActivitiesMode=0
@@ -15,6 +24,12 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 
 [Tiling][802ab8c0-e08d-45de-8aa9-5bb1324d58ec][8ec37080-048a-4e57-a828-396a3dd4d08e]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][f950df54-65fc-4b64-bc29-ea9668d7afc3][05997a13-bad9-44de-9263-dc87d396ab3a]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Windows]
+Placement=Maximizing
 
 [Xwayland]
 Scale=1

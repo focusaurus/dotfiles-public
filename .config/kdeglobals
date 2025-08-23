@@ -137,6 +137,26 @@ ColorSchemeHash=0594cdbf8684a5ef175629572f86003b65badc3d
 TerminalApplication=ghostty
 TerminalService=com.mitchellh.ghostty.desktop
 
+[KFileDialog Settings]
+Allow Expansion=false
+Automatically select filename extension=true
+Breadcrumb Navigation=true
+Decoration position=2
+LocationCombo Completionmode=5
+PathCombo Completionmode=5
+Show Bookmarks=false
+Show Full Path=false
+Show Inline Previews=true
+Show Preview=false
+Show Speedbar=true
+Show hidden files=false
+Sort by=Name
+Sort directories first=true
+Sort hidden files last=false
+Sort reversed=false
+Speedbar Width=140
+View Style=DetailTree
+
 [Shortcuts]
 OpenMainMenu=
 

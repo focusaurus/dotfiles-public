@@ -31,9 +31,13 @@ timestamp=$(date '+%Y-%m-%d-%H%M%S')
 out="${dest}/screen-${timestamp}-${suffix}.png"
 declare -a args
 if [[ "${XDG_SESSION_TYPE}" == "wayland" ]]; then
-  if command -v shutter >/dev/null 2>&1; then
-    # Use shutter for screenshot with selection
-    shutter -s -o "${out}"
+  if command -v spectacle >/dev/null 2>&1; then
+    spectacle
+    # spectacle is configured to save as ~/screens/screen-YYYY-mm-dd-NN.png
+    spec_path=$(ls ~/screens/screen-*.png | tail -1)
+    if [[ -f "${spec_path}" ]]; then
+      mv "${spec_path}" "${out}"
+    fi
   else
     # Fallback to grim with swappy for annotation
     grim -g "$(slurp)" - | swappy --file - --output-file "${out}"

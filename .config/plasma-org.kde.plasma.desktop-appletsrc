@@ -99,19 +99,28 @@ PreloadWeight=100
 popupHeight=508
 popupWidth=647
 
+[Containments][2][Applets][3][Configuration][ConfigDialog]
+DialogHeight=540
+DialogWidth=720
+
 [Containments][2][Applets][3][Configuration][General]
 favoritesPortedToKAstats=true
+systemFavorites=suspend\\,hibernate\\,reboot\\,shutdown
+
+[Containments][2][Applets][31]
+immutability=1
+plugin=org.kde.plasma.taskmanager
+
+[Containments][2][Applets][31][Configuration][ConfigDialog]
+DialogHeight=1052
+DialogWidth=1784
+
+[Containments][2][Applets][31][Configuration][General]
+launchers=applications:systemsettings.desktop,preferred://browser
 
 [Containments][2][Applets][4]
 immutability=1
 plugin=org.kde.plasma.pager
-
-[Containments][2][Applets][5]
-immutability=1
-plugin=org.kde.plasma.icontasks
-
-[Containments][2][Applets][5][Configuration][General]
-launchers=applications:systemsettings.desktop,preferred://browser
 
 [Containments][2][Applets][6]
 immutability=1
@@ -136,9 +145,8 @@ plugin=org.kde.plasma.vault
 immutability=1
 plugin=org.kde.plasma.keyboardindicator
 
-[Containments][2][Applets][7][Applets][12]
-immutability=1
-plugin=org.kde.plasma.weather
+[Containments][2][Applets][7][Applets][12][Configuration]
+PreloadWeight=42
 
 [Containments][2][Applets][7][Applets][13]
 immutability=1
@@ -190,6 +198,9 @@ plugin=org.kde.plasma.bluetooth
 immutability=1
 plugin=org.kde.plasma.mediacontroller
 
+[Containments][2][Applets][7][Applets][29][Configuration]
+PreloadWeight=26
+
 [Containments][2][Applets][7][Applets][8]
 immutability=1
 plugin=org.kde.plasma.manage-inputmethod
@@ -198,13 +209,17 @@ plugin=org.kde.plasma.manage-inputmethod
 immutability=1
 plugin=org.kde.plasma.devicenotifier
 
+[Containments][2][Applets][7][ConfigDialog]
+DialogHeight=1052
+DialogWidth=1784
+
 [Containments][2][Applets][7][General]
-extraItems=org.kde.plasma.brightness,org.kde.plasma.manage-inputmethod,org.kde.plasma.devicenotifier,org.kde.plasma.vault,org.kde.plasma.keyboardindicator,org.kde.plasma.weather,org.kde.plasma.notifications,org.kde.plasma.bluetooth,org.kde.plasma.printmanager,org.kde.plasma.battery,org.kde.plasma.networkmanagement,org.kde.plasma.clipboard,org.kde.plasma.keyboardlayout,org.kde.plasma.cameraindicator,org.kde.plasma.volume,org.kde.plasma.mediacontroller,org.kde.kscreen
+extraItems=org.kde.plasma.brightness,org.kde.plasma.manage-inputmethod,org.kde.plasma.devicenotifier,org.kde.plasma.vault,org.kde.plasma.keyboardindicator,org.kde.plasma.notifications,org.kde.plasma.bluetooth,org.kde.plasma.printmanager,org.kde.plasma.battery,org.kde.plasma.networkmanagement,org.kde.plasma.clipboard,org.kde.plasma.keyboardlayout,org.kde.plasma.cameraindicator,org.kde.plasma.volume,org.kde.plasma.mediacontroller,org.kde.kscreen
 knownItems=org.kde.plasma.brightness,org.kde.plasma.manage-inputmethod,org.kde.plasma.devicenotifier,org.kde.plasma.vault,org.kde.plasma.keyboardindicator,org.kde.plasma.weather,org.kde.plasma.notifications,org.kde.plasma.bluetooth,org.kde.plasma.printmanager,org.kde.plasma.battery,org.kde.plasma.networkmanagement,org.kde.plasma.clipboard,org.kde.plasma.keyboardlayout,org.kde.plasma.cameraindicator,org.kde.plasma.volume,org.kde.plasma.mediacontroller,org.kde.kscreen
 
 [Containments][2][General]
-AppletOrder=3;4;5;6;7;20;21
+AppletOrder=3;31;4;6;7;20;21
 
 [ScreenMapping]
 itemsOnDisabledScreens=
-screenMapping=desktop:/swappy-20250706_145952.png,0,1b9260ec-d2ca-4119-9189-a0ab0cfe00b5,desktop:/swappy-20250706_150124.png,0,1b9260ec-d2ca-4119-9189-a0ab0cfe00b5,desktop:/swappy-20250621_190654.png,0,1b9260ec-d2ca-4119-9189-a0ab0cfe00b5,desktop:/swappy-20250621_191339.png,0,1b9260ec-d2ca-4119-9189-a0ab0cfe00b5,desktop:/swappy-20250621_190702.png,0,1b9260ec-d2ca-4119-9189-a0ab0cfe00b5,desktop:/swappy-20250621_191217.png,0,1b9260ec-d2ca-4119-9189-a0ab0cfe00b5
+screenMapping=

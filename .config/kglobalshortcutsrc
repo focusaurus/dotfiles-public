@@ -176,9 +176,9 @@ Window to Desktop 7=none,,Window to Desktop 7
 Window to Desktop 8=none,,Window to Desktop 8
 Window to Desktop 9=none,,Window to Desktop 9
 Window to Next Desktop=none,,Window to Next Desktop
-Window to Next Screen=Meta+Shift+Right,Meta+Shift+Right,Move Window to Next Screen
+Window to Next Screen=none,Meta+Shift+Right,Move Window to Next Screen
 Window to Previous Desktop=none,,Window to Previous Desktop
-Window to Previous Screen=Meta+Shift+Left,Meta+Shift+Left,Move Window to Previous Screen
+Window to Previous Screen=none,Meta+Shift+Left,Move Window to Previous Screen
 Window to Screen 0=none,,Move Window to Screen 0
 Window to Screen 1=none,,Move Window to Screen 1
 Window to Screen 2=none,,Move Window to Screen 2
@@ -251,6 +251,21 @@ stop current activity=Meta+S,Meta+S,Stop Current Activity
 switch to next activity=none,,Switch to Next Activity
 switch to previous activity=none,,Switch to Previous Activity
 toggle do not disturb=none,,Toggle do not disturb
+
+[services][net.local.app-nav-down.desktop]
+_launch=Meta+Shift+Down
+
+[services][net.local.app-nav-left.desktop]
+_launch=Meta+Shift+Left
+
+[services][net.local.app-nav-right.desktop]
+_launch=Meta+Shift+Right
+
+[services][net.local.app-nav-up.desktop]
+_launch=Meta+Shift+Up
+
+[services][net.local.focus-kwin.desktop]
+_launch=F10
 
 [services][net.local.fuzz-script-choose.desktop]
 _launch=F11

@@ -1,1 +1,9 @@
-{}
+{
+    "com.github.extner32.babel-converter": {
+        "id": "com.github.extner32.babel-converter",
+        "url": "https://github.com/Extner32/babel-converter",
+        "updated_at": "2025-08-17T18:50:52.538562",
+        "last_commit": "98de96c84720327b2f30c7ed375cc29b76b21fa6",
+        "last_commit_time": "2025-07-04T09:00:37"
+    }
+}

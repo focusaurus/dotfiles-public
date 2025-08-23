@@ -1,0 +1,14 @@
+[Annotations]
+annotationToolType=11
+
+[FileDialogSize]
+1920x1080 screen: Window-Maximized=true
+
+[ImageSave]
+imageFilenameTemplate=screen-<yyyy>-<MM>-<dd>-<#>
+imageSaveLocation=file:///home/plyons/screens/
+lastImageSaveLocation=file:///home/plyons/screens/screen-2025-08-21-3.png
+translatedScreenshotsFolder=Screenshots
+
+[VideoSave]
+translatedScreencastsFolder=Screencasts

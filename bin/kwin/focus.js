@@ -38,6 +38,7 @@ const matchClassCaptionInc = function (klass, substring) {
 const matchers = {
   browser: matchClassCaptionPre("firefox", "main:"),
   music: matchClassCaptionPre("firefox", "music:"),
+  email: matchClassCaptionPre("firefox", "main:"),
   calendar: matchClassCaptionPre("firefox", "calendar:"),
   trello: matchClassCaptionPre("firefox", "trello:"),
   obsidianpersonal: matchClassCaptionInc("obsidian", "personal"),
@@ -47,25 +48,26 @@ const matchers = {
   terminal: matchClass("com.mitchellh.ghostty"),
   bambustudio: matchClass("BambuStudio"),
   gedit: matchClass("org.gnome.gedit"),
+  slack: matchClass("Slack"),
 };
 
 const main = function (keyword, deps) {
   const matcher = matchers[keyword];
   if (!matcher) {
-    print("RESULT:ERROR:unrecognized matcher: " + keyword);
+    print("unrecognized matcher: " + keyword);
     return;
   }
   print("deps.windows.length: " + deps.windows.length);
   for (let i = 0; i < deps.windows.length; i++) {
     const window = deps.windows[i];
+    // for simplicity the matches get plain data - no methods
+    // but for setting workspace.activeWindow we need the
+    // exact instance we got from the KWin API
     if (matcher(windowProps(window))) {
       print("matched: " + window.caption);
       deps.workspace.activeWindow = window;
-      print("RESULT:FOUND");
       return;
     }
     print("window not matched: " + window.caption + " pid: " + i)
   }
-
-  print("RESULT:NOT_FOUND:" + keyword);
 };

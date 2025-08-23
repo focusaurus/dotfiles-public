@@ -1,0 +1,111 @@
+#!/usr/bin/env bash
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
+
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -o errexit  # always exit on error
+set -o errtrace # trap errors in functions as well
+set -o pipefail # do nott ignore exit codes when piping output
+# set -x          # enable debugging
+
+IFS="$(printf "\n\t")"
+# ---- End unofficial bash strict mode boilerplate
+nav_browser() {
+  case "$1" in
+  left)
+    wtype -M ctrl -M shift -k tab -m shift -m ctrl
+    ;;
+  up)
+    wtype -k home
+    ;;
+  right)
+    wtype -M ctrl -k tab -m ctrl
+    ;;
+  down)
+    wtype -k page_down
+    ;;
+  esac
+}
+
+nav_vs_code() {
+  case "$1" in
+  left)
+    wtype -M ctrl -k prior -m ctrl
+    ;;
+  up)
+    # xdotool key --clearmodifiers ctrl+shift+Prior
+    ;;
+  right)
+    wtype -M ctrl -k next -m ctrl
+    ;;
+  down)
+    # xdotool key --clearmodifiers ctrl+shift+Next
+    ;;
+  esac
+}
+
+shift_space() {
+  # wtype -M shift -k space -m shift "$@"
+  ydotool key 42:1 57:1 57:0 42:0 "$@"
+}
+
+nav_ghostty() {
+  case "$1" in
+  left)
+    shift_space 25:1 25:0
+    ;;
+  down)
+    shift_space 34:1 34:0 35:1 35:0
+    ;;
+  up)
+    shift_space 34:1 34:0 38:1 38:0
+    ;;
+  right)
+    shift_space 49:1 49:0
+    ;;
+  esac
+}
+
+nav_kitty() {
+  case "$1" in
+  left)
+    xdotool key --clearmodifiers 'ctrl+shift+Left'
+    ;;
+  up)
+    xdotool key --clearmodifiers 'ctrl+shift+bracketright'
+    ;;
+  right)
+    xdotool key --clearmodifiers 'ctrl+shift+Right'
+    ;;
+  down)
+    xdotool key --clearmodifiers 'ctrl+shift+bracketright'
+    ;;
+  esac
+}
+
+main() {
+  ~/bin/log "$0" "$@"
+  export PATH=/usr/local/bin:$PATH
+  direction="$1"
+  app=$(kdotool getactivewindow getwindowclassname)
+  case "${app}" in
+  *firefox* | *chrome* | *obsidian*)
+    nav_browser "${direction}"
+    ;;
+  *kitty*)
+    nav_kitty "${direction}"
+    ;;
+  com.mitchellh.ghostty)
+    nav_ghostty "${direction}"
+    ;;
+  *termite* | *iTerm2* | *Terminal*)
+    ~/bin/nav-tmux "${direction}"
+    ;;
+  code-oss)
+    nav_vs_code "${direction}"
+    ;;
+  esac
+}
+
+main "$@"

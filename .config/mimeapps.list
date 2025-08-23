@@ -1,5 +1,6 @@
 [Added Associations]
 inode/directory=yazi.desktop;
+x-scheme-handler/slack=slack.desktop;
 
 [Default Applications]
 inode/directory=yazi.desktop;
@@ -14,3 +15,4 @@ x-scheme-handler/mailto=firefox.desktop
 x-scheme-handler/postman=Postman.desktop
 x-scheme-handler/unknown=firefox.desktop
 x-scheme-handler/webcal=firefox.desktop
+x-scheme-handler/slack=slack.desktop

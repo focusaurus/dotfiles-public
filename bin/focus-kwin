@@ -1,129 +1,53 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# Focus window by name using KWin scripting
-# Usage: focus-kwin <name>
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
+
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -o errexit  # always exit on error
+set -o errtrace # trap errors in functions as well
+set -o pipefail # don't ignore exit codes when piping output
+set -u          # error on reference to unknown variable
+# set -x # enable debugging
+
+IFS=$'\n\t'
+# ---- End unofficial bash strict mode boilerplate
 
 # View output with: journalctl --user -f -u plasma-kwin_wayland.service
 if [ $# -eq 0 ]; then
   echo "Usage: $0 <name>"
-  echo "Available names: music, gofi"
   exit 1
 fi
-focus_class_prefix() {
-  local app="$1"
-  local prefix="$2"
 
-  script_content="
-var windows = workspace.windowList();
-for (var i = 0; i < windows.length; i++) {
-    var window = windows[i];
-    if (window.resourceClass.toString().toLowerCase().includes('$app') && 
-        window.caption.toString().startsWith('$prefix')) {
-        workspace.activeWindow = window;
-        break;
-    }
-}
-"
-
-  # Create temporary script file
-  script_file="/tmp/focus_kwin_$(date +%s).js"
-  echo "$script_content" >"$script_file"
-
-  # Load and run the script
-  script_id=$(qdbus org.kde.KWin /Scripting org.kde.kwin.Scripting.loadScript "$script_file")
-  if [ $? -eq 0 ]; then
-    qdbus org.kde.KWin /Scripting org.kde.kwin.Scripting.start
-    qdbus org.kde.KWin /Scripting org.kde.kwin.Scripting.unloadScript "$script_id" 2>/dev/null
-  fi
-
-  rm -f "$script_file"
+launch() {
+  cd /tmp
+  nohup "$@" &
 }
 
-focus_class_substring() {
-  local app="$1"
-  local seek="$2"
-
-  script_content="
-var windows = workspace.windowList();
-for (var i = 0; i < windows.length; i++) {
-    var window = windows[i];
-    if (window.resourceClass.toString().toLowerCase().includes('$app') && 
-        window.caption.toString().includes('$seek')) {
-        workspace.activeWindow = window;
-        break;
-    }
-}
-"
-
-  # Create temporary script file
-  script_file="/tmp/focus_kwin_$(date +%s).js"
-  echo "$script_content" >"$script_file"
-
-  # Load and run the script
-  script_id=$(qdbus org.kde.KWin /Scripting org.kde.kwin.Scripting.loadScript "$script_file")
-  if [ $? -eq 0 ]; then
-    qdbus org.kde.KWin /Scripting org.kde.kwin.Scripting.start
-    qdbus org.kde.KWin /Scripting org.kde.kwin.Scripting.unloadScript "$script_id" 2>/dev/null
-  fi
-
-  rm -f "$script_file"
-}
-focus_by_class() {
-  local app="$1"
-
-  script_content="
-var windows = workspace.windowList();
-for (var i = 0; i < windows.length; i++) {
-    var window = windows[i];
-    print('window loop: ' + window.resourceClass.toString())
-    if (window.resourceClass.toString().startsWith('$app')) {
-        workspace.activeWindow = window;
-        break;
-    }
-}
-"
-  # Create temporary script file
-  script_file="/tmp/focus_kwin_$(date +%s).js"
-  echo "$script_content" >"$script_file"
-
-  # Load and run the script
-  script_id=$(qdbus org.kde.KWin /Scripting org.kde.kwin.Scripting.loadScript "$script_file")
-  if [ $? -eq 0 ]; then
-    qdbus org.kde.KWin /Scripting org.kde.kwin.Scripting.start
-    qdbus org.kde.KWin /Scripting org.kde.kwin.Scripting.unloadScript "$script_id" 2>/dev/null
-  fi
-
-  # rm -f "$script_file"
-}
-
-focus_exact_caption() {
-  local caption="$1"
-
-  script_content="
-var windows = workspace.windowList();
-for (var i = 0; i < windows.length; i++) {
-    var window = windows[i];
-    if (window.caption.toString() === '$caption') {
-        workspace.activeWindow = window;
-        break;
-    }
-}
-"
-
-  # Create temporary script file
-  script_file="/tmp/focus_kwin_$(date +%s).js"
-  echo "$script_content" >"$script_file"
-
-  # Load and run the script
-  script_id=$(qdbus org.kde.KWin /Scripting org.kde.kwin.Scripting.loadScript "$script_file")
-  if [ $? -eq 0 ]; then
-    qdbus org.kde.KWin /Scripting org.kde.kwin.Scripting.start
-    qdbus org.kde.KWin /Scripting org.kde.kwin.Scripting.unloadScript "$script_id" 2>/dev/null
-  fi
-
-  rm -f "$script_file"
-}
-
+grepfor="$1"
+case "${grepfor}" in
+bambustudio)
+  pgrep --full bambu-studio >/dev/null || launch bambu-studio
+  # ps -ef | grep bambu-studio || launch bambu-studio
+  ;;
+browser | email | music | calendar | trello)
+  pgrep firefox >/dev/null || launch firefox
+  ;;
+gofi)
+  pgrep ghostty >/dev/null || launch ~/bin/gofi-ghostty
+  ;;
+terminal)
+  pgrep ghostty >/dev/null || launch ghostty
+  ;;
+obsidian*)
+  pgrep --full 'electron.*obsidian' >/dev/null || launch obsidian
+  # ps -ef | grep 'electron.*obsidian' || launch obsidian
+  ;;
+*)
+  # very standard case. gedit is an example.
+  pgrep "$1" || launch "$1"
+  ;;
+esac
 script_file=$(mktemp "/tmp/focus-kwin-XXX.js")
 suffix="
 main('$1', deps);"
@@ -137,26 +61,11 @@ if [ $? -eq 0 ]; then
   qdbus org.kde.KWin /Scripting org.kde.kwin.Scripting.unloadScript "$script_id" 2>/dev/null
 fi
 
-# Check journal output for result
-sleep 0.2
-result=$(journalctl --user -n 50 -u plasma-kwin_wayland.service --no-pager | grep "RESULT:" | tail -1)
-
-# Launch application if no window was found
-if echo "$result" | grep -q "RESULT:NOT_FOUND"; then
-  case "$1" in
-    browser) firefox & ;;
-    music) firefox & ;;
-    calendar) firefox & ;;
-    trello) firefox & ;;
-    obsidianpersonal) obsidian & ;;
-    obsidianfrc) obsidian & ;;
-    1password) 1password & ;;
-    gofi) ghostty & ;;
-    terminal) ghostty & ;;
-    bambustudio) bambu-studio & ;;
-    gedit) gedit & ;;
-    *) echo "No launch command configured for: $1" ;;
-  esac
-fi
-
 rm -f "$script_file"
+
+case "$1" in
+email)
+  echo sending alt+1
+  ydotool key 56:1 2:1 2:0 56:0
+  ;;
+esac
