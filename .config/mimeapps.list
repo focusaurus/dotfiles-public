@@ -1,6 +1,6 @@
 [Added Associations]
 inode/directory=yazi.desktop;
-x-scheme-handler/slack=slack.desktop;
+x-scheme-handler/slack=slack.desktop;Slack.desktop;
 
 [Default Applications]
 inode/directory=yazi.desktop;

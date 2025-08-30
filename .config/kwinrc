@@ -28,8 +28,5 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 [Tiling][f950df54-65fc-4b64-bc29-ea9668d7afc3][05997a13-bad9-44de-9263-dc87d396ab3a]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
-[Windows]
-Placement=Maximizing
-
 [Xwayland]
 Scale=1
