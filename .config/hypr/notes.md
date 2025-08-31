@@ -10,7 +10,7 @@
 - [x] snippets (F12)
 - [x] screen lock
 - [x] firefox dialogs
-- [ ]
+- [x] gofi
 - [ ]
 - [ ]
 - [ ]
