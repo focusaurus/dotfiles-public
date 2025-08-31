@@ -1,8 +1,8 @@
 # Keybindings Reference
 
 - super+t = launch terminal (kitty)
-- super+x = exit hyprland
-- super+c = close window
+- super+shift+x = exit hyprland
+- super+x = close window
 
 # TODO
 
@@ -14,3 +14,13 @@
 - [x] freecad
 - [x] touchpad natural scroll
 - [ ] app nav
+- [ ] terminal quick
+  - [ ] print hyprctl clients json
+- [ ] desktop background
+- [ ] gofi-based side-by side
+   - manually have main window focused
+   - leader h s (gofi > hyprland > s)
+   - gofi runs hyprctl dispatch workspace previous
+   - main app is focused again
+   - launch wofi window list to select second window
+   - dispatch a command to move that window to the current workspace

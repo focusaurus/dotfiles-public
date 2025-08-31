@@ -3,10 +3,12 @@ calendar key="c" "focus-hyprland" "calendar"
 emoji key="E" "rofimoji" "--skin-tone" "light" "--action" "copy" "--selector" "wofi"
 browser key="b" "focus-hyprland" "browser"
 email key="e" "focus-hyprland" "email"
+IDE key="i" "focus-hyprland" "vscode"
 fuzzball key="F" "fuzz-script-choose"
 windows key="w" "focus-window-fuzzy-hyprland"
 hyprland key="h" {
   quit key="x" "hyprctl" "dispatch" "exit"
+  "previous workspace" key="," "hyprctl" "dispatch" "workspace" "previous"
 }
 // niri key="n" {
 //   "move left" key="h" "niri-move-previous" "move-column-left"

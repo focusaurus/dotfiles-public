@@ -46,9 +46,7 @@ nav_vs_code() {
 }
 
 shift_space() {
-  # nohup wtype -d 50 -M shift -k space -m shift "$@" &2>&1 >/dev/null
-  sleep 0.08
-  wtype -d 50 -M shift -k space -m shift "$@" 
+  wtype -d 50 -M shift -k space -m shift "$@"
 }
 
 nav_ghostty() {
@@ -90,6 +88,8 @@ main() {
   export PATH=/usr/local/bin:$PATH
   direction="$1"
   app=$(hyprctl activewindow -j | jq --raw-output '.class')
+  # sleep is necessary to work well under hyprland
+  sleep 0.08
   case "${app}" in
   *firefox* | *chrome* | *obsidian*)
     nav_browser "${direction}"
@@ -99,9 +99,6 @@ main() {
     ;;
   com.mitchellh.ghostty)
     nav_ghostty "${direction}"
-    ;;
-  *termite* | *iTerm2* | *Terminal*)
-    ~/bin/nav-tmux "${direction}"
     ;;
   code-oss)
     nav_vs_code "${direction}"

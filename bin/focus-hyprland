@@ -13,6 +13,17 @@
 # IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 #
+find_workspace() {
+  filter="$1"
+  id=$(hyprctl clients -j |
+    jq --raw-output "[.[] | select(${filter})][0] .workspace.id // \"\"")
+  if [[ -n "${id}" ]]; then
+    hyprctl dispatch workspace "${id}"
+    return 0
+  fi
+  return 1
+}
+
 find_window() {
   filter="$1"
   address=$(hyprctl clients -j |
@@ -23,7 +34,6 @@ find_window() {
   fi
   return 1
 }
-
 if [ $# -eq 0 ]; then
   echo "Usage: $0 <app_name>"
   echo "Available apps: gofi"
@@ -133,6 +143,9 @@ previous)
   ;;
 slack)
   find_window '.class == "Slack"' || launch slack
+  ;;
+vscode)
+  find_window '.class == "code-oss"' || launch code
   ;;
 *)
   echo "Unknown app: $APP_NAME"
