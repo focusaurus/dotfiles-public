@@ -11,6 +11,6 @@
 - [x] screen lock
 - [x] firefox dialogs
 - [x] gofi
-- [ ]
-- [ ]
-- [ ]
+- [x] freecad
+- [x] touchpad natural scroll
+- [ ] app nav

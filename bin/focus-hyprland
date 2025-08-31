@@ -46,21 +46,21 @@ launch() {
   nohup "$@" &>/dev/null &
 }
 
-launchx() {
-  cd /tmp || exit
-  display=$(hyprctl clients -j |
-    jq --raw-output '[.[] | select(.class == "Xwayland")] | .[].title' |
-    sort |
-    tail -1 |
-    cut -d : -f 2)
-  if [[ -z "${display}" ]]; then
-    display=0
-  fi
-  display=$((display + 1))
-  nohup Xwayland -geometry "$(wlr-randr | grep preferred | awk '{print $1}')" ":${display}" &
-  DISPLAY=":${display}" nohup "$@" &>/dev/null &
-}
-
+# launchx() {
+#   cd /tmp || exit
+#   display=$(hyprctl clients -j |
+#     jq --raw-output '[.[] | select(.class == "Xwayland")] | .[].title' |
+#     sort |
+#     tail -1 |
+#     cut -d : -f 2)
+#   if [[ -z "${display}" ]]; then
+#     display=0
+#   fi
+#   display=$((display + 1))
+#   nohup Xwayland -geometry "$(wlr-randr | grep preferred | awk '{print $1}')" ":${display}" &
+#   DISPLAY=":${display}" nohup "$@" &>/dev/null &
+# }
+#
 APP_NAME="$1"
 
 case "$APP_NAME" in
@@ -82,19 +82,14 @@ gofi)
 freecad)
   find_window '.class == "org.freecad.FreeCAD"' || launch freecad
   ;;
+kicad)
+  find_window '.class == "kicad"' || launch kicad
+  ;;
 prusaslicer)
-  if pidof prusa-slicer >/dev/null; then
-    find_window '.class == "Xwayland"'
-  else
-    launchx prusa-slicer
-  fi
+  find_window '.class == "PrusaSlicer"' || launch prusa-slicer
   ;;
 bambustudio)
-  if pidof bambu-studio >/dev/null; then
-    find_window '.class == "Xwayland"'
-  else
-    launchx bambu-studio
-  fi
+  find_window '.class == "BambuStudio"' || launch bambu-studio
   ;;
 browser | firefox)
   focus_browser
