@@ -1,0 +1,129 @@
+{
+  "layer": "top",
+  "position": "left",
+  "width": 60,
+  "spacing": 4,
+  "modules-left": [],
+  "modules-center": ["custom/hypr-windows"],
+  "modules-right": [
+    "pulseaudio#mic",
+    "pulseaudio#volume",
+    "custom/batteries",
+    "network",
+    "clock#day",
+    "clock#date",
+    "clock#time"
+  ],
+  "clock#time": {
+    "format": "  {:%I:%M}",
+    "tooltip": false
+  },
+  "clock#date": {
+    "format": "🗓️ {:%b %d}",
+    "tooltip": false
+  },
+  "clock#day": {
+    "format": "{:%a}",
+    "tooltip": false
+  },
+  "custom/batteries": {
+    "exec": "$HOME/bin/widgets/battery",
+    "interval": 60
+  },
+  "network": {
+    // "interface": "wlp2*", // (Optional) To force the use of this interface
+    "format-wifi": "  ({signalStrength}%)",
+    "format-ethernet": "{ipaddr}/{cidr} ",
+    "tooltip-format": "{ifname} via {gwaddr} ",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "Disconnected ⚠",
+    "format-alt": "{essid} {ifname}: {ipaddr}/{cidr}"
+  },
+  "pulseaudio": {
+    // "scroll-step": 1, // %, can be a float
+    "format": "{icon}  {volume}%  {format_source}",
+    "format-bluetooth": "{volume}% {icon} {format_source}",
+    "format-bluetooth-muted": " {icon} {format_source}",
+    "format-muted": " {format_source}",
+    "format-source": " {volume}%",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "on-click": "pavucontrol"
+  },
+  "pulseaudio#volume": {
+    "format": "{icon}  {volume}%",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    }
+  },
+  "pulseaudio#mic": {
+    // "scroll-step": 1, // %, can be a float
+    "format": "{format_source}",
+    "format-bluetooth": "{volume}% {icon} {format_source}",
+    "format-bluetooth-muted": " {icon} {format_source}",
+    "format-muted": " {format_source}",
+    "format-source": " {volume}%",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "on-click": "pavucontrol"
+  },
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "1": "1",
+      "2": "2", 
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "10"
+    },
+    "persistent-workspaces": {
+      "*": 10
+    },
+    "all-outputs": true
+  },
+  "custom/hypr-windows": {
+    "exec": "$HOME/.config/waybar/hypr-windows",
+    "interval": 1,
+    "format": "{}",
+    "max-length": 20
+  }
+}

@@ -16,7 +16,7 @@
 - [x] freecad
 - [x] touchpad natural scroll
 - [ ] app nav
-- [ ] terminal quick
+- [x] terminal quick
   - [ ] print hyprctl clients json
 - [x] desktop background
 - [ ] gofi-based side-by side
@@ -27,3 +27,4 @@
   - launch wofi window list to select second window
   - dispatch a command to move that window to the current workspace
 - [x] clipboard manager
+- [ ] gofi journal

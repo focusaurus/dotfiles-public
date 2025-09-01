@@ -10,6 +10,12 @@ hyprland key="h" {
   quit key="x" "hyprctl" "dispatch" "exit"
   "previous workspace" key="," "hyprctl" "dispatch" "workspace" "previous"
 }
+journal key="j" {
+  prompt key="j" "journal-append-prompt" "/home/plyons/git.peterlyons.com/exocortex/personal"
+  task key="t" "journal-append-task" "/home/plyons/git.peterlyons.com/exocortex/personal"
+  read key="r" "terminal-quick" "journal-read" "/home/plyons/git.peterlyons.com/exocortex/personal"
+  vim key="v" "terminal-quick" "journal-append-vim" "/home/plyons/git.peterlyons.com/exocortex/personal"
+}
 "obsidian personal" key="o" "focus-hyprland" "obsidianpersonal"
 "obsidian FRC" key="O" "focus-hyprland" "obsidianfrc"
 slack key="s" "focus-hyprland" "slack"

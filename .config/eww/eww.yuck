@@ -1,0 +1,48 @@
+(defwindow sidebar
+  :monitor 0
+  :geometry (geometry :x "0%"
+                      :y "0px"
+                      :width "75px"
+                      :height "97%"
+                      :anchor "left center")
+  :stacking "fg"
+  :exclusive true
+  :windowtype "dock"
+  :reserve (struts :side "left" :distance 75)
+  (box :orientation "v"
+       :space-evenly false
+       :spacing 20
+                 (box :orientation "v"
+                      :space-evenly false
+                      :spacing 15
+                      :class "window-list"
+                      (for window in windows
+                        (button :onclick "hyprctl dispatch focuswindow title:${window}"
+                                :class "window-item"
+                                :tooltip window
+                                (label :text "${window}"
+                                       :limit-width 8
+                                       :wrap false))))
+                 (box :orientation "v"
+                      :space-evenly false
+                      :spacing 5
+                      :valign "end"
+                      :vexpand true
+                      (label :text day
+                             :class "day")
+                      (label :text date
+                             :class "date")
+                      (label :text time
+                             :class "time"))))
+
+(defpoll time :interval "1s"
+  "date '+%I:%M %p'")
+
+(defpoll date :interval "60s"
+  "date '+%b %d'")
+
+(defpoll day :interval "60s"
+  "date '+%a v7'")
+
+(defpoll windows :interval "2s"
+  "./hypr-windows")
