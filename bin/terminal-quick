@@ -13,7 +13,7 @@ IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
 cd /tmp
-nohup kitty --single-instance --start-as=maximized --title="${TITLE:-terminal-quick}" "$@" &
+nohup kitty --single-instance --start-as=maximized --title="${TITLE:-terminal-quick}:TQ" "$@" &
 # ghostty --title="${TITLE:-terminal-quick}" "$@" &
 # wezterm cli spawn --new-window -- "$@"
 # declare -a args=(--single-instance --title=HUD)

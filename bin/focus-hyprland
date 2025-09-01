@@ -89,6 +89,12 @@ gofi)
 # crealityprint)
 #   find_window '.title == "crealityprint"' || launch /opt/creality-print/CrealityPrint
 #   ;;
+vial)
+  find_window '.class == "Vial"' || launch Vial
+  ;;
+crealityprint)
+  find_window '.class == "Creality Print"' || launch /opt/creality-print/CrealityPrint
+  ;;
 freecad)
   find_window '.class == "org.freecad.FreeCAD"' || launch freecad
   ;;

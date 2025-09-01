@@ -1,10 +1,12 @@
-# Keybindings Reference
+# hyprland setup notes
+
+## Keybindings Reference
 
 - super+t = launch terminal (kitty)
 - super+shift+x = exit hyprland
 - super+x = close window
 
-# TODO
+## TODO
 
 - [x] fuzzball (F11)
 - [x] snippets (F12)
@@ -16,11 +18,12 @@
 - [ ] app nav
 - [ ] terminal quick
   - [ ] print hyprctl clients json
-- [ ] desktop background
+- [x] desktop background
 - [ ] gofi-based side-by side
-   - manually have main window focused
-   - leader h s (gofi > hyprland > s)
-   - gofi runs hyprctl dispatch workspace previous
-   - main app is focused again
-   - launch wofi window list to select second window
-   - dispatch a command to move that window to the current workspace
+  - manually have main window focused
+  - leader h s (gofi > hyprland > s)
+  - gofi runs hyprctl dispatch workspace previous
+  - main app is focused again
+  - launch wofi window list to select second window
+  - dispatch a command to move that window to the current workspace
+- [x] clipboard manager
