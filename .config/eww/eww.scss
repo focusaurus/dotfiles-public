@@ -1,7 +1,7 @@
 * {
   all: unset;
   font-family: "JetBrains Mono", monospace;
-  font-size: 12px;
+  font-size: 16px;
 }
 
 window {
@@ -39,7 +39,6 @@ window {
   padding: 2px 6px;
   color: #aaaaaa;
   min-width: 18px;
-  font-size: 10px;
   margin: 1px;
 }
 
@@ -49,13 +48,11 @@ window {
   font-weight: bold;
   border-radius: 4px;
   padding: 4px 8px;
-  font-size: 14px;
 }
 
 .workspace-total {
   background-color: #444444;
   color: #ffffff;
-  font-size: 10px;
   border-radius: 3px;
   padding: 2px 6px;
 }
