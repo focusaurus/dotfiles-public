@@ -44,6 +44,10 @@
                              :class "battery")
                       (label :text network_status
                              :class "network")
+                      (box :class "system-tray"
+                           (systray :pack-direction "ttb"
+                                    :icon-size 16
+                                    :spacing 5))
                       (label :text day
                              :class "day")
                       (label :text date
