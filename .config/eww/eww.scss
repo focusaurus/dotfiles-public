@@ -32,3 +32,19 @@ window {
   background-color: rgba(255, 255, 255, 0.3);
   color: #ffffff;
 }
+
+.workspace {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  padding: 2px 6px;
+  color: #aaaaaa;
+  min-width: 18px;
+  font-size: 10px;
+  margin: 1px;
+}
+
+.workspace-active {
+  background-color: rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  font-weight: bold;
+}

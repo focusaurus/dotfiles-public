@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Get active workspace
+active=$(hyprctl -j activeworkspace | jq -r '.id')
+
+# Get all workspaces (1-10) and mark active one
+for i in {1..10}; do
+    if [ "$i" -eq "$active" ]; then
+        echo "{\"id\": $i, \"active\": true}"
+    else
+        echo "{\"id\": $i, \"active\": false}"
+    fi
+done | jq -s '.'
