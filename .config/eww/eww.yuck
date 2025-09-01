@@ -17,10 +17,10 @@
                       :spacing 15
                       :class "window-list"
                       (for window in windows
-                        (button :onclick "hyprctl dispatch focuswindow title:${window}"
-                                :class "window-item"
-                                :tooltip window
-                                (label :text "${window}"
+                        (button :onclick "hyprctl dispatch focuswindow title:${window.title}"
+                                :class "window-item ${window.active ? 'window-active' : ''}"
+                                :tooltip "${window.title}"
+                                (label :text "${window.title}"
                                        :limit-width 8
                                        :wrap false))))
                  (box :orientation "v"
@@ -28,6 +28,14 @@
                       :spacing 5
                       :valign "end"
                       :vexpand true
+                      (label :text microphone_status
+                             :class "microphone")
+                      (label :text volume_status
+                             :class "volume")
+                      (label :text battery_status
+                             :class "battery")
+                      (label :text network_status
+                             :class "network")
                       (label :text day
                              :class "day")
                       (label :text date
@@ -46,3 +54,15 @@
 
 (defpoll windows :interval "2s"
   "./hypr-windows")
+
+(defpoll network_status :interval "5s"
+  "~/bin/widgets/wifi")
+
+(defpoll battery_status :interval "30s"
+  "~/bin/widgets/battery")
+
+(defpoll volume_status :interval "2s"
+  "~/bin/widgets/volume")
+
+(defpoll microphone_status :interval "2s"
+  "~/bin/widgets/microphone")

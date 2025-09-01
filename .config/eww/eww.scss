@@ -20,3 +20,15 @@ window {
 .day {
   color: #aaaaaa;
 }
+
+.window-item {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  padding: 4px 6px;
+  color: #cccccc;
+}
+
+.window-active {
+  background-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+}

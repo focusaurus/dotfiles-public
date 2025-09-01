@@ -1,3 +1,4 @@
 #!/bin/bash
 
-hyprctl -j clients | jq -r '[.[] | select(.workspace.id >= 0) | .title] | .[0:10]'
+active_window=$(hyprctl -j activewindow | jq -r '.title')
+hyprctl -j clients | jq -r --arg active "$active_window" '[.[] | select(.workspace.id >= 0) | {title: .title, active: (.title == $active)}] | .[0:10]'
