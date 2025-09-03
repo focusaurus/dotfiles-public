@@ -19,6 +19,12 @@
 - [x] terminal quick
   - [ ] print hyprctl clients json
 - [x] desktop background
+- [x] clipboard manager
+- [x] gofi journal
+- [x] wev floating rule
+- [ ] screenshots
+- [ ] screen idle lock
+- [ ] color theme from peterlyons.com
 - [ ] gofi-based side-by side
   - manually have main window focused
   - leader h s (gofi > hyprland > s)
@@ -26,5 +32,3 @@
   - main app is focused again
   - launch wofi window list to select second window
   - dispatch a command to move that window to the current workspace
-- [x] clipboard manager
-- [ ] gofi journal
