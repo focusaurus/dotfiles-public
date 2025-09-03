@@ -11,12 +11,6 @@ set -o pipefail # don't ignore exit codes when piping output
 
 IFS="$(printf "\n\t")"
 # ---- End unofficial bash strict mode boilerplate
-# if [[ "$(uname)" == "Darwin" ]]; then
-#   cliclick kd:cmd,shift  t:x ku:cmd,shift
-#   exit
-# fi
-# suffix=$(zenity --entry --text suffix)
-# suffix=$(yad --entry --title "suffix" --text "suffix" --width 500)
 macos_dir="/Applications/flameshot.app/Contents/MacOS"
 if [[ -e "${macos_dir}/flameshot" ]]; then
   export PATH="${macos_dir}:${PATH}"
@@ -24,36 +18,54 @@ elif [[ "$(uname)" == "Darwin" ]]; then
   cliclick kd:cmd,shift t:5 ku:cmd,shift
   exit
 fi
-dest="${HOME}/screens"
-mkdir -p "${dest}"
+destdir="${HOME}/screens"
+mkdir -p "${destdir}"
 suffix="$1"
 timestamp=$(date '+%Y-%m-%d-%H%M%S')
-out="${dest}/screen-${timestamp}-${suffix}.png"
-declare -a args
+destfile="screen-${timestamp}-${suffix}.png"
+out="${destdir}/${destfile}"
+tool=flameshot
 if [[ "${XDG_SESSION_TYPE}" == "wayland" ]]; then
-  if command -v spectacle >/dev/null 2>&1; then
-    spectacle
-    # spectacle is configured to save as ~/screens/screen-YYYY-mm-dd-NN.png
-    spec_path=$(ls ~/screens/screen-*.png | tail -1)
-    if [[ -f "${spec_path}" ]]; then
-      mv "${spec_path}" "${out}"
-    fi
-  else
-    # Fallback to grim with swappy for annotation
-    grim -g "$(slurp)" - | swappy --file - --output-file "${out}"
-  fi
-  echo "${out}"
-  exit
+  tool=grim
 fi
+case "${tool}" in
+grim)
+  grim -g "$(slurp)" - | swappy --file - --output-file - > "${out}"
+  ;;
+hyprshot)
+  hyprshot --mode region --output-folder "${destdir}" --filename "${destfile}" || true
+  ;;
+flameshot)
+  declare -a args
 
-if [[ "$1" == "delay" ]]; then
-  # Use this branch for getting pointer/hover stuff
-  args+=(full -d 4000)
-  shift
-else
-  # Use this branch for specific area, no pointer
-  args+=(gui)
-fi
-args+=(--path "${out}")
-flameshot "${args[@]}"
+  if [[ "$1" == "delay" ]]; then
+    # Use this branch for getting pointer/hover stuff
+    args+=(full -d 4000)
+    shift
+  else
+    # Use this branch for specific area, no pointer
+    args+=(gui)
+  fi
+  args+=(--path "${out}")
+  flameshot "${args[@]}"
+  ;;
+esac
+
 echo "${out}"
+
+#------- code graveyard
+
+# if [[ "$(uname)" == "Darwin" ]]; then
+#   cliclick kd:cmd,shift  t:x ku:cmd,shift
+#   exit
+# fi
+# suffix=$(zenity --entry --text suffix)
+# suffix=$(yad --entry --title "suffix" --text "suffix" --width 500)
+# if command -v spectacle >/dev/null 2>&1; then
+#   spectacle
+#   # spectacle is configured to save as ~/screens/screen-YYYY-mm-dd-NN.png
+#   spec_path=$(ls ~/screens/screen-*.png | tail -1)
+#   if [[ -f "${spec_path}" ]]; then
+#     mv "${spec_path}" "${out}"
+#   fi
+# else

@@ -24,7 +24,8 @@
 - [x] wev floating rule
 - [ ] screenshots
 - [ ] screen idle lock
-- [ ] color theme from peterlyons.com
+- [x] color theme from peterlyons.com
+- [ ] 1Password auth prompt floating workspace unset
 - [ ] gofi-based side-by side
   - manually have main window focused
   - leader h s (gofi > hyprland > s)
