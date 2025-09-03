@@ -2,57 +2,42 @@
   all: unset;
   font-family: "JetBrains Mono", monospace;
   font-size: 16px;
+  background-color: #3d95d6;
+  color: #0a1122;
 }
 
 window {
-  background-color: #333333;
 }
 
 .time {
-  color: #ffffff;
   font-weight: bold;
 }
 
 .date {
-  color: #cccccc;
 }
 
 .day {
-  color: #aaaaaa;
 }
 
-.window-item {
-  background-color: rgba(255, 255, 255, 0.1);
+.window-list {
+  margin-top: 15px;
+}
+
+.window-item > label {
+  background-color: rgb(103, 172, 223);
   border-radius: 4px;
-  padding: 4px 6px;
-  color: #cccccc;
+  padding: 2px 6px;
 }
 
-.window-active {
+.window-item.window-active {
   background-color: rgba(255, 255, 255, 0.3);
-  color: #ffffff;
+  color: yellow;
 }
 
-.workspace {
-  background-color: rgba(255, 255, 255, 0.1);
+.workspace-info {
   border-radius: 3px;
   padding: 2px 6px;
-  color: #aaaaaa;
+  color: #0a1122;
   min-width: 18px;
   margin: 1px;
-}
-
-.workspace-active {
-  background-color: #ffffff;
-  color: #333333;
-  font-weight: bold;
-  border-radius: 4px;
-  padding: 4px 8px;
-}
-
-.workspace-total {
-  background-color: #444444;
-  color: #ffffff;
-  border-radius: 3px;
-  padding: 2px 6px;
 }
