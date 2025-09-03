@@ -1,9 +1,10 @@
 (defwindow sidebar
+
   :monitor 0
   :geometry (geometry :x "0%"
                       :y "0px"
                       :width "100px"
-                      :height "97%"
+                      :height "100%"
                       :anchor "left center")
   :stacking "fg"
   :exclusive true
@@ -17,8 +18,8 @@
                       :spacing 15
                       :class "window-list"
                       (for window in windows
-                        (button :onclick "hyprctl dispatch focuswindow title:${window.title}"
-                                :class "window-item ${window.active ? 'window-active' : ''}"
+                        (button :onclick "hyprctl dispatch focuswindow address:${window.address}"
+                                :class "window-item ${window.focusHistoryID == 0 ? 'window-active' : ''}"
                                 :tooltip "${window.title}"
                                 (label :text "${window.title}"
                                        :limit-width 8
@@ -31,10 +32,8 @@
                       (box :orientation "v"
                            :spacing 2
                            :class "workspace-info"
-                           (label :text "${workspaces.active}"
-                                  :class "workspace-active")
-                           (label :text "${workspaces.total}"
-                                  :class "workspace-total"))
+                           (label :text "WS: ${workspaces.active}/${workspaces.total}"
+                                  :class "workspace-active"))
                       (label :text microphone_status
                              :class "microphone")
                       (label :text volume_status
@@ -64,7 +63,7 @@
   "date '+%a v7'")
 
 (defpoll windows :interval "2s"
-  "./hypr-windows")
+  "hyprctl -j clients")
 
 (defpoll network_status :interval "5s"
   "~/bin/widgets/wifi")
