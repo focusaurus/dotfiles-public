@@ -22,7 +22,7 @@
 - [x] clipboard manager
 - [x] gofi journal
 - [x] wev floating rule
-- [ ] screenshots
+- [x] screenshots
 - [ ] screen idle lock
 - [x] color theme from peterlyons.com
 - [ ] 1Password auth prompt floating workspace unset

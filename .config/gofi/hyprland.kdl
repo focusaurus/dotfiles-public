@@ -7,7 +7,7 @@ email key="e" "focus-hyprland" "email"
 fuzzball key="F" "fuzz-script-choose"
 windows key="w" "focus-window-fuzzy-hyprland"
 hyprland key="h" {
-  quit key="x" "hyprctl" "dispatch" "exit"
+  exit key="x" "hyprctl" "dispatch" "exit"
   "previous workspace" key="," "hyprctl" "dispatch" "workspace" "previous"
 }
 journal key="j" {
