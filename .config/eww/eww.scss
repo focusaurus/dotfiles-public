@@ -1,22 +1,13 @@
 * {
   all: unset;
-  font-family: "JetBrains Mono", monospace;
+  font-family: "Hack Nerd Font", monospace;
   font-size: 16px;
   background-color: #3d95d6;
   color: #0a1122;
 }
 
-window {
-}
-
 .time {
   font-weight: bold;
-}
-
-.date {
-}
-
-.day {
 }
 
 .window-list {
@@ -24,20 +15,12 @@ window {
 }
 
 .window-item > label {
-  background-color: rgb(103, 172, 223);
+  background-color: lighten(#3d95d6, 10%);
   border-radius: 4px;
   padding: 2px 6px;
 }
 
-.window-item.window-active {
-  background-color: rgba(255, 255, 255, 0.3);
-  color: yellow;
-}
-
-.workspace-info {
-  border-radius: 3px;
-  padding: 2px 6px;
+.window-active > label {
+  background-color: lighten(#3d95d6, 30%);
   color: #0a1122;
-  min-width: 18px;
-  margin: 1px;
 }
