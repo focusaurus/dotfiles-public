@@ -1,10 +1,17 @@
 [LegacySession: saved at previous logout]
-count=0
+clientMachine1=localhost
+command1=bambu-studio
+count=1
 
 [Session: saved at previous logout]
 clientId1=10746f6f6c000175504657300001030600002
-count=1
+clientId2=10746f6f6c000175607486300001331870034
+count=2
 program1=firefox
+program2=krita
 restartCommand1=/usr/lib/firefox/firefox,--sm-client-id,10746f6f6c000175504657300001030600002
+restartCommand2=krita,-session,10746f6f6c000175607486300001331870034_1756651820_426481
 restartStyleHint1=0
+restartStyleHint2=0
 userId1=plyons
+userId2=plyons
