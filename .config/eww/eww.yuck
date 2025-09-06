@@ -17,12 +17,19 @@
                       :spacing 15
                       :class "window-list"
                       (for client in clients
-                        (button :onclick "hyprctl dispatch focuswindow address:${client.address}"
+                        (box :orientation "v"
+                             :spacing 1
+                             :class "client-box window-item"
+                          (button :onclick "hyprctl dispatch focuswindow address:${client.address}"
                                 :class "window-item ${client.focusHistoryID == 0 ? 'window-active' : ''}"
                                 :tooltip "${client.title}"
                                 (label :text "${client.title}"
                                        :limit-width 8
-                                       :wrap false))))
+                                       :wrap false))
+                                       (label
+                                         :text "${client.class}"
+                                         :tooltip "${client.class}"
+                                         :limit-width 8))))
                  (box :orientation "v"
                       :space-evenly false
                       :spacing 5
