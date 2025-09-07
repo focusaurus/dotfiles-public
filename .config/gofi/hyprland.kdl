@@ -1,3 +1,4 @@
+previous key="." "focus-hyprland" "previous"
 calendar key="c" "focus-hyprland" "calendar"
 "1password" key="p" "focus-hyprland" "1password"
 emoji key="E" "rofimoji" "--skin-tone" "light" "--action" "copy" "--selector" "wofi"
@@ -36,6 +37,7 @@ applications key="a" {
   freecad key="f" "focus-hyprland" "freecad"
   gedit key="g" "focus-hyprland" "gedit"
   iwgtk key="i" "iwgtk"
+  localsend key="l" "localsend"
   // discord key="d" "focus-hyprland" "discord"
   // insomnia key="i" "focus-hyprland" "insomnia"
   kicad key="k" "focus-hyprland" "kicad"

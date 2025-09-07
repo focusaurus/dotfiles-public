@@ -26,10 +26,12 @@
                                 (label :text "${client.title}"
                                        :limit-width 8
                                        :wrap false))
-                                       (label
-                                         :text "${client.class}"
-                                         :tooltip "${client.class}"
-                                         :limit-width 8))))
+                          (button :onclick "hyprctl dispatch focuswindow address:${client.address}"
+                                :class "window-item ${client.focusHistoryID == 0 ? 'window-active' : ''}"
+                                :tooltip "${client.class}"
+                                (label :text "${client.class}"
+                                       :limit-width 8
+                                       :wrap false)))))
                  (box :orientation "v"
                       :space-evenly false
                       :spacing 5
