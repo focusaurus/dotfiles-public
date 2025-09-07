@@ -29,6 +29,7 @@ main() {
     --format bestaudio
     --add-metadata
     --embed-metadata
+    --concurrent-fragments 3
     --cookies-from-browser "firefox::Music"
     --restrict-filenames
   )
