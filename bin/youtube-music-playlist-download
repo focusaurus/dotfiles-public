@@ -17,7 +17,6 @@ IFS=$'\n\t'
 declare -a opts=(
   --quiet
   --no-progress
-  # --format bestaudio
   --audio-format mp3
   --extract-audio
   --audio-quality 0
@@ -25,7 +24,7 @@ declare -a opts=(
   --embed-metadata
   --cookies-from-browser "firefox::Music"
   --restrict-filenames
-  --output "%(playlist_index)s-%(title)s.%(ext)s"
+  --output "%(playlist_title)s/%(playlist_index,track_number)03d-%(title)s.%(ext)s"
   --concurrent-fragments 3
   "$1"
 )

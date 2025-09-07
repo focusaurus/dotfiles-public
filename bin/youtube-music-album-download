@@ -12,21 +12,42 @@ set -o pipefail # don't ignore exit codes when piping output
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
-# Here's our default arguments we intend
-# to pass to yt-dlp
-  # --audio-format mp3
-  # --quiet
-declare -a opts=(
-  --no-progress
-  --extract-audio
-  --audio-quality 0
-  --format bestaudio
-  --add-metadata
-  --embed-metadata
-  --cookies-from-browser "firefox::Music"
-  --restrict-filenames
-  --output "%(artist)s/%(album)s/%(track_number)d-%(title)s.%(ext)s"
-)
+usage() {
+  echo "usage: $0 {playlist|album} URL"
+  exit 1
+}
 
-yt-dlp "${opts[@]}" "$@"
-~/bin/notify "music downloaded"
+main() {
+  cd ~/music/youtube-music || exit 2
+  # Here's our default arguments we intend
+  # to pass to yt-dlp
+  declare -a opts=(
+    --no-progress
+    --extract-audio
+    --audio-quality 0
+    --audio-format mp3
+    --format bestaudio
+    --add-metadata
+    --embed-metadata
+    --cookies-from-browser "firefox::Music"
+    --restrict-filenames
+  )
+  if [[ -z "${DEBUG}" ]]; then
+    opts=("${opts[@]}" --quiet)
+  fi
+
+  local url="$1"
+  if [[ "$url" =~ list=OLAK5uy_ ]]; then
+    # album mode
+    output="%(artist)s/%(album)s/%(playlist_index,track_number)03d-%(title)s.%(ext)s"
+  else
+    # playlist mode
+    output="%(playlist_title)s/%(playlist_index,track_number)03d-%(title)s.%(ext)s"
+  fi
+  opts=("${opts[@]}" --output "${output}")
+
+  yt-dlp "${opts[@]}" "$@"
+  ~/bin/notify "music downloaded"
+}
+
+main "$@"
