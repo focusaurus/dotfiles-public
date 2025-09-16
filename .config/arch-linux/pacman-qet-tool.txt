@@ -8,7 +8,6 @@ arandr
 arc-icon-theme-full-git
 arc-x-icons-theme
 arduino-avr-core
-arduino-ide
 ario
 at
 autorandr
@@ -33,6 +32,7 @@ dhclient
 docker
 docker-compose
 dog
+dolphin
 dos2unix
 dunst
 dust
@@ -41,6 +41,7 @@ entr
 espeak
 esptool
 evtest
+eww
 eza
 fasd
 feh
@@ -63,8 +64,12 @@ gthumb
 helix-bin
 htop
 hwinfo
+hyprpaper
+hyprpolkitagent
 hyprshell
+hyprshot
 icat
+ijq
 imapsync
 impala
 imv
@@ -76,6 +81,7 @@ kdotool
 keyd
 kicad
 kitty
+krita
 lazygit
 lf-bin
 libmp4v2
@@ -112,6 +118,7 @@ protonvpn-cli-community
 prusa-slicer
 pup-bin
 python-imagesize
+quickshell
 rclone
 riscv64-elf-gcc
 rofi-blezz
@@ -124,7 +131,6 @@ shutter
 sirula
 skim
 slack-desktop
-slurp
 starship
 swappy
 swayidle

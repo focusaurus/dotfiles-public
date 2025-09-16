@@ -15,7 +15,8 @@
 - [x] gofi
 - [x] freecad
 - [x] touchpad natural scroll
-- [ ] app nav
+- [x] app nav
+  - [x] app nav kitty
 - [x] terminal quick
   - [ ] print hyprctl clients json
 - [x] desktop background
@@ -23,13 +24,14 @@
 - [x] gofi journal
 - [x] wev floating rule
 - [x] screenshots
+- [ ] eww labels using emoji for email, calendar, music, other well-known apps
 - [ ] screen idle lock
 - [x] color theme from peterlyons.com
-- [ ] 1Password auth prompt floating workspace unset
-- [ ] gofi-based side-by side
-  - manually have main window focused
-  - leader h s (gofi > hyprland > s)
-  - gofi runs hyprctl dispatch workspace previous
-  - main app is focused again
-  - launch wofi window list to select second window
-  - dispatch a command to move that window to the current workspace
+- [x] 1Password auth prompt floating workspace unset
+- [x] gofi-based side-by side
+  - [x] manually have main window focused
+  - [x] leader h s (gofi > hyprland > s)
+  - [x] gofi runs hyprctl dispatch workspace previous
+  - [x] main app is focused again
+  - [x] launch wofi window list to select second window
+  - [x] dispatch a command to move that window to the current workspace

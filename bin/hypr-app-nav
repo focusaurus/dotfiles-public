@@ -72,13 +72,15 @@ nav_kitty() {
     shift_space -k p
     ;;
   up)
-    xdotool key --clearmodifiers 'ctrl+shift+bracketright'
+    shift_space -k period
+    # xdotool key --clearmodifiers 'ctrl+shift+bracketright'
     ;;
   right)
     shift_space -k n
     ;;
   down)
-    xdotool key --clearmodifiers 'ctrl+shift+bracketright'
+    shift_space -k period
+    # xdotool key --clearmodifiers 'ctrl+shift+bracketright'
     ;;
   esac
 }
