@@ -37,16 +37,16 @@ find_window() {
   return 1
 }
 
-find_previous() {
-  filter=".focusHistoryID == 2"
-  address=$(hyprctl clients -j |
-    jq --raw-output "[.[] | select(${filter})][0] .address // \"\"")
-  if [[ -n "${address}" ]]; then
-    hyprctl dispatch focuswindow "address:${address}"
-    return 0
-  fi
-  return 1
-}
+# find_previous() {
+#   filter=".focusHistoryID == 2"
+#   address=$(hyprctl clients -j |
+#     jq --raw-output "[.[] | select(${filter})][0] .address // \"\"")
+#   if [[ -n "${address}" ]]; then
+#     hyprctl dispatch focuswindow "address:${address}"
+#     return 0
+#   fi
+#   return 1
+# }
 if [ $# -eq 0 ]; then
   echo "Usage: $0 <app_name>"
   echo "Available apps: gofi"
@@ -99,6 +99,9 @@ main() {
     ;;
   gofi)
     find_window '.title == "gofi"' || launch ~/bin/gofi-ghostty
+    ;;
+  gofiout)
+    find_window '.focusHistoryID == 1' || ~/bin/notify "previous window not found"
     ;;
   # crealityprint)
   #   find_window '.title == "crealityprint"' || launch /opt/creality-print/CrealityPrint
