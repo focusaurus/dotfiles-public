@@ -3,7 +3,7 @@
   :monitor 0
   :geometry (geometry :x "0%"
                       :y "0px"
-                      :width "120px"
+                      :width "180px"
                       :height "100%"
                       :anchor "left center")
   :stacking "fg"
@@ -13,25 +13,9 @@
        :space-evenly false
        :spacing 20
                  (box :orientation "v"
-                      :space-evenly false
-                      :spacing 15
                       :class "window-list"
                       (for client in clients
-                        (box :orientation "v"
-                             :spacing 1
-                             :class "client-box window-item"
-                          (button :onclick "hyprctl dispatch focuswindow address:${client.address}"
-                                :class "window-item ${client.focusHistoryID == 0 ? 'window-active' : ''}"
-                                :tooltip "${client.title}"
-                                (label :text "${client.title}"
-                                       :limit-width 8
-                                       :wrap false))
-                          (button :onclick "hyprctl dispatch focuswindow address:${client.address}"
-                                :class "window-item ${client.focusHistoryID == 0 ? 'window-active' : ''}"
-                                :tooltip "${client.class}"
-                                (label :text "${client.class}"
-                                       :limit-width 8
-                                       :wrap false)))))
+                        (window :client client)))
                  (box :orientation "v"
                       :space-evenly false
                       :spacing 5
@@ -52,6 +36,17 @@
                       (label :text day :class "day")
                       (label :text date :class "date")
                       (label :text time :class "time"))))
+
+(defwidget window [client]
+  (box :orientation "v" :space-evenly false :spacing 2 :class "window-list" :halign "start"
+    (button :onclick "hyprctl dispatch focuswindow address:${client.address}"
+     :class "window-item ${client.focusHistoryID == 0 ? 'window-active' : ''}"
+     :tooltip "${client.title}"
+     (label :text "${client.workspace.id}: ${client.emoji}${client.title}"))
+    (button :visible true :onclick "hyprctl dispatch focuswindow address:${client.address}"
+     :class "window-item ${client.focusHistoryID == 0 ? 'window-active' : ''}"
+     :tooltip "${client.class}"
+     (label :visible {client.emoji == ""} :text "${client.title == "gofi" ? '' : client.class}"))))
 
 (defpoll time :interval "10s"
   "date '+%I:%M %p'")

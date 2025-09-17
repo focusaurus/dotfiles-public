@@ -4,13 +4,43 @@
 
 # ---- Start unofficial bash strict mode boilerplate
 # http://redsymbol.net/articles/unofficial-bash-strict-mode/
-set -o errexit # always exit on error
+set -o errexit  # always exit on error
 set -o errtrace # trap errors in functions as well
 set -o pipefail # don't ignore exit codes when piping output
-set -u # error on reference to unknown variable
+set -u          # error on reference to unknown variable
 # set -x # enable debugging
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
-hyprctl -j clients | jq 'sort_by(.workspace.id)'
+hyprctl -j clients | jq '
+  def get_emoji(class; title): 
+    if class == null then ""
+    elif (class | ascii_downcase | test("firefox")) then
+      if (title | startswith("main:")) then "🌎"
+      elif (title | startswith("calendar:")) then "📅"
+      elif (title | startswith("music:")) then "🎵"
+      elif (title | startswith("trello:")) then "✅"
+      else "🌐"
+      end
+    elif (class | ascii_downcase | test("chrom")) then "🌍"
+    elif (class | ascii_downcase | test("code")) then "💻"
+    elif (class | ascii_downcase | test("vim|nvim")) then "📝"
+    elif (class | ascii_downcase | test("terminal|kitty|alacritty|wezterm|xterm")) then "🖥️"
+    elif (class | ascii_downcase | test("dolphin|nautilus|thunar|pcmanfm")) then "📁"
+    elif (class | ascii_downcase | test("discord")) then "💬"
+    elif (class | ascii_downcase | test("slack")) then "💼"
+    elif (class | ascii_downcase | test("telegram")) then "📱"
+    elif (class | ascii_downcase | test("spotify|rhythmbox|ario|clementine")) then "🎵"
+    elif (class | ascii_downcase | test("vlc|mpv|totem")) then "🎬"
+    elif (title | ascii_downcase | test("gofi")) then "🔃"
+    elif (class | ascii_downcase | test("inkscape")) then "✏️"
+    elif (class | ascii_downcase | test("libreoffice|writer|calc|gedit")) then "📄"
+    elif (class | ascii_downcase | test("thunderbird|evolution|mail")) then "📧"
+    elif (class | ascii_downcase | test("steam")) then "🎮"
+    elif (class | ascii_downcase | test("obsidian")) then "🪨"
+    elif (class | ascii_downcase | test("zoom")) then "📞"
+    else ""
+    end;
+
+  sort_by(.workspace.id) | map(. + {emoji: get_emoji(.class; .title)})'
