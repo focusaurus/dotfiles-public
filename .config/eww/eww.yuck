@@ -12,7 +12,7 @@
   (box :orientation "v"
        :space-evenly false
        :spacing 20
-                 (box :orientation "v"
+                 (box :orientation "v" :spacing 2
                       :class "window-list"
                       (for client in clients
                         (window :client client)))
@@ -22,7 +22,7 @@
                       :valign "end"
                       :vexpand true
                       (box :orientation "v"
-                           :spacing 2
+                           :spacing 0
                            :class "workspace-info"
                            (label :text "WS: ${workspaces.active}/${workspaces.total}"))
                       (label :text microphone_status :class "microphone")
@@ -38,7 +38,7 @@
                       (label :text time :class "time"))))
 
 (defwidget window [client]
-  (box :orientation "v" :space-evenly false :spacing 2 :class "window-list" :halign "start"
+  (box :orientation "v" :space-evenly false :spacing 0 :class "window-list" :halign "start"
     (button :onclick "hyprctl dispatch focuswindow address:${client.address}"
      :class "window-item ${client.focusHistoryID == 0 ? 'window-active' : ''}"
      :tooltip "${client.title}"

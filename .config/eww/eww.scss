@@ -10,14 +10,11 @@
   font-weight: bold;
 }
 
-.window-list {
-  margin-top: 15px;
-}
-
 .window-item > label {
   background-color: lighten(#3d95d6, 10%);
   border-radius: 4px;
   padding: 2px 6px;
+  margin-top: 5px;
 }
 
 .window-active > label {
