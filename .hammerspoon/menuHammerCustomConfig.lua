@@ -201,6 +201,7 @@ a(i, { cons.cat.action, noMod, "g", "Google Meet & Notes", { { cons.act.func, pl
 a(i, { cons.cat.submenu, noMod, "h", menuNameHammerspoon, { { cons.act.menu, menuNameHammerspoon } } })
 a(i, { cons.cat.action, noMod, "i", "IDE  (VS Code)", { { cons.act.launcher, "Visual Studio Code" } } })
 a(i, { cons.cat.submenu, noMod, "j", menuNameJournal, { { cons.act.menu, menuNameJournal } } })
+a(i, { cons.cat.action, noMod, "k", "Firefox", { { cons.act.launcher, "Firefox" } } })
 a(i, { cons.cat.action, noMod, "l", menuNameLayout, { { cons.act.menu, menuNameLayout } } })
 a(i, { cons.cat.action, noMod, "n", "Snippets", { { cons.act.func, snippets.chooseByUIAndType } } })
 a(i, { cons.cat.action, noMod, "o", "Obsidian", { { cons.act.launcher, "Obsidian" } } })

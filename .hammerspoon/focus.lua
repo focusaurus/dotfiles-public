@@ -4,7 +4,7 @@ local log = hs.logger.new("focus", "debug")
 local log2 = require("log")
 local focusMode = false
 local hbin = os.getenv("HOME") .. "/bin"
-local browserName = "Firefox"
+local browserName = "Zen"
 
 -- IMPORTANT NOTE ABOUT hs.window.filter: it's slow.
 -- Running it at startup will increase hammerspoon start time from ~1s to ~10s
@@ -28,6 +28,7 @@ local cliToApp = {
 	terminal = "Kitty",
 	vial = "Vial",
 	vscode = "Visual Studio Code",
+  zen = "Zen",
 }
 
 for cli, app in pairs(cliToApp) do
@@ -198,7 +199,7 @@ module.leader = module.gofi
 -- the specific implementation approach, but in the module's
 -- external API, alias it as just the intent.
 module.browserFloat = module.browserFloatByTitleCache
-module.browser = module.firefox
+module.browser = module.zen
 
 local windowCalendar
 -- filterCalendar = hs.window.filter.new():setAppFilter(browserName, {allowTitles="- Calendar -"})
