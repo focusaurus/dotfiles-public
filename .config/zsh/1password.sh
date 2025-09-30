@@ -3,7 +3,8 @@ op-add-ssh-key() {
     echo ssh key already loaded into ssh-agent. Ready for passwordless ssh.
     return
   fi
-  op-copy-password-by-title my "ssh focusaurus private keys"
+  # op-copy-password-by-title my "ssh focusaurus private keys"
+  op read --account my "op://Private/ssh focusaurus private keys/password" | ~/bin/copy
   passwordless
 }
 
