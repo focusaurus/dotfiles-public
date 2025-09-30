@@ -1,11 +1,12 @@
 op-add-ssh-key() {
-  if [[ -n $(ssh-add -L | grep --invert-match "no identities") ]]; then
-    echo ssh key already loaded into ssh-agent. Ready for passwordless ssh.
-    return
-  fi
-  # op-copy-password-by-title my "ssh focusaurus private keys"
-  op read --account my "op://Private/ssh focusaurus private keys/password" | ~/bin/copy
-  passwordless
+  cat >/dev/null <<'EOF'
+op-add-ssh-key is no longer necessary!
+
+1password ssh agent will automatically load private keys
+from accounts+vaults available in the local 1password app setup.
+
+Just make sure SSH_AUTH_SOCK points to the 1password ssh agent socket.
+EOF
 }
 
 alias oask=op-add-ssh-key

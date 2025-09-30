@@ -419,9 +419,9 @@ dotfiles-edit-by-search() {
     dotfiles-begin
     # shellcheck disable=SC2145
     git ls-files |
-      grep --extended-regexp --invert-match '(PrusaSlicer|/Spoons/)' |
+      rg --no-messages --invert-match '(PrusaSlicer|/Spoons/)' |
       tr '\n' '\0' |
-      xargs -0 rg -l "$@" |
+      xargs -0 rg --no-messages -l "$@" |
       xargs nvim -p -c "/$@"
   )
 }
