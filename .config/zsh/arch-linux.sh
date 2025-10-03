@@ -18,6 +18,10 @@ arch-update-packages() {
   topgrade
 }
 
+arch-rate-mirrors() {
+  rate-mirrors --protocol https arch
+}
+
 arch-update-keyring() {
   sudo pacman -Sy --noconfirm archlinux-keyring
 }
