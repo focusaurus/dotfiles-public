@@ -43,10 +43,10 @@
      :class "window-item ${client.focusHistoryID == 0 ? 'window-active' : ''}"
      :tooltip "${client.title}"
      (label :text "${client.workspace.id}: ${client.emoji}${client.title}"))
-    (button :visible true :onclick "hyprctl dispatch focuswindow address:${client.address}"
+    (button :visible {client.emoji == ""} :onclick "hyprctl dispatch focuswindow address:${client.address}"
      :class "window-item ${client.focusHistoryID == 0 ? 'window-active' : ''}"
      :tooltip "${client.class}"
-     (label :visible {client.emoji == ""} :text "${client.title == "gofi" ? '' : client.class}"))))
+     (label :text "${client.title == "gofi" ? '' : client.class}"))))
 
 (defpoll time :interval "10s"
   "date '+%I:%M %p'")
