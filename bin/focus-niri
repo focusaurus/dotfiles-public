@@ -110,8 +110,11 @@ email)
   focus_browser
   hotkey_alt 1
   ;;
-terminal | ghostty)
-  find_window '.app_id == "com.mitchellh.ghostty" and .title != "gofi"' || launch ghostty
+ghostty)
+  find_window '.app_id == "com.mitchellh.ghostty" title != "gofi"' || launch ghostty
+  ;;
+terminal | kitty)
+  find_window '.app_id == "kitty"' || launch kitty
   ;;
 music)
   filter='.app_id == "firefox" and (.title | startswith("music:"))'
