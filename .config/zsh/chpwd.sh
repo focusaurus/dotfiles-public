@@ -7,12 +7,12 @@ chpwd-path() {
 
 ##### node version manager (nvm) #####
 #source "$(dirname "${(%):-%N}")/node.sh"
-#chpwd-nvm() {
-#  if [[ -f ".nvmrc" ]]; then
-#    nvm use
-#    # nvm use --silent >/dev/null
-#  fi
-#}
+chpwd-nvm() {
+  if [[ -f ".nvmrc" ]]; then
+    nvm use
+    # nvm use --silent >/dev/null
+  fi
+}
 
 ##### set terminal title #####
 # auto-terminal-title() {
@@ -61,7 +61,7 @@ if [[ -n "${ZSH_VERSION}" ]]; then
   # add the hooks and run immediately as well
   add-zsh-hook chpwd chpwd-path && chpwd-path
   # add-zsh-hook chpwd chpwd-terminal-title && chpwd-terminal-title
-  # add-zsh-hook chpwd chpwd-nvm && chpwd-nvm
+  add-zsh-hook chpwd chpwd-nvm && chpwd-nvm
   # add-zsh-hook chpwd chpwd-virtualenv && chpwd-virtualenv
 
   ##### automagic before each command #####

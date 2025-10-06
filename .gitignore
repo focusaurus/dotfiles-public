@@ -1,4 +1,5 @@
 !/.config/Code/User
+*.bak
 .1pasword/agent.sock
 .arduinoIDE
 .bun/install/cache
