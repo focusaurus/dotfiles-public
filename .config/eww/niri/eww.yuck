@@ -24,9 +24,7 @@
                       (box :orientation "v"
                            :spacing 0
                            :class "workspace-info"
-                           (label :text "WS: TODO"
-                           ;workspaces.active/workspaces.total"
-                           ))
+                           (label :text "WS: ${workspaces.active_workspace}/${workspaces.workspace_count}"))
                       (label :text microphone_status :class "microphone")
                       (label :text volume_status :class "volume")
                       (label :text battery_status :class "battery")
@@ -74,5 +72,5 @@
 (defpoll microphone_status :interval "2s"
   "~/bin/widgets/microphone")
 
-;(defpoll workspaces :interval "5s"
-;  "niri msg -j workspaces")
+(defpoll workspaces :interval "5s"
+  "~/.config/eww/niri/workspaces.sh")
