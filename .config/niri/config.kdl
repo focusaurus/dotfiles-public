@@ -56,7 +56,9 @@ layout {
     // }
 }
 
-spawn-at-startup "waybar"
+spawn-at-startup "eww" "daemon"
+spawn-at-startup "eww" "--config" ".config/eww/niri" "open" "sidebar"
+spawn-at-startup ".config/eww/niri/watch.sh"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 spawn-at-startup "udiskie"
 spawn-at-startup "iwgtk" "-i"

@@ -36,6 +36,8 @@ Can you guide me through this process with checkpoints along the way?
 - [-] window switcher fuzzy popup thing
 - [x] bambu studio
 - [x] prusa-slicer
+- [ ] app-nav kitty windows (splits)
+- [ ] app-nav kitty tabs
 - [ ] gofi x for executable
 - [ ] ulauncher setup
 - [ ] obsidian rule to workspace 2 maybe
