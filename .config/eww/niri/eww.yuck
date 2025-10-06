@@ -24,7 +24,9 @@
                       (box :orientation "v"
                            :spacing 0
                            :class "workspace-info"
-                           (label :text "WS: ${workspaces.active}/${workspaces.total}"))
+                           (label :text "WS: TODO"
+                           ;workspaces.active/workspaces.total"
+                           ))
                       (label :text microphone_status :class "microphone")
                       (label :text volume_status :class "volume")
                       (label :text battery_status :class "battery")
@@ -39,14 +41,14 @@
 
 (defwidget window [client]
   (box :orientation "v" :space-evenly false :spacing 0 :class "window-list" :halign "start"
-    (button :onclick "hyprctl dispatch focuswindow address:${client.address}"
-     :class "window-item ${client.focusHistoryID == 0 ? 'window-active' : ''}"
-     :tooltip "${client.class}"
-     (label :text "${client.workspace.id}: ${client.emoji}${client.title}"))
-    (button :visible {client.emoji == ""} :onclick "hyprctl dispatch focuswindow address:${client.address}"
-     :class "window-item ${client.focusHistoryID == 0 ? 'window-active' : ''}"
+    (button :onclick "niri msg action focus-window --id ${client.id}"
+     :class "window-item ${client.is_focused ? 'window-active' : ''}"
+     :tooltip "${client.app_id}"
+     (label :text "${client.emoji} ${client.title}"))
+    (button :visible {client.emoji == ""} :onclick "niri msg action focus-window --id ${client.id}"
+     :class "window-item ${client.is_focused ? 'window-active' : ''}"
      :tooltip "${client.title}"
-     (label :text "${client.title == "gofi" ? '' : client.class}"))))
+     (label :text "${client.title == "gofi" ? '' : client.app_id}"))))
 
 (defpoll time :interval "10s"
   "date '+%I:%M %p'")
@@ -58,7 +60,7 @@
   "date '+%a'")
 
 (defpoll clients :interval "5s"
-  "~/.config/eww/hypr-clients")
+  "~/.config/eww/niri/windows.sh")
 
 (defpoll network_status :interval "5s"
   "~/bin/widgets/wifi")
@@ -72,5 +74,5 @@
 (defpoll microphone_status :interval "2s"
   "~/bin/widgets/microphone")
 
-(defpoll workspaces :interval "5s"
-  "./hypr-workspaces")
+;(defpoll workspaces :interval "5s"
+;  "niri msg -j workspaces")

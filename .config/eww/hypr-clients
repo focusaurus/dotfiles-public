@@ -27,7 +27,7 @@ hyprctl -j clients | jq '
     elif (class | ascii_downcase | test("zen")) then "🐵"
     elif (class | ascii_downcase | test("code")) then "💻"
     elif (class | ascii_downcase | test("vim|nvim")) then "📝"
-    elif (class | ascii_downcase | test("terminal|kitty|alacritty|wezterm|xterm")) then "🖥️"
+    elif (class | ascii_downcase | test("terminal|kitty|alacritty|wezterm|xterm|ghostty")) then "🖥️"
     elif (class | ascii_downcase | test("dolphin|nautilus|thunar|pcmanfm")) then "📁"
     elif (class | ascii_downcase | test("slack|discord")) then "💬"
     elif (class | ascii_downcase | test("1password")) then "🔑"
