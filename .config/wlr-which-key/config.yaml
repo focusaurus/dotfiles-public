@@ -1,3 +1,12 @@
+font: "Hack Nerd Font 16"
+background: "#3d95d6"
+color: "#0a1122"
+border: "#0a1122"
+separator: " ➜ "
+border_width: 1
+
+# Anchor and margin
+# anchor: center # One of center, left, right, top, bottom, bottom-left, top-left, etc.
 menu:
   - key: "."
     desc: "previous"
