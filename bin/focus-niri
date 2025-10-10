@@ -12,7 +12,7 @@
 #
 # IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-#
+
 find_window() {
   filter="$1"
   id=$(niri msg --json windows |
@@ -89,11 +89,7 @@ prusaslicer)
   fi
   ;;
 bambustudio)
-  if pidof bambu-studio >/dev/null; then
-    find_window '.app_id == "org.freedesktop.Xwayland"'
-  else
-    launchx bambu-studio
-  fi
+  find_window '.app_id == "BambuStudio"' || launchx bambu-studio
   ;;
 browser | firefox)
   focus_browser
