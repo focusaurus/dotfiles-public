@@ -3,10 +3,11 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.tabstop = 2
 vim.opt.indentkeys:remove({ ":" })
+-- do not show whitespace as if it was not whitespace
+vim.opt.list = false
 
 vim.opt.number = true
 vim.opt.ignorecase = false
-vim.opt.list = true
 
 vim.opt.statusline = "%F"
 
