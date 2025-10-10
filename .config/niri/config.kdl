@@ -74,8 +74,8 @@ binds {
     Mod+Question /*help*/ { show-hotkey-overlay; }
     Mod+O { toggle-overview; }
  
-    Mod+T repeat=false { spawn "ghostty"; }
-    Mod+D repeat=false { spawn "wofi" "--show" "run,drun"; }
+    Mod+T repeat=false { spawn "kitty"; }
+    Mod+D repeat=false { spawn "wofi" "--matching=fuzzy" "--insensitive" "--show" "run,drun"; }
     Alt+Tab repeat=false { spawn "gdbus" "call" "--session" "--dest" "io.github.isaksamsten.Niriswitcher" "--object-path" "/io/github/isaksamsten/Niriswitcher" "--method" "io.github.isaksamsten.Niriswitcher.application" ; }
     Alt+Shift+Tab repeat=false { spawn "gdbus" "call" "--session" "--dest" "io.github.isaksamsten.Niriswitcher" "--object-path" "/io/github/isaksamsten/Niriswitcher" "--method" "io.github.isaksamsten.Niriswitcher.application" ; }
  
