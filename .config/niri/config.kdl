@@ -56,9 +56,11 @@ layout {
     // }
 }
 
+// eww widgets & sidebar
 spawn-at-startup "eww" "daemon"
 spawn-at-startup "eww" "--config" ".config/eww/niri" "open" "sidebar"
-spawn-at-startup ".config/eww/niri/watch.sh"
+spawn-at-startup "/home/plyons/.config/eww/niri/watch.sh"
+
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 spawn-at-startup "udiskie"
 spawn-at-startup "iwgtk" "-i"
@@ -131,7 +133,8 @@ binds {
     Mod+Shift+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
     Mod+Shift+WheelScrollUp cooldown-ms=150 { move-column-to-workspace-up; }
  
-    F10 repeat=false { spawn "~/bin/focus-niri" "gofi"; }
+    // F10 repeat=false { spawn "~/bin/focus-niri" "gofi"; }
+    F10 repeat=false { spawn "wlr-which-key"; }
     F11 repeat=false { spawn "~/bin/fuzz-script-choose"; }
     F12 repeat=false { spawn "~/bin/fuzz-snippet"; }
  
