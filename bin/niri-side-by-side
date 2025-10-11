@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
+
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -o errexit  # always exit on error
+set -o errtrace # trap errors in functions as well
+set -o pipefail # don't ignore exit codes when piping output
+set -u          # error on reference to unknown variable
+# set -x # enable debugging
+
+IFS=$'\n\t'
+# ---- End unofficial bash strict mode boilerplate
+
+# get the position of the currently focused window
+original_pos=$(niri msg --json focused-window | jq -r '.layout.pos_in_scrolling_layout[0]')
+
+# resize the currently focused window to 50% first
+niri msg action set-column-width "50%"
+
+# get the currently active workspace
+ws=$(niri msg --json workspaces | jq -r '.[] | select(.is_focused==true) | .id')
+selected=$(niri msg --json windows |
+  jq -r '.[] | "\(.workspace_id):\(.id):\(.title):\(.app_id)"' |
+  wofi --dmenu --insensitive --matching=fuzzy)
+if [[ -z "${selected}" ]]; then
+  exit
+fi
+# focus the window we want to bring to the active workspace
+window_id=$(echo "$selected" | cut -d: -f2)
+niri msg action move-window-to-workspace --id "${ws}"
+niri msg action focus-window --id "${window_id}"
+
+# resize the newly moved window to 50% width
+niri msg action set-column-width "50%"
+
+# move the newly moved window to be adjacent to the original window
+target_pos=$((original_pos + 1))
+niri msg action move-column-to-index "${target_pos}"

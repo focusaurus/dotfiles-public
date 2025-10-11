@@ -10,14 +10,14 @@ border_width: 1
 menu:
   - key: "."
     desc: "previous"
-    cmd: "focus-niri previous"
+    cmd: "niri-focus previous"
 
   - key: "a"
     desc: "applications"
     submenu:
       - key: "b"
         desc: "bambu-studio"
-        cmd: "focus-niri bambustudio"
+        cmd: "niri-focus bambustudio"
 
       - key: "c"
         desc: "calculator"
@@ -25,11 +25,11 @@ menu:
 
       - key: "f"
         desc: "freecad"
-        cmd: "focus-niri freecad"
+        cmd: "niri-focus freecad"
 
       - key: "g"
         desc: "gedit"
-        cmd: "focus-niri gedit"
+        cmd: "niri-focus gedit"
 
       - key: "i"
         desc: "iwgtk"
@@ -37,19 +37,19 @@ menu:
 
       - key: "p"
         desc: "prusa slicer"
-        cmd: "focus-niri prusaslicer"
+        cmd: "niri-focus prusaslicer"
 
   - key: "b"
     desc: "browser"
-    cmd: "focus-niri browser"
+    cmd: "niri-focus browser"
 
   - key: "c"
     desc: "calendar"
-    cmd: "focus-niri calendar"
+    cmd: "niri-focus calendar"
 
   - key: "e"
     desc: "email"
-    cmd: "focus-niri email"
+    cmd: "niri-focus email"
 
   - key: "E"
     desc: "emoji"
@@ -59,9 +59,16 @@ menu:
     desc: "fuzzball"
     cmd: "fuzz-script-choose"
 
+  - key: "j"
+    desc: "journal"
+    submenu:
+      - key: "j"
+        desc: "append to personal daily notes"
+        cmd: "~/bin/journal-append-prompt ~/git.peterlyons.com/exocortex/personal"
+
   - key: "m"
     desc: "music"
-    cmd: "focus-niri music"
+    cmd: "niri-focus music"
 
   - key: "n"
     desc: "niri"
@@ -78,6 +85,10 @@ menu:
         desc: "move up"
         cmd: "niri-move-previous move-window-to-workspace-up"
 
+      - key: "K"
+        desc: "show keybindings"
+        cmd: "niri msg action show-hotkey-overlay"
+
       - key: "l"
         desc: "move right"
         cmd: "niri-move-previous move-column-right"
@@ -90,29 +101,37 @@ menu:
         desc: "monitor left"
         cmd: "niri msg action move-window-to-monitor-left"
 
+      - key: "s"
+        desc: "side by side"
+        cmd: "~/bin/niri-side-by-side"
+
       - key: "q"
         desc: "quit"
         cmd: "niri msg action quit"
 
   - key: "o"
     desc: "obsidian"
-    cmd: "focus-niri obsidian"
+    cmd: "niri-focus obsidian"
 
   - key: "p"
     desc: "1password"
-    cmd: "focus-niri 1password"
+    cmd: "niri-focus 1password"
+
+  - key: "r"
+    desc: "run (ulauncher)"
+    cmd: "ulauncher-toggle"
 
   - key: "s"
     desc: "slack"
-    cmd: "focus-niri slack"
+    cmd: "niri-focus slack"
 
   - key: "t"
     desc: "terminal"
-    cmd: "focus-niri terminal"
+    cmd: "niri-focus terminal"
 
   - key: "T"
     desc: "trello"
-    cmd: "focus-niri trello"
+    cmd: "niri-focus trello"
 
   - key: "u"
     desc: "umusic"
@@ -123,7 +142,7 @@ menu:
 
       - key: "a"
         desc: "ario"
-        cmd: "focus-niri ario"
+        cmd: "niri-focus ario"
 
       - key: "p"
         desc: "play"
@@ -205,5 +224,5 @@ menu:
     cmd: "niri-focus-window-fuzzy"
 
   - key: "x"
-    desc: "sirula"
-    cmd: "sirula"
+    desc: "exec fuzzy (wofi)"
+    cmd: "wofi --matching=fuzzy --insensitive --show=drun,run"

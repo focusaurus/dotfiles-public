@@ -39,7 +39,8 @@ Can you guide me through this process with checkpoints along the way?
 - [x] app-nav kitty windows (splits)
 - [x] app-nav kitty tabs
 - [x] wlr-which-key niri focus previous
-- [ ] wlr-which-key x for executable
-- [ ] ulauncher setup
+- [x] wlr-which-key x for executable
+- [x] ulauncher setup
+- [ ] niri side by side script
 - [ ] obsidian rule to workspace 2 maybe
 - [ ] swappy hack config or something to avoid multiple files for single screenshot
