@@ -11,6 +11,10 @@ set -o pipefail # don't ignore exit codes when piping output
 
 IFS="$(printf "\n\t")"
 # ---- End unofficial bash strict mode boilerplate
+if [[ "$1" == "delay" ]]; then
+  sleep 5
+  shift
+fi
 macos_dir="/Applications/flameshot.app/Contents/MacOS"
 if [[ -e "${macos_dir}/flameshot" ]]; then
   export PATH="${macos_dir}:${PATH}"
@@ -30,7 +34,7 @@ if [[ "${XDG_SESSION_TYPE}" == "wayland" ]]; then
 fi
 case "${tool}" in
 grim)
-  grim -g "$(slurp)" - | swappy --file - --output-file - > "${out}"
+  grim -g "$(slurp)" - | swappy --file - --output-file - >"${out}"
   ;;
 hyprshot)
   hyprshot --mode region --output-folder "${destdir}" --filename "${destfile}" || true
@@ -38,15 +42,7 @@ hyprshot)
 flameshot)
   declare -a args
 
-  if [[ "$1" == "delay" ]]; then
-    # Use this branch for getting pointer/hover stuff
-    args+=(full -d 4000)
-    shift
-  else
-    # Use this branch for specific area, no pointer
-    args+=(gui)
-  fi
-  args+=(--path "${out}")
+  args+=(gui --path "${out}")
   flameshot "${args[@]}"
   ;;
 esac
