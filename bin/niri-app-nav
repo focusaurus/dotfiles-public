@@ -69,16 +69,16 @@ nav_ghostty() {
 nav_kitty() {
   case "$1" in
   left)
-    xdotool key --clearmodifiers 'ctrl+shift+Left'
+    shift_space -k p
     ;;
   up)
-    xdotool key --clearmodifiers 'ctrl+shift+bracketright'
+    shift_space -k period
     ;;
   right)
-    xdotool key --clearmodifiers 'ctrl+shift+Right'
+    shift_space -k n
     ;;
   down)
-    xdotool key --clearmodifiers 'ctrl+shift+bracketright'
+    shift_space -k period
     ;;
   esac
 }

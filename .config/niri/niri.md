@@ -36,6 +36,11 @@ Can you guide me through this process with checkpoints along the way?
 - [-] window switcher fuzzy popup thing
 - [x] bambu studio
 - [x] prusa-slicer
-- [ ] gofi x for executable
-- [ ] ulauncher setup
+- [x] app-nav kitty windows (splits)
+- [x] app-nav kitty tabs
+- [x] wlr-which-key niri focus previous
+- [x] wlr-which-key x for executable
+- [x] ulauncher setup
+- [ ] niri side by side script
 - [ ] obsidian rule to workspace 2 maybe
+- [ ] swappy hack config or something to avoid multiple files for single screenshot

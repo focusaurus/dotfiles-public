@@ -34,7 +34,10 @@ if [[ "${XDG_SESSION_TYPE}" == "wayland" ]]; then
 fi
 case "${tool}" in
 grim)
-  grim -g "$(slurp)" - | swappy --file - --output-file - >"${out}"
+  # slurp selects the screen area to capture
+  # grim captures it
+  # swappy annotates and saves it
+  grim -g "$(slurp)" - | swappy --file - --output-file - > "${out}"
   ;;
 hyprshot)
   hyprshot --mode region --output-folder "${destdir}" --filename "${destfile}" || true

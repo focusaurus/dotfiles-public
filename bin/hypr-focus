@@ -88,6 +88,9 @@ main() {
   ~/bin/log $0 "$@"
   local APP_NAME="$1"
   case "$APP_NAME" in
+  zenbrowser)
+    find_window '.class == "zen"' || launch zen-browser
+    ;;
   ario)
     find_window '.class == "ario"' || launch ario
     ;;

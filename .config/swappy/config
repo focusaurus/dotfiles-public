@@ -1,5 +1,5 @@
 [Default]
-save_dir=$HOME/screens
+save_dir=/dev/null
 save_filename_format=screen-%Y-%m-%d-%H%M%S.png
 show_panel=true
 line_size=5
