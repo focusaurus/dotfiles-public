@@ -88,6 +88,12 @@ prusaslicer)
     launchx prusa-slicer
   fi
   ;;
+vial)
+  find_window '.app_id == "Vial"' || launch Vial
+  ;;
+vscode)
+  find_window '.app_id == "code-oss"' || launch code
+  ;;
 bambustudio)
   find_window '.app_id == "BambuStudio"' || launchx bambu-studio
   ;;

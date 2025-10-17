@@ -39,6 +39,10 @@ menu:
         desc: "prusa slicer"
         cmd: "niri-focus prusaslicer"
 
+      - key: "v"
+        desc: "vial"
+        cmd: "niri-focus vial"
+
   - key: "b"
     desc: "browser"
     cmd: "niri-focus browser"
@@ -59,6 +63,10 @@ menu:
     desc: "fuzzball"
     cmd: "fuzz-script-choose"
 
+  - key: "i"
+    desc: "IDE (VS Code)"
+    cmd: "niri-focus vscode"
+
   - key: "j"
     desc: "journal"
     submenu:
@@ -73,6 +81,10 @@ menu:
   - key: "n"
     desc: "niri"
     submenu:
+      - key: "b"
+        desc: "toggle sidebar"
+        cmd: "~/bin/eww-toggle sidebar"
+
       - key: "h"
         desc: "move left"
         cmd: "niri-move-previous move-column-left"
