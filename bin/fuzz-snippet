@@ -12,7 +12,19 @@ set -o pipefail # don't ignore exit codes when piping output
 IFS="$(printf "\n\t")"
 # ---- End unofficial bash strict mode boilerplate
 ~/bin/log "$0" "start"
-snippet_dir=~/git.peterlyons.com/dotfiles/snippets
+export PATH="/opt/homebrew/bin:${PATH}"
+snippet_dir="${HOME}/git.peterlyons.com/dotfiles/snippets"
+hist_path="${snippet_dir}/.history"
+
+list_snippets() {
+  if [[ -e "${hist_path}" ]]; then
+    tail -100 "${hist_path}" | uniq | tail -5 | tac
+    echo -----
+  fi
+  find "${snippet_dir}" -type f -not -name '*-post.sh' -print0 |
+    xargs -0 -n 1 basename |
+    sort
+}
 
 if [[ $(uname) == "Darwin" ]]; then
   # Sigh. Can't control environment PATH in alfred
@@ -23,14 +35,11 @@ else
   chooser=(rofi -dmenu -p snippet -theme sidebar)
 fi
 # show a dmenu of possible snippets, prints the selected snippet abbreviation
-abbreviation="${snippet_dir}/"$(
-  find "${snippet_dir}" -type f -not -name '*-post.sh' -print0 |
-    xargs -0 -n 1 basename |
-    sort |
-    "${chooser[@]}"
-)
+snippet_name=$(list_snippets | "${chooser[@]}")
+abbreviation="${snippet_dir}/${snippet_name}"
 
 ~/bin/log "$0" chose "${abbreviation}"
+echo "${snippet_name}" >>"${hist_path}"
 if [[ -x "${abbreviation}" ]]; then
   ~/bin/log "$0" "running as script"
   # run snippet as script
