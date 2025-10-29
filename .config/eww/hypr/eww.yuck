@@ -24,36 +24,41 @@
                       (box :orientation "v"
                            :spacing 0
                            :class "workspace-info"
-                           (label :text "WS: ${workspaces.active_workspace}/${workspaces.workspace_count}"))
-                      (label :text "${volume_status} ${microphone_status}" :class "microphone")
+                           (label :text "WS: ${workspaces.active}/${workspaces.total}"))
+                      (label :text microphone_status :class "microphone")
+                      (label :text volume_status :class "volume")
                       (label :text battery_status :class "battery")
                       (label :text network_status :class "network")
                       (box :class "system-tray"
                            (systray :pack-direction "ttb"
                                     :icon-size 16
                                     :spacing 5))
+                      (label :text day :class "day")
                       (label :text date :class "date")
                       (label :text time :class "time"))))
 
 (defwidget window [client]
   (box :orientation "v" :space-evenly false :spacing 0 :class "window-list" :halign "start"
-    (button :onclick "niri msg action focus-window --id ${client.id}"
-     :class "window-item ${client.is_focused ? 'window-active' : ''}"
-     :tooltip "${client.app_id}"
-     (label :text "${client.emoji} ${client.title}"))
-    (button :visible {client.emoji == ""} :onclick "niri msg action focus-window --id ${client.id}"
-     :class "window-item ${client.is_focused ? 'window-active' : ''}"
+    (button :onclick "hyprctl dispatch focuswindow address:${client.address}"
+     :class "window-item ${client.focusHistoryID == 0 ? 'window-active' : ''}"
+     :tooltip "${client.class}"
+     (label :text "${client.workspace.id}: ${client.emoji}${client.title}"))
+    (button :visible {client.emoji == ""} :onclick "hyprctl dispatch focuswindow address:${client.address}"
+     :class "window-item ${client.focusHistoryID == 0 ? 'window-active' : ''}"
      :tooltip "${client.title}"
-     (label :text "${client.title == "gofi" ? '' : client.app_id}"))))
+     (label :text "${client.title == "gofi" ? '' : client.class}"))))
 
 (defpoll time :interval "10s"
   "date '+%I:%M %p'")
 
 (defpoll date :interval "60s"
-  "date '+%a %b %d'")
+  "date '+%b %d'")
+
+(defpoll day :interval "60s"
+  "date '+%a'")
 
 (defpoll clients :interval "5s"
-  "~/.config/eww/niri/windows.sh")
+  "~/.config/eww/hypr-clients")
 
 (defpoll network_status :interval "5s"
   "~/bin/widgets/wifi")
@@ -68,4 +73,4 @@
   "~/bin/widgets/microphone")
 
 (defpoll workspaces :interval "5s"
-  "~/.config/eww/niri/workspaces.sh")
+  "./hypr-workspaces")

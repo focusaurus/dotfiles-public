@@ -25,7 +25,7 @@ niri msg -j windows | jq '
       end
     elif (app_id | ascii_downcase | test("chrom")) then "🌍"
     elif (app_id | ascii_downcase | test("zen")) then "🐵"
-    elif (app_id | ascii_downcase | test("code")) then "💻"
+    elif (app_id | ascii_downcase | test("code|zed")) then "💻"
     elif (app_id | ascii_downcase | test("vim|nvim")) then "📝"
     elif (app_id | ascii_downcase | test("terminal|kitty|alacritty|wezterm|xterm|ghostty")) then "🖥️"
     elif (app_id | ascii_downcase | test("dolphin|nautilus|thunar|pcmanfm")) then "📁"

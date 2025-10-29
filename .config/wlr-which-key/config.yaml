@@ -148,7 +148,7 @@ menu:
   - key: "u"
     desc: "umusic"
     submenu:
-      - key: " "
+      - key: "t"
         desc: "toggle"
         cmd: "mpc toggle"
 
@@ -238,3 +238,7 @@ menu:
   - key: "x"
     desc: "exec fuzzy (wofi)"
     cmd: "wofi --matching=fuzzy --insensitive --show=drun,run"
+
+  - key: "z"
+    desc: "zed"
+    cmd: "niri-focus zed"
