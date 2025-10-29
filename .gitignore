@@ -354,3 +354,4 @@ f25
 .config/.mozilla/zen/Crash Reports
 .sqlite_history
 .platformio
+.zen
