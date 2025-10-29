@@ -101,16 +101,17 @@ browser | firefox)
   focus_browser
   ;;
 calendar)
-  filter='.app_id == "firefox" and (.title | startswith("calendar:"))'
-  find_window "${filter}" || focus_browser
+  find_window '.app_id == "firefox" and (.title | startswith("calendar:"))' || focus_browser
   ;;
 trello)
-  filter='.app_id == "firefox" and (.title | startswith("trello:"))'
-  find_window "${filter}" || focus_browser
+  find_window '.app_id == "firefox" and (.title | startswith("trello:"))' || focus_browser
   ;;
 email)
   focus_browser
   hotkey_alt 1
+  ;;
+zed)
+  find_window '.app_id == "dev.zed.Zed"' || launch zeditor
   ;;
 ghostty)
   find_window '.app_id == "com.mitchellh.ghostty" title != "gofi"' || launch ghostty

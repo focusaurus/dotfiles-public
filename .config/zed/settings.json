@@ -7,6 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "format_on_save": "off",
   "agent": {
     "default_model": {
       "provider": "anthropic",
@@ -16,8 +17,8 @@
   },
   "autosave": "off",
   "telemetry": {
-    "diagnostics": false,
-    "metrics": false
+    "diagnostics": true,
+    "metrics": true
   },
   "formatter": null,
   "vim_mode": true,

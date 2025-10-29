@@ -17,7 +17,7 @@
         "command": "-workbench.action.showCommands"
     },
     {
-        "key": "ctrl+d",
+        "key": "ctrl+shift+d",
         "command": "editor.action.deleteLines",
         "when": "textInputFocus && !editorReadonly"
     },
