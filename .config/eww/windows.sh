@@ -44,4 +44,4 @@ niri msg -j windows | jq '
     else ""
     end;
 
-  sort_by(.workspace_id) | map(. + {emoji: get_emoji(.app_id; .title)})'
+  sort_by(.layout.pos_in_scrolling_layout) | map(. + {emoji: get_emoji(.app_id; .title)})'

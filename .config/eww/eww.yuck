@@ -49,7 +49,7 @@
   "date '+%a %b %d'")
 
 (defpoll clients :interval "5s"
-  "~/.config/eww/niri/windows.sh")
+  "~/.config/eww/windows.sh")
 
 (defpoll network_status :interval "5s"
   "~/bin/widgets/wifi")
@@ -64,4 +64,4 @@
   "~/bin/widgets/microphone")
 
 (defpoll workspaces :interval "5s"
-  "~/.config/eww/niri/workspaces.sh")
+  "~/.config/eww/workspaces.sh")
