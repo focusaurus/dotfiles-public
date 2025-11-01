@@ -1,7 +1,5 @@
-[PlasmaTransientsConfig]
-PreloadWeight=18
-popupHeight=400
-popupWidth=560
+[Notification Messages]
+klipperClearHistoryAskAgain=false
 
 [PlasmaViews][Panel 2]
 floating=1

@@ -5,8 +5,8 @@ RightButton;NoModifier=org.kde.contextmenu
 RightButton;NoModifier=org.kde.contextmenu
 
 [Containments][1]
-ItemGeometries-1920x1080=Applet-28:784,128,400,288,0;Applet-27:784,416,400,288,0;
-ItemGeometriesHorizontal=Applet-28:784,128,400,288,0;Applet-27:784,416,400,288,0;
+ItemGeometries-1920x1080=Applet-28:784,112,400,304,0;Applet-27:784,416,400,304,0;
+ItemGeometriesHorizontal=Applet-28:784,112,400,304,0;Applet-27:784,416,400,304,0;
 activityId=1b9260ec-d2ca-4119-9189-a0ab0cfe00b5
 formfactor=0
 immutability=1
@@ -34,7 +34,7 @@ plugin=org.kde.plasma.folder
 wallpaperplugin=
 
 [Containments][1][Applets][27][Configuration][General]
-positions={"0x0":[]}
+positions={"0x0":[],"1920x1080":[]}
 
 [Containments][1][Applets][28]
 activityId=
@@ -55,7 +55,7 @@ plugin=org.kde.plasma.folder
 wallpaperplugin=
 
 [Containments][1][Applets][28][Configuration][General]
-positions={"0x0":[]}
+positions={"0x0":[],"1920x1080":[]}
 
 [Containments][1][General]
 positions={"1920x1080":[]}
@@ -97,7 +97,7 @@ plugin=org.kde.plasma.kickoff
 [Containments][2][Applets][3][Configuration]
 PreloadWeight=100
 popupHeight=508
-popupWidth=647
+popupWidth=648
 
 [Containments][2][Applets][3][Configuration][ConfigDialog]
 DialogHeight=540
@@ -116,7 +116,7 @@ DialogHeight=1052
 DialogWidth=1784
 
 [Containments][2][Applets][31][Configuration][General]
-launchers=applications:systemsettings.desktop,preferred://browser
+launchers=applications:systemsettings.desktop,preferred://browser,file:///bin/transmission-gtk,applications:tor-browser.desktop,applications:transmission-qt.desktop,applications:1password.desktop
 
 [Containments][2][Applets][4]
 immutability=1
@@ -163,6 +163,9 @@ plugin=org.kde.plasma.printmanager
 immutability=1
 plugin=org.kde.plasma.clipboard
 
+[Containments][2][Applets][7][Applets][15][Configuration]
+PreloadWeight=60
+
 [Containments][2][Applets][7][Applets][16]
 immutability=1
 plugin=org.kde.plasma.keyboardlayout
@@ -186,20 +189,36 @@ plugin=org.kde.kscreen
 immutability=1
 plugin=org.kde.plasma.battery
 
+[Containments][2][Applets][7][Applets][22][Configuration]
+PreloadWeight=26
+
 [Containments][2][Applets][7][Applets][23]
 immutability=1
 plugin=org.kde.plasma.brightness
 
+[Containments][2][Applets][7][Applets][23][Configuration]
+PreloadWeight=26
+
 [Containments][2][Applets][7][Applets][24]
 immutability=1
 plugin=org.kde.plasma.bluetooth
+
+[Containments][2][Applets][7][Applets][24][Configuration]
+PreloadWeight=42
 
 [Containments][2][Applets][7][Applets][29]
 immutability=1
 plugin=org.kde.plasma.mediacontroller
 
 [Containments][2][Applets][7][Applets][29][Configuration]
-PreloadWeight=26
+PreloadWeight=0
+
+[Containments][2][Applets][7][Applets][32]
+immutability=1
+plugin=org.kde.plasma.networkmanagement
+
+[Containments][2][Applets][7][Applets][32][Configuration]
+PreloadWeight=55
 
 [Containments][2][Applets][7][Applets][8]
 immutability=1
@@ -208,6 +227,9 @@ plugin=org.kde.plasma.manage-inputmethod
 [Containments][2][Applets][7][Applets][9]
 immutability=1
 plugin=org.kde.plasma.devicenotifier
+
+[Containments][2][Applets][7][Applets][9][Configuration]
+PreloadWeight=60
 
 [Containments][2][Applets][7][ConfigDialog]
 DialogHeight=1052
@@ -222,4 +244,4 @@ AppletOrder=3;31;4;6;7;20;21
 
 [ScreenMapping]
 itemsOnDisabledScreens=
-screenMapping=
+screenMapping=desktop:/Old Firefox Data,0,1b9260ec-d2ca-4119-9189-a0ab0cfe00b5
