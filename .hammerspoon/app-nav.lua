@@ -13,12 +13,8 @@ end
 function module.left()
   local name = hs.application.frontmostApplication():name()
   log.d("app nav left. app name: " .. name)
-  if name == "Ghostty" then
+  if name == "kitty" or name == "Ghostty" then
     hs.eventtap.keyStroke({ "shift" }, "space")
-    hs.eventtap.keyStroke({}, "p")
-    log.d("ghostty app nav left keystroke")
-  elseif name == "kitty"  or name == "Ghostty" then
-    hs.eventtap.keyStroke({ "command" }, "t")
     hs.eventtap.keyStroke({}, "p")
     log.d("kitty app nav left keystroke")
   elseif name == "Code" then
@@ -40,7 +36,7 @@ function module.down()
     hs.eventtap.keyStroke({ "command", "shift" }, "w")
   elseif name == "Google Chrome" or name == "Ghostty" then
     hs.eventtap.keyStroke({ "command" }, "`") -- backtick means tilde for this binding
-  elseif name == "Firefox" or name == "Google Chrome" or name == "Code" or name == "TablePlus" then
+  elseif name == "Firefox" or name == "Google Chrome" or name == "Code" or name == "TablePlus" or name == "Zen" then
     -- focus previous window
     hs.eventtap.keyStroke({ "command" }, "`") -- backtick means tilde for this binding
     -- hs.eventtap.event.newKeyEvent(hs.keycodes.map.ctrl, true):post()
@@ -83,7 +79,7 @@ end
 function module.right()
   local name = hs.application.frontmostApplication():name()
   log.d("app-nav right. app name: " .. name)
-  if name == "Ghostty" then
+  if name == "kitty" or name == "Ghostty" then
     hs.eventtap.keyStroke({ "shift" }, "space")
     hs.eventtap.keyStroke({}, "n")
     log.d("ghostty app nav right keystroke")

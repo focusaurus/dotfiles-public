@@ -4,4 +4,5 @@ Icon=flameshot
 Exec=flameshot
 Terminal=false
 Type=Application
-X-GNOME-Autostart-enabled=true
+X-GNOME-Autostart-enabled=false
+Hidden=true

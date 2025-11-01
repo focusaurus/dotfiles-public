@@ -35,6 +35,12 @@ const matchClassCaptionInc = function (klass, substring) {
   };
 }
 
+const matchClassNotCaption = function (klass, caption) {
+  return function(window) {
+    return window.klass === klass && window.caption !== caption;
+  };
+}
+
 const matchers = {
   browser: matchClassCaptionPre("firefox", "main:"),
   music: matchClassCaptionPre("firefox", "music:"),
@@ -45,7 +51,7 @@ const matchers = {
   obsidianfrc: matchClassCaptionInc("obsidian", "focus-retreat-center"),
   "1password": matchClass("1Password"),
   gofi: matchClassCaption("com.mitchellh.ghostty", "gofi"),
-  terminal: matchClass("com.mitchellh.ghostty"),
+  terminal: matchClassNotCaption("com.mitchellh.ghostty", "gofi"),
   bambustudio: matchClass("BambuStudio"),
   gedit: matchClass("org.gnome.gedit"),
   slack: matchClass("Slack"),

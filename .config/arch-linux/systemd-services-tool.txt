@@ -11,13 +11,13 @@ iwd.service
 keyd.service
 machines.target
 ntpd.service
-nvidia-hibernate.service
-nvidia-resume.service
-nvidia-suspend.service
 reboot.target
 remote-cryptsetup.target
 remote-fs.target
+remote-integritysetup.target
+remote-veritysetup.target
 sddm.service
+systemd-boot-clear-sysfail.service
 systemd-boot-update.service
 systemd-confext.service
 systemd-homed-activate.service
@@ -34,6 +34,7 @@ systemd-remount-fs.service
 systemd-resolved.service
 systemd-sysext.service
 systemd-timesyncd.service
+systemd-tpm2-clear.service
 systemd-userdbd.socket
 tlp.service
 wpa_supplicant.service

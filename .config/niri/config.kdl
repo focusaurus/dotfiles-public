@@ -56,7 +56,12 @@ layout {
     // }
 }
 
-spawn-at-startup "waybar"
+// eww widgets & sidebar
+spawn-at-startup "eww" "daemon"
+spawn-at-startup "eww" "open" "sidebar"
+spawn-at-startup "/home/plyons/.config/eww/watch.sh"
+
+spawn-at-startup "niriswitcher"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 spawn-at-startup "udiskie"
 spawn-at-startup "iwgtk" "-i"
@@ -70,8 +75,8 @@ binds {
     Mod+Question /*help*/ { show-hotkey-overlay; }
     Mod+O { toggle-overview; }
  
-    Mod+T repeat=false { spawn "ghostty"; }
-    Mod+D repeat=false { spawn "wofi" "--show" "run,drun"; }
+    Mod+T repeat=false { spawn "kitty"; }
+    Mod+D repeat=false { spawn "wofi" "--matching=fuzzy" "--insensitive" "--show" "run,drun"; }
     Alt+Tab repeat=false { spawn "gdbus" "call" "--session" "--dest" "io.github.isaksamsten.Niriswitcher" "--object-path" "/io/github/isaksamsten/Niriswitcher" "--method" "io.github.isaksamsten.Niriswitcher.application" ; }
     Alt+Shift+Tab repeat=false { spawn "gdbus" "call" "--session" "--dest" "io.github.isaksamsten.Niriswitcher" "--object-path" "/io/github/isaksamsten/Niriswitcher" "--method" "io.github.isaksamsten.Niriswitcher.application" ; }
  
@@ -85,10 +90,10 @@ binds {
     Mod+L { move-column-right; }
 
     // kipra nav layer: home row: app nav
-    Mod+Shift+Left { spawn "app-nav-niri" "left"; }
-    Mod+Shift+Down { spawn "app-nav-niri" "down"; }
-    Mod+Shift+Up { spawn "app-nav-niri" "up"; }
-    Mod+Shift+Right { spawn "app-nav-niri" "right"; }
+    Mod+Shift+Left { spawn "niri-app-nav" "left"; }
+    Mod+Shift+Down { spawn "niri-app-nav" "down"; }
+    Mod+Shift+Up { spawn "niri-app-nav" "up"; }
+    Mod+Shift+Right { spawn "niri-app-nav" "right"; }
 
     // kipra nav layer: bottom row: window nav
     Mod+Control+Left { focus-column-left; }
@@ -129,7 +134,8 @@ binds {
     Mod+Shift+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
     Mod+Shift+WheelScrollUp cooldown-ms=150 { move-column-to-workspace-up; }
  
-    F10 repeat=false { spawn "~/bin/focus-niri" "gofi"; }
+    // F10 repeat=false { spawn "~/bin/niri-focus" "gofi"; }
+    F10 repeat=false { spawn "wlr-which-key"; }
     F11 repeat=false { spawn "~/bin/fuzz-script-choose"; }
     F12 repeat=false { spawn "~/bin/fuzz-snippet"; }
  

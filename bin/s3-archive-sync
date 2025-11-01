@@ -13,10 +13,10 @@ IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
 op signin --account my.1password.com
-omnivore_1password_id=$(op item list --format json | jq -r '.[] | select(.title=="AWS main focusaurus") | .id')
-AWS_ACCESS_KEY_ID=$(op item get --format json "${omnivore_1password_id}" | jq -r '.fields[] | select(.label=="AWS_ACCESS_KEY_ID")| .value')
+id=$(op item list --format json | jq -r '.[] | select(.title=="AWS main focusaurus") | .id')
+AWS_ACCESS_KEY_ID=$(op item get --format json "${id}" | jq -r '.fields[] | select(.label=="AWS_ACCESS_KEY_ID")| .value')
 export AWS_ACCESS_KEY_ID
-AWS_SECRET_ACCESS_KEY=$(op item get --format json "${omnivore_1password_id}" | jq -r '.fields[] | select(.label=="AWS_SECRET_ACCESS_KEY")| .value')
+AWS_SECRET_ACCESS_KEY=$(op item get --format json "${id}" | jq -r '.fields[] | select(.label=="AWS_SECRET_ACCESS_KEY")| .value')
 export AWS_SECRET_ACCESS_KEY
 export AWS_REGION='us-west-2'
 year="$1"

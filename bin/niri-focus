@@ -12,7 +12,7 @@
 #
 # IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-#
+
 find_window() {
   filter="$1"
   id=$(niri msg --json windows |
@@ -88,30 +88,36 @@ prusaslicer)
     launchx prusa-slicer
   fi
   ;;
+vial)
+  find_window '.app_id == "Vial"' || launch Vial
+  ;;
+vscode)
+  find_window '.app_id == "code-oss"' || launch code
+  ;;
 bambustudio)
-  if pidof bambu-studio >/dev/null; then
-    find_window '.app_id == "org.freedesktop.Xwayland"'
-  else
-    launchx bambu-studio
-  fi
+  find_window '.app_id == "BambuStudio"' || launchx bambu-studio
   ;;
 browser | firefox)
   focus_browser
   ;;
 calendar)
-  filter='.app_id == "firefox" and (.title | startswith("calendar:"))'
-  find_window "${filter}" || focus_browser
+  find_window '.app_id == "firefox" and (.title | startswith("calendar:"))' || focus_browser
   ;;
 trello)
-  filter='.app_id == "firefox" and (.title | startswith("trello:"))'
-  find_window "${filter}" || focus_browser
+  find_window '.app_id == "firefox" and (.title | startswith("trello:"))' || focus_browser
   ;;
 email)
   focus_browser
   hotkey_alt 1
   ;;
-terminal | ghostty)
-  find_window '.app_id == "com.mitchellh.ghostty" and .title != "gofi"' || launch ghostty
+zed)
+  find_window '.app_id == "dev.zed.Zed"' || launch zeditor
+  ;;
+ghostty)
+  find_window '.app_id == "com.mitchellh.ghostty" title != "gofi"' || launch ghostty
+  ;;
+terminal | kitty)
+  find_window '.app_id == "kitty"' || launch kitty
   ;;
 music)
   filter='.app_id == "firefox" and (.title | startswith("music:"))'

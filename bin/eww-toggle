@@ -12,11 +12,17 @@ set -u          # error on reference to unknown variable
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
+niri-eww() {
+  eww --config ~/.config/eww/niri "$@"
+}
 
-cd "$(dirname "${BASH_SOURCE[0]}")"
+main() {
+  name="$1"
+  if niri-eww active-windows | grep -q "${name}"; then
+    niri-eww close "${name}"
+  else
+    niri-eww open "${name}"
+  fi
+}
 
-if [[ "$(uname)" == "Darwin" ]]; then
-  sed -E -e 's/(control|ctrl)/command/g' -e 's,/usr/share/ghostty/themes/,,g' <config.tpl >config
-else
-  cp config.tpl config
-fi
+main "$@"

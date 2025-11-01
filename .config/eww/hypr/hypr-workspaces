@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Get active workspace and total workspace count
+active=$(hyprctl -j activeworkspace | jq -r '.id')
+total=$(hyprctl -j workspaces | jq 'length')
+
+echo "{\"active\": $active, \"total\": $total}"

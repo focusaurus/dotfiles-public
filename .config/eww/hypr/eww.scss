@@ -1,0 +1,23 @@
+* {
+  all: unset;
+  font-family: "Hack Nerd Font", monospace;
+  font-size: 16px;
+  background-color: #3d95d6;
+  color: #0a1122;
+}
+
+.time {
+  font-weight: bold;
+}
+
+.window-item > label {
+  background-color: lighten(#3d95d6, 10%);
+  border-radius: 4px;
+  padding: 2px 6px;
+  margin-top: 5px;
+}
+
+.window-active > label {
+  background-color: lighten(#3d95d6, 30%);
+  color: #0a1122;
+}

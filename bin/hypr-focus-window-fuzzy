@@ -1,0 +1,8 @@
+#!/bin/bash
+selected=$(hyprctl clients -j |
+    jq -r '.[] | "\(.workspace.id):\(.address):\(.title):\(.class)"' |
+    wofi --dmenu --insensitive --matching=fuzzy)
+if [ -n "$selected" ]; then
+    window_address=$(echo "$selected" | cut -d: -f2)
+    hyprctl dispatch focuswindow "address:$window_address"
+fi

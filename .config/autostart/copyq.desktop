@@ -2,6 +2,6 @@
 Type=Application
 Name=CopyQ
 Exec=/bin/copyq
-Hidden=false
+Hidden=true
 NoDisplay=false
-X-GNOME-Autostart-enabled=true
+X-GNOME-Autostart-enabled=false

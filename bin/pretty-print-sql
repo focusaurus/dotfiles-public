@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-sqlfluff format --dialect mysql -
+sqlfluff format --dialect mysql --config ~/.config/sqlfluff/config.toml -

@@ -34,5 +34,8 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 [Wayland]
 InputMethod[$e]=/usr/share/applications/fcitx5-wayland-launcher.desktop
 
+[Windows]
+Placement=Maximizing
+
 [Xwayland]
 Scale=1

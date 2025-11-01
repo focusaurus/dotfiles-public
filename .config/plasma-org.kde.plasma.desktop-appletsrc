@@ -153,7 +153,7 @@ immutability=1
 plugin=org.kde.plasma.notifications
 
 [Containments][2][Applets][7][Applets][13][Configuration]
-PreloadWeight=55
+PreloadWeight=60
 
 [Containments][2][Applets][7][Applets][14]
 immutability=1
@@ -165,6 +165,9 @@ plugin=org.kde.plasma.clipboard
 
 [Containments][2][Applets][7][Applets][15][Configuration]
 PreloadWeight=60
+
+[Containments][2][Applets][7][Applets][15][Configuration]
+PreloadWeight=55
 
 [Containments][2][Applets][7][Applets][16]
 immutability=1

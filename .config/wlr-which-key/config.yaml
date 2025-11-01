@@ -1,0 +1,244 @@
+font: "Hack Nerd Font 16"
+background: "#3d95d6"
+color: "#0a1122"
+border: "#0a1122"
+separator: " ➜ "
+border_width: 1
+
+# Anchor and margin
+# anchor: center # One of center, left, right, top, bottom, bottom-left, top-left, etc.
+menu:
+  - key: "."
+    desc: "previous"
+    cmd: "niri-focus previous"
+
+  - key: "a"
+    desc: "applications"
+    submenu:
+      - key: "b"
+        desc: "bambu-studio"
+        cmd: "niri-focus bambustudio"
+
+      - key: "c"
+        desc: "calculator"
+        cmd: "focus calculator"
+
+      - key: "f"
+        desc: "freecad"
+        cmd: "niri-focus freecad"
+
+      - key: "g"
+        desc: "gedit"
+        cmd: "niri-focus gedit"
+
+      - key: "i"
+        desc: "iwgtk"
+        cmd: "iwgtk"
+
+      - key: "p"
+        desc: "prusa slicer"
+        cmd: "niri-focus prusaslicer"
+
+      - key: "v"
+        desc: "vial"
+        cmd: "niri-focus vial"
+
+  - key: "b"
+    desc: "browser"
+    cmd: "niri-focus browser"
+
+  - key: "c"
+    desc: "calendar"
+    cmd: "niri-focus calendar"
+
+  - key: "e"
+    desc: "email"
+    cmd: "niri-focus email"
+
+  - key: "E"
+    desc: "emoji"
+    cmd: "rofimoji --skin-tone light --action copy --selector wofi"
+
+  - key: "F"
+    desc: "fuzzball"
+    cmd: "fuzz-script-choose"
+
+  - key: "i"
+    desc: "IDE (VS Code)"
+    cmd: "niri-focus vscode"
+
+  - key: "j"
+    desc: "journal"
+    submenu:
+      - key: "j"
+        desc: "append to personal daily notes"
+        cmd: "~/bin/journal-append-prompt ~/git.peterlyons.com/exocortex/personal"
+
+  - key: "m"
+    desc: "music"
+    cmd: "niri-focus music"
+
+  - key: "n"
+    desc: "niri"
+    submenu:
+      - key: "b"
+        desc: "toggle sidebar"
+        cmd: "~/bin/eww-toggle sidebar"
+
+      - key: "h"
+        desc: "move left"
+        cmd: "niri-move-previous move-column-left"
+
+      - key: "j"
+        desc: "move down"
+        cmd: "niri-move-previous move-window-to-workspace-down"
+
+      - key: "k"
+        desc: "move up"
+        cmd: "niri-move-previous move-window-to-workspace-up"
+
+      - key: "K"
+        desc: "show keybindings"
+        cmd: "niri msg action show-hotkey-overlay"
+
+      - key: "l"
+        desc: "move right"
+        cmd: "niri-move-previous move-column-right"
+
+      - key: "m"
+        desc: "monitor right"
+        cmd: "niri msg action move-window-to-monitor-right"
+
+      - key: "M"
+        desc: "monitor left"
+        cmd: "niri msg action move-window-to-monitor-left"
+
+      - key: "s"
+        desc: "side by side"
+        cmd: "~/bin/niri-side-by-side"
+
+      - key: "q"
+        desc: "quit"
+        cmd: "niri msg action quit"
+
+  - key: "o"
+    desc: "obsidian"
+    cmd: "niri-focus obsidian"
+
+  - key: "p"
+    desc: "1password"
+    cmd: "niri-focus 1password"
+
+  - key: "r"
+    desc: "run (ulauncher)"
+    cmd: "ulauncher-toggle"
+
+  - key: "s"
+    desc: "slack"
+    cmd: "niri-focus slack"
+
+  - key: "t"
+    desc: "terminal"
+    cmd: "niri-focus terminal"
+
+  - key: "T"
+    desc: "trello"
+    cmd: "niri-focus trello"
+
+  - key: "u"
+    desc: "umusic"
+    submenu:
+      - key: "t"
+        desc: "toggle"
+        cmd: "mpc toggle"
+
+      - key: "a"
+        desc: "ario"
+        cmd: "niri-focus ario"
+
+      - key: "p"
+        desc: "play"
+        cmd: "mpc play"
+
+      - key: "u"
+        desc: "pause"
+        cmd: "mpc pause"
+
+  - key: "v"
+    desc: "volume"
+    submenu:
+      - key: "0"
+        desc: "zero"
+        cmd: "volume 0"
+
+      - key: "1"
+        desc: "10%"
+        cmd: "volume 10%"
+
+      - key: "2"
+        desc: "20%"
+        cmd: "volume 20%"
+
+      - key: "3"
+        desc: "30%"
+        cmd: "volume 30%"
+
+      - key: ["4", "f"]
+        desc: "40%"
+        cmd: "volume 40%"
+
+      - key: "5"
+        desc: "50%"
+        cmd: "volume 50%"
+
+      - key: ["6", "s"]
+        desc: "60%"
+        cmd: "volume 60%"
+
+      - key: "7"
+        desc: "70%"
+        cmd: "volume 70%"
+
+      - key: ["8", "e"]
+        desc: "80%"
+        cmd: "volume 80%"
+
+      - key: ["9", "n"]
+        desc: "90%"
+        cmd: "volume 90%"
+
+      - key: ["h", "o"]
+        desc: "100%"
+        cmd: "volume 100%"
+
+      - key: "d"
+        desc: "down"
+        cmd: "volume -10%"
+
+      - key: "u"
+        desc: "up"
+        cmd: "volume +10%"
+
+      - key: "a"
+        desc: "adjust"
+        cmd: "/home/plyons/fuzzball/volume-adjust"
+
+      - key: "m"
+        desc: "mute"
+        cmd: "volume mute"
+
+      - key: "t"
+        desc: "toggle-mute"
+        cmd: "volume-toggle-mute"
+
+  - key: "w"
+    desc: "windows"
+    cmd: "niri-focus-window-fuzzy"
+
+  - key: "x"
+    desc: "exec fuzzy (wofi)"
+    cmd: "wofi --matching=fuzzy --insensitive --show=drun,run"
+
+  - key: "z"
+    desc: "zed"
+    cmd: "niri-focus zed"

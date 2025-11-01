@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
+
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -o errexit  # always exit on error
+set -o errtrace # trap errors in functions as well
+set -o pipefail # don't ignore exit codes when piping output
+# set -x          # enable debugging
+
+IFS=$'\n\t'
+# ---- End unofficial bash strict mode boilerplate
+
+usage() {
+  echo "usage: $0 {playlist|album} URL"
+  exit 1
+}
+
+main() {
+  cd ~/music/youtube-music || exit 2
+  # Here's our default arguments we intend
+  # to pass to yt-dlp
+  declare -a opts=(
+    --no-progress
+    --extract-audio
+    --audio-quality 0
+    --audio-format mp3
+    --format bestaudio
+    --add-metadata
+    --embed-metadata
+    --no-warnings
+    --concurrent-fragments 3
+    --cookies-from-browser "firefox::Music"
+    --restrict-filenames
+  )
+  if [[ -z "${DEBUG}" ]]; then
+    opts=("${opts[@]}" --quiet)
+  fi
+
+  local url="$1"
+  if [[ "$url" =~ list=OLAK5uy_ ]]; then
+    # album mode
+    output="%(artist)s/%(album)s/%(playlist_index,track_number)03d-%(title)s.%(ext)s"
+  else
+    # playlist mode
+    output="%(playlist_title)s/%(playlist_index,track_number)03d-%(title)s.%(ext)s"
+  fi
+  opts=("${opts[@]}" --output "${output}")
+
+  yt-dlp "${opts[@]}" "$@"
+  ~/bin/notify "music downloaded"
+}
+
+main "$@"

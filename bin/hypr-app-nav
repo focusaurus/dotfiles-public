@@ -46,7 +46,7 @@ nav_vs_code() {
 }
 
 shift_space() {
-  wtype -M shift -k space -m shift "$@"
+  wtype -d 50 -M shift -k space -m shift "$@"
 }
 
 nav_ghostty() {
@@ -69,16 +69,18 @@ nav_ghostty() {
 nav_kitty() {
   case "$1" in
   left)
-    xdotool key --clearmodifiers 'ctrl+shift+Left'
+    shift_space -k p
     ;;
   up)
-    xdotool key --clearmodifiers 'ctrl+shift+bracketright'
+    shift_space -k period
+    # xdotool key --clearmodifiers 'ctrl+shift+bracketright'
     ;;
   right)
-    xdotool key --clearmodifiers 'ctrl+shift+Right'
+    shift_space -k n
     ;;
   down)
-    xdotool key --clearmodifiers 'ctrl+shift+bracketright'
+    shift_space -k period
+    # xdotool key --clearmodifiers 'ctrl+shift+bracketright'
     ;;
   esac
 }
@@ -87,7 +89,9 @@ main() {
   ~/bin/log "$0" "$@"
   export PATH=/usr/local/bin:$PATH
   direction="$1"
-  app=$(niri msg --json focused-window | jq --raw-output '.app_id')
+  app=$(hyprctl activewindow -j | jq --raw-output '.class')
+  # sleep is necessary to work well under hyprland
+  sleep 0.08
   case "${app}" in
   *firefox* | *chrome* | *obsidian*)
     nav_browser "${direction}"
@@ -97,9 +101,6 @@ main() {
     ;;
   com.mitchellh.ghostty)
     nav_ghostty "${direction}"
-    ;;
-  *termite* | *iTerm2* | *Terminal*)
-    ~/bin/nav-tmux "${direction}"
     ;;
   code-oss)
     nav_vs_code "${direction}"

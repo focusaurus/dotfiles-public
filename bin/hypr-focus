@@ -1,0 +1,187 @@
+#!/usr/bin/env bash
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.ml
+#
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+# set -o errexit # always exit on error
+# set -o errtrace # trap errors in functions as well
+# set -o pipefail # don't ignore exit codes when piping output
+# set -u # error on reference to unknown variable
+# # set -x # enable debugging
+#
+# IFS=$'\n\t'
+# ---- End unofficial bash strict mode boilerplate
+#
+find_workspace() {
+  filter="$1"
+  id=$(hyprctl clients -j |
+    jq --raw-output "[.[] | select(${filter})][0] .workspace.id // \"\"")
+  if [[ -n "${id}" ]]; then
+    hyprctl dispatch workspace "${id}"
+    return 0
+  fi
+  return 1
+}
+
+find_window() {
+  filter="$1"
+  address=$(hyprctl clients -j |
+    jq --raw-output "[.[] | select(${filter})][0] .address // \"\"")
+  if [[ -n "${address}" ]]; then
+    ~/bin/log $0 "find_window ${address}"
+    hyprctl dispatch focuswindow "address:${address}"
+    return 0
+  fi
+  ~/bin/log $0 "find_window no match"
+  return 1
+}
+
+# find_previous() {
+#   filter=".focusHistoryID == 2"
+#   address=$(hyprctl clients -j |
+#     jq --raw-output "[.[] | select(${filter})][0] .address // \"\"")
+#   if [[ -n "${address}" ]]; then
+#     hyprctl dispatch focuswindow "address:${address}"
+#     return 0
+#   fi
+#   return 1
+# }
+if [ $# -eq 0 ]; then
+  echo "Usage: $0 <app_name>"
+  echo "Available apps: gofi"
+  exit 1
+fi
+
+focus_browser() {
+  filter='.class == "firefox" and (.title | startswith("main:"))'
+  if ! find_window "${filter}"; then
+    launch firefox
+  fi
+  find_window "${filter}"
+}
+
+hotkey_alt() {
+  wtype -d 10 -M alt -k "$1" -m alt
+}
+
+launch() {
+  nohup "$@" &>/dev/null &
+}
+
+# launchx() {
+#   cd /tmp || exit
+#   display=$(hyprctl clients -j |
+#     jq --raw-output '[.[] | select(.class == "Xwayland")] | .[].title' |
+#     sort |
+#     tail -1 |
+#     cut -d : -f 2)
+#   if [[ -z "${display}" ]]; then
+#     display=0
+#   fi
+#   display=$((display + 1))
+#   nohup Xwayland -geometry "$(wlr-randr | grep preferred | awk '{print $1}')" ":${display}" &
+#   DISPLAY=":${display}" nohup "$@" &>/dev/null &
+# }
+#
+main() {
+  ~/bin/log $0 "$@"
+  local APP_NAME="$1"
+  case "$APP_NAME" in
+  zenbrowser)
+    find_window '.class == "zen"' || launch zen-browser
+    ;;
+  ario)
+    find_window '.class == "ario"' || launch ario
+    ;;
+  1password)
+    find_window '.class == "1Password"' || launch 1password
+    ;;
+  calculator)
+    find_window '.class == "mate-calc"' || launch mate-calc
+    ;;
+  gofi)
+    find_window '.title == "gofi"' || launch ~/bin/gofi-ghostty
+    ;;
+  gofiout)
+    find_window '.focusHistoryID == 1' || ~/bin/notify "previous window not found"
+    ;;
+  # crealityprint)
+  #   find_window '.title == "crealityprint"' || launch /opt/creality-print/CrealityPrint
+  #   ;;
+  vial)
+    find_window '.class == "Vial"' || launch Vial
+    ;;
+  crealityprint)
+    find_window '.class == "Creality Print"' || launch /opt/creality-print/CrealityPrint
+    ;;
+  freecad)
+    find_window '.class == "org.freecad.FreeCAD"' || launch freecad
+    ;;
+  kicad)
+    find_window '.class == "kicad"' || launch kicad
+    ;;
+  prusaslicer)
+    find_window '.class == "PrusaSlicer"' || launch prusa-slicer
+    ;;
+  bambustudio)
+    find_window '.class == "BambuStudio"' || launch bambu-studio
+    ;;
+  browser | firefox)
+    focus_browser
+    ;;
+  calendar)
+    filter='.class == "firefox" and (.title | startswith("calendar:"))'
+    find_window "${filter}" || focus_browser
+    ;;
+  trello)
+    filter='.class == "firefox" and (.title | startswith("trello:"))'
+    find_window "${filter}" || focus_browser
+    ;;
+  email)
+    focus_browser
+    hotkey_alt 1
+    ;;
+  ghostty)
+    find_window '.class == "com.mitchellh.ghostty" and .title != "gofi"' || launch ghostty
+    ;;
+  terminal | kitty)
+    find_window '.class == "kitty" and .title != "gofi"' || launch kitty
+    ;;
+  music)
+    filter='.class == "firefox" and (.title | startswith("music:"))'
+    find_window "${filter}" || focus_browser
+    ;;
+  obsidian)
+    find_window '.class == "obsidian"' || obsidian --enable-features=UseOzonePlatform --ozone-platform=wayland
+    ;;
+  obsidianpersonal)
+    find_window '.class == "obsidian" and (.title | contains("personal"))' || obsidian --enable-features=UseOzonePlatform --ozone-platform=wayland
+    ;;
+  obsidianfrc)
+    find_window '.class == "obsidian" and (.title | contains("focus-retreat-centeR"))' || obsidian --enable-features=UseOzonePlatform --ozone-platform=wayland
+    ;;
+  gedit)
+    find_window '.class == "org.gnome.gedit"' || gedit
+    ;;
+  previous)
+    find_window '.focusHistoryID == 2' || ~/bin/notify "previous window not found"
+    ;;
+  slack)
+    find_window '.class == "Slack"' || launch slack
+    ;;
+  vscode)
+    find_window '.class == "code-oss"' || launch code
+    ;;
+  localsend)
+    find_window '.class == "localsend"' || launch localsend
+    ;;
+  *)
+    echo "Unknown app: $APP_NAME"
+    echo "Available apps: gofi"
+    exit 1
+    ;;
+  esac
+}
+
+main "$@"

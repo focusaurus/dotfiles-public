@@ -142,6 +142,9 @@ ColorSchemeHash=9f63c7711a13123582e720791ea0f8c0172977d2
 TerminalApplication=ghostty
 TerminalService=com.mitchellh.ghostty.desktop
 
+[KDE]
+AnimationDurationFactor=0.125
+
 [KFileDialog Settings]
 Allow Expansion=false
 Automatically select filename extension=true

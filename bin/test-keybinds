@@ -13,5 +13,5 @@ set -u # error on reference to unknown variable
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
-cd "$(dirname "${BASH_SOURCE[0]}")"
-find . -name '*.tpl' | entr -c ./render.sh
+log=/tmp/test-keybinds.log
+echo "test-keybinds running at $(date): $@" >>"${log}"

@@ -5,17 +5,14 @@
   // "width": 50, // Waybar width
   "spacing": 4, // Gaps between modules (4px)
   // Choose the order of the modules
-  "modules-left": [
-    "niri/workspaces",
-    "niri/window",
-    "custom/media"
-  ],
-  "modules-center": [],
+  "modules-left": ["hyprland/workspaces"],
+  "modules-center": ["hyprland/window"],
   "modules-right": [
-    "mpd",
+    // "mpd",
     "pulseaudio",
     "custom/batteries",
     "clock",
+  "network",
     "tray",
     "custom/power"
   ],
@@ -92,20 +89,20 @@
   },
   "network": {
     // "interface": "wlp2*", // (Optional) To force the use of this interface
-    "format-wifi": "{essid} ({signalStrength}%) ",
+    "format-wifi": "  ({signalStrength}%)",
     "format-ethernet": "{ipaddr}/{cidr} ",
     "tooltip-format": "{ifname} via {gwaddr} ",
     "format-linked": "{ifname} (No IP) ",
     "format-disconnected": "Disconnected ⚠",
-    "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    "format-alt": "{essid} {ifname}: {ipaddr}/{cidr}"
   },
   "pulseaudio": {
     // "scroll-step": 1, // %, can be a float
-    "format": "{volume}% {icon} {format_source}",
+    "format": "{icon}  {volume}%  {format_source}",
     "format-bluetooth": "{volume}% {icon} {format_source}",
     "format-bluetooth-muted": " {icon} {format_source}",
     "format-muted": " {format_source}",
-    "format-source": "{volume}% ",
+    "format-source": " {volume}%",
     "format-source-muted": "",
     "format-icons": {
       "headphone": "",
@@ -125,7 +122,7 @@
   "custom/media": {
     "format": "{icon} {text}",
     "return-type": "json",
-    "max-length": 40,
+    "max-length": 20,
     "format-icons": {
       "spotify": "",
       "default": "🎜"
@@ -149,5 +146,10 @@
   "custom/batteries": {
     "exec": "$HOME/bin/widgets/battery",
     "interval": 60
+  },
+  "hyprland/window": {
+    "format": "{title}",
+    "max-length": 50,
+    "tooltip": false
   }
 }
