@@ -25,7 +25,8 @@ main() {
     --no-progress
     --extract-audio
     --audio-quality 0
-    --audio-format mp3
+    # mp3 is often not available
+    # --audio-format mp3
     --format bestaudio
     --add-metadata
     --embed-metadata
