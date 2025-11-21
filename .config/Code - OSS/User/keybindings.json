@@ -15,5 +15,15 @@
     {
         "key": "ctrl+shift+p",
         "command": "-workbench.action.showCommands"
+    },
+    {
+        "key": "ctrl+shift+d",
+        "command": "editor.action.deleteLines",
+        "when": "textInputFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+shift+k",
+        "command": "-editor.action.deleteLines",
+        "when": "textInputFocus && !editorReadonly"
     }
 ]

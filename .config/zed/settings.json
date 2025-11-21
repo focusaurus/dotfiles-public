@@ -1,11 +1,3 @@
-// Zed settings
-//
-// For information on how to configure Zed, see the Zed
-// documentation: https://zed.dev/docs/configuring-zed
-//
-// To see all of Zed's default settings without changing your
-// custom settings, run `zed: open default settings` from the
-// command palette (cmd-shift-p / ctrl-shift-p)
 {
   "completions": {
     "lsp": false
@@ -25,6 +17,7 @@
   "show_completions_on_input": true,
   "use_auto_surround": false,
   "use_autoclose": false,
+  "format_on_save": "off",
   "agent": {
     "always_allow_tool_actions": true,
     "default_model": {
@@ -35,8 +28,8 @@
   },
   "autosave": "on_window_change",
   "telemetry": {
-    "diagnostics": false,
-    "metrics": false
+    "diagnostics": true,
+    "metrics": true
   },
   "formatter": null,
   "vim_mode": true,

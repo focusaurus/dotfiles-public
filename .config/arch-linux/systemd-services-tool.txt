@@ -11,9 +11,6 @@ iwd.service
 keyd.service
 machines.target
 ntpd.service
-nvidia-hibernate.service
-nvidia-resume.service
-nvidia-suspend.service
 reboot.target
 remote-cryptsetup.target
 remote-fs.target

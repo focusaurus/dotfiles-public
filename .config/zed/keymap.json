@@ -1,17 +1,4 @@
-// Zed keymap
-//
-// For information on binding keys, see the Zed
-// documentation: https://zed.dev/docs/key-bindings
-//
-// To see the default key bindings run `zed: open default keymap`
-// from the command palette.
 [
-  {
-    "context": "Workspace",
-    "bindings": {
-      // "shift shift": "file_finder::Toggle"
-    }
-  },
   {
     "context": "Editor && !showing_completions",
     "bindings": {
@@ -55,6 +42,18 @@
     "context": "Pane",
     "bindings": {
       "shift-space w c": "workspace::CloseAllItemsAndPanes"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+       "ctrl+c": "editor::Copy"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == visual",
+    "bindings": {
+       "ctrl+c": "editor::Copy"
     }
   }
 ]

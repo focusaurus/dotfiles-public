@@ -58,8 +58,8 @@ layout {
 
 // eww widgets & sidebar
 spawn-at-startup "eww" "daemon"
-spawn-at-startup "eww" "--config" ".config/eww/niri" "open" "sidebar"
-spawn-at-startup "/home/plyons/.config/eww/niri/watch.sh"
+spawn-at-startup "eww" "open" "sidebar"
+spawn-at-startup "/home/plyons/.config/eww/watch.sh"
 
 spawn-at-startup "niriswitcher"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
