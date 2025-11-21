@@ -1,0 +1,60 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      // "shift shift": "file_finder::Toggle"
+    }
+  },
+  {
+    "context": "Editor && !showing_completions",
+    "bindings": {
+      "ctrl-t": "editor::ShowCompletions",
+      // "enter": "editor::Newline"
+      "shift-space e f": "editor::Format"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      // "j k": "vim::NormalBefore"
+      "ctrl-t": "editor::ShowCompletions"
+    }
+  },
+  {
+    "bindings": {
+      "cmd-shift-o": "workspace::Open"
+    }
+  },
+  {
+    "bindings": {
+      "cmd-o": "file_finder::Toggle"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-p": "command_palette::Toggle"
+    }
+  },
+  {
+    "context": "Editor && showing_completions",
+    "bindings": {
+      "tab": "editor::ConfirmCompletion",
+      "shift-enter": "editor::ConfirmCompletion",
+      "enter": "editor::Newline"
+    }
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "shift-space w c": "workspace::CloseAllItemsAndPanes"
+    }
+  }
+]

@@ -7,14 +7,33 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "completions": {
+    "lsp": false
+  },
+  "inlay_hints": {
+    "show_value_hints": false
+  },
+  "edit_predictions": {
+    "mode": "subtle"
+  },
+  "show_edit_predictions": false,
+  "show_whitespaces": "boundary",
+  "format_on_save": "off",
+  "jsx_tag_auto_close": {
+    "enabled": false
+  },
+  "show_completions_on_input": true,
+  "use_auto_surround": false,
+  "use_autoclose": false,
   "agent": {
+    "always_allow_tool_actions": true,
     "default_model": {
       "provider": "anthropic",
       "model": "claude-sonnet-4-5-latest"
     },
     "model_parameters": []
   },
-  "autosave": "off",
+  "autosave": "on_window_change",
   "telemetry": {
     "diagnostics": false,
     "metrics": false
@@ -25,12 +44,19 @@
   "buffer_font_size": 14,
   "languages": {
     "Go": {
-      "tab_size": 2
+      "tab_size": 2,
+      "format_on_save": "on"
+    },
+    "JavaScript": {
+      "format_on_save": "off"
+    },
+    "TypeScript": {
+      "format_on_save": "off"
     }
   },
   "theme": {
     "mode": "system",
-    "light": "One Light",
+    "light": "Catppuccin Latte",
     "dark": "One Dark"
   }
 }
