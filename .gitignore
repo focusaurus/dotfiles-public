@@ -353,3 +353,4 @@ f25
 .zen/Crash Reports
 .config/.mozilla/zen/Crash Reports
 .config/zed/conversations
+.config/github-copilot/apps.json

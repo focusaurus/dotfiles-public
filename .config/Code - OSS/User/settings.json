@@ -82,5 +82,7 @@
 
     },
     "workbench.startupEditor": "none",
-    "editor.fontFamily": "'Hack Nerd Font Mono','Menlo','Monaco','Courier New','monospace','Apple Color Emoji'"
+    "editor.fontFamily": "'Hack Nerd Font Mono','Menlo','Monaco','Courier New','monospace','Apple Color Emoji'",
+    "editor.guides.highlightActiveBracketPair": false,
+    "editor.matchBrackets": "never"
 }
