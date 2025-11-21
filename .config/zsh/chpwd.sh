@@ -9,6 +9,10 @@ chpwd-path() {
 #source "$(dirname "${(%):-%N}")/node.sh"
 chpwd-nvm() {
   if [[ -f ".nvmrc" ]]; then
+    if ! which nvm &>/dev/null; then
+      #chpwd.sh loading before node.sh loads. No-op for now.
+      return
+    fi
     nvm use
     # nvm use --silent >/dev/null
   fi
