@@ -10,7 +10,6 @@
   },
   "show_edit_predictions": false,
   "show_whitespaces": "boundary",
-  "format_on_save": "off",
   "jsx_tag_auto_close": {
     "enabled": false
   },
