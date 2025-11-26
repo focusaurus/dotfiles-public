@@ -144,7 +144,7 @@ serve-dir() {
 tstmp() {
   local DIR
   DIR="/tmp/$(timestamp)"
-  mkdir -p "${DIR}/node_modules"
+  # mkdir -p "${DIR}/node_modules"
   cd "${DIR}" || return 1
 }
 

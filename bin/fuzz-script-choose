@@ -38,7 +38,8 @@ hist_path="${task_dir}/.history"
 # linux: rofi
 chooser=(rofi -dmenu -p task -theme /usr/share/rofi/themes/fancy.rasi -pid "/run/user/$(id -u)/fuzz-script-choose.pid")
 if [[ "${XDG_SESSION_TYPE}" == "wayland" ]]; then
-  chooser=(wofi --dmenu)
+  # chooser=(wofi --dmenu)
+  chooser=(fuzzel --dmenu)
 fi
 if [[ $(uname) == "Darwin" ]]; then
   # macos: choose
