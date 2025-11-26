@@ -105,6 +105,7 @@ local menuNameMain = "Main"
 local menuNameFloatHealth = "Float Health"
 local i = {}
 a(i, { cons.cat.action, noMod, "i", "iOS Simulator", { { cons.act.launcher, "Simulator" } } })
+a(i, { cons.cat.action, noMod, "v", "VS Code", { { cons.act.launcher, "Visual Studio Code" } } })
 a(i, { cons.cat.action, noMod, "l", "Leapp", { { cons.act.launcher, "Leapp" } } })
 a(i, { cons.cat.action, noMod, "y", "Playwright (Chromium)", { { cons.act.launcher, "Chromium" } } })
 a(i, { cons.cat.action, noMod, "z", "zed", { { cons.act.launcher, "Zed" } } })
@@ -212,7 +213,8 @@ a(i, { cons.cat.action, noMod, "t", "terminal", { { cons.act.func, focus.termina
 a(i, { cons.cat.submenu, noMod, "u", menuNameMusic, { { cons.act.menu, menuNameMusic } } })
 a(i, { cons.cat.submenu, noMod, "v", menuNameVolume, { { cons.act.menu, menuNameVolume } } })
 a(i, { cons.cat.action, noMod, "w", "Windows", { { cons.act.func, focus.showWindowChooser } } })
-a(i, { cons.cat.submenu, noMod, "z", menuNamePersonal, { { cons.act.menu, menuNamePersonal } } })
+-- a(i, { cons.cat.submenu, noMod, "z", menuNamePersonal, { { cons.act.menu, menuNamePersonal } } })
+a(i, { cons.cat.action, noMod, "z", "Zed", { { cons.act.launcher, "Zed" } } })
 a(i, { cons.cat.submenu, "shift", "/", menuNameHelp, { { cons.act.menu, menuNameHelp } } })
 a(i, { cons.cat.action, noMod, ".", "Previous", { { cons.act.func, focus.previousApp } } })
 a(i, { cons.cat.action, noMod, ",", "Window A", { { cons.act.func, focus.windowA } } })

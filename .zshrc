@@ -12,6 +12,8 @@ if [[ ! -e "${BREW_PREFIX}" && -e "/usr/local" ]]; then
 fi
 # put this early to make sure compinit is run
 source-if-exists ~/.config/zsh/zsh.sh
+# put this early to make sure nvm function is defined before chpwd-nvm runs
+source-if-exists ~/.config/zsh/node.sh
 source-if-exists ~/.config/zsh/*.sh
 # There's an ordering issue with the glob, so source
 # this manually last
