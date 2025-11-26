@@ -68,6 +68,7 @@ spawn-at-startup "iwgtk" "-i"
 spawn-at-startup "gnome-keyring-daemon" "--start" "--components=secrets"
 spawn-at-startup "dbus-update-activation-environment" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"
 spawn-at-startup "swayidle" "-w" "timeout" "300" "niri msg action power-off-monitors"
+spawn-at-startup "vicinae" "server"
 
 binds {
     Mod+Shift+X { quit; }
@@ -143,14 +144,34 @@ binds {
     MouseBack { spawn "wtype" "-k" "page_down"; }
 }
 
-window-rule {
-  match title="gofi"
-  default-column-width { proportion 0.33; }
-}
+// window-rule {
+//   match title="gofi"
+//   default-column-width { proportion 0.33; }
+// }
 
 window-rule {
   match app-id="yad"
   open-floating true
+}
+
+window-rule {
+    match app-id="firefox" title="calendar:"
+    open-on-workspace "2"
+}
+
+window-rule {
+    match app-id="firefox" title="music:"
+    open-on-workspace "2"
+}
+
+window-rule {
+    match app-id="firefox" title="trello:"
+    open-on-workspace "2"
+}
+
+window-rule {
+    match app-id="ario"
+    open-on-workspace "2"
 }
 
 window-rule {
