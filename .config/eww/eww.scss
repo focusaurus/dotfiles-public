@@ -14,10 +14,20 @@
   background-color: lighten(#3d95d6, 10%);
   border-radius: 4px;
   padding: 2px 6px;
-  margin-top: 5px;
+  margin-top: 2px;
 }
 
 .window-active > label {
   background-color: lighten(#3d95d6, 30%);
   color: #0a1122;
+}
+
+.workspace-separator {
+  min-height: 1px;
+  background-color: #0a1122;
+  margin: 2px 0 2px 0;
+}
+
+.window-wrapper {
+  margin-bottom: 0;
 }

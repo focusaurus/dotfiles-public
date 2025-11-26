@@ -23,7 +23,7 @@ handle() {
     echo "Workspace event: $event_type"
     eww update "workspaces=$(./workspaces.sh)"
     ;;
-  WindowsChanged|WindowOpenedOrChanged|WindowClosed|WindowFocusChanged)
+  WindowsChanged|WindowOpenedOrChanged|WindowClosed|WindowFocusChanged|WindowLayoutsChanged)
     echo "Window event: $event_type"
     eww update "clients=$(./windows.sh)"
     ;;
