@@ -39,6 +39,11 @@ menu:
         desc: "prusa slicer"
         cmd: "niri-focus prusaslicer"
 
+      - key: "C"
+        desc: "creality print"
+        cmd: "niri-focus crealityprint"
+
+
       - key: "v"
         desc: "vial"
         cmd: "niri-focus vial"
@@ -81,6 +86,10 @@ menu:
   - key: "n"
     desc: "niri"
     submenu:
+      - key: "a"
+        desc: "arandr"
+        cmd: "arandr"
+
       - key: "b"
         desc: "toggle sidebar"
         cmd: "~/bin/eww-toggle sidebar"
@@ -129,9 +138,13 @@ menu:
     desc: "1password"
     cmd: "niri-focus 1password"
 
+  # - key: "r"
+  #   desc: "run (ulauncher)"
+  #   cmd: "ulauncher-toggle"
+  #
   - key: "r"
-    desc: "run (ulauncher)"
-    cmd: "ulauncher-toggle"
+    desc: "run (fuzzel)"
+    cmd: "fuzzel"
 
   - key: "s"
     desc: "slack"
@@ -150,7 +163,7 @@ menu:
     submenu:
       - key: "t"
         desc: "toggle"
-        cmd: "mpc toggle"
+        cmd: "mpc toggle;playerctl play-pause"
 
       - key: "a"
         desc: "ario"
@@ -158,11 +171,12 @@ menu:
 
       - key: "p"
         desc: "play"
-        cmd: "mpc play"
+        # cmd: "mpc play"
+        cmd: "mpc play;playerctl play"
 
       - key: "u"
         desc: "pause"
-        cmd: "mpc pause"
+        cmd: "mpc pause;playerctl pause"
 
   - key: "v"
     desc: "volume"
@@ -230,6 +244,10 @@ menu:
       - key: "t"
         desc: "toggle-mute"
         cmd: "volume-toggle-mute"
+
+  - key: "V"
+    desc: "vicinae launcher"
+    cmd: "vicinae toggle"
 
   - key: "w"
     desc: "windows"

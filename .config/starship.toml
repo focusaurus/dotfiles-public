@@ -4,6 +4,7 @@ $git_branch\
 $git_commit\
 $git_state\
 $git_status\
+$shlvl\
 $env_var\
 $line_break\
 $jobs\
@@ -27,6 +28,11 @@ $character"""
 # symbol = '🏠'
 format = 'GIT_DIR=$env_value'
 # style = 'fg:grey'
+
+[shlvl]
+disabled = false
+format = 'SHLVL=$shlvl'
+threshold = 3
 
 [custom.ssh_agent]
 command = 'if ssh-add -l >/dev/null; then echo ssh-agent; fi' # shows output of command

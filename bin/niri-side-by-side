@@ -13,28 +13,49 @@ set -u          # error on reference to unknown variable
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
-# get the position of the currently focused window
+# get the ID and position of the currently focused window (the original window we want to keep)
+original_window_id=$(niri msg --json focused-window | jq -r '.id')
 original_pos=$(niri msg --json focused-window | jq -r '.layout.pos_in_scrolling_layout[0]')
 
 # resize the currently focused window to 50% first
 niri msg action set-column-width "50%"
 
-# get the currently active workspace
-ws=$(niri msg --json workspaces | jq -r '.[] | select(.is_focused==true) | .id')
+# get the currently active workspace index
+ws=$(niri msg --json workspaces | jq -r '.[] | select(.is_focused==true) | .idx')
 selected=$(niri msg --json windows |
   jq -r '.[] | "\(.workspace_id):\(.id):\(.title):\(.app_id)"' |
   wofi --dmenu --insensitive --matching=fuzzy)
 if [[ -z "${selected}" ]]; then
   exit
 fi
-# focus the window we want to bring to the active workspace
-window_id=$(echo "$selected" | cut -d: -f2)
-niri msg action move-window-to-workspace --id "${ws}"
-niri msg action focus-window --id "${window_id}"
 
-# resize the newly moved window to 50% width
+# get the selected window's current position and workspace before moving it
+selected_window_id=$(echo "$selected" | cut -d: -f2)
+selected_info=$(niri msg --json windows | jq -r ".[] | select(.id==${selected_window_id}) | \"\(.workspace_id):\(.layout.pos_in_scrolling_layout[0])\"")
+selected_workspace_id=$(echo "$selected_info" | cut -d: -f1)
+selected_pos=$(echo "$selected_info" | cut -d: -f2)
+
+# get the workspace ID (not index) of the current workspace
+current_workspace_id=$(niri msg --json workspaces | jq -r '.[] | select(.is_focused==true) | .id')
+
+# move the selected window to the active workspace
+niri msg action move-window-to-workspace --window-id "${selected_window_id}" "${ws}"
+
+# focus the selected window and resize it to 50% width
+niri msg action focus-window --id "${selected_window_id}"
 niri msg action set-column-width "50%"
 
-# move the newly moved window to be adjacent to the original window
-target_pos=$((original_pos + 1))
+# calculate target position accounting for whether selected was left or right of original
+if [[ "${selected_workspace_id}" == "${current_workspace_id}" ]] && [[ "${selected_pos}" -lt "${original_pos}" ]]; then
+  # selected was to the left on same workspace, so original shifted left by 1
+  target_pos="${original_pos}"
+else
+  # selected was on different workspace or to the right, original didn't shift
+  target_pos=$((original_pos + 1))
+fi
+
+# move the selected window to the right of the original
 niri msg action move-column-to-index "${target_pos}"
+
+# focus back to the original window
+niri msg action focus-window --id "${original_window_id}"

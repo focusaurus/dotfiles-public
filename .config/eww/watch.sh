@@ -21,11 +21,11 @@ handle() {
   case $event_type in
   WorkspacesChanged|WorkspaceActivated|WorkspaceActiveWindowChanged)
     echo "Workspace event: $event_type"
-    eww --config ~/.config/eww/niri update "workspaces=$(./workspaces.sh)"
+    eww update "workspaces=$(./workspaces.sh)"
     ;;
-  WindowsChanged|WindowOpenedOrChanged|WindowClosed|WindowFocusChanged)
+  WindowsChanged|WindowOpenedOrChanged|WindowClosed|WindowFocusChanged|WindowLayoutsChanged)
     echo "Window event: $event_type"
-    eww --config ~/.config/eww/niri update "clients=$(./windows.sh)"
+    eww update "clients=$(./windows.sh)"
     ;;
   *)
     # Ignore other events
