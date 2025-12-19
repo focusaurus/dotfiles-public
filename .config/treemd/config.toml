@@ -1,0 +1,9 @@
+[ui]
+theme = "CatppuccinMocha"
+outline_width = 30
+
+[terminal]
+color_mode = "auto"
+warned_terminal_app = false
+
+[theme]

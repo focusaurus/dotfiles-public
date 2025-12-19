@@ -86,6 +86,10 @@ menu:
   - key: "n"
     desc: "niri"
     submenu:
+      - key: "a"
+        desc: "arandr"
+        cmd: "arandr"
+
       - key: "b"
         desc: "toggle sidebar"
         cmd: "~/bin/eww-toggle sidebar"

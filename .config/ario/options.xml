@@ -15,7 +15,7 @@
   <option key="disc_column_order">10</option>
   <option key="doubleclick_behavior">0</option>
   <option key="duration_column_order">6</option>
-  <option key="duration_column_size">1071</option>
+  <option key="duration_column_size">911</option>
   <option key="duration_column_visible">1</option>
   <option key="file_column_order">7</option>
   <option key="filesystem_hpaned_position">250</option>
@@ -27,7 +27,7 @@
   <option key="playlist-mode">normal</option>
   <option key="playlists_hpaned_position">250</option>
   <option key="show_tabs">1</option>
-  <option key="source">3</option>
+  <option key="source">4</option>
   <option key="sources-order">library,search,radios,storedplaylists,filesystem</option>
   <option key="title_column_order">3</option>
   <option key="title_column_size">200</option>
@@ -36,8 +36,8 @@
   <option key="track_column_size">50</option>
   <option key="track_column_visible">1</option>
   <option key="use_proxy">0</option>
-  <option key="vpaned_position">171</option>
-  <option key="window_height">1070</option>
+  <option key="vpaned_position">620</option>
+  <option key="window_height">1436</option>
   <option key="window_maximized">0</option>
-  <option key="window_width">1790</option>
+  <option key="window_width">1583</option>
 </ario-options>
