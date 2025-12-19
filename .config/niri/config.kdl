@@ -19,9 +19,17 @@ input {
     }
 }
 
-// output "DP-1" {
-//     scale 1.0
-// }
+// Configure external Dell monitor
+output "DP-3" {
+    mode "2560x1440@59.951"
+    position x=0 y=0
+}
+
+// Laptop display
+output "eDP-1" {
+    mode "1920x1080@60.012"
+    position x=2560 y=0
+}
 // layer-rule {
 //     match namespace="waybar"
 // }
@@ -67,7 +75,7 @@ spawn-at-startup "udiskie"
 spawn-at-startup "iwgtk" "-i"
 spawn-at-startup "gnome-keyring-daemon" "--start" "--components=secrets"
 spawn-at-startup "dbus-update-activation-environment" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"
-spawn-at-startup "swayidle" "-w" "timeout" "300" "niri msg action power-off-monitors"
+// spawn-at-startup "swayidle" "-w" "timeout" "300" "niri msg action power-off-monitors"
 spawn-at-startup "vicinae" "server"
 
 binds {
