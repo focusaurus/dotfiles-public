@@ -27,7 +27,7 @@ main() {
     --audio-quality 0
     # mp3 is often not available
     # --audio-format mp3
-    --format bestaudio
+    # --format bestaudio
     --add-metadata
     --embed-metadata
     --no-warnings
