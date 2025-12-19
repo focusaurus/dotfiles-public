@@ -85,5 +85,6 @@
     "editor.fontFamily": "'Hack Nerd Font Mono','Menlo','Monaco','Courier New','monospace','Apple Color Emoji'",
     "editor.guides.highlightActiveBracketPair": false,
     "editor.matchBrackets": "never",
-    "git.openRepositoryInParentFolders": "never"
+    "git.openRepositoryInParentFolders": "never",
+    "github.copilot.nextEditSuggestions.enabled": true
 }

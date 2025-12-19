@@ -1,4 +1,5 @@
 {
+  "extend_comment_on_newline": false,
   "completions": {
     "lsp": false
   },
@@ -18,6 +19,7 @@
   "use_autoclose": false,
   "format_on_save": "off",
   "agent": {
+    "default_profile": "ask",
     "always_allow_tool_actions": true,
     "default_model": {
       "provider": "anthropic",
