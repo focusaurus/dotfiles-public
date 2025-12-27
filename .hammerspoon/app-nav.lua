@@ -33,7 +33,8 @@ function module.down()
   local name = hs.application.frontmostApplication():name()
   log.d("app-nav down. app name: " .. name)
   if name == "kitty" then
-    hs.eventtap.keyStroke({ "command", "shift" }, "w")
+    hs.eventtap.keyStroke({ "shift", "control" }, "[")
+    -- hs.eventtap.keyStroke({ "command", "shift" }, "w")
   elseif name == "Google Chrome" or name == "Ghostty" then
     hs.eventtap.keyStroke({ "command" }, "`") -- backtick means tilde for this binding
   elseif name == "Firefox" or name == "Google Chrome" or name == "Code" or name == "TablePlus" or name == "Zen" then
@@ -60,7 +61,7 @@ function module.up()
   log.d("app-nav up. app name: " .. name)
   if name == "kitty" then
     -- focus.previousWindow()
-    hs.eventtap.keyStroke({ "shift", "control" }, "[")
+    hs.eventtap.keyStroke({ "shift", "control" }, "]")
   elseif name == "Ghostty" then
     -- for ghostty app-nav up means next split
     hs.eventtap.keyStroke({ "shift" },  "space" )
@@ -86,6 +87,8 @@ function module.right()
   elseif name == "kitty" then
     hs.eventtap.keyStroke({ "command" }, "t")
     hs.eventtap.keyStroke({}, "n")
+  elseif name == "Zen" then
+    hs.eventtap.keyStroke({ "control" }, "Tab")
   elseif name == "Code" then
     hs.eventtap.keyStroke({ "command", "shift" }, "]")
   elseif name == "TablePlus" then

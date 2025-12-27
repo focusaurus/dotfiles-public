@@ -13,13 +13,29 @@ set -u          # error on reference to unknown variable
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
-main() {
-  name="$1"
-  if eww active-windows | grep -q "${name}"; then
-    eww close "${name}"
-  else
-    eww open "${name}"
-  fi
-}
+# We have 2 tools that might apply:
+# playerctl if we are playing music in a browser
+# (typically youtube music in firefox)
+# mpc if we are playing with mpd (music player daemon)
+# Default to mpc because we prefer that. but
+cmd="mpc"
+toggle="toggle"
+if ! mpc |& grep playing; then
+cmd="playerctl"
+toggle="play-pause"
 
-main "$@"
+fi
+case "$1" in
+play)
+  "${cmd}" play
+  ;;
+pause)
+  "${cmd}" pause
+  ;;
+toggle)
+  "${cmd}" $"{toggle}"
+  ;;
+*)
+ echo "Usage: $0 {play|pause|toggle}" 
+ ;;
+esac

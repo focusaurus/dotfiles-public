@@ -44,4 +44,19 @@ niri msg -j windows | jq '
     else ""
     end;
 
-  sort_by(.workspace_id) | map(. + {emoji: get_emoji(.app_id; .title)})'
+  sort_by(.workspace_id, .layout.pos_in_scrolling_layout[0], .layout.pos_in_scrolling_layout[1]) |
+  map(. + {emoji: get_emoji(.app_id; .title)}) |
+  . as $windows |
+  to_entries |
+  map(
+    {
+      key: .key,
+      value: (.value + {
+        last_in_workspace: (
+          if (.key + 1) >= ($windows | length) then true
+          else .value.workspace_id != $windows[.key + 1].workspace_id
+          end
+        )
+      })
+    }.value
+  )'

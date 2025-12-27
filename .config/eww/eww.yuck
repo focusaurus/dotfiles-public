@@ -36,11 +36,13 @@
                       (label :text time :class "time"))))
 
 (defwidget window [client]
-  (box :orientation "v" :space-evenly false :spacing 0 :class "window-list" :halign "start"
+  (box :orientation "v" :space-evenly false :spacing 0 :class "window-wrapper" :halign "start"
     (button :onclick "niri msg action focus-window --id ${client.id}"
      :class "window-item ${client.is_focused ? 'window-active' : ''}"
      :tooltip "${client.app_id}"
-     (label :text "${client.emoji} ${client.title}"))))
+     (label :text "${client.emoji} ${client.title}"))
+    (box :visible "${client.last_in_workspace ?: false}"
+         :class "workspace-separator")))
 
 (defpoll time :interval "10s"
   "date '+%I:%M %p'")
@@ -49,7 +51,7 @@
   "date '+%a %b %d'")
 
 (defpoll clients :interval "5s"
-  "~/.config/eww/niri/windows.sh")
+  "~/.config/eww/windows.sh")
 
 (defpoll network_status :interval "5s"
   "~/bin/widgets/wifi")
@@ -64,4 +66,4 @@
   "~/bin/widgets/microphone")
 
 (defpoll workspaces :interval "5s"
-  "~/.config/eww/niri/workspaces.sh")
+  "~/.config/eww/workspaces.sh")

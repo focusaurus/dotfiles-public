@@ -67,7 +67,7 @@ ario)
   find_window '.app_id == "ario"' || launch ario
   ;;
 1password)
-  find_window '.app_id == "1Password"' || launch 1password
+  find_window '.app_id == "1password"' || launch 1password
   ;;
 calculator)
   find_window '.app_id == "mate-calc"' || launch mate-calc
@@ -96,6 +96,9 @@ vscode)
   ;;
 bambustudio)
   find_window '.app_id == "BambuStudio"' || launchx bambu-studio
+  ;;
+crealityprint)
+  find_window '.app_id == "Creality Print"' || launch /opt/creality-print/CrealityPrint
   ;;
 browser | firefox)
   focus_browser

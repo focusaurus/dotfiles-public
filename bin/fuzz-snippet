@@ -30,7 +30,8 @@ if [[ $(uname) == "Darwin" ]]; then
   # Sigh. Can't control environment PATH in alfred
   chooser=(/opt/homebrew/bin/choose -c highlight=111111)
 elif [[ "${XDG_SESSION_TYPE}" == "wayland" ]]; then
-  chooser=(wofi --dmenu --prompt snippet)
+  # chooser=(wofi --dmenu --prompt snippet)
+  chooser=(fuzzel --dmenu --prompt "snippet> ")
 else
   chooser=(rofi -dmenu -p snippet -theme sidebar)
 fi

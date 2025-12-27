@@ -31,13 +31,18 @@ out="${destdir}/${destfile}"
 tool=flameshot
 if [[ "${XDG_SESSION_TYPE}" == "wayland" ]]; then
   tool=grim
+  # tool=niri
 fi
 case "${tool}" in
+niri)
+  niri msg action screenshot-window
+  ;;
 grim)
   # slurp selects the screen area to capture
   # grim captures it
-  # swappy annotates and saves it
-  grim -g "$(slurp)" - | swappy --file - --output-file - > "${out}"
+  # satty annotates and saves it
+  # grim -g "$(slurp)" - | swappy --file - --output-file - > "${out}"
+  grim -g "$(slurp)" - | satty --filename - --output-filename - > "${out}"
   ;;
 hyprshot)
   hyprshot --mode region --output-folder "${destdir}" --filename "${destfile}" || true
