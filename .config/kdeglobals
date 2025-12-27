@@ -132,13 +132,8 @@ ForegroundNormal=35,38,41
 ForegroundPositive=39,174,96
 ForegroundVisited=155,89,182
 
-[DirSelect Dialog]
-DirSelectDialog Size=1784,1052
-History Items[$e]=file:$HOME/downloads
-Splitter State=\x00\x00\x00\xff\x00\x00\x00\x01\x00\x00\x00\x02\x00\x00\x00\x8c\x00\x00\x02\xa8\x00\xff\xff\xff\xff\x01\x00\x00\x00\x01\x00
-
 [General]
-ColorSchemeHash=0594cdbf8684a5ef175629572f86003b65badc3d
+ColorSchemeHash=9f63c7711a13123582e720791ea0f8c0172977d2
 TerminalApplication=ghostty
 TerminalService=com.mitchellh.ghostty.desktop
 
