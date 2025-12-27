@@ -89,6 +89,7 @@ spawn-at-startup "gnome-keyring-daemon" "--start" "--components=secrets"
 spawn-at-startup "dbus-update-activation-environment" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"
 // spawn-at-startup "swayidle" "-w" "timeout" "300" "niri msg action power-off-monitors"
 spawn-at-startup "vicinae" "server"
+spawn-at-startup "dunst"
 
 binds {
     Mod+Shift+X { quit; }
