@@ -1,17 +1,8 @@
-[Notification Messages]
-klipperClearHistoryAskAgain=false
-[PlasmaTransientsConfig]
-PreloadWeight=18
-popupHeight=400
-popupWidth=560
-[ActionsWidget]
-ColumnState=AAAA/wAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABkMAAAACAQAAAQAAAAAAAAAAAAAAAGT/////AAAAgQAAAAAAAAACAAAA+gAAAAEAAAAAAAAFSQAAAAEAAAAAAAAD6AAAAABkAAAAAAAAAAAAAAAAAAAAAQ==
-
-[ConfigDialog]
-1920x1080 screen: Window-Maximized=true
-
 [General]
 Number of Actions=0
+
+[Notification Messages]
+klipperClearHistoryAskAgain=false
 
 [PlasmaViews][Panel 2]
 floating=1

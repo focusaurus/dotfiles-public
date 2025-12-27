@@ -1,6 +1,5 @@
-[Adapters]
-48:A4:72:1A:53:FA_powered=true
-50:76:AF:BC:85:80_powered=true
-
 [Devices]
 connectedDevices=
+
+[General]
+bluetoothBlocked=true
