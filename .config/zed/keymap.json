@@ -16,11 +16,6 @@
   },
   {
     "bindings": {
-      "cmd-shift-o": "workspace::Open"
-    }
-  },
-  {
-    "bindings": {
       "cmd-o": "file_finder::Toggle"
     }
   },
@@ -54,6 +49,16 @@
     "context": "Editor && vim_mode == visual",
     "bindings": {
        "ctrl+c": "editor::Copy"
+    }
+  },
+  {
+    "bindings": {
+      "ctrl-o": null
+    }
+  },
+  {
+    "bindings": {
+      "ctrl-o": "workspace::Open"
     }
   }
 ]

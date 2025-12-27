@@ -5,6 +5,18 @@ environment {
   GDK_BACKEND "wayland"
 }
 
+prefer-no-csd
+
+animations {
+  off
+}
+
+overview {
+  zoom 0.3
+}
+
+screenshot-path "~/screens/screen-%Y-%m-%d-%H%M%S.png"
+
 input {
     keyboard {
         xkb {
@@ -186,14 +198,4 @@ window-rule {
   match app-id="sirula"
   min-height 800
   open-floating false
-}
-
-prefer-no-csd
-
-animations {
-  off
-}
-
-overview {
-  zoom 0.3
 }
