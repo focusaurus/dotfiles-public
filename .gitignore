@@ -358,3 +358,4 @@ f25
 .platformio
 .zen
 aur.archlinux.org/yay
+bin/arch-packages
