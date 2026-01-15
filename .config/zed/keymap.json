@@ -16,11 +16,6 @@
   },
   {
     "bindings": {
-      "cmd-shift-o": "workspace::Open"
-    }
-  },
-  {
-    "bindings": {
       "cmd-o": "file_finder::Toggle"
     }
   },
@@ -60,6 +55,11 @@
     "context": "(Editor && !edit_prediction)",
     "bindings": {
       "ctrl-t": "editor::ShowEditPrediction"
+    }
+  },
+  {
+    "bindings": {
+      "ctrl-o": null
     }
   }
 ]

@@ -357,3 +357,5 @@ f25
 .sqlite_history
 .platformio
 .zen
+aur.archlinux.org/yay
+bin/arch-packages

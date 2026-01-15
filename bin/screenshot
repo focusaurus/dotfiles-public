@@ -31,8 +31,12 @@ out="${destdir}/${destfile}"
 tool=flameshot
 if [[ "${XDG_SESSION_TYPE}" == "wayland" ]]; then
   tool=grim
+  # tool=niri
 fi
 case "${tool}" in
+niri)
+  niri msg action screenshot-window
+  ;;
 grim)
   # slurp selects the screen area to capture
   # grim captures it

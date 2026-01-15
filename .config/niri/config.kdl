@@ -5,6 +5,18 @@ environment {
   GDK_BACKEND "wayland"
 }
 
+prefer-no-csd
+
+animations {
+  off
+}
+
+overview {
+  zoom 0.3
+}
+
+screenshot-path "~/screens/screen-%Y-%m-%d-%H%M%S.png"
+
 input {
     keyboard {
         xkb {
@@ -75,8 +87,9 @@ spawn-at-startup "udiskie"
 spawn-at-startup "iwgtk" "-i"
 spawn-at-startup "gnome-keyring-daemon" "--start" "--components=secrets"
 spawn-at-startup "dbus-update-activation-environment" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"
-// spawn-at-startup "swayidle" "-w" "timeout" "300" "niri msg action power-off-monitors"
+spawn-at-startup "swayidle" "-w" "timeout" "1800" "niri msg action power-off-monitors" "resume" "niri msg action power-on-monitors"
 spawn-at-startup "vicinae" "server"
+spawn-at-startup "dunst"
 
 binds {
     Mod+Shift+X { quit; }
@@ -186,14 +199,4 @@ window-rule {
   match app-id="sirula"
   min-height 800
   open-floating false
-}
-
-prefer-no-csd
-
-animations {
-  off
-}
-
-overview {
-  zoom 0.3
 }
