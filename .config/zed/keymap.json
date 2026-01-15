@@ -55,5 +55,11 @@
     "bindings": {
        "ctrl+c": "editor::Copy"
     }
+  },
+  {
+    "context": "(Editor && !edit_prediction)",
+    "bindings": {
+      "ctrl-t": "editor::ShowEditPrediction"
+    }
   }
 ]
