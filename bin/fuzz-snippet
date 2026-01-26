@@ -21,7 +21,7 @@ list_snippets() {
     tail -100 "${hist_path}" | uniq | tail -5 | tac
     echo -----
   fi
-  find "${snippet_dir}" -type f -not -name '*-post.sh' -print0 |
+  find "${snippet_dir}" -type f -o -type l -not -name '*-post.sh' -print0 |
     xargs -0 -n 1 basename |
     sort
 }

@@ -68,6 +68,10 @@ menu:
     desc: "fuzzball"
     cmd: "fuzz-script-choose"
 
+  - key: "h"
+    desc: "hamr launcher"
+    cmd: "hamr toggle"
+
   - key: "i"
     desc: "IDE (VS Code)"
     cmd: "niri-focus vscode"
