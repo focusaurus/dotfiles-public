@@ -50,5 +50,10 @@
     "bindings": {
        "ctrl+c": "editor::Copy"
     }
+  },
+  {
+    "bindings": {
+      "shift-space p c": "editor::CopyRelativePath"
+    }
   }
 ]

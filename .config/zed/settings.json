@@ -21,7 +21,7 @@
   "agent": {
     "enable_feedback": false,
     "single_file_review": false,
-    "default_profile": "write",
+    "default_profile": "minimal",
     "always_allow_tool_actions": true,
     "default_model": {
       "provider": "anthropic",

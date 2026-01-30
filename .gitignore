@@ -358,4 +358,9 @@ f25
 .platformio
 .zen
 aur.archlinux.org/yay
-bin/arch-packages
+/bin/arch-packages
+/.dbvis
+/.openjfx
+/.claude.json.*
+.cagent/store
+.config/cagent
