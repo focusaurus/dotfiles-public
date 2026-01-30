@@ -362,5 +362,5 @@ aur.archlinux.org/yay
 /.dbvis
 /.openjfx
 /.claude.json.*
-.cagent/store
-.config/cagent
+/.cagent
+/.config
