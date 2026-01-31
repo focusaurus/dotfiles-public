@@ -35,6 +35,10 @@ menu:
         desc: "iwgtk"
         cmd: "iwgtk"
 
+      - key: "m"
+        desc: "musescore"
+        cmd: "niri-focus musescore"
+
       - key: "p"
         desc: "prusa slicer"
         cmd: "niri-focus prusaslicer"
