@@ -122,6 +122,10 @@ ghostty)
 terminal | kitty)
   find_window '.app_id == "kitty"' || launch kitty
   ;;
+musescore)
+  filter='.app_id == "MuseScore4"'
+  find_window "${filter}" || launch /opt/musescore-bin/musescore-bin.AppImage
+  ;;
 music)
   filter='.app_id == "firefox" and (.title | startswith("music:"))'
   find_window "${filter}" || focus_browser
