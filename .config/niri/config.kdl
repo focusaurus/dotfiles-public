@@ -89,6 +89,7 @@ spawn-at-startup "gnome-keyring-daemon" "--start" "--components=secrets"
 spawn-at-startup "dbus-update-activation-environment" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"
 spawn-at-startup "swayidle" "-w" "timeout" "1800" "niri msg action power-off-monitors" "resume" "niri msg action power-on-monitors"
 spawn-at-startup "vicinae" "server"
+spawn-at-startup "hamr"
 spawn-at-startup "dunst"
 
 binds {
@@ -199,4 +200,12 @@ window-rule {
   match app-id="sirula"
   min-height 800
   open-floating false
+}
+
+window-rule {
+    match title="Kando Menu"
+    open-floating true
+    focus-ring { off; }
+    border { off; }
+    shadow { off; }
 }
