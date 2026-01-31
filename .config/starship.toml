@@ -32,7 +32,7 @@ format = 'GIT_DIR=$env_value'
 [shlvl]
 disabled = false
 format = 'SHLVL=$shlvl'
-threshold = 3
+threshold = 5
 
 [custom.ssh_agent]
 command = 'if ssh-add -l >/dev/null; then echo ssh-agent; fi' # shows output of command

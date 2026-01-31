@@ -86,5 +86,6 @@
     "editor.guides.highlightActiveBracketPair": false,
     "editor.matchBrackets": "never",
     "git.openRepositoryInParentFolders": "never",
-    "github.copilot.nextEditSuggestions.enabled": true
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "claudeCode.preferredLocation": "panel"
 }

@@ -13,4 +13,4 @@ set -o posix    # more strict failures in subshells
 IFS="$(printf "\n\t")"
 # ---- End unofficial bash strict mode boilerplate
 entry="$(~/bin/prompt-or-clipboard "TASK entry")"
-~/bin/journal-append-cli "$1" "- [ ] #task ${entry}"
+~/bin/journal-append-cli "$1" "- [ ] ${entry} #task"

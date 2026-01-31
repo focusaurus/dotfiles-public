@@ -14,25 +14,50 @@ IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
 defaultBranch="main"
-# echo "default branch: ${defaultBranch}"
-# defaultBranch=$(~/bin/git-get-default-branch)
-# git checkout -q "${defaultBranch}"
+remoteBranch="origin/${defaultBranch}"
+
+# Fetch to ensure we have latest remote state
+git fetch origin "${defaultBranch}" --quiet 2>/dev/null || true
+
 out=$(mktemp "/tmp/git-cleanup-squashed-XXX")
 git for-each-ref refs/heads/ "--format=%(refname:short)" | {
   while IFS= read -r branch; do
     if [[ "${branch}" == "${defaultBranch}" ]]; then
       continue
     fi
-    # echo "checking ${branch} against ${defaultBranch}"
-    mergeBase=$(git merge-base "${defaultBranch}" "$branch")
-    # echo -e "\tmerge base: ${mergeBase}"
+
+    # Check if branch is ancestor of remote main (already merged or squash-merged)
+    if git merge-base --is-ancestor "${branch}" "${remoteBranch}" 2>/dev/null; then
+      echo "git branch --delete --force ${branch}" >>"${out}"
+      continue
+    fi
+
+    # For squash merges: create synthetic commit and check via git cherry
+    mergeBase=$(git merge-base "${remoteBranch}" "$branch" 2>/dev/null) || continue
     rev=$(git rev-parse "${branch}^{tree}")
-    # echo -e "\trev: ${rev}"
     treeHash=$(git commit-tree "${rev}" -p "${mergeBase}" -m "$0:temp commit for ${branch}")
-    # echo -e "\ttreeHash: ${treeHash}"
-    cherry=$(git cherry "${defaultBranch}" "${treeHash}")
-    # echo -e "\tcherry: ${cherry}"
+    cherry=$(git cherry "${remoteBranch}" "${treeHash}")
+
     if [[ "${cherry}" == "-"* ]]; then
+      echo "git branch --delete --force ${branch}" >>"${out}"
+      continue
+    fi
+
+    # Secondary check: see if remote main contains equivalent changes
+    # This catches cases where the squash commit differs slightly (rebased, amended, etc.)
+    # Compare the diff of branch vs merge-base to diffs in remote main
+    branchDiff=$(git diff "${mergeBase}".."${branch}" 2>/dev/null | git hash-object --stdin)
+    found=false
+    while IFS= read -r commit; do
+      [[ -z "${commit}" ]] && continue
+      commitDiff=$(git diff "${commit}^".."${commit}" 2>/dev/null | git hash-object --stdin) || continue
+      if [[ "${branchDiff}" == "${commitDiff}" ]]; then
+        found=true
+        break
+      fi
+    done < <(git log --oneline "${mergeBase}".."${remoteBranch}" --format="%H" 2>/dev/null | head -50)
+
+    if [[ "${found}" == "true" ]]; then
       echo "git branch --delete --force ${branch}" >>"${out}"
     else
       echo -e "keep:\t${branch}"

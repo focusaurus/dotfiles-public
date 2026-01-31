@@ -1,36 +1,38 @@
 {
   "extend_comment_on_newline": false,
   "completions": {
-    "lsp": false
+    "lsp": true,
   },
   "inlay_hints": {
-    "show_value_hints": false
+    "show_value_hints": false,
   },
   "edit_predictions": {
-    "mode": "subtle"
+    "mode": "eager",
   },
-  "show_edit_predictions": false,
+  "show_edit_predictions": true,
   "show_whitespaces": "boundary",
   "jsx_tag_auto_close": {
-    "enabled": false
+    "enabled": false,
   },
   "show_completions_on_input": true,
   "use_auto_surround": false,
   "use_autoclose": false,
   "format_on_save": "off",
   "agent": {
-    "default_profile": "ask",
+    "enable_feedback": false,
+    "single_file_review": false,
+    "default_profile": "minimal",
     "always_allow_tool_actions": true,
     "default_model": {
       "provider": "anthropic",
-      "model": "claude-sonnet-4-5-latest"
+      "model": "claude-sonnet-4-5-latest",
     },
-    "model_parameters": []
+    "model_parameters": [],
   },
   "autosave": "on_window_change",
   "telemetry": {
     "diagnostics": true,
-    "metrics": true
+    "metrics": true,
   },
   "formatter": null,
   "vim_mode": true,
@@ -39,18 +41,21 @@
   "languages": {
     "Go": {
       "tab_size": 2,
-      "format_on_save": "on"
+      "format_on_save": "on",
     },
     "JavaScript": {
-      "format_on_save": "off"
+      "format_on_save": "off",
     },
     "TypeScript": {
-      "format_on_save": "off"
-    }
+      "format_on_save": "off",
+    },
   },
   "theme": {
     "mode": "system",
     "light": "Catppuccin Latte",
-    "dark": "One Dark"
+    "dark": "One Dark",
+  },
+  "features": {
+    "edit_prediction_provider": "copilot",
   }
 }

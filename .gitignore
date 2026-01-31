@@ -358,7 +358,6 @@ f25
 .platformio
 .zen
 aur.archlinux.org/yay
-bin/arch-packages
 .config/hamr/search-history.json
 .config/MuseScore/MuseScore4.ini
 .config/kando/session
@@ -366,3 +365,9 @@ bin/arch-packages
 .config/kando/SingletonSocket
 .config/kando/SingletonLock
 .config/kando/SingletonCookie
+/bin/arch-packages
+/.dvis
+/.openjfx
+/.claude.json.*
+/.cagent
+/.config
