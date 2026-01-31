@@ -360,3 +360,9 @@ f25
 aur.archlinux.org/yay
 bin/arch-packages
 .config/hamr/search-history.json
+.config/MuseScore/MuseScore4.ini
+.config/kando/session
+.config/kando/achievements.json
+.config/kando/SingletonSocket
+.config/kando/SingletonLock
+.config/kando/SingletonCookie
