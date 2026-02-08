@@ -1,0 +1,84 @@
+{
+    "appearance": {
+        "backgroundTransparency": 0.2,
+        "contentTransparency": 0.2,
+        "fontScale": 1,
+        "launcherXRatio": 0.5,
+        "launcherYRatio": 0.1
+    },
+    "apps": {
+        "shell": "zsh",
+        "terminal": "ghostty",
+        "terminalArgs": "--class=floating.terminal"
+    },
+    "behavior": {
+        "clickOutsideAction": "intuitive",
+        "stateRestoreWindowMs": 30000
+    },
+    "fonts": {
+        "icon": "Material Symbols Rounded",
+        "main": "Google Sans Flex",
+        "monospace": "JetBrains Mono NF",
+        "reading": "Readex Pro"
+    },
+    "imageBrowser": {
+        "cellAspectRatio": 1.333,
+        "columns": 4,
+        "sidebarWidth": 140,
+        "useSystemFileDialog": false
+    },
+    "paths": {
+        "colorsJson": "",
+        "wallpaperDir": ""
+    },
+    "search": {
+        "actionBarHintsJson": "[{\"prefix\":\"~\",\"icon\":\"folder\",\"label\":\"Files\",\"plugin\":\"files\"},{\"prefix\":\";\",\"icon\":\"content_paste\",\"label\":\"Clipboard\",\"plugin\":\"clipboard\"},{\"prefix\":\"/\",\"icon\":\"extension\",\"label\":\"Plugins\",\"plugin\":\"action\"},{\"prefix\":\"!\",\"icon\":\"terminal\",\"label\":\"Shell\",\"plugin\":\"shell\"},{\"prefix\":\"=\",\"icon\":\"calculate\",\"label\":\"Math\",\"plugin\":\"calculate\"},{\"prefix\":\":\",\"icon\":\"emoji_emotions\",\"label\":\"Emoji\",\"plugin\":\"emoji\"}]",
+        "actionKeys": [
+            "u",
+            "i",
+            "o",
+            "p"
+        ],
+        "debounceMs": 50,
+        "engineBaseUrl": "https://www.google.com/search?q=",
+        "excludedSites": [
+            "quora.com",
+            "facebook.com"
+        ],
+        "maxDisplayedResults": 16,
+        "maxHistoryItems": 500,
+        "maxRecentItems": 20,
+        "nonAppResultDelay": 30,
+        "pluginDebounceMs": 150,
+        "prefix": {
+            "action": "/",
+            "app": ">",
+            "clipboard": ";",
+            "emojis": ":",
+            "file": "~",
+            "math": "=",
+            "shellCommand": "$",
+            "shellHistory": "!",
+            "webSearch": "?"
+        },
+        "shellHistory": {
+            "customHistoryPath": "",
+            "enable": true,
+            "maxEntries": 500,
+            "shell": "auto"
+        },
+        "shellHistoryLimit": 50
+    },
+    "sizes": {
+        "imageBrowserGridHeight": 600,
+        "imageBrowserGridWidth": 900,
+        "imageBrowserHeight": 690,
+        "imageBrowserWidth": 1200,
+        "maxResultsHeight": 600,
+        "resultIconSize": 40,
+        "searchInputHeight": 40,
+        "searchWidth": 580,
+        "windowPickerMaxHeight": 220,
+        "windowPickerMaxWidth": 350
+    }
+}

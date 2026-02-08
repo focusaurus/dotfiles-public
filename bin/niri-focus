@@ -126,6 +126,10 @@ ghostty)
 terminal | kitty)
   find_window '.app_id == "kitty"' || launch kitty
   ;;
+musescore)
+  filter='.app_id == "MuseScore4"'
+  find_window "${filter}" || launch /opt/musescore-bin/musescore-bin.AppImage
+  ;;
 music)
   filter='.app_id == "firefox" and (.title | startswith("music:"))'
   find_window "${filter}" || focus_browser
@@ -141,6 +145,9 @@ previous)
   ;;
 slack)
   find_window '.app_id == "Slack"' || launch slack
+  ;;
+volume)
+  find_window '.app_id == "org.pulseaudio.pavucontrol"' || launch pavucontrol
   ;;
 *)
   echo "Unknown app: $APP_NAME"

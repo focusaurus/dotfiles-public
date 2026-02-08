@@ -87,8 +87,9 @@ spawn-at-startup "udiskie"
 spawn-at-startup "iwgtk" "-i"
 spawn-at-startup "gnome-keyring-daemon" "--start" "--components=secrets"
 spawn-at-startup "dbus-update-activation-environment" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"
-// spawn-at-startup "swayidle" "-w" "timeout" "300" "niri msg action power-off-monitors"
+spawn-at-startup "swayidle" "-w" "timeout" "1800" "niri msg action power-off-monitors" "resume" "niri msg action power-on-monitors"
 spawn-at-startup "vicinae" "server"
+spawn-at-startup "hamr"
 spawn-at-startup "dunst"
 spawn-at-startup "nm-applet"
 
@@ -161,6 +162,7 @@ binds {
     F10 repeat=false { spawn "wlr-which-key"; }
     F11 repeat=false { spawn "~/bin/fuzz-script-choose"; }
     F12 repeat=false { spawn "~/bin/fuzz-snippet"; }
+    Ctrl+F9 repeat=false { spawn "kando" "--menu" "focusaurus"; }
  
     MouseForward { spawn "wtype" "-k" "home"; }
     MouseBack { spawn "wtype" "-k" "page_down"; }
@@ -200,4 +202,12 @@ window-rule {
   match app-id="sirula"
   min-height 800
   open-floating false
+}
+
+window-rule {
+    match title="Kando Menu"
+    open-floating true
+    focus-ring { off; }
+    border { off; }
+    shadow { off; }
 }

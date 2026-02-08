@@ -35,6 +35,10 @@ menu:
         desc: "iwgtk"
         cmd: "iwgtk"
 
+      - key: "m"
+        desc: "musescore"
+        cmd: "niri-focus musescore"
+
       - key: "p"
         desc: "prusa slicer"
         cmd: "niri-focus prusaslicer"
@@ -68,6 +72,10 @@ menu:
     desc: "fuzzball"
     cmd: "fuzz-script-choose"
 
+  - key: "h"
+    desc: "hamr launcher"
+    cmd: "hamr toggle"
+
   - key: "i"
     desc: "IDE (VS Code)"
     cmd: "niri-focus vscode"
@@ -76,8 +84,14 @@ menu:
     desc: "journal"
     submenu:
       - key: "j"
-        desc: "append to personal daily notes"
+        desc: "note: add to obsidian daily note"
         cmd: "~/bin/journal-append-prompt ~/git.peterlyons.com/exocortex/personal"
+      - key: "t"
+        desc: "task: add to obsidian daily note"
+        cmd: "~/fuzzball/obsidian-task"
+      - key: "h"
+        desc: "hobby: add to hobby inbox"
+        cmd: "~/fuzzball/obsidian-hobby"
 
   - key: "m"
     desc: "music"
@@ -177,6 +191,10 @@ menu:
       - key: "u"
         desc: "pause"
         cmd: "mpc pause;playerctl pause"
+
+      - key: "v"
+        desc: "volume (pavucontrol)"
+        cmd: "niri-focus volume"
 
   - key: "v"
     desc: "volume"

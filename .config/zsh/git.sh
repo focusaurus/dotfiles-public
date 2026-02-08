@@ -442,25 +442,22 @@ te-git-changed() {
 
 gsync() {
   dotfiles-end
-  if ! ssh-add -l &>/dev/null; then
-    op-add-ssh-key
-  fi
-  ~/bin/git-autocommit \
-    ~/git.peterlyons.com/petes-personal-journal \
-    ~/git.peterlyons.com/journals
+  # if ! ssh-add -l &>/dev/null; then
+  #   op-add-ssh-key
+  # fi
+  # ~/bin/git-autocommit \
+  #   ~/git.peterlyons.com/petes-personal-journal \
+  #   ~/git.peterlyons.com/journals
 
   # List here all repos that should be synced
   # It's fine if these are not checked out
   # on any given machine. They will be skipped.
   ~/bin/git-sync \
     ~ \
-    ~/git.peterlyons.com/dotfiles \
-    ~/git.peterlyons.com/journals \
-    ~/git.peterlyons.com/petes-personal-journal \
-    ~/git.peterlyons.com/3d-prints \
     ~/git.peterlyons.com/exocortex \
-    ~/git.peterlyons.com/float-health \
-    ~/git.peterlyons.com/focus-retreat-center
+    ~/git.peterlyons.com/dotfiles \
+    ~/git.peterlyons.com/3d-prints \
+    ~/git.peterlyons.com/float-health
 
   # if [[ -d ~/github.com/focusaurus/qmk_firmware ]]; then
   #   (
