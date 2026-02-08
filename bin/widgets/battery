@@ -13,18 +13,15 @@ set -o posix    # more strict failures in subshells
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
-acpi --battery |
-  grep --invert-match unavailable |
-  grep --extended --only-matching '[0-9]+%' | {
-  while IFS= read -r level; do
-    battery_level=$(echo "${level}" | tr -d %)
-    
-    if [[ ${battery_level} -ge 25 ]]; then
-      battery_icon="🔋"
-    else
-      battery_icon="🪫"
-    fi
-    
-    echo -n "${battery_icon}${battery_level}"
-  done
-}
+for bat_dir in /sys/class/power_supply/BAT*; do
+  [[ -d "${bat_dir}" ]] || continue
+  battery_level=$(cat "${bat_dir}/capacity")
+
+  if [[ ${battery_level} -ge 25 ]]; then
+    battery_icon="🔋"
+  else
+    battery_icon="🪫"
+  fi
+
+  echo -n "${battery_icon}${battery_level}"
+done
