@@ -359,3 +359,4 @@ f25
 .zen
 aur.archlinux.org/yay
 /bin/arch-packages
+/.claude.json*
