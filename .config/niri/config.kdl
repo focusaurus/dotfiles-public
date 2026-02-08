@@ -161,6 +161,7 @@ binds {
     F10 repeat=false { spawn "wlr-which-key"; }
     F11 repeat=false { spawn "~/bin/fuzz-script-choose"; }
     F12 repeat=false { spawn "~/bin/fuzz-snippet"; }
+    Ctrl+F9 repeat=false { spawn "kando" "--menu" "focusaurus"; }
  
     MouseForward { spawn "wtype" "-k" "home"; }
     MouseBack { spawn "wtype" "-k" "page_down"; }

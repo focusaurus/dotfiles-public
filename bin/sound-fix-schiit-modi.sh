@@ -60,4 +60,4 @@ fi
 sleep 2
 echo ""
 echo "Done! Checking if Modi is detected..."
-lsusb | grep -i "modi\|0d8c"
+lsusb | grep -i "modi\|0d8c" || echo "Modi not detected in lsusb output"

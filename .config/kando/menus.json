@@ -2,9 +2,6 @@
   "version": "2.2.0",
   "menus": [
     {
-      "shortcut": "Control+Space",
-      "shortcutID": "example-menu",
-      "centered": false,
       "root": {
         "type": "submenu",
         "name": "Example Menu",
@@ -349,7 +346,77 @@
             ]
           }
         ]
-      }
+      },
+      "shortcut": "Control+Space",
+      "shortcutID": "example-menu",
+      "centered": false,
+      "anchored": false,
+      "hoverMode": false,
+      "tags": []
+    },
+    {
+      "root": {
+        "type": "submenu",
+        "name": "focusaurus",
+        "icon": "apps",
+        "iconTheme": "material-symbols-rounded",
+        "children": [
+          {
+            "type": "command",
+            "data": {
+              "command": "mpc play",
+              "detached": true,
+              "isolated": false,
+              "delayed": false
+            },
+            "name": "Run Command",
+            "icon": "xsi-media-playback-start-symbolic",
+            "iconTheme": "system"
+          },
+          {
+            "type": "command",
+            "data": {
+              "command": "mpc next",
+              "detached": true,
+              "isolated": false,
+              "delayed": false
+            },
+            "name": "Run Command",
+            "icon": "xsi-orientation-portrait-right-symbolic",
+            "iconTheme": "system"
+          },
+          {
+            "type": "command",
+            "data": {
+              "command": " mpc pause",
+              "detached": true,
+              "isolated": false,
+              "delayed": false
+            },
+            "name": "Run Command",
+            "icon": "xsi-media-playback-pause-symbolic",
+            "iconTheme": "system"
+          },
+          {
+            "type": "command",
+            "data": {
+              "command": "mpc prev",
+              "detached": true,
+              "isolated": false,
+              "delayed": false
+            },
+            "name": "Run Command",
+            "icon": "xsi-orientation-portrait-left-symbolic",
+            "iconTheme": "system"
+          }
+        ]
+      },
+      "shortcut": "",
+      "shortcutID": "",
+      "centered": true,
+      "anchored": false,
+      "hoverMode": false,
+      "tags": []
     }
   ],
   "collections": [

@@ -142,6 +142,9 @@ previous)
 slack)
   find_window '.app_id == "Slack"' || launch slack
   ;;
+volume)
+  find_window '.app_id == "org.pulseaudio.pavucontrol"' || launch pavucontrol
+  ;;
 *)
   echo "Unknown app: $APP_NAME"
   echo "Available apps: gofi"

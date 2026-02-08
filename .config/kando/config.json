@@ -13,7 +13,7 @@
   "enableVersionCheck": true,
   "ignoreWriteProtectedConfigFiles": false,
   "settingsWindowColorScheme": "system",
-  "settingsWindowFlavor": "auto",
+  "settingsWindowFlavor": "transparent-system",
   "trayIconFlavor": "color",
   "hardwareAcceleration": true,
   "lazyInitialization": false,

@@ -19,6 +19,7 @@ base
 bat
 bc
 bind
+brightnessctl
 brother-hl2280dw
 choose-rust-git
 claude-code
@@ -47,11 +48,13 @@ fasd
 feh
 firefox
 flameshot
+flatpak
 foomatic-db-engine
 foomatic-db-nonfree-ppds
 foomatic-db-ppds
 freecad
 fswatch
+fwupd
 fx
 gedit
 geeqie
@@ -74,6 +77,7 @@ inetutils
 intel-ucode
 iwgtk
 jless
+kando-bin
 keyd
 kicad
 kitty
@@ -94,6 +98,7 @@ moreutils
 mpc
 mpv
 mupdf
+musescore-bin
 ncmpcpp
 net-tools
 network-manager-applet
@@ -106,7 +111,6 @@ otf-openmoji
 pacman-contrib
 patchelf
 pavucontrol
-plasma-meta
 platformio-core
 polkit-gnome
 ponymix
@@ -124,6 +128,7 @@ rofi-blezz
 rofimoji
 satty
 sd
+sddm
 shellcheck
 shfmt
 skim
@@ -131,12 +136,14 @@ slack-desktop
 starship
 swayidle
 swayimg
+system-config-printer
 tealdeer
 texlive-basic
 thinkfan
 tifig-bin
 tig
 tilda
+tlp
 tokei
 topgrade-bin
 treemd
