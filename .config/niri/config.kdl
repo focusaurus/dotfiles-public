@@ -91,6 +91,7 @@ spawn-at-startup "swayidle" "-w" "timeout" "1800" "niri msg action power-off-mon
 spawn-at-startup "vicinae" "server"
 spawn-at-startup "hamr"
 spawn-at-startup "dunst"
+spawn-at-startup "nm-applet"
 
 binds {
     Mod+Shift+X { quit; }

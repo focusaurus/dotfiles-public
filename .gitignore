@@ -370,3 +370,4 @@ aur.archlinux.org/yay
 /.openjfx
 /.claude.json.*
 /.cagent
+/bin/arch-packages

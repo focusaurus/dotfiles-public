@@ -1,6 +1,9 @@
 acpid.service
 atd.service
+avahi-daemon.service
+avahi-daemon.socket
 bluetooth.service
+docker.service
 getty@.service
 keyd.service
 machines.target
@@ -11,7 +14,6 @@ nvidia-hibernate.service
 nvidia-resume.service
 nvidia-suspend.service
 plexmediaserver.service
-polkit-agent-helper.socket
 proton.VPN.service
 reboot.target
 remote-cryptsetup.target
@@ -19,6 +21,7 @@ remote-fs.target
 remote-integritysetup.target
 remote-veritysetup.target
 sddm.service
+sshd.service
 systemd-boot-clear-sysfail.service
 systemd-boot-update.service
 systemd-confext.service

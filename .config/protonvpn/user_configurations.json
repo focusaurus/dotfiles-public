@@ -11,7 +11,7 @@
     },
     "netshield": 0,
     "secure_core": 0,
-    "vpn_accelerator": 1,
+    "vpn_accelerator": 0,
     "alternative_routing": 1,
     "event_notification": 2,
     "moderate_nat": 0,
