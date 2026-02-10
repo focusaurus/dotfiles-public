@@ -371,3 +371,5 @@ aur.archlinux.org/yay
 /.claude.json.*
 /.cagent
 /bin/arch-packages
+/.dbvis/History
+/.dbvis
