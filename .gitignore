@@ -373,3 +373,4 @@ aur.archlinux.org/yay
 /bin/arch-packages
 /.dbvis/History
 /.dbvis
+/.config/cagent/.cagent_first_run
