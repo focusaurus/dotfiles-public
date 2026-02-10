@@ -22,17 +22,17 @@ arch-rate-mirrors() {
   rate-mirrors --protocol https arch
 }
 
-arch-update-keyring() {
+arch-refresh-keyring() {
   sudo pacman -Sy --noconfirm archlinux-keyring
 }
 
 arch-save-packages() {
-  pacman -Qet | awk '{print $1}' | sort >"${HOME}/.config/arch-linux/pacman-qet-$(uname -n).txt"
+  pacman -Qe | awk '{print $1}' | sort >"${HOME}/.config/arch-linux/pacman-qe-$(uname -n).txt"
   systemctl list-unit-files | grep enabled | awk '{print $1}' | sort >"${HOME}/.config/arch-linux/systemd-services-$(uname -n).txt"
 }
 
 arch-list-packages() {
-  pacman -Qet | sort
+  pacman -Qe | sort
 }
 
 arch-list-package-files() {
