@@ -86,11 +86,7 @@ freecad)
   find_window '.app_id == "org.freecad.FreeCAD"' || launch freecad
   ;;
 prusaslicer)
-  if pidof prusa-slicer >/dev/null; then
-    find_window '.app_id == "org.freedesktop.Xwayland"'
-  else
-    launchx prusa-slicer
-  fi
+  find_window '.app_id == "prusa-slicer"' || launch prusa-slicer
   ;;
 vial)
   find_window '.app_id == "Vial"' || launch Vial

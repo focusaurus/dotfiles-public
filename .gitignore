@@ -371,3 +371,6 @@ aur.archlinux.org/yay
 /.dvis
 /.openjfx
 /.cagent
+/.dbvis/History
+/.dbvis
+/.config/cagent/.cagent_first_run
