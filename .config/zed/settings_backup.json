@@ -7,10 +7,9 @@
     "show_value_hints": false,
   },
   "edit_predictions": {
-    "provider": "zed",
     "mode": "eager",
   },
-  "show_edit_predictions": false,
+  "show_edit_predictions": true,
   "show_whitespaces": "boundary",
   "jsx_tag_auto_close": {
     "enabled": false,
@@ -55,5 +54,8 @@
     "mode": "system",
     "light": "Catppuccin Latte",
     "dark": "One Dark",
+  },
+  "features": {
+    "edit_prediction_provider": "none",
   }
 }

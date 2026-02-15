@@ -16,6 +16,8 @@ setup-path() {
   add-path "${HOME}/bin"
   # best to have go tools from projects before homebrew
   add-path "${HOME}/go/bin"
+  # mostly for claude code native install
+  add-path "${HOME}/.local/bin"
 
   # Allow GNU binaries to take precedent on macos
   # See https://apple.stackexchange.com/questions/69223/how-to-replace-mac-os-x-utilities-with-gnu-core-utilities#69332
