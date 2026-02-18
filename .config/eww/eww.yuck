@@ -27,7 +27,6 @@
                            (label :text "WS: ${workspaces.active_workspace}/${workspaces.workspace_count}"))
                       (label :text "${volume_status} ${microphone_status}" :class "microphone")
                       (label :text battery_status :class "battery")
-                      (label :text network_status :class "network")
                       (box :class "system-tray"
                            (systray :pack-direction "ttb"
                                     :icon-size 16
