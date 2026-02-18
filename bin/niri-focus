@@ -123,8 +123,8 @@ terminal | kitty)
   find_window '.app_id == "kitty"' || launch kitty
   ;;
 musescore)
-  filter='.app_id == "MuseScore4"'
-  find_window "${filter}" || launch /opt/musescore-bin/musescore-bin.AppImage
+  filter='.app_id == "org.musescore.MuseScore"'
+  find_window "${filter}" || launch mscore
   ;;
 music)
   filter='.app_id == "firefox" and (.title | startswith("music:"))'

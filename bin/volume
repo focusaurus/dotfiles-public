@@ -14,5 +14,12 @@ IFS=$'\n\t'
 if [[ "$(uname)" == "Darwin" ]]; then
   echo "require('sound').setVolume($*)" | hs
 else
-  pactl set-sink-volume @DEFAULT_SINK@ "$@"
+  # Translate pactl-style args (+5%, -5%) to wpctl-style (5%+, 5%-)
+  arg="$1"
+  if [[ "${arg}" =~ ^\+(.+) ]]; then
+    arg="${BASH_REMATCH[1]}+"
+  elif [[ "${arg}" =~ ^-(.+) ]]; then
+    arg="${BASH_REMATCH[1]}-"
+  fi
+  wpctl set-volume @DEFAULT_AUDIO_SINK@ "${arg}"
 fi
