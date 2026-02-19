@@ -70,10 +70,6 @@ layout {
         // active-color "#ffc87f"
         // inactive-color "#505050"
     }
-
-    // struts {
-    //    left 20
-    // }
 }
 
 // eww widgets & sidebar
@@ -84,12 +80,11 @@ spawn-at-startup "/home/plyons/.config/eww/watch.sh"
 // spawn-at-startup "niriswitcher"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 spawn-at-startup "udiskie"
-// spawn-at-startup "iwgtk" "-i"
 spawn-at-startup "gnome-keyring-daemon" "--start" "--components=secrets"
 spawn-at-startup "dbus-update-activation-environment" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"
 spawn-at-startup "swayidle" "-w" "timeout" "1800" "niri msg action power-off-monitors" "resume" "niri msg action power-on-monitors"
 // spawn-at-startup "vicinae" "server"
-spawn-at-startup "hamr"
+// spawn-at-startup "hamr"
 spawn-at-startup "dunst"
 spawn-at-startup "nm-applet"
 
@@ -101,8 +96,8 @@ binds {
  
     Mod+T repeat=false { spawn "kitty"; }
     Mod+D repeat=false { spawn "wofi" "--matching=fuzzy" "--insensitive" "--show" "run,drun"; }
-    Alt+Tab repeat=false { spawn "gdbus" "call" "--session" "--dest" "io.github.isaksamsten.Niriswitcher" "--object-path" "/io/github/isaksamsten/Niriswitcher" "--method" "io.github.isaksamsten.Niriswitcher.application" ; }
-    Alt+Shift+Tab repeat=false { spawn "gdbus" "call" "--session" "--dest" "io.github.isaksamsten.Niriswitcher" "--object-path" "/io/github/isaksamsten/Niriswitcher" "--method" "io.github.isaksamsten.Niriswitcher.application" ; }
+    // Alt+Tab repeat=false { spawn "gdbus" "call" "--session" "--dest" "io.github.isaksamsten.Niriswitcher" "--object-path" "/io/github/isaksamsten/Niriswitcher" "--method" "io.github.isaksamsten.Niriswitcher.application" ; }
+    // Alt+Shift+Tab repeat=false { spawn "gdbus" "call" "--session" "--dest" "io.github.isaksamsten.Niriswitcher" "--object-path" "/io/github/isaksamsten/Niriswitcher" "--method" "io.github.isaksamsten.Niriswitcher.application" ; }
  
     Mod+X { close-window; }
     Ctrl+Shift+v repeat=false { spawn "cliphist-choose"; }
@@ -168,11 +163,6 @@ binds {
     MouseBack { spawn "wtype" "-k" "page_down"; }
 }
 
-// window-rule {
-//   match title="gofi"
-//   default-column-width { proportion 0.33; }
-// }
-
 window-rule {
   match app-id="yad"
   open-floating true
@@ -198,11 +188,11 @@ window-rule {
     open-on-workspace "2"
 }
 
-window-rule {
-  match app-id="sirula"
-  min-height 800
-  open-floating false
-}
+// window-rule {
+//   match app-id="sirula"
+//   min-height 800
+//   open-floating false
+// }
 
 window-rule {
     match title="Kando Menu"
