@@ -55,5 +55,11 @@
     "bindings": {
       "shift-space p c": "editor::CopyRelativePath"
     }
+  },
+  {
+    "context": "(Editor && !edit_prediction)",
+    "bindings": {
+      "ctrl-t": "editor::ShowEditPrediction"
+    }
   }
 ]
