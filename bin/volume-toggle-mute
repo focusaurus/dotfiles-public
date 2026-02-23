@@ -12,4 +12,4 @@ set -o pipefail # don't ignore exit codes when piping output
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
-pactl set-sink-mute @DEFAULT_SINK@ toggle
+wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle

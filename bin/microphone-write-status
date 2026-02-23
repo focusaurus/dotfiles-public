@@ -18,14 +18,14 @@ notify() {
 
 main() {
   file="/run/user/$(id -u)/mic.txt"
-  set +o errexit
-  if ponymix -t source is-muted; then
+  local output
+  output="$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@)"
+  if [[ "${output}" == *"[MUTED]"* ]]; then
     echo off >"${file}"
     notify
     exit
   fi
-  set -o errexit
-  ponymix -t source get-volume >"/run/user/$(id -u)/mic.txt"
+  echo "${output}" | awk '{printf "%.0f", $2 * 100}' >"${file}"
   notify
 }
 

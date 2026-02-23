@@ -14,15 +14,16 @@ IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
 main() {
-  set +o errexit
-  if ponymix is-muted; then
+  local output
+  output="$(wpctl get-volume @DEFAULT_AUDIO_SINK@)"
+  if [[ "${output}" == *"[MUTED]"* ]]; then
     echo "🔈off"
     exit
   fi
-  set -o errexit
-  echo -n "🔊"
-  ponymix get-volume | tr -d '\n'
-  echo "%"
+  # output is like "Volume: 0.50" — extract and convert to percentage
+  local vol
+  vol="$(echo "${output}" | awk '{printf "%.0f", $2 * 100}')"
+  echo "🔊${vol}%"
 }
 
 main "$@"

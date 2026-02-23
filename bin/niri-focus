@@ -95,7 +95,10 @@ vscode)
   find_window '.app_id == "code-oss"' || launch code
   ;;
 bambustudio)
-  find_window '.app_id == "BambuStudio"' || launchx bambu-studio
+  # This uses niri's built-in xwayland-satellite support and runs
+  # the bambustudio-appimage executable directly
+  find_window '.app_id == "BambuStudio"' || bambustudio
+  # find_window '.app_id == "BambuStudio"' || launchx bambu-studio
   ;;
 crealityprint)
   find_window '.app_id == "Creality Print"' || launch /opt/creality-print/CrealityPrint
@@ -123,8 +126,8 @@ terminal | kitty)
   find_window '.app_id == "kitty"' || launch kitty
   ;;
 musescore)
-  filter='.app_id == "MuseScore4"'
-  find_window "${filter}" || launch /opt/musescore-bin/musescore-bin.AppImage
+  filter='.app_id == "org.musescore.MuseScore"'
+  find_window "${filter}" || launch mscore
   ;;
 music)
   filter='.app_id == "firefox" and (.title | startswith("music:"))'

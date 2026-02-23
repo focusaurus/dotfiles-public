@@ -14,14 +14,15 @@ IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
 main() {
-  echo -n "🎤"
-  set +o errexit
-  if ponymix -t source is-muted; then
-    echo "off"
+  local output
+  output="$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@)"
+  if [[ "${output}" == *"[MUTED]"* ]]; then
+    echo "🎤off"
     exit
   fi
-  set -o errexit
-  ponymix -t source get-volume
+  local vol
+  vol="$(echo "${output}" | awk '{printf "%.0f", $2 * 100}')"
+  echo "🎤${vol}%"
 }
 
 main "$@"

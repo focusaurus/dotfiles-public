@@ -4,7 +4,7 @@ arch-refresh-package-db() {
 
 arch-install-package() {
   # yay --nodiffmenu --sync "$@"
-  yay --sync "$@"
+  GIT_DIR= yay --sync "$@"
   # yup "$@"
   hash -r
 }

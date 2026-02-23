@@ -12,5 +12,5 @@ set -o pipefail # don't ignore exit codes when piping output
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
-ponymix -t source set-volume "$@"   
+wpctl set-volume @DEFAULT_AUDIO_SOURCE@ "$@"
 ~/bin/microphone-write-status
