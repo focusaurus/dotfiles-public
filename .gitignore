@@ -1,4 +1,5 @@
 !/.config/Code/User
+.copilot/ide
 *.bak
 .1pasword/agent.sock
 .arduinoIDE
