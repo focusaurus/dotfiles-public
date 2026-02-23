@@ -19,10 +19,21 @@ remoteBranch="origin/${defaultBranch}"
 # Fetch to ensure we have latest remote state
 git fetch origin "${defaultBranch}" --quiet 2>/dev/null || true
 
+# Collect branches checked out in worktrees so we don't delete them
+declare -A worktreeBranches
+while IFS= read -r line; do
+  worktreeBranches["${line#refs/heads/}"]=1
+done < <(git worktree list --porcelain 2>/dev/null | sed -n 's/^branch //p')
+
 out=$(mktemp "/tmp/git-cleanup-squashed-XXX")
 git for-each-ref refs/heads/ "--format=%(refname:short)" | {
   while IFS= read -r branch; do
     if [[ "${branch}" == "${defaultBranch}" ]]; then
+      continue
+    fi
+
+    if [[ -n "${worktreeBranches[${branch}]+x}" ]]; then
+      echo -e "keep (worktree):\t${branch}"
       continue
     fi
 
