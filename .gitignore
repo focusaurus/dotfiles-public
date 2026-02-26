@@ -374,3 +374,4 @@ aur.archlinux.org/yay
 /.dbvis/History
 /.dbvis
 /.config/cagent/.cagent_first_run
+/.config/simple-scan/state
