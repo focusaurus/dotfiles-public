@@ -126,7 +126,7 @@ terminal | kitty)
   find_window '.app_id == "kitty"' || launch kitty
   ;;
 musescore)
-  filter='.app_id == "org.musescore.MuseScore"'
+  filter='.app_id == "MuseScore4"'
   find_window "${filter}" || launch mscore
   ;;
 music)
