@@ -9,10 +9,10 @@ sleep 1
 sudo modprobe snd_usb_audio
 
 # Find the Modi device
-MODI_DEVICE=$(lsusb | grep "0d8c:0066" | head -n1 | awk '{print $2":"$4}' | sed 's/:/\//' | sed 's/://')
+MODI_DEVICE=$(cyme | grep "0d8c 0066" | head -n1 | awk '{print $2":"$4}' | sed 's/:/\//' | sed 's/://')
 
 if [ -z "$MODI_DEVICE" ]; then
-    echo "Modi not found in lsusb. Trying to reset all USB hubs..."
+    echo "Modi not found in cyme. Trying to reset all USB hubs..."
     # Reset all hubs as fallback
     for hub in /sys/bus/usb/drivers/hub/*:*; do
         if [ -e "$hub" ]; then
@@ -60,4 +60,4 @@ fi
 sleep 2
 echo ""
 echo "Done! Checking if Modi is detected..."
-lsusb | grep -i "modi\|0d8c" || echo "Modi not detected in lsusb output"
+cyme | grep -i "modi\|0d8c" || echo "Modi not detected in cyme output"

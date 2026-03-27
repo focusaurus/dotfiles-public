@@ -83,7 +83,7 @@ gofi)
 #   find_window '.title == "crealityprint"' || launch /opt/creality-print/CrealityPrint
 #   ;;
 freecad)
-  find_window '.app_id == "org.freecad.FreeCAD"' || launch freecad
+  find_window '.app_id == "org.freecad.FreeCAD" or .app_id == "FreeCAD"' || launch freecad
   ;;
 prusaslicer)
   find_window '.app_id == "prusa-slicer"' || launch prusa-slicer

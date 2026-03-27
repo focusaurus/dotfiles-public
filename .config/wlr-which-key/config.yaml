@@ -128,6 +128,10 @@ menu:
         desc: "move right"
         cmd: "niri-move-previous move-column-right"
 
+      - key: "L"
+        desc: "layout"
+        cmd: "~/fuzzball/niri-layout"
+
       - key: "m"
         desc: "monitor right"
         cmd: "niri msg action move-window-to-monitor-right"
