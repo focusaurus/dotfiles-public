@@ -1,0 +1,103 @@
+#!/usr/bin/env bash
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
+
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -o errexit  # always exit on error
+set -o errtrace # trap errors in functions as well
+set -o pipefail # don't ignore exit codes when piping output
+set -u          # error on reference to unknown variable
+# set -x # enable debugging
+
+IFS=$'\n\t'
+# ---- End unofficial bash strict mode boilerplate
+
+# Organize windows into two workspace rows:
+# Workspace 1 (reference): calendar, trello, main firefox, music, ario, 1password
+# Workspace 2 (work): kitty, zed, prusa slicer, bambu slicer, freecad
+
+REFERENCE_WS=1
+WORK_WS=2
+
+# Get a window ID by jq filter, returns empty string if not found
+find_window_id() {
+  local filter="$1"
+  niri msg --json windows |
+    jq --raw-output "[.[] | select(${filter})][0] .id // \"\""
+}
+
+# Move a window to a workspace without following focus
+move_to_ws() {
+  local window_id="$1"
+  local ws="$2"
+  if [[ -n "${window_id}" ]]; then
+    niri msg action move-window-to-workspace --window-id "${window_id}" --focus false "${ws}"
+  fi
+}
+
+# Focus a window and move its column to a specific index
+place_at_index() {
+  local window_id="$1"
+  local index="$2"
+  if [[ -n "${window_id}" ]]; then
+    niri msg action focus-window --id "${window_id}"
+    niri msg action move-column-to-index "${index}"
+  fi
+}
+
+echo "Finding windows..."
+
+# --- Reference row windows ---
+calendar_id=$(find_window_id '.app_id == "firefox" and (.title | startswith("calendar:"))')
+trello_id=$(find_window_id '.app_id == "firefox" and (.title | startswith("trello:"))')
+main_firefox_id=$(find_window_id '.app_id == "firefox" and (.title | startswith("main:"))')
+music_id=$(find_window_id '.app_id == "firefox" and (.title | startswith("music:"))')
+ario_id=$(find_window_id '.app_id == "ario"')
+onepassword_id=$(find_window_id '.app_id == "1password"')
+
+# --- Work row windows ---
+kitty_id=$(find_window_id '.app_id == "kitty"')
+zed_id=$(find_window_id '.app_id == "dev.zed.Zed"')
+prusaslicer_id=$(find_window_id '.app_id == "prusa-slicer"')
+bambustudio_id=$(find_window_id '.app_id == "BambuStudio"')
+freecad_id=$(find_window_id '.app_id == "org.freecad.FreeCAD"')
+
+echo "Moving windows to workspaces..."
+
+# Move reference windows to workspace 1
+for wid in ${calendar_id} ${trello_id} ${main_firefox_id} ${music_id} ${ario_id} ${onepassword_id}; do
+  move_to_ws "${wid}" "${REFERENCE_WS}"
+done
+
+# Move work windows to workspace 2
+for wid in ${kitty_id} ${zed_id} ${prusaslicer_id} ${bambustudio_id} ${freecad_id}; do
+  move_to_ws "${wid}" "${WORK_WS}"
+done
+
+echo "Arranging reference row (workspace ${REFERENCE_WS})..."
+
+# Arrange reference row: calendar, trello, main firefox, music, ario, 1password
+# Place in reverse order using move-column-to-first approach,
+# or place sequentially using move-column-to-index
+index=1
+for wid in ${calendar_id} ${trello_id} ${main_firefox_id} ${music_id} ${ario_id} ${onepassword_id}; do
+  place_at_index "${wid}" "${index}"
+  index=$((index + 1))
+done
+
+echo "Arranging work row (workspace ${WORK_WS})..."
+
+# Arrange work row: kitty, zed, then any of prusa/bambu/freecad
+index=1
+for wid in ${kitty_id} ${zed_id} ${prusaslicer_id} ${bambustudio_id} ${freecad_id}; do
+  place_at_index "${wid}" "${index}"
+  index=$((index + 1))
+done
+
+# Focus back on work row, kitty terminal
+if [[ -n "${kitty_id}" ]]; then
+  niri msg action focus-window --id "${kitty_id}"
+fi
+
+echo "Layout complete."

@@ -22,3 +22,7 @@
     # The radius will be automatically lowered if it exceeds half of the
     # notification height to avoid clipping text and/or icons.
     corner_radius = 6
+
+[nm-applet]
+    appname = NetworkManager Applet
+    skip_display = true

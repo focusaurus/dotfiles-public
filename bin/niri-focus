@@ -83,7 +83,7 @@ gofi)
 #   find_window '.title == "crealityprint"' || launch /opt/creality-print/CrealityPrint
 #   ;;
 freecad)
-  find_window '.app_id == "org.freecad.FreeCAD"' || launch freecad
+  find_window '.app_id == "org.freecad.FreeCAD" or .app_id == "FreeCAD"' || launch freecad
   ;;
 prusaslicer)
   find_window '.app_id == "prusa-slicer"' || launch prusa-slicer
@@ -126,7 +126,7 @@ terminal | kitty)
   find_window '.app_id == "kitty"' || launch kitty
   ;;
 musescore)
-  filter='.app_id == "org.musescore.MuseScore"'
+  filter='.app_id == "MuseScore4"'
   find_window "${filter}" || launch mscore
   ;;
 music)
