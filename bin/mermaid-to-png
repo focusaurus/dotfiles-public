@@ -26,21 +26,27 @@ EOF
 }
 
 input="/dev/stdin"
-output="/dev/stdout"
+# need to use dash not /dev/stdout to work properly with mermaid CLI
+output="-"
 
 for arg in "$@"; do
   case "${arg}" in
   *.mmd)
     input="${arg}"
     ;;
-  *.png)
+  *.png,*.svg)
     output="${arg}"
-    ;;
-  *)
-    echo "Expecting arguments in any order but with extensions: .mmd or .png. Not ${arg}" 1>&2
-    usage 1>&2
-    exit 10
     ;;
   esac
 done
-npx @mermaid-js/mermaid-cli -w 1600 -H 1200 -i "${input}" -o "${output}"
+
+declare -a opts=(-e png -w 1600 -H 1200 -i "${input}" -o "${output}")
+
+mmdc="/opt/homebrew/opt/mermaid-cli/bin/mmdc"
+if [[ -x "${mmdc}" ]]; then
+  opts=("${mmdc}" "${opts[@]}")
+else
+  opts=(npx @mermaid-js/mermaid-cli "${opts[@]}")
+fi
+
+"${opts[@]}"
