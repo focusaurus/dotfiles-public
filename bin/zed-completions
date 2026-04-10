@@ -23,12 +23,10 @@ set_completions() {
 
   if [[ "$target" == "on" ]]; then
     jq '.show_completions_on_input = true
-      | .show_edit_predictions = true
-      | .edit_predictions.mode = "subtle"' "$SETTINGS" > "$tmp"
+      | .show_edit_predictions = true' "$SETTINGS" > "$tmp"
   else
     jq '.show_completions_on_input = false
-      | .show_edit_predictions = false
-      | .edit_predictions.mode = "off"' "$SETTINGS" > "$tmp"
+      | .show_edit_predictions = false' "$SETTINGS" > "$tmp"
   fi
 
   mv "$tmp" "$SETTINGS"
