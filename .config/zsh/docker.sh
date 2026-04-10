@@ -215,3 +215,7 @@ dps-names() {
 
 # https://github.com/docker/scan-cli-plugin/issues/149#issuecomment-823969364
 export DOCKER_SCAN_SUGGEST=false
+
+
+# docker completions
+source-if-exists ~/.config/zsh/_docker
