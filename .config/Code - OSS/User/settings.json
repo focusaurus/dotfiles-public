@@ -87,5 +87,6 @@
     "editor.matchBrackets": "never",
     "git.openRepositoryInParentFolders": "never",
     "github.copilot.nextEditSuggestions.enabled": true,
-    "claudeCode.preferredLocation": "panel"
+    "claudeCode.preferredLocation": "panel",
+    "editor.fontSize": 14
 }
