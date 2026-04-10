@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+# Toggle Zed completions and edit predictions on/off.
+# Usage: zed-completions [on|off|status]
+# With no argument, toggles the current state.
+
+set -euo pipefail
+
+SETTINGS="$HOME/.config/zed/settings.json"
+
+if [[ ! -f "$SETTINGS" ]]; then
+  echo "Error: $SETTINGS not found" >&2
+  exit 1
+fi
+
+current_state() {
+  jq -r 'if .show_completions_on_input then "on" else "off" end' "$SETTINGS"
+}
+
+set_completions() {
+  local target="$1"
+  local tmp
+  tmp=$(mktemp)
+
+  if [[ "$target" == "on" ]]; then
+    jq '.show_completions_on_input = true
+      | .show_edit_predictions = true
+      | .edit_predictions.mode = "subtle"' "$SETTINGS" > "$tmp"
+  else
+    jq '.show_completions_on_input = false
+      | .show_edit_predictions = false
+      | .edit_predictions.mode = "off"' "$SETTINGS" > "$tmp"
+  fi
+
+  mv "$tmp" "$SETTINGS"
+  echo "Completions: ${target^^}"
+}
+
+case "${1:-toggle}" in
+  on)     set_completions on ;;
+  off)    set_completions off ;;
+  status) echo "Completions: $(current_state | tr '[:lower:]' '[:upper:]')" ;;
+  toggle)
+    if [[ "$(current_state)" == "on" ]]; then
+      set_completions off
+    else
+      set_completions on
+    fi
+    ;;
+  *)
+    echo "Usage: zed-completions [on|off|status|toggle]" >&2
+    exit 1
+    ;;
+esac
