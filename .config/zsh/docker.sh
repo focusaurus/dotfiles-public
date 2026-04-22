@@ -115,11 +115,12 @@ dex() {
 }
 
 dcl() {
-  format="table {{.Label \"com.docker.compose.project\"}}\t{{.Label \"com.docker.compose.service\"}}\t{{.Names}}"
-  line=$(docker ps -a --format "${format}" | ~/bin/fuzzy-filter "$@")
-  name=$(echo "${line}" | awk '{print $3}')
-  [[ -z "${name}" ]] && return
-  docker logs --tail=500 -f "${name}"
+  # format="table {{.Label \"com.docker.compose.project\"}}\t{{.Label \"com.docker.compose.service\"}}\t{{.Names}}"
+  # line=$(docker ps -a --format "${format}" | ~/bin/fuzzy-filter "$@")
+  # name=$(echo "${line}" | awk '{print $3}')
+  # [[ -z "${name}" ]] && return
+  # docker logs --tail=500 -f "${name}"
+  docker compose logs --no-log-prefix --follow "$@"
 }
 
 dl() {
@@ -215,7 +216,6 @@ dps-names() {
 
 # https://github.com/docker/scan-cli-plugin/issues/149#issuecomment-823969364
 export DOCKER_SCAN_SUGGEST=false
-
 
 # docker completions
 source-if-exists ~/.config/zsh/_docker
