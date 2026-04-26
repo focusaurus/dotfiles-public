@@ -21,7 +21,7 @@ menu:
 
       - key: "c"
         desc: "calculator"
-        cmd: "focus calculator"
+        cmd: "niri-focus calculator"
 
       - key: "f"
         desc: "freecad"
@@ -97,6 +97,34 @@ menu:
     desc: "music"
     cmd: "niri-focus music"
 
+  - key: "u"
+    desc: "mUsic"
+    submenu:
+      - key: "t"
+        desc: "toggle"
+        cmd: "mpc toggle;playerctl play-pause"
+
+      - key: "a"
+        desc: "ario"
+        cmd: "niri-focus ario"
+
+      - key: "e"
+        desc: "euphonica"
+        cmd: "niri-focus euphonica"
+
+      - key: "p"
+        desc: "play"
+        # cmd: "mpc play"
+        cmd: "mpc play;playerctl play"
+
+      - key: "u"
+        desc: "pause"
+        cmd: "mpc pause;playerctl pause"
+
+      - key: "v"
+        desc: "volume (pavucontrol)"
+        cmd: "niri-focus volume"
+
   - key: "n"
     desc: "niri"
     submenu:
@@ -107,6 +135,10 @@ menu:
       - key: "b"
         desc: "toggle sidebar"
         cmd: "~/bin/eww-toggle sidebar"
+
+      - key: "D"
+        desc: "Dell monitor output DP-4 off"
+        cmd: "nir msg output DP-4 off"
 
       - key: "h"
         desc: "move left"
@@ -175,30 +207,6 @@ menu:
   - key: "T"
     desc: "trello"
     cmd: "niri-focus trello"
-
-  - key: "u"
-    desc: "umusic"
-    submenu:
-      - key: "t"
-        desc: "toggle"
-        cmd: "mpc toggle;playerctl play-pause"
-
-      - key: "a"
-        desc: "ario"
-        cmd: "niri-focus ario"
-
-      - key: "p"
-        desc: "play"
-        # cmd: "mpc play"
-        cmd: "mpc play;playerctl play"
-
-      - key: "u"
-        desc: "pause"
-        cmd: "mpc pause;playerctl pause"
-
-      - key: "v"
-        desc: "volume (pavucontrol)"
-        cmd: "niri-focus volume"
 
   - key: "v"
     desc: "volume"
