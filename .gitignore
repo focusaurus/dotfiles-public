@@ -377,3 +377,4 @@ aur.archlinux.org/yay
 /.config/cagent/.cagent_first_run
 /.config/simple-scan/state
 /documents/MuseScore4/Scores/.mscbackup
+/.zcli

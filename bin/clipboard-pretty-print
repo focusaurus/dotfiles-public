@@ -11,9 +11,9 @@ set -o pipefail # don't ignore exit codes when piping output
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 extension="$1"
-if ~/bin/paste | "${HOME}/bin/pretty-print-${extension}" &>/dev/null; then
-  ~/bin/paste | "${HOME}/bin/pretty-print-${extension}" | ~/bin/copy
+if ~/bin/paste | "${HOME}/bin/${extension}-pretty-print" &>/dev/null; then
+  ~/bin/paste | "${HOME}/bin/${extension}-pretty-print" | ~/bin/copy
   ~/bin/notify "Pretty ${extension} copied"
 else
-  notify "Error: $(paste | "${HOME}/bin/pretty-print-${extension}" 2>&1)"
+  notify "Error: $(paste | "${HOME}/bin/${extension}-pretty-print" 2>&1)"
 fi

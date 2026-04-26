@@ -3,7 +3,7 @@ local log = hs.logger.new("app-nav", "debug")
 local hbin = os.getenv("HOME") .. "/bin"
 
 local function useTabNav(appName)
-  return appName == "Google Chrome" or appName == "Firefox" or appName == "Obsidian" or appName == "Alacritty"
+  return appName == "Google Chrome" or appName == "Firefox" or appName == "Obsidian" or appName == "Alacritty" or appName == "Zed"
 end
 
 local function isTerminal(appName)

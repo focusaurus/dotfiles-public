@@ -24,5 +24,11 @@ git:
   # paging:
   #   colorArg: always
   #   pager: /opt/homebrew/bin/delta --dark --paging=never
+customCommands:
+  - key: 'P'
+    context: 'global'
+    description: 'Push (quiet)'
+    command: "git push -u origin HEAD 2>&1 | grep -viE '(dependabot|vulnerabilities)'"
+    output: log
 update:
   method: never

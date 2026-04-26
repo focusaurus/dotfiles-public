@@ -1,0 +1,93 @@
+#!/usr/bin/env bash
+# Extract mermaid code blocks from a markdown file.
+#
+# Usage:
+#   extract-mermaid.sh <file.md> [selector]
+#
+# Selector can be:
+#   (omitted)   - extracts the first mermaid block
+#   N           - extracts the Nth block (1-based)
+#   "string"    - extracts the first block whose body contains the string
+#   --list      - lists all blocks with their index and first line
+#
+# Examples:
+#   ./scripts/extract-mermaid.sh docs/design.md                # first block
+#   ./scripts/extract-mermaid.sh docs/design.md 2              # second block
+#   ./scripts/extract-mermaid.sh docs/design.md Prefill        # first block containing "Prefill"
+#   ./scripts/extract-mermaid.sh docs/design.md --list         # list all
+
+set -euo pipefail
+
+usage() {
+  sed -n '2,18s/^# \?//p' "$0"
+  exit 1
+}
+
+[[ ${1:-} ]] || usage
+
+file="$1"
+selector="${2:-1}"
+
+if [[ ! -f "$file" ]]; then
+  echo "error: file not found: $file" >&2
+  exit 1
+fi
+
+mode="number"
+target="1"
+
+if [[ "$selector" == "--list" ]]; then
+  mode="list"
+  target=0
+elif [[ "$selector" =~ ^[0-9]+$ && "$selector" -ge 1 ]]; then
+  mode="number"
+  target="$selector"
+else
+  mode="search"
+  target="$selector"
+fi
+
+awk -v mode="$mode" -v target="$target" '
+  /^```mermaid/ {
+    inside = 1
+    count++
+    buf = ""
+    first_line = 1
+    next
+  }
+  inside && /^```/ {
+    inside = 0
+    if (mode == "search" && !found && index(buf, target) > 0) {
+      printf "%s", buf
+      found = 1
+    }
+    next
+  }
+  inside {
+    buf = buf $0 "\n"
+
+    if (mode == "list") {
+      if (first_line) {
+        if ($0 ~ /^[[:space:]]*$/) next
+        printf "%d) %s\n", count, $0
+        first_line = 0
+      }
+    } else if (mode == "number" && count == target) {
+      print
+    }
+  }
+  END {
+    if (count == 0) {
+      print "no mermaid blocks found" > "/dev/stderr"
+      exit 1
+    }
+    if (mode == "number" && target > count) {
+      printf "error: requested block %d but only %d found\n", target, count > "/dev/stderr"
+      exit 1
+    }
+    if (mode == "search" && !found) {
+      printf "error: no mermaid block contains \"%s\"\n", target > "/dev/stderr"
+      exit 1
+    }
+  }
+' "$file"

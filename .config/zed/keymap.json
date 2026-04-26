@@ -22,7 +22,9 @@
   {
     "context": "Workspace",
     "bindings": {
-      "cmd-p": "command_palette::Toggle"
+      "cmd-p": "command_palette::Toggle",
+      "ctrl+shift+tab":"pane::ActivatePreviousItem",
+      "ctrl+tab":"pane::ActivateNextItem"
     }
   },
   {
@@ -53,13 +55,27 @@
   },
   {
     "bindings": {
-      "shift-space p c": "editor::CopyRelativePath"
+      "shift-space p c": "workspace::CopyRelativePath"
+    }
+  },
+  {
+    "bindings": {
+      // mnemonic: tab right
+      "shift-space t r": ["workspace::MoveItemToPaneInDirection", {"direction": "right"}],
+      // mnemonic: tab left
+      "shift-space t l": ["workspace::MoveItemToPaneInDirection", {"direction": "left"}]
     }
   },
   {
     "context": "(Editor && !edit_prediction)",
     "bindings": {
       "ctrl-t": "editor::ShowEditPrediction"
+    }
+  },
+  {
+    "context": "ProjectSearchBar",
+    "bindings": {
+      "cmd-shift-f": "pane::DeploySearch"
     }
   }
 ]

@@ -1,60 +1,71 @@
 {
-  "auto_update": false,
-  "extend_comment_on_newline": false,
-  "completions": {
-    "lsp": true,
-  },
-  "inlay_hints": {
-    "show_value_hints": false,
-  },
-  "edit_predictions": {
-    "provider": "copilot",
-    "mode": "eager",
-  },
-  "show_edit_predictions": true,
-  "show_whitespaces": "boundary",
-  "jsx_tag_auto_close": {
-    "enabled": false,
-  },
-  "show_completions_on_input": true,
-  "use_auto_surround": false,
-  "use_autoclose": false,
-  "format_on_save": "off",
   "agent": {
-    "enable_feedback": false,
-    "single_file_review": false,
-    "default_profile": "ask",
     "always_allow_tool_actions": true,
     "default_model": {
-      "provider": "anthropic",
-      "model": "claude-opus-4-6-latest",
+      "model": "claude-sonnet-4-5-latest",
+      "provider": "anthropic"
     },
+    "default_profile": "write",
+    "enable_feedback": false,
     "model_parameters": [],
+    "single_file_review": false
   },
+  "auto_update": false,
   "autosave": "on_window_change",
-  "telemetry": {
-    "diagnostics": true,
-    "metrics": true,
-  },
-  "formatter": null,
-  "vim_mode": true,
-  "ui_font_size": 14,
   "buffer_font_size": 14,
+  "close_on_file_delete": true,
+  "completions": {
+    "lsp": true
+  },
+  "disable_ai": false,
+  "edit_predictions": {
+    "mode": "subtle",
+    "provider": "copilot"
+  },
+  "extend_comment_on_newline": false,
+  "file_scan_exclusions": [
+    "**/.git",
+    "**/.worktrees",
+    "docs/plans/**"
+  ],
+  "format_on_save": "off",
+  "formatter": null,
+  "inlay_hints": {
+    "show_value_hints": false
+  },
+  "jsx_tag_auto_close": {
+    "enabled": false
+  },
   "languages": {
     "Go": {
-      "tab_size": 2,
       "format_on_save": "on",
+      "tab_size": 2
     },
     "JavaScript": {
-      "format_on_save": "off",
+      "format_on_save": "off"
     },
     "TypeScript": {
-      "format_on_save": "off",
-    },
+      "format_on_save": "off"
+    }
+  },
+  "outline_panel": {
+    "dock": "right"
+  },
+  "show_completions_on_input": true,
+  "show_edit_predictions": true,
+  "show_whitespaces": "boundary",
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
   },
   "theme": {
-    "mode": "system",
-    "light": "Catppuccin Latte",
     "dark": "One Dark",
-  }
+    "light": "Catppuccin Latte",
+    "mode": "system"
+  },
+  "ui_font_size": 14,
+  "use_auto_surround": false,
+  "use_autoclose": false,
+  "use_smartcase_search": true,
+  "vim_mode": true
 }

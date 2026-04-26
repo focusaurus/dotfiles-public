@@ -15,5 +15,4 @@ IFS=$'\n\t'
 
 from_branch=${1:-HEAD}
 to_branch=${2:-origin/main}
-git merge-tree "$(git merge-base "${from_branch}" "${to_branch}")" "${to_branch}" "${from_branch}" |
-  bat --language diff
+git ddiff "${to_branch}...${from_branch}"
