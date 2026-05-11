@@ -31,7 +31,7 @@ niri msg -j windows | jq '
     elif (app_id | ascii_downcase | test("dolphin|nautilus|thunar|pcmanfm")) then "📁"
     elif (app_id | ascii_downcase | test("slack|discord")) then "💬"
     elif (app_id | ascii_downcase | test("1password")) then "🔑"
-    elif (app_id | ascii_downcase | test("spotify|rhythmbox|ario|clementine")) then "🎵"
+    elif (app_id | ascii_downcase | test("spotify|rhythmbox|ario|clementine|euphonica")) then "🎵"
     elif (app_id | ascii_downcase | test("vlc|mpv|totem")) then "🎬"
     elif (title | ascii_downcase | test("gofi")) then "🔃"
     elif (app_id | ascii_downcase | test("localsend")) then "📦"
