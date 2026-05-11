@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+# Mark all GitHub notifications for a given repo as read.
+# Usage: gh-notifications-clear <owner>/<repo>
+
+set -o errexit
+set -o errtrace
+set -o nounset
+set -o pipefail
+
+IFS=$'\n\t'
+
+usage() {
+  echo "Usage: $(basename "$0") <owner>/<repo>" >&2
+  exit 64
+}
+
+main() {
+  if [[ $# -ne 1 ]]; then
+    usage
+  fi
+
+  local repo="$1"
+  if [[ ! "${repo}" =~ ^[^/[:space:]]+/[^/[:space:]]+$ ]]; then
+    echo "error: expected <owner>/<repo>, got: ${repo}" >&2
+    usage
+  fi
+
+  # PUT /repos/{owner}/{repo}/notifications
+  # 202 Accepted: notifications were marked
+  # 205 Reset Content: nothing to mark
+  local status
+  status=$(gh api \
+    --method PUT \
+    --silent \
+    -H "Accept: application/vnd.github+json" \
+    -H "X-GitHub-Api-Version: 2022-11-28" \
+    "/repos/${repo}/notifications" \
+    -f "last_read_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+    --include 2>&1 | awk 'toupper($1) ~ /^HTTP\// {print $2; exit}')
+
+  case "${status}" in
+    202) echo "Marked notifications for ${repo} as read." ;;
+    205) echo "No unread notifications for ${repo}." ;;
+    *)   echo "Unexpected response (HTTP ${status:-unknown}) for ${repo}." >&2; exit 1 ;;
+  esac
+}
+
+main "$@"
