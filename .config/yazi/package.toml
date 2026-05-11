@@ -1,0 +1,7 @@
+[[plugin.deps]]
+use = "yazi-rs/plugins:git"
+rev = "4ffa48f"
+hash = "6849444b7c2df08eace83f3f86fb55a3"
+
+[flavor]
+deps = []
