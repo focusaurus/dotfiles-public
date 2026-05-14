@@ -378,3 +378,5 @@ aur.archlinux.org/yay
 /.config/simple-scan/state
 /documents/MuseScore4/Scores/.mscbackup
 /.zcli
+/.config/BambuStudioBeta
+/.config/kando/backups
