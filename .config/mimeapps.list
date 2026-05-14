@@ -1,6 +1,7 @@
 [Added Associations]
 inode/directory=yazi.desktop;
 x-scheme-handler/slack=slack.desktop;Slack.desktop;
+model/stl=BambuStudio.desktop;
 
 [Default Applications]
 inode/directory=yazi.desktop;

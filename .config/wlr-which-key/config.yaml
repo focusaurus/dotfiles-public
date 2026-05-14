@@ -3,7 +3,7 @@ background: "#3d95d6"
 color: "#0a1122"
 border: "#0a1122"
 separator: " ➜ "
-border_width: 1
+border_width: 2
 
 # Anchor and margin
 # anchor: center # One of center, left, right, top, bottom, bottom-left, top-left, etc.
@@ -211,19 +211,19 @@ menu:
   - key: "v"
     desc: "volume"
     submenu:
-      - key: "0"
+      - key: ["0", "_"]
         desc: "zero"
         cmd: "volume 0"
 
-      - key: "1"
+      - key: ["1", "_"]
         desc: "10%"
         cmd: "volume 10%"
 
-      - key: "2"
+      - key: ["2", "_"]
         desc: "20%"
         cmd: "volume 20%"
 
-      - key: "3"
+      - key: ["3", "_"]
         desc: "30%"
         cmd: "volume 30%"
 
@@ -231,7 +231,7 @@ menu:
         desc: "40%"
         cmd: "volume 40%"
 
-      - key: "5"
+      - key: ["5", "_"]
         desc: "50%"
         cmd: "volume 50%"
 
@@ -239,7 +239,7 @@ menu:
         desc: "60%"
         cmd: "volume 60%"
 
-      - key: "7"
+      - key: ["7", "_"]
         desc: "70%"
         cmd: "volume 70%"
 
@@ -255,23 +255,23 @@ menu:
         desc: "100%"
         cmd: "volume 100%"
 
-      - key: "d"
+      - key: ["d", "_"]
         desc: "down"
         cmd: "volume -10%"
 
-      - key: "u"
+      - key: ["u", "_"]
         desc: "up"
         cmd: "volume +10%"
 
-      - key: "a"
+      - key: ["a", "_"]
         desc: "adjust"
         cmd: "/home/plyons/fuzzball/volume-adjust"
 
-      - key: "m"
+      - key: ["m", "_"]
         desc: "mute"
         cmd: "volume mute"
 
-      - key: "t"
+      - key: ["t", "_"]
         desc: "toggle-mute"
         cmd: "volume-toggle-mute"
 
