@@ -77,5 +77,10 @@
     "bindings": {
       "cmd-shift-f": "pane::DeploySearch"
     }
+  },
+  {
+    "bindings": {
+      "g shift-s": "project_symbols::Toggle"
+    }
   }
 ]
