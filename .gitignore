@@ -380,3 +380,6 @@ aur.archlinux.org/yay
 /.zcli
 /.vscode-shared/sharedStorage
 /.zeus
+/.claude/todos
+/.config/github-copilot
+/.float/zeus
