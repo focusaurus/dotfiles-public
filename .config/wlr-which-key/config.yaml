@@ -140,6 +140,10 @@ menu:
         desc: "Dell monitor output DP-4 off"
         cmd: "nir msg output DP-4 off"
 
+      - key: "f"
+        desc: "toggle fullscreen"
+        cmd: "niri msg action toggle-windowed-fullscreen"
+
       - key: "h"
         desc: "move left"
         cmd: "niri-move-previous move-column-left"
@@ -274,6 +278,10 @@ menu:
       - key: ["t", "_"]
         desc: "toggle-mute"
         cmd: "volume-toggle-mute"
+
+      - key: "v"
+        desc: "volume (pavucontrol)"
+        cmd: "niri-focus volume"
 
   - key: "V"
     desc: "vicinae launcher"

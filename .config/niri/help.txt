@@ -1,0 +1,32 @@
+A scrollable-tiling Wayland compositor
+
+Usage: niri [OPTIONS] [-- <COMMAND>...]
+       niri <SUBCOMMAND>
+
+Subcommands:
+  msg          Communicate with the running niri instance
+  validate     Validate the config file
+  panic        Cause a panic to check if the backtraces are good
+  completions  Generate shell completions
+  help         Print this message or the help of the given subcommand(s)
+
+Arguments:
+  [COMMAND]...
+          Command to run upon compositor startup
+
+Options:
+  -c, --config <CONFIG>
+          Path to config file (default: `$XDG_CONFIG_HOME/niri/config.kdl`).
+          
+          This can also be set with the `NIRI_CONFIG` environment variable. If both are set, the command line argument takes precedence.
+
+      --session
+          Import environment globally to systemd and D-Bus, run D-Bus services.
+          
+          Set this flag in a systemd service started by your display manager, or when running manually as your main compositor instance. Do not set when running as a nested window, or on a TTY as your non-main compositor instance, to avoid messing up the global environment.
+
+  -h, --help
+          Print help (see a summary with '-h')
+
+  -V, --version
+          Print version

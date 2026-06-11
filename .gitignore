@@ -380,3 +380,6 @@ aur.archlinux.org/yay
 /.zcli
 /.config/BambuStudioBeta
 /.config/kando/backups
+/.config/github-copilot
+/.config/libreoffice/4/user
+/bin/slugger

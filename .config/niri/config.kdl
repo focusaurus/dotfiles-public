@@ -119,11 +119,12 @@ binds {
     Mod+Control+Down { focus-workspace-down; }
     Mod+Control+Up { focus-workspace-up; }
     Mod+Control+Right { focus-column-right; }
-    // Mod+Shift+H { move-column-left; }
-    // Mod+Shift+J { move-window-down; }
-    // Mod+Shift+K { move-window-up; }
-    // Mod+Shift+L { move-column-right; }
+
     // dvorak home row vim direction keys for moving (add shift)
+    Mod+Shift+H { move-column-left; }
+    Mod+Shift+J { move-window-down; }
+    Mod+Shift+K { move-window-up; }
+    Mod+Shift+L { move-column-right; }
  
     Mod+1 { focus-workspace 1; }
     Mod+2 { focus-workspace 2; }
@@ -201,3 +202,4 @@ window-rule {
     border { off; }
     shadow { off; }
 }
+include "hamr/blur.kdl"
