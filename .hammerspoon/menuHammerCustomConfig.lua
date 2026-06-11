@@ -192,7 +192,8 @@ a(i, { cons.cat.action, noMod, "u", "unmute", { { cons.act.func, sound.unmute } 
 local menuVolume = { menuItems = i, parentMenu = menuNameMain }
 
 i = {}
-a(i, { cons.cat.action, noMod, "a", "API (Postman)", { { cons.act.launcher, "Postman" } } })
+-- a(i, { cons.cat.action, noMod, "a", "API (Postman)", { { cons.act.launcher, "Postman" } } })
+a(i, { cons.cat.action, noMod, "a", "API (Bruno)", { { cons.act.launcher, "Bruno" } } })
 a(i, { cons.cat.action, noMod, "b", "Browser", { { cons.act.func, focus.browser } } })
 a(i, { cons.cat.action, noMod, "c", "Calendar", { { cons.act.func, focus.calendar } } })
 a(i, { cons.cat.action, noMod, "d", "TablePlus", { { cons.act.launcher, "TablePlus" } } })

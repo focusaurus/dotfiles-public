@@ -37,7 +37,7 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 vim.keymap.set("n", "<leader>mm", ":@@<cr>", { noremap = true })
 
 -- autoformat (pretty print, beautify) the current buffer
-vim.keymap.set("n", "<leader>f", ":w<cr>:silent !pretty-print-files %<cr>:edit!<cr>", { noremap = true })
+vim.keymap.set("n", "<leader>f", ":w<cr>:silent !files-pretty-print %<cr>:edit!<cr>", { noremap = true })
 
 -- save the buffer with double tap leader
 vim.keymap.set("n", "<leader><leader>", ":w<cr>", { noremap = true })

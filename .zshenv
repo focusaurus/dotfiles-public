@@ -38,7 +38,6 @@ setup-path() {
   add-path "/opt/homebrew/opt/mysql-client/bin"
   add-path "${HOME}/.n/bin"
   add-path "${HOME}/.cargo/bin"
-  add-path "${HOME}/.luarocks/bin"
   add-path "/usr/local/bin"
   add-path "/bin"
   add-path "/usr/bin"
@@ -64,9 +63,6 @@ setup-path() {
 }
 setup-path
 
-if ~/bin/have-exe luarocks; then
-  eval $(luarocks path --bin | grep -v "export PATH=")
-fi
 
 export PAGER=less
 export BREW_PREFIX="/opt/homebrew"
