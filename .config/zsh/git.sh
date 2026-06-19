@@ -74,6 +74,9 @@ alias gorce="git push --force-with-lease"
 alias ts="tig status"
 alias gD="git branch -D"
 
+grm() {
+
+}
 _base-url() {
   # heads up. Depends on a slightly obscure utility
   # https://github.com/sgreben/url
