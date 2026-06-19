@@ -1,5 +1,16 @@
 {
+  "diff_view_style": "unified",
+  "project_panel": {
+    "dock": "left"
+  },
+  "collaboration_panel": {
+    "dock": "left"
+  },
+  "git_panel": {
+    "dock": "left"
+  },
   "agent": {
+    "dock": "right",
     "always_allow_tool_actions": true,
     "default_model": {
       "model": "claude-sonnet-4-5-latest",

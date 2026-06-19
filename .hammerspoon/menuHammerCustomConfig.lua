@@ -144,7 +144,7 @@ a(i, { cons.cat.action, noMod, "t", "Task", { { cons.act.func, journal.appendPro
 a(i, { cons.cat.action, noMod, "v", "vim", { { cons.act.func, journal.appendVim } } })
 local menuJournal = { menuItems = i, parentMenu = menuNameMain }
 
-local menuNameLayout = "Layout (Placement)"
+local menuNameLayout = "Placement"
 i = {}
 a(i, { cons.cat.action, noMod, "l", "Left", { { cons.act.func, placement.left } } })
 a(i, { cons.cat.action, noMod, "r", "Right", { { cons.act.func, placement.right } } })
@@ -194,22 +194,24 @@ local menuVolume = { menuItems = i, parentMenu = menuNameMain }
 i = {}
 -- a(i, { cons.cat.action, noMod, "a", "API (Postman)", { { cons.act.launcher, "Postman" } } })
 a(i, { cons.cat.action, noMod, "a", "API (Bruno)", { { cons.act.launcher, "Bruno" } } })
-a(i, { cons.cat.action, noMod, "b", "Browser", { { cons.act.func, focus.browser } } })
+a(i, { cons.cat.action, noMod, "b", "Zen (Float)", { { cons.act.func, focus.zenFloat } } })
+a(i, { cons.cat.action, "shift", "b", "Zen (Personal)", { { cons.act.func, focus.zenPersonal } } })
 a(i, { cons.cat.action, noMod, "c", "Calendar", { { cons.act.func, focus.calendar } } })
 a(i, { cons.cat.action, noMod, "d", "TablePlus", { { cons.act.launcher, "TablePlus" } } })
-a(i, { cons.cat.action, noMod, "m", "DbVisualizer", { { cons.act.launcher, "DbVisualizer" } } })
+a(i, { cons.cat.action, "shift", "d", "DbVisualizer", { { cons.act.launcher, "DbVisualizer" } } })
 a(i, { cons.cat.action, noMod, "e", "email", { { cons.act.func, focus.email } } })
 a(i, { cons.cat.submenu, noMod, "f", menuNameFloatHealth, { { cons.act.menu, menuNameFloatHealth } } })
 a(i, { cons.cat.action, noMod, "g", "Google Meet & Notes", { { cons.act.func, placement.googleMeet } } })
 a(i, { cons.cat.submenu, noMod, "h", menuNameHammerspoon, { { cons.act.menu, menuNameHammerspoon } } })
-a(i, { cons.cat.action, noMod, "i", "IDE  (VS Code)", { { cons.act.launcher, "Visual Studio Code" } } })
+a(i, { cons.cat.action, noMod, "i", "Zed", { { cons.act.launcher, "Zed" } } })
+a(i, { cons.cat.action, "shift", "i", "IDE (VS Code)", { { cons.act.launcher, "Visual Studio Code" } } })
 a(i, { cons.cat.submenu, noMod, "j", menuNameJournal, { { cons.act.menu, menuNameJournal } } })
 a(i, { cons.cat.action, noMod, "k", "Firefox", { { cons.act.launcher, "Firefox" } } })
-a(i, { cons.cat.action, noMod, "l", menuNameLayout, { { cons.act.menu, menuNameLayout } } })
+a(i, { cons.cat.submenu, "shift", "p", menuNameLayout, { { cons.act.menu, menuNameLayout } } })
 a(i, { cons.cat.action, noMod, "n", "Snippets", { { cons.act.func, snippets.chooseByUIAndType } } })
 a(i, { cons.cat.action, noMod, "o", "Obsidian", { { cons.act.launcher, "Obsidian" } } })
 a(i, { cons.cat.action, noMod, "p", "1Password", { { cons.act.launcher, "1Password" } } })
-a(i, { cons.cat.action, noMod, "q", "Terminal Quick", { { cons.act.func, focus.terminalQuick } } })
+a(i, { cons.cat.action, "shift", "t", "Terminal Quick", { { cons.act.func, focus.terminalQuick } } })
 a(i, { cons.cat.action, noMod, "s", "Slack", { { cons.act.func, focus.slack } } })
 a(i, { cons.cat.action, noMod, "t", "terminal", { { cons.act.func, focus.terminal } } })
 a(i, { cons.cat.submenu, noMod, "u", menuNameMusic, { { cons.act.menu, menuNameMusic } } })
