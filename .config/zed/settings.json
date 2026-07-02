@@ -13,10 +13,12 @@
     "dock": "right",
     "always_allow_tool_actions": true,
     "default_model": {
-      "model": "claude-sonnet-4-5-latest",
+      "effort": "high",
+      "enable_thinking": true,
+      "model": "claude-sonnet-4-6",
       "provider": "anthropic"
     },
-    "default_profile": "ask",
+    "default_profile": "write",
     "enable_feedback": false,
     "model_parameters": [],
     "single_file_review": false
