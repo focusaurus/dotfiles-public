@@ -13,13 +13,38 @@ IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 if [[ "$(uname)" == "Darwin" ]]; then
   echo "require('sound').setVolume($*)" | hs
-else
+  exit
+fi
+
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
+
+arg="$1"
+case "${arg}" in
++*% | -*%)
   # Translate pactl-style args (+5%, -5%) to wpctl-style (5%+, 5%-)
-  arg="$1"
   if [[ "${arg}" =~ ^\+(.+) ]]; then
     arg="${BASH_REMATCH[1]}+"
   elif [[ "${arg}" =~ ^-(.+) ]]; then
     arg="${BASH_REMATCH[1]}-"
   fi
   wpctl set-volume @DEFAULT_AUDIO_SINK@ "${arg}"
-fi
+  ;;
+*%)
+  wpctl set-volume @DEFAULT_AUDIO_SINK@ "${arg}"
+  ;;
+adjust)
+  exec ./volume-adjust
+  ;;
+mute)
+  wpctl set-mute @DEFAULT_AUDIO_SINK@ 1
+  ;;
+unmute)
+  wpctl set-mute @DEFAULT_AUDIO_SINK@ 0
+  ;;
+toggle-mute)
+  wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+  ;;
+*)
+  echo "unsupported arg ${arg}"
+  ;;
+esac

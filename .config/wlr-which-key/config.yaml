@@ -217,7 +217,7 @@ menu:
     submenu:
       - key: ["0", "_"]
         desc: "zero"
-        cmd: "volume 0"
+        cmd: "volume 0%"
 
       - key: ["1", "_"]
         desc: "10%"
@@ -274,6 +274,10 @@ menu:
       - key: ["m", "_"]
         desc: "mute"
         cmd: "volume mute"
+
+      - key: ["M", "_"]
+        desc: "unmute"
+        cmd: "volume unmute"
 
       - key: ["t", "_"]
         desc: "toggle-mute"
