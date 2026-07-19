@@ -2,7 +2,11 @@ local module = {}
 local log = hs.logger.new("mpd", "debug")
 
 local function mpc(action)
-  hs.execute("mpc --host=tool.home.peterlyons.org " .. action, true)
+  -- need to use an IP instead of hostname here so this works even
+  -- when work VPN is connected.
+  -- Also had to directly add a route:
+  -- sudo route -n add 10.9.8.121 10.9.8.1
+  hs.execute("mpc --host=10.9.8.121 " .. action, true)
 end
 
 function module.toggle()
