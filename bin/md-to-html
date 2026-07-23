@@ -44,4 +44,31 @@ for arg in "$@"; do
   esac
 done
 # pandoc --from=markdown --to=html --ascii -o "${output}" "${input}"
-comrak < "${input}" > "${output}"
+cat <<EOF > "${output}"
+<html>
+  <head>
+  <style>
+    body { font-family: system-ui, sans-serif; font-size: 0.9em; line-height: 1.4; max-width: 7in; margin: 0.5in auto; }
+    h1 { font-size: 1.3em; margin: 0.6em 0 0.3em; }
+    h2 { font-size: 1.15em; margin: 0.5em 0 0.25em; }
+    h3 { font-size: 1.05em; margin: 0.4em 0 0.2em; }
+    h4, h5, h6 { font-size: 1em; margin: 0.4em 0 0.2em; }
+    p, ul, ol { margin: 0.4em 0; }
+    li { margin: 0.1em 0; }
+    pre, code { font-size: 0.85em; }
+    pre { padding: 0.4em; background: #f4f4f4; overflow-x: auto; }
+    @page { margin: 0.3in 0.4in 0.5in 0.4in; }
+    @media print { body { margin: 0 auto; } }
+
+    body { counter-reset: h1; }
+    h1 { counter-increment: h1; counter-reset: h2; }
+    h2 { counter-increment: h2; counter-reset: h3; }
+    h3 { counter-increment: h3; }
+    h1::before { content: counter(h1) ". "; }
+    h2::before { content: counter(h1) "." counter(h2) ". "; }
+    h3::before { content: counter(h1) "." counter(h2) "." counter(h3) ". "; }
+  </style>
+  </head>
+  <body>
+EOF
+comrak --hardbreaks < "${input}" >> "${output}"

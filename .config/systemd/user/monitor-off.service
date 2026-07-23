@@ -1,0 +1,6 @@
+[Unit]
+Description=Turn off the monitor
+
+[Service]
+Type=oneshot
+ExecStart=%h/fuzzball/screen-off

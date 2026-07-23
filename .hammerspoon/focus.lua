@@ -194,6 +194,29 @@ end
 module.gofi = module.gofiInTerminal
 module.leader = module.gofi
 
+-- Focus Zen and switch to a named Space.
+-- Zen doesn't expose "go to space X" via the menu bar or accessibility,
+-- so we rely on per-space keyboard shortcuts configured in Zen:
+--   cmd+shift+1 -> "Float", cmd+shift+2 -> "Personal".
+-- launchOrFocus returns immediately, so we send the keystroke after a
+-- short delay to make sure Zen is frontmost (esp. on a cold launch).
+local function zenSpace(spaceKey)
+	hs.application.launchOrFocus(browserName)
+	hs.timer.doAfter(0.2, function()
+		hs.eventtap.keyStroke({ "cmd", "shift" }, spaceKey)
+	end)
+end
+
+function module.zenFloat()
+	log.d("zenFloat")
+	zenSpace("1")
+end
+
+function module.zenPersonal()
+	log.d("zenPersonal")
+	zenSpace("2")
+end
+
 -- I have had many implementations of this.
 -- So I keep the function names in the module describing
 -- the specific implementation approach, but in the module's

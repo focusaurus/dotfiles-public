@@ -25,8 +25,10 @@ alias gick='git cherry-pick'
 alias gpum='git pull upstream main'
 alias gpom='git pull origin main'
 alias gpgm='git pull github main'
+alias gpam='git pull aws main'
 alias gPom='git push origin main'
 alias gPgm='git push github main'
+alias gPam='git push aws main'
 alias gf='git fetch --all'
 alias gbd='git branch -d'
 alias gsf='git-switch-fuzzy'
@@ -74,6 +76,9 @@ alias gorce="git push --force-with-lease"
 alias ts="tig status"
 alias gD="git branch -D"
 
+grm() {
+
+}
 _base-url() {
   # heads up. Depends on a slightly obscure utility
   # https://github.com/sgreben/url
@@ -278,13 +283,45 @@ cdr() {
   cd "$(git rev-parse --show-toplevel)" || return
 }
 
-new-git-project() {
+new-git-project-droplet() {
   local REPO="${1}"
   local GIT=git.peterlyons.com
   # shellcheck disable=SC2029
   # ssh "${GIT}" git init --bare --initial-branch=main "projects/${REPO}.git"
   ssh "${GIT}" git init --bare "projects/${REPO}.git"
   cd ~/projects || return 1
+  git clone "ssh://${GIT}/home/plyons/projects/${REPO}.git" "${REPO}"
+  cd "${REPO}" || return 1
+}
+
+git-codecommit-init() {
+  export AWS_PROFILE=focusaurus
+  name=$(basename "${PWD}")
+  # check if codecommit repo already exists
+  local exists=0
+  if err="$(aws codecommit get-repository \
+              --repository-name "$name" 2>&1)"; then
+    exists=1
+  elif grep -q 'RepositoryDoesNotExistException' <<<"$err"; then
+    exists=0
+  else
+    echo "ERROR $name : could not query CodeCommit:"; log "  $err"; ((errors++)); return
+  fi
+   aws codecommit create-repository --repository-name "$name"
+   clone=$(aws --output json --query repositoryMetadata.cloneUrlSsh codecommit get-repository --repository-name "${name}"| tr -d '"')
+   git remote add aws "${clone}"
+}
+
+new-git-project() {
+  export AWS_PROFILE=focusaurus
+  aws codecommit create-repository --repository-name "${1}"
+  cd ~/projects || return 1
+
+  local REPO="${1}"
+  local GIT=git.peterlyons.com
+  # shellcheck disable=SC2029
+  # ssh "${GIT}" git init --bare --initial-branch=main "projects/${REPO}.git"
+  ssh "${GIT}" git init --bare "projects/${REPO}.git"
   git clone "ssh://${GIT}/home/plyons/projects/${REPO}.git" "${REPO}"
   cd "${REPO}" || return 1
 }

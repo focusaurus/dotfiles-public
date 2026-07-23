@@ -1,0 +1,9 @@
+[Unit]
+Description=Sort grocery list
+
+[Timer]
+# run hourly between 6AM and 10PM
+OnCalendar=*-*-* 06..22:00:00 America/Denver
+
+[Install]
+WantedBy=timers.target

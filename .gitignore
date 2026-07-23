@@ -378,6 +378,10 @@ aur.archlinux.org/yay
 /.config/simple-scan/state
 /documents/MuseScore4/Scores/.mscbackup
 /.zcli
+/.config/BambuStudioBeta
+/.config/kando/backups
+/.config/libreoffice/4/user
+/bin/slugger
 /.vscode-shared/sharedStorage
 /.zeus
 /.claude/todos

@@ -26,8 +26,8 @@ for path in "$@"; do
     ;;
   *)
     if head -1 "${path}" | grep -q -E '\b(bash|sh|zsh)\b' "${path}"; then
-      ~/bin/pretty-print-sh <"${path}" >/dev/null
-      ~/bin/pretty-print-sh <"${path}" | sponge "${path}"
+      ~/bin/sh-pretty-print <"${path}" >/dev/null
+      ~/bin/sh-pretty-print <"${path}" | sponge "${path}"
     else
       echo "unsupported file extension: ${path}" 1>&2
       exit 10

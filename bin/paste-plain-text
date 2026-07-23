@@ -11,6 +11,19 @@ set -o pipefail   # don't ignore exit codes when piping output
 
 IFS="$(printf "\n\t")"
 # ---- End unofficial bash strict mode boilerplate
-# This does NOT work
-# xclip -selection clipboard -o  | xclip -selection clipboard
-xclip -selection clipboard -o | cat | xclip -selection clipboard
+# Strip formatting from the clipboard by reading its contents as plain text
+# and writing them straight back.
+case "$(uname -s)" in
+  Darwin)
+    pbpaste | pbcopy
+    ;;
+  Linux)
+    # This does NOT work:
+    # xclip -selection clipboard -o | xclip -selection clipboard
+    xclip -selection clipboard -o | cat | xclip -selection clipboard
+    ;;
+  *)
+    echo "paste-plain-text: unsupported OS: $(uname -s)" >&2
+    exit 1
+    ;;
+esac

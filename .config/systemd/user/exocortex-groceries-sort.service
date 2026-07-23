@@ -1,0 +1,6 @@
+[Unit]
+Description=Sort grocery list
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'cd ~/projects/exocortex/personal && ./bin/sort-todo-complete groceries.md'
