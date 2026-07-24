@@ -194,27 +194,51 @@ end
 module.gofi = module.gofiInTerminal
 module.leader = module.gofi
 
--- Focus Zen and switch to a named Space.
--- Zen doesn't expose "go to space X" via the menu bar or accessibility,
--- so we rely on per-space keyboard shortcuts configured in Zen:
---   cmd+shift+1 -> "Float", cmd+shift+2 -> "Personal".
--- launchOrFocus returns immediately, so we send the keystroke after a
--- short delay to make sure Zen is frontmost (esp. on a cold launch).
-local function zenSpace(spaceKey)
-	hs.application.launchOrFocus(browserName)
-	hs.timer.doAfter(0.2, function()
-		hs.eventtap.keyStroke({ "cmd", "shift" }, spaceKey)
-	end)
+-- Focus Zen and switch to a named Space via the "Spaces" menu.
+-- Recent Zen versions list only the INACTIVE spaces in the "Spaces" menu
+-- (the currently active space is omitted), so the per-space hotkeys are no
+-- longer stable. Instead we read the menu directly:
+--   - if no menu item matches the desired space, it's already active -> done
+--   - if a matching item is present, click it to switch to that space
+-- Space menu items are titled with an icon prefix (e.g. "🛟  Float"), so we
+-- match the desired name as a substring but select using the item's exact
+-- title.
+local function zenSpace(spaceName)
+	local browserApp = hs.appfinder.appFromName(browserName)
+	if browserApp == nil then
+		-- Zen isn't running yet; launch it (the default space will load).
+		hs.application.launchOrFocus(browserName)
+		return
+	end
+	browserApp:activate()
+	browserApp:setFrontmost()
+	local menus = browserApp:getMenuItems()
+	if menus == nil then
+		return
+	end
+	for _, menu in ipairs(menus) do
+		if menu.AXTitle == "Spaces" and menu.AXChildren then
+			for _, item in ipairs(menu.AXChildren[1]) do
+				if item.AXTitle and string.find(item.AXTitle, spaceName, 1, true) then
+					-- Desired space is inactive; click it to activate.
+					browserApp:selectMenuItem({ "Spaces", item.AXTitle })
+					return
+				end
+			end
+			-- No matching item means the desired space is already active.
+			return
+		end
+	end
 end
 
 function module.zenFloat()
 	log.d("zenFloat")
-	zenSpace("1")
+	zenSpace("Float")
 end
 
 function module.zenPersonal()
 	log.d("zenPersonal")
-	zenSpace("2")
+	zenSpace("Personal")
 end
 
 -- I have had many implementations of this.
