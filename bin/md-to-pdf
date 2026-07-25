@@ -14,33 +14,54 @@ IFS=$'\n\t'
 
 usage() {
   cat <<EOF
-Converts markdown text into a PDF file.
+Converts markdown text into a PDF file (markdown -> HTML -> PDF).
 
-Pass filenames on the command line. Position doesn't matter, just filename extensions.
+Pass filenames on the command line. Position doesn't matter, just filename
+extensions:
 
-The .md is the template and .pdf is the output.
+  .md    markdown input   (defaults to stdin)
+  .pdf   PDF output       (defaults to stdout)
+  .css   extra stylesheet (may be passed multiple times)
 
-One or both filename arguments can be omitted and stdio will be used instead.
+The base style is always applied. Any .css files are inlined into the
+intermediate HTML in the order given (later ones override earlier ones).
+
+  md-to-pdf sample-document.md sample-document.pdf
+  md-to-pdf sample-contract.md contract.pdf ~/.config/markdown/counters.css
 
 EOF
 }
 
 input="/dev/stdin"
 output="/dev/stdout"
+declare -a styles=()
 
 for arg in "$@"; do
   case "${arg}" in
+  -h | --help)
+    usage
+    exit 0
+    ;;
   *.md)
     input="${arg}"
     ;;
   *.pdf)
     output="${arg}"
     ;;
+  *.css)
+    styles+=("${arg}")
+    ;;
   *)
-    echo "Expecting arguments in any order but with extensions: .md or .pdf. Not ${arg}" 1>&2
+    echo "Expecting arguments in any order but with extensions: .md or .pdf or .css. Not ${arg}" 1>&2
     usage 1>&2
     exit 10
     ;;
   esac
 done
-~/bin/md-to-html <"${input}" | ~/bin/html-to-pdf >"${output}"
+
+if [[ "${input}" == "/dev/stdin" ]]; then
+  # No .md file given; read markdown from stdin.
+  ~/bin/md-to-html "${styles[@]}" | ~/bin/html-to-pdf >"${output}"
+else
+  ~/bin/md-to-html "${input}" "${styles[@]}" | ~/bin/html-to-pdf >"${output}"
+fi

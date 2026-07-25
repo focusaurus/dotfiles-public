@@ -4,7 +4,7 @@
 
 # ---- Start unofficial bash strict mode boilerplate
 # http://redsymbol.net/articles/unofficial-bash-strict-mode/
-set -o errexit # always exit on error
+set -o errexit  # always exit on error
 set -o errtrace # trap errors in functions as well
 set -o pipefail # don't ignore exit codes when piping output
 # set -x # enable debugging
@@ -14,61 +14,67 @@ IFS=$'\n\t'
 
 usage() {
   cat <<EOF
-Converts markdown text into HTML.
+Converts markdown text into a self-contained HTML file.
 
-Pass filenames on the command line. Position doesn't matter, just filename extensions.
+Pass filenames on the command line. Position doesn't matter, just filename
+extensions:
 
-The .md is the template and .html is the output.
+  .md    markdown input   (defaults to stdin)
+  .html  HTML output      (defaults to stdout)
+  .css   extra stylesheet (may be passed multiple times)
 
-One or both filename arguments can be omitted and stdio will be used instead.
+The base style (~/.config/markdown/markdown-base.css) is always inlined first.
+Any .css files are then inlined in the order given, so later ones override
+earlier ones. All styles end up inline so the HTML is self-contained.
+
+  md-to-html sample-document.md sample-document.html
+  md-to-html sample-contract.md contract.html ~/.config/markdown/counters.css
 
 EOF
 }
 
+base_style="${HOME}/.config/markdown/markdown-base.css"
 input="/dev/stdin"
 output="/dev/stdout"
+declare -a styles=()
 
 for arg in "$@"; do
   case "${arg}" in
+  -h | --help)
+    usage
+    exit 0
+    ;;
   *.md)
     input="${arg}"
     ;;
   *.html)
     output="${arg}"
     ;;
+  *.css)
+    styles+=("${arg}")
+    ;;
   *)
-    echo "Expecting arguments in any order but with extensions: .md or .html. Not ${arg}" 1>&2
+    echo "Expecting arguments in any order but with extensions: .md or .html or .css. Not ${arg}" 1>&2
     usage 1>&2
     exit 10
     ;;
   esac
 done
-# pandoc --from=markdown --to=html --ascii -o "${output}" "${input}"
-cat <<EOF > "${output}"
-<html>
-  <head>
-  <style>
-    body { font-family: system-ui, sans-serif; font-size: 0.9em; line-height: 1.4; max-width: 7in; margin: 0.5in auto; }
-    h1 { font-size: 1.3em; margin: 0.6em 0 0.3em; }
-    h2 { font-size: 1.15em; margin: 0.5em 0 0.25em; }
-    h3 { font-size: 1.05em; margin: 0.4em 0 0.2em; }
-    h4, h5, h6 { font-size: 1em; margin: 0.4em 0 0.2em; }
-    p, ul, ol { margin: 0.4em 0; }
-    li { margin: 0.1em 0; }
-    pre, code { font-size: 0.85em; }
-    pre { padding: 0.4em; background: #f4f4f4; overflow-x: auto; }
-    @page { margin: 0.3in 0.4in 0.5in 0.4in; }
-    @media print { body { margin: 0 auto; } }
 
-    body { counter-reset: h1; }
-    h1 { counter-increment: h1; counter-reset: h2; }
-    h2 { counter-increment: h2; counter-reset: h3; }
-    h3 { counter-increment: h3; }
-    h1::before { content: counter(h1) ". "; }
-    h2::before { content: counter(h1) "." counter(h2) ". "; }
-    h3::before { content: counter(h1) "." counter(h2) "." counter(h3) ". "; }
-  </style>
-  </head>
-  <body>
-EOF
-comrak --hardbreaks < "${input}" >> "${output}"
+{
+  echo '<!DOCTYPE html>'
+  echo '<html lang="en">'
+  echo '<head>'
+  echo '<meta charset="utf-8">'
+  echo '<meta name="viewport" content="width=device-width, initial-scale=1">'
+  for style in "${base_style}" "${styles[@]}"; do
+    echo '<style>'
+    cat "${style}"
+    echo '</style>'
+  done
+  echo '</head>'
+  echo '<body>'
+  comrak --gfm --hardbreaks -- "${input}"
+  echo '</body>'
+  echo '</html>'
+} >"${output}"
