@@ -477,7 +477,13 @@ local function emailByAppWindowTitle()
 	-- end
 	-- win:focus()
 end
-module.email = emailByAppWindowTitle
+
+local function emailByBrowserThenHotkey()
+  module.browser()
+  hs.eventtap.keyStroke({"command"}, "1")
+end
+
+module.email = emailByBrowserThenHotkey
 
 -- function module.calendarTab()
 --     log.d("calendarTab")
@@ -498,6 +504,17 @@ module.email = emailByAppWindowTitle
 -- end
 
 -- module.calendar = module.calendarDock
+
+function module.github()
+	log.d("github")
+	if focusMode then
+		return
+	end
+  module.browser()
+	hs.timer.doAfter(0.4, function()
+		hs.eventtap.keyStroke({ "command" }, "2")
+	end)
+end
 
 local function startsWith(str, prefix)
 	return string.sub(str, 1, string.len(prefix)) == prefix
