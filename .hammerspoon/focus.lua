@@ -564,13 +564,14 @@ function module.previousAppByFilter()
 end
 
 function module.previousAppByHotkey()
+  hs.eventtap.keyStroke({"cmd"}, "Tab") 
 	-- hs.eventtap.event.newKeyEvent({ "cmd" }, "Tab", true):post()
 	-- hs.eventtap.event.newKeyEvent({"shift", "alt"}, "a", false):post()
 	-- Since I trigger this with home row mod on "a" (left pinky),
 	-- the first thing I need to do is send a key up for "a" so
 	-- the command+tab is interpretted correctly by macos
 	-- hs.eventtap.event.newKeyEvent("e", false):post()
-	if true then
+	if false then
 		hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, true):post()
 		hs.eventtap.event.newKeyEvent("Tab", true):post()
 		hs.timer.doAfter(0.2, function()
@@ -590,6 +591,18 @@ function module.slack()
 		return
 	end
 	hs.application.launchOrFocus("Slack")
+end
+
+-- The Android emulator runs as a bare qemu binary with no app bundle, so
+-- launchOrFocus/application.open can't resolve it.  Match on the window title
+-- instead of the process name, which is arch-specific (qemu-system-aarch64) and
+-- changes with SDK updates.
+function module.androidEmulator()
+	log.d("androidEmulator")
+	if module.byTitlePrefix("Android Emulator - ") == nil then
+		log.d("android emulator is not running")
+		hs.alert.show("Android emulator is not running")
+	end
 end
 
 function module.hammerspoonconsole()

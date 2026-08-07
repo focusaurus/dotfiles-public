@@ -105,6 +105,7 @@ local menuNameMain = "Main"
 local menuNameFloatHealth = "Float Health"
 local i = {}
 a(i, { cons.cat.action, noMod, "i", "iOS Simulator", { { cons.act.launcher, "Simulator" } } })
+a(i, { cons.cat.action, noMod, "a", "android emulator", { { cons.act.func, focus.androidEmulator } } })
 a(i, { cons.cat.action, noMod, "v", "VS Code", { { cons.act.launcher, "Visual Studio Code" } } })
 a(i, { cons.cat.action, noMod, "l", "Leapp", { { cons.act.launcher, "Leapp" } } })
 a(i, { cons.cat.action, noMod, "y", "Playwright (Chromium)", { { cons.act.launcher, "Chromium" } } })
