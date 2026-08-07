@@ -14,7 +14,7 @@ IFS="$(printf "\n\t")"
 
 sync_dir() {
   if ! ~/bin/git-is-repo; then
-    echo "Not syncing: not git repo: ${PWD}"
+    echo "${ME}: Not syncing: not git repo: ${PWD}"
     return
   fi
   if ! ~/bin/git-is-default-branch; then
