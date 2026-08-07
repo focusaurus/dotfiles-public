@@ -394,3 +394,4 @@ aur.archlinux.org/yay
 /.config/markdown/sample-document.html
 /.config/markdown/sample-document.pdf
 /.emulator_console_auth_token
+/.homebrew/trust.json.lock
