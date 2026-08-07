@@ -11,11 +11,34 @@ set -o pipefail # don't ignore exit codes when piping output
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-repo=$(ssh plyons@git.peterlyons.com ls -d 'projects/*.git' |
-  xargs -n 1 basename |
-  ~/bin/fuzzy-filter "$@")
-if [[ -z "${repo}" ]]; then
-  exit
-fi
-cd ~/git.peterlyons.com
-git clone "ssh://plyons@git.peterlyons.com/home/plyons/projects/${repo}"
+
+git_host="codecommit"
+
+case "${git_host}" in
+ssh)
+  repo=$(ssh plyons@git.peterlyons.com ls -d 'projects/*.git' |
+    xargs -n 1 basename |
+    ~/bin/fuzzy-filter "$@")
+  if [[ -z "${repo}" ]]; then
+    exit
+  fi
+  cd ~/git.peterlyons.com
+  git clone "ssh://plyons@git.peterlyons.com/home/plyons/projects/${repo}"
+  ;;
+codecommit)
+  repo=$(
+    AWS_PROFILE=focusaurus aws codecommit list-repositories |
+      jq -r '.repositories[].repositoryName' |
+      ~/bin/fuzzy-filter "$@"
+  )
+  if [[ -z "${repo}" ]]; then
+    exit
+  fi
+  cd ~/codecommit
+  git clone "ssh://git-codecommit.us-west-2.amazonaws.com/v1/repos/${repo}"
+  ;;
+*)
+  echo "unknown git host: ${git_host}" 1>&2
+  exit 2
+  ;;
+esac

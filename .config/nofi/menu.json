@@ -139,7 +139,7 @@
           "p": {
             "command": [
               "journal-append-prompt",
-              "/home/plyons/git.peterlyons.com/focus-retreat-center"
+              "/home/plyons/codecommit/focus-retreat-center"
             ],
             "label": "prompt"
           },
@@ -147,7 +147,7 @@
             "command": [
               "terminal-quick",
               "journal-read",
-              "/home/plyons/git.peterlyons.com/focus-retreat-center"
+              "/home/plyons/codecommit/focus-retreat-center"
             ],
             "label": "read"
           },
@@ -155,7 +155,7 @@
             "command": [
               "terminal-quick",
               "journal-append-vim",
-              "/home/plyons/git.peterlyons.com/focus-retreat-center"
+              "/home/plyons/codecommit/focus-retreat-center"
             ],
             "label": "vim"
           }
@@ -167,7 +167,7 @@
           "p": {
             "command": [
               "journal-append-prompt",
-              "/home/plyons/git.peterlyons.com/petes-personal-journal"
+              "/home/plyons/codecommit/petes-personal-journal"
             ],
             "label": "prompt"
           },
@@ -175,7 +175,7 @@
             "command": [
               "terminal-quick",
               "journal-read",
-              "/home/plyons/git.peterlyons.com/petes-personal-journal"
+              "/home/plyons/codecommit/petes-personal-journal"
             ],
             "label": "read"
           },
@@ -183,7 +183,7 @@
             "command": [
               "terminal-quick",
               "journal-append-vim",
-              "/home/plyons/git.peterlyons.com/petes-personal-journal"
+              "/home/plyons/codecommit/petes-personal-journal"
             ],
             "label": "vim"
           }
