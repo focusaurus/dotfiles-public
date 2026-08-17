@@ -42,6 +42,11 @@
     }
   },
   {
+    "bindings": {
+      "shift-space g g": "git_panel::ToggleFocus"
+    }
+  },
+  {
     "context": "Editor && vim_mode == normal",
     "bindings": {
        "ctrl+c": "editor::Copy"
