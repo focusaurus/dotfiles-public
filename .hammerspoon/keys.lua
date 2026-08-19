@@ -33,3 +33,17 @@ hs.hotkey.bind({ "command" }, "space", fuzzball.chooseScript)
 hs.hotkey.bind({ "control" }, "2", fuzzball.chooseScript)
 hs.hotkey.bind({ "control" }, "3", snippets.chooseByUIAndType)
 hs.hotkey.bind({}, "F12", snippets.chooseByUIAndType)
+
+-- Reload on keyboard layout change. hs.keycodes.map refreshes itself, but
+-- hs.hotkey caches keycodes at bind time, so bindings need to be rebuilt.
+local lastSourceID = hs.keycodes.currentSourceID()
+hs.keycodes.inputSourceChanged(function()
+	local sourceID = hs.keycodes.currentSourceID()
+	-- the notification also fires for input method changes within a layout
+	if sourceID == lastSourceID then
+		return
+	end
+	lastSourceID = sourceID
+	-- defer, so we don't tear down the Lua state from inside its own callback
+	hs.timer.doAfter(0.5, hs.reload)
+end)
