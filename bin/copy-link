@@ -21,8 +21,14 @@ chrome() {
 }
 
 firefox() {
-  xdotool click 3 # right click
-  xdotool key l
+  if [[ "${XDG_SESSION_TYPE}" == "wayland" ]]; then
+    wlrctl pointer click right
+    sleep 0.2
+    wtype l
+  else
+    xdotool click 3 # right click
+    xdotool key l
+  fi
 }
 
 firefox
