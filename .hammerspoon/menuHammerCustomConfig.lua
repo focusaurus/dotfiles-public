@@ -105,6 +105,7 @@ local menuNameMain = "Main"
 local menuNameFloatHealth = "Float Health"
 local i = {}
 a(i, { cons.cat.action, noMod, "i", "iOS Simulator", { { cons.act.launcher, "Simulator" } } })
+a(i, { cons.cat.action, noMod, "a", "android emulator", { { cons.act.func, focus.androidEmulator } } })
 a(i, { cons.cat.action, noMod, "v", "VS Code", { { cons.act.launcher, "Visual Studio Code" } } })
 a(i, { cons.cat.action, noMod, "l", "Leapp", { { cons.act.launcher, "Leapp" } } })
 a(i, { cons.cat.action, noMod, "y", "Playwright (Chromium)", { { cons.act.launcher, "Chromium" } } })
@@ -140,6 +141,7 @@ local menuNameJournal = "Journal"
 i = {}
 a(i, { cons.cat.action, noMod, "j", "Journal", { { cons.act.func, journal.appendPrompt } } })
 a(i, { cons.cat.action, noMod, "c", "Check In", { { cons.act.func, journal.appendPromptCheckIn } } })
+a(i, { cons.cat.action, noMod, "d", "Daily Note: Open", { { cons.act.func, journal.openDailyNote } } })
 a(i, { cons.cat.action, noMod, "t", "Task", { { cons.act.func, journal.appendPromptTask } } })
 a(i, { cons.cat.action, noMod, "v", "vim", { { cons.act.func, journal.appendVim } } })
 local menuJournal = { menuItems = i, parentMenu = menuNameMain }
@@ -202,6 +204,7 @@ a(i, { cons.cat.action, "shift", "d", "DbVisualizer", { { cons.act.launcher, "Db
 a(i, { cons.cat.action, noMod, "e", "email", { { cons.act.func, focus.email } } })
 a(i, { cons.cat.submenu, noMod, "f", menuNameFloatHealth, { { cons.act.menu, menuNameFloatHealth } } })
 a(i, { cons.cat.action, noMod, "g", "Google Meet & Notes", { { cons.act.func, placement.googleMeet } } })
+a(i, { cons.cat.action, "shift", "g", "Github", { { cons.act.func, focus.github } } })
 a(i, { cons.cat.submenu, noMod, "h", menuNameHammerspoon, { { cons.act.menu, menuNameHammerspoon } } })
 a(i, { cons.cat.action, noMod, "i", "Zed", { { cons.act.launcher, "Zed" } } })
 a(i, { cons.cat.action, "shift", "i", "IDE (VS Code)", { { cons.act.launcher, "Visual Studio Code" } } })

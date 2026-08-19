@@ -4,7 +4,7 @@
 
 # ---- Start unofficial bash strict mode boilerplate
 # http://redsymbol.net/articles/unofficial-bash-strict-mode/
-set -o errexit # always exit on error
+set -o errexit  # always exit on error
 set -o errtrace # trap errors in functions as well
 set -o pipefail # don't ignore exit codes when piping output
 # set -x # enable debugging
@@ -12,4 +12,52 @@ set -o pipefail # don't ignore exit codes when piping output
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
-weasyprint --stylesheet ~/.config/markdown/screen.css - -
+usage() {
+  cat <<EOF
+Converts an HTML file into a PDF file using weasyprint.
+
+Pass filenames on the command line. Position doesn't matter, just filename
+extensions:
+
+  .html  HTML input       (defaults to stdin)
+  .pdf   PDF output       (defaults to stdout)
+  .css   extra stylesheet (may be passed multiple times)
+
+Styles produced by md-to-html are already inlined in the HTML, so .css
+arguments here are only needed when converting a plain HTML file that lacks
+them. When reading from stdin, relative resources resolve against the current
+directory.
+
+  html-to-pdf page.html page.pdf
+
+EOF
+}
+
+input="-"
+output="-"
+declare -a stylesheets=()
+
+for arg in "$@"; do
+  case "${arg}" in
+  -h | --help)
+    usage
+    exit 0
+    ;;
+  *.html)
+    input="${arg}"
+    ;;
+  *.pdf)
+    output="${arg}"
+    ;;
+  *.css)
+    stylesheets+=(--stylesheet "${arg}")
+    ;;
+  *)
+    echo "Expecting arguments in any order but with extensions: .html or .pdf or .css. Not ${arg}" 1>&2
+    usage 1>&2
+    exit 10
+    ;;
+  esac
+done
+
+weasyprint "${stylesheets[@]}" -- "${input}" "${output}"

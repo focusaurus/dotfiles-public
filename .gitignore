@@ -290,6 +290,7 @@
 /f23
 /float-health
 /git.peterlyons.com
+/codecommit
 /github
 /github.com
 /go
@@ -318,7 +319,8 @@ Arduino
 .config/fcitx5
 .dart-cli-completion
 _default.hcl
-f24
+/f24
+/f26
 login_1689539373.hcl
 .claude/statsig
 .claude/__store.db
@@ -387,3 +389,9 @@ aur.archlinux.org/yay
 /.claude/todos
 /.config/github-copilot
 /.float/zeus
+/.config/markdown/sample-contract.html
+/.config/markdown/sample-contract.pdf
+/.config/markdown/sample-document.html
+/.config/markdown/sample-document.pdf
+/.emulator_console_auth_token
+/.homebrew/trust.json.lock

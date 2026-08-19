@@ -1,84 +1,82 @@
 {
   "diff_view_style": "unified",
   "project_panel": {
-    "dock": "left"
+    "dock": "left",
   },
   "collaboration_panel": {
-    "dock": "left"
+    "dock": "left",
   },
   "git_panel": {
-    "dock": "left"
+    "dock": "left",
   },
   "agent": {
     "dock": "right",
-    "always_allow_tool_actions": true,
     "default_model": {
       "effort": "high",
       "enable_thinking": true,
       "model": "claude-sonnet-4-6",
-      "provider": "anthropic"
+      "provider": "anthropic",
     },
     "default_profile": "write",
     "enable_feedback": false,
     "model_parameters": [],
-    "single_file_review": false
+    "single_file_review": false,
   },
   "auto_update": false,
   "autosave": "on_window_change",
   "buffer_font_size": 14,
   "close_on_file_delete": true,
   "completions": {
-    "lsp": true
+    "lsp": true,
   },
   "disable_ai": false,
   "edit_predictions": {
     "mode": "subtle",
-    "provider": "copilot"
+    "provider": "copilot",
   },
   "extend_comment_on_newline": false,
-  "file_scan_exclusions": [
-    "**/.git",
-    "**/.worktrees",
-    "docs/plans/**"
-  ],
+  "file_scan_exclusions": ["**/.git", "**/.worktrees", "docs/plans/**"],
   "format_on_save": "off",
   "formatter": null,
   "inlay_hints": {
-    "show_value_hints": false
+    "show_value_hints": false,
   },
   "jsx_tag_auto_close": {
-    "enabled": false
+    "enabled": false,
   },
   "languages": {
     "Go": {
       "format_on_save": "on",
-      "tab_size": 2
+      "tab_size": 2,
     },
     "JavaScript": {
-      "format_on_save": "off"
+      "format_on_save": "off",
     },
     "TypeScript": {
-      "format_on_save": "off"
-    }
+      "format_on_save": "off",
+    },
+    "Proto": {
+      "language_servers": [],
+    },
   },
   "outline_panel": {
-    "dock": "right"
+    "dock": "right",
   },
   "show_completions_on_input": true,
   "show_edit_predictions": true,
   "show_whitespaces": "boundary",
   "telemetry": {
     "diagnostics": false,
-    "metrics": false
+    "metrics": false,
   },
   "theme": {
     "dark": "One Dark",
     "light": "Catppuccin Latte",
-    "mode": "system"
+    "mode": "system",
   },
   "ui_font_size": 14,
   "use_auto_surround": false,
   "use_autoclose": false,
   "use_smartcase_search": true,
-  "vim_mode": true
+  "vim_mode": true,
 }

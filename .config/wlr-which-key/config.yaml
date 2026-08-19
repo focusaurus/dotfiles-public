@@ -85,7 +85,7 @@ menu:
     submenu:
       - key: "j"
         desc: "note: add to obsidian daily note"
-        cmd: "~/bin/journal-append-prompt ~/git.peterlyons.com/exocortex/personal"
+        cmd: "~/bin/journal-append-prompt ~/codecommit/exocortex/personal"
       - key: "t"
         desc: "task: add to obsidian daily note"
         cmd: "~/fuzzball/obsidian-task"

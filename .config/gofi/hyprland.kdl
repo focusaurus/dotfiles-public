@@ -15,10 +15,10 @@ hyprland key="h" {
   "side by side" key="s" "hypr-side-by-side"
 }
 journal key="j" {
-  prompt key="j" "journal-append-prompt" "/home/plyons/git.peterlyons.com/exocortex/personal"
-  task key="t" "journal-append-task" "/home/plyons/git.peterlyons.com/exocortex/personal"
-  read key="r" "terminal-quick" "journal-read" "/home/plyons/git.peterlyons.com/exocortex/personal"
-  vim key="v" "terminal-quick" "journal-append-vim" "/home/plyons/git.peterlyons.com/exocortex/personal"
+  prompt key="j" "journal-append-prompt" "/home/plyons/codecommit/exocortex/personal"
+  task key="t" "journal-append-task" "/home/plyons/codecommit/exocortex/personal"
+  read key="r" "terminal-quick" "journal-read" "/home/plyons/codecommit/exocortex/personal"
+  vim key="v" "terminal-quick" "journal-append-vim" "/home/plyons/codecommit/exocortex/personal"
 }
 "obsidian personal" key="o" "hypr-focus" "obsidianpersonal"
 "obsidian FRC" key="O" "hypr-focus" "obsidianfrc"

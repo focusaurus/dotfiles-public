@@ -43,7 +43,7 @@ journal key="j" {
   checkin key="c" "~/fuzzball/fh-journal-standup"
   journal key="j" "~/fuzzball/fh-journal-prompt"
   prompt key="p" "~/fuzzball/fh-journal-prompt"
-  read key="r" "terminal-quick" "journal-read" "~/git.peterlyons.com/float-health"
+  read key="r" "terminal-quick" "journal-read" "~/codecommit/float-health"
   task key="t" "~/fuzzball/fh-journal-task"
   vim key="v" "~/fuzzball/fh-journal-vim"
 }

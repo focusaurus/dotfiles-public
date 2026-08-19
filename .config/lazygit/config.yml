@@ -1,5 +1,7 @@
 gui:
   mouseEvents: false
+  scrollHeight: 10
+  sidePanelWidth: 0.4
   theme:
     lightTheme: true
     # activeBorderColor:

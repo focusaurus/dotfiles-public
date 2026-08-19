@@ -18,8 +18,7 @@ source-if-exists ~/.config/zsh/*.sh
 # There's an ordering issue with the glob, so source
 # this manually last
 source-if-exists ~/.config/zsh/fuzzy.sh
-source-if-exists ~/git.peterlyons.com/focus-retreat-center/frc.sh
-source-if-exists ~/git.peterlyons.com/float-health/float-health.sh
+source-if-exists ~/projects/float-health/float-health.sh
 source-if-exists ~/.devtool.env
 source-if-exists "${HOME}/.config/zsh/os/$(uname).sh"
 source-if-exists ~/.nvm/nvm.sh

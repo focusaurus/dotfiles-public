@@ -1,0 +1,6 @@
+{
+  "trustedformulae": [
+    "hashicorp/tap/terraform",
+    "localstack/tap/localstack-cli"
+  ]
+}

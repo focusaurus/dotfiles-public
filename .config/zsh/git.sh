@@ -483,27 +483,18 @@ gsync() {
   #   op-add-ssh-key
   # fi
   # ~/bin/git-autocommit \
-  #   ~/git.peterlyons.com/petes-personal-journal \
-  #   ~/git.peterlyons.com/journals
+  #   ~/codecommit/petes-personal-journal \
+  #   ~/codecommit/journals
 
   # List here all repos that should be synced
   # It's fine if these are not checked out
   # on any given machine. They will be skipped.
   ~/bin/git-sync \
     ~ \
-    ~/git.peterlyons.com/exocortex \
-    ~/git.peterlyons.com/dotfiles \
-    ~/git.peterlyons.com/3d-prints \
-    ~/git.peterlyons.com/float-health
-
-  # if [[ -d ~/github.com/focusaurus/qmk_firmware ]]; then
-  #   (
-  #     cd ~/github.com/focusaurus/qmk_firmware || exit
-  #     git commit -a -m "autocommit"
-  #     git pull origin focusaurus
-  #     git push origin focusaurus
-  #   )
-  # fi
+    ~/codecommit/exocortex \
+    ~/codecommit/dotfiles \
+    ~/codecommit/3d-prints \
+    ~/codecommit/float-health
 }
 # typo humane
 alias gysnc=gsync

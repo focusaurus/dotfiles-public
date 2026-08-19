@@ -51,6 +51,8 @@ setup-path() {
   add-path "/Applications/Ghostty.app/Contents/MacOS"
   add-path "/Applications/Obsidian.app/Contents/MacOS"
   add-path "/opt/creality-print"
+  add-path "${HOME}/Library/Android/sdk/emulator"
+  add-path "${HOME}/Library/Android/sdk/platform_tools"
 
   if [[ -e ~/.nvm/alias/default ]]; then
     add-path ~/".nvm/versions/node/$(cat ~/.nvm/alias/default)/bin"

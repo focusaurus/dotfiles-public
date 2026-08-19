@@ -12,7 +12,7 @@ set -o pipefail # don't ignore exit codes when piping output
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
-api_key=$(jq -r '.openweathermap_api_key' ~/git.peterlyons.com/edc/mycommands-conf.json)
+api_key=$(jq -r '.openweathermap_api_key' ~/codecommit/edc/mycommands-conf.json)
 zip="${1:-80027}"
 
 # curl --silent --fail "pro.openweathermap.org/data/2.5/forecast/hourly?zip=${zip}&appid=${api_key}"

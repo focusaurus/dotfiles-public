@@ -1,0 +1,71 @@
+/* counters.css
+ * Contract layer: auto-numbers clauses with CSS counters and adds a few
+ * contract-oriented presentation tweaks. Pass this on the command line after
+ * the base style, e.g.:
+ *
+ *   md-to-pdf sample-contract.md contract.pdf ~/.config/markdown/counters.css
+ *
+ * Heading convention:
+ *   h1 = document title (not numbered)
+ *   h2 = top-level clause      -> "1.", "2.", ...
+ *   h3 = sub-clause            -> "1.1", "1.2", ...
+ *   h4 = sub-sub-clause        -> "1.1.1", ...
+ */
+
+body {
+  counter-reset: clause;
+}
+
+/* The document title is centered and not numbered. */
+h1 {
+  text-align: center;
+  border-bottom: none;
+}
+
+h2 {
+  counter-increment: clause;
+  counter-reset: subclause;
+  border-bottom: none;
+}
+
+h2::before {
+  content: counter(clause) ". ";
+}
+
+h3 {
+  counter-increment: subclause;
+  counter-reset: subsubclause;
+}
+
+h3::before {
+  content: counter(clause) "." counter(subclause) " ";
+}
+
+h4 {
+  counter-increment: subsubclause;
+}
+
+h4::before {
+  content: counter(clause) "." counter(subclause) "." counter(subsubclause) " ";
+}
+
+/* Justify body text, as is common in legal documents. */
+p {
+  text-align: justify;
+}
+
+/* Optional signature block: wrap rows in a table inside a
+ * <div class="signatures"> ... </div> (requires --unsafe raw HTML). */
+.signatures table {
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.signatures td,
+.signatures tr,
+.signatures th {
+  font-weight: normal;
+  border: none;
+  border-bottom: 1px solid black;
+  padding-top: 2em;
+}

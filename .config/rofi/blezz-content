@@ -40,23 +40,23 @@ dir(n, nuon)
 dir(p, personal)
 # This is a shortcut for the currently most
 # frequently used journal command
-act(j, nuon prompt, journal-append-prompt /home/plyons/git.peterlyons.com/nuon)
+act(j, nuon prompt, journal-append-prompt /home/plyons/codecommit/nuon)
 
 FRC:
-act(p, prompt, journal-append-prompt /home/plyons/git.peterlyons.com/focus-retreat-center)
-act(r, read, terminal-quick journal-read /home/plyons/git.peterlyons.com/focus-retreat-center)
-act(v, vim, terminal-quick journal-append-vim /home/plyons/git.peterlyons.com/focus-retreat-center)
+act(p, prompt, journal-append-prompt /home/plyons/codecommit/focus-retreat-center)
+act(r, read, terminal-quick journal-read /home/plyons/codecommit/focus-retreat-center)
+act(v, vim, terminal-quick journal-append-vim /home/plyons/codecommit/focus-retreat-center)
 
 nuon:
-act(p, prompt, journal-append-prompt /home/plyons/git.peterlyons.com/nuon)
+act(p, prompt, journal-append-prompt /home/plyons/codecommit/nuon)
 act(s, standup, /home/plyons/fuzzball/n-journal-standup-prompt)
-act(r, read, terminal-quick journal-read /home/plyons/git.peterlyons.com/nuon)
-act(v, vim, terminal-quick journal-append-vim /home/plyons/git.peterlyons.com/nuon)
+act(r, read, terminal-quick journal-read /home/plyons/codecommit/nuon)
+act(v, vim, terminal-quick journal-append-vim /home/plyons/codecommit/nuon)
 
 personal:
-act(p, prompt, journal-append-prompt /home/plyons/git.peterlyons.com/petes-personal-journal)
-act(r, read, terminal-quick journal-read /home/plyons/git.peterlyons.com/petes-personal-journal)
-act(v, vim, terminal-quick journal-append-vim /home/plyons/git.peterlyons.com/petes-personal-journal)
+act(p, prompt, journal-append-prompt /home/plyons/codecommit/petes-personal-journal)
+act(r, read, terminal-quick journal-read /home/plyons/codecommit/petes-personal-journal)
+act(v, vim, terminal-quick journal-append-vim /home/plyons/codecommit/petes-personal-journal)
 
 work:
 act(b, FRC-browser, focus frc)
@@ -64,7 +64,7 @@ act(w, workflowy, focus workflowy)
 act(t, trello, focus trello)
 act(c, calendar, focus fastmail_calendar)
 act(e, Fastmail, focus fastmail)
-act(j, Journal, terminal-quick journal-append-vim /home/plyons/git.peterlyons.com/focus-retreat-center)
+act(j, Journal, terminal-quick journal-append-vim /home/plyons/codecommit/focus-retreat-center)
 
 volume:
 act(0, mute, volume 0)

@@ -37,7 +37,7 @@ function module.down()
     -- hs.eventtap.keyStroke({ "command", "shift" }, "w")
   elseif name == "Google Chrome" or name == "Ghostty" then
     hs.eventtap.keyStroke({ "command" }, "`") -- backtick means tilde for this binding
-  elseif name == "Firefox" or name == "Google Chrome" or name == "Code" or name == "TablePlus" or name == "Zen" then
+  elseif name == "Firefox" or name == "Google Chrome" or name == "Code" or name == "TablePlus" then
     -- focus previous window
     hs.eventtap.keyStroke({ "command" }, "`") -- backtick means tilde for this binding
     -- hs.eventtap.event.newKeyEvent(hs.keycodes.map.ctrl, true):post()
@@ -47,6 +47,9 @@ function module.down()
     --   hs.eventtap.event.newKeyEvent(hs.keycodes.map.ctrl, false):post()
     -- end)
     -- hs.eventtap.keyStroke({ "control" }, "Tab")
+  elseif name == "Zen" then
+    -- Use menu item Spaces > Next Space
+    hs.application.frontmostApplication():selectMenuItem({"Spaces", "Next Space"})
   elseif isTerminal(name) then
     os.execute(hbin .. "/nav-tmux down")
   elseif useTabNav(name) then
