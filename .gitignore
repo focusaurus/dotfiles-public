@@ -290,6 +290,7 @@
 /f23
 /float-health
 /git.peterlyons.com
+/codecommit
 /github
 /github.com
 /go
@@ -391,3 +392,8 @@ aur.archlinux.org/yay
 /.config/markdown/sample-contract.pdf
 /.config/markdown/sample-document.html
 /.config/markdown/sample-document.pdf
+/.config/Snapmaker_Orca/cache
+/.config/Snapmaker_Orca/log
+/.config/Snapmaker_Orca/system
+/.config/Snapmaker_Orca
+/.config/snapmaker-luban
