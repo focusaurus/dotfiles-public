@@ -1,0 +1,209 @@
+#!/usr/bin/env bash
+
+# Watch one of my merge queue entries or open PRs in a GitHub repo and send a
+# macOS desktop notification whenever it makes progress.
+#
+# usage: github-watch-notify <org/repo>
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
+
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -o errexit # always exit on error
+set -o errtrace # trap errors in functions as well
+set -o pipefail # don't ignore exit codes when piping output
+set -u # error on reference to unknown variable
+[ "${DEBUG:-0}" = "1" ] && set -x
+
+IFS=$'\n\t'
+# ---- End unofficial bash strict mode boilerplate
+
+repo="${1:-}"
+poll_seconds="${POLL_SECONDS:-60}"
+
+if [[ -z "${repo}" || "${repo}" != */* ]]; then
+  echo "usage: $(basename "$0") <org/repo>" >&2
+  exit 1
+fi
+
+owner="${repo%%/*}"
+name="${repo##*/}"
+me=$(gh api user --jq .login)
+
+# Print to the terminal and pop a desktop notification.
+notify() {
+  echo "$(date '+%H:%M:%S') $*"
+  ~/bin/notify "$*"
+}
+
+# Every merge queue entry, one per line: number<TAB>author<TAB>title
+queue_entries() {
+  # shellcheck disable=SC2016  # $owner/$name are GraphQL variables, not shell
+  gh api graphql -F owner="${owner}" -F name="${name}" -f query='
+    query($owner: String!, $name: String!) {
+      repository(owner: $owner, name: $name) {
+        mergeQueue {
+          entries(first: 100) {
+            nodes { pullRequest { number title author { login } } }
+          }
+        }
+      }
+    }' --jq '
+    .data.repository.mergeQueue.entries.nodes[]?.pullRequest
+    | [.number, .author.login, .title] | @tsv'
+}
+
+# Exit 0 if the given PR number is sitting in the merge queue.
+in_queue() {
+  queue_entries | cut -f1 | grep -qx "$1"
+}
+
+# Current progress of a PR as: ci<TAB>reviews<TAB>state<TAB>queued
+pr_status() {
+  local number="$1" fields queued
+  # shellcheck disable=SC2016  # $checks/$s/$t are jq variables, not shell
+  fields=$(gh pr view "${number}" --repo "${repo}" \
+    --json state,latestReviews,statusCheckRollup --jq '
+    def ci:
+      [.statusCheckRollup[]?] as $checks
+      | if ($checks | length) == 0 then "none"
+        elif any($checks[]; (.status // "") as $s | (.state // "") as $t
+             | ($s != "" and $s != "COMPLETED") or $t == "PENDING" or $t == "EXPECTED")
+          then "pending"
+        elif any($checks[]; (.conclusion // "") as $c | (.state // "") as $t
+             | ($c == "FAILURE" or $c == "TIMED_OUT" or $c == "CANCELLED"
+                or $c == "STARTUP_FAILURE" or $c == "ACTION_REQUIRED")
+               or ($t == "FAILURE" or $t == "ERROR"))
+          then "failing"
+        else "passing" end;
+    def reviews:
+      [.latestReviews[]? | "\(.author.login):\(.state)"] | sort | join(",")
+      | if . == "" then "none" else . end;
+    [ci, reviews, .state] | @tsv')
+  if in_queue "${number}"; then
+    queued="in-merge-queue"
+  else
+    queued="not-queued"
+  fi
+  printf '%s\t%s\n' "${fields}" "${queued}"
+}
+
+# Progress means the PR leaves the queue, by merging or bouncing back to open.
+watch_queue() {
+  local number="$1" state
+  echo "Watching merge queue for #${number} every ${poll_seconds}s. Ctrl-C to stop."
+  while sleep "${poll_seconds}"; do
+    if in_queue "${number}"; then
+      echo "$(date '+%H:%M:%S') #${number} still queued"
+      continue
+    fi
+    state=$(gh pr view "${number}" --repo "${repo}" --json state --jq .state)
+    if [[ "${state}" == "MERGED" ]]; then
+      notify "#${number} merged"
+    else
+      notify "#${number} bounced out of the merge queue (${state})"
+    fi
+    break
+  done
+}
+
+# Progress means a review landed, CI finished, or it joined the merge queue.
+watch_pr() {
+  local number="$1"
+  local ci reviews state queued
+  local was_ci was_reviews was_state was_queued
+  local change message
+  local -a changes
+
+  IFS=$'\t' read -r was_ci was_reviews was_state was_queued < <(pr_status "${number}")
+  echo "Watching #${number} every ${poll_seconds}s. Ctrl-C to stop."
+  echo "Now: ci=${was_ci} reviews=${was_reviews} ${was_state} ${was_queued}"
+
+  while sleep "${poll_seconds}"; do
+    IFS=$'\t' read -r ci reviews state queued < <(pr_status "${number}")
+
+    changes=()
+    if [[ "${ci}" != "${was_ci}" ]]; then
+      changes+=("CI ${was_ci} -> ${ci}")
+    fi
+    if [[ "${reviews}" != "${was_reviews}" ]]; then
+      changes+=("reviews ${reviews}")
+    fi
+    if [[ "${queued}" != "${was_queued}" ]]; then
+      changes+=("${queued}")
+    fi
+    if [[ "${state}" != "${was_state}" ]]; then
+      changes+=("${state}")
+    fi
+
+    if [[ "${#changes[@]}" -gt 0 ]]; then
+      # Not "${changes[*]}": our IFS would join the parts with a newline.
+      message="#${number}:"
+      for change in "${changes[@]}"; do
+        message+=" ${change}."
+      done
+      notify "${message}"
+    else
+      echo "$(date '+%H:%M:%S') no change (ci=${ci} reviews=${reviews} ${queued})"
+    fi
+
+    was_ci="${ci}"
+    was_reviews="${reviews}"
+    was_state="${state}"
+    was_queued="${queued}"
+
+    if [[ "${state}" != "OPEN" ]]; then
+      break
+    fi
+  done
+}
+
+echo "Finding merge queue entries and open PRs for ${me} in ${repo} ..."
+
+kinds=()
+numbers=()
+labels=()
+queued_numbers=""
+
+while IFS=$'\t' read -r number author title; do
+  queued_numbers+="${number} "
+  if [[ "${author}" != "${me}" ]]; then
+    continue
+  fi
+  kinds+=("queue")
+  numbers+=("${number}")
+  labels+=("merge queue  #${number}  ${title}")
+done < <(queue_entries)
+
+while IFS=$'\t' read -r number title; do
+  # Already offered above as a merge queue target.
+  if [[ " ${queued_numbers}" == *" ${number} "* ]]; then
+    continue
+  fi
+  kinds+=("pr")
+  numbers+=("${number}")
+  labels+=("pull request #${number}  ${title}")
+done < <(gh pr list --repo "${repo}" --author "@me" --state open \
+  --json number,title --jq '.[] | [.number, .title] | @tsv')
+
+if [[ "${#labels[@]}" -eq 0 ]]; then
+  echo "Nothing to watch: no merge queue entries or open PRs for ${me}."
+  exit 0
+fi
+
+PS3=$'\n''Watch which? '
+select choice in "${labels[@]}"; do
+  if [[ -n "${choice}" ]]; then
+    break
+  fi
+  echo "Pick a number from the list."
+done
+
+index=$((REPLY - 1))
+echo
+
+if [[ "${kinds[${index}]}" == "queue" ]]; then
+  watch_queue "${numbers[${index}]}"
+else
+  watch_pr "${numbers[${index}]}"
+fi

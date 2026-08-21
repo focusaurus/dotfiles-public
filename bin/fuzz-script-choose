@@ -31,7 +31,7 @@ list_tasks() {
 
 cd "$(dirname "${BASH_SOURCE[0]}")"
 PATH="/usr/local/bin:${PATH}"
-task_dir="${1:-${HOME}/git.peterlyons.com/dotfiles/fuzzball}"
+task_dir="${1:-${HOME}/codecommit/dotfiles/fuzzball}"
 hist_path="${task_dir}/.history"
 
 # Presume running from desktop environment hotkey, use GUI

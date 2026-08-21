@@ -477,7 +477,13 @@ local function emailByAppWindowTitle()
 	-- end
 	-- win:focus()
 end
-module.email = emailByAppWindowTitle
+
+local function emailByBrowserThenHotkey()
+  module.browser()
+  hs.eventtap.keyStroke({"command"}, "1")
+end
+
+module.email = emailByBrowserThenHotkey
 
 -- function module.calendarTab()
 --     log.d("calendarTab")
@@ -498,6 +504,17 @@ module.email = emailByAppWindowTitle
 -- end
 
 -- module.calendar = module.calendarDock
+
+function module.github()
+	log.d("github")
+	if focusMode then
+		return
+	end
+  module.browser()
+	hs.timer.doAfter(0.4, function()
+		hs.eventtap.keyStroke({ "command" }, "2")
+	end)
+end
 
 local function startsWith(str, prefix)
 	return string.sub(str, 1, string.len(prefix)) == prefix
@@ -547,13 +564,14 @@ function module.previousAppByFilter()
 end
 
 function module.previousAppByHotkey()
+  hs.eventtap.keyStroke({"cmd"}, "Tab") 
 	-- hs.eventtap.event.newKeyEvent({ "cmd" }, "Tab", true):post()
 	-- hs.eventtap.event.newKeyEvent({"shift", "alt"}, "a", false):post()
 	-- Since I trigger this with home row mod on "a" (left pinky),
 	-- the first thing I need to do is send a key up for "a" so
 	-- the command+tab is interpretted correctly by macos
 	-- hs.eventtap.event.newKeyEvent("e", false):post()
-	if true then
+	if false then
 		hs.eventtap.event.newKeyEvent(hs.keycodes.map.cmd, true):post()
 		hs.eventtap.event.newKeyEvent("Tab", true):post()
 		hs.timer.doAfter(0.2, function()
@@ -573,6 +591,18 @@ function module.slack()
 		return
 	end
 	hs.application.launchOrFocus("Slack")
+end
+
+-- The Android emulator runs as a bare qemu binary with no app bundle, so
+-- launchOrFocus/application.open can't resolve it.  Match on the window title
+-- instead of the process name, which is arch-specific (qemu-system-aarch64) and
+-- changes with SDK updates.
+function module.androidEmulator()
+	log.d("androidEmulator")
+	if module.byTitlePrefix("Android Emulator - ") == nil then
+		log.d("android emulator is not running")
+		hs.alert.show("Android emulator is not running")
+	end
 end
 
 function module.hammerspoonconsole()

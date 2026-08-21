@@ -67,6 +67,12 @@
     }
   },
   {
+    "bindings": {
+      "ctrl-cmd-h": "workspace::ActivatePaneLeft",
+      "ctrl-cmd-l": "workspace::ActivatePaneRight"
+    }
+  },
+  {
     "context": "(Editor && !edit_prediction)",
     "bindings": {
       "ctrl-t": "editor::ShowEditPrediction"

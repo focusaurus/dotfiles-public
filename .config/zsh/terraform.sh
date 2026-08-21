@@ -14,3 +14,5 @@ tfp() {
 tfg() {
   _tf get "$@"
 }
+
+export TF_PLUGIN_CACHE_DIR=~/.terraform.d/plugin-cache
