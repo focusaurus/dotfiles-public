@@ -1,0 +1,8 @@
+[Unit]
+Description=Add today's google calendar agenda to the daily note
+
+[Timer]
+OnCalendar=*-*-* 6:00:00 America/Denver
+
+[Install]
+WantedBy=timers.target
