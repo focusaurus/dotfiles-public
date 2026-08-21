@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
+
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -o errexit  # always exit on error
+set -o errtrace # trap errors in functions as well
+set -o pipefail # don't ignore exit codes when piping output
+# set -x # enable debugging
+
+IFS=$'\n\t'
+# ---- End unofficial bash strict mode boilerplate
+
+# Print today's google calendar events as a markdown list: `- 10:30 Dentist`
+
+readonly CALENDAR_ID="${CALENDAR_ID:-pete@peterlyons.com}"
+
+calendar3 events list "${CALENDAR_ID}" \
+  -p time-min="$(date -Iseconds -d 'today 00:00:00')" \
+  -p time-max="$(date -Iseconds -d 'tomorrow 00:00:00')" \
+  -p single-events=true \
+  -p order-by=startTime |
+  jq -r '.items[] | [(.start.dateTime // "all-day"), (.summary // "(no title)")] | @tsv' |
+  while IFS=$'\t' read -r start title; do
+    # jq cannot parse the UTC offset in Google's timestamps, so let date(1) do it
+    if [[ "${start}" == "all-day" ]]; then
+      echo "- all-day ${title}"
+    else
+      echo "- $(date -d "${start}" +%H:%M) ${title}"
+    fi
+  done
