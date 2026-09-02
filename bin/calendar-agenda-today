@@ -13,15 +13,85 @@ IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
 # Print today's google calendar events as a markdown list: `- 10:30 Dentist`
+#
+# Exits EXIT_AUTH (77, sysexits EX_NOPERM) when calendar3 needs a human to
+# re-authorize it, so unattended callers can distinguish "your oauth token is
+# dead" from "you have no events today". Every other failure exits 1.
 
 readonly CALENDAR_ID="${CALENDAR_ID:-pete@peterlyons.com}"
+readonly EXIT_AUTH=77
+# calendar3 normally answers in about a second. When its refresh token has been
+# revoked it instead prints an authorization URL and polls google forever, which
+# under a systemd timer wedges the unit indefinitely (stdin is /dev/null, so the
+# approval can never arrive). Cap it.
+readonly CALENDAR_TIMEOUT="${CALENDAR_TIMEOUT:-60}"
 
-calendar3 events list "${CALENDAR_ID}" \
+readonly stderr_file="$(mktemp)"
+trap 'rm -f "${stderr_file}"' EXIT
+
+status=0
+response=$(timeout "${CALENDAR_TIMEOUT}" calendar3 events list "${CALENDAR_ID}" \
   -p time-min="$(date -Iseconds -d 'today 00:00:00')" \
   -p time-max="$(date -Iseconds -d 'tomorrow 00:00:00')" \
   -p single-events=true \
-  -p order-by=startTime |
-  jq -r '.items[] | [(.start.dateTime // "all-day"), (.summary // "(no title)")] | @tsv' |
+  -p order-by=startTime \
+  </dev/null 2>"${stderr_file}") || status=$?
+readonly stderr_text="$(cat "${stderr_file}")"
+
+# Everything calendar3 said, wherever it said it. The auth prompt goes to stdout
+# (that is what used to reach jq as a parse error) but errors may go to stderr.
+readonly combined="${response}${stderr_text}"
+readonly AUTH_PATTERN='direct your browser|accounts\.google\.com/o/oauth2|oauth2/auth|invalid_grant|invalid_token|Invalid Credentials|UNAUTHENTICATED|unauthorized_client|Token has been expired or revoked'
+
+die_auth() {
+  {
+    echo "${0##*/}: calendar3 could not authenticate (exit ${EXIT_AUTH})."
+    echo "Refresh the oauth token by running this in an interactive terminal:"
+    echo "  calendar3 events list ${CALENDAR_ID}"
+    [ -n "$1" ] && { echo "Details:"; echo "$1"; }
+  } >&2
+  exit "${EXIT_AUTH}"
+}
+
+# Killed by our own timeout: it was almost certainly blocked polling google for
+# an authorization that nobody is there to grant.
+if [ "${status}" -eq 124 ]; then
+  die_auth "calendar3 produced no response within ${CALENDAR_TIMEOUT}s; it was likely waiting on interactive authorization.${combined:+$'\n'}${combined}"
+fi
+
+if jq -e 'type == "object"' <<<"${response}" >/dev/null 2>&1; then
+  # Structured response. Only an `error` object can indicate an auth problem --
+  # never match the pattern against the whole body, or an event titled
+  # "Invalid Credentials" would masquerade as a dead token.
+  if jq -e 'has("error")' <<<"${response}" >/dev/null 2>&1; then
+    api_error="$(jq -r '.error.message // .error | tostring' <<<"${response}")"
+    if jq -e '.error.code == 401 or .error.code == 403' <<<"${response}" >/dev/null 2>&1 ||
+      [[ "${api_error}" =~ ${AUTH_PATTERN} ]]; then
+      die_auth "${api_error}"
+    fi
+    echo "${0##*/}: calendar API error: ${api_error}" >&2
+    exit 1
+  fi
+else
+  # Not JSON. The interactive authorization prompt lands here.
+  if [[ "${combined}" =~ ${AUTH_PATTERN} ]]; then
+    die_auth "${combined}"
+  fi
+  {
+    echo "${0##*/}: calendar3 returned non-JSON output (exit status ${status})."
+    echo "Raw output:"
+    echo "${combined}"
+  } >&2
+  exit 1
+fi
+
+if [ "${status}" -ne 0 ]; then
+  echo "${0##*/}: calendar3 exited ${status}" >&2
+  exit 1
+fi
+
+jq -r '.items[]? | [(.start.dateTime // "all-day"), (.summary // "(no title)")] | @tsv' \
+  <<<"${response}" |
   while IFS=$'\t' read -r start title; do
     # jq cannot parse the UTC offset in Google's timestamps, so let date(1) do it
     if [[ "${start}" == "all-day" ]]; then
