@@ -400,3 +400,4 @@ aur.archlinux.org/yay
 /.config/snapmaker-luban
 /.emulator_console_auth_token
 /.homebrew/trust.json.lock
+/.snapmaker-luban.json
