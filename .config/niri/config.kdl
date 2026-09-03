@@ -154,6 +154,7 @@ binds {
     Mod+Shift+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
     Mod+Shift+WheelScrollUp cooldown-ms=150 { move-column-to-workspace-up; }
  
+    F4 repeat=false { spawn "~/bin/copy-link"; }
     // F10 repeat=false { spawn "~/bin/niri-focus" "gofi"; }
     F10 repeat=false { spawn "wlr-which-key"; }
     F11 repeat=false { spawn "~/bin/fuzz-script-choose"; }
