@@ -108,6 +108,7 @@ a(i, { cons.cat.action, noMod, "i", "iOS Simulator", { { cons.act.launcher, "Sim
 a(i, { cons.cat.action, noMod, "a", "android emulator", { { cons.act.func, focus.androidEmulator } } })
 a(i, { cons.cat.action, noMod, "v", "VS Code", { { cons.act.launcher, "Visual Studio Code" } } })
 a(i, { cons.cat.action, noMod, "l", "Leapp", { { cons.act.launcher, "Leapp" } } })
+a(i, { cons.cat.action, noMod, "n", "NordLayer", { { cons.act.launcher, "NordLayer" } } })
 a(i, { cons.cat.action, noMod, "y", "Playwright (Chromium)", { { cons.act.launcher, "Chromium" } } })
 a(i, { cons.cat.action, noMod, "z", "zed", { { cons.act.launcher, "Zed" } } })
 local menuFloatHealth = { menuItems = i, parentMenu = menuNameMain }
