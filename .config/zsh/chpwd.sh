@@ -18,6 +18,17 @@ chpwd-nvm() {
   fi
 }
 
+##### go version manager (gvm) #####
+chpwd-gvm() {
+  if [[ -f ".go-version" ]]; then
+    if ! which gvm &>/dev/null; then
+      #chpwd.sh loading before go.sh loads. No-op for now.
+      return
+    fi
+    gvm use "$(cat .go-version)"
+  fi
+}
+
 ##### set terminal title #####
 # auto-terminal-title() {
 # shellcheck disable=SC2076
@@ -66,6 +77,7 @@ if [[ -n "${ZSH_VERSION}" ]]; then
   add-zsh-hook chpwd chpwd-path && chpwd-path
   # add-zsh-hook chpwd chpwd-terminal-title && chpwd-terminal-title
   add-zsh-hook chpwd chpwd-nvm && chpwd-nvm
+  add-zsh-hook chpwd chpwd-gvm && chpwd-gvm
   # add-zsh-hook chpwd chpwd-virtualenv && chpwd-virtualenv
 
   ##### automagic before each command #####

@@ -33,4 +33,4 @@ source-if-exists "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions
 # 1password
 source-if-exists ~/.opam/opam-init/init.zsh
 
-[[ -s "/Users/plyons/.gvm/scripts/gvm" ]] && source "/Users/plyons/.gvm/scripts/gvm"
+# gvm is lazy-loaded - see the gvm() function in ~/.config/zsh/go.sh
