@@ -1,0 +1,20 @@
+{
+	"from": "User",
+	"inherits": "Snapmaker U1 (0.4 nozzle)",
+	"name": "Snapmaker U1 (0.4 nozzle) - Copy",
+	"print_host": "U1.localdomain",
+	"printer_extruder_id": [
+		"1",
+		"2",
+		"3",
+		"4"
+	],
+	"printer_extruder_variant": [
+		"Direct Drive Standard",
+		"Direct Drive Standard",
+		"Direct Drive Standard",
+		"Direct Drive Standard"
+	],
+	"printer_settings_id": "Snapmaker U1 (0.4 nozzle) - Copy",
+	"version": "2.4.0.7"
+}

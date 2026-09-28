@@ -401,3 +401,7 @@ aur.archlinux.org/yay
 /.emulator_console_auth_token
 /.homebrew/trust.json.lock
 /.snapmaker-luban.json
+/.config/OrcaSlicer/cache
+/.config/OrcaSlicer/log
+/.config/OrcaSlicer/plugins
+/.config/OrcaSlicer/system
