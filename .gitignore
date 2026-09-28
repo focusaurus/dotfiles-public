@@ -406,3 +406,4 @@ aur.archlinux.org/yay
 /.config/OrcaSlicer/plugins
 /.config/OrcaSlicer/system
 /.config/OrcaSlicer/.orcaslicer_machine_id
+/.zcompdump.zwc

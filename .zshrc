@@ -21,10 +21,16 @@ source-if-exists ~/.config/zsh/fuzzy.sh
 source-if-exists ~/projects/float-health/float-health.sh
 source-if-exists ~/.devtool.env
 source-if-exists "${HOME}/.config/zsh/os/$(uname).sh"
-source-if-exists ~/.nvm/nvm.sh
+# nvm.sh is intentionally NOT sourced eagerly here - it's ~300ms+ of cost
+# (nvm_auto resolving/using the default version across all installed
+# versions) that we don't need at startup. node.sh defines a lazy `nvm`
+# shell function that sources the real nvm.sh on first actual use, and
+# chpwd.sh's chpwd-nvm calls that same function when cd'ing into a repo
+# with a .nvmrc. The default version's bin/ is already on PATH via
+# .zshenv's setup-path, so plain `node`/`npm` work without nvm loaded.
 source-if-exists "${BREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source-if-exists "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 # 1password
 source-if-exists ~/.opam/opam-init/init.zsh
 
-[[ -s "/Users/plyons/.gvm/scripts/gvm" ]] && source "/Users/plyons/.gvm/scripts/gvm"
+# gvm is lazy-loaded - see the gvm() function in ~/.config/zsh/go.sh

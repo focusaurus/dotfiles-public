@@ -95,8 +95,11 @@ nvm() {
   export NVM_DIR="${HOME}/.nvm"
   for nvmsh in "/opt/homebrew/opt/nvm/nvm.sh" "/usr/share/nvm/nvm.sh"; do
     if [[ -f "${nvmsh}" ]]; then
+      # --no-use skips nvm's own auto-resolve-and-use-default-version pass,
+      # which is slow with many versions installed. We're about to run the
+      # real "nvm $@" below anyway, so it's redundant work either way.
       # shellcheck disable=SC1090
-      source "${nvmsh}"
+      source "${nvmsh}" --no-use
       if [[ -e "${HOME}/.nvm/alias/default" ]]; then
         PATH="${PATH}:${HOME}/.nvm/versions/node/$(cat ~/.nvm/alias/default)/bin"
       fi

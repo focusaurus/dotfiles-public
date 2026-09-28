@@ -152,7 +152,22 @@ set -o vi
 ##### completion #####
 fpath=(~/.config/zsh/completions "${BREW_PREFIX}/share/zsh-completions" $fpath)
 
-autoload -Uz compinit && compinit
+autoload -Uz compinit
+# Full compinit (which runs compaudit's security check) is slow -
+# only pay that cost once a day. The rest of the time, -C trusts the
+# existing dump and skips the check entirely.
+_zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
+setopt extendedglob
+for _dump in "${_zcompdump}"(#qN.mh+24); do
+  compinit
+done
+unsetopt extendedglob
+compinit -C
+# A compiled (.zwc) dump parses faster than the plain text version.
+if [[ -s "${_zcompdump}" && ( ! -s "${_zcompdump}.zwc" || "${_zcompdump}" -nt "${_zcompdump}.zwc" ) ]]; then
+  zcompile "${_zcompdump}"
+fi
+unset _zcompdump _dump
 #autoload -Uz compinstall && compinstall
 
 # Configure tab completion to always fall back to filesystem completion

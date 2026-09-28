@@ -19,6 +19,8 @@ function module.left()
     log.d("kitty app nav left keystroke")
   elseif name == "Code" then
     hs.eventtap.keyStroke({ "command", "shift" }, "[")
+  elseif name == "Zen" then
+    hs.eventtap.keyStroke({ "command" }, "`")
   elseif name == "TablePlus" then
     hs.eventtap.keyStroke({ "command" }, "[")
   elseif useTabNav(name) then
