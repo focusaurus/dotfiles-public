@@ -30,6 +30,7 @@ alias gPom='git push origin main'
 alias gPgm='git push github main'
 alias gPam='git push aws main'
 alias gf='git fetch --all'
+alias gfomm='git fetch origin main:main'
 alias gbd='git branch -d'
 alias gsf='git-switch-fuzzy'
 alias gcprf="git-checkout-pull-request-fuzzy"
