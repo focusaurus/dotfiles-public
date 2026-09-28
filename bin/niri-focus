@@ -91,6 +91,12 @@ freecad)
 prusaslicer)
   find_window '.app_id == "prusa-slicer"' || launch prusa-slicer
   ;;
+orcaslicer)
+  find_window '.app_id == "orca-slicer"' || launch orca-slicer
+  ;;
+snapmakerorca)
+  find_window '.app_id == "Snapmaker_Orca"' || launch /opt/snapmaker-orca-appimage/snapmaker-orca-appimage.AppImage
+  ;;
 vial)
   find_window '.app_id == "Vial"' || launch Vial
   ;;

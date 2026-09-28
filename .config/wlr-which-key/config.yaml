@@ -39,6 +39,14 @@ menu:
         desc: "musescore"
         cmd: "niri-focus musescore"
 
+      - key: "o"
+        desc: "orca slicer"
+        cmd: "niri-focus orcaslicer"
+
+      - key: "s"
+        desc: "snapmaker orca"
+        cmd: "niri-focus snapmakerorca"
+
       - key: "p"
         desc: "prusa slicer"
         cmd: "niri-focus prusaslicer"
@@ -63,6 +71,10 @@ menu:
   - key: "e"
     desc: "email"
     cmd: "niri-focus email"
+
+  - key: "f"
+    desc: "freecad"
+    cmd: "niri-focus freecad"
 
   - key: "E"
     desc: "emoji"
