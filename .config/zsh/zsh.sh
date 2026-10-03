@@ -19,6 +19,7 @@ export ZLE_SPACE_SUFFIX_CHARS=$'|&'
 setopt autopushd pushdignoredups pushdsilent histignorealldups histignorespace
 
 export TZ="America/Denver"
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#aaaaaa"
 tt() {
   export TERMINAL_TITLE="$*"
 }

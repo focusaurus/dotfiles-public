@@ -1,0 +1,7 @@
+[Unit]
+Description=Add today's google calendar agenda to the daily note
+
+[Service]
+Type=oneshot
+TimeoutStartSec=1min
+ExecStart=/bin/sh -c '~/exocortex/personal/bin/daily-agenda-add'

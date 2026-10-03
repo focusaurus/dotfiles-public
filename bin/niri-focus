@@ -91,6 +91,12 @@ freecad)
 prusaslicer)
   find_window '.app_id == "prusa-slicer"' || launch prusa-slicer
   ;;
+orcaslicer)
+  find_window '.app_id == "orca-slicer"' || launch orca-slicer
+  ;;
+snapmakerorca)
+  find_window '.app_id == "Snapmaker_Orca"' || launch /opt/snapmaker-orca-appimage/snapmaker-orca-appimage.AppImage
+  ;;
 vial)
   find_window '.app_id == "Vial"' || launch Vial
   ;;
@@ -137,7 +143,7 @@ music)
   find_window "${filter}" || focus_browser
   ;;
 obsidian)
-  find_window '.app_id == "obsidian"' || obsidian --enable-features=UseOzonePlatform --ozone-platform=wayland
+  find_window '.app_id == "md.obsidian.Obsidian"' || obsidian --enable-features=UseOzonePlatform --ozone-platform=wayland
   ;;
 gedit)
   find_window '.app_id == "org.gnome.gedit"' || gedit

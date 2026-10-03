@@ -137,7 +137,7 @@ dirs() {
 }
 
 serve-dir() {
-  devd --open .
+  devd --address 127.0.0.1 --open .
   # python2 -m SimpleHTTPServer "$@"
 }
 
