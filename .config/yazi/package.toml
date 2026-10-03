@@ -3,5 +3,10 @@ use = "yazi-rs/plugins:git"
 rev = "4ffa48f"
 hash = "6849444b7c2df08eace83f3f86fb55a3"
 
+[[plugin.deps]]
+use = "Reledia/glow"
+rev = "bd3eaa5"
+hash = "92b5c58159a51c567f82b618cee2b78"
+
 [flavor]
 deps = []

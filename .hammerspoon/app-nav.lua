@@ -3,7 +3,7 @@ local log = hs.logger.new("app-nav", "debug")
 local hbin = os.getenv("HOME") .. "/bin"
 
 local function useTabNav(appName)
-  return appName == "Google Chrome" or appName == "Firefox" or appName == "Obsidian" or appName == "Alacritty" or appName == "Zed"
+  return appName == "Google Chrome" or appName == "Firefox" or appName == "Obsidian" or appName == "Alacritty"
 end
 
 local function isTerminal(appName)
@@ -17,7 +17,7 @@ function module.left()
     hs.eventtap.keyStroke({ "shift" }, "space")
     hs.eventtap.keyStroke({}, "p")
     log.d("kitty app nav left keystroke")
-  elseif name == "Code" then
+  elseif name == "Code" or name == "Zed" then
     hs.eventtap.keyStroke({ "command", "shift" }, "[")
   elseif name == "Zen" then
     hs.eventtap.keyStroke({ "command" }, "`")
@@ -50,8 +50,13 @@ function module.down()
     -- end)
     -- hs.eventtap.keyStroke({ "control" }, "Tab")
   elseif name == "Zen" then
-    -- Use menu item Spaces > Next Space
-    hs.application.frontmostApplication():selectMenuItem({"Spaces", "Next Space"})
+    -- macOS built-in "Move focus to previous window" (reverse of cmd+`)
+    hs.eventtap.keyStroke({ "command", "shift" }, "`")
+  elseif name == "Zed" then
+    -- next window via zed keybind "shift+space w n"
+    hs.eventtap.keyStroke({ "shift" }, "space")
+    hs.eventtap.keyStroke({}, "w")
+    hs.eventtap.keyStroke({}, "n")
   elseif isTerminal(name) then
     os.execute(hbin .. "/nav-tmux down")
   elseif useTabNav(name) then
@@ -72,6 +77,9 @@ function module.up()
     hs.eventtap.keyStroke({ "shift" },  "space" )
     hs.eventtap.keyStroke({}, "g")
     hs.eventtap.keyStroke({}, "n")
+  elseif name == "Zen" then
+    -- Use menu item Spaces > Next Space
+    hs.application.frontmostApplication():selectMenuItem({"Spaces", "Next Space"})
   elseif name == "Firefox" then
     -- focus previous tab
     hs.eventtap.keyStroke({ "control" }, "Tab")
@@ -94,7 +102,7 @@ function module.right()
     hs.eventtap.keyStroke({}, "n")
   elseif name == "Zen" then
     hs.eventtap.keyStroke({ "control" }, "Tab")
-  elseif name == "Code" then
+  elseif name == "Code" or name == "Zed" then
     hs.eventtap.keyStroke({ "command", "shift" }, "]")
   elseif name == "TablePlus" then
     hs.eventtap.keyStroke({ "command" }, "]")
