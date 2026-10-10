@@ -1,0 +1,133 @@
+#!/usr/bin/env bash
+# Workaround for Snapmaker Orca losing its cloud login between sessions.
+#
+# The account UI is a Flutter web app served over http://127.0.0.1:<port>, and the
+# login token lives in WebKit localStorage -- which is scoped per origin, port
+# included. HttpServer::find_available_port() starts at 13619 and walks upward, so
+# when 13619 is still held (the listening socket leaks into the WebKit helper
+# processes and can outlive the app) the next launch lands on 13620, sees an empty
+# localStorage, and asks you to log in again.
+#
+# Upstream bug: https://github.com/Snapmaker/OrcaSlicer/issues/925
+#
+# This wrapper gives the port a chance to free up, then mirrors the localStorage
+# across every port the app might pick, so the login survives either way.
+
+set -uo pipefail
+
+APPIMAGE=/opt/snapmaker-orca-appimage/snapmaker-orca-appimage.AppImage
+LSDIR="${XDG_DATA_HOME:-$HOME/.local/share}/snapmaker-orca/localstorage"
+BASE_PORT=13619
+PORT_SPAN=6      # ports the app may fall back to: 13619..13624
+WAIT_SECS=20     # how long to wait for BASE_PORT before giving up and proceeding
+
+log() { printf 'snapmaker-orca-wrapper: %s\n' "$*" >&2; }
+
+port_free() {
+  python3 - "$1" <<'PY'
+import socket, sys
+s = socket.socket()
+try:
+    s.bind(("0.0.0.0", int(sys.argv[1])))
+except OSError:
+    sys.exit(1)
+finally:
+    s.close()
+PY
+}
+
+# Copy the localStorage store that holds the login token over every other port's
+# store, so whichever origin the app ends up on already has the session.
+sync_localstorage() {
+  [ -d "$LSDIR" ] || return 0
+  python3 - "$LSDIR" "$BASE_PORT" "$PORT_SPAN" <<'PY'
+import os, shutil, sqlite3, sys
+
+lsdir, base, span = sys.argv[1], int(sys.argv[2]), int(sys.argv[3])
+ports = range(base, base + span)
+paths = {p: os.path.join(lsdir, "http_127.0.0.1_%d.localstorage" % p) for p in ports}
+
+def keys(path):
+    """Keys in the store, WAL included. Returns None if unreadable."""
+    try:
+        con = sqlite3.connect(path)
+        try:
+            return {k for (k,) in con.execute("select key from ItemTable")}
+        finally:
+            con.close()
+    except sqlite3.Error:
+        return None
+
+# The token lives under flutter.orca_user_info; prefer the most recently written
+# store that actually has it.
+candidates = []
+for p, path in paths.items():
+    if not os.path.exists(path):
+        continue
+    k = keys(path)
+    if k and "flutter.orca_user_info" in k:
+        candidates.append((os.path.getmtime(path), p, path))
+
+if not candidates:
+    print("no logged-in localStorage store found; nothing to mirror")
+    sys.exit(0)
+
+_, src_port, src = max(candidates)
+
+# Fold the WAL into the main database so a plain file copy is complete.
+try:
+    con = sqlite3.connect(src)
+    con.execute("PRAGMA wal_checkpoint(TRUNCATE)")
+    con.close()
+except sqlite3.Error as e:
+    print("could not checkpoint %s: %s" % (os.path.basename(src), e))
+    sys.exit(0)
+
+for p, dst in paths.items():
+    if p == src_port:
+        continue
+    try:
+        shutil.copyfile(src, dst)
+        # Stale -wal/-shm would shadow the bytes we just copied in.
+        for suffix in ("-wal", "-shm"):
+            try:
+                os.remove(dst + suffix)
+            except FileNotFoundError:
+                pass
+    except OSError as e:
+        print("could not mirror to port %d: %s" % (p, e))
+
+print("mirrored login state from port %d to %s" % (
+    src_port, ", ".join(str(p) for p in ports if p != src_port)))
+PY
+}
+
+if port_free "$BASE_PORT"; then
+  :
+else
+  log "port $BASE_PORT is busy (likely a leftover WebKit process); waiting up to ${WAIT_SECS}s"
+  for _ in $(seq "$WAIT_SECS"); do
+    sleep 1
+    port_free "$BASE_PORT" && break
+  done
+  port_free "$BASE_PORT" \
+    && log "port $BASE_PORT freed" \
+    || log "port $BASE_PORT still busy; continuing (localStorage is mirrored, so login should persist)"
+fi
+
+sync_localstorage
+"$APPIMAGE" "$@"
+status=$?
+
+# Snapmaker Orca segfaults during teardown on every exit, long predating this
+# wrapper (see coredumpctl). It is almost certainly why the listening socket on
+# BASE_PORT is never closed cleanly. Nothing here can fix it, but there is no
+# point propagating 139 to the desktop launcher as if the session failed.
+if [ "$status" -eq 139 ]; then
+  log "app segfaulted on exit (known upstream teardown crash); treating as a clean exit"
+  status=0
+fi
+
+# The app writes its session on the way out; propagate whatever it wrote.
+sync_localstorage
+exit "$status"

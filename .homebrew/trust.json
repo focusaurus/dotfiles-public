@@ -1,5 +1,6 @@
 {
   "trustedformulae": [
+    "felangga/chiko/chiko",
     "hashicorp/tap/terraform",
     "localstack/tap/localstack-cli"
   ]

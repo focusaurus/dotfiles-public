@@ -393,5 +393,17 @@ aur.archlinux.org/yay
 /.config/markdown/sample-contract.pdf
 /.config/markdown/sample-document.html
 /.config/markdown/sample-document.pdf
+/.config/Snapmaker_Orca/cache
+/.config/Snapmaker_Orca/log
+/.config/Snapmaker_Orca/system
+/.config/Snapmaker_Orca
+/.config/snapmaker-luban
 /.emulator_console_auth_token
 /.homebrew/trust.json.lock
+/.snapmaker-luban.json
+/.config/OrcaSlicer/cache
+/.config/OrcaSlicer/log
+/.config/OrcaSlicer/plugins
+/.config/OrcaSlicer/system
+/.config/OrcaSlicer/.orcaslicer_machine_id
+/.zcompdump.zwc

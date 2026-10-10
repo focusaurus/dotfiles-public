@@ -16,7 +16,9 @@
   },
   {
     "bindings": {
-      "cmd-o": "file_finder::Toggle"
+      "cmd-o": "file_finder::Toggle",
+      "shift-space b t": "editor::ToggleBookmark",
+      "shift-space b v": "editor::ViewBookmarks"
     }
   },
   {
@@ -38,7 +40,13 @@
   {
     "context": "Pane",
     "bindings": {
-      "shift-space w c": "workspace::CloseAllItemsAndPanes"
+      "shift-space w c": "workspace::CloseAllItemsAndPanes",
+      "shift-space w n": "workspace::ActivateNextWindow"
+    }
+  },
+  {
+    "bindings": {
+      "shift-space g g": "git_panel::ToggleFocus"
     }
   },
   {
