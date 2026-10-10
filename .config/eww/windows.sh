@@ -38,7 +38,7 @@ niri msg -j windows | jq '
     elif (app_id | ascii_downcase | test("libreoffice|writer|calc|gedit|xournalpp")) then "📄"
     elif (app_id | ascii_downcase | test("thunderbird|evolution|mail")) then "📧"
     elif (app_id | ascii_downcase | test("freecad")) then "🧊"
-    elif (app_id | ascii_downcase | test("bambu")) then "🖨️"
+    elif (app_id | ascii_downcase | test("bambu|orca|slicer")) then "🖨️"
     elif (app_id | ascii_downcase | test("obsidian")) then "🪨"
     elif (app_id | ascii_downcase | test("zoom")) then "📞"
     else ""

@@ -15,17 +15,27 @@ IFS=$'\n\t'
 
 cd "$(dirname "${BASH_SOURCE[0]}")"
 
+# Never let a slow daemon cause eww to spawn a second one (see sidebars.sh)
+eww() {
+  command eww --no-daemonize "$@"
+}
+
+# niri starts the daemon alongside this script; wait for it
+until eww ping >/dev/null 2>&1; do sleep 0.5; done
+
 handle() {
   local event_type=$(echo "$1" | jq -r 'keys[0]')
 
   case $event_type in
   WorkspacesChanged|WorkspaceActivated|WorkspaceActiveWindowChanged)
     echo "Workspace event: $event_type"
-    eww update "workspaces=$(./workspaces.sh)"
+    eww update "workspaces=$(./workspaces.sh)" || true
+    # Monitor plug/unplug and lid changes move workspaces around
+    ./sidebars.sh || true
     ;;
   WindowsChanged|WindowOpenedOrChanged|WindowClosed|WindowFocusChanged|WindowLayoutsChanged)
     echo "Window event: $event_type"
-    eww update "clients=$(./windows.sh)"
+    eww update "clients=$(./windows.sh)" || true
     ;;
   *)
     # Ignore other events
