@@ -25,6 +25,7 @@ arch-rate-mirrors() {
 arch-refresh-keyring() {
   sudo pacman -Sy --noconfirm archlinux-keyring
 }
+alias arch-update-keyring=arch-refresh-keyring
 
 arch-save-packages() {
   pacman -Qe | awk '{print $1}' | sort >"${HOME}/.config/arch-linux/pacman-qe-$(uname -n).txt"
