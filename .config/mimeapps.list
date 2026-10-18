@@ -4,6 +4,7 @@ x-scheme-handler/slack=slack.desktop;Slack.desktop;
 model/stl=BambuStudio.desktop;
 
 [Default Applications]
+application/x-extension-fcstd=org.freecad.FreeCAD.desktop
 inode/directory=yazi.desktop;
 model/stl=PrusaSlicer.desktop
 sourcegraph=cody-handler.desktop
