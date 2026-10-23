@@ -74,7 +74,6 @@ layout {
 
 // eww widgets & sidebar
 spawn-at-startup "eww" "daemon"
-spawn-at-startup "eww" "open" "sidebar"
 spawn-at-startup "/home/plyons/.config/eww/watch.sh"
 
 // spawn-at-startup "niriswitcher"
