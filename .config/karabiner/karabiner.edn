@@ -42,7 +42,8 @@
                  [:##q :left_arrow]
                  [:##w :down_arrow]
                  [:##e :up_arrow]
-                 [:##r :right_arrow]]}
+                 [:##r :right_arrow]
+                 [:##t :!CSp]]}
 
         ;; home row: a s d f g (Dvorak a o e u i)
         {:des   "app-nav: shift+command arrows, enter"
@@ -53,13 +54,14 @@
                  [:##f :!SCright_arrow]
                  [:##g :return_or_enter]]}
 
-        ;; bottom row: z x c v (Dvorak ; q j k) -- window manager nav
+        ;; bottom row: z x c v b (Dvorak ; q j k x) -- window manager nav
         {:des   "app-nav: control+command arrows (window manager)"
          :rules [:app-nav
                  [:##z :!CTleft_arrow]
                  [:##x :!CTdown_arrow]
                  [:##c :!CTup_arrow]
-                 [:##v :!CTright_arrow]]}
+                 [:##v :!CTright_arrow]
+                 [:##b :!CTp]]}
 
         ;; Must stay last: rules above match physical (QWERTY) positions first.
         ;; macOS input source should be U.S. (external QMK keyboard does Dvorak in firmware).
