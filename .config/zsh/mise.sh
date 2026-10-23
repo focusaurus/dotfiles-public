@@ -4,3 +4,9 @@
 if ~/bin/have-exe mise; then
   eval "$(mise activate zsh)"
 fi
+
+mr() {
+  for task in "$@"; do
+    mise run "${task}"
+  done
+}
