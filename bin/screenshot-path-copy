@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# Please Use Google Shell Style: https://google.github.io/styleguide/shell.xml
+
+# ---- Start unofficial bash strict mode boilerplate
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -o errexit # always exit on error
+set -o errtrace # trap errors in functions as well
+set -o pipefail # don't ignore exit codes when piping output
+set -u # error on reference to unknown variable
+[ "${DEBUG:-0}" = "1" ] && set -x
+
+IFS=$'\n\t'
+# ---- End unofficial bash strict mode boilerplate
+
+name="$(ls -t ~/screens/screen-*.png | xargs basename | ~/bin/fuzzy-filter "$@")"
+echo "${HOME}/screens/${name}" | ~/bin/copy
+~/bin/notify copied "${name}"
