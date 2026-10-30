@@ -23,6 +23,7 @@ gui:
 git:
   autoFetch: false
   autoRefresh: false
+  ignoreWhitespaceInDiffView: true
   # paging:
   #   colorArg: always
   #   pager: /opt/homebrew/bin/delta --dark --paging=never
