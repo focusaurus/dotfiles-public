@@ -141,37 +141,6 @@ end
 
 module.cycleWindows = module.cycleByFilter
 
--- Most-recently-focused window of appName whose title contains windowTitle
--- (plain substring match, not a Lua pattern).
-function module.findWindowByTitle(appName, windowTitle)
-	local windows = hs.window.filter.new({ appName }):getWindows(hs.window.filter.sortByFocusedLast)
-	for _, window in ipairs(windows) do
-		if string.find(window:title(), windowTitle, 1, true) then
-			return window
-		end
-	end
-	return nil
-end
-
--- Focus the matching window, or launch/focus the app if there isn't one.
-local function focusByTitleOrLaunch(appName, windowTitle)
-	local window = module.findWindowByTitle(appName, windowTitle)
-	if window == nil then
-		hs.application.launchOrFocus(appName)
-	else
-		window:focus()
-	end
-	return window
-end
-
-function module.browserMainByTitleFilter()
-	return focusByTitleOrLaunch(browserName, "main")
-end
-
-function module.browserFloatByTitleFilter()
-	return focusByTitleOrLaunch(browserName, "work-float")
-end
-
 function module.chrome()
 	log.d("chrome")
 	local yup = hs.application.launchOrFocus("Google Chrome")
@@ -251,7 +220,6 @@ end
 -- So I keep the function names in the module describing
 -- the specific implementation approach, but in the module's
 -- external API, alias it as just the intent.
-module.browserFloat = module.browserFloatByTitleFilter
 module.browser = module.zen
 
 -- filterCalendar = hs.window.filter.new():setAppFilter(browserName, {allowTitles="- Calendar -"})
@@ -294,16 +262,6 @@ module.browser = module.zen
 --   end
 -- end
 
-function module.calendarByTitleFilter()
-	return focusByTitleOrLaunch(browserName, "calendar")
-end
-
--- I have had many implementations of this.
--- So I keep the function names in the module describing
--- the specific implementation approach, but in the module's
--- external API, alias it as just the intent.
--- module.calendar = module.calendarByTitleFilter
-
 -- filterMusic = hs.window.filter.new():setAppFilter(browserName,{allowTitles="YouTube Music"})
 
 -- function module.musicWindowFilter()
@@ -345,16 +303,6 @@ end
 -- end
 --
 
-function module.musicByTitleFilter()
-	return focusByTitleOrLaunch(browserName, "music")
-end
-
--- I have had many implementations of this.
--- So I keep the function names in the module describing
--- the specific implementation approach, but in the module's
--- external API, alias it as just the intent.
-module.music = module.musicByTitleFilter
-
 -- function onAppEvent(appName, eventType, app)
 --   -- print("onAppEvent: " .. (appName or "nil") .. ", " .. eventType )
 --   if appName == browserName and eventType == hs.application.watcher.terminated then
@@ -380,21 +328,6 @@ end
 function module.terminalQuick()
 	log.d("terminalQuick")
 	hs.execute(hbin .. "/terminal-quick", true)
-end
-
----@diagnostic disable-next-line: unused-local, unused-function
-local function emailByTitleFilter()
-	log.d("emailByTitleFilter")
-	if focusMode then
-		return
-	end
-	local workWindow = module.byTitlePrefix("work-float")
-	if workWindow == nil then
-		module.browser()
-	end
-	hs.timer.doAfter(0.5, function()
-		hs.eventtap.keyStroke({ "command" }, "1")
-	end)
 end
 
 local function emailByAppWindowTitle()
