@@ -582,7 +582,7 @@ function module.previousAppByHotkey()
 	end
 end
 
-module.previousApp = module.previousAppByHotkey
+module.previousApp = module.previousAppByFilter
 
 function module.slack()
 	log.d("slack")
