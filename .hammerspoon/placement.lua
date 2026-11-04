@@ -84,8 +84,6 @@ end
 
 function module.tidy()
   log.d("tidy")
-  focus.emacs()
-  module.right()
   focus.calendar()
   module.left()
   focus.browser()
