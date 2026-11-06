@@ -121,10 +121,10 @@ local function hsManual()
 	hs.doc.hsdocs.help()
 end
 i = {}
-a(i, { cons.cat.action, noMod, "C", "Hammerspoon Console", { { cons.act.func, hs.toggleConsole } } })
-a(i, { cons.cat.action, noMod, "H", "Hammerspoon Manual", { { cons.act.func, hsManual } } })
-a(i, { cons.cat.action, noMod, "R", "Reload Hammerspoon", { { cons.act.func, hs.reload } } })
-a(i, { cons.cat.action, noMod, "Q", "Quit Hammerspoon", { { cons.act.func, os.exit } } })
+a(i, { cons.cat.action, noMod, "c", "Hammerspoon Console", { { cons.act.func, hs.toggleConsole } } })
+a(i, { cons.cat.action, noMod, "h", "Hammerspoon Manual", { { cons.act.func, hsManual } } })
+a(i, { cons.cat.action, noMod, "r", "Reload Hammerspoon", { { cons.act.func, hs.reload } } })
+a(i, { cons.cat.action, noMod, "q", "Quit Hammerspoon", { { cons.act.func, os.exit } } })
 local menuHammerspoon = { menuItems = i, parentMenu = menuNameMain }
 
 local menuNameHelp = "Help"
@@ -198,6 +198,7 @@ local menuVolume = { menuItems = i, parentMenu = menuNameMain }
 i = {}
 -- a(i, { cons.cat.action, noMod, "a", "API (Postman)", { { cons.act.launcher, "Postman" } } })
 a(i, { cons.cat.action, noMod, "a", "API (Bruno)", { { cons.act.launcher, "Bruno" } } })
+a(i, { cons.cat.action, "shift", "A", "Device Hub", { { cons.act.launcher, "Device Hub" } } })
 a(i, { cons.cat.action, noMod, "b", "Zen (Float)", { { cons.act.func, focus.zenFloat } } })
 a(i, { cons.cat.action, "shift", "b", "Zen (Personal)", { { cons.act.func, focus.zenPersonal } } })
 a(i, { cons.cat.action, noMod, "c", "Calendar", { { cons.act.func, focus.calendar } } })
