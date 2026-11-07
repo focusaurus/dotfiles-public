@@ -15,7 +15,7 @@ IFS=$'\n\t'
 PATH="${HOME}/go/bin:${PATH}"
 # Heads up: obscure dependency: https://github.com/sgreben/url
 if ! ~/bin/have-exe url; then
-  (cd /tmp && go get -u github.com/sgreben/url/cmd/url@latest)
+  (cd /tmp && go install github.com/sgreben/url/cmd/url@latest)
 fi
 
 IFS= read -r url || true
