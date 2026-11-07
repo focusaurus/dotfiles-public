@@ -109,6 +109,7 @@ a(i, { cons.cat.action, noMod, "a", "android emulator", { { cons.act.func, focus
 a(i, { cons.cat.action, noMod, "v", "VS Code", { { cons.act.launcher, "Visual Studio Code" } } })
 a(i, { cons.cat.action, noMod, "l", "Leapp", { { cons.act.launcher, "Leapp" } } })
 a(i, { cons.cat.action, noMod, "n", "NordLayer", { { cons.act.launcher, "NordLayer" } } })
+a(i, { cons.cat.action, noMod, "s", "Screenshot", { { cons.act.launcher, "Screenshot" } } })
 a(i, { cons.cat.action, noMod, "y", "Playwright (Chromium)", { { cons.act.launcher, "Chromium" } } })
 a(i, { cons.cat.action, noMod, "z", "zed", { { cons.act.launcher, "Zed" } } })
 local menuFloatHealth = { menuItems = i, parentMenu = menuNameMain }
@@ -120,10 +121,10 @@ local function hsManual()
 	hs.doc.hsdocs.help()
 end
 i = {}
-a(i, { cons.cat.action, noMod, "C", "Hammerspoon Console", { { cons.act.func, hs.toggleConsole } } })
-a(i, { cons.cat.action, noMod, "H", "Hammerspoon Manual", { { cons.act.func, hsManual } } })
-a(i, { cons.cat.action, noMod, "R", "Reload Hammerspoon", { { cons.act.func, hs.reload } } })
-a(i, { cons.cat.action, noMod, "Q", "Quit Hammerspoon", { { cons.act.func, os.exit } } })
+a(i, { cons.cat.action, noMod, "c", "Hammerspoon Console", { { cons.act.func, hs.toggleConsole } } })
+a(i, { cons.cat.action, noMod, "h", "Hammerspoon Manual", { { cons.act.func, hsManual } } })
+a(i, { cons.cat.action, noMod, "r", "Reload Hammerspoon", { { cons.act.func, hs.reload } } })
+a(i, { cons.cat.action, noMod, "q", "Quit Hammerspoon", { { cons.act.func, os.exit } } })
 local menuHammerspoon = { menuItems = i, parentMenu = menuNameMain }
 
 local menuNameHelp = "Help"
@@ -197,6 +198,7 @@ local menuVolume = { menuItems = i, parentMenu = menuNameMain }
 i = {}
 -- a(i, { cons.cat.action, noMod, "a", "API (Postman)", { { cons.act.launcher, "Postman" } } })
 a(i, { cons.cat.action, noMod, "a", "API (Bruno)", { { cons.act.launcher, "Bruno" } } })
+a(i, { cons.cat.action, "shift", "A", "Device Hub", { { cons.act.launcher, "Device Hub" } } })
 a(i, { cons.cat.action, noMod, "b", "Zen (Float)", { { cons.act.func, focus.zenFloat } } })
 a(i, { cons.cat.action, "shift", "b", "Zen (Personal)", { { cons.act.func, focus.zenPersonal } } })
 a(i, { cons.cat.action, noMod, "c", "Calendar", { { cons.act.func, focus.calendar } } })
@@ -207,7 +209,7 @@ a(i, { cons.cat.submenu, noMod, "f", menuNameFloatHealth, { { cons.act.menu, men
 a(i, { cons.cat.action, noMod, "g", "Google Meet & Notes", { { cons.act.func, placement.googleMeet } } })
 a(i, { cons.cat.action, "shift", "g", "Github", { { cons.act.func, focus.github } } })
 a(i, { cons.cat.submenu, noMod, "h", menuNameHammerspoon, { { cons.act.menu, menuNameHammerspoon } } })
-a(i, { cons.cat.action, noMod, "i", "Zed", { { cons.act.launcher, "Zed" } } })
+a(i, { cons.cat.action, noMod, "i", "Device Hub Simulator", { { cons.act.launcher, "Device Hub" } } })
 a(i, { cons.cat.action, "shift", "i", "IDE (VS Code)", { { cons.act.launcher, "Visual Studio Code" } } })
 a(i, { cons.cat.submenu, noMod, "j", menuNameJournal, { { cons.act.menu, menuNameJournal } } })
 a(i, { cons.cat.action, noMod, "k", "Firefox", { { cons.act.launcher, "Firefox" } } })

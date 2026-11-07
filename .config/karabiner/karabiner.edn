@@ -1,0 +1,105 @@
+;; Goku config -> compiled into the "Goku" profile of ~/.config/karabiner/karabiner.json
+;; Run `goku` to apply, `goku -d` for a dry run.
+;;
+;; Modifier shorthand: C=left_command O=left_option T=left_control S=left_shift
+;;   doubled (CC, OO, ...) = either side   :!X = mandatory   :## = optional any
+{:profiles {:Goku {:default true
+                   :sim     50
+                   :delay   500
+                   :alone   200
+                   :held    500}}
+
+ :devices {:builtin  [{:is_built_in_keyboard true}]
+           :external [{:is_built_in_keyboard false :description "external QMK keyboard"}]}
+
+ ;; tap-hold layers (not simlayers): hold the key -> layer on, tap -> the key itself
+ :layers {:app-nav {:key :spacebar :condi :builtin}}
+
+ :main [{:des   "command+delete becomes option+delete"
+         :rules [[:!CC##delete_or_backspace :!OOdelete_or_backspace :external]]}
+
+        {:des   "leader: mod-tap command to f10"
+         :rules [:builtin
+                 [:##left_command :left_command nil {:alone :f10}]
+                 [:##right_command :right_command nil {:alone :f10}]]}
+
+        {:des   "fuzzball: mod-tap option to f11"
+         :rules [:builtin
+                 [:##left_option :left_option nil {:alone :f11}]
+                 [:##right_option :right_option nil {:alone :f11}]]}
+
+        {:des   "snippets: mod-tap right shift to ctrl+3"
+         :rules [:builtin
+                 [:##right_shift :right_shift nil {:alone :!T3}]]}
+
+        {:des   "Post escape if left_control is pressed alone."
+         :rules [:builtin
+                 [:##left_control :left_control nil {:alone :escape}]]}
+
+        ;; Key codes are physical (QWERTY) positions; with Dvorak, q w e r are ' , . p
+        {:des   "app-nav: arrows"
+         :rules [:app-nav
+                 [:##q :left_arrow]
+                 [:##w :down_arrow]
+                 [:##e :up_arrow]
+                 [:##r :right_arrow]
+                 [:##t :!CSp]]}
+
+        ;; home row: a s d f g (Dvorak a o e u i)
+        {:des   "app-nav: shift+command arrows, enter"
+         :rules [:app-nav
+                 [:##a :!SCleft_arrow]
+                 [:##s :!SCdown_arrow]
+                 [:##d :!SCup_arrow]
+                 [:##f :!SCright_arrow]
+                 [:##g :return_or_enter]]}
+
+        ;; bottom row: z x c v b (Dvorak ; q j k x) -- window manager nav
+        {:des   "app-nav: control+command arrows (window manager)"
+         :rules [:app-nav
+                 [:##z :!CTleft_arrow]
+                 [:##x :!CTdown_arrow]
+                 [:##c :!CTup_arrow]
+                 [:##v :!CTright_arrow]
+                 [:##b :!CTp]]}
+
+        ;; Must stay last: rules above match physical (QWERTY) positions first.
+        ;; macOS input source should be U.S. (external QMK keyboard does Dvorak in firmware).
+        {:des   "base: Dvorak on built-in keyboard"
+         :rules [:builtin
+                 [:##hyphen        :open_bracket]
+                 [:##equal_sign    :close_bracket]
+
+                 [:##q             :quote]
+                 [:##w             :comma]
+                 [:##e             :period]
+                 [:##r             :p]
+                 [:##t             :y]
+                 [:##y             :f]
+                 [:##u             :g]
+                 [:##i             :c]
+                 [:##o             :r]
+                 [:##p             :l]
+                 [:##open_bracket  :slash]
+                 [:##close_bracket :equal_sign]
+
+                 [:##s             :o]
+                 [:##d             :e]
+                 [:##f             :u]
+                 [:##g             :i]
+                 [:##h             :d]
+                 [:##j             :h]
+                 [:##k             :t]
+                 [:##l             :n]
+                 [:##semicolon     :s]
+                 [:##quote         :hyphen]
+
+                 [:##z             :semicolon]
+                 [:##x             :q]
+                 [:##c             :j]
+                 [:##v             :k]
+                 [:##b             :x]
+                 [:##n             :b]
+                 [:##comma         :w]
+                 [:##period        :v]
+                 [:##slash         :z]]}]}

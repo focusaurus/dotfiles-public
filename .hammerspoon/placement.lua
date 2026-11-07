@@ -84,8 +84,6 @@ end
 
 function module.tidy()
   log.d("tidy")
-  focus.emacs()
-  module.right()
   focus.calendar()
   module.left()
   focus.browser()
@@ -96,8 +94,6 @@ function module.tidy()
   module.maximize()
   focus.firefox()
   module.maximize()
-  focus.music()
-  module.left()
 end
 
 function module.googleMeet()
