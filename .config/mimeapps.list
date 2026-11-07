@@ -1,7 +1,7 @@
 [Added Associations]
 inode/directory=yazi.desktop;
 x-scheme-handler/slack=slack.desktop;Slack.desktop;
-model/stl=BambuStudio.desktop;
+model/stl=io.github.Snapmaker.Snapmaker_Orca.desktop;
 
 [Default Applications]
 application/x-extension-fcstd=org.freecad.FreeCAD.desktop
