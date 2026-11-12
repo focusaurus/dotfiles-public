@@ -30,7 +30,7 @@ niri msg -j windows | jq '
     elif (app_id | ascii_downcase | test("terminal|kitty|alacritty|wezterm|xterm|ghostty")) then "🖥️"
     elif (app_id | ascii_downcase | test("dolphin|nautilus|thunar|pcmanfm")) then "📁"
     elif (app_id | ascii_downcase | test("slack|discord")) then "💬"
-    elif (app_id | ascii_downcase | test("1password")) then "🔑"
+    elif (app_id | ascii_downcase | test("1password|onepassword")) then "🔑"
     elif (app_id | ascii_downcase | test("spotify|rhythmbox|ario|clementine|euphonica")) then "🎵"
     elif (app_id | ascii_downcase | test("vlc|mpv|totem")) then "🎬"
     elif (title | ascii_downcase | test("gofi")) then "🔃"
@@ -44,8 +44,19 @@ niri msg -j windows | jq '
     else ""
     end;
 
+  def get_title(app_id; title):
+    if app_id == null then title
+    elif (app_id | ascii_downcase | test("bambu")) then "bambu: \(title)"
+    elif (app_id | ascii_downcase | test("snapmaker")) then "snapmaker: \(title)"
+    elif (app_id | ascii_downcase | test("1password|onepassword")) then "1password: \(title | sub(" — 1Password$"; ""))"
+    elif (app_id | ascii_downcase | test("obsidian")) then "obsidian: \(title | sub(" - Obsidian [0-9.]+$"; ""))"
+    elif (app_id | ascii_downcase | test("slack")) then "slack: \(title | sub(" - Slack$"; ""))"
+    elif (app_id | ascii_downcase | test("freecad")) then "freecad: \(title | sub(" - FreeCAD [0-9.]+$"; "") | sub("^\\s+"; ""))"
+    else title
+    end;
+
   sort_by(.workspace_id, .layout.pos_in_scrolling_layout[0], .layout.pos_in_scrolling_layout[1]) |
-  map(. + {emoji: get_emoji(.app_id; .title)}) |
+  map(. + {emoji: get_emoji(.app_id; .title), title: get_title(.app_id; .title)}) |
   . as $windows |
   to_entries |
   map(
