@@ -105,6 +105,10 @@ menu:
         desc: "hobby: add to hobby inbox"
         cmd: "~/fuzzball/obsidian-hobby"
 
+  - key: "l"
+    desc: "linear"
+    cmd: "niri-focus linear"
+
   - key: "m"
     desc: "music"
     cmd: "niri-focus music"
