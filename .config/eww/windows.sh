@@ -21,6 +21,7 @@ niri msg -j windows | jq '
       elif (title | startswith("calendar:")) then "📅"
       elif (title | startswith("music:")) then "🎵"
       elif (title | startswith("trello:")) then "✅"
+      elif (title | startswith("linear:")) then "✅"
       else "🌐"
       end
     elif (app_id | ascii_downcase | test("chrom")) then "🌍"
