@@ -13,6 +13,16 @@ set -o posix    # more strict failures in subshells
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
+power_icon="🚫"
+for supply_dir in /sys/class/power_supply/*; do
+  [[ "$(cat "${supply_dir}/type" 2>/dev/null)" == "Mains" ]] || continue
+  if [[ "$(cat "${supply_dir}/online" 2>/dev/null)" == "1" ]]; then
+    power_icon="🔌"
+    break
+  fi
+done
+echo -n "${power_icon}"
+
 for bat_dir in /sys/class/power_supply/BAT*; do
   [[ -d "${bat_dir}" ]] || continue
   battery_level=$(cat "${bat_dir}/capacity")
