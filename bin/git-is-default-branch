@@ -7,10 +7,16 @@
 set -o errexit  # always exit on error
 set -o errtrace # trap errors in functions as well
 set -o pipefail # don't ignore exit codes when piping output
+set -o nounset  # fail on unset variables
 # set -x          # enable debugging
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
-if [[ "$(git rev-parse --abbrev-ref HEAD)" != "$(~/bin/git-get-default-branch)" ]]; then
-  exit 1
-fi
+
+# Exit 0 if the current branch is the default branch, 1 if it isn't
+# (including detached HEAD), 2 if the default branch can't be determined.
+
+# Empty when HEAD is detached
+current=$(git symbolic-ref --quiet --short HEAD) || exit 1
+default=$(~/bin/git-get-default-branch) || exit 2
+[[ "${current}" == "${default}" ]]

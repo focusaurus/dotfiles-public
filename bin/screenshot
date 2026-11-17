@@ -56,6 +56,7 @@ flameshot)
 esac
 
 echo "${out}"
+echo "${out}" | ~/bin/copy
 
 #------- code graveyard
 

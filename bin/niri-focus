@@ -74,7 +74,7 @@ euphonica)
   find_window '.app_id == "euphonica"' || launch euphonica
   ;;
 1password)
-  find_window '.app_id == "1password"' || launch 1password
+  find_window '.app_id == "com.onepassword.OnePassword"' || launch 1password
   ;;
 calculator)
   find_window '.app_id == "mate-calc"' || launch mate-calc

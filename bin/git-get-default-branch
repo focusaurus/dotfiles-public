@@ -7,13 +7,88 @@
 set -o errexit  # always exit on error
 set -o errtrace # trap errors in functions as well
 set -o pipefail # don't ignore exit codes when piping output
+set -o nounset  # fail on unset variables
 # set -x          # enable debugging
 
 IFS=$'\n\t'
 # ---- End unofficial bash strict mode boilerplate
 
-# Used to filter to specific well-known names.
-# grep -E '^(origin|upstream|github)\b' |
-# But I think just "the first origin" is a good heuristic
-remote=$(git remote -v | awk '{print $1}' | head -1)
-git symbolic-ref "refs/remotes/${remote}/HEAD" --short | cut -d / -f 2-
+# Print the name of the repository's default branch (e.g. "main").
+#
+# Strategy, in order:
+#   1. refs/remotes/<remote>/HEAD, if it's set locally (fast, offline)
+#   2. ask the remote via `git ls-remote --symref`, and cache the answer
+#      with `git remote set-head` so step 1 works next time
+#   3. look for a well-known branch name that exists on the remote or locally
+#   4. git config init.defaultBranch
+#
+# Some remotes (e.g. AWS CodeCommit via the codecommit:// helper) don't
+# advertise HEAD, so clones end up without refs/remotes/origin/HEAD and
+# step 1 alone isn't enough.
+
+git rev-parse --git-dir >/dev/null
+
+pick_remote() {
+  local remotes
+  remotes=$(git remote)
+  [[ -z "${remotes}" ]] && return 0
+  local preferred
+  for preferred in origin upstream; do
+    if grep -qx "${preferred}" <<<"${remotes}"; then
+      echo "${preferred}"
+      return 0
+    fi
+  done
+  head -1 <<<"${remotes}"
+}
+
+remote=$(pick_remote)
+
+if [[ -n "${remote}" ]]; then
+  # 1. Locally cached remote HEAD
+  # (ignored if it's stale and points at a branch that no longer exists)
+  if ref=$(git symbolic-ref --quiet "refs/remotes/${remote}/HEAD" 2>/dev/null) &&
+    git show-ref --verify --quiet "${ref}"; then
+    echo "${ref#refs/remotes/${remote}/}"
+    exit 0
+  fi
+
+  # 2. Ask the remote. Output looks like "ref: refs/heads/main<TAB>HEAD".
+  ref=$(GIT_TERMINAL_PROMPT=0 timeout 15 git ls-remote --symref "${remote}" HEAD 2>/dev/null |
+    awk '$1 == "ref:" && $3 == "HEAD" { print $2; exit }') || true
+  if [[ -n "${ref}" ]]; then
+    branch="${ref#refs/heads/}"
+    # Cache it for next time (only if we have the remote-tracking branch)
+    if git show-ref --verify --quiet "refs/remotes/${remote}/${branch}"; then
+      git remote set-head "${remote}" "${branch}" >/dev/null 2>&1 || true
+    fi
+    echo "${branch}"
+    exit 0
+  fi
+fi
+
+# 3. Well-known names
+for candidate in main master trunk develop; do
+  if [[ -n "${remote}" ]] &&
+    git show-ref --verify --quiet "refs/remotes/${remote}/${candidate}"; then
+    # Cache it so we skip the network round trip next time
+    git remote set-head "${remote}" "${candidate}" >/dev/null 2>&1 || true
+    echo "${candidate}"
+    exit 0
+  fi
+done
+for candidate in main master trunk develop; do
+  if git show-ref --verify --quiet "refs/heads/${candidate}"; then
+    echo "${candidate}"
+    exit 0
+  fi
+done
+
+# 4. Configured default for new repos
+if branch=$(git config --get init.defaultBranch); then
+  echo "${branch}"
+  exit 0
+fi
+
+echo "git-get-default-branch: unable to determine default branch" >&2
+exit 1

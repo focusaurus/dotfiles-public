@@ -6,9 +6,10 @@ local focusMode = false
 local hbin = os.getenv("HOME") .. "/bin"
 local browserName = "Zen"
 
--- IMPORTANT NOTE ABOUT hs.window.filter: it's slow.
--- Running it at startup will increase hammerspoon start time from ~1s to ~10s
--- avoid it at all possible
+-- NOTE ABOUT hs.window.filter: the stock implementation was very slow
+-- (startup went from ~1s to ~10s). init.lua now swaps in dmgerman's rewrite
+-- (window_filter_new.lua), which is fast enough to query on every keypress,
+-- so the old caching workarounds below are no longer needed.
 
 -- this handles all the straightforward launchOrFocus apps
 local cliToApp = {
@@ -72,7 +73,6 @@ end
 -- We have to cache the results or hammerspoon locks up
 -- local filterBrowserMain = hs.window.filter.new():setAppFilter(
 --   browserName,{rejectTitles={"YouTube Music", "- Calendar -"}})
-local windowBrowserMain
 
 -- function module.findBrowserMain()
 --   log.d('findBrowserMain')
@@ -140,31 +140,6 @@ function module.cycleByFilter()
 end
 
 module.cycleWindows = module.cycleByFilter
-
-function module.browserMainByTitleCache()
-	if windowBrowserMain == nil then
-		windowBrowserMain = module.findWindowByTitle(browserName, "main")
-	end
-	if windowBrowserMain == nil then
-		-- if we get here, we didn't find any windows, launch the app
-		hs.application.launchOrFocus(browserName)
-	else
-		windowBrowserMain:focus()
-	end
-end
-
-local windowBrowserFloat
-function module.browserFloatByTitleCache()
-	if windowBrowserFloat == nil then
-		windowBrowserFloat = module.findWindowByTitle(browserName, "work-float")
-	end
-	if windowBrowserFloat == nil then
-		-- if we get here, we didn't find any windows, launch the app
-		hs.application.launchOrFocus(browserName)
-	else
-		windowBrowserFloat:focus()
-	end
-end
 
 function module.chrome()
 	log.d("chrome")
@@ -245,10 +220,8 @@ end
 -- So I keep the function names in the module describing
 -- the specific implementation approach, but in the module's
 -- external API, alias it as just the intent.
-module.browserFloat = module.browserFloatByTitleCache
 module.browser = module.zen
 
-local windowCalendar
 -- filterCalendar = hs.window.filter.new():setAppFilter(browserName, {allowTitles="- Calendar -"})
 
 -- function module.calendarByName()
@@ -289,26 +262,7 @@ local windowCalendar
 --   end
 -- end
 
-function module.calendarByTitleCache()
-	if windowCalendar == nil then
-		windowCalendar = module.findWindowByTitle(browserName, "calendar")
-	end
-	if windowCalendar == nil then
-		-- if we get here, we didn't find any windows, launch the app
-		hs.application.launchOrFocus(browserName)
-	else
-		windowCalendar:focus()
-	end
-end
-
--- I have had many implementations of this.
--- So I keep the function names in the module describing
--- the specific implementation approach, but in the module's
--- external API, alias it as just the intent.
--- module.calendar = module.calendarByTitleCache
-
 -- filterMusic = hs.window.filter.new():setAppFilter(browserName,{allowTitles="YouTube Music"})
-local windowMusic
 
 -- function module.musicWindowFilter()
 --   log.d("music")
@@ -349,31 +303,6 @@ local windowMusic
 -- end
 --
 
-function module.musicByTitleCache()
-	if windowMusic == nil then
-		windowMusic = module.findWindowByTitle(browserName, "music")
-	end
-	if windowMusic == nil then
-		-- if we get here, we didn't find any windows, launch the app
-		hs.application.launchOrFocus(browserName)
-	else
-		windowMusic:focus()
-	end
-end
-
--- I have had many implementations of this.
--- So I keep the function names in the module describing
--- the specific implementation approach, but in the module's
--- external API, alias it as just the intent.
-module.music = module.musicByTitleCache
-
-function module.clearWindowCache()
-	windowCalendar = nil
-	windowMusic = nil
-	windowBrowserMain = nil
-	windowBrowserFloat = nil
-end
-
 -- function onAppEvent(appName, eventType, app)
 --   -- print("onAppEvent: " .. (appName or "nil") .. ", " .. eventType )
 --   if appName == browserName and eventType == hs.application.watcher.terminated then
@@ -399,21 +328,6 @@ end
 function module.terminalQuick()
 	log.d("terminalQuick")
 	hs.execute(hbin .. "/terminal-quick", true)
-end
-
----@diagnostic disable-next-line: unused-local, unused-function
-local function emailByTitleFilter()
-	log.d("emailByTitleFilter")
-	if focusMode then
-		return
-	end
-	local workWindow = module.byTitlePrefix("work-float")
-	if workWindow == nil then
-		module.browser()
-	end
-	hs.timer.doAfter(0.5, function()
-		hs.eventtap.keyStroke({ "command" }, "1")
-	end)
 end
 
 local function emailByAppWindowTitle()
@@ -582,7 +496,7 @@ function module.previousAppByHotkey()
 	end
 end
 
-module.previousApp = module.previousAppByHotkey
+module.previousApp = module.previousAppByFilter
 
 function module.slack()
 	log.d("slack")
@@ -637,101 +551,6 @@ end
 --     hs.application.launchOrFocus("Slack")
 --   end
 -- end
-
--- Begin Window List Cache
-
--------------------------------
--- select window by title
--- windowsByFocus = hs.window.filter.new()
--- windowsByFocus:setDefaultFilter({})
--- windowsByFocus:setSortOrder(hs.window.filter.sortByFocusedLast)
-local currentWindows = {}
-
--- function module.refreshWindowCache()
---   currentWindows = {}
---   for _, v in ipairs(windowsByFocus:getWindows()) do
---     table.insert(currentWindows, v)
---   end
--- end
---
--- module.refreshWindowCache()
-
-function module.findWindowByTitle(appName, windowTitle)
-	for _, window in ipairs(currentWindows) do
-		print("findWindowByTitle: query: " .. windowTitle .. " window: " .. window:title())
-		if string.find(window:application():name(), appName) and string.find(window:title(), windowTitle) then
-			return window
-		end
-	end
-	return nil
-end
-
--- function module.focusByTitle(t)
---    w = module.findWindowByTitle(t)
---    if w then
---       w:focus()
---    end
---    return w
--- end
-
--- function module.focusByApp(appName)
---    print(' [' .. appName ..']')
---    for _,v in ipairs(currentWindows) do
---       print('           [' .. v:application():name() .. ']')
---       if string.find(v:application():name(), appName) then
---          print("Focusing window" .. v:title())
---          v:focus()
---          return v
---       end
---    end
---    return nil
--- end
---
-
-local function callbackWindowCreated(w, appName, event)
-	if event == "windowDestroyed" then
-		--      print("deleting from windows-----------------", w)
-		for i, v in ipairs(currentWindows) do
-			if v == w then
-				table.remove(currentWindows, i)
-				return
-			end
-		end
-		--      print("Not found .................. ", w)
-		--      print("Not found ............ :()", w)
-		return
-	end
-	if event == "windowCreated" then
-		--      print("inserting into windows.........", w)
-		table.insert(currentWindows, 1, w)
-		return
-	end
-	if event == "windowFocused" then
-		-- otherwise is equivalent to delete and then create
-		callbackWindowCreated(w, appName, "windowDestroyed")
-		callbackWindowCreated(w, appName, "windowCreated")
-	end
-end
--- windowsByFocus:subscribe(hs.window.filter.windowCreated, callbackWindowCreated)
--- windowsByFocus:subscribe(hs.window.filter.windowDestroyed, callbackWindowCreated)
--- windowsByFocus:subscribe(hs.window.filter.windowFocused, callbackWindowCreated)
---
-local function listWindowChoices1()
-	local windowChoices = {}
-	--   for i,v in ipairs(windowsByFocus:getWindows()) do
-	for i, w in ipairs(currentWindows) do
-		if w ~= nil and w ~= hs.window.focusedWindow() then
-			table.insert(windowChoices, {
-				text = w:title() .. "--" .. w:application():name(),
-				subText = w:application():name(),
-				uuid = i,
-				image = hs.image.imageFromAppBundle(w:application():bundleID() or ""),
-				win = w,
-			})
-		end
-	end
-	return windowChoices
-end
 
 local function listWindowChoices()
 	local windowChoices = {}
