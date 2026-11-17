@@ -15,6 +15,12 @@ overview {
   zoom 0.3
 }
 
+gestures {
+  hot-corners {
+    off
+  }
+}
+
 screenshot-path "~/screens/screen-%Y-%m-%d-%H%M%S.png"
 
 input {
