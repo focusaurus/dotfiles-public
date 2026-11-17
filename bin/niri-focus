@@ -121,6 +121,9 @@ calendar)
 trello)
   find_window '.app_id == "firefox" and (.title | startswith("trello:"))' || focus_browser
   ;;
+linear)
+  find_window '.app_id == "firefox" and (.title | startswith("linear:"))' || focus_browser
+  ;;
 email)
   focus_browser
   hotkey_alt 1
